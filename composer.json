@@ -1,0 +1,20 @@
+{
+    "name": "vazaha/mastodon-api-client",
+    "description": "A mastodon API client for PHP",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Vazaha\\Mastodon\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lennart Hengstmengel",
+            "email": "lennart@vazaha.nl"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.7"
+    }
+}
