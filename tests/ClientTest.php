@@ -3,13 +3,13 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use Vazaha\Mastodon\Client;
+use Vazaha\Mastodon\ApiClient;
 
 class ClientTest extends TestCase
 {
 	public function testClientCanBeInstantiated()
 	{
-		$client = Client::make();
-		$this->assertInstanceOf(Client::class, $client);
+		$client = ApiClient::make();
+		$this->assertInstanceOf(ApiClient::class, $client);
 	}
 }
