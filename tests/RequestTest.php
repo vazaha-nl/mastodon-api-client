@@ -7,20 +7,24 @@ use Vazaha\Mastodon\Requests\GetFollowedAccountsRequest;
 
 class RequestTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     */
     public function test_query_params_work(): void
     {
         $request = (new GetFollowedAccountsRequest('testid'))
-            ->setMaxId('123456789');
+            ->setMaxId('MAXID');
+
         $uri = (string)$request->getUri();
+        $this->assertStringContainsString('max_id=MAXID', $uri);
 
-        $this->assertStringContainsString('123456789', $uri);
-
-        $request->setMaxId('blablabla');
+        $request->setMinId('MINID');
         $uri = (string)$request->getUri();
-        $this->assertStringContainsString('blablabla', $uri);
+        $this->assertStringContainsString('min_id=MINID', $uri);
 
+        $request->setSinceId('SINCEID');
+        $uri = (string)$request->getUri();
+        $this->assertStringContainsString('since_id=SINCEID', $uri);
+
+        $request->setLimit(123);
+        $uri = (string)$request->getUri();
+        $this->assertStringContainsString('limit=123', $uri);
     }
 }
