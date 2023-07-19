@@ -8,7 +8,7 @@ use Vazaha\Mastodon\Requests\Request;
 use GuzzleHttp\Psr7\Response as Psr7Response;
 use Psr\Http\Message\ResponseInterface;
 use Vazaha\Mastodon\Models\Model;
-use Vazaha\Mastodon\Models\ModelFactory;
+use Vazaha\Mastodon\Factories\ModelFactory;
 
 class Response
 {

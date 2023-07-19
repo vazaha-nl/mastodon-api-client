@@ -7,7 +7,7 @@ use GuzzleHttp\ClientInterface;
 use Vazaha\Mastodon\Exceptions\DomainNotSetException;
 use Vazaha\Mastodon\Requests\Request;
 use Vazaha\Mastodon\Responses\Response;
-use Vazaha\Mastodon\Responses\ResponseFactory;
+use Vazaha\Mastodon\Factories\ResponseFactory;
 
 final class ApiClient
 {

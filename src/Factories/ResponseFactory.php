@@ -1,11 +1,13 @@
 <?php
 
-namespace Vazaha\Mastodon\Responses;
+namespace Vazaha\Mastodon\Factories;
 
 use Psr\Http\Message\ResponseInterface;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Requests\PagedRequest;
 use Vazaha\Mastodon\Requests\Request;
+use Vazaha\Mastodon\Responses\PagedResponse;
+use Vazaha\Mastodon\Responses\Response;
 
 class ResponseFactory
 {

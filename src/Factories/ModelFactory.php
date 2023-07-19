@@ -1,8 +1,10 @@
 <?php
 
-namespace Vazaha\Mastodon\Models;
+namespace Vazaha\Mastodon\Factories;
 
 use LogicException;
+use Vazaha\Mastodon\Models\Account;
+use Vazaha\Mastodon\Models\Model;
 use Vazaha\Mastodon\Requests\AccountRequest;
 use Vazaha\Mastodon\Requests\Request;
 
