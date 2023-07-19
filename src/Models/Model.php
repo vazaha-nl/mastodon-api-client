@@ -8,11 +8,6 @@ abstract class Model
 {
 	use EncapsulatesApiClient;
 
-    public function isNull(): bool
-    {
-    	return false;
-    }
-
     public static function fromArray(array $array): static
     {
     	return new static(...$array);
