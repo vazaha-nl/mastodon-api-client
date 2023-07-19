@@ -7,7 +7,7 @@ use Vazaha\Mastodon\Requests\Contracts\AccountRequestContract;
 class LookupAccountRequest extends Request implements AccountRequestContract
 {
 	public function __construct(
-		protected string $username
+		protected string $acct
 	) {
 		//
 	}
@@ -20,7 +20,7 @@ class LookupAccountRequest extends Request implements AccountRequestContract
     public function getQuery(): array
     {
     	return [
-    		'acct' => $this->username,
+    		'acct' => $this->acct,
     	];
     }
 }

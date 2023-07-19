@@ -4,21 +4,18 @@ namespace Vazaha\Mastodon\Requests;
 
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\UriInterface;
+use Vazaha\Mastodon\Requests\Contracts\RequestContract;
 
-abstract class Request
+abstract class Request implements RequestContract
 {
-	public const API_VERSION = 'v1';
+	protected string $apiVersion = 'v1';
 
     protected string $method = 'GET';
-
-    protected string $modelClass;
 
     public function getMethod(): string
     {
         return $this->method;
     }
-
-    abstract public function getEndpoint(): string;
 
     public function getUri(): UriInterface
     {
@@ -26,7 +23,7 @@ abstract class Request
             new Uri(
             	sprintf(
             		'/api/%s/%s',
-            		self::API_VERSION,
+            		$this->apiVersion,
             		$this->getEndpoint()
             	)
             ),

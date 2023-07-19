@@ -5,7 +5,6 @@ namespace Vazaha\Mastodon;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\ClientInterface;
 use Vazaha\Mastodon\Exceptions\DomainNotSetException;
-use Vazaha\Mastodon\Responses\Response;
 use Vazaha\Mastodon\Factories\ResponseFactory;
 use Vazaha\Mastodon\Requests\Contracts\RequestContract;
 use Vazaha\Mastodon\Responses\Contracts\PagedResponseContract;
