@@ -2,33 +2,24 @@
 
 namespace Vazaha\Mastodon\Models;
 
-use Vazaha\Mastodon\ApiClient;
+use Vazaha\Mastodon\Concerns\EncapsulatesApiClient;
 
-class Model
+abstract class Model
 {
-    public function __construct(
-        protected array $data,
-        protected ?ApiClient $apiClient,
-    ) {
-        //
+	use EncapsulatesApiClient;
+
+    public function isNull(): bool
+    {
+    	return false;
     }
 
-    public function getProperty(string $name, $default = null)
+    public static function fromArray(array $array): static
     {
-        return $this->data[$name] ?? $default;
+    	return new static(...$array);
     }
 
     public function toArray(): array
     {
-        return $this->data;
-    }
-
-    public function getApiClient(): ApiClient
-    {
-        if (!isset($this->apiClient)) {
-            $this->apiClient = ApiClient::make();
-        }
-
-        return $this->apiClient;
+    	return get_object_vars($this);
     }
 }

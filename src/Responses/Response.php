@@ -31,7 +31,7 @@ class Response
             $modelClass = $this->getModelClass();
 
             $this->models = Collection::make($this->getResults())
-                ->map(fn ($modelData) => new $modelClass($modelData, $this->apiClient));
+                ->map(fn ($modelData) => $modelClass::fromArray($modelData));
         }
 
         return $this->models;
@@ -52,6 +52,7 @@ class Response
         $decoded = json_decode($this->httpResponse->getBody()->getContents(), true);
 
         if ($decoded === false) {
+        	// TODO throw exception?
             return [];
         }
 

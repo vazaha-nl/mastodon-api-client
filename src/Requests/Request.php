@@ -28,8 +28,7 @@ abstract class Request
         );
     }
 
-    // TODO FIXME check return type, can be null?????
-    public function getQuery(): ?array
+    public function getQuery(): array
     {
         return [];
     }

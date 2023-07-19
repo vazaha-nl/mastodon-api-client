@@ -4,38 +4,64 @@ namespace Vazaha\Mastodon\Models;
 
 class Account extends Model
 {
-    public function getId(): string
+	public function __construct(
+		public string $id,
+		public ?string $username = null,
+		public ?string $acct = null,
+		public ?string $url = null,
+		public ?string $display_name = null,
+		public ?string $note = null,
+
+		// TODO url type?
+		public ?string $avatar = null,
+		public ?string $avatar_static = null,
+		public ?string $header = null,
+		public ?string $header_static = null,
+
+		public ?bool $locked = null,
+
+		// TODO AccountFields type?
+		public array $fields = [],
+
+		public array $roles = [],
+
+		// TODO Emojis type?
+		public array $emojis = [],
+
+		public ?bool $bot = null,
+		public ?bool $group = null,
+		public ?bool $discoverable = null,
+		public ?bool $noindex = null,
+		public ?bool $moved = null,
+		public ?bool $suspended = null,
+		public ?bool $limited = null,
+
+		// TODO datetime type?
+		public ?string $created_at = null,
+		public ?string $last_status_at = null,
+
+		public ?int $statuses_count = null,
+		public ?int $followers_count = null,
+		public ?int $following_count = null,
+	) {
+		//
+	}
+
+    public function getBaseUri(): ?string
     {
-        return $this->getProperty('id');
+    	if (!isset($this->username, $this->url)) {
+    		return null;
+    	}
+
+    	return str_replace('@' . $this->username, '', $this->url);
     }
 
-    public function getUsername(): string
+    public function getDomain(): ?string
     {
-        return $this->getProperty('username');
-    }
+    	if (!isset($this->url)) {
+    		return null;
+    	}
 
-    public function getUrl(): string
-    {
-        return $this->getProperty('url');
-    }
-
-    public function getDisplayName(): string
-    {
-        return $this->getProperty('display_name');
-    }
-
-    public function isLocked(): bool
-    {
-        return (bool)$this->getProperty('locked');
-    }
-
-    public function getBaseUri(): string
-    {
-    	return str_replace('@' . $this->getUsername(), '', $this->getUrl());
-    }
-
-    public function getDomain(): string
-    {
-        return parse_url($this->getUrl(), PHP_URL_HOST);
+        return parse_url($this->url, PHP_URL_HOST);
     }
 }

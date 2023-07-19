@@ -11,7 +11,7 @@ class GetFollowedAccountsRequest extends PagedRequest
     public function __construct(string|Account $account)
     {
         if ($account instanceof Account) {
-            $this->accountId = $account->getId();
+            $this->accountId = $account->id;
             return;
         }
 
