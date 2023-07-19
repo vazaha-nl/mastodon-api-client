@@ -28,10 +28,14 @@ class Response
     public function getModels(): Collection
     {
         if (!isset($this->models)) {
-            $modelClass = $this->getModelClass();
-
             $this->models = Collection::make($this->getResults())
-                ->map(fn ($modelData) => $modelClass::fromArray($modelData));
+                ->map(function ($modelData) {
+                	$modelClass = $this->getModelClass();
+                	/** @var \Vazaha\Mastodon\Models\Model $model **/
+                	$model = $modelClass::fromArray($modelData);
+
+                	return $model->setSourceDomain($this->apiClient->getDomain());
+                });
         }
 
         return $this->models;
