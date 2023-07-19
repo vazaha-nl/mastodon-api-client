@@ -7,7 +7,7 @@ use Vazaha\Mastodon\Requests\GetFollowedAccountsRequest;
 
 class RequestTest extends TestCase
 {
-    public function test_query_params_work(): void
+    public function testQueryParamsWork(): void
     {
         $request = (new GetFollowedAccountsRequest('testid'))
             ->setMaxId('MAXID');
