@@ -35,9 +35,7 @@ class Response
         if (!isset($this->models)) {
             $this->models = Collection::make($this->getResults())
                 ->map(function ($modelData) use ($modelFactory) {
-                	return $modelFactory->create($this->request)
-                		->fillFromArray($modelData)
-                		->setSourceDomain($this->apiClient->getDomain());
+                	return $modelFactory->create($this->apiClient, $this->request, $modelData);
                 });
         }
 
