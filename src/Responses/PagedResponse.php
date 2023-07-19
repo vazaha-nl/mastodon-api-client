@@ -3,14 +3,13 @@
 namespace Vazaha\Mastodon\Responses;
 
 use Vazaha\Mastodon\Responses\Contracts\PagedResponseContract;
-use Vazaha\Mastodon\Responses\Contracts\ResponseContract;
 
 /**
  * @property \Vazaha\Mastodon\Requests\Contracts\PagedRequestContract $request
  **/
 class PagedResponse extends Response implements PagedResponseContract
 {
-    public function getNextResponse(): ResponseContract|PagedResponseContract|null
+    public function getNextResponse(): PagedResponseContract|null
     {
         $params = $this->getPagingLinks()->getNextQueryParams();
 
@@ -18,10 +17,13 @@ class PagedResponse extends Response implements PagedResponseContract
             return null;
         }
 
-        return $this->apiClient->doRequest($this->request->setPagingParams($params));
+        /** @var PagedResponseContract $response **/
+        $response = $this->apiClient->doRequest($this->request->setPagingParams($params));
+
+        return $response;
     }
 
-    public function getPreviousResponse(): ResponseContract|PagedResponseContract|null
+    public function getPreviousResponse(): PagedResponseContract|null
     {
         $params = $this->getPagingLinks()->getPreviousQueryParams();
 
@@ -29,7 +31,10 @@ class PagedResponse extends Response implements PagedResponseContract
             return null;
         }
 
-        return $this->apiClient->doRequest($this->request->setPagingParams($params));
+        /** @var PagedResponseContract $response **/
+        $response = $this->apiClient->doRequest($this->request->setPagingParams($params));
+
+        return $response;
     }
 
     protected function getNextUrl(): ?string
