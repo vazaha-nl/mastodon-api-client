@@ -2,8 +2,6 @@
 
 namespace Vazaha\Mastodon\Requests;
 
-use Vazaha\Mastodon\Responses\PagedResponse;
-
 abstract class PagedRequest extends Request
 {
     protected string $maxId;
@@ -14,16 +12,14 @@ abstract class PagedRequest extends Request
 
     protected string $limit;
 
-    protected string $responseClass = PagedResponse::class;
-
     public function getQuery(): array
     {
-        return [
-            'max_id' => $this->maxId,
-            'min_id' => $this->minId,
-            'since_id' => $this->sinceId,
-            'limit' => $this->limit,
-        ];
+        return array_filter([
+            'max_id' => $this->maxId ?? null,
+            'min_id' => $this->minId ?? null,
+            'since_id' => $this->sinceId ?? null,
+            'limit' => $this->limit ?? null,
+        ]);
     }
 
     /**

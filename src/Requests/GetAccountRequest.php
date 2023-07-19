@@ -4,7 +4,7 @@ namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Models\Account;
 
-class GetAccountRequest extends Request
+class GetAccountRequest extends Request implements AccountRequest
 {
     protected string $modelClass = Account::class;
 
@@ -17,10 +17,5 @@ class GetAccountRequest extends Request
     public function getEndpoint(): string
     {
         return sprintf('accounts/%s', urlencode($this->accountId));
-    }
-
-    public function getModelClass(): string
-    {
-        return Account::class;
     }
 }

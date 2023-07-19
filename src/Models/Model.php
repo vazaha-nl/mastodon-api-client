@@ -19,19 +19,17 @@ abstract class Model
      * @param array<string, mixed> $array
      * @return static
      */
-    public static function fromArray(array $array): static
+    public function fillFromArray(array $array): static
     {
-    	$model = new static();
-
     	foreach($array as $property => $value) {
-    		if (!property_exists($model, $property)) {
+    		if (!property_exists($this, $property)) {
     			continue;
     		}
 
-    		$model->$property = $value;
+    		$this->$property = $value;
     	}
 
-    	return $model;
+    	return $this;
 
     }
 

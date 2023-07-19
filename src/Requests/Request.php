@@ -4,7 +4,6 @@ namespace Vazaha\Mastodon\Requests;
 
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\UriInterface;
-use Vazaha\Mastodon\Responses\Response;
 
 abstract class Request
 {
@@ -13,8 +12,6 @@ abstract class Request
     protected string $method = 'GET';
 
     protected string $modelClass;
-
-    protected string $responseClass = Response::class;
 
     public function getMethod(): string
     {
@@ -61,12 +58,5 @@ abstract class Request
         return array_filter([
             'json' => $this->getBody(),
         ]);
-    }
-
-    abstract public function getModelClass(): string;
-
-    public function getResponseClass(): string
-    {
-        return $this->responseClass;
     }
 }

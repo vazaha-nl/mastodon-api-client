@@ -7,6 +7,7 @@ use GuzzleHttp\ClientInterface;
 use Vazaha\Mastodon\Exceptions\DomainNotSetException;
 use Vazaha\Mastodon\Requests\Request;
 use Vazaha\Mastodon\Responses\Response;
+use Vazaha\Mastodon\Responses\ResponseFactory;
 
 final class ApiClient
 {
@@ -82,9 +83,8 @@ final class ApiClient
             ]),
         );
 
-        $responseClass = $request->getResponseClass();
-
-        return new $responseClass($this, $request, $response);
+        $responseFactory = new ResponseFactory();
+        return $responseFactory->create($this, $request, $response);
     }
 
     protected function getBaseUri(): string

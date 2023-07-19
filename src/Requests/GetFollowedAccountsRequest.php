@@ -4,7 +4,7 @@ namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Models\Account;
 
-class GetFollowedAccountsRequest extends PagedRequest
+class GetFollowedAccountsRequest extends PagedRequest implements AccountRequest
 {
     protected string $accountId;
 
@@ -21,10 +21,5 @@ class GetFollowedAccountsRequest extends PagedRequest
     public function getEndpoint(): string
     {
         return sprintf('accounts/%s/following', urlencode($this->accountId));
-    }
-
-    public function getModelClass(): string
-    {
-        return Account::class;
     }
 }

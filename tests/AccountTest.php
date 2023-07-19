@@ -18,7 +18,7 @@ class AccountTest extends TestCase
 
 		$decoded = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
 
-		$account = Account::fromArray($decoded);
+		$account = (new Account())->fillFromArray($decoded);
 
 		$this->assertEquals('23634', $account->id);
 		$this->assertEquals(404, $account->following_count);

@@ -4,7 +4,7 @@ namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Models\Account;
 
-class LookupAccountRequest extends Request
+class LookupAccountRequest extends Request implements AccountRequest
 {
 	public function __construct(
 		protected string $username
@@ -22,10 +22,5 @@ class LookupAccountRequest extends Request
     	return [
     		'acct' => $this->username,
     	];
-    }
-
-    public function getModelClass(): string
-    {
-    	return Account::class;
     }
 }

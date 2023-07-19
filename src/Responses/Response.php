@@ -6,7 +6,9 @@ use Illuminate\Support\Collection;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Requests\Request;
 use GuzzleHttp\Psr7\Response as Psr7Response;
+use Psr\Http\Message\ResponseInterface;
 use Vazaha\Mastodon\Models\Model;
+use Vazaha\Mastodon\Models\ModelFactory;
 
 class Response
 {
@@ -16,7 +18,7 @@ class Response
     public function __construct(
         protected ApiClient $apiClient,
         protected Request $request,
-        protected Psr7Response $httpResponse,
+        protected ResponseInterface $httpResponse,
     ) {
         //
     }
@@ -28,21 +30,21 @@ class Response
      */
     public function getModels(): Collection
     {
+    	$modelFactory = new ModelFactory();
+
         if (!isset($this->models)) {
             $this->models = Collection::make($this->getResults())
-                ->map(function ($modelData) {
-                	$modelClass = $this->getModelClass();
-                	/** @var \Vazaha\Mastodon\Models\Model $model **/
-                	$model = $modelClass::fromArray($modelData);
-
-                	return $model->setSourceDomain($this->apiClient->getDomain());
+                ->map(function ($modelData) use ($modelFactory) {
+                	return $modelFactory->create($this->request)
+                		->fillFromArray($modelData)
+                		->setSourceDomain($this->apiClient->getDomain());
                 });
         }
 
         return $this->models;
     }
 
-    public function getModel(): Model
+    public function getModel(): ?Model
     {
         return $this->getModels()->first();
     }
@@ -67,10 +69,5 @@ class Response
         }
 
         return array_is_list($decoded) ? $decoded : [$decoded];
-    }
-
-    protected function getModelClass(): ?string
-    {
-        return $this->request->getModelClass();
     }
 }
