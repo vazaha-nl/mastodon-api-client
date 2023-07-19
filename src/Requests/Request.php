@@ -7,6 +7,8 @@ use Vazaha\Mastodon\Responses\Response;
 
 abstract class Request
 {
+	public const API_VERSION = 'v1';
+
     protected string $method = 'GET';
 
     protected string $modelClass;
@@ -23,7 +25,13 @@ abstract class Request
     public function getUri(): Uri
     {
         return Uri::withQueryValues(
-            new Uri($this->getEndpoint()),
+            new Uri(
+            	sprintf(
+            		'/api/%s/%s',
+            		self::API_VERSION,
+            		$this->getEndpoint()
+            	)
+            ),
             $this->getQuery()
         );
     }

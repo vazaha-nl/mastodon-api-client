@@ -10,8 +10,6 @@ use Vazaha\Mastodon\Responses\Response;
 
 class ApiClient
 {
-    public const API_VERSION = 'v1';
-
 	protected string $domain;
 
 	protected string $clientId;
@@ -24,11 +22,20 @@ class ApiClient
 		//
 	}
 
-	public function domain(string $domain): self
+	public function setDomain(string $domain): self
 	{
 		$this->domain = $domain;
 
 		return $this;
+	}
+
+	public function getDomain(): string
+	{
+        if (!isset($this->domain)) {
+            throw new DomainNotSetException();
+        }
+
+        return $this->domain;
 	}
 
 	public function clientId(string $clientId): self
@@ -82,10 +89,6 @@ class ApiClient
 
     protected function getBaseUri(): string
     {
-        if (!isset($this->domain)) {
-            throw new DomainNotSetException();
-        }
-
-        return sprintf('https://%s/api/%s/', $this->domain, self::API_VERSION);
+		return sprintf('https://%s', $this->getDomain());
     }
 }
