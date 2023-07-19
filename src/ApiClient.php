@@ -5,9 +5,11 @@ namespace Vazaha\Mastodon;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\ClientInterface;
 use Vazaha\Mastodon\Exceptions\DomainNotSetException;
-use Vazaha\Mastodon\Requests\Request;
 use Vazaha\Mastodon\Responses\Response;
 use Vazaha\Mastodon\Factories\ResponseFactory;
+use Vazaha\Mastodon\Requests\Contracts\RequestContract;
+use Vazaha\Mastodon\Responses\Contracts\PagedResponseContract;
+use Vazaha\Mastodon\Responses\Contracts\ResponseContract;
 
 final class ApiClient
 {
@@ -73,7 +75,7 @@ final class ApiClient
 		return new static(new GuzzleHttpClient());
 	}
 
-    public function doRequest(Request $request): Response
+    public function doRequest(RequestContract $request): ResponseContract|PagedResponseContract
     {
         $response = $this->httpClient->request(
             $request->getMethod(),

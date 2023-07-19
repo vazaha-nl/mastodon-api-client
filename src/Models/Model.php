@@ -3,8 +3,9 @@
 namespace Vazaha\Mastodon\Models;
 
 use Vazaha\Mastodon\Concerns\EncapsulatesApiClient;
+use Vazaha\Mastodon\Models\Contracts\ModelContract;
 
-abstract class Model
+abstract class Model implements ModelContract
 {
 	use EncapsulatesApiClient;
 

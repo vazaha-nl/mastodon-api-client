@@ -3,9 +3,14 @@
 namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Models\Account;
+use Vazaha\Mastodon\Requests\Concerns\HasPaging;
+use Vazaha\Mastodon\Requests\Contracts\AccountRequestContract;
+use Vazaha\Mastodon\Requests\Contracts\PagedRequestContract;
 
-class GetFollowedAccountsRequest extends PagedRequest implements AccountRequest
+class GetFollowedAccountsRequest extends Request implements AccountRequestContract, PagedRequestContract
 {
+	use HasPaging;
+
     protected string $accountId;
 
     public function __construct(string|Account $account)

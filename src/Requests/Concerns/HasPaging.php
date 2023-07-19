@@ -1,8 +1,10 @@
 <?php
 
-namespace Vazaha\Mastodon\Requests;
+namespace Vazaha\Mastodon\Requests\Concerns;
 
-abstract class PagedRequest extends Request
+use Vazaha\Mastodon\Requests\Contracts\PagedRequestContract;
+
+trait HasPaging
 {
     protected string $maxId;
 
@@ -24,9 +26,9 @@ abstract class PagedRequest extends Request
 
     /**
      * @param array<int|string,string> $params
-     * @return \Vazaha\Mastodon\Requests\PagedRequest
+     * @return \Vazaha\Mastodon\Requests\Contracts\PagedRequestContract
      */
-    public function setPagingParams(array $params): self
+    public function setPagingParams(array $params): PagedRequestContract
     {
         if (isset($params['max_id'])) {
             $this->setMaxId($params['max_id']);
@@ -47,28 +49,28 @@ abstract class PagedRequest extends Request
         return $this;
     }
 
-    public function setMaxId(string $maxId): self
+    public function setMaxId(string $maxId): PagedRequestContract
     {
         $this->maxId = $maxId;
 
         return $this;
     }
 
-    public function setMinId(string $minId): self
+    public function setMinId(string $minId): PagedRequestContract
     {
         $this->minId = $minId;
 
         return $this;
     }
 
-    public function setSinceId(string $sinceId): self
+    public function setSinceId(string $sinceId): PagedRequestContract
     {
         $this->sinceId = $sinceId;
 
         return $this;
     }
 
-    public function setLimit(string $limit): self
+    public function setLimit(string $limit): PagedRequestContract
     {
         $this->limit = $limit;
 

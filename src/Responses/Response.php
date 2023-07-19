@@ -4,26 +4,27 @@ namespace Vazaha\Mastodon\Responses;
 
 use Illuminate\Support\Collection;
 use Vazaha\Mastodon\ApiClient;
-use Vazaha\Mastodon\Requests\Request;
+use Vazaha\Mastodon\Requests\Contracts\RequestContract;
 use Psr\Http\Message\ResponseInterface;
-use Vazaha\Mastodon\Models\Model;
 use Vazaha\Mastodon\Factories\ModelFactory;
+use Vazaha\Mastodon\Models\Contracts\ModelContract;
+use Vazaha\Mastodon\Responses\Contracts\ResponseContract;
 
-class Response
+class Response implements ResponseContract
 {
-	/** @var \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Model> **/
+	/** @var \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Contracts\ModelContract> **/
     protected Collection $models;
 
     public function __construct(
         protected ApiClient $apiClient,
-        protected Request $request,
+        protected RequestContract $request,
         protected ResponseInterface $httpResponse,
     ) {
         //
     }
 
     /**
-     * @return \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Model>
+     * @return \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Contracts\ModelContract>
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
      */
@@ -41,7 +42,7 @@ class Response
         return $this->models;
     }
 
-    public function getModel(): ?Model
+    public function getModel(): ?ModelContract
     {
         return $this->getModels()->first();
     }

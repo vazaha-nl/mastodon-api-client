@@ -2,12 +2,10 @@
 
 namespace Vazaha\Mastodon\Requests;
 
-use Vazaha\Mastodon\Models\Account;
+use Vazaha\Mastodon\Requests\Contracts\AccountRequestContract;
 
-class GetAccountRequest extends Request implements AccountRequest
+class GetAccountRequest extends Request implements AccountRequestContract
 {
-    protected string $modelClass = Account::class;
-
     public function __construct(
         protected string $accountId
     ) {
