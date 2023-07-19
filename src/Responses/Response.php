@@ -5,7 +5,6 @@ namespace Vazaha\Mastodon\Responses;
 use Illuminate\Support\Collection;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Requests\Request;
-use GuzzleHttp\Psr7\Response as Psr7Response;
 use Psr\Http\Message\ResponseInterface;
 use Vazaha\Mastodon\Models\Model;
 use Vazaha\Mastodon\Factories\ModelFactory;
@@ -53,7 +52,7 @@ class Response
     }
 
     /**
-     * @return mixed[]
+     * @return array<int, mixed[]>
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
      */
@@ -61,7 +60,7 @@ class Response
     {
         $decoded = json_decode($this->httpResponse->getBody()->getContents(), true);
 
-        if ($decoded === false) {
+        if (!is_array($decoded)) {
         	// TODO throw exception?
             return [];
         }

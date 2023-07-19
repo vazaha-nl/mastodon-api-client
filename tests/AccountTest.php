@@ -18,6 +18,8 @@ class AccountTest extends TestCase
 
 		$decoded = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
 
+		$this->assertIsArray($decoded);
+
 		$account = (new Account())->fillFromArray($decoded);
 
 		$this->assertEquals('23634', $account->id);
