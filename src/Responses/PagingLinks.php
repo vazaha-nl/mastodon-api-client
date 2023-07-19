@@ -4,6 +4,9 @@ namespace Vazaha\Mastodon\Responses;
 
 class PagingLinks
 {
+    /**
+     * @var array<string, string> $links
+     */
     protected array $links;
 
     public function __construct(
@@ -12,6 +15,9 @@ class PagingLinks
         $this->parseContents();
     }
 
+    /**
+     * @return array<int|string,string>
+     */
     public function getNextQueryParams(): array
     {
         $url = $this->getNextUrl();
@@ -19,11 +25,12 @@ class PagingLinks
         return $this->getQueryParams($url);
     }
 
+    /**
+     * @return array<int|string,string>
+     */
     public function getPreviousQueryParams(): array
     {
-        $url = $this->getPreviousUrl();
-
-        return $this->getQueryParams($url);
+        return $this->getQueryParams($this->getPreviousUrl());
     }
 
     public function getNextUrl(): ?string
@@ -75,14 +82,24 @@ class PagingLinks
         $this->links = $links;
     }
 
+    /**
+     * @param null|string $url
+     * @return array<int|string, string>
+     */
     protected function getQueryParams(?string $url = null): array
     {
         if (empty($url)) {
             return [];
         }
 
-        parse_str(parse_url($url, PHP_URL_QUERY), $params);
+        $query = parse_url($url, PHP_URL_QUERY);
 
-        return $params;
+        if (!is_string($query)) {
+        	return [];
+        }
+
+        parse_str($query, $params);
+
+        return array_filter($params, fn ($value) => is_string($value));
     }
 }

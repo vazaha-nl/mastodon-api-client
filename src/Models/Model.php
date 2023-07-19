@@ -15,6 +15,10 @@ abstract class Model
 		//
 	}
 
+    /**
+     * @param array<string, mixed> $array
+     * @return static
+     */
     public static function fromArray(array $array): static
     {
     	$model = new static();
@@ -31,6 +35,7 @@ abstract class Model
 
     }
 
+    /** @return array<string, mixed> **/
     public function toArray(): array
     {
     	return get_object_vars($this);

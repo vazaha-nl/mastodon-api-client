@@ -12,20 +12,24 @@ abstract class PagedRequest extends Request
 
     protected string $sinceId;
 
-    protected int $limit;
+    protected string $limit;
 
     protected string $responseClass = PagedResponse::class;
 
     public function getQuery(): array
     {
-        return array_filter([
-            'max_id' => $this->maxId ?? null,
-            'min_id' => $this->minId ?? null,
-            'since_id' => $this->sinceId ?? null,
-            'limit' => $this->limit ?? null,
-        ]);
+        return [
+            'max_id' => $this->maxId,
+            'min_id' => $this->minId,
+            'since_id' => $this->sinceId,
+            'limit' => $this->limit,
+        ];
     }
 
+    /**
+     * @param array<int|string,string> $params
+     * @return \Vazaha\Mastodon\Requests\PagedRequest
+     */
     public function setPagingParams(array $params): self
     {
         if (isset($params['max_id'])) {
@@ -68,7 +72,7 @@ abstract class PagedRequest extends Request
         return $this;
     }
 
-    public function setLimit(int $limit): self
+    public function setLimit(string $limit): self
     {
         $this->limit = $limit;
 

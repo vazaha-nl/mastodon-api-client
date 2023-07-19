@@ -10,6 +10,7 @@ use Vazaha\Mastodon\Models\Model;
 
 class Response
 {
+	/** @var \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Model> **/
     protected Collection $models;
 
     public function __construct(
@@ -21,7 +22,7 @@ class Response
     }
 
     /**
-     * @return \Illuminate\Support\Collection|\Vazaha\Mastodon\Models\Model[]
+     * @return \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Model>
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
      */
@@ -51,6 +52,11 @@ class Response
         return $this->getModels()->count();
     }
 
+    /**
+     * @return mixed[]
+     * @throws \InvalidArgumentException
+     * @throws \RuntimeException
+     */
     protected function getResults(): array
     {
         $decoded = json_decode($this->httpResponse->getBody()->getContents(), true);

@@ -26,10 +26,13 @@ class Account extends Model
 
 	public ?bool $locked = null;
 
+	/** @var array<array<string, string>> $fields **/
 	public array $fields = [];
 
+	/** @var mixed[] $roles **/
 	public array $roles = [];
 
+	/** @var mixed[] $emojis **/
 	public array $emojis = [];
 
 	public ?bool $bot = null;
@@ -71,6 +74,12 @@ class Account extends Model
     		return null;
     	}
 
-        return parse_url($this->url, PHP_URL_HOST);
+    	$domain = parse_url($this->url, PHP_URL_HOST);
+
+        if ($domain === false) {
+        	return null;
+        }
+
+        return $domain;
     }
 }

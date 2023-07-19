@@ -2,22 +2,29 @@
 
 namespace Tests;
 
+use LogicException;
 use PHPUnit\Framework\TestCase;
 use Vazaha\Mastodon\Models\Account;
 
 class AccountTest extends TestCase
 {
-	public function testAccountCorrectlyFilledFromApiResponse()
+	public function testAccountCorrectlyFilledFromApiResponse(): void
 	{
 		$json = file_get_contents(__DIR__ . '/assets/account.json');
 
-		$account = Account::fromArray(json_decode($json, true));
+		if (!$json) {
+			throw new LogicException('Could not read json!');
+		}
+
+		$decoded = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+
+		$account = Account::fromArray($decoded);
 
 		$this->assertEquals('23634', $account->id);
 		$this->assertEquals(404, $account->following_count);
 	}
 
-	public function testEncapsulatedApiClientHasCorrectDomain()
+	public function testEncapsulatedApiClientHasCorrectDomain(): void
 	{
 		$account = new Account();
 		$account->setSourceDomain('example.org');

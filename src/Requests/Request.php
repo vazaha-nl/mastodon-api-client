@@ -37,16 +37,25 @@ abstract class Request
         );
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getQuery(): array
     {
         return [];
     }
 
+    /**
+     * @return mixed[]|null
+     */
     public function getBody(): ?array
     {
         return null;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getOptions(): array
     {
         return array_filter([

@@ -21,7 +21,7 @@ class PagingLinkTest extends TestCase
         $this->assertEquals('https://example.org/previous', $pagingLinks->getPreviousUrl());
     }
 
-    public function testInvalidContentsDoesNotBreakThings()
+    public function testInvalidContentsDoesNotBreakThings(): void
     {
         $pagingLinks = new PagingLinks('FOOBAR');
 
