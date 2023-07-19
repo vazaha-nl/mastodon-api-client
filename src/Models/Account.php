@@ -35,19 +35,19 @@ class Account extends Model
 	/** @var mixed[] $emojis **/
 	public array $emojis = [];
 
-	public ?bool $bot = null;
+	public bool $bot = false;
 
-	public ?bool $group = null;
+	public bool $group = false;
 
-	public ?bool $discoverable = null;
+	public bool $discoverable = false;
 
-	public ?bool $noindex = null;
+	public bool $noindex = false;
 
-	public ?bool $moved = null;
+	public bool $moved = false;
 
-	public ?bool $suspended = null;
+	public bool $suspended = false;
 
-	public ?bool $limited = null;
+	public bool $limited = false;
 
 	public ?string $created_at = null;
 
