@@ -3,6 +3,7 @@
 namespace Vazaha\Mastodon\Requests;
 
 use GuzzleHttp\Psr7\Uri;
+use Psr\Http\Message\UriInterface;
 use Vazaha\Mastodon\Responses\Response;
 
 abstract class Request
@@ -22,7 +23,7 @@ abstract class Request
 
     abstract public function getEndpoint(): string;
 
-    public function getUri(): Uri
+    public function getUri(): UriInterface
     {
         return Uri::withQueryValues(
             new Uri(

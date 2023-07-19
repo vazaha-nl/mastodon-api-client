@@ -4,48 +4,57 @@ namespace Vazaha\Mastodon\Models;
 
 class Account extends Model
 {
-	public function __construct(
-		public string $id,
-		public ?string $username = null,
-		public ?string $acct = null,
-		public ?string $url = null,
-		public ?string $display_name = null,
-		public ?string $note = null,
+	public string $id;
 
-		// TODO url type?
-		public ?string $avatar = null,
-		public ?string $avatar_static = null,
-		public ?string $header = null,
-		public ?string $header_static = null,
+	public ?string $username = null;
 
-		public ?bool $locked = null,
+	public ?string $acct = null;
 
-		// TODO AccountFields type?
-		public array $fields = [],
+	public ?string $url = null;
 
-		public array $roles = [],
+	public ?string $display_name = null;
 
-		// TODO Emojis type?
-		public array $emojis = [],
+	public ?string $note = null;
 
-		public ?bool $bot = null,
-		public ?bool $group = null,
-		public ?bool $discoverable = null,
-		public ?bool $noindex = null,
-		public ?bool $moved = null,
-		public ?bool $suspended = null,
-		public ?bool $limited = null,
+	public ?string $avatar = null;
 
-		// TODO datetime type?
-		public ?string $created_at = null,
-		public ?string $last_status_at = null,
+	public ?string $avatar_static = null;
 
-		public ?int $statuses_count = null,
-		public ?int $followers_count = null,
-		public ?int $following_count = null,
-	) {
-		//
-	}
+	public ?string $header = null;
+
+	public ?string $header_static = null;
+
+	public ?bool $locked = null;
+
+	public array $fields = [];
+
+	public array $roles = [];
+
+	public array $emojis = [];
+
+	public ?bool $bot = null;
+
+	public ?bool $group = null;
+
+	public ?bool $discoverable = null;
+
+	public ?bool $noindex = null;
+
+	public ?bool $moved = null;
+
+	public ?bool $suspended = null;
+
+	public ?bool $limited = null;
+
+	public ?string $created_at = null;
+
+	public ?string $last_status_at = null;
+
+	public ?int $statuses_count = null;
+
+	public ?int $followers_count = null;
+
+	public ?int $following_count = null;
 
     public function getBaseUri(): ?string
     {

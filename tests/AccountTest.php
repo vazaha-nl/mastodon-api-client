@@ -7,13 +7,6 @@ use Vazaha\Mastodon\Models\Account;
 
 class AccountTest extends TestCase
 {
-	public function testAccountCanBeInstantiatedWithOnlyId()
-	{
-		$account = new Account('testid');
-		$this->assertInstanceOf(Account::class, $account);
-		$this->assertEquals('testid', $account->id);
-	}
-
 	public function testAccountCorrectlyFilledFromApiResponse()
 	{
 		$json = file_get_contents(__DIR__ . '/assets/account.json');
@@ -26,7 +19,7 @@ class AccountTest extends TestCase
 
 	public function testEncapsulatedApiClientHasCorrectDomain()
 	{
-		$account = new Account('testid');
+		$account = new Account();
 		$account->setSourceDomain('example.org');
 		$apiClient = $account->getApiClient();
 		$this->assertEquals('example.org', $apiClient->getDomain());

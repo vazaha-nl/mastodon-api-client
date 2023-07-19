@@ -83,6 +83,6 @@ class PagingLinks
 
         parse_str(parse_url($url, PHP_URL_QUERY), $params);
 
-        return $params ?? [];
+        return $params;
     }
 }

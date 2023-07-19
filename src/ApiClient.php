@@ -8,7 +8,7 @@ use Vazaha\Mastodon\Exceptions\DomainNotSetException;
 use Vazaha\Mastodon\Requests\Request;
 use Vazaha\Mastodon\Responses\Response;
 
-class ApiClient
+final class ApiClient
 {
 	protected string $domain;
 

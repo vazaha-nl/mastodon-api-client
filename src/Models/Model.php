@@ -10,9 +10,25 @@ abstract class Model
 
 	protected string $sourceDomain;
 
+	final function __construct()
+	{
+		//
+	}
+
     public static function fromArray(array $array): static
     {
-    	return new static(...$array);
+    	$model = new static();
+
+    	foreach($array as $property => $value) {
+    		if (!property_exists($model, $property)) {
+    			continue;
+    		}
+
+    		$model->$property = $value;
+    	}
+
+    	return $model;
+
     }
 
     public function toArray(): array

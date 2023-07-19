@@ -12,7 +12,7 @@ abstract class PagedRequest extends Request
 
     protected string $sinceId;
 
-    protected string $limit;
+    protected int $limit;
 
     protected string $responseClass = PagedResponse::class;
 
