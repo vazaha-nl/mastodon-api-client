@@ -47,7 +47,7 @@ class Account extends Model
 
     public bool $group = false;
 
-    public bool $discoverable = false;
+    public ?bool $discoverable = false;
 
     public bool $noindex = false;
 
