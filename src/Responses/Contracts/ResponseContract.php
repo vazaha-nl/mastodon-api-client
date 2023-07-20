@@ -17,4 +17,9 @@ interface ResponseContract
     public function getModel(): ?ModelContract;
 
     public function getCount(): int;
+
+    /**
+     * @return array<int|string, mixed[]>
+     */
+    public function getResults(): array;
 }

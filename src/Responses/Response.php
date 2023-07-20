@@ -7,6 +7,7 @@ namespace Vazaha\Mastodon\Responses;
 use Illuminate\Support\Collection;
 use Psr\Http\Message\ResponseInterface;
 use Vazaha\Mastodon\ApiClient;
+use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Factories\ModelFactory;
 use Vazaha\Mastodon\Models\Contracts\ModelContract;
 use Vazaha\Mastodon\Requests\Contracts\RequestContract;
@@ -15,7 +16,7 @@ use Vazaha\Mastodon\Responses\Contracts\ResponseContract;
 class Response implements ResponseContract
 {
     /**
-     * @var \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Contracts\ModelContract> *
+     * @var \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Contracts\ModelContract>
      */
     protected Collection $models;
 
@@ -34,10 +35,17 @@ class Response implements ResponseContract
      */
     public function getModels(): Collection
     {
-        $modelFactory = new ModelFactory();
-
         if (!isset($this->models)) {
-            $this->models = Collection::make($this->getResults())
+            $modelFactory = new ModelFactory();
+
+            $results = $this->getResults();
+
+            // TODO FIXME this might be tricky
+            if (!array_is_list($results)) {
+                $results = [$results];
+            }
+
+            $this->models = Collection::make($results)
                 ->map(function ($modelData) use ($modelFactory) {
                     return $modelFactory->build($this->apiClient, $this->request, $modelData);
                 });
@@ -57,21 +65,20 @@ class Response implements ResponseContract
     }
 
     /**
-     * @throws \InvalidArgumentException
      * @throws \RuntimeException
+     * @throws \Vazaha\Mastodon\Exceptions\InvalidResponseException
      *
-     * @return array<int, mixed[]>
+     * @return array<int|string, mixed[]>
      */
-    // TODO FIXME make public? don't do array_is_list magic?
-    protected function getResults(): array
+    public function getResults(): array
     {
         $decoded = json_decode($this->httpResponse->getBody()->getContents(), true);
 
         if (!is_array($decoded)) {
-            // TODO throw exception?
-            return [];
+            // TODO FIXME some context would be nice
+            throw new InvalidResponseException();
         }
 
-        return array_is_list($decoded) ? $decoded : [$decoded];
+        return $decoded;
     }
 }

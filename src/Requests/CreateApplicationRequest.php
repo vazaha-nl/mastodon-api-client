@@ -7,7 +7,7 @@ namespace Vazaha\Mastodon\Requests;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Requests\Concerns\CreatesApplicationModels;
 
-final class CreateAppRequest extends Request
+final class CreateApplicationRequest extends Request
 {
     use CreatesApplicationModels;
 
