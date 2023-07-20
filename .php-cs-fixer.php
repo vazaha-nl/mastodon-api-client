@@ -19,6 +19,7 @@ $config->setRules(
             'protected_to_private' => false,
             'return_assignment' => false,
             'yoda_style' => false,
+            'no_unused_imports' => true,
         ]
     )
 );
