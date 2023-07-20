@@ -18,7 +18,7 @@ class ResponseFactory
     public function build(
         ApiClient $client,
         RequestContract $request,
-        ResponseInterface $response
+        ResponseInterface $response,
     ): PagedResponseContract|ResponseContract {
         if ($request instanceof PagedRequestContract) {
             return new PagedResponse($client, $request, $response);
