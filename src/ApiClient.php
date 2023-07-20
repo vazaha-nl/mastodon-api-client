@@ -6,7 +6,7 @@ namespace Vazaha\Mastodon;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\ClientInterface;
-use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
+use Vazaha\Mastodon\Concerns\HasBaseUri;
 use Vazaha\Mastodon\Factories\ResponseFactory;
 use Vazaha\Mastodon\Requests\Contracts\RequestContract;
 use Vazaha\Mastodon\Responses\Contracts\PagedResponseContract;
@@ -14,7 +14,7 @@ use Vazaha\Mastodon\Responses\Contracts\ResponseContract;
 
 final class ApiClient
 {
-    protected string $baseUri;
+    use HasBaseUri;
 
     protected string $clientId;
 
@@ -23,22 +23,6 @@ final class ApiClient
     public function __construct(
         protected ClientInterface $httpClient,
     ) {
-    }
-
-    public function setBaseUri(string $baseUri): self
-    {
-        $this->baseUri = $baseUri;
-
-        return $this;
-    }
-
-    public function getBaseUri(): string
-    {
-        if (!isset($this->baseUri)) {
-            throw new BaseUriNotSetException();
-        }
-
-        return $this->baseUri;
     }
 
     public function clientId(string $clientId): self

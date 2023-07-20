@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models;
 
 use Vazaha\Mastodon\Concerns\EncapsulatesApiClient;
+use Vazaha\Mastodon\Concerns\HasBaseUri;
 use Vazaha\Mastodon\Models\Contracts\ModelContract;
 
 abstract class Model implements ModelContract
 {
     use EncapsulatesApiClient;
+    use HasBaseUri;
 
     protected string $baseUri;
 
@@ -23,11 +25,6 @@ abstract class Model implements ModelContract
     public function fillFromArray(array $array): static
     {
         foreach ($array as $property => $value) {
-            // TODO FIXME? not sure about this
-            if ($value === null) {
-                continue;
-            }
-
             if (!property_exists($this, $property)) {
                 continue;
             }
@@ -44,17 +41,5 @@ abstract class Model implements ModelContract
     public function toArray(): array
     {
         return get_object_vars($this);
-    }
-
-    public function setBaseUri(string $baseUri): static
-    {
-        $this->baseUri = $baseUri;
-
-        return $this;
-    }
-
-    public function getBaseUri(): string
-    {
-        return $this->baseUri;
     }
 }
