@@ -9,7 +9,7 @@ use GuzzleHttp\Psr7\Response;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use Vazaha\Mastodon\ApiClient;
-use Vazaha\Mastodon\Exceptions\DomainNotSetException;
+use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
 use Vazaha\Mastodon\Models\Account;
 use Vazaha\Mastodon\Requests\GetAccountRequest;
 use Vazaha\Mastodon\Responses\Response as ApiResponse;
@@ -52,14 +52,14 @@ class ApiClientTest extends TestCase
 
 	public function testThrowsDomainNotSetExceptionWithoutDomain(): void
 	{
-		$this->expectException(DomainNotSetException::class);
+		$this->expectException(BaseUriNotSetException::class);
 		$this->apiClient->doRequest(new GetAccountRequest('testid'));
 	}
 
 	public function testGetAccount(): void
 	{
 		$response = $this->apiClient
-			->setDomain('example.org')
+			->setBaseUri('https://example.org')
 			->doRequest(new GetAccountRequest('testid'));
 		$this->assertInstanceOf(ApiResponse::class, $response);
 

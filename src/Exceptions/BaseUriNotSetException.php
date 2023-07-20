@@ -4,6 +4,6 @@ namespace Vazaha\Mastodon\Exceptions;
 
 use Exception;
 
-class DomainNotSetException extends Exception
+class BaseUriNotSetException extends Exception
 {
 }

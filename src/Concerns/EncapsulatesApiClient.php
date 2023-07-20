@@ -12,7 +12,7 @@ trait EncapsulatesApiClient
     {
         if (!isset($this->apiClient)) {
             $this->apiClient = ApiClient::make()
-            	->setDomain($this->getSourceDomain());
+            	->setBaseUri($this->getBaseUri());
         }
 
         return $this->apiClient;

@@ -29,8 +29,8 @@ class AccountTest extends TestCase
 	public function testEncapsulatedApiClientHasCorrectDomain(): void
 	{
 		$account = new Account();
-		$account->setSourceDomain('example.org');
+		$account->setBaseUri('https://example.org');
 		$apiClient = $account->getApiClient();
-		$this->assertEquals('example.org', $apiClient->getDomain());
+		$this->assertEquals('https://example.org', $apiClient->getBaseUri());
 	}
 }

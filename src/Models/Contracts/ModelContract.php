@@ -17,7 +17,7 @@ interface ModelContract
     /** @return array<string, mixed> **/
     public function toArray(): array;
 
-    public function setSourceDomain(string $sourceDomain): self;
+    public function setBaseUri(string $baseUri): self;
 
-    public function getSourceDomain(): string;
+    public function getBaseUri(): string;
 }

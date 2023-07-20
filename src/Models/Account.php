@@ -59,15 +59,6 @@ class Account extends Model
 
 	public ?int $following_count = null;
 
-    public function getBaseUri(): ?string
-    {
-    	if (!isset($this->username, $this->url)) {
-    		return null;
-    	}
-
-    	return str_replace('@' . $this->username, '', $this->url);
-    }
-
     public function getDomain(): ?string
     {
     	if (!isset($this->url)) {

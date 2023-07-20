@@ -9,7 +9,7 @@ abstract class Model implements ModelContract
 {
 	use EncapsulatesApiClient;
 
-	protected string $sourceDomain;
+	protected string $baseUri;
 
 	final function __construct()
 	{
@@ -40,15 +40,15 @@ abstract class Model implements ModelContract
     	return get_object_vars($this);
     }
 
-    public function setSourceDomain(string $sourceDomain): static
+    public function setBaseUri(string $baseUri): static
     {
-    	$this->sourceDomain = $sourceDomain;
+    	$this->baseUri = $baseUri;
 
     	return $this;
     }
 
-    public function getSourceDomain(): string
+    public function getBaseUri(): string
     {
-    	return $this->sourceDomain;
+    	return $this->baseUri;
     }
 }

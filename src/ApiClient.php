@@ -4,7 +4,7 @@ namespace Vazaha\Mastodon;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\ClientInterface;
-use Vazaha\Mastodon\Exceptions\DomainNotSetException;
+use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
 use Vazaha\Mastodon\Factories\ResponseFactory;
 use Vazaha\Mastodon\Requests\Contracts\RequestContract;
 use Vazaha\Mastodon\Responses\Contracts\PagedResponseContract;
@@ -12,7 +12,7 @@ use Vazaha\Mastodon\Responses\Contracts\ResponseContract;
 
 final class ApiClient
 {
-	protected string $domain;
+	protected string $baseUri;
 
 	protected string $clientId;
 
@@ -24,20 +24,20 @@ final class ApiClient
 		//
 	}
 
-	public function setDomain(string $domain): self
+	public function setBaseUri(string $baseUri): self
 	{
-		$this->domain = $domain;
+		$this->baseUri = $baseUri;
 
 		return $this;
 	}
 
-	public function getDomain(): string
+	public function getBaseUri(): string
 	{
-        if (!isset($this->domain)) {
-            throw new DomainNotSetException();
+        if (!isset($this->baseUri)) {
+            throw new BaseUriNotSetException();
         }
 
-        return $this->domain;
+        return $this->baseUri;
 	}
 
 	public function clientId(string $clientId): self
@@ -86,10 +86,5 @@ final class ApiClient
 
         $responseFactory = new ResponseFactory();
         return $responseFactory->create($this, $request, $response);
-    }
-
-    protected function getBaseUri(): string
-    {
-		return sprintf('https://%s', $this->getDomain());
     }
 }
