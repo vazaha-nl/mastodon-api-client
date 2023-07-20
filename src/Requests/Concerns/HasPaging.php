@@ -39,9 +39,8 @@ trait HasPaging
                 ),
             ),
             array_merge(
-                // TODO CHECK correct order?
-                $this->getPagingParams(),
                 $this->getQueryParams(),
+                $this->getPagingParams(),
             ),
         );
     }
