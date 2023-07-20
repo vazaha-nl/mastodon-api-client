@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
+use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Requests\Contracts\ApplicationRequestContract;
 
 final class CreateAppRequest extends Request implements ApplicationRequestContract
 {
-    protected string $method = 'POST';
-
     public function __construct(
         protected string $clientName,
         protected string $redirectUris = 'urn:ietf:wg:oauth:2.0:oob',
@@ -34,5 +33,15 @@ final class CreateAppRequest extends Request implements ApplicationRequestContra
             'scopes' => $this->scopes,
             'website' => $this->website,
         ];
+    }
+
+    public function getQueryParams(): array
+    {
+        return [];
+    }
+
+    public function getHttpMethod(): HttpMethod
+    {
+        return HttpMethod::POST;
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
+use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Requests\Contracts\AccountRequestContract;
 
 class LookupAccountRequest extends Request implements AccountRequestContract
@@ -23,5 +24,15 @@ class LookupAccountRequest extends Request implements AccountRequestContract
         return [
             'acct' => $this->acct,
         ];
+    }
+
+    public function getFormParams(): array
+    {
+        return [];
+    }
+
+    public function getHttpMethod(): HttpMethod
+    {
+        return HttpMethod::GET;
     }
 }

@@ -61,7 +61,7 @@ final class ApiClient
     public function doRequest(RequestContract $request): PagedResponseContract|ResponseContract
     {
         $response = $this->httpClient->request(
-            $request->getMethod(),
+            $request->getHttpMethod()->value,
             $request->getUri(),
             array_merge($request->getOptions(), [
                 'base_uri' => $this->getBaseUri(),

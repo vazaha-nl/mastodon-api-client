@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
+use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Models\Account;
 use Vazaha\Mastodon\Requests\Concerns\HasPaging;
 use Vazaha\Mastodon\Requests\Contracts\AccountRequestContract;
@@ -28,5 +29,20 @@ class GetFollowedAccountsRequest extends Request implements AccountRequestContra
     public function getEndpoint(): string
     {
         return sprintf('accounts/%s/following', urlencode($this->accountId));
+    }
+
+    public function getQueryParams(): array
+    {
+        return [];
+    }
+
+    public function getFormParams(): array
+    {
+        return [];
+    }
+
+    public function getHttpMethod(): HttpMethod
+    {
+        return HttpMethod::GET;
     }
 }

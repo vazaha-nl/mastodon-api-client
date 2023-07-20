@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Requests\Contracts;
 
 use Psr\Http\Message\UriInterface;
+use Vazaha\Mastodon\Enums\HttpMethod;
 
 interface RequestContract
 {
-    public function getMethod(): string;
+    public function getHttpMethod(): HttpMethod;
 
     public function getEndpoint(): string;
 
