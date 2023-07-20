@@ -49,21 +49,11 @@ abstract class Request implements RequestContract
     }
 
     /**
-     * @return null|mixed[]
-     */
-    // TODO wat nou null? is deze uberhaupt nodig? wordt er json gepost?
-    public function getBody(): ?array
-    {
-        return null;
-    }
-
-    /**
      * @return array<string, mixed>
      */
     public function getOptions(): array
     {
         return array_filter([
-            'json' => $this->getBody(),
             'form_params' => $this->getFormParams(),
         ]);
     }

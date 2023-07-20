@@ -25,11 +25,6 @@ interface RequestContract
     public function getFormParams(): array;
 
     /**
-     * @return null|mixed[]
-     */
-    public function getBody(): ?array;
-
-    /**
      * @return array<string, mixed>
      */
     public function getOptions(): array;
