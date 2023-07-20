@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vazaha\Mastodon\Factories;
 
 use Psr\Http\Message\ResponseInterface;
@@ -13,12 +15,12 @@ use Vazaha\Mastodon\Responses\Response;
 
 class ResponseFactory
 {
-	public function create(ApiClient $client, RequestContract $request, ResponseInterface $response): ResponseContract|PagedResponseContract
-	{
-		if ($request instanceof PagedRequestContract) {
-			return new PagedResponse($client, $request, $response);
-		}
+    public function create(ApiClient $client, RequestContract $request, ResponseInterface $response): PagedResponseContract|ResponseContract
+    {
+        if ($request instanceof PagedRequestContract) {
+            return new PagedResponse($client, $request, $response);
+        }
 
-		return new Response($client, $request, $response);
-	}
+        return new Response($client, $request, $response);
+    }
 }

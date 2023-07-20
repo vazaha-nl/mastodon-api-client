@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
@@ -12,19 +14,19 @@ class RequestTest extends TestCase
         $request = (new GetFollowedAccountsRequest('testid'))
             ->setMaxId('MAXID');
 
-        $uri = (string)$request->getUri();
-        $this->assertStringContainsString('max_id=MAXID', $uri);
+        $uri = (string) $request->getUri();
+        self::assertStringContainsString('max_id=MAXID', $uri);
 
         $request->setMinId('MINID');
-        $uri = (string)$request->getUri();
-        $this->assertStringContainsString('min_id=MINID', $uri);
+        $uri = (string) $request->getUri();
+        self::assertStringContainsString('min_id=MINID', $uri);
 
         $request->setSinceId('SINCEID');
-        $uri = (string)$request->getUri();
-        $this->assertStringContainsString('since_id=SINCEID', $uri);
+        $uri = (string) $request->getUri();
+        self::assertStringContainsString('since_id=SINCEID', $uri);
 
         $request->setLimit('123');
-        $uri = (string)$request->getUri();
-        $this->assertStringContainsString('limit=123', $uri);
+        $uri = (string) $request->getUri();
+        self::assertStringContainsString('limit=123', $uri);
     }
 }

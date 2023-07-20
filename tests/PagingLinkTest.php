@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
@@ -10,23 +12,23 @@ class PagingLinkTest extends TestCase
     public function testCanBeInstantiated(): void
     {
         $pagingLinks = new PagingLinks();
-        $this->assertInstanceOf(PagingLinks::class, $pagingLinks);
+        self::assertInstanceOf(PagingLinks::class, $pagingLinks);
     }
 
     public function testLinksAreParsedCorrectly(): void
     {
         $pagingLinks = new PagingLinks('<https://example.org/next>; rel="next", <https://example.org/previous>; rel="prev"');
 
-        $this->assertEquals('https://example.org/next', $pagingLinks->getNextUrl());
-        $this->assertEquals('https://example.org/previous', $pagingLinks->getPreviousUrl());
+        self::assertEquals('https://example.org/next', $pagingLinks->getNextUrl());
+        self::assertEquals('https://example.org/previous', $pagingLinks->getPreviousUrl());
     }
 
     public function testInvalidContentsDoesNotBreakThings(): void
     {
         $pagingLinks = new PagingLinks('FOOBAR');
 
-        $this->assertNull($pagingLinks->getNextUrl());
-        $this->assertNull($pagingLinks->getPreviousUrl());
+        self::assertNull($pagingLinks->getNextUrl());
+        self::assertNull($pagingLinks->getPreviousUrl());
     }
 
     public function testQueryParamsAreParsedCorrectly(): void
@@ -37,12 +39,12 @@ class PagingLinkTest extends TestCase
             'foo' => 1,
             'bar' => 2,
         ];
-        $this->assertEquals($expected1, $pagingLinks->getNextQueryParams());
+        self::assertEquals($expected1, $pagingLinks->getNextQueryParams());
 
         $expected2 = [
             'bla' => 'boo',
             'boo' => 'baz',
         ];
-        $this->assertEquals($expected2, $pagingLinks->getPreviousQueryParams());
+        self::assertEquals($expected2, $pagingLinks->getPreviousQueryParams());
     }
 }

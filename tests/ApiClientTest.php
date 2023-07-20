@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use GuzzleHttp\Client;
@@ -16,56 +18,56 @@ use Vazaha\Mastodon\Responses\Response as ApiResponse;
 
 class ApiClientTest extends TestCase
 {
-	protected ApiClient $apiClient;
+    protected ApiClient $apiClient;
 
-	protected function setUp(): void
-	{
-		parent::setUp();
+    protected function setUp(): void
+    {
+        parent::setUp();
 
-		$json = file_get_contents(__DIR__ . '/assets/account.json');
+        $json = file_get_contents(__DIR__ . '/assets/account.json');
 
-		if (!$json) {
-			throw new LogicException('Could not read json!');
-		}
+        if (!$json) {
+            throw new LogicException('Could not read json!');
+        }
 
-		$mock = new MockHandler([
-		    new Response(
-		    	200,
-		    	[
-		    		'Content-type' => 'application/json'
-		    	],
-		    	$json,
-		    ),
-		]);
+        $mock = new MockHandler([
+            new Response(
+                200,
+                [
+                    'Content-type' => 'application/json',
+                ],
+                $json,
+            ),
+        ]);
 
-		$handlerStack = HandlerStack::create($mock);
-		$httpClient = new Client(['handler' => $handlerStack]);
+        $handlerStack = HandlerStack::create($mock);
+        $httpClient = new Client(['handler' => $handlerStack]);
 
-		$this->apiClient = new ApiClient($httpClient);
-	}
+        $this->apiClient = new ApiClient($httpClient);
+    }
 
-	public function testClientCanBeInstantiatedUsingFactory(): void
-	{
-		$client = ApiClient::make();
-		$this->assertInstanceOf(ApiClient::class, $client);
-	}
+    public function testClientCanBeInstantiatedUsingFactory(): void
+    {
+        $client = ApiClient::make();
+        self::assertInstanceOf(ApiClient::class, $client);
+    }
 
-	public function testThrowsDomainNotSetExceptionWithoutDomain(): void
-	{
-		$this->expectException(BaseUriNotSetException::class);
-		$this->apiClient->doRequest(new GetAccountRequest('testid'));
-	}
+    public function testThrowsDomainNotSetExceptionWithoutDomain(): void
+    {
+        $this->expectException(BaseUriNotSetException::class);
+        $this->apiClient->doRequest(new GetAccountRequest('testid'));
+    }
 
-	public function testGetAccount(): void
-	{
-		$response = $this->apiClient
-			->setBaseUri('https://example.org')
-			->doRequest(new GetAccountRequest('testid'));
-		$this->assertInstanceOf(ApiResponse::class, $response);
+    public function testGetAccount(): void
+    {
+        $response = $this->apiClient
+            ->setBaseUri('https://example.org')
+            ->doRequest(new GetAccountRequest('testid'));
+        self::assertInstanceOf(ApiResponse::class, $response);
 
-		/** @var \Vazaha\Mastodon\Models\Account $account **/
-		$account = $response->getModel();
-		$this->assertInstanceOf(Account::class, $account);
-		$this->assertEquals('23634', $account->id);
-	}
+        /** @var \Vazaha\Mastodon\Models\Account $account */
+        $account = $response->getModel();
+        self::assertInstanceOf(Account::class, $account);
+        self::assertEquals('23634', $account->id);
+    }
 }

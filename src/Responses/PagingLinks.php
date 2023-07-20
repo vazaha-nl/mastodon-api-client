@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vazaha\Mastodon\Responses;
 
 class PagingLinks
 {
     /**
-     * @var array<string, string> $links
+     * @var array<string, string>
      */
     protected array $links;
 
     public function __construct(
-        protected ?string $contents = null
+        protected ?string $contents = null,
     ) {
         $this->parseContents();
     }
@@ -83,7 +85,6 @@ class PagingLinks
     }
 
     /**
-     * @param null|string $url
      * @return array<int|string, string>
      */
     protected function getQueryParams(?string $url = null): array
@@ -92,14 +93,14 @@ class PagingLinks
             return [];
         }
 
-        $query = parse_url($url, PHP_URL_QUERY);
+        $query = parse_url($url, \PHP_URL_QUERY);
 
         if (!is_string($query)) {
-        	return [];
+            return [];
         }
 
         parse_str($query, $params);
 
-        return array_filter($params, fn ($value) => is_string($value));
+        return array_filter($params, static fn ($value) => is_string($value));
     }
 }

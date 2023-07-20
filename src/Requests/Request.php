@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vazaha\Mastodon\Requests;
 
 use GuzzleHttp\Psr7\Uri;
@@ -8,8 +10,7 @@ use Vazaha\Mastodon\Requests\Contracts\RequestContract;
 
 abstract class Request implements RequestContract
 {
-	protected string $apiVersion = 'v1';
-
+    protected string $apiVersion = 'v1';
     protected string $method = 'GET';
 
     public function getMethod(): string
@@ -21,13 +22,13 @@ abstract class Request implements RequestContract
     {
         return Uri::withQueryValues(
             new Uri(
-            	sprintf(
-            		'/api/%s/%s',
-            		$this->apiVersion,
-            		$this->getEndpoint()
-            	)
+                sprintf(
+                    '/api/%s/%s',
+                    $this->apiVersion,
+                    $this->getEndpoint(),
+                ),
             ),
-            $this->getQueryParams()
+            $this->getQueryParams(),
         );
     }
 
@@ -39,16 +40,16 @@ abstract class Request implements RequestContract
         return [];
     }
 
-	/**
-	 * @return array<string, string|null>
-	 */
+    /**
+     * @return array<string, null|string>
+     */
     public function getFormParams(): array
     {
         return [];
     }
 
     /**
-     * @return mixed[]|null
+     * @return null|mixed[]
      */
     // TODO wat nou null? is deze uberhaupt nodig? wordt er json gepost?
     public function getBody(): ?array

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vazaha\Mastodon;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
@@ -12,54 +14,51 @@ use Vazaha\Mastodon\Responses\Contracts\ResponseContract;
 
 final class ApiClient
 {
-	protected string $baseUri;
+    protected string $baseUri;
+    protected string $clientId;
+    protected string $clientSecret;
 
-	protected string $clientId;
+    public function __construct(
+        protected ClientInterface $httpClient,
+    ) {
+    }
 
-	protected string $clientSecret;
+    public function setBaseUri(string $baseUri): self
+    {
+        $this->baseUri = $baseUri;
 
-	public function __construct(
-		protected ClientInterface $httpClient
-	) {
-		//
-	}
+        return $this;
+    }
 
-	public function setBaseUri(string $baseUri): self
-	{
-		$this->baseUri = $baseUri;
-
-		return $this;
-	}
-
-	public function getBaseUri(): string
-	{
+    public function getBaseUri(): string
+    {
         if (!isset($this->baseUri)) {
             throw new BaseUriNotSetException();
         }
 
         return $this->baseUri;
-	}
+    }
 
-	public function clientId(string $clientId): self
-	{
-		$this->clientId = $clientId;
+    public function clientId(string $clientId): self
+    {
+        $this->clientId = $clientId;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function clientSecret(string $clientSecret): self
-	{
-		$this->clientSecret = $clientSecret;
+    public function clientSecret(string $clientSecret): self
+    {
+        $this->clientSecret = $clientSecret;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public static function make(): self
-	{
-		return new static(new GuzzleHttpClient());
-	}
+    public static function make(): self
+    {
+        return new self(new GuzzleHttpClient());
+    }
 
-    public function doRequest(RequestContract $request): ResponseContract|PagedResponseContract
+    public function doRequest(RequestContract $request): PagedResponseContract|ResponseContract
     {
         $response = $this->httpClient->request(
             $request->getMethod(),
@@ -70,6 +69,7 @@ final class ApiClient
         );
 
         $responseFactory = new ResponseFactory();
+
         return $responseFactory->create($this, $request, $response);
     }
 }

@@ -1,18 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vazaha\Mastodon\Responses;
 
 use Illuminate\Support\Collection;
-use Vazaha\Mastodon\ApiClient;
-use Vazaha\Mastodon\Requests\Contracts\RequestContract;
 use Psr\Http\Message\ResponseInterface;
+use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Factories\ModelFactory;
 use Vazaha\Mastodon\Models\Contracts\ModelContract;
+use Vazaha\Mastodon\Requests\Contracts\RequestContract;
 use Vazaha\Mastodon\Responses\Contracts\ResponseContract;
 
 class Response implements ResponseContract
 {
-	/** @var \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Contracts\ModelContract> **/
+    /**
+     * @var \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Contracts\ModelContract> *
+     */
     protected Collection $models;
 
     public function __construct(
@@ -20,22 +24,22 @@ class Response implements ResponseContract
         protected RequestContract $request,
         protected ResponseInterface $httpResponse,
     ) {
-        //
     }
 
     /**
-     * @return \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Contracts\ModelContract>
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
+     *
+     * @return \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Contracts\ModelContract>
      */
     public function getModels(): Collection
     {
-    	$modelFactory = new ModelFactory();
+        $modelFactory = new ModelFactory();
 
         if (!isset($this->models)) {
             $this->models = Collection::make($this->getResults())
                 ->map(function ($modelData) use ($modelFactory) {
-                	return $modelFactory->create($this->apiClient, $this->request, $modelData);
+                    return $modelFactory->create($this->apiClient, $this->request, $modelData);
                 });
         }
 
@@ -53,9 +57,10 @@ class Response implements ResponseContract
     }
 
     /**
-     * @return array<int, mixed[]>
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
+     *
+     * @return array<int, mixed[]>
      */
     // TODO FIXME make public? don't do array_is_list magic?
     protected function getResults(): array
@@ -63,7 +68,7 @@ class Response implements ResponseContract
         $decoded = json_decode($this->httpResponse->getBody()->getContents(), true);
 
         if (!is_array($decoded)) {
-        	// TODO throw exception?
+            // TODO throw exception?
             return [];
         }
 

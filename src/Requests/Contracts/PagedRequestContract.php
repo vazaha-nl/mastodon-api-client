@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vazaha\Mastodon\Requests\Contracts;
 
 interface PagedRequestContract extends RequestContract
@@ -11,6 +13,7 @@ interface PagedRequestContract extends RequestContract
 
     /**
      * @param array<int|string,string> $params
+     *
      * @return \Vazaha\Mastodon\Requests\Contracts\PagedRequestContract
      */
     public function setPagingParams(array $params): self;
