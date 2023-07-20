@@ -13,6 +13,7 @@ $config->setRules(
     array_merge(
         $config->getRules(),
         [
+            'class_attributes_separation' => true,
             'final_class' => false,
             'final_public_method_for_abstract_class' => false,
             'native_function_invocation' => false,

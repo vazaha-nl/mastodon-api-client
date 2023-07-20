@@ -10,6 +10,7 @@ use Vazaha\Mastodon\Models\Contracts\ModelContract;
 abstract class Model implements ModelContract
 {
     use EncapsulatesApiClient;
+
     protected string $baseUri;
 
     final public function __construct()

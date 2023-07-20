@@ -15,7 +15,9 @@ use Vazaha\Mastodon\Responses\Contracts\ResponseContract;
 final class ApiClient
 {
     protected string $baseUri;
+
     protected string $clientId;
+
     protected string $clientSecret;
 
     public function __construct(

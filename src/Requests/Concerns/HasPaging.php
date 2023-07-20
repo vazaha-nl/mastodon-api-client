@@ -11,8 +11,11 @@ use Vazaha\Mastodon\Requests\Contracts\PagedRequestContract;
 trait HasPaging
 {
     protected string $maxId;
+
     protected string $minId;
+
     protected string $sinceId;
+
     protected string $limit;
 
     public function getPagingParams(): array
