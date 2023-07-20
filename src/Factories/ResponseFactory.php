@@ -15,8 +15,11 @@ use Vazaha\Mastodon\Responses\Response;
 
 class ResponseFactory
 {
-    public function create(ApiClient $client, RequestContract $request, ResponseInterface $response): PagedResponseContract|ResponseContract
-    {
+    public function build(
+        ApiClient $client,
+        RequestContract $request,
+        ResponseInterface $response
+    ): PagedResponseContract|ResponseContract {
         if ($request instanceof PagedRequestContract) {
             return new PagedResponse($client, $request, $response);
         }

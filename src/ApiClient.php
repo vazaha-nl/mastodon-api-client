@@ -72,6 +72,6 @@ final class ApiClient
 
         $responseFactory = new ResponseFactory();
 
-        return $responseFactory->create($this, $request, $response);
+        return $responseFactory->build($this, $request, $response);
     }
 }

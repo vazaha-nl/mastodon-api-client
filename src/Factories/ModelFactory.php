@@ -13,7 +13,6 @@ class ModelFactory
     /**
      * @param mixed[] $modelData
      *
-     * @throws \LogicException
      * @throws \Vazaha\Mastodon\Exceptions\BaseUriNotSetException
      */
     public function build(ApiClient $apiClient, RequestContract $request, array $modelData): ModelContract
