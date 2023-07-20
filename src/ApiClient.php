@@ -54,21 +54,6 @@ final class ApiClient
 		return $this;
 	}
 
-	// public function createApp(): App
-	// {
-	// 	if (empty($this->domain)) {
-	// 		throw new Exception('baseUri not set');
-	// 	}
-
-	// 	// TODO application name, redirect uri, frontend!
-
-	// 	$result = $this->request('POST', '/api/v1/apps');
-
-	// 	// print_r($result);
-
-	// 	return new App();
-	// }
-
 	public static function make(): self
 	{
 		return new static(new GuzzleHttpClient());
