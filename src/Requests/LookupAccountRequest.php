@@ -17,7 +17,7 @@ class LookupAccountRequest extends Request implements AccountRequestContract
     	return sprintf('accounts/lookup');
     }
 
-    public function getQuery(): array
+    public function getQueryParams(): array
     {
     	return [
     		'acct' => $this->acct,

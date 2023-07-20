@@ -23,6 +23,11 @@ abstract class Model implements ModelContract
     public function fillFromArray(array $array): static
     {
     	foreach($array as $property => $value) {
+    		// TODO FIXME? not sure about this
+    		if ($value === null) {
+    			continue;
+    		}
+
     		if (!property_exists($this, $property)) {
     			continue;
     		}

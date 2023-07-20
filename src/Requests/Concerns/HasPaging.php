@@ -2,6 +2,8 @@
 
 namespace Vazaha\Mastodon\Requests\Concerns;
 
+use GuzzleHttp\Psr7\Uri;
+use Psr\Http\Message\UriInterface;
 use Vazaha\Mastodon\Requests\Contracts\PagedRequestContract;
 
 trait HasPaging
@@ -14,7 +16,7 @@ trait HasPaging
 
     protected string $limit;
 
-    public function getQuery(): array
+    public function getPagingParams(): array
     {
         return array_filter([
             'max_id' => $this->maxId ?? null,
@@ -22,6 +24,24 @@ trait HasPaging
             'since_id' => $this->sinceId ?? null,
             'limit' => $this->limit ?? null,
         ]);
+    }
+
+    public function getUri(): UriInterface
+    {
+        return Uri::withQueryValues(
+            new Uri(
+            	sprintf(
+            		'/api/%s/%s',
+            		$this->apiVersion,
+            		$this->getEndpoint()
+            	)
+            ),
+            array_merge(
+            	// TODO CHECK correct order?
+            	$this->getPagingParams(),
+            	$this->getQueryParams()
+            )
+        );
     }
 
     /**

@@ -27,14 +27,22 @@ abstract class Request implements RequestContract
             		$this->getEndpoint()
             	)
             ),
-            $this->getQuery()
+            $this->getQueryParams()
         );
     }
 
     /**
      * @return array<string, string>
      */
-    public function getQuery(): array
+    public function getQueryParams(): array
+    {
+        return [];
+    }
+
+	/**
+	 * @return array<string, string|null>
+	 */
+    public function getFormParams(): array
     {
         return [];
     }
@@ -42,6 +50,7 @@ abstract class Request implements RequestContract
     /**
      * @return mixed[]|null
      */
+    // TODO wat nou null? is deze uberhaupt nodig? wordt er json gepost?
     public function getBody(): ?array
     {
         return null;
@@ -54,6 +63,7 @@ abstract class Request implements RequestContract
     {
         return array_filter([
             'json' => $this->getBody(),
+            'form_params' => $this->getFormParams(),
         ]);
     }
 }

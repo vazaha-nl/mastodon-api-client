@@ -15,7 +15,12 @@ interface RequestContract
     /**
      * @return array<string, string>
      */
-    public function getQuery(): array;
+    public function getQueryParams(): array;
+
+    /**
+     * @return array<string, string>
+     */
+    public function getFormParams(): array;
 
     /**
      * @return mixed[]|null

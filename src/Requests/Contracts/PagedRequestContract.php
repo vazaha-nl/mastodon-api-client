@@ -7,7 +7,7 @@ interface PagedRequestContract extends RequestContract
     /**
      * @return array<string, string>
      */
-    public function getQuery(): array;
+    public function getPagingParams(): array;
 
     /**
      * @param array<int|string,string> $params

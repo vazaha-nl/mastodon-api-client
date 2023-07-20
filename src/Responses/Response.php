@@ -57,6 +57,7 @@ class Response implements ResponseContract
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
      */
+    // TODO FIXME make public? don't do array_is_list magic?
     protected function getResults(): array
     {
         $decoded = json_decode($this->httpResponse->getBody()->getContents(), true);
