@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Enums\HttpMethod;
-use Vazaha\Mastodon\Requests\Contracts\AccountRequestContract;
+use Vazaha\Mastodon\Requests\Concerns\CreatesAccountModels;
 
-class LookupAccountRequest extends Request implements AccountRequestContract
+class LookupAccountRequest extends Request
 {
+    use CreatesAccountModels;
+
     public function __construct(
         protected string $acct,
     ) {

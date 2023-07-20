@@ -39,7 +39,7 @@ class Response implements ResponseContract
         if (!isset($this->models)) {
             $this->models = Collection::make($this->getResults())
                 ->map(function ($modelData) use ($modelFactory) {
-                    return $modelFactory->create($this->apiClient, $this->request, $modelData);
+                    return $modelFactory->build($this->apiClient, $this->request, $modelData);
                 });
         }
 

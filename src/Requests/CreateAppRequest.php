@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Enums\HttpMethod;
-use Vazaha\Mastodon\Requests\Contracts\ApplicationRequestContract;
+use Vazaha\Mastodon\Requests\Concerns\CreatesApplicationModels;
 
-final class CreateAppRequest extends Request implements ApplicationRequestContract
+final class CreateAppRequest extends Request
 {
+    use CreatesApplicationModels;
+
     public function __construct(
         protected string $clientName,
         protected string $redirectUris = 'urn:ietf:wg:oauth:2.0:oob',

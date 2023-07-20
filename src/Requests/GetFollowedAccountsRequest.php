@@ -6,13 +6,15 @@ namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Models\Account;
+use Vazaha\Mastodon\Requests\Concerns\CreatesAccountModels;
 use Vazaha\Mastodon\Requests\Concerns\HasPaging;
-use Vazaha\Mastodon\Requests\Contracts\AccountRequestContract;
 use Vazaha\Mastodon\Requests\Contracts\PagedRequestContract;
 
-class GetFollowedAccountsRequest extends Request implements AccountRequestContract, PagedRequestContract
+class GetFollowedAccountsRequest extends Request implements PagedRequestContract
 {
     use HasPaging;
+    use CreatesAccountModels;
+
     protected string $accountId;
 
     public function __construct(Account|string $account)

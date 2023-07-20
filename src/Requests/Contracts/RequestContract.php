@@ -6,6 +6,7 @@ namespace Vazaha\Mastodon\Requests\Contracts;
 
 use Psr\Http\Message\UriInterface;
 use Vazaha\Mastodon\Enums\HttpMethod;
+use Vazaha\Mastodon\Models\Contracts\ModelContract;
 
 interface RequestContract
 {
@@ -29,4 +30,6 @@ interface RequestContract
      * @return array<string, mixed>
      */
     public function getOptions(): array;
+
+    public function createModel(): ModelContract;
 }
