@@ -32,11 +32,7 @@ trait HasPaging
     {
         return Uri::withQueryValues(
             new Uri(
-                sprintf(
-                    '/api/%s/%s',
-                    $this->apiVersion,
-                    $this->getEndpoint(),
-                ),
+                $this->getEndpoint(),
             ),
             array_merge(
                 $this->getQueryParams(),

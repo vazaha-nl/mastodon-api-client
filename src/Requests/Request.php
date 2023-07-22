@@ -10,8 +10,6 @@ use Vazaha\Mastodon\Requests\Contracts\RequestContract;
 
 abstract class Request implements RequestContract
 {
-    protected string $apiVersion = 'v1';
-
     public function getUri(): UriInterface
     {
         return Uri::withQueryValues(
