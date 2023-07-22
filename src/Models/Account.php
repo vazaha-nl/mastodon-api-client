@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
+/**
+ * @see https://docs.joinmastodon.org/entities/Account/
+ * */
 class Account extends Model
 {
     public string $id;
@@ -66,19 +69,4 @@ class Account extends Model
     public ?int $followers_count = null;
 
     public ?int $following_count = null;
-
-    public function getDomain(): ?string
-    {
-        if (!isset($this->url)) {
-            return null;
-        }
-
-        $domain = parse_url($this->url, \PHP_URL_HOST);
-
-        if ($domain === false) {
-            return null;
-        }
-
-        return $domain;
-    }
 }
