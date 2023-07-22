@@ -12,6 +12,7 @@ use LogicException;
 use PHPUnit\Framework\TestCase;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
+use Vazaha\Mastodon\Factories\ApiClientFactory;
 use Vazaha\Mastodon\Models\Account;
 use Vazaha\Mastodon\Requests\GetAccountRequest;
 use Vazaha\Mastodon\Responses\Response as ApiResponse;
@@ -48,7 +49,8 @@ class ApiClientTest extends TestCase
 
     public function testClientCanBeInstantiatedUsingFactory(): void
     {
-        $client = ApiClient::make();
+        $factory = new ApiClientFactory();
+        $client = $factory->build();
         self::assertInstanceOf(ApiClient::class, $client);
     }
 
