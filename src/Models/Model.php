@@ -4,17 +4,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Vazaha\Mastodon\Concerns\EncapsulatesApiClient;
-use Vazaha\Mastodon\Concerns\HasBaseUri;
 use Vazaha\Mastodon\Models\Contracts\ModelContract;
 
 abstract class Model implements ModelContract
 {
-    use EncapsulatesApiClient;
-    use HasBaseUri;
-
-    protected string $baseUri;
-
     final public function __construct()
     {
     }
