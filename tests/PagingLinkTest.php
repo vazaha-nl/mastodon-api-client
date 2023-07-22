@@ -18,7 +18,7 @@ class PagingLinkTest extends TestCase
     public function testLinksAreParsedCorrectly(): void
     {
         $pagingLinks = new PagingLinks(
-            '<https://example.org/next>; rel="next", <https://example.org/previous>; rel="prev"'
+            '<https://example.org/next>; rel="next", <https://example.org/previous>; rel="prev"',
         );
 
         self::assertEquals('https://example.org/next', $pagingLinks->getNextUrl());
@@ -37,7 +37,7 @@ class PagingLinkTest extends TestCase
     {
         $pagingLinks = new PagingLinks(
             '<https://example.org/next?foo=1&bar=2>; rel="next", ' .
-            '<https://example.org/previous?bla=boo&boo=baz>; rel="prev"'
+            '<https://example.org/previous?bla=boo&boo=baz>; rel="prev"',
         );
 
         $expected1 = [
