@@ -5,16 +5,22 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Enums\HttpMethod;
+use Vazaha\Mastodon\Enums\Scope;
 use Vazaha\Mastodon\Requests\Concerns\CreatesApplicationModels;
+use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
 final class CreateApplicationRequest extends Request
 {
     use CreatesApplicationModels;
+    use ResolvesScope;
 
+    /**
+     * @param array<int, string|\Vazaha\Mastodon\Enums\Scope>|string|\Vazaha\Mastodon\Enums\Scope $scopes
+     */
     public function __construct(
         protected string $clientName,
         protected string $redirectUris = 'urn:ietf:wg:oauth:2.0:oob',
-        protected string $scopes = 'read',
+        protected array|null|string|Scope $scopes = null,
         protected ?string $website = null,
     ) {
     }
@@ -32,7 +38,7 @@ final class CreateApplicationRequest extends Request
         return [
             'client_name' => $this->clientName,
             'redirect_uris' => $this->redirectUris,
-            'scopes' => $this->scopes,
+            'scopes' => $this->resolveScope($this->scopes),
             'website' => $this->website,
         ];
     }

@@ -18,9 +18,9 @@ class AuthorizeRequest extends Request
      */
     public function __construct(
         protected string $clientId,
-        protected string $redirectUri,
-        protected array|string $scope,
-        protected bool $forceLogin = false,
+        protected string $redirectUri = 'urn:ietf:wg:oauth:2.0:oob',
+        protected array|null|string $scope = null,
+        protected ?bool $forceLogin = null,
         protected ?string $lang = null,
     ) {
     }
