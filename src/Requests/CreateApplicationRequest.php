@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
-use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Enums\Scope;
 use Vazaha\Mastodon\Requests\Concerns\CreatesApplicationModels;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
-final class CreateApplicationRequest extends Request
+final class CreateApplicationRequest extends PostRequest
 {
     use CreatesApplicationModels;
     use ResolvesScope;
@@ -46,10 +45,5 @@ final class CreateApplicationRequest extends Request
     public function getQueryParams(): array
     {
         return [];
-    }
-
-    public function getHttpMethod(): HttpMethod
-    {
-        return HttpMethod::POST;
     }
 }

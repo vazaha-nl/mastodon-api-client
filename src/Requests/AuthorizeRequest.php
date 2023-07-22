@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
-use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Models\Contracts\ModelContract;
 use Vazaha\Mastodon\Models\EmptyResponse;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
-class AuthorizeRequest extends Request
+class AuthorizeRequest extends GetRequest
 {
     use ResolvesScope;
 
@@ -23,11 +22,6 @@ class AuthorizeRequest extends Request
         protected ?bool $forceLogin = null,
         protected ?string $lang = null,
     ) {
-    }
-
-    public function getHttpMethod(): HttpMethod
-    {
-        return HttpMethod::GET;
     }
 
     public function getEndpoint(): string
@@ -48,11 +42,6 @@ class AuthorizeRequest extends Request
             'force_login' => (string) $this->forceLogin,
             'lang' => $this->lang,
         ], static fn ($val) => null !== $val);
-    }
-
-    public function getFormParams(): array
-    {
-        return [];
     }
 
     public function createModel(): ModelContract

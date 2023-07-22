@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
-use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Models\Contracts\ModelContract;
 use Vazaha\Mastodon\Models\OAuthToken;
 
-class CreateOAuthTokenRequest extends Request
+class CreateOAuthTokenRequest extends PostRequest
 {
     public function __construct(
         protected string $clientId,
@@ -16,11 +15,6 @@ class CreateOAuthTokenRequest extends Request
         protected string $redirectUri = 'urn:ietf:wg:oauth:2.0:oob',
         protected ?string $code = null,
     ) {
-    }
-
-    public function getHttpMethod(): HttpMethod
-    {
-        return HttpMethod::POST;
     }
 
     public function getEndpoint(): string
