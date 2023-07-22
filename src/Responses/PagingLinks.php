@@ -6,10 +6,9 @@ namespace Vazaha\Mastodon\Responses;
 
 class PagingLinks
 {
-    /**
-     * @var array<string, string>
-     */
-    protected array $links;
+    protected ?string $previousUrl;
+
+    protected ?string $nextUrl;
 
     public function __construct(
         protected ?string $contents = null,
@@ -22,9 +21,7 @@ class PagingLinks
      */
     public function getNextQueryParams(): array
     {
-        $url = $this->getNextUrl();
-
-        return $this->getQueryParams($url);
+        return $this->getQueryParams($this->getNextUrl());
     }
 
     /**
@@ -37,12 +34,12 @@ class PagingLinks
 
     public function getNextUrl(): ?string
     {
-        return $this->links['next'] ?? null;
+        return $this->nextUrl;
     }
 
     public function getPreviousUrl(): ?string
     {
-        return $this->links['prev'] ?? null;
+        return $this->previousUrl;
     }
 
     protected function parseContents(): void
@@ -58,7 +55,7 @@ class PagingLinks
         foreach ($linkElements as $linkElement) {
             $parts = explode('; ', $linkElement);
 
-            if (count($parts) !== 2) {
+            if (count($parts) < 2) {
                 continue;
             }
 
@@ -81,7 +78,8 @@ class PagingLinks
             }
         }
 
-        $this->links = $links;
+        $this->previousUrl = $links['prev'] ?? null;
+        $this->nextUrl = $links['next'] ?? null;
     }
 
     /**
