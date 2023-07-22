@@ -27,9 +27,17 @@
         "phpcompatibility/php-compatibility": "^9.3"
     },
     "scripts": {
-        "coding-standards": [
-            "mkdir -p .build/php-cs-fixer",
-            "php-cs-fixer fix --diff --verbose"
+        "check-style": [
+            "php-cs-fixer fix --diff --dry-run"
+        ],
+        "fix-style": [
+            "php-cs-fixer fix"
+        ],
+        "test": [
+            "vendor/bin/phpunit"
+        ],
+        "analyse": [
+            "vendor/bin/phpstan analyse src tests --level 9"
         ]
     },
     "type": "library",
