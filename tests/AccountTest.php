@@ -27,12 +27,4 @@ class AccountTest extends TestCase
         self::assertEquals('23634', $account->id);
         self::assertEquals(404, $account->following_count);
     }
-
-    public function testEncapsulatedApiClientHasCorrectDomain(): void
-    {
-        $account = new Account();
-        $account->setBaseUri('https://example.org');
-        $apiClient = $account->getApiClient();
-        self::assertEquals('https://example.org', $apiClient->getBaseUri());
-    }
 }

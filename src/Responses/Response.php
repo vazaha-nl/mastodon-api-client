@@ -47,7 +47,7 @@ class Response implements ResponseContract
 
             $this->models = Collection::make($results)
                 ->map(function ($modelData) use ($modelFactory) {
-                    return $modelFactory->build($this->apiClient, $this->request, $modelData);
+                    return $modelFactory->build($this->request, $modelData);
                 });
         }
 
