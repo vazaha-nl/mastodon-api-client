@@ -20,7 +20,7 @@ final class CreateApplicationRequest extends Request
     public function __construct(
         protected string $clientName,
         protected string $redirectUris = 'urn:ietf:wg:oauth:2.0:oob',
-        protected array|null|string|Scope $scopes = null,
+        protected null|array|Scope|string $scopes = null,
         protected ?string $website = null,
     ) {
     }

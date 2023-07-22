@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
@@ -12,10 +14,10 @@ class ScopeTest extends TestCase
 
     public function testScopeResolution(): void
     {
-        $this->assertNull($this->resolveScope(null));
-        $this->assertEquals('testscope', $this->resolveScope('testscope'));
-        $this->assertEquals('admin:write', $this->resolveScope(Scope::ADMIN_WRITE));
-        $this->assertEquals('admin:read admin:write', $this->resolveScope([Scope::ADMIN_READ, Scope::ADMIN_WRITE]));
-        $this->assertEquals('testscope admin:write', $this->resolveScope(['testscope', Scope::ADMIN_WRITE]));
+        self::assertNull($this->resolveScope(null));
+        self::assertEquals('testscope', $this->resolveScope('testscope'));
+        self::assertEquals('admin:write', $this->resolveScope(Scope::ADMIN_WRITE));
+        self::assertEquals('admin:read admin:write', $this->resolveScope([Scope::ADMIN_READ, Scope::ADMIN_WRITE]));
+        self::assertEquals('testscope admin:write', $this->resolveScope(['testscope', Scope::ADMIN_WRITE]));
     }
 }
