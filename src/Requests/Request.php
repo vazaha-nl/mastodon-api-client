@@ -16,11 +16,7 @@ abstract class Request implements RequestContract
     {
         return Uri::withQueryValues(
             new Uri(
-                sprintf(
-                    '/api/%s/%s',
-                    $this->apiVersion,
-                    $this->getEndpoint(),
-                ),
+                $this->getEndpoint()
             ),
             $this->getQueryParams(),
         );

@@ -18,7 +18,7 @@ class LookupAccountRequest extends Request
 
     public function getEndpoint(): string
     {
-        return 'accounts/lookup';
+        return '/api/v1/accounts/lookup';
     }
 
     public function getQueryParams(): array

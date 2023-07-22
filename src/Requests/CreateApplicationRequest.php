@@ -21,7 +21,7 @@ final class CreateApplicationRequest extends Request
 
     public function getEndpoint(): string
     {
-        return 'apps';
+        return '/api/v1/apps';
     }
 
     /**

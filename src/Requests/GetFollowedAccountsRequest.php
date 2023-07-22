@@ -30,7 +30,7 @@ class GetFollowedAccountsRequest extends Request implements PagedRequestContract
 
     public function getEndpoint(): string
     {
-        return sprintf('accounts/%s/following', urlencode($this->accountId));
+        return sprintf('/api/v1/accounts/%s/following', urlencode($this->accountId));
     }
 
     public function getQueryParams(): array

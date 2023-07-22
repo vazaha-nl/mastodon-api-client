@@ -18,7 +18,7 @@ class GetAccountRequest extends Request
 
     public function getEndpoint(): string
     {
-        return sprintf('accounts/%s', urlencode($this->accountId));
+        return sprintf('/api/v1/accounts/%s', urlencode($this->accountId));
     }
 
     public function getQueryParams(): array
