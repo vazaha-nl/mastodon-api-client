@@ -16,7 +16,7 @@ abstract class Request implements RequestContract
     {
         return Uri::withQueryValues(
             new Uri(
-                $this->getEndpoint()
+                $this->getEndpoint(),
             ),
             $this->getQueryParams(),
         );

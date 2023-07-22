@@ -7,15 +7,21 @@ namespace Vazaha\Mastodon\Requests;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Models\Contracts\ModelContract;
 use Vazaha\Mastodon\Models\EmptyResponse;
+use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
 class AuthorizeRequest extends Request
 {
+    use ResolvesScope;
+
+    /**
+     * @param array<int, string|\Vazaha\Mastodon\Enums\Scope>|string $scope
+     */
     public function __construct(
         protected string $clientId,
         protected string $redirectUri,
-        protected string $scope,
-        protected bool $forceLogin,
-        protected string $lang,
+        protected array|string $scope,
+        protected bool $forceLogin = false,
+        protected ?string $lang = null,
     ) {
     }
 
@@ -34,14 +40,14 @@ class AuthorizeRequest extends Request
      */
     public function getQueryParams(): array
     {
-        return [
+        return array_filter([
             'response_type' => 'code',
             'client_id' => $this->clientId,
             'redirect_uri' => $this->redirectUri,
-            'scope' => $this->scope,
+            'scope' => $this->resolveScope($this->scope),
             'force_login' => (string) $this->forceLogin,
             'lang' => $this->lang,
-        ];
+        ], static fn ($val) => null !== $val);
     }
 
     public function getFormParams(): array
