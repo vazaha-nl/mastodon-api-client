@@ -4,44 +4,83 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon;
 
-use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\ClientInterface;
-use Vazaha\Mastodon\Concerns\HasBaseUri;
+use GuzzleHttp\Psr7\UriResolver;
+use GuzzleHttp\Psr7\Utils;
+use Psr\Http\Message\UriInterface;
+use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
+use Vazaha\Mastodon\Exceptions\ClientIdNotSet;
+use Vazaha\Mastodon\Exceptions\ClientIdNotSetException;
+use Vazaha\Mastodon\Exceptions\ClientSecretNotSetException;
 use Vazaha\Mastodon\Factories\ResponseFactory;
+use Vazaha\Mastodon\Models\OAuthToken;
+use Vazaha\Mastodon\Requests\AuthorizeRequest;
 use Vazaha\Mastodon\Requests\Contracts\RequestContract;
 use Vazaha\Mastodon\Responses\Contracts\PagedResponseContract;
 use Vazaha\Mastodon\Responses\Contracts\ResponseContract;
 
 final class ApiClient
 {
-    use HasBaseUri;
+    protected string $baseUri;
 
-    protected string $clientId;
+    protected ?string $clientId;
 
-    protected string $clientSecret;
+    protected ?string $clientSecret;
+
+    protected string $token;
 
     public function __construct(
         protected ClientInterface $httpClient,
     ) {
     }
 
-    public function clientId(string $clientId): self
+    public function setClientId(string $clientId): self
     {
         $this->clientId = $clientId;
 
         return $this;
     }
 
-    public function clientSecret(string $clientSecret): self
+    public function getClientId(): string
+    {
+        if (!isset($this->clientId)) {
+            throw new ClientIdNotSetException();
+        }
+
+        return $this->clientId;
+    }
+
+    public function setClientSecret(string $clientSecret): self
     {
         $this->clientSecret = $clientSecret;
 
         return $this;
     }
 
-    public static function make(): self
+    public function getClientSecret(): string
     {
-        return new self(new GuzzleHttpClient());
+        if (!isset($this->clientSecret)) {
+            throw new ClientSecretNotSetException();
+        }
+
+        return $this->clientSecret;
+    }
+
+    public function setToken(string $token): self
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token ?? null;
+    }
+
+    public function getUri(RequestContract $request): UriInterface
+    {
+        return UriResolver::resolve(Utils::uriFor($this->getBaseUri()), $request->getUri());
     }
 
     public function doRequest(RequestContract $request): PagedResponseContract|ResponseContract
@@ -57,5 +96,21 @@ final class ApiClient
         $responseFactory = new ResponseFactory();
 
         return $responseFactory->build($this, $request, $response);
+    }
+
+    public function setBaseUri(string $baseUri): self
+    {
+        $this->baseUri = $baseUri;
+
+        return $this;
+    }
+
+    public function getBaseUri(): string
+    {
+        if (!isset($this->baseUri)) {
+            throw new BaseUriNotSetException();
+        }
+
+        return $this->baseUri;
     }
 }
