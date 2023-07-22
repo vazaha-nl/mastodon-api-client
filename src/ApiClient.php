@@ -85,9 +85,10 @@ final class ApiClient
         $response = $this->httpClient->request(
             $request->getHttpMethod()->value,
             $request->getUri(),
-            array_merge($request->getOptions(), [
-                'base_uri' => $this->getBaseUri(),
-            ]),
+            array_merge(
+                $request->getOptions(),
+                $this->getOptions(),
+            ),
         );
 
         $responseFactory = new ResponseFactory();
@@ -109,5 +110,23 @@ final class ApiClient
         }
 
         return $this->baseUri;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    protected function getOptions(): array
+    {
+        $options = [
+            'base_uri' => $this->getBaseUri(),
+        ];
+
+        if ($this->getToken() !== null) {
+            $options['headers'] = [
+                'Authorization' => 'Bearer ' . $this->getToken(),
+            ];
+        }
+
+        return $options;
     }
 }
