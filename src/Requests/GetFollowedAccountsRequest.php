@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
-use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Models\Account;
 use Vazaha\Mastodon\Requests\Concerns\CreatesAccountModels;
 use Vazaha\Mastodon\Requests\Concerns\HasPaging;
 use Vazaha\Mastodon\Requests\Contracts\PagedRequestContract;
 
-class GetFollowedAccountsRequest extends Request implements PagedRequestContract
+class GetFollowedAccountsRequest extends GetRequest implements PagedRequestContract
 {
     use HasPaging;
     use CreatesAccountModels;
@@ -36,15 +35,5 @@ class GetFollowedAccountsRequest extends Request implements PagedRequestContract
     public function getQueryParams(): array
     {
         return [];
-    }
-
-    public function getFormParams(): array
-    {
-        return [];
-    }
-
-    public function getHttpMethod(): HttpMethod
-    {
-        return HttpMethod::GET;
     }
 }
