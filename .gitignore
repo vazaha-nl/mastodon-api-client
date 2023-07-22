@@ -1,4 +1,4 @@
 vendor/
 .phpunit.result.cache
 build/
-.build/
+.php-cs-fixer.cache
