@@ -37,7 +37,7 @@
             "vendor/bin/phpunit"
         ],
         "analyse": [
-            "vendor/bin/phpstan analyse src tests --level 9"
+            "vendor/bin/phpstan analyse -c phpstan.neon"
         ]
     },
     "type": "library",
