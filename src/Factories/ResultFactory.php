@@ -24,7 +24,7 @@ class ResultFactory
         RequestInterface $request,
         ResponseInterface $response,
     ): ResultInterface {
-        if (is_a($className, Result::class, true)) {
+        if (!is_a($className, Result::class, true)) {
             throw new LogicException($className . ' is not a subclass of ' . Result::class);
         }
 

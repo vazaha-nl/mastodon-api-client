@@ -20,7 +20,7 @@ class ModelFactory
      */
     public function build(string $className, array $modelData): ModelInterface
     {
-        if (is_a($className, Model::class, true)) {
+        if (!is_a($className, Model::class, true)) {
             throw new LogicException($className . ' is not a subclass of ' . Model::class);
         }
 
