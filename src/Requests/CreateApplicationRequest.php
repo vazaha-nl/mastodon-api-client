@@ -11,7 +11,7 @@ use Vazaha\Mastodon\Requests\Concerns\PostRequest;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
 /**
- * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ApplicationResult>
  */
 final class CreateApplicationRequest extends Request implements RequestInterface
 {

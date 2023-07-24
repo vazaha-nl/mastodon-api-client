@@ -10,7 +10,7 @@ use Vazaha\Mastodon\Models\OAuthToken;
 use Vazaha\Mastodon\Requests\Concerns\PostRequest;
 
 /**
- * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\OAuthTokenResult>
  */
 final class CreateOAuthTokenRequest extends Request implements RequestInterface
 {

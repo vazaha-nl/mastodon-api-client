@@ -10,7 +10,7 @@ use Vazaha\Mastodon\Models\ListModel;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 
 /**
- * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ListResult>
  */
 final class GetListsRequest extends Request implements RequestInterface
 {
