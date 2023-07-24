@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vazaha\Mastodon\Requests\Concerns;
 
 use Vazaha\Mastodon\Enums\HttpMethod;
@@ -23,5 +25,4 @@ trait GetRequest
     {
         return [];
     }
-
 }

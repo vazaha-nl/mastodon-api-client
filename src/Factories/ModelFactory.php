@@ -10,11 +10,12 @@ use Vazaha\Mastodon\Models\Model;
 
 class ModelFactory
 {
-
     /**
      * @template T of \Vazaha\Mastodon\Models\Model
+     *
      * @param class-string<T> $className
-     * @param mixed[] $modelData
+     * @param mixed[]         $modelData
+     *
      * @return T
      */
     public function build(string $className, array $modelData): ModelInterface
@@ -23,7 +24,7 @@ class ModelFactory
             throw new LogicException($className . ' is not a subclass of ' . Model::class);
         }
 
-        return (new $className)
+        return (new $className())
             ->fillFromArray($modelData);
     }
 }

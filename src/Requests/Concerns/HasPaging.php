@@ -41,24 +41,24 @@ trait HasPaging
     }
 
     /**
-     * @param array<int|string,string|int> $params
+     * @param array<int|string,int|string> $params
      */
     public function setPagingParams(array $params): static
     {
         if (isset($params['max_id'])) {
-            $this->setMaxId((string)$params['max_id']);
+            $this->setMaxId((string) $params['max_id']);
         }
 
         if (isset($params['min_id'])) {
-            $this->setMinId((string)$params['min_id']);
+            $this->setMinId((string) $params['min_id']);
         }
 
         if (isset($params['since_id'])) {
-            $this->setSinceId((string)$params['since_id']);
+            $this->setSinceId((string) $params['since_id']);
         }
 
         if (isset($params['limit'])) {
-            $this->setLimit((string)$params['limit']);
+            $this->setLimit((string) $params['limit']);
         }
 
         return $this;

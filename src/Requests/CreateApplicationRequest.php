@@ -6,7 +6,6 @@ namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Enums\Scope;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
-use Vazaha\Mastodon\Requests\Concerns\CreatesApplicationModels;
 use Vazaha\Mastodon\Requests\Concerns\PostRequest;
 use Vazaha\Mastodon\Requests\Concerns\RequestsApplications;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;

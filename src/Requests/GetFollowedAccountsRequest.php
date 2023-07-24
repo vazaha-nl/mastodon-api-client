@@ -6,9 +6,9 @@ namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Models\Account;
-use Vazaha\Mastodon\Requests\Concerns\RequestsAccounts;
-use Vazaha\Mastodon\Requests\Concerns\HasPaging;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
+use Vazaha\Mastodon\Requests\Concerns\HasPaging;
+use Vazaha\Mastodon\Requests\Concerns\RequestsAccounts;
 
 /**
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>

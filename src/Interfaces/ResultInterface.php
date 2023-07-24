@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Interfaces;
 
-use Vazaha\Mastodon\Interfaces\ModelInterface;
-
 interface ResultInterface
 {
     /**

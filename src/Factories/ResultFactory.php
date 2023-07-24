@@ -15,6 +15,7 @@ class ResultFactory
 {
     /**
      * @template T of \Vazaha\Mastodon\Results\Result
+     *
      * @param class-string<T> $className
      */
     public function build(

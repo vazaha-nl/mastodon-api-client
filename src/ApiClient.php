@@ -13,9 +13,7 @@ use Vazaha\Mastodon\Exceptions\ClientIdNotSetException;
 use Vazaha\Mastodon\Exceptions\ClientSecretNotSetException;
 use Vazaha\Mastodon\Factories\ResultFactory;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
-use Vazaha\Mastodon\Interfaces\PagedResultInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
-use Vazaha\Mastodon\Results\Result;
 
 final class ApiClient
 {
@@ -83,7 +81,9 @@ final class ApiClient
 
     /**
      * @template T of \Vazaha\Mastodon\Interfaces\ResultInterface
+     *
      * @param \Vazaha\Mastodon\Interfaces\RequestInterface<T> $request
+     *
      * @return T
      */
     public function doRequest(RequestInterface $request): ResultInterface

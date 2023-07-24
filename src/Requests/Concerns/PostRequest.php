@@ -22,5 +22,4 @@ trait PostRequest
             'form_params' => $this->getFormParams(),
         ]);
     }
-
 }
