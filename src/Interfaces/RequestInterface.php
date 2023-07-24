@@ -8,6 +8,9 @@ use Psr\Http\Message\UriInterface;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\ModelInterface;
 
+/**
+ * @template TDerivative of \Vazaha\Mastodon\Interfaces\ResultInterface
+ */
 interface RequestInterface
 {
     public function getHttpMethod(): HttpMethod;

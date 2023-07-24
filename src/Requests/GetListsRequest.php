@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Interfaces\ModelInterface;
+use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Models\ListModel;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 
-final class GetListsRequest extends Request
+/**
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ */
+final class GetListsRequest extends Request implements RequestInterface
 {
     use GetRequest;
 

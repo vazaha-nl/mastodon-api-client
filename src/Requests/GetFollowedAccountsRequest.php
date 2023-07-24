@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
+use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Models\Account;
 use Vazaha\Mastodon\Requests\Concerns\CreatesAccountModels;
 use Vazaha\Mastodon\Requests\Concerns\HasPaging;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 
-final class GetFollowedAccountsRequest extends Request
+/**
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ */
+final class GetFollowedAccountsRequest extends Request implements RequestInterface
 {
     use HasPaging;
     use CreatesAccountModels;

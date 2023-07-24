@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
+use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Requests\Concerns\CreatesAccountModels;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 
-final class LookupAccountRequest extends Request
+/**
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ */
+final class LookupAccountRequest extends Request implements RequestInterface
 {
     use CreatesAccountModels;
     use GetRequest;

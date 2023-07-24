@@ -5,11 +5,15 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Interfaces\ModelInterface;
+use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Models\EmptyResponse;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
-final class AuthorizeRequest extends Request
+/**
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ */
+final class AuthorizeRequest extends Request implements RequestInterface
 {
     use ResolvesScope;
     use GetRequest;

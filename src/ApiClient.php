@@ -15,6 +15,7 @@ use Vazaha\Mastodon\Factories\ResultFactory;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\PagedResultInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
+use Vazaha\Mastodon\Results\Result;
 
 final class ApiClient
 {
@@ -80,6 +81,11 @@ final class ApiClient
         return UriResolver::resolve(Utils::uriFor($this->getBaseUri()), $request->getUri());
     }
 
+    /**
+     * @template T of \Vazaha\Mastodon\Interfaces\ResultInterface
+     * @param \Vazaha\Mastodon\Interfaces\RequestInterface<T> $request
+     * @return T
+     */
     public function doRequest(RequestInterface $request): ResultInterface
     {
         $response = $this->httpClient->request(

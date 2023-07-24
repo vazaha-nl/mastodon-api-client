@@ -5,11 +5,15 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Enums\Scope;
+use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Requests\Concerns\CreatesApplicationModels;
 use Vazaha\Mastodon\Requests\Concerns\PostRequest;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
-final class CreateApplicationRequest extends Request
+/**
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ */
+final class CreateApplicationRequest extends Request implements RequestInterface
 {
     use CreatesApplicationModels;
     use ResolvesScope;

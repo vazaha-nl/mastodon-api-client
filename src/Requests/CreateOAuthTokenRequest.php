@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Interfaces\ModelInterface;
+use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Models\OAuthToken;
 use Vazaha\Mastodon\Requests\Concerns\PostRequest;
 
-final class CreateOAuthTokenRequest extends Request
+/**
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ */
+final class CreateOAuthTokenRequest extends Request implements RequestInterface
 {
     use PostRequest;
 
