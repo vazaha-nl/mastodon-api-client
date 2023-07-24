@@ -56,7 +56,7 @@ class Result implements ResultInterface
 
     public function getModel(): ?ModelInterface
     {
-        return $this->getModel()[0] ?? null;
+        return $this->getModels()[0] ?? null;
     }
 
     public function getCount(): int
