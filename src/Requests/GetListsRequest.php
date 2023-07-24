@@ -8,6 +8,7 @@ use Vazaha\Mastodon\Interfaces\ModelInterface;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Models\ListModel;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
+use Vazaha\Mastodon\Requests\Concerns\RequestsLists;
 
 /**
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ListResult>
@@ -15,6 +16,7 @@ use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 final class GetListsRequest extends Request implements RequestInterface
 {
     use GetRequest;
+    use RequestsLists;
 
     public function getEndpoint(): string
     {

@@ -8,6 +8,7 @@ use Vazaha\Mastodon\Interfaces\ModelInterface;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Models\OAuthToken;
 use Vazaha\Mastodon\Requests\Concerns\PostRequest;
+use Vazaha\Mastodon\Requests\Concerns\RequestsOAuthTokens;
 
 /**
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\OAuthTokenResult>
@@ -15,6 +16,7 @@ use Vazaha\Mastodon\Requests\Concerns\PostRequest;
 final class CreateOAuthTokenRequest extends Request implements RequestInterface
 {
     use PostRequest;
+    use RequestsOAuthTokens;
 
     public function __construct(
         protected string $clientId,

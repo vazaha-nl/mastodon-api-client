@@ -8,6 +8,7 @@ use Vazaha\Mastodon\Interfaces\ModelInterface;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Models\EmptyResponse;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
+use Vazaha\Mastodon\Requests\Concerns\HasEmptyResponse;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
 /**
@@ -17,6 +18,7 @@ final class AuthorizeRequest extends Request implements RequestInterface
 {
     use ResolvesScope;
     use GetRequest;
+    use HasEmptyResponse;
 
     /**
      * @param array<int, string|\Vazaha\Mastodon\Enums\Scope>|string $scope

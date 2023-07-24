@@ -47,7 +47,7 @@ class Result implements ResultInterface
             }
 
             $this->models = array_map(function ($modelData) use ($modelFactory) {
-                return $modelFactory->build($this->request, $modelData);
+                return $modelFactory->build($this->request->getModelClass(), $modelData);
             }, $decoded);
         }
 
