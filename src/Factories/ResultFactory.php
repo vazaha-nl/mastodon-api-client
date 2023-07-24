@@ -12,11 +12,6 @@ use Vazaha\Mastodon\Results\Result;
 
 class ResultFactory
 {
-    /**
-     * @template T of \Vazaha\Mastodon\Interfaces\ResultInterface
-     * @param \Vazaha\Mastodon\Interfaces\RequestInterface<T> $request
-     * @return T
-     */
     public function build(
         ApiClient $client,
         RequestInterface $request,
