@@ -14,9 +14,9 @@ use Vazaha\Mastodon\Interfaces\ResultInterface;
 class Result implements ResultInterface
 {
     /**
-     * @var null|array<int, \Vazaha\Mastodon\Interfaces\ModelInterface>
+     * @var array<\Vazaha\Mastodon\Interfaces\ModelInterface>
      */
-    protected ?array $models;
+    protected array $models;
 
     public function __construct(
         protected ApiClient $apiClient,
@@ -29,18 +29,14 @@ class Result implements ResultInterface
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
      *
-     * @return null|array<int, \Vazaha\Mastodon\Interfaces\ModelInterface>
+     * @return array<\Vazaha\Mastodon\Interfaces\ModelInterface>
      */
-    public function getModels(): ?array
+    public function getModels(): array
     {
         if (!isset($this->models)) {
             $modelFactory = new ModelFactory();
 
             $decoded = $this->getDecodedBody();
-
-            if ($decoded === null) {
-                return null;
-            }
 
             // TODO FIXME this might be tricky
             if (!array_is_list($decoded)) {
@@ -57,19 +53,11 @@ class Result implements ResultInterface
 
     public function getModel(): ?ModelInterface
     {
-        if ($this->getModels() === null) {
-            return null;
-        }
-
         return $this->getModel()[0] ?? null;
     }
 
     public function getCount(): int
     {
-        if ($this->getModels() === null) {
-            return 0;
-        }
-
         return count($this->getModels());
     }
 
@@ -77,14 +65,14 @@ class Result implements ResultInterface
      * @throws \RuntimeException
      * @throws \Vazaha\Mastodon\Exceptions\InvalidResponseException
      *
-     * @return null|array<int|string, mixed[]>
+     * @return array<int|string, mixed[]>
      */
-    public function getDecodedBody(): ?array
+    public function getDecodedBody(): array
     {
         $decoded = json_decode($this->httpResponse->getBody()->getContents(), true);
 
         if (!is_array($decoded)) {
-            return null;
+            return [];
         }
 
         return $decoded;
