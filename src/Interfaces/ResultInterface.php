@@ -10,16 +10,16 @@ use Vazaha\Mastodon\Interfaces\ModelInterface;
 interface ResultInterface
 {
     /**
-     * @return \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Interfaces\ModelInterface>
+     * @return null|array<int, \Vazaha\Mastodon\Interfaces\ModelInterface>
      */
-    public function getModels(): Collection;
+    public function getModels(): ?array;
 
     public function getModel(): ?ModelInterface;
 
     public function getCount(): int;
 
     /**
-     * @return array<int|string, mixed[]>
+     * @return null|array<int|string, mixed[]>
      */
-    public function getResults(): array;
+    public function getDecodedBody(): ?array;
 }
