@@ -99,6 +99,7 @@ final class ApiClient
 
         $responseFactory = new ResultFactory();
 
+        /** @phpstan-ignore-next-line */
         return $responseFactory->build($this, $request, $response);
     }
 
