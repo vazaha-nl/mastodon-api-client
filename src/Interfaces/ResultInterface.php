@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Responses\Contracts;
+namespace Vazaha\Mastodon\Interfaces;
 
 use Illuminate\Support\Collection;
-use Vazaha\Mastodon\Models\Contracts\ModelContract;
+use Vazaha\Mastodon\Interfaces\ModelInterface;
 
-interface ResponseContract
+interface ResultInterface
 {
     /**
-     * @return \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Model>
+     * @return \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Interfaces\ModelInterface>
      */
     public function getModels(): Collection;
 
-    public function getModel(): ?ModelContract;
+    public function getModel(): ?ModelInterface;
 
     public function getCount(): int;
 

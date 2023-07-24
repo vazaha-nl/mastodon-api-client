@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Responses;
+namespace Vazaha\Mastodon\Results;
 
 use Illuminate\Support\Collection;
 use Psr\Http\Message\ResponseInterface;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Factories\ModelFactory;
-use Vazaha\Mastodon\Models\Contracts\ModelContract;
-use Vazaha\Mastodon\Requests\Contracts\RequestContract;
-use Vazaha\Mastodon\Responses\Contracts\ResponseContract;
+use Vazaha\Mastodon\Interfaces\ModelInterface;
+use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Interfaces\ResultInterface;
 
-class Response implements ResponseContract
+class Result implements ResultInterface
 {
     /**
-     * @var \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Contracts\ModelContract>
+     * @var \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Interfaces\ModelInterface>
      */
     protected Collection $models;
 
     public function __construct(
         protected ApiClient $apiClient,
-        protected RequestContract $request,
+        protected RequestInterface $request,
         protected ResponseInterface $httpResponse,
     ) {
     }
@@ -31,7 +31,7 @@ class Response implements ResponseContract
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
      *
-     * @return \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Models\Contracts\ModelContract>
+     * @return \Illuminate\Support\Collection<int, \Vazaha\Mastodon\Interfaces\ModelInterface>
      */
     public function getModels(): Collection
     {
@@ -54,7 +54,7 @@ class Response implements ResponseContract
         return $this->models;
     }
 
-    public function getModel(): ?ModelContract
+    public function getModel(): ?ModelInterface
     {
         return $this->getModels()->first();
     }

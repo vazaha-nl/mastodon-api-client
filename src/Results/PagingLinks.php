@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Responses;
+namespace Vazaha\Mastodon\Results;
 
 class PagingLinks
 {
@@ -17,17 +17,17 @@ class PagingLinks
     }
 
     /**
-     * @return array<int|string,string>
+     * @return null|array<int|string,string>
      */
-    public function getNextQueryParams(): array
+    public function getNextQueryParams(): ?array
     {
         return $this->getQueryParams($this->getNextUrl());
     }
 
     /**
-     * @return array<int|string,string>
+     * @return null|array<int|string,string>
      */
-    public function getPreviousQueryParams(): array
+    public function getPreviousQueryParams(): ?array
     {
         return $this->getQueryParams($this->getPreviousUrl());
     }
@@ -83,18 +83,18 @@ class PagingLinks
     }
 
     /**
-     * @return array<int|string, string>
+     * @return null|array<int|string, string>
      */
-    protected function getQueryParams(?string $url = null): array
+    protected function getQueryParams(?string $url = null): ?array
     {
         if (empty($url)) {
-            return [];
+            return null;
         }
 
         $query = parse_url($url, \PHP_URL_QUERY);
 
         if (!is_string($query)) {
-            return [];
+            return null;
         }
 
         parse_str($query, $params);

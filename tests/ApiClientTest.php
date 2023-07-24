@@ -15,7 +15,7 @@ use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
 use Vazaha\Mastodon\Factories\ApiClientFactory;
 use Vazaha\Mastodon\Models\Account;
 use Vazaha\Mastodon\Requests\GetAccountRequest;
-use Vazaha\Mastodon\Responses\Response as ApiResponse;
+use Vazaha\Mastodon\Results\Result as ApiResponse;
 
 class ApiClientTest extends TestCase
 {

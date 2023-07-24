@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Models\Contracts;
+namespace Vazaha\Mastodon\Interfaces;
 
-interface ModelContract
+interface ModelInterface
 {
     /**
      * @param array<string, mixed> $array
      */
-    public function fillFromArray(array $array): self;
+    public function fillFromArray(array $array): static;
 
     /**
      * @return array<string, mixed> *

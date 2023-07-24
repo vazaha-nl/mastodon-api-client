@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Requests\Contracts;
+namespace Vazaha\Mastodon\Interfaces;
 
 use Psr\Http\Message\UriInterface;
 use Vazaha\Mastodon\Enums\HttpMethod;
-use Vazaha\Mastodon\Models\Contracts\ModelContract;
+use Vazaha\Mastodon\Interfaces\ModelInterface;
 
-interface RequestContract
+interface RequestInterface
 {
     public function getHttpMethod(): HttpMethod;
 
@@ -31,5 +31,5 @@ interface RequestContract
      */
     public function getOptions(): array;
 
-    public function createModel(): ModelContract;
+    public function createModel(): ModelInterface;
 }

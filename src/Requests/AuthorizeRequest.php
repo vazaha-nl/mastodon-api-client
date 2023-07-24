@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
-use Vazaha\Mastodon\Models\Contracts\ModelContract;
+use Vazaha\Mastodon\Interfaces\ModelInterface;
 use Vazaha\Mastodon\Models\EmptyResponse;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
@@ -44,7 +44,7 @@ class AuthorizeRequest extends GetRequest
         ], static fn ($val) => null !== $val);
     }
 
-    public function createModel(): ModelContract
+    public function createModel(): ModelInterface
     {
         return new EmptyResponse();
     }

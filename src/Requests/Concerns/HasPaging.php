@@ -6,7 +6,6 @@ namespace Vazaha\Mastodon\Requests\Concerns;
 
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\UriInterface;
-use Vazaha\Mastodon\Requests\Contracts\PagedRequestContract;
 
 trait HasPaging
 {
@@ -42,51 +41,51 @@ trait HasPaging
     }
 
     /**
-     * @param array<int|string,string> $params
+     * @param array<int|string,string|int> $params
      */
-    public function setPagingParams(array $params): PagedRequestContract
+    public function setPagingParams(array $params): static
     {
         if (isset($params['max_id'])) {
-            $this->setMaxId($params['max_id']);
+            $this->setMaxId((string)$params['max_id']);
         }
 
         if (isset($params['min_id'])) {
-            $this->setMinId($params['min_id']);
+            $this->setMinId((string)$params['min_id']);
         }
 
         if (isset($params['since_id'])) {
-            $this->setSinceId($params['since_id']);
+            $this->setSinceId((string)$params['since_id']);
         }
 
         if (isset($params['limit'])) {
-            $this->setLimit($params['limit']);
+            $this->setLimit((string)$params['limit']);
         }
 
         return $this;
     }
 
-    public function setMaxId(string $maxId): PagedRequestContract
+    public function setMaxId(string $maxId): static
     {
         $this->maxId = $maxId;
 
         return $this;
     }
 
-    public function setMinId(string $minId): PagedRequestContract
+    public function setMinId(string $minId): static
     {
         $this->minId = $minId;
 
         return $this;
     }
 
-    public function setSinceId(string $sinceId): PagedRequestContract
+    public function setSinceId(string $sinceId): static
     {
         $this->sinceId = $sinceId;
 
         return $this;
     }
 
-    public function setLimit(string $limit): PagedRequestContract
+    public function setLimit(string $limit): static
     {
         $this->limit = $limit;
 

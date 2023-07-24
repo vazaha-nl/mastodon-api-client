@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Factories;
 
-use Vazaha\Mastodon\Models\Contracts\ModelContract;
-use Vazaha\Mastodon\Requests\Contracts\RequestContract;
+use Vazaha\Mastodon\Interfaces\ModelInterface;
+use Vazaha\Mastodon\Interfaces\RequestInterface;
 
 class ModelFactory
 {
@@ -14,7 +14,7 @@ class ModelFactory
      *
      * @throws \Vazaha\Mastodon\Exceptions\BaseUriNotSetException
      */
-    public function build(RequestContract $request, array $modelData): ModelContract
+    public function build(RequestInterface $request, array $modelData): ModelInterface
     {
         return $request->createModel()
             ->fillFromArray($modelData);

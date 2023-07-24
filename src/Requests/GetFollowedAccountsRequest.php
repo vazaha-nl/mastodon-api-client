@@ -7,9 +7,9 @@ namespace Vazaha\Mastodon\Requests;
 use Vazaha\Mastodon\Models\Account;
 use Vazaha\Mastodon\Requests\Concerns\CreatesAccountModels;
 use Vazaha\Mastodon\Requests\Concerns\HasPaging;
-use Vazaha\Mastodon\Requests\Contracts\PagedRequestContract;
+use Vazaha\Mastodon\Interfaces\PagedRequestInterface;
 
-class GetFollowedAccountsRequest extends GetRequest implements PagedRequestContract
+class GetFollowedAccountsRequest extends GetRequest implements PagedRequestInterface
 {
     use HasPaging;
     use CreatesAccountModels;

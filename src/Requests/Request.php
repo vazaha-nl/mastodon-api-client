@@ -6,9 +6,9 @@ namespace Vazaha\Mastodon\Requests;
 
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\UriInterface;
-use Vazaha\Mastodon\Requests\Contracts\RequestContract;
+use Vazaha\Mastodon\Interfaces\RequestInterface;
 
-abstract class Request implements RequestContract
+abstract class Request implements RequestInterface
 {
     public function getUri(): UriInterface
     {

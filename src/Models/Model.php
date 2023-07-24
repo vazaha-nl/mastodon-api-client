@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Vazaha\Mastodon\Models\Contracts\ModelContract;
+use Vazaha\Mastodon\Interfaces\ModelInterface;
 
-abstract class Model implements ModelContract
+abstract class Model implements ModelInterface
 {
     final public function __construct()
     {

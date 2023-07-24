@@ -11,10 +11,10 @@ use Psr\Http\Message\UriInterface;
 use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
 use Vazaha\Mastodon\Exceptions\ClientIdNotSetException;
 use Vazaha\Mastodon\Exceptions\ClientSecretNotSetException;
-use Vazaha\Mastodon\Factories\ResponseFactory;
-use Vazaha\Mastodon\Requests\Contracts\RequestContract;
-use Vazaha\Mastodon\Responses\Contracts\PagedResponseContract;
-use Vazaha\Mastodon\Responses\Contracts\ResponseContract;
+use Vazaha\Mastodon\Factories\ResultFactory;
+use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Interfaces\PagedResultInterface;
+use Vazaha\Mastodon\Interfaces\ResultInterface;
 
 final class ApiClient
 {
@@ -75,12 +75,12 @@ final class ApiClient
         return $this->token ?? null;
     }
 
-    public function getUri(RequestContract $request): UriInterface
+    public function getUri(RequestInterface $request): UriInterface
     {
         return UriResolver::resolve(Utils::uriFor($this->getBaseUri()), $request->getUri());
     }
 
-    public function doRequest(RequestContract $request): PagedResponseContract|ResponseContract
+    public function doRequest(RequestInterface $request): PagedResultInterface|ResultInterface
     {
         $response = $this->httpClient->request(
             $request->getHttpMethod()->value,
@@ -91,7 +91,7 @@ final class ApiClient
             ),
         );
 
-        $responseFactory = new ResponseFactory();
+        $responseFactory = new ResultFactory();
 
         return $responseFactory->build($this, $request, $response);
     }
