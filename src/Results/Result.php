@@ -21,6 +21,11 @@ class Result implements ResultInterface
      */
     protected array $models;
 
+    /**
+     * @template T of \Vazaha\Mastodon\Interfaces\ResultInterface
+     *
+     * @param \Vazaha\Mastodon\Interfaces\RequestInterface<T> $request
+     */
     public function __construct(
         protected ApiClient $apiClient,
         protected RequestInterface $request,

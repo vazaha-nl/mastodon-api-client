@@ -74,6 +74,11 @@ final class ApiClient
         return $this->token ?? null;
     }
 
+    /**
+     * @template T of \Vazaha\Mastodon\Interfaces\ResultInterface
+     *
+     * @param \Vazaha\Mastodon\Interfaces\RequestInterface<T> $request
+     */
     public function getUri(RequestInterface $request): UriInterface
     {
         return UriResolver::resolve(Utils::uriFor($this->getBaseUri()), $request->getUri());

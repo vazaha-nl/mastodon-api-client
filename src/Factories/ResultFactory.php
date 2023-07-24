@@ -15,8 +15,10 @@ class ResultFactory
 {
     /**
      * @template T of \Vazaha\Mastodon\Results\Result
+     * @template T2 of \Vazaha\Mastodon\Interfaces\ResultInterface
      *
-     * @param class-string<T> $className
+     * @param class-string<T>                                  $className
+     * @param \Vazaha\Mastodon\Interfaces\RequestInterface<T2> $request
      */
     public function build(
         string $className,
