@@ -10,9 +10,12 @@ use Vazaha\Mastodon\Factories\ModelFactory;
 use Vazaha\Mastodon\Interfaces\ModelInterface;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
+use Vazaha\Mastodon\Results\Concerns\HasPaging;
 
 class Result implements ResultInterface
 {
+    use HasPaging;
+
     /**
      * @var array<\Vazaha\Mastodon\Interfaces\ModelInterface>
      */

@@ -7,12 +7,13 @@ namespace Vazaha\Mastodon\Requests;
 use Vazaha\Mastodon\Models\Account;
 use Vazaha\Mastodon\Requests\Concerns\CreatesAccountModels;
 use Vazaha\Mastodon\Requests\Concerns\HasPaging;
-use Vazaha\Mastodon\Interfaces\PagedRequestInterface;
+use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 
-class GetFollowedAccountsRequest extends GetRequest implements PagedRequestInterface
+final class GetFollowedAccountsRequest extends Request
 {
     use HasPaging;
     use CreatesAccountModels;
+    use GetRequest;
 
     protected string $accountId;
 

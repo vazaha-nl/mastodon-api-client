@@ -6,9 +6,12 @@ namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Interfaces\ModelInterface;
 use Vazaha\Mastodon\Models\ListModel;
+use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 
-class GetListsRequest extends GetRequest
+final class GetListsRequest extends Request
 {
+    use GetRequest;
+
     public function getEndpoint(): string
     {
         return '/api/v1/lists';

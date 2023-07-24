@@ -1,12 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Vazaha\Mastodon\Requests;
+namespace Vazaha\Mastodon\Requests\Concerns;
 
 use Vazaha\Mastodon\Enums\HttpMethod;
 
-abstract class GetRequest extends Request
+trait GetRequest
 {
     public function getHttpMethod(): HttpMethod
     {
@@ -17,4 +15,13 @@ abstract class GetRequest extends Request
     {
         return [];
     }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getOptions(): array
+    {
+        return [];
+    }
+
 }

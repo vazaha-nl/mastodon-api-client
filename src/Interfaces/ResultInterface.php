@@ -21,4 +21,8 @@ interface ResultInterface
      * @return null|array<int|string, mixed[]>
      */
     public function getDecodedBody(): ?array;
+
+    public function getNextResult(): ?self;
+
+    public function getPreviousResult(): ?self;
 }

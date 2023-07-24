@@ -6,11 +6,13 @@ namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Interfaces\ModelInterface;
 use Vazaha\Mastodon\Models\EmptyResponse;
+use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
-class AuthorizeRequest extends GetRequest
+final class AuthorizeRequest extends Request
 {
     use ResolvesScope;
+    use GetRequest;
 
     /**
      * @param array<int, string|\Vazaha\Mastodon\Enums\Scope>|string $scope

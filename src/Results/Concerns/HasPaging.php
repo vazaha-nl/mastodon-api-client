@@ -2,16 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Results;
+namespace Vazaha\Mastodon\Results\Concerns;
 
-use Vazaha\Mastodon\Interfaces\PagedResultInterface;
+use Vazaha\Mastodon\Interfaces\ResultInterface;
+use Vazaha\Mastodon\Results\PagingLinks;
 
 /**
- * @property \Vazaha\Mastodon\Interfaces\PagedRequestInterface $request
+ * @property \Vazaha\Mastodon\Interfaces\RequestInterface $request
  */
-class PagedResult extends Result implements PagedResultInterface
+trait HasPaging
 {
-    public function getNextResult(): ?PagedResultInterface
+    public function getNextResult(): ?ResultInterface
     {
         $params = $this->getPagingLinks()->getNextQueryParams();
 
@@ -19,13 +20,13 @@ class PagedResult extends Result implements PagedResultInterface
             return null;
         }
 
-        /** @var \Vazaha\Mastodon\Results\PagedResult $result */
+        /** @var \Vazaha\Mastodon\Results\Result $result */
         $result = $this->apiClient->doRequest($this->request->setPagingParams($params));
 
         return $result;
     }
 
-    public function getPreviousResult(): ?PagedResultInterface
+    public function getPreviousResult(): ?ResultInterface
     {
         $params = $this->getPagingLinks()->getPreviousQueryParams();
 
@@ -33,7 +34,7 @@ class PagedResult extends Result implements PagedResultInterface
             return null;
         }
 
-        /** @var \Vazaha\Mastodon\Results\PagedResult $result */
+        /** @var \Vazaha\Mastodon\Results\Result $result */
         $result = $this->apiClient->doRequest($this->request->setPagingParams($params));
 
         return $result;

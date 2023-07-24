@@ -80,7 +80,7 @@ final class ApiClient
         return UriResolver::resolve(Utils::uriFor($this->getBaseUri()), $request->getUri());
     }
 
-    public function doRequest(RequestInterface $request): PagedResultInterface|ResultInterface
+    public function doRequest(RequestInterface $request): ResultInterface
     {
         $response = $this->httpClient->request(
             $request->getHttpMethod()->value,

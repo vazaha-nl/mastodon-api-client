@@ -6,9 +6,12 @@ namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Interfaces\ModelInterface;
 use Vazaha\Mastodon\Models\OAuthToken;
+use Vazaha\Mastodon\Requests\Concerns\PostRequest;
 
-class CreateOAuthTokenRequest extends PostRequest
+final class CreateOAuthTokenRequest extends Request
 {
+    use PostRequest;
+
     public function __construct(
         protected string $clientId,
         protected string $clientSecret,

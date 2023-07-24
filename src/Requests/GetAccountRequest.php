@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Requests\Concerns\CreatesAccountModels;
+use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 
-class GetAccountRequest extends GetRequest
+final class GetAccountRequest extends Request
 {
     use CreatesAccountModels;
+    use GetRequest;
 
     public function __construct(
         protected string $accountId,

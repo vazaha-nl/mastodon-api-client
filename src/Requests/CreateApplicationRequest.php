@@ -6,12 +6,14 @@ namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Enums\Scope;
 use Vazaha\Mastodon\Requests\Concerns\CreatesApplicationModels;
+use Vazaha\Mastodon\Requests\Concerns\PostRequest;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
-final class CreateApplicationRequest extends PostRequest
+final class CreateApplicationRequest extends Request
 {
     use CreatesApplicationModels;
     use ResolvesScope;
+    use PostRequest;
 
     /**
      * @param array<int, string|\Vazaha\Mastodon\Enums\Scope>|string|\Vazaha\Mastodon\Enums\Scope $scopes

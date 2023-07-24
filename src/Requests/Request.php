@@ -1,15 +1,16 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Vazaha\Mastodon\Requests;
 
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\UriInterface;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Requests\Concerns\HasPaging;
 
 abstract class Request implements RequestInterface
 {
+    use HasPaging;
+
     public function getUri(): UriInterface
     {
         return Uri::withQueryValues(
@@ -18,15 +19,5 @@ abstract class Request implements RequestInterface
             ),
             $this->getQueryParams(),
         );
-    }
-
-    /**
-     * @return array<string, mixed>
-     */
-    public function getOptions(): array
-    {
-        return array_filter([
-            'form_params' => $this->getFormParams(),
-        ]);
     }
 }
