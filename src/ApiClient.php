@@ -7,6 +7,7 @@ namespace Vazaha\Mastodon;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\UriResolver;
 use GuzzleHttp\Psr7\Utils;
+use LogicException;
 use Psr\Http\Message\UriInterface;
 use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
 use Vazaha\Mastodon\Exceptions\ClientIdNotSetException;
@@ -15,6 +16,8 @@ use Vazaha\Mastodon\Factories\ResultFactory;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
 use Vazaha\Mastodon\Models\OAuthToken;
+use Vazaha\Mastodon\Requests\AuthorizeRequest;
+use Vazaha\Mastodon\Requests\CreateOAuthTokenRequest;
 
 final class ApiClient
 {
@@ -95,6 +98,68 @@ final class ApiClient
     public function getUri(RequestInterface $request): UriInterface
     {
         return UriResolver::resolve(Utils::uriFor($this->getBaseUri()), $request->getUri());
+    }
+
+    /**
+     * @param null|string $clientId
+     * @param null|string $clientSecret
+     * @param string $redirectUri
+     * @param null|string $code
+     * @return \Vazaha\Mastodon\Models\OAuthToken
+     * @throws \Vazaha\Mastodon\Exceptions\ClientIdNotSetException
+     * @throws \Vazaha\Mastodon\Exceptions\ClientSecretNotSetException
+     * @throws \Vazaha\Mastodon\Exceptions\BaseUriNotSetException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \LogicException
+     */
+    public function requestOAuthToken(
+        ?string $clientId = null,
+        ?string $clientSecret = null,
+        string $redirectUri,
+        ?string $code = null,
+    ): OAuthToken {
+
+        if ($clientId === null) {
+            $clientId = $this->getClientId();
+        }
+
+        if ($clientSecret === null) {
+            $clientSecret = $this->getClientSecret();
+        }
+
+        $request = new CreateOAuthTokenRequest($clientId, $clientSecret, $redirectUri, $code);
+        $result = $this->doRequest($request);
+
+        // type hint only needed for phpstan :(
+        /** @var \Vazaha\Mastodon\Models\OAuthToken|null $token */
+        $token = $result->getModel();
+
+        if ($token === null) {
+            // should never happen but check is needed
+            throw new LogicException('token should not be null!');
+        }
+
+        $this->setAccessToken($token);
+
+        return $token;
+    }
+
+    /**
+     * @param array<int, string|\Vazaha\Mastodon\Enums\Scope>|string|null $scope
+     */
+    public function getAuthorizationUrl(
+        ?string $clientId = null,
+        string $redirectUri,
+        null|array|string $scope = null,
+        ?bool $forceLogin = null,
+        ?string $lang = null,
+    ): UriInterface {
+
+        if ($clientId === null) {
+            $clientId = $this->getClientId();
+        }
+
+        return $this->getUri(new AuthorizeRequest($clientId, $redirectUri, $scope, $forceLogin, $lang));
     }
 
     /**
