@@ -42,7 +42,6 @@ final class ApiClient
     }
 
     /**
-     * @return string
      * @throws \Vazaha\Mastodon\Exceptions\ClientIdNotSetException
      */
     public function getClientId(): string
@@ -62,7 +61,6 @@ final class ApiClient
     }
 
     /**
-     * @return string
      * @throws \Vazaha\Mastodon\Exceptions\ClientSecretNotSetException
      */
     public function getClientSecret(): string
@@ -74,7 +72,7 @@ final class ApiClient
         return $this->clientSecret;
     }
 
-    public function setAccessToken(string|OAuthToken $token): self
+    public function setAccessToken(OAuthToken|string $token): self
     {
         if ($token instanceof OAuthToken) {
             $token = $token->access_token;
@@ -101,24 +99,18 @@ final class ApiClient
     }
 
     /**
-     * @param null|string $clientId
-     * @param null|string $clientSecret
-     * @param string $redirectUri
-     * @param null|string $code
-     * @return \Vazaha\Mastodon\Models\OAuthToken
-     * @throws \Vazaha\Mastodon\Exceptions\ClientIdNotSetException
-     * @throws \Vazaha\Mastodon\Exceptions\ClientSecretNotSetException
-     * @throws \Vazaha\Mastodon\Exceptions\BaseUriNotSetException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \LogicException
+     * @throws \Vazaha\Mastodon\Exceptions\BaseUriNotSetException
+     * @throws \Vazaha\Mastodon\Exceptions\ClientIdNotSetException
+     * @throws \Vazaha\Mastodon\Exceptions\ClientSecretNotSetException
      */
     public function requestOAuthToken(
-        ?string $clientId = null,
-        ?string $clientSecret = null,
+        ?string $clientId,
+        ?string $clientSecret,
         string $redirectUri,
         ?string $code = null,
     ): OAuthToken {
-
         if ($clientId === null) {
             $clientId = $this->getClientId();
         }
@@ -131,12 +123,12 @@ final class ApiClient
         $result = $this->doRequest($request);
 
         // type hint only needed for phpstan :(
-        /** @var \Vazaha\Mastodon\Models\OAuthToken|null $token */
+        /** @var null|\Vazaha\Mastodon\Models\OAuthToken $token */
         $token = $result->getModel();
 
         if ($token === null) {
             // should never happen but check is needed
-            throw new LogicException('token should not be null!');
+            throw new LogicException('Unexpected failure getting token');
         }
 
         $this->setAccessToken($token);
@@ -145,16 +137,15 @@ final class ApiClient
     }
 
     /**
-     * @param array<int, string|\Vazaha\Mastodon\Enums\Scope>|string|null $scope
+     * @param null|array<int, string|\Vazaha\Mastodon\Enums\Scope>|string $scope
      */
     public function getAuthorizationUrl(
-        ?string $clientId = null,
+        ?string $clientId,
         string $redirectUri,
         null|array|string $scope = null,
         ?bool $forceLogin = null,
         ?string $lang = null,
     ): UriInterface {
-
         if ($clientId === null) {
             $clientId = $this->getClientId();
         }
@@ -167,8 +158,9 @@ final class ApiClient
      *
      * @param \Vazaha\Mastodon\Interfaces\RequestInterface<T> $request
      *
-     * @return T
      * @throws \Vazaha\Mastodon\Exceptions\BaseUriNotSetException
+     *
+     * @return T
      */
     public function doRequest(RequestInterface $request): ResultInterface
     {
