@@ -24,7 +24,7 @@ final class CreateApplicationRequest extends Request implements RequestInterface
      */
     public function __construct(
         protected string $clientName,
-        protected string $redirectUris = 'urn:ietf:wg:oauth:2.0:oob',
+        protected string $redirectUris,
         protected null|array|Scope|string $scopes = null,
         protected ?string $website = null,
     ) {

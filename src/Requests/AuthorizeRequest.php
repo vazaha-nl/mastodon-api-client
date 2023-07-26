@@ -21,11 +21,11 @@ final class AuthorizeRequest extends Request implements RequestInterface
     use HasEmptyResponse;
 
     /**
-     * @param array<int, string|\Vazaha\Mastodon\Enums\Scope>|string $scope
+     * @param array<int, string|\Vazaha\Mastodon\Enums\Scope>|string|null $scope
      */
     public function __construct(
         protected string $clientId,
-        protected string $redirectUri = 'urn:ietf:wg:oauth:2.0:oob',
+        protected string $redirectUri,
         protected null|array|string $scope = null,
         protected ?bool $forceLogin = null,
         protected ?string $lang = null,
