@@ -8,15 +8,13 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Models\Account;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 use Vazaha\Mastodon\Requests\Concerns\HasPaging;
-use Vazaha\Mastodon\Requests\Concerns\RequestsAccounts;
 
 /**
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
  */
-final class GetFollowedAccountsRequest extends Request implements RequestInterface
+final class GetFollowedAccountsRequest extends AccountRequest implements RequestInterface
 {
     use HasPaging;
-    use RequestsAccounts;
     use GetRequest;
 
     protected string $accountId;

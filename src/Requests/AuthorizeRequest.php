@@ -19,7 +19,7 @@ final class AuthorizeRequest extends Request implements RequestInterface
     use HasEmptyResponse;
 
     /**
-     * @param array<int, string|\Vazaha\Mastodon\Enums\Scope>|string|null $scope
+     * @param null|array<int, string|\Vazaha\Mastodon\Enums\Scope>|string $scope
      */
     public function __construct(
         protected string $clientId,
