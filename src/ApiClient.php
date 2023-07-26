@@ -14,6 +14,7 @@ use Vazaha\Mastodon\Exceptions\ClientSecretNotSetException;
 use Vazaha\Mastodon\Factories\ResultFactory;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
+use Vazaha\Mastodon\Models\OAuthToken;
 
 final class ApiClient
 {
@@ -23,7 +24,7 @@ final class ApiClient
 
     protected ?string $clientSecret;
 
-    protected string $token;
+    protected string $accessToken;
 
     public function __construct(
         protected ClientInterface $httpClient,
@@ -70,16 +71,20 @@ final class ApiClient
         return $this->clientSecret;
     }
 
-    public function setToken(string $token): self
+    public function setAccessToken(string|OAuthToken $token): self
     {
-        $this->token = $token;
+        if ($token instanceof OAuthToken) {
+            $token = $token->access_token;
+        }
+
+        $this->accessToken = $token;
 
         return $this;
     }
 
-    public function getToken(): ?string
+    public function getAccessToken(): ?string
     {
-        return $this->token ?? null;
+        return $this->accessToken ?? null;
     }
 
     /**
@@ -142,9 +147,9 @@ final class ApiClient
             'base_uri' => $this->getBaseUri(),
         ];
 
-        if ($this->getToken() !== null) {
+        if ($this->getAccessToken() !== null) {
             $options['headers'] = [
-                'Authorization' => 'Bearer ' . $this->getToken(),
+                'Authorization' => 'Bearer ' . $this->getAccessToken(),
             ];
         }
 
