@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
-use Vazaha\Mastodon\Interfaces\ModelInterface;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
-use Vazaha\Mastodon\Models\EmptyResponse;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 use Vazaha\Mastodon\Requests\Concerns\HasEmptyResponse;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
@@ -50,10 +48,5 @@ final class AuthorizeRequest extends Request implements RequestInterface
             'force_login' => (string) $this->forceLogin,
             'lang' => $this->lang,
         ], static fn ($val) => null !== $val);
-    }
-
-    public function createModel(): ModelInterface
-    {
-        return new EmptyResponse();
     }
 }

@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
-use Vazaha\Mastodon\Interfaces\ModelInterface;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
-use Vazaha\Mastodon\Models\OAuthToken;
 use Vazaha\Mastodon\Requests\Concerns\PostRequest;
 use Vazaha\Mastodon\Requests\Concerns\RequestsOAuthTokens;
 
@@ -21,7 +19,7 @@ final class CreateOAuthTokenRequest extends Request implements RequestInterface
     public function __construct(
         protected string $clientId,
         protected string $clientSecret,
-        protected string $redirectUri = 'urn:ietf:wg:oauth:2.0:oob',
+        protected ?string $redirectUri,
         protected ?string $code = null,
     ) {
     }
@@ -45,11 +43,6 @@ final class CreateOAuthTokenRequest extends Request implements RequestInterface
             'grant_type' => $this->getGrantType(),
             'code' => $this->code,
         ]);
-    }
-
-    public function createModel(): ModelInterface
-    {
-        return new OAuthToken();
     }
 
     protected function getGrantType(): string

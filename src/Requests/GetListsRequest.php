@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
-use Vazaha\Mastodon\Interfaces\ModelInterface;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
-use Vazaha\Mastodon\Models\ListModel;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 use Vazaha\Mastodon\Requests\Concerns\RequestsLists;
 
@@ -26,10 +24,5 @@ final class GetListsRequest extends Request implements RequestInterface
     public function getQueryParams(): array
     {
         return [];
-    }
-
-    public function createModel(): ModelInterface
-    {
-        return new ListModel();
     }
 }
