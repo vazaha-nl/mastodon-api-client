@@ -11,13 +11,12 @@
             "Vazaha\\Mastodon\\": "src/"
         }
     },
-    "description": "A mastodon API client for PHP",
+    "description": "A fully typed mastodon API client for PHP",
     "license": "MIT",
     "name": "vazaha/mastodon-api-client",
     "require": {
         "php": ">=8.0",
         "guzzlehttp/guzzle": "^7.7",
-        "illuminate/collections": "^9 || ^10",
         "illuminate/support": "^9 || ^10"
     },
     "require-dev": {
