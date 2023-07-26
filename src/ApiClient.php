@@ -37,6 +37,10 @@ final class ApiClient
         return $this;
     }
 
+    /**
+     * @return string
+     * @throws \Vazaha\Mastodon\Exceptions\ClientIdNotSetException
+     */
     public function getClientId(): string
     {
         if (!isset($this->clientId)) {
@@ -53,6 +57,10 @@ final class ApiClient
         return $this;
     }
 
+    /**
+     * @return string
+     * @throws \Vazaha\Mastodon\Exceptions\ClientSecretNotSetException
+     */
     public function getClientSecret(): string
     {
         if (!isset($this->clientSecret)) {
@@ -90,6 +98,7 @@ final class ApiClient
      * @param \Vazaha\Mastodon\Interfaces\RequestInterface<T> $request
      *
      * @return T
+     * @throws \Vazaha\Mastodon\Exceptions\BaseUriNotSetException
      */
     public function doRequest(RequestInterface $request): ResultInterface
     {
