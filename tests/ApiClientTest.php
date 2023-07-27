@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use LogicException;
 use PHPUnit\Framework\TestCase;
+use Tests\Concerns\CreatesMockClient;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
 use Vazaha\Mastodon\Factories\ApiClientFactory;
@@ -21,32 +17,16 @@ use Vazaha\Mastodon\Results\ListResult;
 
 class ApiClientTest extends TestCase
 {
+    use CreatesMockClient;
+
     protected ApiClient $apiClient;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $json = file_get_contents(__DIR__ . '/assets/account.json');
-
-        if (!$json) {
-            throw new LogicException('Could not read json!');
-        }
-
-        $mock = new MockHandler([
-            new Response(
-                200,
-                [
-                    'Content-type' => 'application/json',
-                ],
-                $json,
-            ),
-        ]);
-
-        $handlerStack = HandlerStack::create($mock);
-        $httpClient = new Client(['handler' => $handlerStack]);
-
-        $this->apiClient = new ApiClient($httpClient);
+        $responses = [$this->createJsonResponseFromFile('account.json')];
+        $this->apiClient = $this->createMockClient($responses);
     }
 
     public function testClientCanBeInstantiatedUsingFactory(): void

@@ -4,47 +4,26 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use LogicException;
 use PHPUnit\Framework\TestCase;
+use Tests\Concerns\CreatesMockClient;
 use Vazaha\Mastodon\ApiClient;
+use Vazaha\Mastodon\Exceptions\ClientIdNotSetException;
 use Vazaha\Mastodon\Models\OAuthToken;
 use Vazaha\Mastodon\Requests\CreateOAuthTokenRequest;
 use Vazaha\Mastodon\Results\OAuthTokenResult;
 
 class OAuthTest extends TestCase
 {
+    use CreatesMockClient;
+
     protected ApiClient $apiClient;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        // TODO REFACTOR
-
-        $json = file_get_contents(__DIR__ . '/assets/token.json');
-
-        if (!$json) {
-            throw new LogicException('Could not read json!');
-        }
-
-        $mock = new MockHandler([
-            new Response(
-                200,
-                [
-                    'Content-type' => 'application/json',
-                ],
-                $json,
-            ),
-        ]);
-
-        $handlerStack = HandlerStack::create($mock);
-        $httpClient = new Client(['handler' => $handlerStack]);
-
-        $this->apiClient = new ApiClient($httpClient);
+        $response = $this->createJsonResponseFromFile('token.json');
+        $this->apiClient = $this->createMockClient([$response]);
     }
 
     public function testCreateOAuthToken(): void
@@ -56,5 +35,19 @@ class OAuthTest extends TestCase
         $model = $response->getModel();
         self::assertInstanceOf(OAuthToken::class, $model);
         self::assertEquals('test_token', $model->access_token);
+    }
+
+    public function testConvenienceMethods(): void
+    {
+        $token = $this->apiClient
+            ->setBaseUri('https://example.org')
+            ->requestOAuthToken(
+                'clientid',
+                'clientsecret',
+                'https://redirecturi.example.org',
+                'code',
+            );
+
+        self::assertInstanceOf(OAuthToken::class, $token);
     }
 }
