@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon;
 
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\UriResolver;
 use GuzzleHttp\Psr7\Utils;
 use LogicException;
 use Psr\Http\Message\UriInterface;
+use Vazaha\Mastodon\Exceptions\ApiClientException;
 use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
 use Vazaha\Mastodon\Factories\ResultFactory;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
@@ -16,6 +18,7 @@ use Vazaha\Mastodon\Interfaces\ResultInterface;
 use Vazaha\Mastodon\Models\OAuthTokenModel;
 use Vazaha\Mastodon\Requests\AuthorizeRequest;
 use Vazaha\Mastodon\Requests\CreateOAuthTokenRequest;
+use Vazaha\Mastodon\Results\ErrorResult;
 
 final class ApiClient
 {
@@ -104,19 +107,30 @@ final class ApiClient
      */
     public function doRequest(RequestInterface $request): ResultInterface
     {
-        $response = $this->httpClient->request(
-            $request->getHttpMethod()->value,
-            $request->getUri(),
-            array_merge(
-                $request->getOptions(),
-                $this->getOptions(),
-            ),
-        );
+        $resultFactory = new ResultFactory();
 
-        $responseFactory = new ResultFactory();
+        try {
+            $response = $this->httpClient->request(
+                $request->getHttpMethod()->value,
+                $request->getUri(),
+                array_merge(
+                    $request->getOptions(),
+                    $this->getOptions(),
+                ),
+            );
+        } catch (RequestException $e) {
+            $response = $e->getResponse();
+
+            if ($response !== null) {
+                $result = $resultFactory->build(ErrorResult::class, $this, $request, $response);
+                $error = $result->getModel();
+            }
+
+            throw new ApiClientException($e->getMessage(), $e->getCode(), $e, $error ?? null);
+        }
 
         /** @phpstan-ignore-next-line */
-        return $responseFactory->build($request->getResultClass(), $this, $request, $response);
+        return $resultFactory->build($request->getResultClass(), $this, $request, $response);
     }
 
     public function setBaseUri(string $baseUri): self
