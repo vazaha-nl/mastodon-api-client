@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Concerns;
 
 use GuzzleHttp\Client;
@@ -13,7 +15,7 @@ trait CreatesMockClient
 {
     /**
      * @param array<\GuzzleHttp\Psr7\Response> $responses
-     * @return \Vazaha\Mastodon\ApiClient
+     *
      * @throws \RuntimeException
      */
     protected function createMockClient(array $responses): ApiClient
@@ -26,7 +28,12 @@ trait CreatesMockClient
         return new ApiClient($httpClient);
     }
 
-    protected function createJsonResponseFromFile(string $fileName): Response
+    /**
+     * @param array<string,string> $headers
+     *
+     * @throws \InvalidArgumentException
+     */
+    protected function createJsonResponseFromFile(string $fileName, array $headers = []): Response
     {
         $json = file_get_contents(dirname(__DIR__) . '/assets/' . $fileName);
 
@@ -36,9 +43,9 @@ trait CreatesMockClient
 
         return new Response(
             200,
-            [
+            array_merge([
                 'Content-type' => 'application/json',
-            ],
+            ], $headers),
             $json,
         );
     }

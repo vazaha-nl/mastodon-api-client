@@ -10,6 +10,7 @@ use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
 use Vazaha\Mastodon\Factories\ApiClientFactory;
 use Vazaha\Mastodon\Models\Account;
+use Vazaha\Mastodon\Models\ListModel;
 use Vazaha\Mastodon\Requests\GetAccountRequest;
 use Vazaha\Mastodon\Requests\GetListsRequest;
 use Vazaha\Mastodon\Results\AccountResult;
@@ -25,7 +26,10 @@ class ApiClientTest extends TestCase
     {
         parent::setUp();
 
-        $responses = [$this->createJsonResponseFromFile('account.json')];
+        $responses = [
+            $this->createJsonResponseFromFile('account.json'),
+            $this->createJsonResponseFromFile('list.json'),
+        ];
         $this->apiClient = $this->createMockClient($responses);
     }
 
@@ -42,7 +46,7 @@ class ApiClientTest extends TestCase
         $this->apiClient->doRequest(new GetAccountRequest('testid'));
     }
 
-    public function testGetAccount(): void
+    public function testGetAccountAndList(): void
     {
         $response = $this->apiClient
             ->setBaseUri('https://example.org')
@@ -53,6 +57,17 @@ class ApiClientTest extends TestCase
 
         self::assertInstanceOf(Account::class, $account);
         self::assertEquals('23634', $account->id);
+
+        $response = $this->apiClient
+            ->setBaseUri('https://example.org')
+            ->doRequest(new GetListsRequest());
+        self::assertInstanceOf(ListResult::class, $response);
+
+        $list = $response->getModel();
+
+        self::assertInstanceOf(ListModel::class, $list);
+        self::assertEquals(12345, $list->id);
+        self::assertEquals('Test List', $list->title);
     }
 
     public function testGetLists(): void
