@@ -6,8 +6,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * @see https://docs.joinmastodon.org/entities/Account/
- * */
-class Account extends Model
+ */
+class AccountModel extends Model
 {
     public string $id;
 

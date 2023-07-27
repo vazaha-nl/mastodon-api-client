@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\UriInterface;
 use Tests\Concerns\CreatesMockClient;
 use Vazaha\Mastodon\ApiClient;
-use Vazaha\Mastodon\Models\OAuthToken;
+use Vazaha\Mastodon\Models\OAuthTokenModel;
 use Vazaha\Mastodon\Requests\CreateOAuthTokenRequest;
 use Vazaha\Mastodon\Results\OAuthTokenResult;
 
@@ -33,7 +33,7 @@ class OAuthTest extends TestCase
             ->doRequest(new CreateOAuthTokenRequest('clientid', 'clientsecret', 'redirecturi'));
         self::assertInstanceOf(OAuthTokenResult::class, $response);
         $model = $response->getModel();
-        self::assertInstanceOf(OAuthToken::class, $model);
+        self::assertInstanceOf(OAuthTokenModel::class, $model);
         self::assertEquals('test_token', $model->access_token);
     }
 
@@ -48,7 +48,7 @@ class OAuthTest extends TestCase
                 'code',
             );
 
-        self::assertInstanceOf(OAuthToken::class, $token);
+        self::assertInstanceOf(OAuthTokenModel::class, $token);
     }
 
     public function testGetAuthUri(): void

@@ -7,7 +7,7 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use Tests\Concerns\CreatesMockClient;
 use Vazaha\Mastodon\ApiClient;
-use Vazaha\Mastodon\Models\Account;
+use Vazaha\Mastodon\Models\AccountModel;
 use Vazaha\Mastodon\Requests\GetFollowedAccountsRequest;
 use Vazaha\Mastodon\Results\AccountResult;
 
@@ -50,7 +50,7 @@ class PagingTest extends TestCase
         self::assertInstanceOf(AccountResult::class, $result);
 
         $accounts = $result->getModels();
-        self::assertInstanceOf(Account::class, $accounts[0]);
+        self::assertInstanceOf(AccountModel::class, $accounts[0]);
         self::assertEquals(1, $accounts[0]->id);
 
         $previousResult = $result->getPreviousResult();

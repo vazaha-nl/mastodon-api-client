@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Interfaces\RequestInterface;
-use Vazaha\Mastodon\Models\Account;
+use Vazaha\Mastodon\Models\AccountModel;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 use Vazaha\Mastodon\Requests\Concerns\HasPaging;
 
@@ -19,9 +19,9 @@ final class GetFollowedAccountsRequest extends AccountRequest implements Request
 
     protected string $accountId;
 
-    public function __construct(Account|string $account)
+    public function __construct(AccountModel|string $account)
     {
-        if ($account instanceof Account) {
+        if ($account instanceof AccountModel) {
             $this->accountId = $account->id;
 
             return;

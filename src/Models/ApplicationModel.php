@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-final class Application extends Model
+/**
+ * @see https://docs.joinmastodon.org/entities/Application/
+ */
+final class ApplicationModel extends Model
 {
     public string $name;
 

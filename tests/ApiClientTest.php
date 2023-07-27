@@ -9,7 +9,7 @@ use Tests\Concerns\CreatesMockClient;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
 use Vazaha\Mastodon\Factories\ApiClientFactory;
-use Vazaha\Mastodon\Models\Account;
+use Vazaha\Mastodon\Models\AccountModel;
 use Vazaha\Mastodon\Models\ListModel;
 use Vazaha\Mastodon\Requests\GetAccountRequest;
 use Vazaha\Mastodon\Requests\GetListsRequest;
@@ -55,7 +55,7 @@ class ApiClientTest extends TestCase
 
         $account = $response->getModel();
 
-        self::assertInstanceOf(Account::class, $account);
+        self::assertInstanceOf(AccountModel::class, $account);
         self::assertEquals('23634', $account->id);
 
         $response = $this->apiClient

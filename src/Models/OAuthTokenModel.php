@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-class OAuthToken extends Model
+/**
+ * @see https://docs.joinmastodon.org/entities/Token/
+ */
+class OAuthTokenModel extends Model
 {
     public string $access_token;
 

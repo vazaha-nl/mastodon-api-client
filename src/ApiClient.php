@@ -15,7 +15,7 @@ use Vazaha\Mastodon\Exceptions\ClientSecretNotSetException;
 use Vazaha\Mastodon\Factories\ResultFactory;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
-use Vazaha\Mastodon\Models\OAuthToken;
+use Vazaha\Mastodon\Models\OAuthTokenModel;
 use Vazaha\Mastodon\Requests\AuthorizeRequest;
 use Vazaha\Mastodon\Requests\CreateOAuthTokenRequest;
 
@@ -34,9 +34,9 @@ final class ApiClient
     ) {
     }
 
-    public function setAccessToken(OAuthToken|string $token): self
+    public function setAccessToken(OAuthTokenModel|string $token): self
     {
-        if ($token instanceof OAuthToken) {
+        if ($token instanceof OAuthTokenModel) {
             $token = $token->access_token;
         }
 
@@ -65,12 +65,12 @@ final class ApiClient
         string $clientSecret,
         string $redirectUri,
         ?string $code = null,
-    ): OAuthToken {
+    ): OAuthTokenModel {
         $request = new CreateOAuthTokenRequest($clientId, $clientSecret, $redirectUri, $code);
         $result = $this->doRequest($request);
 
         // type hint only needed for phpstan :(
-        /** @var null|\Vazaha\Mastodon\Models\OAuthToken $token */
+        /** @var null|\Vazaha\Mastodon\Models\OAuthTokenModel $token */
         $token = $result->getModel();
 
         if ($token === null) {
