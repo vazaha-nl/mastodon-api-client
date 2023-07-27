@@ -2,3 +2,5 @@ vendor/
 .phpunit.result.cache
 build/
 .php-cs-fixer.cache
+*.sublime-project
+*.sublime-workspace
