@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\UriInterface;
 use Tests\Concerns\CreatesMockClient;
 use Vazaha\Mastodon\ApiClient;
-use Vazaha\Mastodon\Exceptions\ClientIdNotSetException;
 use Vazaha\Mastodon\Models\OAuthToken;
 use Vazaha\Mastodon\Requests\CreateOAuthTokenRequest;
 use Vazaha\Mastodon\Results\OAuthTokenResult;
@@ -37,7 +37,7 @@ class OAuthTest extends TestCase
         self::assertEquals('test_token', $model->access_token);
     }
 
-    public function testConvenienceMethods(): void
+    public function testRequestOAuthTokenMethod(): void
     {
         $token = $this->apiClient
             ->setBaseUri('https://example.org')
@@ -49,5 +49,19 @@ class OAuthTest extends TestCase
             );
 
         self::assertInstanceOf(OAuthToken::class, $token);
+    }
+
+    public function testGetAuthUri(): void
+    {
+        $uri = $this->apiClient
+            ->setBaseUri('https://example.org')
+            ->getAuthorizationUrl(
+                'clienturl',
+                'https://redirecturi',
+                'read',
+            );
+
+        self::assertInstanceOf(UriInterface::class, $uri);
+        self::assertStringContainsString('https://example.org', (string) $uri);
     }
 }
