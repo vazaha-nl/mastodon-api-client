@@ -19,6 +19,8 @@ class ResultFactory
      *
      * @param class-string<T>                                  $className
      * @param \Vazaha\Mastodon\Interfaces\RequestInterface<T2> $request
+     *
+     * @return T
      */
     public function build(
         string $className,
