@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Results;
 
 use Vazaha\Mastodon\Interfaces\ResultInterface;
+use Vazaha\Mastodon\Models\ApplicationModel;
 
 /**
  * @property array<\Vazaha\Mastodon\Models\ApplicationModel> $models
@@ -14,4 +15,8 @@ use Vazaha\Mastodon\Interfaces\ResultInterface;
  */
 class ApplicationResult extends Result implements ResultInterface
 {
+    public function getModelClass(): string
+    {
+        return ApplicationModel::class;
+    }
 }

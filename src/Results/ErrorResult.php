@@ -5,16 +5,21 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Results;
 
 use Vazaha\Mastodon\Interfaces\ResultInterface;
+use Vazaha\Mastodon\Models\ErrorModel;
 
 /**
- * @property array<\Vazaha\Mastodon\Models\AccountModel>    $models
- * @property array<\Vazaha\Mastodon\Request\AccountRequest> $request
+ * @property array<\Vazaha\Mastodon\Models\ErrorModel>    $models
+ * @property array<\Vazaha\Mastodon\Request\ErrorRequest> $request
  *
- * @method null|\Vazaha\Mastodon\Models\AccountModel   getModel()
- * @method array<\Vazaha\Mastodon\Models\AccountModel> getModels()
- * @method null|\Vazaha\Mastodon\Results\AccountResult getNextResult()
- * @method null|\Vazaha\Mastodon\Results\AccountResult getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Models\ErrorModel   getModel()
+ * @method array<\Vazaha\Mastodon\Models\ErrorModel> getModels()
+ * @method null|\Vazaha\Mastodon\Results\ErrorResult getNextResult()
+ * @method null|\Vazaha\Mastodon\Results\ErrorResult getPreviousResult()
  */
-class AccountResult extends Result implements ResultInterface
+class ErrorResult extends Result implements ResultInterface
 {
+    public function getModelClass(): string
+    {
+        return ErrorModel::class;
+    }
 }

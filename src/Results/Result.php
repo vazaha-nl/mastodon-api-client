@@ -11,6 +11,7 @@ use Vazaha\Mastodon\Factories\ModelFactory;
 use Vazaha\Mastodon\Interfaces\ModelInterface;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
+use Vazaha\Mastodon\Models\EmptyResponseModel;
 use Vazaha\Mastodon\Results\Concerns\HasPaging;
 
 class Result implements ResultInterface
@@ -56,7 +57,7 @@ class Result implements ResultInterface
             }
 
             $this->models = array_map(function ($modelData) use ($modelFactory) {
-                return $modelFactory->build($this->request->getModelClass(), $modelData);
+                return $modelFactory->build($this->getModelClass(), $modelData);
             }, $decoded);
         }
 
@@ -103,5 +104,10 @@ class Result implements ResultInterface
     protected function isJson(): bool
     {
         return $this->httpResponse->getHeader('content-type')[0] === 'application/json';
+    }
+
+    public function getModelClass(): string
+    {
+        return EmptyResponseModel::class;
     }
 }

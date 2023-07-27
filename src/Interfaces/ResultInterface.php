@@ -8,6 +8,11 @@ use Psr\Http\Message\ResponseInterface;
 
 interface ResultInterface
 {
+    /**
+     * @return class-string<\Vazaha\Mastodon\Models\Model>
+     */
+    public function getModelClass(): string;
+
     public function getHttpResponse(): ResponseInterface;
 
     /**

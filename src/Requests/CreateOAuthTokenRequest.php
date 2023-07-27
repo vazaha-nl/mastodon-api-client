@@ -6,7 +6,7 @@ namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Requests\Concerns\PostRequest;
-use Vazaha\Mastodon\Requests\Concerns\RequestsOAuthTokens;
+use Vazaha\Mastodon\Results\OAuthTokenResult;
 
 /**
  * @see https://docs.joinmastodon.org/methods/oauth/#token
@@ -16,7 +16,6 @@ use Vazaha\Mastodon\Requests\Concerns\RequestsOAuthTokens;
 final class CreateOAuthTokenRequest extends Request implements RequestInterface
 {
     use PostRequest;
-    use RequestsOAuthTokens;
 
     public function __construct(
         protected string $clientId,
@@ -45,6 +44,11 @@ final class CreateOAuthTokenRequest extends Request implements RequestInterface
             'grant_type' => $this->getGrantType(),
             'code' => $this->code,
         ]);
+    }
+
+    public function getResultClass(): string
+    {
+        return OAuthTokenResult::class;
     }
 
     protected function getGrantType(): string
