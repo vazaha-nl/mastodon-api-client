@@ -34,45 +34,6 @@ final class ApiClient
     ) {
     }
 
-    // probably don't need these???
-    // public function setClientId(string $clientId): self
-    // {
-    //     $this->clientId = $clientId;
-
-    //     return $this;
-    // }
-
-    // /**
-    //  * @throws \Vazaha\Mastodon\Exceptions\ClientIdNotSetException
-    //  */
-    // public function getClientId(): string
-    // {
-    //     if (!isset($this->clientId)) {
-    //         throw new ClientIdNotSetException();
-    //     }
-
-    //     return $this->clientId;
-    // }
-
-    // public function setClientSecret(string $clientSecret): self
-    // {
-    //     $this->clientSecret = $clientSecret;
-
-    //     return $this;
-    // }
-
-    // /**
-    //  * @throws \Vazaha\Mastodon\Exceptions\ClientSecretNotSetException
-    //  */
-    // public function getClientSecret(): string
-    // {
-    //     if (!isset($this->clientSecret)) {
-    //         throw new ClientSecretNotSetException();
-    //     }
-
-    //     return $this->clientSecret;
-    // }
-
     public function setAccessToken(OAuthToken|string $token): self
     {
         if ($token instanceof OAuthToken) {
@@ -82,12 +43,6 @@ final class ApiClient
         $this->accessToken = $token;
 
         return $this;
-    }
-
-    // protected!
-    protected function getAccessToken(): ?string
-    {
-        return $this->accessToken ?? null;
     }
 
     /**
@@ -104,8 +59,6 @@ final class ApiClient
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \LogicException
      * @throws \Vazaha\Mastodon\Exceptions\BaseUriNotSetException
-     * @throws \Vazaha\Mastodon\Exceptions\ClientIdNotSetException
-     * @throws \Vazaha\Mastodon\Exceptions\ClientSecretNotSetException
      */
     public function requestOAuthToken(
         string $clientId,
@@ -113,7 +66,6 @@ final class ApiClient
         string $redirectUri,
         ?string $code = null,
     ): OAuthToken {
-
         $request = new CreateOAuthTokenRequest($clientId, $clientSecret, $redirectUri, $code);
         $result = $this->doRequest($request);
 
@@ -184,6 +136,11 @@ final class ApiClient
         }
 
         return $this->baseUri;
+    }
+
+    protected function getAccessToken(): ?string
+    {
+        return $this->accessToken ?? null;
     }
 
     /**
