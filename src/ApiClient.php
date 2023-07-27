@@ -34,43 +34,44 @@ final class ApiClient
     ) {
     }
 
-    public function setClientId(string $clientId): self
-    {
-        $this->clientId = $clientId;
+    // probably don't need these???
+    // public function setClientId(string $clientId): self
+    // {
+    //     $this->clientId = $clientId;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    /**
-     * @throws \Vazaha\Mastodon\Exceptions\ClientIdNotSetException
-     */
-    public function getClientId(): string
-    {
-        if (!isset($this->clientId)) {
-            throw new ClientIdNotSetException();
-        }
+    // /**
+    //  * @throws \Vazaha\Mastodon\Exceptions\ClientIdNotSetException
+    //  */
+    // public function getClientId(): string
+    // {
+    //     if (!isset($this->clientId)) {
+    //         throw new ClientIdNotSetException();
+    //     }
 
-        return $this->clientId;
-    }
+    //     return $this->clientId;
+    // }
 
-    public function setClientSecret(string $clientSecret): self
-    {
-        $this->clientSecret = $clientSecret;
+    // public function setClientSecret(string $clientSecret): self
+    // {
+    //     $this->clientSecret = $clientSecret;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    /**
-     * @throws \Vazaha\Mastodon\Exceptions\ClientSecretNotSetException
-     */
-    public function getClientSecret(): string
-    {
-        if (!isset($this->clientSecret)) {
-            throw new ClientSecretNotSetException();
-        }
+    // /**
+    //  * @throws \Vazaha\Mastodon\Exceptions\ClientSecretNotSetException
+    //  */
+    // public function getClientSecret(): string
+    // {
+    //     if (!isset($this->clientSecret)) {
+    //         throw new ClientSecretNotSetException();
+    //     }
 
-        return $this->clientSecret;
-    }
+    //     return $this->clientSecret;
+    // }
 
     public function setAccessToken(OAuthToken|string $token): self
     {
@@ -83,7 +84,8 @@ final class ApiClient
         return $this;
     }
 
-    public function getAccessToken(): ?string
+    // protected!
+    protected function getAccessToken(): ?string
     {
         return $this->accessToken ?? null;
     }
@@ -106,18 +108,11 @@ final class ApiClient
      * @throws \Vazaha\Mastodon\Exceptions\ClientSecretNotSetException
      */
     public function requestOAuthToken(
-        ?string $clientId,
-        ?string $clientSecret,
+        string $clientId,
+        string $clientSecret,
         string $redirectUri,
         ?string $code = null,
     ): OAuthToken {
-        if ($clientId === null) {
-            $clientId = $this->getClientId();
-        }
-
-        if ($clientSecret === null) {
-            $clientSecret = $this->getClientSecret();
-        }
 
         $request = new CreateOAuthTokenRequest($clientId, $clientSecret, $redirectUri, $code);
         $result = $this->doRequest($request);
@@ -140,16 +135,12 @@ final class ApiClient
      * @param null|array<int, string|\Vazaha\Mastodon\Enums\Scope>|string $scope
      */
     public function getAuthorizationUrl(
-        ?string $clientId,
+        string $clientId,
         string $redirectUri,
         null|array|string $scope = null,
         ?bool $forceLogin = null,
         ?string $lang = null,
     ): UriInterface {
-        if ($clientId === null) {
-            $clientId = $this->getClientId();
-        }
-
         return $this->getUri(new AuthorizeRequest($clientId, $redirectUri, $scope, $forceLogin, $lang));
     }
 
