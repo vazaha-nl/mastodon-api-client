@@ -74,8 +74,7 @@ final class ApiClient
         $token = $result->getModel();
 
         if ($token === null) {
-            // should never happen but check is needed
-            throw new LogicException('Unexpected failure getting token');
+            throw new LogicException('Token should never be null');
         }
 
         $this->setAccessToken($token);
