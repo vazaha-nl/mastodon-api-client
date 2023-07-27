@@ -10,9 +10,11 @@ use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 use Vazaha\Mastodon\Requests\Concerns\HasPaging;
 
 /**
+ * @see https://docs.joinmastodon.org/methods/accounts/#followers
+ *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
  */
-final class GetFollowedAccountsRequest extends AccountRequest implements RequestInterface
+final class GetAccountFollowersRequest extends AccountRequest implements RequestInterface
 {
     use HasPaging;
     use GetRequest;
@@ -32,7 +34,7 @@ final class GetFollowedAccountsRequest extends AccountRequest implements Request
 
     public function getEndpoint(): string
     {
-        return sprintf('/api/v1/accounts/%s/following', urlencode($this->accountId));
+        return sprintf('/api/v1/accounts/%s/followers', urlencode($this->accountId));
     }
 
     public function getQueryParams(): array

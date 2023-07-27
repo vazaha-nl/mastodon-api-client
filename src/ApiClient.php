@@ -10,8 +10,6 @@ use GuzzleHttp\Psr7\Utils;
 use LogicException;
 use Psr\Http\Message\UriInterface;
 use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
-use Vazaha\Mastodon\Exceptions\ClientIdNotSetException;
-use Vazaha\Mastodon\Exceptions\ClientSecretNotSetException;
 use Vazaha\Mastodon\Factories\ResultFactory;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;

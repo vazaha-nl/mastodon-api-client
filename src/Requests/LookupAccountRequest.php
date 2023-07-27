@@ -8,6 +8,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 
 /**
+ * @see https://docs.joinmastodon.org/methods/accounts/#lookup
+ *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
  */
 final class LookupAccountRequest extends AccountRequest implements RequestInterface

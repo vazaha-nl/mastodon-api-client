@@ -10,6 +10,8 @@ use Vazaha\Mastodon\Requests\Concerns\HasEmptyResponse;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
 /**
+ * @see https://docs.joinmastodon.org/methods/oauth/#authorize
+ *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Result>
  */
 final class AuthorizeRequest extends Request implements RequestInterface

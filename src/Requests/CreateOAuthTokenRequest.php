@@ -9,6 +9,8 @@ use Vazaha\Mastodon\Requests\Concerns\PostRequest;
 use Vazaha\Mastodon\Requests\Concerns\RequestsOAuthTokens;
 
 /**
+ * @see https://docs.joinmastodon.org/methods/oauth/#token
+ *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\OAuthTokenResult>
  */
 final class CreateOAuthTokenRequest extends Request implements RequestInterface

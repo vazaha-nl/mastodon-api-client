@@ -9,6 +9,8 @@ use Vazaha\Mastodon\Requests\Concerns\GetRequest;
 use Vazaha\Mastodon\Requests\Concerns\RequestsLists;
 
 /**
+ * @see https://docs.joinmastodon.org/methods/lists/#get
+ *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ListResult>
  */
 final class GetListsRequest extends Request implements RequestInterface

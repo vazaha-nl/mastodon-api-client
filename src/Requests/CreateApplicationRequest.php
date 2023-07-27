@@ -11,6 +11,8 @@ use Vazaha\Mastodon\Requests\Concerns\RequestsApplications;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
 /**
+ * @see https://docs.joinmastodon.org/methods/apps/#create
+ *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ApplicationResult>
  */
 final class CreateApplicationRequest extends Request implements RequestInterface
