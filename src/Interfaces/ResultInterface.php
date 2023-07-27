@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Interfaces;
 
+use Psr\Http\Message\ResponseInterface;
+
 interface ResultInterface
 {
+    public function getHttpResponse(): ResponseInterface;
+
     /**
      * @return array<int, \Vazaha\Mastodon\Interfaces\ModelInterface>
      */
