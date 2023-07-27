@@ -27,8 +27,8 @@ class ApiClientTest extends TestCase
         parent::setUp();
 
         $responses = [
-            $this->createJsonResponseFromFile('account.json'),
-            $this->createJsonResponseFromFile('list.json'),
+            $this->createJsonResponseFromFile(200, 'account.json'),
+            $this->createJsonResponseFromFile(200, 'list.json'),
         ];
         $this->apiClient = $this->createMockClient($responses);
     }

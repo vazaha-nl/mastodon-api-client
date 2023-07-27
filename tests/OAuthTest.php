@@ -22,7 +22,7 @@ class OAuthTest extends TestCase
     {
         parent::setUp();
 
-        $response = $this->createJsonResponseFromFile('token.json');
+        $response = $this->createJsonResponseFromFile(200, 'token.json');
         $this->apiClient = $this->createMockClient([$response]);
     }
 

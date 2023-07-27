@@ -22,18 +22,21 @@ class PagingTest extends TestCase
         parent::setUp();
         $this->apiClient = $this->createMockClient([
             $this->createJsonResponseFromFile(
+                200,
                 'accounts1.json',
                 [
                     'Link' => '<https://example.org/accounts?min_id=3>; rel="next"',
                 ],
             ),
             $this->createJsonResponseFromFile(
+                200,
                 'accounts2.json',
                 [
                     'Link' => '<https://example.org/accounts?max_id=2>; rel="previous"',
                 ],
             ),
             $this->createJsonResponseFromFile(
+                200,
                 'accounts1.json',
                 [
                     'Link' => '<https://example.org/accounts?min_id=3>; rel="next"',
