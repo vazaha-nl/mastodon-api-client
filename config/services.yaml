@@ -1,0 +1,3 @@
+services:
+    Vazaha\Mastodon\Makers\ModelClassesMaker:
+        tags: ['maker.command']
