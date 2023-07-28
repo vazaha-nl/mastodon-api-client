@@ -11,10 +11,10 @@ use Vazaha\Mastodon\Models\PreferencesModel;
  * @property array<\Vazaha\Mastodon\Models\PreferencesModel> $models
  * @property \Vazaha\Mastodon\Requests\PreferencesRequest    $request
  *
- * @method \Vazaha\Mastodon\Models\PreferencesModel|null   getModel()
+ * @method null|\Vazaha\Mastodon\Models\PreferencesModel   getModel()
  * @method array<\Vazaha\Mastodon\Models\PreferencesModel> getModels()
- * @method \Vazaha\Mastodon\Results\PreferencesResult|null getNextResult()
- * @method \Vazaha\Mastodon\Results\PreferencesResult|null getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\PreferencesResult getNextResult()
+ * @method null|\Vazaha\Mastodon\Results\PreferencesResult getPreviousResult()
  */
 class PreferencesResult extends Result implements ResultInterface
 {

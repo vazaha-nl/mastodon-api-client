@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tools\Makers;
 
+use InvalidArgumentException;
 use Symfony\Bundle\MakerBundle\ConsoleStyle;
 use Symfony\Bundle\MakerBundle\DependencyBuilder;
 use Symfony\Bundle\MakerBundle\Generator;
@@ -52,6 +53,11 @@ class ModelClassesMaker extends AbstractMaker
     public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator): void
     {
         $baseName = $input->getArgument('base-name');
+
+        if (!is_string($baseName)) {
+            throw new InvalidArgumentException('base-name arg is required');
+        }
+
         $this->baseName = str_replace('Model', '', $baseName);
 
         $modelClassNameDetails = $generator->createClassNameDetails(
@@ -110,9 +116,10 @@ class ModelClassesMaker extends AbstractMaker
             ],
         );
 
-        if (!empty($input->getArgument('concrete-request-name'))) {
+        $concreteRequestName = $input->getArgument('concrete-request-name');
+        if (!empty($concreteRequestName) && is_string($concreteRequestName)) {
             $concreteRequestClassNameDetails = $generator->createClassNameDetails(
-                $input->getArgument('concrete-request-name'),
+                $concreteRequestName,
                 'Requests',
                 'Request',
             );

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Interfaces\RequestInterface;

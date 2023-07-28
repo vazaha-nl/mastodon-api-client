@@ -6,7 +6,6 @@ namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
-use Vazaha\Mastodon\Requests\Concerns\HasEmptyResult;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
 /**

@@ -101,13 +101,13 @@ class Result implements ResultInterface
         return $this->httpResponse;
     }
 
-    protected function isJson(): bool
-    {
-        return $this->httpResponse->getHeader('content-type')[0] === 'application/json';
-    }
-
     public function getModelClass(): string
     {
         return EmptyResponseModel::class;
+    }
+
+    protected function isJson(): bool
+    {
+        return $this->httpResponse->getHeader('content-type')[0] === 'application/json';
     }
 }
