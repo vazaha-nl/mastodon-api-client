@@ -4,3 +4,4 @@ build/
 .php-cs-fixer.cache
 *.sublime-project
 *.sublime-workspace
+var/
