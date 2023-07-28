@@ -6,7 +6,10 @@ use Ergebnis\PhpCsFixer\Config;
 
 $config = Config\Factory::fromRuleSet(new Config\RuleSet\Php82());
 
-$config->getFinder()->in(__DIR__);
+$config->getFinder()->in(__DIR__)
+    ->exclude([
+        'var/',
+    ]);
 $rules= $config->getRules();
 $config->setRules(
     array_merge(

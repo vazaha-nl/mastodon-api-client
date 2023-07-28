@@ -4,3 +4,4 @@ parameters:
         - src
         - tests
         - examples
+        - tools/src
