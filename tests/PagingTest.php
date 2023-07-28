@@ -7,8 +7,8 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use Tests\Concerns\CreatesMockClient;
 use Vazaha\Mastodon\ApiClient;
-use Vazaha\Mastodon\Models\Account;
-use Vazaha\Mastodon\Requests\GetFollowedAccountsRequest;
+use Vazaha\Mastodon\Models\AccountModel;
+use Vazaha\Mastodon\Requests\GetAccountsFollowingRequest;
 use Vazaha\Mastodon\Results\AccountResult;
 
 class PagingTest extends TestCase
@@ -22,18 +22,21 @@ class PagingTest extends TestCase
         parent::setUp();
         $this->apiClient = $this->createMockClient([
             $this->createJsonResponseFromFile(
+                200,
                 'accounts1.json',
                 [
                     'Link' => '<https://example.org/accounts?min_id=3>; rel="next"',
                 ],
             ),
             $this->createJsonResponseFromFile(
+                200,
                 'accounts2.json',
                 [
                     'Link' => '<https://example.org/accounts?max_id=2>; rel="previous"',
                 ],
             ),
             $this->createJsonResponseFromFile(
+                200,
                 'accounts1.json',
                 [
                     'Link' => '<https://example.org/accounts?min_id=3>; rel="next"',
@@ -46,11 +49,11 @@ class PagingTest extends TestCase
     {
         $this->apiClient->setBaseUri('https://example.org');
 
-        $result = $this->apiClient->doRequest(new GetFollowedAccountsRequest('testid'));
+        $result = $this->apiClient->doRequest(new GetAccountsFollowingRequest('testid'));
         self::assertInstanceOf(AccountResult::class, $result);
 
         $accounts = $result->getModels();
-        self::assertInstanceOf(Account::class, $accounts[0]);
+        self::assertInstanceOf(AccountModel::class, $accounts[0]);
         self::assertEquals(1, $accounts[0]->id);
 
         $previousResult = $result->getPreviousResult();

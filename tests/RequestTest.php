@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use Vazaha\Mastodon\Requests\GetFollowedAccountsRequest;
+use Vazaha\Mastodon\Requests\GetAccountsFollowingRequest;
 
 class RequestTest extends TestCase
 {
     public function testQueryParamsWork(): void
     {
-        $request = (new GetFollowedAccountsRequest('testid'))
+        $request = (new GetAccountsFollowingRequest('testid'))
             ->setMaxId('MAXID');
 
         $uri = (string) $request->getUri();

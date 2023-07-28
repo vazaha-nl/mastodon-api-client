@@ -33,7 +33,7 @@ trait CreatesMockClient
      *
      * @throws \InvalidArgumentException
      */
-    protected function createJsonResponseFromFile(string $fileName, array $headers = []): Response
+    protected function createJsonResponseFromFile(int $statusCode, string $fileName, array $headers = []): Response
     {
         $json = file_get_contents(dirname(__DIR__) . '/assets/' . $fileName);
 
@@ -42,7 +42,7 @@ trait CreatesMockClient
         }
 
         return new Response(
-            200,
+            $statusCode,
             array_merge([
                 'Content-type' => 'application/json',
             ], $headers),

@@ -6,7 +6,7 @@ namespace Tests;
 
 use LogicException;
 use PHPUnit\Framework\TestCase;
-use Vazaha\Mastodon\Models\Account;
+use Vazaha\Mastodon\Models\AccountModel;
 
 class AccountTest extends TestCase
 {
@@ -22,7 +22,7 @@ class AccountTest extends TestCase
 
         self::assertIsArray($decoded);
 
-        $account = (new Account())->fillFromArray($decoded);
+        $account = (new AccountModel())->fillFromArray($decoded);
 
         self::assertEquals('23634', $account->id);
         self::assertEquals(404, $account->following_count);

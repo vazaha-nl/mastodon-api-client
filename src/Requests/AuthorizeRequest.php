@@ -6,17 +6,18 @@ namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
-use Vazaha\Mastodon\Requests\Concerns\HasEmptyResponse;
+use Vazaha\Mastodon\Requests\Concerns\HasEmptyResult;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
 
 /**
+ * @see https://docs.joinmastodon.org/methods/oauth/#authorize
+ *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Result>
  */
 final class AuthorizeRequest extends Request implements RequestInterface
 {
     use ResolvesScope;
     use GetRequest;
-    use HasEmptyResponse;
 
     /**
      * @param null|array<int, string|\Vazaha\Mastodon\Enums\Scope>|string $scope

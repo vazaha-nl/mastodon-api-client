@@ -7,17 +7,18 @@ namespace Vazaha\Mastodon\Requests;
 use Vazaha\Mastodon\Enums\Scope;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Requests\Concerns\PostRequest;
-use Vazaha\Mastodon\Requests\Concerns\RequestsApplications;
 use Vazaha\Mastodon\Requests\Concerns\ResolvesScope;
+use Vazaha\Mastodon\Results\ApplicationResult;
 
 /**
+ * @see https://docs.joinmastodon.org/methods/apps/#create
+ *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ApplicationResult>
  */
 final class CreateApplicationRequest extends Request implements RequestInterface
 {
     use ResolvesScope;
     use PostRequest;
-    use RequestsApplications;
 
     /**
      * @param array<int, string|\Vazaha\Mastodon\Enums\Scope>|string|\Vazaha\Mastodon\Enums\Scope $scopes
@@ -51,5 +52,10 @@ final class CreateApplicationRequest extends Request implements RequestInterface
     public function getQueryParams(): array
     {
         return [];
+    }
+
+    public function getResultClass(): string
+    {
+        return ApplicationResult::class;
     }
 }

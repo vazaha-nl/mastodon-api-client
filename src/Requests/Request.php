@@ -8,6 +8,7 @@ use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\UriInterface;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Requests\Concerns\HasPaging;
+use Vazaha\Mastodon\Results\Result;
 
 /**
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Result>
@@ -24,5 +25,10 @@ abstract class Request implements RequestInterface
             ),
             $this->getQueryParams(),
         );
+    }
+
+    public function getResultClass(): string
+    {
+        return Result::class;
     }
 }

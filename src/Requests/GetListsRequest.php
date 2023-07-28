@@ -6,15 +6,16 @@ namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Requests\Concerns\GetRequest;
-use Vazaha\Mastodon\Requests\Concerns\RequestsLists;
+use Vazaha\Mastodon\Results\ListResult;
 
 /**
+ * @see https://docs.joinmastodon.org/methods/lists/#get
+ *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ListResult>
  */
 final class GetListsRequest extends Request implements RequestInterface
 {
     use GetRequest;
-    use RequestsLists;
 
     public function getEndpoint(): string
     {
@@ -24,5 +25,10 @@ final class GetListsRequest extends Request implements RequestInterface
     public function getQueryParams(): array
     {
         return [];
+    }
+
+    public function getResultClass(): string
+    {
+        return ListResult::class;
     }
 }
