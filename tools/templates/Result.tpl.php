@@ -1,24 +1,24 @@
-<?= "<?php\n"; ?>
+<?php echo "<?php\n"; ?>
 
 declare(strict_types=1);
 
-namespace <?= $namespace; ?>;
+namespace <?php echo $namespace; ?>;
 
-<?= $useStatements; ?>
+<?php echo $useStatements; ?>
 
 /**
- * @property array<\<?= $modelClassFull; ?>>    $models
- * @property \<?= $requestClassFull; ?> $request
+ * @property array<\<?php echo $modelClassFull; ?>>    $models
+ * @property \<?php echo $requestClassFull; ?> $request
  *
- * @method null|\<?= $modelClassFull; ?>   getModel()
- * @method array<\<?= $modelClassFull; ?>> getModels()
- * @method null|\<?= $resultClassFull; ?> getNextResult()
- * @method null|\<?= $resultClassFull; ?> getPreviousResult()
+ * @method null|\<?php echo $modelClassFull; ?>   getModel()
+ * @method array<\<?php echo $modelClassFull; ?>> getModels()
+ * @method null|\<?php echo $resultClassFull; ?> getNextResult()
+ * @method null|\<?php echo $resultClassFull; ?> getPreviousResult()
  */
-class <?= $class_name; ?> extends Result implements ResultInterface
+class <?php echo $class_name; ?> extends Result implements ResultInterface
 {
     public function getModelClass(): string
     {
-        return <?= $modelClassShort; ?>::class;
+        return <?php echo $modelClassShort; ?>::class;
     }
 }
