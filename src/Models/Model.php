@@ -18,6 +18,8 @@ abstract class Model implements ModelInterface
     public function fillFromArray(array $array): static
     {
         foreach ($array as $property => $value) {
+            $property = str_replace(':', '_', $property);
+
             if (!property_exists($this, $property)) {
                 continue;
             }
