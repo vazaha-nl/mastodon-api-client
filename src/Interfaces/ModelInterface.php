@@ -9,7 +9,7 @@ interface ModelInterface
     /**
      * @param array<string, mixed> $array
      */
-    public function fillFromArray(array $array): static;
+    public static function fromArray(array $array): static;
 
     /**
      * @return array<string, mixed> *

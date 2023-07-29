@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
+use Carbon\Carbon;
+use DateTimeInterface;
+use ReflectionClass;
+use ReflectionNamedType;
 use Vazaha\Mastodon\Interfaces\ModelInterface;
 
 abstract class Model implements ModelInterface
@@ -15,19 +19,21 @@ abstract class Model implements ModelInterface
     /**
      * @param array<string, mixed> $array
      */
-    public function fillFromArray(array $array): static
+    public static function fromArray(array $array): static
     {
+        $model = new static();
+
         foreach ($array as $property => $value) {
             $property = str_replace(':', '_', $property);
 
-            if (!property_exists($this, $property)) {
+            if (!property_exists($model, $property)) {
                 continue;
             }
 
-            $this->{$property} = $value;
+            $model->{$property} = static::resolvePropertyValue($property, $value);
         }
 
-        return $this;
+        return $model;
     }
 
     /**
@@ -36,5 +42,50 @@ abstract class Model implements ModelInterface
     public function toArray(): array
     {
         return get_object_vars($this);
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @throws \ReflectionException
+     *
+     * @return mixed
+     */
+    protected static function resolvePropertyValue(string $property, $value)
+    {
+        $className = static::getPropertyClassName($property);
+
+        if ($className === null) {
+            return $value;
+        }
+
+        if (is_array($value) && is_a($className, self::class, true)) {
+            return $className::fromArray($value);
+        }
+
+        if (is_a($className, DateTimeInterface::class, true)) {
+            if (is_int($value) || is_float($value)) {
+                return Carbon::createFromTimestamp($value);
+            }
+
+            if (is_string($value)) {
+                return Carbon::parse($value);
+            }
+        }
+
+        return $value;
+    }
+
+    protected static function getPropertyClassName(string $property): ?string
+    {
+        $reflectionClass = new ReflectionClass(static::class);
+        $reflectionProperty = $reflectionClass->getProperty($property);
+        $reflectionType = $reflectionProperty->getType();
+
+        if (!$reflectionType instanceof ReflectionNamedType) {
+            return null;
+        }
+
+        return $reflectionType->getName();
     }
 }

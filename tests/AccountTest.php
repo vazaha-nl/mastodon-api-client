@@ -22,7 +22,7 @@ class AccountTest extends TestCase
 
         self::assertIsArray($decoded);
 
-        $account = (new AccountModel())->fillFromArray($decoded);
+        $account = AccountModel::fromArray($decoded);
 
         self::assertEquals('23634', $account->id);
         self::assertEquals(404, $account->following_count);

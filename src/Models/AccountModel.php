@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
+use Carbon\CarbonInterface;
+
 /**
  * @see https://docs.joinmastodon.org/entities/Account/
  */
@@ -60,9 +62,9 @@ class AccountModel extends Model
 
     public bool $limited = false;
 
-    public ?string $created_at = null;
+    public ?CarbonInterface $created_at = null;
 
-    public ?string $last_status_at = null;
+    public ?CarbonInterface $last_status_at = null;
 
     public ?int $statuses_count = null;
 

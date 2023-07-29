@@ -24,7 +24,6 @@ class ModelFactory
             throw new LogicException($className . ' is not a subclass of ' . Model::class);
         }
 
-        return (new $className())
-            ->fillFromArray($modelData);
+        return $className::fromArray($modelData);
     }
 }
