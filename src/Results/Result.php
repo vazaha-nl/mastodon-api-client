@@ -108,6 +108,6 @@ class Result implements ResultInterface
 
     protected function isJson(): bool
     {
-        return $this->httpResponse->getHeader('content-type')[0] === 'application/json';
+        return str_contains($this->httpResponse->getHeader('content-type')[0], 'application/json');
     }
 }
