@@ -23,7 +23,9 @@
         "php": ">=8.0",
         "guzzlehttp/guzzle": "^7.7",
         "illuminate/support": "^9 || ^10",
-        "nesbot/carbon": "^2.68"
+        "nesbot/carbon": "^2.68",
+        "illuminate/collections": "^10.16",
+        "twig/twig": "^3.7"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.10",

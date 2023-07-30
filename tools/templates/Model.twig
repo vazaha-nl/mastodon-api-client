@@ -1,0 +1,27 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+{% for classImport in classImports.get() %}
+{{ classImport.toImportString() }}
+{% endfor %}
+
+/**
+ * @see https://link.to.docs
+ */
+class {{ classname }} extends Model
+{
+{% for property in properties %}
+    {% if property.descriptionLines %}
+    /**
+    {% for descriptionLine in property.descriptionLines %}
+     * {{ descriptionLine }}
+    {% endfor %}
+     */
+    {% endif %}
+    public {% if property.nullable %}?{% endif %}{{ property.type }} ${{ property.name }}{% if property.nullable %} = null{% endif %};
+
+{% endfor %}
+}

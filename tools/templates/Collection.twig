@@ -1,0 +1,20 @@
+<?php
+
+namespace {{ namespace }};
+
+{% for classImport in classImports.get() %}
+{{ classImport.toImportString() }}
+{% endfor %}
+
+/**
+ * @template TKey of array-key
+ * @template TModel of \{{ modelFQN }}
+ * @extends ModelCollection<TKey, TModel>
+ */
+class {{ classname }} extends ModelCollection
+{
+    public static function getModelClass(): string
+    {
+        return {{ modelClassname }}::class;
+    }
+}
