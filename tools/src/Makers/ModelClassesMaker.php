@@ -7,6 +7,7 @@ namespace Tools\Makers;
 use InvalidArgumentException;
 use Symfony\Bundle\MakerBundle\ConsoleStyle;
 use Symfony\Bundle\MakerBundle\DependencyBuilder;
+use Symfony\Bundle\MakerBundle\Exception\RuntimeCommandException;
 use Symfony\Bundle\MakerBundle\Generator;
 use Symfony\Bundle\MakerBundle\InputConfiguration;
 use Symfony\Bundle\MakerBundle\Maker\AbstractMaker;
@@ -19,8 +20,6 @@ use Vazaha\Mastodon\Interfaces\ResultInterface;
 
 class ModelClassesMaker extends AbstractMaker
 {
-    protected string $baseName;
-
     public static function getCommandName(): string
     {
         return 'make:model_classes';
@@ -43,6 +42,7 @@ class ModelClassesMaker extends AbstractMaker
             'concrete-request-name',
             InputArgument::OPTIONAL,
             'Specify an optional request class name to create for this entity',
+            'none',
         );
     }
 
@@ -58,20 +58,20 @@ class ModelClassesMaker extends AbstractMaker
             throw new InvalidArgumentException('base-name arg is required');
         }
 
-        $this->baseName = str_replace('Model', '', $baseName);
+        $baseName = str_replace('Model', '', $baseName);
 
         $modelClassNameDetails = $generator->createClassNameDetails(
-            $this->baseName,
+            $baseName,
             'Models',
             'Model',
         );
         $requestClassNameDetails = $generator->createClassNameDetails(
-            $this->baseName,
+            $baseName,
             'Requests',
             'Request',
         );
         $resultClassNameDetails = $generator->createClassNameDetails(
-            $this->baseName,
+            $baseName,
             'Results',
             'Result',
         );
@@ -85,39 +85,58 @@ class ModelClassesMaker extends AbstractMaker
             'resultClassShort' => $resultClassNameDetails->getShortName(),
         ];
 
-        $generator->generateClass(
-            $modelClassNameDetails->getFullName(),
-            'tools/templates/Model.tpl.php',
-            $defaultVars,
-        );
-
-        $generator->generateClass(
-            $requestClassNameDetails->getFullName(),
-            'tools/templates/Request.tpl.php',
-            array_merge(
+        try {
+            $generator->generateClass(
+                $modelClassNameDetails->getFullName(),
+                'tools/templates/Model.tpl.php',
                 $defaultVars,
-                [
+            );
+        } catch (RuntimeCommandException $e) {
+            if (!str_contains($e->getMessage(), 'it already exists')) {
+                throw $e;
+            }
+        }
+
+        try {
+            $generator->generateClass(
+                $requestClassNameDetails->getFullName(),
+                'tools/templates/Request.tpl.php',
+                array_merge(
+                    $defaultVars,
+                    [
+                        'useStatements' => new UseStatementGenerator([
+                            RequestInterface::class,
+                            $resultClassNameDetails->getFullName(),
+                        ]),
+                    ],
+                ),
+            );
+        } catch (RuntimeCommandException $e) {
+            if (!str_contains($e->getMessage(), 'it already exists')) {
+                throw $e;
+            }
+        }
+
+        try {
+            $generator->generateClass(
+                $resultClassNameDetails->getFullName(),
+                'tools/templates/Result.tpl.php',
+                $defaultVars + [
                     'useStatements' => new UseStatementGenerator([
-                        RequestInterface::class,
-                        $resultClassNameDetails->getFullName(),
+                        ResultInterface::class,
+                        $modelClassNameDetails->getFullName(),
                     ]),
                 ],
-            ),
-        );
-
-        $generator->generateClass(
-            $resultClassNameDetails->getFullName(),
-            'tools/templates/Result.tpl.php',
-            $defaultVars + [
-                'useStatements' => new UseStatementGenerator([
-                    ResultInterface::class,
-                    $modelClassNameDetails->getFullName(),
-                ]),
-            ],
-        );
+            );
+        } catch (RuntimeCommandException $e) {
+            if (!str_contains($e->getMessage(), 'it already exists')) {
+                throw $e;
+            }
+        }
 
         $concreteRequestName = $input->getArgument('concrete-request-name');
-        if (!empty($concreteRequestName) && is_string($concreteRequestName)) {
+
+        if (is_string($concreteRequestName) && $concreteRequestName !== 'none') {
             $concreteRequestClassNameDetails = $generator->createClassNameDetails(
                 $concreteRequestName,
                 'Requests',
@@ -139,9 +158,5 @@ class ModelClassesMaker extends AbstractMaker
 
         $this->writeSuccessMessage($io);
         $io->text('Next: define the properties and arguments, and maybe implement the interfaces!');
-    }
-
-    protected function generateModel(string $className, Generator $generator): void
-    {
     }
 }

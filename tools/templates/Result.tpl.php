@@ -1,4 +1,5 @@
-<?php echo "<?php\n"; ?>
+<?php declare(strict_types=1);
+echo "<?php\n"; ?>
 
 declare(strict_types=1);
 
@@ -7,11 +8,11 @@ namespace <?php echo $namespace; ?>;
 <?php echo $useStatements; ?>
 
 /**
- * @property array<\<?php echo $modelClassFull; ?>>    $models
+ * @property \Illuminate\Support\Collection<array-key, \<?php echo $modelClassFull; ?>>    $models
  * @property \<?php echo $requestClassFull; ?> $request
  *
  * @method null|\<?php echo $modelClassFull; ?>   getModel()
- * @method array<\<?php echo $modelClassFull; ?>> getModels()
+ * @method \Illuminate\Support\Collection<array-key, \<?php echo $modelClassFull; ?>> getModels()
  * @method null|\<?php echo $resultClassFull; ?> getNextResult()
  * @method null|\<?php echo $resultClassFull; ?> getPreviousResult()
  */
