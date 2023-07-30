@@ -5,3 +5,4 @@ parameters:
         - tests
         - examples
         - tools/src
+    checkGenericClassInNonGenericObjectType: false
