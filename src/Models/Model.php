@@ -6,8 +6,10 @@ namespace Vazaha\Mastodon\Models;
 
 use Carbon\Carbon;
 use DateTimeInterface;
+use LogicException;
 use ReflectionClass;
 use ReflectionNamedType;
+use Vazaha\Mastodon\Collections\ModelCollection;
 use Vazaha\Mastodon\Interfaces\ModelInterface;
 
 abstract class Model implements ModelInterface
@@ -27,7 +29,7 @@ abstract class Model implements ModelInterface
             $property = str_replace(':', '_', $property);
 
             if (!property_exists($model, $property)) {
-                continue;
+                throw new LogicException(sprintf('Property %s not found in model %s', $property, static::class));
             }
 
             $model->{$property} = static::resolvePropertyValue($property, $value);
@@ -60,6 +62,10 @@ abstract class Model implements ModelInterface
         }
 
         if (is_array($value) && is_a($className, self::class, true)) {
+            return $className::fromArray($value);
+        }
+
+        if (is_array($value) && is_a($className, ModelCollection::class, true)) {
             return $className::fromArray($value);
         }
 
