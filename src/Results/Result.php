@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Results;
 
+use Illuminate\Support\Collection;
 use Psr\Http\Message\ResponseInterface;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
@@ -19,9 +20,9 @@ class Result implements ResultInterface
     use HasPaging;
 
     /**
-     * @var array<\Vazaha\Mastodon\Interfaces\ModelInterface>
+     * @var \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Interfaces\ModelInterface>
      */
-    protected array $models;
+    protected Collection $models;
 
     /**
      * @template T of \Vazaha\Mastodon\Interfaces\ResultInterface
@@ -39,15 +40,15 @@ class Result implements ResultInterface
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
      *
-     * @return array<\Vazaha\Mastodon\Interfaces\ModelInterface>
+     * @return \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Interfaces\ModelInterface>
      */
-    public function getModels(): array
+    public function getModels(): Collection
     {
         if (!isset($this->models)) {
             $decoded = $this->getDecodedBody();
 
             if ($decoded === null) {
-                return $this->models = [];
+                return $this->models = new Collection();
             }
 
             $modelFactory = new ModelFactory();
@@ -56,9 +57,8 @@ class Result implements ResultInterface
                 $decoded = [$decoded];
             }
 
-            $this->models = array_map(function ($modelData) use ($modelFactory) {
-                return $modelFactory->build($this->getModelClass(), $modelData);
-            }, $decoded);
+            $this->models = Collection::make($decoded)
+                ->map(fn (array $modelData) => $modelFactory->build($this->getModelClass(), $modelData));
         }
 
         return $this->models;
@@ -66,7 +66,7 @@ class Result implements ResultInterface
 
     public function getModel(): ?ModelInterface
     {
-        return $this->getModels()[0] ?? null;
+        return $this->getModels()->first();
     }
 
     public function getCount(): int

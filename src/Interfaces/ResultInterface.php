@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Interfaces;
 
+use Illuminate\Support\Collection;
 use Psr\Http\Message\ResponseInterface;
 
 interface ResultInterface
@@ -16,9 +17,9 @@ interface ResultInterface
     public function getHttpResponse(): ResponseInterface;
 
     /**
-     * @return array<int, \Vazaha\Mastodon\Interfaces\ModelInterface>
+     * @return \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Interfaces\ModelInterface>
      */
-    public function getModels(): array;
+    public function getModels(): Collection;
 
     public function getModel(): ?ModelInterface;
 

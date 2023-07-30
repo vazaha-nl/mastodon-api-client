@@ -8,13 +8,13 @@ use Vazaha\Mastodon\Interfaces\ResultInterface;
 use Vazaha\Mastodon\Models\PreferencesModel;
 
 /**
- * @property array<\Vazaha\Mastodon\Models\PreferencesModel> $models
- * @property \Vazaha\Mastodon\Requests\PreferencesRequest    $request
+ * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\PreferencesModel> $models
+ * @property \Vazaha\Mastodon\Requests\PreferencesRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\PreferencesModel   getModel()
- * @method array<\Vazaha\Mastodon\Models\PreferencesModel> getModels()
- * @method null|\Vazaha\Mastodon\Results\PreferencesResult getNextResult()
- * @method null|\Vazaha\Mastodon\Results\PreferencesResult getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Models\PreferencesModel                                             getModel()
+ * @method \Illuminate\Support\Collection<array-key,       \Vazaha\Mastodon\Models\PreferencesModel> getModels()
+ * @method null|\Vazaha\Mastodon\Results\PreferencesResult                                           getNextResult()
+ * @method null|\Vazaha\Mastodon\Results\PreferencesResult                                           getPreviousResult()
  */
 class PreferencesResult extends Result implements ResultInterface
 {

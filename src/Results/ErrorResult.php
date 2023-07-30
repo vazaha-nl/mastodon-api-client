@@ -8,13 +8,13 @@ use Vazaha\Mastodon\Interfaces\ResultInterface;
 use Vazaha\Mastodon\Models\ErrorModel;
 
 /**
- * @property array<\Vazaha\Mastodon\Models\ErrorModel>    $models
- * @property array<\Vazaha\Mastodon\Request\ErrorRequest> $request
+ * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ErrorModel> $models
+ * @property \Vazaha\Mastodon\Requests\ErrorRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\ErrorModel   getModel()
- * @method array<\Vazaha\Mastodon\Models\ErrorModel> getModels()
- * @method null|\Vazaha\Mastodon\Results\ErrorResult getNextResult()
- * @method null|\Vazaha\Mastodon\Results\ErrorResult getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Models\ErrorModel                                       getModel()
+ * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ErrorModel> getModels()
+ * @method null|\Vazaha\Mastodon\Results\ErrorResult                                     getNextResult()
+ * @method null|\Vazaha\Mastodon\Results\ErrorResult                                     getPreviousResult()
  */
 class ErrorResult extends Result implements ResultInterface
 {
