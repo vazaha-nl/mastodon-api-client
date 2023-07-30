@@ -13,9 +13,9 @@ final class ApplicationModel extends Model
 
     public ?string $website = null;
 
-    public string $vapid_key;
+    public ?string $vapid_key = null;
 
-    public string $client_id;
+    public ?string $client_id = null;
 
-    public string $client_secret;
+    public ?string $client_secret = null;
 }

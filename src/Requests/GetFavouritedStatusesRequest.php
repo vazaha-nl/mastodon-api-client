@@ -12,18 +12,13 @@ use Vazaha\Mastodon\Requests\Concerns\GetRequest;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
  */
-final class GetStatusRequest extends StatusRequest implements RequestInterface
+final class GetFavouritedStatusesRequest extends StatusRequest implements RequestInterface
 {
     use GetRequest;
 
-    public function __construct(
-        protected string $statusId,
-    ) {
-    }
-
     public function getEndpoint(): string
     {
-        return sprintf('/api/v1/statuses/%s', urlencode($this->statusId));
+        return '/api/v1/favourites';
     }
 
     public function getQueryParams(): array
