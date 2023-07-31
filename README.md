@@ -8,6 +8,7 @@ A fully typed and feature complete [mastodon API](https://docs.joinmastodon.org/
 
 ## Installation
 
+This library is not yet available on packagist, but if you add this repository to your `composer.json` you should be able to install it with:
 ```
 composer require vazaha-nl/mastodon-api-client
 ```
