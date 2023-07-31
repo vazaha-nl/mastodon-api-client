@@ -1,0 +1,26 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Vazaha\Mastodon\Models;
+
+/**
+ * @see https://link.to.docs
+ */
+class CredentialAccountModel extends Model
+{
+    /**
+     * An extra attribute that contains source values to be used with API methods
+     * that [verify credentials]({{&lt; relref &quot;methods/accounts#verify_credentials&quot;
+     * &gt;}}) and [update credentials]({{&lt; relref
+     * &quot;methods/accounts#update_credentials&quot; &gt;}}).
+     *
+     * @var mixed[]
+     */
+    public array $source;
+
+    /**
+     * The role assigned to the currently authorized user.
+     */
+    public RoleModel $role;
+}

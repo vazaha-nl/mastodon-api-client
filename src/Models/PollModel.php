@@ -1,0 +1,66 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Vazaha\Mastodon\Models;
+
+use Carbon\Carbon;
+use Vazaha\Mastodon\Collections\CustomEmojiCollection;
+use Vazaha\Mastodon\Collections\Poll\OptionCollection;
+
+/**
+ * @see https://link.to.docs
+ */
+class PollModel extends Model
+{
+    /**
+     * The ID of the poll in the database.
+     */
+    public string $id;
+
+    /**
+     * When the poll ends.
+     */
+    public ?Carbon $expires_at = null;
+
+    /**
+     * Is the poll currently expired?
+     */
+    public bool $expired;
+
+    /**
+     * Does the poll allow multiple-choice answers?
+     */
+    public bool $multiple;
+
+    /**
+     * How many votes have been received.
+     */
+    public int $votes_count;
+
+    /**
+     * How many unique accounts have voted on a multiple-choice poll.
+     */
+    public ?int $voters_count = null;
+
+    /**
+     * Possible answers for the poll.
+     */
+    public OptionCollection $options;
+
+    /**
+     * Custom emoji to be used for rendering poll options.
+     */
+    public CustomEmojiCollection $emojis;
+
+    /**
+     * When called with a user token, has the authorized user voted?
+     */
+    public bool $voted;
+
+    /**
+     * When called with a user token, which options has the authorized user
+     * chosen? Contains an array of index values for `options`.
+     */
+    public int $own_votes;
+}
