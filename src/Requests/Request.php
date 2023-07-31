@@ -17,6 +17,8 @@ abstract class Request implements RequestInterface
 {
     use HasPaging;
 
+    // TODO FIXME rewrite, query param values are sometimes arrays!
+    // and that does not work with Uri::withQueryValues()
     public function getUri(): UriInterface
     {
         return Uri::withQueryValues(
