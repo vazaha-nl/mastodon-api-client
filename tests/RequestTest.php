@@ -25,7 +25,7 @@ class RequestTest extends TestCase
         $uri = (string) $request->getUri();
         self::assertStringContainsString('since_id=SINCEID', $uri);
 
-        $request->setLimit('123');
+        $request->setLimit(123);
         $uri = (string) $request->getUri();
         self::assertStringContainsString('limit=123', $uri);
     }
