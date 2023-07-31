@@ -1,6 +1,6 @@
 # mastodon-api-client
 
-A fully typed mastodon API client for PHP.
+A fully typed and feature complete [mastodon API](https://docs.joinmastodon.org/api/) client for PHP. 
 
 ## Requirements
 
@@ -14,6 +14,7 @@ composer require vazaha-nl/mastodon-api-client
 
 ## Usage
 
+
 ### Create the api client
 
 ```php
@@ -26,111 +27,60 @@ $client = $factory->build();
 $client = new \Vazaha\Mastodon\ApiClient(new \GuzzleHttp\Client());
 
 ```
-### Set needed properties
+### Set base uri (required) and token (not required for all endpoints)
 
 ```php
 
 // set base uri (required)
 $client->setBaseUri('https://instance.example.org');
 
-// set clientId and clientSecret (from app created using the mastodon web interface)
-$client->setClientId('clientId');
-$client->setClientSecret('clientSecret');
-
 // manually set access token
 $client->setAccessToken('token');
 
 ```
-### Create an app
+### Create a a request
 
 ```php
 
 // create the request
-$appRequest = new \Vazaha\Mastodon\Requests\CreateApplicationRequest(
+$appRequest = new \Vazaha\Mastodon\Requests\Apps\CreateRequest(
     'my client name',
     'https://mysite.example.org/callback',
-    [
-        // scopes be specified as string/enum, or array of strings/enum, 
-        // or a combination of both
-        \Vazaha\Mastodon\Enums\Scope::READ,
-        \Vazaha\Mastodon\Enums\Scope::WRITE,
-    ],
+    'read write',
     'https://mysite.example.org',
 );
 // send the request
 $result = $client->doRequest($appRequest);
 // get the result model (in this case Application instance)
+// this can be used to request an access token.
 $app = $result->getModel();
-$client->setClientId($app->client_id);
-$client->setClientSecret($app->client_secret);
 
 
 ```
 
-### Request an oauth access token
+See the examples folder for more details.
 
-#### App scope authorization
+## Type hinting
 
-```php
-// request oauth token for this app
-// store/cache the access token somewhere in cache/session/db
-$oAuthToken = $client->requestOAuthToken(
-    redirectUri: 'https://mysite.example.org/callback',
-);
+The complete code base is fully type hinted, using generics where possible/applicable. So IDEs with language server support will be able to understand the code and all types and properties very well, with no stubs or helpers needed. 
 
-// manually get/set the access_token
-$accessToken = $client->getAccessToken();
-$client->setAccessToken('accesstoken'); 
-// or pass an OAuthToken instance
-$client->setAccessToken($oAuthToken); 
+## Auto generated classes
 
-```
+The mastodon API does not yet have a complete specification like [OpenAPI](https://swagger.io/specification/), auto generation of classes was a challenge.
 
-#### User scope authorization
+However, it turned out to be very possible to parse the markdown from the [Markdown documentation](https://github.com/mastodon/documentation) and base the model, request, collection and result classes on this. 
 
-```php
-// oauth flow for user authorization:
-$authorizeUrl = $client->getAuthorizationUrl(
-    redirectUri: 'https://mysite.example.org/callback',
-);
-
-// redirect the user to this url
-// After logging in, the code will be sent to the callback uri in a 'code' query parameter
-$code = $_GET['code'];
-
-// same as above but note the code parameter
-$oAuthToken = $client->requestOAuthToken(
-    clientId: 'clientId',
-    clientSecret: 'clientSecret',
-    redirectUri: 'https://mysite.example.org/callback',
-    code: $code,
-);
-
-```
-
-### Pagination
-
-Pagination handled transparantly by the Result / Request classes.
-
-```php
-$result = $client->doRequest(new GetFollowedAccountsRequest('accountid'));
-
-// get the accounts for this page
-$accounts = $result->getModels();
-
-// get next pages
-while ($nextResult = $result->getNextResult()) {
-    $accountsOnNextPage = $nextResult->getModels();
-    // ...
-}
-
-```
+The generator code can be found in the tools folder, along with the  json source data. The json files have been compiled with help of some (very quick & dirty) perl scripts. I intend to open source these scripts as well, but at the moment they are still way too rough around the edges.
 
 ## Testing
+
+The core of the client has been extensively tested using unit tests. The complete code base also passes the most strict checks by [phpstan](https://phpstan.org/). 
+
 
 ```
 # run tests
 composer test
+
 # run phpstan
 composer analyse
 
@@ -138,10 +88,13 @@ composer analyse
 
 ## Coding style
 
-Coding style is enforced using `php-cs-fixer`.
+Coding style is enforced using `php-cs-fixer`. 
 
 ```
+# check only, no modifications will be made
 composer check-style
+
+# fix all files if possible
 composer fix-style
 ```
 
