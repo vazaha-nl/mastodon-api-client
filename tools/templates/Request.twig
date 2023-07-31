@@ -1,0 +1,69 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+{% for classImport in classImports.get() %}
+{{ classImport.toImportString() }}
+{% endfor %}
+
+/**
+ * {{ description }}
+ *
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\{{ resultClassName.getFQN() }}>
+ */
+final class {{ classname }} extends Request implements RequestInterface
+{
+
+    public function __construct(
+{% for property in allParams %}
+    {% if property.descriptionLines %}
+    /**
+    {% for descriptionLine in property.descriptionLines %}
+     * {{ descriptionLine }}
+    {% endfor %}
+{% if property.typeHint %}
+     * @var {{ property.typeHint }} ${{ property.name }}
+{% endif %}
+     */
+    {% endif %}
+    public {% if property.nullable %}?{% endif %}{{ property.type }} ${{ property.name }}{% if property.nullable %} = null{% endif %},
+
+{% endfor %}
+    ) {
+    }
+
+    public function getEndpoint(): string
+    {
+        return {{ endpointExpression | raw }};
+    }
+
+    public function getQueryParams(): array
+    {
+        return [
+{% for param in queryParams %}
+            '{{ param.name }}' => $this->{{ param.name }},
+{% endfor %}
+        ];
+    }
+
+    public function getFormParams(): array
+    {
+        return [
+{% for param in formParams %}
+            '{{ param.name }}' => $this->{{ param.name }},
+{% endfor %}
+        ];
+    }
+
+    public function getResultClass(): string
+    {
+        return {{ resultClassName.getBaseName() }}::class;
+    }
+
+    public function getHttpMethod(): HttpMethod
+    {
+        return HttpMethod::{{ method }};
+    }
+}

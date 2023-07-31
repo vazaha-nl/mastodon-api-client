@@ -57,15 +57,7 @@ class EntitySpecsRepository
 
                     $entity = $type->getEntity();
 
-                    if ($entity) {
-                        echo $entity->name . ' ';
-                    }
-
                     $classType = $type->getClassType();
-
-                    if ($classType) {
-                        echo $classType->value . \PHP_EOL;
-                    }
 
                     return ($entity !== null) && ($classType === ClassType::COLLECTION);
                 })

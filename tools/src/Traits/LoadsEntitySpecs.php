@@ -12,7 +12,7 @@ trait LoadsEntitySpecs
     {
         $projectRoot = dirname(__DIR__, 3);
 
-        if (!isset($this->entityData)) {
+        if (!isset($this->entitySpecs)) {
             $this->entitySpecs = json_decode(file_get_contents($projectRoot . '/tools/assets/entities.json'), true);
         }
 

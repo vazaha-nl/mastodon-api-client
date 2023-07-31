@@ -11,9 +11,12 @@ class ClassProperty
 {
     protected const TYPE_LOOKUP = [
         'integer' => 'int',
+        'number' => 'int',
         'string' => 'string',
         'boolean' => 'bool',
         'hash' => 'array',
+        'array' => 'array',
+        'array of string' => 'array',
         // 'datetime' => Carbon::class,
     ];
 

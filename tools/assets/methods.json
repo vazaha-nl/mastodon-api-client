@@ -1,0 +1,4297 @@
+{
+  "custom_emojis": {
+    "get": {
+      "description": "View all custom emoji",
+      "pathParams": [],
+      "returns": "CustomEmoji",
+      "namespace": "custom_emojis",
+      "method": "GET",
+      "name": "get",
+      "queryParams": [],
+      "formParams": [],
+      "uri": "/api/v1/custom_emojis"
+    }
+  },
+  "filters": {
+    "statuses-get-one": {
+      "formParams": [],
+      "uri": "/api/v2/filters/statuses/:id",
+      "queryParams": [],
+      "name": "statuses-get-one",
+      "returns": "FilterStatus",
+      "namespace": "filters",
+      "method": "GET",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the FilterStatus in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ],
+      "description": "View a single status filter"
+    },
+    "create-v1": {
+      "description": "Create a filter",
+      "pathParams": [],
+      "method": "POST",
+      "returns": "V1::Filter",
+      "namespace": "filters",
+      "queryParams": [],
+      "name": "create-v1",
+      "uri": "/api/v1/filters",
+      "formParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The text to be filtered.",
+          "name": "phrase",
+          "type": "string"
+        },
+        {
+          "description": "Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.",
+          "type": "array of string",
+          "name": "context[]",
+          "nullable": "",
+          "required": 1
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "boolean",
+          "name": "irreversible",
+          "description": "Should the server irreversibly drop matching entities from home and notifications? Defaults to false."
+        },
+        {
+          "description": "Should the filter consider word boundaries for this keyword? Defaults to false.",
+          "name": "whole_word",
+          "type": "boolean",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "name": "expires_in",
+          "type": "integer",
+          "description": "Number of seconds from now that the filter should expire. Otherwise, `null` for a filter that doesn't expire.",
+          "required": 0,
+          "nullable": 1
+        }
+      ]
+    },
+    "statuses-add": {
+      "method": "POST",
+      "namespace": "filters",
+      "returns": "FilterStatus",
+      "pathParams": [
+        {
+          "name": "filter_id",
+          "type": "string",
+          "description": "The ID of the Filter in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "description": "Add a status to a filter group",
+      "uri": "/api/v2/filters/:filter_id/statuses",
+      "formParams": [],
+      "name": "statuses-add",
+      "queryParams": []
+    },
+    "update": {
+      "method": "PUT",
+      "returns": "Filter",
+      "namespace": "filters",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "id",
+          "type": "string",
+          "description": "The ID of the Filter in the database."
+        }
+      ],
+      "description": "Update a filter",
+      "uri": "/api/v2/filters/:id",
+      "formParams": [
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "The name of the filter group.",
+          "type": "string",
+          "name": "title"
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "context[]",
+          "type": "array of string",
+          "description": "Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`."
+        },
+        {
+          "description": "The policy to be applied when the filter is matched. Specify `warn` or `hide`.",
+          "name": "filter_action",
+          "type": "string",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "description": "How many seconds from now should the filter expire?",
+          "name": "expires_in",
+          "type": "integer",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "type": "string",
+          "name": "keywords_attributes[][keyword]",
+          "description": "A keyword to be added to the newly-created filter group.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "name": "keywords_attributes[][whole_word]",
+          "type": "boolean",
+          "description": "Whether the keyword should consider word boundaries.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "name": "keywords_attributes[][id]",
+          "type": "string",
+          "description": "Provide the ID of an existing keyword to modify it, instead of creating a new keyword.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "boolean",
+          "name": "keywords_attributes[][_destroy]",
+          "description": "If true, will remove the keyword with the given ID."
+        }
+      ],
+      "queryParams": [],
+      "name": "update"
+    },
+    "get-one-v1": {
+      "description": "View a single filter",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the FilterKeyword in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ],
+      "method": "GET",
+      "returns": "V1::Filter",
+      "namespace": "filters",
+      "queryParams": [],
+      "name": "get-one-v1",
+      "uri": "/api/v1/filters/:id",
+      "formParams": []
+    },
+    "keywords-get": {
+      "method": "GET",
+      "returns": "FilterKeyword",
+      "namespace": "filters",
+      "pathParams": [
+        {
+          "name": "filter_id",
+          "type": "string",
+          "description": "The ID of the Filter in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "description": "View keywords added to a filter",
+      "uri": "/api/v2/filters/:filter_id/keywords",
+      "formParams": [],
+      "queryParams": [],
+      "name": "keywords-get"
+    },
+    "keywords-update": {
+      "description": "Edit a keyword within a filter",
+      "pathParams": [
+        {
+          "description": "The ID of the FilterKeyword in the database.",
+          "type": "string",
+          "name": "id",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "method": "PUT",
+      "namespace": "filters",
+      "returns": "FilterKeyword",
+      "queryParams": [],
+      "name": "keywords-update",
+      "uri": "/api/v2/filters/keywords/:id",
+      "formParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "keyword",
+          "description": "The keyword to be added to the filter group."
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "boolean",
+          "name": "whole_word",
+          "description": "Whether the keyword should consider word boundaries."
+        }
+      ]
+    },
+    "statuses-remove": {
+      "name": "statuses-remove",
+      "queryParams": [],
+      "uri": "/api/v2/filters/statuses/:id",
+      "formParams": [],
+      "pathParams": [
+        {
+          "description": "The ID of the FilterStatus in the database.",
+          "name": "id",
+          "type": "string",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "description": "Remove a status from a filter group",
+      "method": "DELETE",
+      "namespace": "filters",
+      "returns": "FilterStatus"
+    },
+    "delete": {
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the Filter in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ],
+      "description": "Delete a filter",
+      "method": "DELETE",
+      "returns": "empty",
+      "namespace": "filters",
+      "queryParams": [],
+      "name": "delete",
+      "uri": "/api/v2/filters/:id",
+      "formParams": []
+    },
+    "get": {
+      "description": "View all filters",
+      "pathParams": [],
+      "returns": "Filter",
+      "namespace": "filters",
+      "method": "GET",
+      "queryParams": [],
+      "name": "get",
+      "formParams": [],
+      "uri": "/api/v2/filters"
+    },
+    "delete-v1": {
+      "queryParams": [],
+      "name": "delete-v1",
+      "formParams": [],
+      "uri": "/api/v1/filters/:id",
+      "description": "Remove a filter",
+      "pathParams": [
+        {
+          "description": "The ID of the Filter in the database.",
+          "type": "string",
+          "name": "id",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "returns": "empty",
+      "namespace": "filters",
+      "method": "DELETE"
+    },
+    "statuses-get": {
+      "description": "View all status filters",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the Filter in the database.",
+          "type": "string",
+          "name": "filter_id"
+        }
+      ],
+      "method": "GET",
+      "returns": "FilterStatus",
+      "namespace": "filters",
+      "queryParams": [],
+      "name": "statuses-get",
+      "uri": "/api/v2/filters/:filter_id/statuses",
+      "formParams": []
+    },
+    "keywords-delete": {
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the FilterKeyword in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ],
+      "description": "Remove keywords from a filter",
+      "method": "DELETE",
+      "returns": "empty",
+      "namespace": "filters",
+      "queryParams": [],
+      "name": "keywords-delete",
+      "uri": "/api/v2/filters/keywords/:id",
+      "formParams": []
+    },
+    "get-v1": {
+      "returns": "V1::Filter",
+      "namespace": "filters",
+      "method": "GET",
+      "pathParams": [],
+      "description": "View your filters",
+      "formParams": [],
+      "uri": "/api/v1/filters",
+      "queryParams": [],
+      "name": "get-v1"
+    },
+    "keywords-create": {
+      "returns": "FilterKeyword",
+      "namespace": "filters",
+      "method": "POST",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "filter_id",
+          "type": "string",
+          "description": "The ID of the Filter in the database."
+        }
+      ],
+      "description": "Add a keyword to a filter",
+      "formParams": [
+        {
+          "description": "The keyword to be added to the filter group.",
+          "type": "string",
+          "name": "keyword",
+          "nullable": "",
+          "required": 1
+        },
+        {
+          "description": "Whether the keyword should consider word boundaries.",
+          "name": "whole_word",
+          "type": "boolean",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "uri": "/api/v2/filters/:filter_id/keywords",
+      "name": "keywords-create",
+      "queryParams": []
+    },
+    "keywords-get-one": {
+      "uri": "/api/v2/filters/keywords/:id",
+      "formParams": [],
+      "queryParams": [],
+      "name": "keywords-get-one",
+      "method": "GET",
+      "returns": "FilterKeyword",
+      "namespace": "filters",
+      "pathParams": [
+        {
+          "description": "The ID of the FilterKeyword in the database.",
+          "type": "string",
+          "name": "id",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "description": "View a single keyword"
+    },
+    "get-one": {
+      "method": "GET",
+      "namespace": "filters",
+      "returns": "Filter",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "id",
+          "type": "string",
+          "description": "The ID of the Filter in the database."
+        }
+      ],
+      "description": "View a specific filter",
+      "uri": "/api/v2/filters/:id",
+      "formParams": [],
+      "name": "get-one",
+      "queryParams": []
+    },
+    "update-v1": {
+      "formParams": [
+        {
+          "description": "The text to be filtered.",
+          "type": "string",
+          "name": "phrase",
+          "nullable": "",
+          "required": 1
+        },
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "array of string",
+          "name": "context[]",
+          "description": "Specify at least one of `home`, `notifications`, `public`, `thread`, `account`."
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Should the server irreversibly drop matching entities from home and notifications? Defaults to false.",
+          "name": "irreversible",
+          "type": "boolean"
+        },
+        {
+          "description": "Should the filter consider word boundaries? Defaults to false.",
+          "name": "whole_word",
+          "type": "boolean",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "description": "Number of seconds from now that the filter should expire. Otherwise, `null` for a filter that doesn't expire.",
+          "name": "expires_in",
+          "type": "integer",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "uri": "/api/v1/filters/:id",
+      "name": "update-v1",
+      "queryParams": [],
+      "returns": "V1::Filter",
+      "namespace": "filters",
+      "method": "PUT",
+      "description": "Update a filter",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the FilterKeyword in the database.",
+          "name": "id",
+          "type": "string"
+        }
+      ]
+    },
+    "create": {
+      "formParams": [
+        {
+          "type": "string",
+          "name": "title",
+          "description": "The name of the filter group.",
+          "required": 1,
+          "nullable": ""
+        },
+        {
+          "description": "Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.",
+          "name": "context[]",
+          "type": "array of string",
+          "nullable": "",
+          "required": 1
+        },
+        {
+          "name": "filter_action",
+          "type": "string",
+          "description": "The policy to be applied when the filter is matched. Specify `warn` or `hide`.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "name": "expires_in",
+          "type": "integer",
+          "description": "How many seconds from now should the filter expire?",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "A keyword to be added to the newly-created filter group.",
+          "name": "keywords_attributes[][keyword]",
+          "type": "string"
+        },
+        {
+          "name": "keywords_attributes[][whole_word]",
+          "type": "boolean",
+          "description": "Whether the keyword should consider word boundaries.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Will cause a 404 error if provided.",
+          "name": "keywords_attributes[][id]",
+          "type": "string"
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Will cause the keyword to not be attached if provided.",
+          "name": "keywords_attributes[][_destroy]",
+          "type": "boolean"
+        }
+      ],
+      "uri": "/api/v2/filters",
+      "name": "create",
+      "queryParams": [],
+      "namespace": "filters",
+      "returns": "Filter",
+      "method": "POST",
+      "pathParams": [],
+      "description": "Create a filter"
+    }
+  },
+  "bookmarks": {
+    "get": {
+      "queryParams": [
+        {
+          "description": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.",
+          "name": "limit",
+          "type": "integer",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "name": "get",
+      "uri": "/api/v1/bookmarks",
+      "formParams": [],
+      "pathParams": [],
+      "description": "View bookmarked statuses",
+      "method": "GET",
+      "namespace": "bookmarks",
+      "returns": "Status"
+    }
+  },
+  "emails": {
+    "confirmation": {
+      "description": "Resend confirmation email",
+      "pathParams": [],
+      "method": "POST",
+      "namespace": "emails",
+      "returns": null,
+      "name": "confirmation",
+      "queryParams": [],
+      "uri": "/api/v1/emails/confirmation",
+      "formParams": []
+    }
+  },
+  "follow_requests": {
+    "get": {
+      "name": "get",
+      "queryParams": [
+        {
+          "type": "integer",
+          "name": "limit",
+          "description": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "uri": "/api/v1/follow_requests",
+      "formParams": [],
+      "description": "View pending follow requests",
+      "pathParams": [],
+      "method": "GET",
+      "returns": "Account",
+      "namespace": "follow_requests"
+    },
+    "reject": {
+      "formParams": [],
+      "uri": "/api/v1/follow_requests/:account_id/reject",
+      "queryParams": [],
+      "name": "reject",
+      "namespace": "follow_requests",
+      "returns": "Relationship",
+      "method": "POST",
+      "description": "Reject follow request",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "account_id",
+          "description": "The ID of the Account in the database."
+        }
+      ]
+    },
+    "accept": {
+      "method": "POST",
+      "returns": "Relationship",
+      "namespace": "follow_requests",
+      "description": "Accept follow request",
+      "pathParams": [
+        {
+          "description": "The ID of the Account in the database.",
+          "name": "account_id",
+          "type": "string",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "uri": "/api/v1/follow_requests/:account_id/authorize",
+      "formParams": [],
+      "name": "accept",
+      "queryParams": []
+    }
+  },
+  "markers": {
+    "create": {
+      "uri": "/api/v1/markers",
+      "formParams": [
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "ID of the last status read in the home timeline.",
+          "name": "home[last_read_id]",
+          "type": "string"
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "ID of the last notification read.",
+          "type": "string",
+          "name": "notifications[last_read_id]"
+        }
+      ],
+      "name": "create",
+      "queryParams": [],
+      "method": "POST",
+      "namespace": "markers",
+      "returns": "Marker",
+      "description": "Save your position in a timeline",
+      "pathParams": []
+    },
+    "get": {
+      "uri": "/api/v1/markers",
+      "formParams": [],
+      "queryParams": [
+        {
+          "description": "Specify the timeline(s) for which markers should be fetched. Possible values: `home`, `notifications`. If not provided, an empty object will be returned.",
+          "name": "timeline[]",
+          "type": "array of string",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "name": "get",
+      "method": "GET",
+      "namespace": "markers",
+      "returns": "Marker",
+      "pathParams": [],
+      "description": "Get saved timeline positions"
+    }
+  },
+  "push": {
+    "create": {
+      "method": "POST",
+      "namespace": "push",
+      "returns": "WebPushSubscription",
+      "description": "Subscribe to push notifications",
+      "pathParams": [],
+      "uri": "/api/v1/push/subscription",
+      "formParams": [
+        {
+          "description": "The endpoint URL that is called when a notification event occurs.",
+          "type": "string",
+          "name": "subscription[endpoint]",
+          "nullable": "",
+          "required": 1
+        },
+        {
+          "description": "User agent public key. Base64 encoded string of a public key from a ECDH keypair using the `prime256v1` curve.",
+          "name": "subscription[keys][p256dh]",
+          "type": "string",
+          "nullable": "",
+          "required": 1
+        },
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "subscription[keys][auth]",
+          "type": "string",
+          "description": "Auth secret. Base64 encoded string of 16 bytes of random data."
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "data[alerts][mention]",
+          "type": "boolean",
+          "description": "Receive mention notifications? Defaults to false."
+        },
+        {
+          "type": "boolean",
+          "name": "data[alerts][status]",
+          "description": "Receive new subscribed account notifications? Defaults to false.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Receive reblog notifications? Defaults to false.",
+          "name": "data[alerts][reblog]",
+          "type": "boolean"
+        },
+        {
+          "description": "Receive follow notifications? Defaults to false.",
+          "type": "boolean",
+          "name": "data[alerts][follow]",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Receive follow request notifications? Defaults to false.",
+          "type": "boolean",
+          "name": "data[alerts][follow_request]"
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Receive favourite notifications? Defaults to false.",
+          "name": "data[alerts][favourite]",
+          "type": "boolean"
+        },
+        {
+          "description": "Receive poll notifications? Defaults to false.",
+          "name": "data[alerts][poll]",
+          "type": "boolean",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "data[alerts][update]",
+          "type": "boolean",
+          "description": "Receive status edited notifications? Defaults to false."
+        },
+        {
+          "name": "data[alerts][admin.sign_up]",
+          "type": "boolean",
+          "description": "Receive new user signup notifications? Defaults to false. Must have a role with the appropriate permissions.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "type": "boolean",
+          "name": "data[alerts][admin.report]",
+          "description": "Receive new report notifications? Defaults to false. Must have a role with the appropriate permissions.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "description": "Specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users.",
+          "name": "data[policy]",
+          "type": "string",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "queryParams": [],
+      "name": "create"
+    },
+    "delete": {
+      "pathParams": [],
+      "description": "Remove current subscription",
+      "method": "DELETE",
+      "namespace": "push",
+      "returns": "WebPushSubscription",
+      "name": "delete",
+      "queryParams": [],
+      "uri": "/api/v1/push/subscription",
+      "formParams": []
+    },
+    "get": {
+      "namespace": "push",
+      "returns": "WebPushSubscription",
+      "method": "GET",
+      "description": "Get current subscription",
+      "pathParams": [],
+      "formParams": [],
+      "uri": "/api/v1/push/subscription",
+      "name": "get",
+      "queryParams": []
+    },
+    "update": {
+      "formParams": [
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Receive mention notifications? Defaults to false.",
+          "name": "data[alerts][mention]",
+          "type": "boolean"
+        },
+        {
+          "name": "data[alerts][status]",
+          "type": "boolean",
+          "description": "Receive new subscribed account notifications? Defaults to false.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "name": "data[alerts][reblog]",
+          "type": "boolean",
+          "description": "Receive reblog notifications? Defaults to false.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "description": "Receive follow notifications? Defaults to false.",
+          "type": "boolean",
+          "name": "data[alerts][follow]",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "boolean",
+          "name": "data[alerts][follow_request]",
+          "description": "Receive follow request notifications? Defaults to false."
+        },
+        {
+          "description": "Receive favourite notifications? Defaults to false.",
+          "type": "boolean",
+          "name": "data[alerts][favourite]",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "type": "boolean",
+          "name": "data[alerts][poll]",
+          "description": "Receive poll notifications? Defaults to false.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Receive status edited notifications? Defaults to false.",
+          "name": "data[alerts][update]",
+          "type": "boolean"
+        },
+        {
+          "type": "boolean",
+          "name": "data[alerts][admin.sign_up]",
+          "description": "Receive new user signup notifications? Defaults to false. Must have a role with the appropriate permissions.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "description": "Receive new report notifications? Defaults to false. Must have a role with the appropriate permissions.",
+          "name": "data[alerts][admin.report]",
+          "type": "boolean",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "type": "string",
+          "name": "policy",
+          "description": "Specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "uri": "/api/v1/push/subscription",
+      "name": "update",
+      "queryParams": [],
+      "namespace": "push",
+      "returns": "WebPushSubscription",
+      "method": "PUT",
+      "pathParams": [],
+      "description": "Change types of notifications"
+    }
+  },
+  "directory": {
+    "get": {
+      "namespace": "directory",
+      "returns": "Account",
+      "method": "GET",
+      "description": "View profile directory",
+      "pathParams": [],
+      "formParams": [],
+      "uri": "/api/v1/directory",
+      "queryParams": [
+        {
+          "name": "offset",
+          "type": "number",
+          "description": "Skip the first n results.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "How many accounts to load. Defaults to 40 accounts. Max 80 accounts.",
+          "name": "limit",
+          "type": "number"
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "order",
+          "type": "string",
+          "description": "Use `active` to sort by most recently posted statuses (default) or `new` to sort by most recently created profiles."
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "local",
+          "type": "boolean",
+          "description": "If true, returns only local accounts."
+        }
+      ],
+      "name": "get"
+    }
+  },
+  "lists": {
+    "accounts-remove": {
+      "method": "DELETE",
+      "returns": "empty",
+      "namespace": "lists",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the List in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ],
+      "description": "Remove accounts from list",
+      "uri": "/api/v1/lists/:id/accounts",
+      "formParams": [
+        {
+          "description": "The accounts that should be removed from the list.",
+          "type": "array of string",
+          "name": "account_ids[]",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "queryParams": [],
+      "name": "accounts-remove"
+    },
+    "update": {
+      "name": "update",
+      "queryParams": [],
+      "formParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "title",
+          "type": "string",
+          "description": "The title of the list to be created."
+        },
+        {
+          "description": "One of `followed`, `list`, or `none`. Defaults to `list`.",
+          "name": "replies_policy",
+          "type": "string",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "uri": "/api/v1/lists/:id",
+      "pathParams": [
+        {
+          "description": "The ID of the List in the database.",
+          "name": "id",
+          "type": "string",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "description": "Update a list",
+      "returns": "List",
+      "namespace": "lists",
+      "method": "PUT"
+    },
+    "accounts-add": {
+      "formParams": [
+        {
+          "type": "array of string",
+          "name": "account_ids[]",
+          "description": "The accounts that should be added to the list.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "uri": "/api/v1/lists/:id/accounts",
+      "queryParams": [],
+      "name": "accounts-add",
+      "returns": "empty",
+      "namespace": "lists",
+      "method": "POST",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the List in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ],
+      "description": "Add accounts to a list"
+    },
+    "create": {
+      "pathParams": [],
+      "description": "Create a list",
+      "namespace": "lists",
+      "returns": "List",
+      "method": "POST",
+      "name": "create",
+      "queryParams": [],
+      "formParams": [
+        {
+          "description": "The title of the list to be created.",
+          "type": "string",
+          "name": "title",
+          "nullable": "",
+          "required": 1
+        },
+        {
+          "name": "replies_policy",
+          "type": "string",
+          "description": "One of `followed`, `list`, or `none`. Defaults to `list`.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "uri": "/api/v1/lists"
+    },
+    "delete": {
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the List in the database."
+        }
+      ],
+      "description": "Delete a list",
+      "method": "DELETE",
+      "namespace": "lists",
+      "returns": "empty",
+      "queryParams": [],
+      "name": "delete",
+      "uri": "/api/v1/lists/:id",
+      "formParams": []
+    },
+    "get-one": {
+      "pathParams": [
+        {
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the List in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "description": "Show a single list",
+      "method": "GET",
+      "namespace": "lists",
+      "returns": "List",
+      "queryParams": [],
+      "name": "get-one",
+      "uri": "/api/v1/lists/:id",
+      "formParams": []
+    },
+    "get": {
+      "pathParams": [],
+      "description": "View your lists",
+      "namespace": "lists",
+      "returns": "List",
+      "method": "GET",
+      "queryParams": [],
+      "name": "get",
+      "formParams": [],
+      "uri": "/api/v1/lists"
+    },
+    "accounts": {
+      "pathParams": [
+        {
+          "description": "The ID of the List in the database.",
+          "name": "id",
+          "type": "string",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "description": "View accounts in a list",
+      "method": "GET",
+      "returns": "Account",
+      "namespace": "lists",
+      "name": "accounts",
+      "queryParams": [
+        {
+          "name": "limit",
+          "type": "integer",
+          "description": "Maximum number of results. Defaults to 40 accounts. Max 80 accounts. Set to 0 in order to get all accounts without pagination.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "uri": "/api/v1/lists/:id/accounts",
+      "formParams": []
+    }
+  },
+  "blocks": {
+    "get": {
+      "name": "get",
+      "queryParams": [
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "limit",
+          "type": "integer",
+          "description": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts."
+        }
+      ],
+      "uri": "/api/v1/blocks",
+      "formParams": [],
+      "description": "View blocked users",
+      "pathParams": [],
+      "method": "GET",
+      "returns": "Account",
+      "namespace": "blocks"
+    }
+  },
+  "accounts": {
+    "statuses": {
+      "pathParams": [
+        {
+          "description": "The ID of the Account in the database.",
+          "type": "string",
+          "name": "id",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "description": "Get account's statuses",
+      "returns": "Status",
+      "namespace": "accounts",
+      "method": "GET",
+      "name": "statuses",
+      "queryParams": [
+        {
+          "name": "max_id ",
+          "type": "string",
+          "description": "Return results older than this ID",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "description": "Return results newer than this ID",
+          "name": "since_id",
+          "type": "string",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Return results immediately newer than this ID",
+          "type": "string",
+          "name": "min_id"
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.",
+          "name": "limit",
+          "type": "integer"
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Filter out statuses without attachments.",
+          "type": "boolean",
+          "name": "only_media"
+        },
+        {
+          "description": "Filter out statuses in reply to a different account.",
+          "name": "exclude_replies",
+          "type": "boolean",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "type": "boolean",
+          "name": "exclude_reblogs",
+          "description": "Filter out boosts from the response.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "description": "Filter for pinned statuses only. Defaults to false, which includes all statuses. Pinned statuses do not receive special priority in the order of the returned results.",
+          "type": "boolean",
+          "name": "pinned",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Filter for statuses using a specific hashtag.",
+          "type": "string",
+          "name": "tagged"
+        }
+      ],
+      "formParams": [],
+      "uri": "/api/v1/accounts/:id/statuses"
+    },
+    "unmute": {
+      "method": "POST",
+      "namespace": "accounts",
+      "returns": "Relationship",
+      "pathParams": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "The ID of the Account in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "description": "Unmute account",
+      "uri": "/api/v1/accounts/:id/unmute",
+      "formParams": [],
+      "name": "unmute",
+      "queryParams": []
+    },
+    "update_credentials": {
+      "description": "Update account credentials",
+      "pathParams": [],
+      "method": "PATCH",
+      "returns": "`source`",
+      "namespace": "accounts",
+      "queryParams": [],
+      "name": "update_credentials",
+      "uri": "/api/v1/accounts/update_credentials",
+      "formParams": [
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "The display name to use for the profile. ",
+          "type": "string",
+          "name": "display_name"
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "note",
+          "type": "string",
+          "description": "The account bio."
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Whether manual approval of follow requests is required.",
+          "type": "boolean",
+          "name": "locked"
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Whether the account has a bot flag.",
+          "type": "boolean",
+          "name": "bot"
+        },
+        {
+          "description": "Whether the account should be shown in the profile directory.",
+          "type": "boolean",
+          "name": "discoverable",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "hash",
+          "name": "fields_attributes",
+          "description": "The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields."
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "The name of the profile field. By default, max 255 characters.",
+          "type": "string",
+          "name": "fields_attributes[:index][name]"
+        },
+        {
+          "description": "The value of the profile field. By default, max 255 characters.",
+          "type": "string",
+          "name": "fields_attributes[:index][value]",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "type": "string",
+          "name": "source[privacy]",
+          "description": "Default post privacy for authored statuses. Can be `public`, `unlisted`, or `private`.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "name": "source[sensitive]",
+          "type": "boolean",
+          "description": "Whether to mark authored statuses as sensitive by default.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "source[language]",
+          "type": "string",
+          "description": "Default language to use for authored statuses (ISO 6391)"
+        }
+      ]
+    },
+    "following": {
+      "pathParams": [
+        {
+          "description": "The ID of the Account in the database.",
+          "type": "string",
+          "name": "id",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "description": "Get account's following",
+      "namespace": "accounts",
+      "returns": "Account",
+      "method": "GET",
+      "name": "following",
+      "queryParams": [
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "integer",
+          "name": "limit",
+          "description": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts."
+        }
+      ],
+      "formParams": [],
+      "uri": "/api/v1/accounts/:id/following"
+    },
+    "unfollow": {
+      "queryParams": [],
+      "name": "unfollow",
+      "formParams": [],
+      "uri": "/api/v1/accounts/:id/unfollow",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the Account in the database."
+        }
+      ],
+      "description": "Unfollow account",
+      "namespace": "accounts",
+      "returns": "Relationship",
+      "method": "POST"
+    },
+    "lists": {
+      "formParams": [],
+      "uri": "/api/v1/accounts/:id/lists",
+      "queryParams": [],
+      "name": "lists",
+      "returns": "List",
+      "namespace": "accounts",
+      "method": "GET",
+      "description": "Get lists containing this account",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "id",
+          "type": "string",
+          "description": "The ID of the Account in the database."
+        }
+      ]
+    },
+    "get": {
+      "name": "get",
+      "queryParams": [],
+      "formParams": [],
+      "uri": "/api/v1/accounts/:id",
+      "pathParams": [
+        {
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the Account in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "description": "Get account",
+      "namespace": "accounts",
+      "returns": "Account",
+      "method": "GET"
+    },
+    "verify_credentials": {
+      "formParams": [],
+      "uri": "/api/v1/accounts/verify_credentials",
+      "name": "verify_credentials",
+      "queryParams": [],
+      "returns": "CredentialAccount",
+      "namespace": "accounts",
+      "method": "GET",
+      "pathParams": [],
+      "description": "Verify account credentials"
+    },
+    "identity_proofs": {
+      "description": "(DEPRECATED) Identity proofs",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the Account in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ],
+      "method": "GET",
+      "returns": "IdentityProof",
+      "namespace": "accounts",
+      "name": "identity_proofs",
+      "queryParams": [],
+      "uri": "/api/v1/accounts/:id/identity_proofs",
+      "formParams": []
+    },
+    "mute": {
+      "pathParams": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "The ID of the Account in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "description": "Mute account",
+      "returns": "Relationship",
+      "namespace": "accounts",
+      "method": "POST",
+      "name": "mute",
+      "queryParams": [],
+      "formParams": [
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "boolean",
+          "name": "notifications",
+          "description": "Mute notifications in addition to statuses? Defaults to true."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "description": "How long the mute should last, in seconds. Defaults to 0 (indefinite).",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "uri": "/api/v1/accounts/:id/mute"
+    },
+    "lookup": {
+      "pathParams": [],
+      "description": "Lookup account ID from Webfinger address",
+      "namespace": "accounts",
+      "returns": "Account",
+      "method": "GET",
+      "name": "lookup",
+      "queryParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "acct",
+          "type": "string",
+          "description": "The username or Webfinger address to lookup."
+        }
+      ],
+      "formParams": [],
+      "uri": "/api/v1/accounts/lookup"
+    },
+    "familiar_followers": {
+      "namespace": "accounts",
+      "returns": "FamiliarFollowers",
+      "method": "GET",
+      "description": "Find familiar followers",
+      "pathParams": [],
+      "formParams": [],
+      "uri": "/api/v1/accounts/familiar_followers",
+      "queryParams": [
+        {
+          "description": "Find familiar followers for the provided account IDs.",
+          "name": "id[]",
+          "type": "array of string",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "name": "familiar_followers"
+    },
+    "followers": {
+      "name": "followers",
+      "queryParams": [
+        {
+          "name": "limit",
+          "type": "integer",
+          "description": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "uri": "/api/v1/accounts/:id/followers",
+      "formParams": [],
+      "description": "Get account's followers",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the Account in the database."
+        }
+      ],
+      "method": "GET",
+      "returns": "Account",
+      "namespace": "accounts"
+    },
+    "search": {
+      "pathParams": [],
+      "description": "Search for matching accounts",
+      "method": "GET",
+      "namespace": "accounts",
+      "returns": "Account",
+      "queryParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "q",
+          "type": "string",
+          "description": "Search query for accounts."
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "limit",
+          "type": "integer",
+          "description": "Maximum number of results. Defaults to 40 accounts. Max 80 accounts."
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Skip the first n results.",
+          "name": "offset",
+          "type": "integer"
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Attempt WebFinger lookup. Defaults to false. Use this when `q` is an exact address.",
+          "name": "resolve",
+          "type": "boolean"
+        },
+        {
+          "type": "boolean",
+          "name": "following",
+          "description": "Limit the search to users you are following. Defaults to false.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "name": "search",
+      "uri": "/api/v1/accounts/search",
+      "formParams": []
+    },
+    "block": {
+      "uri": "/api/v1/accounts/:id/block",
+      "formParams": [],
+      "queryParams": [],
+      "name": "block",
+      "method": "POST",
+      "returns": "Relationship",
+      "namespace": "accounts",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the Account in the database.",
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "description": "Block account"
+    },
+    "featured_tags": {
+      "name": "featured_tags",
+      "queryParams": [],
+      "formParams": [],
+      "uri": "/api/v1/accounts/:id/featured_tags",
+      "description": "Get account's featured tags",
+      "pathParams": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "The ID of the Account in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "namespace": "accounts",
+      "returns": "FeaturedTag",
+      "method": "GET"
+    },
+    "pin": {
+      "name": "pin",
+      "queryParams": [],
+      "uri": "/api/v1/accounts/:id/pin",
+      "formParams": [],
+      "pathParams": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "The ID of the Account in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "description": "Feature account on your profile",
+      "method": "POST",
+      "returns": "Relationship",
+      "namespace": "accounts"
+    },
+    "unpin": {
+      "description": "Unfeature account from profile",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the Account in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ],
+      "returns": "Relationship",
+      "namespace": "accounts",
+      "method": "POST",
+      "queryParams": [],
+      "name": "unpin",
+      "formParams": [],
+      "uri": "/api/v1/accounts/:id/unpin"
+    },
+    "remove_from_followers": {
+      "name": "remove_from_followers",
+      "queryParams": [],
+      "formParams": [],
+      "uri": "/api/v1/accounts/:id/remove_from_followers",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the Account in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ],
+      "description": "Remove account from followers",
+      "namespace": "accounts",
+      "returns": "Relationship",
+      "method": "POST"
+    },
+    "note": {
+      "method": "POST",
+      "returns": "Relationship",
+      "namespace": "accounts",
+      "description": "Set private note on profile",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the Account in the database."
+        }
+      ],
+      "uri": "/api/v1/accounts/:id/note",
+      "formParams": [
+        {
+          "name": "comment",
+          "type": "string",
+          "description": "The comment to be set on that user. Provide an empty string or leave out this parameter to clear the currently set note.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "name": "note",
+      "queryParams": []
+    },
+    "relationships": {
+      "formParams": [],
+      "uri": "/api/v1/accounts/relationships",
+      "queryParams": [
+        {
+          "name": "id[]",
+          "type": "array",
+          "description": "Check relationships for the provided account IDs.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "name": "relationships",
+      "namespace": "accounts",
+      "returns": "Relationship",
+      "method": "GET",
+      "description": "Check relationships to other accounts",
+      "pathParams": []
+    },
+    "unblock": {
+      "formParams": [],
+      "uri": "/api/v1/accounts/:id/unblock",
+      "queryParams": [],
+      "name": "unblock",
+      "namespace": "accounts",
+      "returns": "Relationship",
+      "method": "POST",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the Account in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ],
+      "description": "Unblock account"
+    },
+    "create": {
+      "name": "create",
+      "queryParams": [],
+      "formParams": [
+        {
+          "description": "The desired username for the account",
+          "type": "string",
+          "name": "username",
+          "nullable": "",
+          "required": 1
+        },
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The email address to be used for login",
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "password",
+          "type": "string",
+          "description": "The password to be used for login"
+        },
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "Whether the user agrees to the local rules, terms, and policies. These should be presented to the user in order to allow them to consent before setting this parameter to TRUE.",
+          "type": "boolean",
+          "name": "agreement"
+        },
+        {
+          "description": "The language of the confirmation email that will be sent.",
+          "type": "string",
+          "name": "locale",
+          "nullable": "",
+          "required": 1
+        },
+        {
+          "description": "If registrations require manual approval, this text will be reviewed by moderators.",
+          "type": "string",
+          "name": "reason",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "uri": "/api/v1/accounts",
+      "description": "Register an account",
+      "pathParams": [],
+      "namespace": "accounts",
+      "returns": "Token",
+      "method": "POST"
+    },
+    "follow": {
+      "method": "POST",
+      "namespace": "accounts",
+      "returns": "Relationship",
+      "description": "Follow account",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the Account in the database."
+        }
+      ],
+      "uri": "/api/v1/accounts/:id/follow",
+      "formParams": [
+        {
+          "description": "Receive this account's reblogs in home timeline? Defaults to true.",
+          "name": "reblogs",
+          "type": "boolean",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "type": "boolean",
+          "name": "notify",
+          "description": "Receive notifications when this account posts a status? Defaults to false.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Filter received statuses for these languages. If not provided, you will receive this account's posts in all languages.",
+          "name": "languages",
+          "type": "array of string (iso 639-1 language two-letter code)"
+        }
+      ],
+      "name": "follow",
+      "queryParams": []
+    }
+  },
+  "media": {
+    "v1": {
+      "name": "v1",
+      "queryParams": [],
+      "uri": "/api/v1/media",
+      "formParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The file to be attached, encoded using multipart form data. The file must have a MIME type.",
+          "name": "file",
+          "type": "object"
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "The custom thumbnail of the media to be attached, encoded using multipart form data.",
+          "name": "thumbnail",
+          "type": "object"
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "description",
+          "type": "string",
+          "description": "A plain-text description of the media, for accessibility purposes."
+        },
+        {
+          "type": "string",
+          "name": "focus",
+          "description": "Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See [Focal points for cropping media thumbnails]({{< relref \"api/guidelines#focal-points\" >}}) for more information.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "pathParams": [],
+      "description": "(DEPRECATED) Upload media as an attachment",
+      "method": "POST",
+      "namespace": "media",
+      "returns": "MediaAttachment"
+    },
+    "update": {
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the MediaAttachment in the database.",
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "description": "Update media attachment",
+      "returns": "MediaAttachment",
+      "namespace": "media",
+      "method": "PUT",
+      "queryParams": [],
+      "name": "update",
+      "formParams": [
+        {
+          "description": "The custom thumbnail of the media to be attached, encoded using multipart form data.",
+          "name": "thumbnail",
+          "type": "object",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "string",
+          "name": "description",
+          "description": "A plain-text description of the media, for accessibility purposes."
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See [Focal points for cropping media thumbnails]({{< relref \"api/guidelines#focal-points\" >}}) for more information.",
+          "name": "focus",
+          "type": "string"
+        }
+      ],
+      "uri": "/api/v1/media/:id"
+    },
+    "get": {
+      "queryParams": [],
+      "name": "get",
+      "formParams": [],
+      "uri": "/api/v1/media/:id",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the MediaAttachment in the database."
+        }
+      ],
+      "description": "Get media attachment",
+      "namespace": "media",
+      "returns": "MediaAttachment",
+      "method": "GET"
+    },
+    "v2": {
+      "namespace": "media",
+      "returns": "MediaAttachment",
+      "method": "POST",
+      "pathParams": [],
+      "description": "Upload media as an attachment (async)",
+      "formParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "file",
+          "type": "object",
+          "description": "The file to be attached, encoded using multipart form data. The file must have a MIME type."
+        },
+        {
+          "name": "thumbnail",
+          "type": "object",
+          "description": "The custom thumbnail of the media to be attached, encoded using multipart form data.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "description",
+          "type": "string",
+          "description": "A plain-text description of the media, for accessibility purposes."
+        },
+        {
+          "description": "Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See [Focal points for cropping media thumbnails]({{< relref \"api/guidelines#focal-points\" >}}) for more information.",
+          "type": "string",
+          "name": "focus",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "uri": "/api/v2/media",
+      "queryParams": [],
+      "name": "v2"
+    }
+  },
+  "notifications": {
+    "get": {
+      "formParams": [],
+      "uri": "/api/v1/notifications",
+      "queryParams": [
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "string",
+          "name": "max_id ",
+          "description": "Return results older than this ID"
+        },
+        {
+          "description": "Return results newer than this ID",
+          "name": "since_id",
+          "type": "string",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Return results immediately newer than this ID",
+          "name": "min_id",
+          "type": "string"
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "integer",
+          "name": "limit",
+          "description": "Maximum number of results to return. Defaults to 15 notifications. Max 30 notifications."
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "types[]",
+          "type": "array of string",
+          "description": "Types to include in the result."
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "exclude_types[]",
+          "type": "array of string",
+          "description": "Types to exclude from the results."
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Return only notifications received from the specified account.",
+          "name": "account_id",
+          "type": "string"
+        }
+      ],
+      "name": "get",
+      "returns": "Notification",
+      "namespace": "notifications",
+      "method": "GET",
+      "pathParams": [],
+      "description": "Get all notifications"
+    },
+    "get-one": {
+      "name": "get-one",
+      "queryParams": [],
+      "formParams": [],
+      "uri": "/api/v1/notifications/:id",
+      "description": "Get a single notification",
+      "pathParams": [
+        {
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the Notification in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "returns": "Notification",
+      "namespace": "notifications",
+      "method": "GET"
+    },
+    "dismiss-deprecated": {
+      "name": "dismiss-deprecated",
+      "queryParams": [],
+      "uri": "/api/v1/notifications/dismiss",
+      "formParams": [
+        {
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the notification in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "pathParams": [],
+      "description": "(REMOVED) Dismiss a single notification",
+      "method": "POST",
+      "namespace": "notifications",
+      "returns": "empty"
+    },
+    "clear": {
+      "returns": "empty",
+      "namespace": "notifications",
+      "method": "POST",
+      "description": "Dismiss all notifications",
+      "pathParams": [],
+      "formParams": [],
+      "uri": "/api/v1/notifications/clear",
+      "queryParams": [],
+      "name": "clear"
+    },
+    "dismiss": {
+      "method": "POST",
+      "returns": "empty",
+      "namespace": "notifications",
+      "pathParams": [
+        {
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the Notification in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "description": "Dismiss a single notification",
+      "uri": "/api/v1/notifications/:id/dismiss",
+      "formParams": [],
+      "queryParams": [],
+      "name": "dismiss"
+    }
+  },
+  "timelines": {
+    "list": {
+      "formParams": [],
+      "uri": "/api/v1/timelines/list/:list_id",
+      "queryParams": [
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Return results older than ID.",
+          "name": "max_id ",
+          "type": "string"
+        },
+        {
+          "name": "since_id",
+          "type": "string",
+          "description": "Return results newer than ID.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Return results immediately newer than ID.",
+          "name": "min_id",
+          "type": "string"
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "limit",
+          "type": "integer",
+          "description": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses."
+        }
+      ],
+      "name": "list",
+      "returns": "Status",
+      "namespace": "timelines",
+      "method": "GET",
+      "description": "View list timeline",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "list_id",
+          "type": "string",
+          "description": "Local ID of the List in the database."
+        }
+      ]
+    },
+    "direct": {
+      "formParams": [],
+      "uri": "/api/v1/timelines/direct",
+      "name": "direct",
+      "queryParams": [
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Return results older than ID.",
+          "name": "max_id ",
+          "type": "string"
+        },
+        {
+          "description": "Return results newer than ID.",
+          "type": "string",
+          "name": "since_id",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "type": "string",
+          "name": "min_id",
+          "description": "Return results immediately newer than ID.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "type": "integer",
+          "name": "limit",
+          "description": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "namespace": "timelines",
+      "returns": "Status",
+      "method": "GET",
+      "description": "(DEPRECATED) View direct timeline",
+      "pathParams": []
+    },
+    "public": {
+      "formParams": [],
+      "uri": "/api/v1/timelines/public",
+      "queryParams": [
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "boolean",
+          "name": "local",
+          "description": "Show only local statuses? Defaults to false."
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Show only remote statuses? Defaults to false.",
+          "name": "remote",
+          "type": "boolean"
+        },
+        {
+          "description": "Show only statuses with media attached? Defaults to false.",
+          "type": "boolean",
+          "name": "only_media",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "max_id ",
+          "type": "string",
+          "description": "Return results older than ID."
+        },
+        {
+          "type": "string",
+          "name": "since_id",
+          "description": "Return results newer than ID.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Return results immediately newer than ID.",
+          "name": "min_id",
+          "type": "string"
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.",
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "name": "public",
+      "returns": "Status",
+      "namespace": "timelines",
+      "method": "GET",
+      "description": "View public timeline",
+      "pathParams": []
+    },
+    "tag": {
+      "formParams": [],
+      "uri": "/api/v1/timelines/tag/:hashtag",
+      "queryParams": [
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Return statuses that contain any of these additional tags.",
+          "name": "any[]",
+          "type": "array of string"
+        },
+        {
+          "name": "all[]",
+          "type": "array of string",
+          "description": "Return statuses that contain all of these additional tags.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "name": "none[]",
+          "type": "array of string",
+          "description": "Return statuses that contain none of these additional tags.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "type": "boolean",
+          "name": "local",
+          "description": "Return only local statuses? Defaults to false.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "type": "boolean",
+          "name": "remote",
+          "description": "Return only remote statuses? Defaults to false.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "boolean",
+          "name": "only_media",
+          "description": "Return only statuses with media attachments? Defaults to false."
+        },
+        {
+          "description": "Return results older than ID.",
+          "type": "string",
+          "name": "max_id ",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "description": "Return results newer than ID.",
+          "name": "since_id",
+          "type": "string",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Return results immediately newer than ID.",
+          "name": "min_id",
+          "type": "string"
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.",
+          "type": "integer",
+          "name": "limit"
+        }
+      ],
+      "name": "tag",
+      "namespace": "timelines",
+      "returns": "Status",
+      "method": "GET",
+      "description": "View hashtag timeline",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The name of the hashtag (not including the # symbol).",
+          "type": "string",
+          "name": "hashtag"
+        }
+      ]
+    },
+    "home": {
+      "formParams": [],
+      "uri": "/api/v1/timelines/home",
+      "name": "home",
+      "queryParams": [
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Return results older than ID.",
+          "name": "max_id ",
+          "type": "string"
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "since_id",
+          "type": "string",
+          "description": "Return results newer than ID."
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Return results immediately newer than ID.",
+          "name": "min_id",
+          "type": "string"
+        },
+        {
+          "type": "integer",
+          "name": "limit",
+          "description": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "returns": "Status",
+      "namespace": "timelines",
+      "method": "GET",
+      "pathParams": [],
+      "description": "View home timeline"
+    }
+  },
+  "followed_tags": {
+    "get": {
+      "method": "GET",
+      "returns": "Tag",
+      "namespace": "followed_tags",
+      "description": "View all followed tags",
+      "pathParams": [],
+      "uri": "/api/v1/followed_tags",
+      "formParams": [],
+      "name": "get",
+      "queryParams": [
+        {
+          "description": "Maximum number of results to return. Defaults to 100 tags. Max 200 tags.",
+          "type": "integer",
+          "name": "limit",
+          "nullable": 1,
+          "required": 0
+        }
+      ]
+    }
+  },
+  "statuses": {
+    "unmute": {
+      "formParams": [],
+      "uri": "/api/v1/statuses/:id/unmute",
+      "name": "unmute",
+      "queryParams": [],
+      "returns": "Status",
+      "namespace": "statuses",
+      "method": "POST",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the Status in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ],
+      "description": "Unmute a conversation"
+    },
+    "reblogged_by": {
+      "method": "GET",
+      "returns": "Account",
+      "namespace": "statuses",
+      "pathParams": [
+        {
+          "description": "The ID of the Status in the database.",
+          "name": "id",
+          "type": "string",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "description": "See who boosted a status",
+      "uri": "/api/v1/statuses/:id/reblogged_by",
+      "formParams": [],
+      "name": "reblogged_by",
+      "queryParams": [
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.",
+          "type": "integer",
+          "name": "limit"
+        }
+      ]
+    },
+    "context": {
+      "uri": "/api/v1/statuses/:id/context",
+      "formParams": [],
+      "queryParams": [],
+      "name": "context",
+      "method": "GET",
+      "returns": "Context",
+      "namespace": "statuses",
+      "description": "Get parent and child statuses in context",
+      "pathParams": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "The ID of the Status in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ]
+    },
+    "get": {
+      "uri": "/api/v1/statuses/:id",
+      "formParams": [],
+      "name": "get",
+      "queryParams": [],
+      "method": "GET",
+      "returns": "Status",
+      "namespace": "statuses",
+      "description": "View a single status",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "id",
+          "type": "string",
+          "description": "The ID of the Status in the database."
+        }
+      ]
+    },
+    "source": {
+      "uri": "/api/v1/statuses/:id/source",
+      "formParams": [],
+      "queryParams": [],
+      "name": "source",
+      "method": "GET",
+      "returns": "StatusSource",
+      "namespace": "statuses",
+      "description": "View status source",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The local ID of the Status in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ]
+    },
+    "delete": {
+      "pathParams": [
+        {
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the Status in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "description": "Delete a status",
+      "returns": "Status",
+      "namespace": "statuses",
+      "method": "DELETE",
+      "queryParams": [],
+      "name": "delete",
+      "formParams": [],
+      "uri": "/api/v1/statuses/:id"
+    },
+    "unbookmark": {
+      "method": "POST",
+      "namespace": "statuses",
+      "returns": "Status",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the Status in the database.",
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "description": "Undo bookmark of a status",
+      "uri": "/api/v1/statuses/:id/unbookmark",
+      "formParams": [],
+      "queryParams": [],
+      "name": "unbookmark"
+    },
+    "edit": {
+      "method": "PUT",
+      "namespace": "statuses",
+      "returns": "Status",
+      "description": "Edit a status",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the Status in the database.",
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "uri": "/api/v1/statuses/:id",
+      "formParams": [
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "The plain text content of the status.",
+          "type": "string",
+          "name": "status"
+        },
+        {
+          "name": "spoiler_text",
+          "type": "string",
+          "description": "The plain text subject or content warning of the status.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Whether the status should be marked as sensitive.",
+          "type": "boolean",
+          "name": "sensitive"
+        },
+        {
+          "type": "string",
+          "name": "language",
+          "description": "ISO 639 language code for the status.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.",
+          "type": "array of string",
+          "name": "media_ids[]"
+        },
+        {
+          "name": "poll[options][]",
+          "type": "array of string",
+          "description": "Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "poll[expires_in]",
+          "type": "integer",
+          "description": "Duration that the poll should be open, in seconds. If provided, `media_ids` cannot be used, and `poll[options]` must be provided."
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Allow multiple choices? Defaults to false.",
+          "type": "boolean",
+          "name": "poll[multiple]"
+        },
+        {
+          "type": "boolean",
+          "name": "poll[hide_totals]",
+          "description": "Hide vote counts until the poll ends? Defaults to false.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "queryParams": [],
+      "name": "edit"
+    },
+    "mute": {
+      "name": "mute",
+      "queryParams": [],
+      "formParams": [],
+      "uri": "/api/v1/statuses/:id/mute",
+      "description": "Mute a conversation",
+      "pathParams": [
+        {
+          "description": "The ID of the Status in the database.",
+          "type": "string",
+          "name": "id",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "returns": "Status",
+      "namespace": "statuses",
+      "method": "POST"
+    },
+    "bookmark": {
+      "description": "Bookmark a status",
+      "pathParams": [
+        {
+          "description": "The ID of the Status in the database.",
+          "type": "string",
+          "name": "id",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "method": "POST",
+      "namespace": "statuses",
+      "returns": "Status",
+      "queryParams": [],
+      "name": "bookmark",
+      "uri": "/api/v1/statuses/:id/bookmark",
+      "formParams": []
+    },
+    "pin": {
+      "name": "pin",
+      "queryParams": [],
+      "uri": "/api/v1/statuses/:id/pin",
+      "formParams": [],
+      "description": "Pin status to profile",
+      "pathParams": [
+        {
+          "type": "database",
+          "name": "id",
+          "description": "The status should be authored by the authorized account.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "method": "POST",
+      "namespace": "statuses",
+      "returns": "Status"
+    },
+    "unreblog": {
+      "uri": "/api/v1/statuses/:id/unreblog",
+      "formParams": [],
+      "queryParams": [],
+      "name": "unreblog",
+      "method": "POST",
+      "returns": "Status",
+      "namespace": "statuses",
+      "pathParams": [
+        {
+          "description": "The ID of the Status in the database.",
+          "name": "id",
+          "type": "string",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "description": "Undo boost of a status"
+    },
+    "favourite": {
+      "formParams": [],
+      "uri": "/api/v1/statuses/:id/favourite",
+      "queryParams": [],
+      "name": "favourite",
+      "namespace": "statuses",
+      "returns": "Status",
+      "method": "POST",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "id",
+          "type": "string",
+          "description": "The ID of the Status in the database."
+        }
+      ],
+      "description": "Favourite a status"
+    },
+    "unfavourite": {
+      "uri": "/api/v1/statuses/:id/unfavourite",
+      "formParams": [],
+      "queryParams": [],
+      "name": "unfavourite",
+      "method": "POST",
+      "returns": "Status",
+      "namespace": "statuses",
+      "description": "Undo favourite of a status",
+      "pathParams": [
+        {
+          "description": "The ID of the Status in the database.",
+          "name": "id",
+          "type": "string",
+          "nullable": "",
+          "required": 1
+        }
+      ]
+    },
+    "unpin": {
+      "uri": "/api/v1/statuses/:id/unpin",
+      "formParams": [],
+      "queryParams": [],
+      "name": "unpin",
+      "method": "POST",
+      "namespace": "statuses",
+      "returns": "Status",
+      "description": "Unpin status from profile",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "id",
+          "description": "The local ID of the Status in the database."
+        }
+      ]
+    },
+    "card": {
+      "method": "GET",
+      "namespace": "statuses",
+      "returns": "PreviewCard",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "id",
+          "type": "string",
+          "description": "The local ID of the Status in the database."
+        }
+      ],
+      "description": "(DEPRECATED) Fetch preview card",
+      "uri": "/api/v1/statuses/:id/card",
+      "formParams": [],
+      "name": "card",
+      "queryParams": []
+    },
+    "favourited_by": {
+      "description": "See who favourited a status",
+      "pathParams": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "The ID of the Status in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "returns": "Account",
+      "namespace": "statuses",
+      "method": "GET",
+      "name": "favourited_by",
+      "queryParams": [
+        {
+          "type": "integer",
+          "name": "limit",
+          "description": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "formParams": [],
+      "uri": "/api/v1/statuses/:id/favourited_by"
+    },
+    "create": {
+      "formParams": [
+        {
+          "description": "The text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.",
+          "type": "string",
+          "name": "status",
+          "nullable": "",
+          "required": 1
+        },
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "array of string",
+          "name": "media_ids[]",
+          "description": "Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used."
+        },
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.",
+          "type": "array of string",
+          "name": "poll[options][]"
+        },
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "Duration that the poll should be open, in seconds. If provided, `media_ids` cannot be used, and `poll[options]` must be provided.",
+          "type": "integer",
+          "name": "poll[expires_in]"
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "boolean",
+          "name": "poll[multiple]",
+          "description": "Allow multiple choices? Defaults to false."
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "boolean",
+          "name": "poll[hide_totals]",
+          "description": "Hide vote counts until the poll ends? Defaults to false."
+        },
+        {
+          "type": "string",
+          "name": "in_reply_to_id",
+          "description": "ID of the status being replied to, if status is a reply.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Mark status and attached media as sensitive? Defaults to false.",
+          "name": "sensitive",
+          "type": "boolean"
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field.",
+          "type": "string",
+          "name": "spoiler_text"
+        },
+        {
+          "name": "visibility",
+          "type": "string",
+          "description": "Sets the visibility of the posted status to `public`, `unlisted`, `private`, `direct`.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "language",
+          "type": "string",
+          "description": "ISO 639 language code for this status."
+        },
+        {
+          "name": "scheduled_at",
+          "type": "string",
+          "description": "ISO 8601 Datetime at which to schedule a status. Providing this parameter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "uri": "/api/v1/statuses",
+      "name": "create",
+      "queryParams": [],
+      "returns": "ScheduledStatus",
+      "namespace": "statuses",
+      "method": "POST",
+      "description": "Post a new status",
+      "pathParams": []
+    },
+    "boost": {
+      "queryParams": [],
+      "name": "boost",
+      "formParams": [
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "visibility",
+          "type": "string",
+          "description": "Any visibility except `limited` or `direct` (i.e. `public`, `unlisted`, `private`). Defaults to public. Currently unused in UI."
+        }
+      ],
+      "uri": "/api/v1/statuses/:id/reblog",
+      "pathParams": [
+        {
+          "description": "The ID of the Status in the database.",
+          "name": "id",
+          "type": "string",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "description": "Boost a status",
+      "returns": "Status",
+      "namespace": "statuses",
+      "method": "POST"
+    },
+    "translate": {
+      "formParams": [
+        {
+          "name": "lang",
+          "type": "string (iso 639 language code)",
+          "description": "The status content will be translated into this language. Defaults to the user's current locale.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "uri": "/api/v1/statuses/:id/translate",
+      "queryParams": [],
+      "name": "translate",
+      "namespace": "statuses",
+      "returns": "Translation",
+      "method": "POST",
+      "description": "Translate a status",
+      "pathParams": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "The ID of the Status in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ]
+    },
+    "history": {
+      "formParams": [],
+      "uri": "/api/v1/statuses/:id/history",
+      "name": "history",
+      "queryParams": [],
+      "returns": "StatusEdit",
+      "namespace": "statuses",
+      "method": "GET",
+      "description": "View edit history of a status",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The local ID of the Status in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ]
+    }
+  },
+  "endorsements": {
+    "get": {
+      "name": "get",
+      "queryParams": [
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.",
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "uri": "/api/v1/endorsements",
+      "formParams": [],
+      "pathParams": [],
+      "description": "View currently featured profiles",
+      "method": "GET",
+      "returns": "Account",
+      "namespace": "endorsements"
+    }
+  },
+  "proofs": {
+    "get": {
+      "method": "GET",
+      "namespace": "proofs",
+      "returns": null,
+      "pathParams": [],
+      "description": "(REMOVED) View identity proofs",
+      "uri": "/api/proofs",
+      "formParams": [],
+      "queryParams": [
+        {
+          "description": "The identity provider to be looked up. Currently only supports `keybase` (case-sensitive).",
+          "type": "string",
+          "name": "provider",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "name": "username",
+          "type": "string",
+          "description": "The username on the selected identity provider.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "name": "get"
+    }
+  },
+  "oembed": {
+    "get": {
+      "description": "Get OEmbed info as JSON",
+      "pathParams": [],
+      "returns": null,
+      "namespace": "oembed",
+      "method": "GET",
+      "queryParams": [
+        {
+          "type": "string",
+          "name": "url",
+          "description": "URL of a status.",
+          "required": 1,
+          "nullable": ""
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "number",
+          "name": "maxwidth",
+          "description": "Width of the iframe. Defaults to 400"
+        },
+        {
+          "description": "Height of the iframe. Defaults to null",
+          "name": "maxheight",
+          "type": "number",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "name": "get",
+      "formParams": [],
+      "uri": "/api/oembed"
+    }
+  },
+  "domain_blocks": {
+    "unblock": {
+      "uri": "/api/v1/domain_blocks",
+      "formParams": [
+        {
+          "description": "Domain to unblock.",
+          "name": "domain",
+          "type": "string",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "name": "unblock",
+      "queryParams": [],
+      "method": "DELETE",
+      "namespace": "domain_blocks",
+      "returns": "empty",
+      "pathParams": [],
+      "description": "Unblock a domain"
+    },
+    "get": {
+      "queryParams": [
+        {
+          "description": "Maximum number of results to return. Defaults to 100 domain blocks. Max 200 domain blocks.",
+          "type": "integer",
+          "name": "limit",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "name": "get",
+      "uri": "/api/v1/domain_blocks",
+      "formParams": [],
+      "pathParams": [],
+      "description": "Get domain blocks",
+      "method": "GET",
+      "namespace": "domain_blocks",
+      "returns": null
+    },
+    "block": {
+      "pathParams": [],
+      "description": "Block a domain",
+      "returns": "empty",
+      "namespace": "domain_blocks",
+      "method": "POST",
+      "queryParams": [],
+      "name": "block",
+      "formParams": [
+        {
+          "type": "string",
+          "name": "domain",
+          "description": "Domain to block.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "uri": "/api/v1/domain_blocks"
+    }
+  },
+  "conversations": {
+    "read": {
+      "queryParams": [],
+      "name": "read",
+      "uri": "/api/v1/conversations/:id/read",
+      "formParams": [],
+      "description": "Mark a conversation as read",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the Conversation in the database."
+        }
+      ],
+      "method": "POST",
+      "returns": "Conversation",
+      "namespace": "conversations"
+    },
+    "get": {
+      "namespace": "conversations",
+      "returns": "Conversation",
+      "method": "GET",
+      "pathParams": [],
+      "description": "View all conversations",
+      "formParams": [],
+      "uri": "/api/v1/conversations",
+      "queryParams": [
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "integer",
+          "name": "limit",
+          "description": "Maximum number of results to return. Defaults to 20 conversations. Max 40 conversations."
+        }
+      ],
+      "name": "get"
+    },
+    "delete": {
+      "name": "delete",
+      "queryParams": [],
+      "uri": "/api/v1/conversations/:id",
+      "formParams": [],
+      "description": "Remove a conversation",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the Conversation in the database."
+        }
+      ],
+      "method": "DELETE",
+      "namespace": "conversations",
+      "returns": "empty"
+    }
+  },
+  "suggestions": {
+    "v1": {
+      "description": "(DEPRECATED) View follow suggestions (v1)",
+      "pathParams": [],
+      "method": "GET",
+      "namespace": "suggestions",
+      "returns": "Account",
+      "queryParams": [
+        {
+          "type": "integer",
+          "name": "limit",
+          "description": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "name": "v1",
+      "uri": "/api/v1/suggestions",
+      "formParams": []
+    },
+    "v2": {
+      "description": "View follow suggestions (v2)",
+      "pathParams": [],
+      "method": "GET",
+      "namespace": "suggestions",
+      "returns": "Suggestion",
+      "name": "v2",
+      "queryParams": [
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "limit",
+          "type": "integer",
+          "description": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts."
+        }
+      ],
+      "uri": "/api/v2/suggestions",
+      "formParams": []
+    },
+    "remove": {
+      "queryParams": [],
+      "name": "remove",
+      "uri": "/api/v1/suggestions/:account_id",
+      "formParams": [],
+      "description": "Remove a suggestion",
+      "pathParams": [
+        {
+          "description": "The ID of the Account in the database.",
+          "name": "account_id",
+          "type": "string",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "method": "DELETE",
+      "returns": "Suggestion",
+      "namespace": "suggestions"
+    }
+  },
+  "oauth": {
+    "token": {
+      "queryParams": [],
+      "name": "token",
+      "uri": "/oauth/token",
+      "formParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "grant_type",
+          "type": "string",
+          "description": "Set equal to `authorization_code` if `code` is provided in order to gain user-level access. Otherwise, set equal to `client_credentials` to obtain app-level access only."
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "A user authorization code, obtained via [GET /oauth/authorize](#authorize).",
+          "type": "string",
+          "name": "code"
+        },
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "client_id",
+          "description": "The client ID, obtained during app registration."
+        },
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The client secret, obtained during app registration.",
+          "name": "client_secret",
+          "type": "string"
+        },
+        {
+          "type": "string",
+          "name": "redirect_uri",
+          "description": "Set a URI to redirect the user to. If this parameter is set to urn:ietf:wg:oauth:2.0:oob then the token will be shown instead. Must match one of the `redirect_uris` declared during app registration.",
+          "required": 1,
+          "nullable": ""
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "List of requested OAuth scopes, separated by spaces (or by pluses, if using query parameters). If `code` was provided, then this must be equal to the `scope` requested from the user. Otherwise, it must be a subset of `scopes` declared during app registration. If not provided, defaults to `read`.",
+          "name": "scope",
+          "type": "string"
+        }
+      ],
+      "pathParams": [],
+      "description": "Obtain a token",
+      "method": "POST",
+      "returns": "Token",
+      "namespace": "oauth"
+    },
+    "authorize": {
+      "name": "authorize",
+      "queryParams": [
+        {
+          "description": "Should be set equal to `code`.",
+          "type": "string",
+          "name": "response_type",
+          "nullable": "",
+          "required": 1
+        },
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "client_id",
+          "type": "string",
+          "description": "The client ID, obtained during app registration."
+        },
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "Set a URI to redirect the user to. If this parameter is set to `urn:ietf:wg:oauth:2.0:oob` then the authorization code will be shown instead. Must match one of the `redirect_uris` declared during app registration.",
+          "name": "redirect_uri",
+          "type": "string"
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "string",
+          "name": "scope",
+          "description": "List of requested OAuth scopes, separated by spaces (or by pluses, if using query parameters). Must be a subset of `scopes` declared during app registration. If not provided, defaults to `read`."
+        },
+        {
+          "name": "force_login",
+          "type": "boolean",
+          "description": "Forces the user to re-login, which is necessary for authorizing with multiple accounts from the same instance.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "The ISO 639-1 two-letter language code to use while rendering the authorization form.",
+          "name": "lang",
+          "type": "string"
+        }
+      ],
+      "formParams": [],
+      "uri": "/oauth/authorize",
+      "pathParams": [],
+      "description": "Authorize a user",
+      "returns": null,
+      "namespace": "oauth",
+      "method": "GET"
+    },
+    "revoke": {
+      "uri": "/oauth/revoke",
+      "formParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "client_id",
+          "description": "The client ID, obtained during app registration."
+        },
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The client secret, obtained during app registration.",
+          "name": "client_secret",
+          "type": "string"
+        },
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "token",
+          "description": "The previously obtained token, to be invalidated."
+        }
+      ],
+      "queryParams": [],
+      "name": "revoke",
+      "method": "POST",
+      "returns": "empty",
+      "namespace": "oauth",
+      "description": "Revoke a token",
+      "pathParams": []
+    }
+  },
+  "announcements": {
+    "get": {
+      "description": "View all announcements",
+      "pathParams": [],
+      "namespace": "announcements",
+      "returns": "Announcement",
+      "method": "GET",
+      "name": "get",
+      "queryParams": [
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "boolean",
+          "name": "with_dismissed",
+          "description": "If true, response will include announcements dismissed by the user. Defaults to false."
+        }
+      ],
+      "formParams": [],
+      "uri": "/api/v1/announcements"
+    },
+    "put-reactions": {
+      "queryParams": [],
+      "name": "put-reactions",
+      "formParams": [],
+      "uri": "/api/v1/announcements/:id/reactions/:name",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the Announcement in the database.",
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "description": "Unicode emoji, or the shortcode of a custom emoji.",
+          "type": "string",
+          "name": "name",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "description": "Add a reaction to an announcement",
+      "returns": "Announcement",
+      "namespace": "announcements",
+      "method": "PUT"
+    },
+    "delete-reactions": {
+      "namespace": "announcements",
+      "returns": "Announcement",
+      "method": "DELETE",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the Announcement in the database.",
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "name",
+          "description": "Unicode emoji, or the shortcode of a custom emoji."
+        }
+      ],
+      "description": "Remove a reaction from an announcement",
+      "formParams": [],
+      "uri": "/api/v1/announcements/:id/reactions/:name",
+      "name": "delete-reactions",
+      "queryParams": []
+    },
+    "dismiss": {
+      "namespace": "announcements",
+      "returns": "Announcement",
+      "method": "POST",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the Announcement in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ],
+      "description": "Dismiss an announcement",
+      "formParams": [],
+      "uri": "/api/v1/announcements/:id/dismiss",
+      "queryParams": [],
+      "name": "dismiss"
+    }
+  },
+  "streaming": {
+    "health": {
+      "queryParams": [],
+      "name": "health",
+      "uri": "/api/v1/streaming/health",
+      "formParams": [],
+      "description": "Check if the server is alive",
+      "pathParams": [],
+      "method": "GET",
+      "namespace": "streaming",
+      "returns": null
+    }
+  },
+  "scheduled_statuses": {
+    "cancel": {
+      "name": "cancel",
+      "queryParams": [],
+      "uri": "/api/v1/scheduled_statuses/:id",
+      "formParams": [],
+      "pathParams": [
+        {
+          "description": "The ID of the ScheduledStatus in the database.",
+          "name": "id",
+          "type": "string",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "description": "Cancel a scheduled status",
+      "method": "DELETE",
+      "returns": "empty",
+      "namespace": "scheduled_statuses"
+    },
+    "update": {
+      "name": "update",
+      "queryParams": [],
+      "formParams": [
+        {
+          "description": "ISO 8601 Datetime at which the status will be published. Must be at least 5 minutes into the future.",
+          "type": "string",
+          "name": "scheduled_at",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "uri": "/api/v1/scheduled_statuses/:id",
+      "description": "Update a scheduled status's publishing date",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "name": "id",
+          "type": "string",
+          "description": "The ID of the ScheduledStatus in the database."
+        }
+      ],
+      "returns": "ScheduledStatus",
+      "namespace": "scheduled_statuses",
+      "method": "PUT"
+    },
+    "get": {
+      "namespace": "scheduled_statuses",
+      "returns": "ScheduledStatus",
+      "method": "GET",
+      "description": "View scheduled statuses",
+      "pathParams": [],
+      "formParams": [],
+      "uri": "/api/v1/scheduled_statuses",
+      "name": "get",
+      "queryParams": [
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "string",
+          "name": "max_id ",
+          "description": "Return results older than ID."
+        },
+        {
+          "description": "Return results newer than ID.",
+          "type": "string",
+          "name": "since_id",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "description": "Return results immediately newer than ID.",
+          "type": "string",
+          "name": "min_id",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "type": "integer",
+          "name": "limit",
+          "description": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.",
+          "required": 0,
+          "nullable": 1
+        }
+      ]
+    },
+    "get-one": {
+      "description": "View a single scheduled status",
+      "pathParams": [
+        {
+          "type": "string",
+          "name": "id",
+          "description": "The ID of the ScheduledStatus in the database.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "method": "GET",
+      "returns": "ScheduledStatus",
+      "namespace": "scheduled_statuses",
+      "name": "get-one",
+      "queryParams": [],
+      "uri": "/api/v1/scheduled_statuses/:id",
+      "formParams": []
+    }
+  },
+  "preferences": {
+    "get": {
+      "method": "GET",
+      "returns": null,
+      "namespace": "preferences",
+      "description": "View user preferences",
+      "pathParams": [],
+      "uri": "/api/v1/preferences",
+      "formParams": [],
+      "queryParams": [],
+      "name": "get"
+    }
+  },
+  "reports": {
+    "post": {
+      "pathParams": [],
+      "description": "File a report",
+      "method": "POST",
+      "namespace": "reports",
+      "returns": "Report",
+      "name": "post",
+      "queryParams": [],
+      "uri": "/api/v1/reports",
+      "formParams": [
+        {
+          "type": "string",
+          "name": "account_id",
+          "description": "ID of the account to report.",
+          "required": 1,
+          "nullable": ""
+        },
+        {
+          "type": "array of string",
+          "name": "status_ids[]",
+          "description": "You can attach statuses to the report to provide additional context.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "The reason for the report. Default maximum of 1000 characters.",
+          "type": "string",
+          "name": "comment"
+        },
+        {
+          "type": "boolean",
+          "name": "forward",
+          "description": "If the account is remote, should the report be forwarded to the remote admin? Defaults to false.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Specify if the report is due to `spam`, `violation` of enumerated instance rules, or some `other` reason. Defaults to `other`. Will be set to `violation` if `rule_ids[]` is provided (regardless of any category value you provide).",
+          "type": "string",
+          "name": "category"
+        },
+        {
+          "description": "For `violation` category reports, specify the ID of the exact rules broken. Rules and their IDs are available via [GET /api/v1/instance/rules]({{< relref \"methods/instance#rules\" >}}) and [GET /api/v1/instance]({{< relref \"methods/instance#get\" >}}).",
+          "name": "rule_ids[]",
+          "type": "array of integer",
+          "nullable": 1,
+          "required": 0
+        }
+      ]
+    }
+  },
+  "search": {
+    "v1": {
+      "uri": "/api/v1/search",
+      "formParams": [],
+      "name": "v1",
+      "queryParams": [
+        {
+          "description": "The search query.",
+          "name": "q",
+          "type": "string",
+          "nullable": "",
+          "required": 1
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Specify whether to search for only `accounts`, `hashtags`, `statuses`",
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "description": "Attempt WebFinger lookup? Defaults to false.",
+          "type": "boolean",
+          "name": "resolve",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "type": "string",
+          "name": "account_id",
+          "description": "If provided, will only return statuses authored by this account.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "string",
+          "name": "max_id ",
+          "description": "Return results older than this ID."
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Return results immediately newer than this ID.",
+          "name": "min_id",
+          "type": "string"
+        },
+        {
+          "description": "Maximum number of results to return, per type. Defaults to 20 results per category. Max 40 results per category.",
+          "type": "integer",
+          "name": "limit",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "description": "Offset in search results, used for pagination. Defaults to 0.",
+          "type": "integer",
+          "name": "offset",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "method": "GET",
+      "namespace": "search",
+      "returns": "Search",
+      "pathParams": [],
+      "description": "(REMOVED) Search results (v1)"
+    },
+    "v2": {
+      "formParams": [],
+      "uri": "/api/v2/search",
+      "queryParams": [
+        {
+          "name": "q",
+          "type": "string",
+          "description": "The search query.",
+          "required": 1,
+          "nullable": ""
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "string",
+          "name": "type",
+          "description": "Specify whether to search for only `accounts`, `hashtags`, `statuses`"
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "resolve",
+          "type": "boolean",
+          "description": "Attempt WebFinger lookup? Defaults to false."
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "following",
+          "type": "boolean",
+          "description": "Only include accounts that the user is following? Defaults to false."
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "string",
+          "name": "account_id",
+          "description": "If provided, will only return statuses authored by this account."
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "exclude_unreviewed",
+          "type": "boolean",
+          "description": "Filter out unreviewed tags? Defaults to false. Use true when trying to find trending tags."
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Return results older than this ID.",
+          "name": "max_id ",
+          "type": "string"
+        },
+        {
+          "name": "min_id",
+          "type": "string",
+          "description": "Return results immediately newer than this ID.",
+          "required": 0,
+          "nullable": 1
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "integer",
+          "name": "limit",
+          "description": "Maximum number of results to return, per type. Defaults to 20 results per category. Max 40 results per category."
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "integer",
+          "name": "offset",
+          "description": "Skip the first n results."
+        }
+      ],
+      "name": "v2",
+      "returns": "Search",
+      "namespace": "search",
+      "method": "GET",
+      "pathParams": [],
+      "description": "Perform a search"
+    }
+  },
+  "tags": {
+    "get": {
+      "namespace": "tags",
+      "returns": "Tag",
+      "method": "GET",
+      "description": "View information about a single tag",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The name of the hashtag.",
+          "type": "string",
+          "name": "id"
+        }
+      ],
+      "formParams": [],
+      "uri": "/api/v1/tags/:id",
+      "name": "get",
+      "queryParams": []
+    },
+    "follow": {
+      "method": "POST",
+      "returns": "Tag",
+      "namespace": "tags",
+      "pathParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "id",
+          "description": "The name of the hashtag."
+        }
+      ],
+      "description": "Follow a hashtag",
+      "uri": "/api/v1/tags/:id/follow",
+      "formParams": [],
+      "queryParams": [],
+      "name": "follow"
+    },
+    "unfollow": {
+      "method": "POST",
+      "returns": "Tag",
+      "namespace": "tags",
+      "description": "Unfollow a hashtag",
+      "pathParams": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "The name of the hashtag.",
+          "required": 1,
+          "nullable": ""
+        }
+      ],
+      "uri": "/api/v1/tags/:id/unfollow",
+      "formParams": [],
+      "queryParams": [],
+      "name": "unfollow"
+    }
+  },
+  "featured_tags": {
+    "suggestions": {
+      "pathParams": [],
+      "description": "View suggested tags to feature",
+      "returns": "Tag",
+      "namespace": "featured_tags",
+      "method": "GET",
+      "queryParams": [],
+      "name": "suggestions",
+      "formParams": [],
+      "uri": "/api/v1/featured_tags/suggestions"
+    },
+    "feature": {
+      "namespace": "featured_tags",
+      "returns": "FeaturedTag",
+      "method": "POST",
+      "pathParams": [],
+      "description": "Feature a tag",
+      "formParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The hashtag to be featured, without the hash sign.",
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "uri": "/api/v1/featured_tags",
+      "queryParams": [],
+      "name": "feature"
+    },
+    "get": {
+      "uri": "/api/v1/featured_tags",
+      "formParams": [],
+      "queryParams": [],
+      "name": "get",
+      "method": "GET",
+      "returns": "FeaturedTag",
+      "namespace": "featured_tags",
+      "description": "View your featured tags",
+      "pathParams": []
+    },
+    "unfeature": {
+      "formParams": [],
+      "uri": "/api/v1/featured_tags/:id",
+      "queryParams": [],
+      "name": "unfeature",
+      "namespace": "featured_tags",
+      "returns": "empty",
+      "method": "DELETE",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the FeaturedTag in the database.",
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "description": "Unfeature a tag"
+    }
+  },
+  "trends": {
+    "tags": {
+      "method": "GET",
+      "returns": "Tag",
+      "namespace": "trends",
+      "pathParams": [],
+      "description": "View trending tags",
+      "uri": "/api/v1/trends/tags",
+      "formParams": [],
+      "queryParams": [
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Maximum number of results to return. Defaults to 10 tags. Max 20 tags.",
+          "type": "integer",
+          "name": "limit"
+        },
+        {
+          "description": "Skip the first n results.",
+          "name": "offset",
+          "type": "integer",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "name": "tags"
+    },
+    "statuses": {
+      "formParams": [],
+      "uri": "/api/v1/trends/statuses",
+      "queryParams": [
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.",
+          "name": "limit",
+          "type": "integer"
+        },
+        {
+          "required": 0,
+          "nullable": 1,
+          "type": "integer",
+          "name": "offset",
+          "description": "Skip the first n results."
+        }
+      ],
+      "name": "statuses",
+      "namespace": "trends",
+      "returns": "Status",
+      "method": "GET",
+      "description": "View trending statuses",
+      "pathParams": []
+    },
+    "links": {
+      "pathParams": [],
+      "description": "View trending links",
+      "namespace": "trends",
+      "returns": "Trends::Link",
+      "method": "GET",
+      "name": "links",
+      "queryParams": [
+        {
+          "description": "Maximum number of results to return. Defaults to 10 links. Max 20 links.",
+          "type": "integer",
+          "name": "limit",
+          "nullable": 1,
+          "required": 0
+        },
+        {
+          "description": "Skip the first n results.",
+          "type": "integer",
+          "name": "offset",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "formParams": [],
+      "uri": "/api/v1/trends/links"
+    }
+  },
+  "mutes": {
+    "get": {
+      "method": "GET",
+      "namespace": "mutes",
+      "returns": "Account",
+      "pathParams": [],
+      "description": "View muted accounts",
+      "uri": "/api/v1/mutes",
+      "formParams": [],
+      "queryParams": [
+        {
+          "type": "integer",
+          "name": "limit",
+          "description": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.",
+          "required": 0,
+          "nullable": 1
+        }
+      ],
+      "name": "get"
+    }
+  },
+  "polls": {
+    "get": {
+      "method": "GET",
+      "namespace": "polls",
+      "returns": "Poll",
+      "description": "View a poll",
+      "pathParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "The ID of the Poll in the database.",
+          "type": "string",
+          "name": "id"
+        }
+      ],
+      "uri": "/api/v1/polls/:id",
+      "formParams": [],
+      "name": "get",
+      "queryParams": []
+    },
+    "vote": {
+      "name": "vote",
+      "queryParams": [],
+      "formParams": [
+        {
+          "nullable": "",
+          "required": 1,
+          "description": "Provide your own votes as an index for each option (starting from 0).",
+          "name": "choices[]",
+          "type": "array of integer"
+        }
+      ],
+      "uri": "/api/v1/polls/:id/votes",
+      "description": "Vote on a poll",
+      "pathParams": [
+        {
+          "description": "The ID of the Poll in the database.",
+          "type": "string",
+          "name": "id",
+          "nullable": "",
+          "required": 1
+        }
+      ],
+      "namespace": "polls",
+      "returns": "Poll",
+      "method": "POST"
+    }
+  },
+  "instance": {
+    "rules": {
+      "name": "rules",
+      "queryParams": [],
+      "uri": "/api/v1/instance/rules",
+      "formParams": [],
+      "description": "List of rules",
+      "pathParams": [],
+      "method": "GET",
+      "namespace": "instance",
+      "returns": "Rule"
+    },
+    "v2": {
+      "formParams": [],
+      "uri": null,
+      "name": "v2",
+      "queryParams": [],
+      "namespace": "instance",
+      "returns": "Instance",
+      "method": null,
+      "pathParams": [],
+      "description": "View server information"
+    },
+    "extended_description": {
+      "uri": "/api/v1/instance/extended_description",
+      "formParams": [],
+      "name": "extended_description",
+      "queryParams": [],
+      "method": "GET",
+      "returns": "ExtendedDescription",
+      "namespace": "instance",
+      "description": "View extended description",
+      "pathParams": []
+    },
+    "peers": {
+      "queryParams": [],
+      "name": "peers",
+      "uri": "/api/v1/instance/peers",
+      "formParams": [],
+      "description": "List of connected domains",
+      "pathParams": [],
+      "method": "GET",
+      "namespace": "instance",
+      "returns": "Instance"
+    },
+    "domain_blocks": {
+      "description": "View moderated servers",
+      "pathParams": [],
+      "method": "GET",
+      "namespace": "instance",
+      "returns": "DomainBlock",
+      "queryParams": [],
+      "name": "domain_blocks",
+      "uri": "/api/v1/instance/domain_blocks",
+      "formParams": []
+    },
+    "v1": {
+      "name": "v1",
+      "queryParams": [],
+      "uri": "/api/v1/instance",
+      "formParams": [],
+      "pathParams": [],
+      "description": "(DEPRECATED) View server information (V1)",
+      "method": "GET",
+      "namespace": "instance",
+      "returns": "V1::Instance"
+    },
+    "activity": {
+      "description": "Weekly activity",
+      "pathParams": [],
+      "returns": "Instance",
+      "namespace": "instance",
+      "method": "GET",
+      "queryParams": [],
+      "name": "activity",
+      "formParams": [],
+      "uri": "/api/v1/instance/activity"
+    }
+  },
+  "favourites": {
+    "get": {
+      "queryParams": [
+        {
+          "required": 0,
+          "nullable": 1,
+          "name": "limit",
+          "type": "integer",
+          "description": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses."
+        }
+      ],
+      "name": "get",
+      "formParams": [],
+      "uri": "/api/v1/favourites",
+      "pathParams": [],
+      "description": "View favourited statuses",
+      "returns": "Status",
+      "namespace": "favourites",
+      "method": "GET"
+    }
+  },
+  "apps": {
+    "verify_credentials": {
+      "formParams": [],
+      "uri": "/api/v1/apps/verify_credentials",
+      "queryParams": [],
+      "name": "verify_credentials",
+      "namespace": "apps",
+      "returns": "Application",
+      "method": "GET",
+      "pathParams": [],
+      "description": "Verify your app works"
+    },
+    "create": {
+      "pathParams": [],
+      "description": "Create an application",
+      "namespace": "apps",
+      "returns": "Application",
+      "method": "POST",
+      "queryParams": [],
+      "name": "create",
+      "formParams": [
+        {
+          "required": 1,
+          "nullable": "",
+          "type": "string",
+          "name": "client_name",
+          "description": "A name for your application"
+        },
+        {
+          "name": "redirect_uris",
+          "type": "string",
+          "description": "Where the user should be redirected after authorization. To display the authorization code to the user instead of redirecting to a web page, use `urn:ietf:wg:oauth:2.0:oob` in this parameter.",
+          "required": 1,
+          "nullable": ""
+        },
+        {
+          "nullable": 1,
+          "required": 0,
+          "description": "Space separated list of scopes. If none is provided, defaults to `read`. See [OAuth Scopes]({{< relref \"api/oauth-scopes\" >}}) for a list of possible scopes.",
+          "name": "scopes",
+          "type": "string"
+        },
+        {
+          "description": "A URL to the homepage of your app",
+          "name": "website",
+          "type": "string",
+          "nullable": 1,
+          "required": 0
+        }
+      ],
+      "uri": "/api/v1/apps"
+    }
+  }
+}
