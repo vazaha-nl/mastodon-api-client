@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+{% for classImport in classImports.get() %}
+{{ classImport.toImportString() }}
+{% endfor %}
+
+/**
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<{{ resultClassName.getFQN() }}>
+ */
+abstract class {{ classname }} extends Request implements RequestInterface
+{
+    public function getResultClass(): string
+    {
+        return {{ resultClassName.getBaseName() }}::class;
+    }
+}

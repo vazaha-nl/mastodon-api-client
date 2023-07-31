@@ -1,0 +1,26 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+{% for classImport in classImports.get() %}
+{{ classImport.toImportString() }}
+{% endfor %}
+
+/**
+ * @property \Illuminate\Support\Collection<array-key, \{{ modelClassName.getFQN() }}>    $models
+ * @property \{{ requestClassName.getFQN() }} $request
+ *
+ * @method null|\{{ modelClassName.getFQN() }}   getModel()
+ * @method \Illuminate\Support\Collection<array-key, \{{ modelClassName.getFQN() }}> getModels()
+ * @method null|\{{ modelClassName.getFQN() }} getNextResult()
+ * @method null|\{{ resultClassName.getFQN() }} getPreviousResult()
+ */
+class {{ classname }} extends Result implements ResultInterface
+{
+    public function getModelClass(): string
+    {
+        return {{ modelClassName.getBaseName() }}::class;
+    }
+}
