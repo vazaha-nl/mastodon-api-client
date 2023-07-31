@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
@@ -8,7 +12,7 @@ use Carbon\Carbon;
 use Vazaha\Mastodon\Models\Model;
 
 /**
- * @see https://link.to.docs
+ * Represents an IP address associated with a user.
  */
 class IpModel extends Model
 {

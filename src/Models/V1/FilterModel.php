@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\V1;
@@ -8,7 +12,7 @@ use Carbon\Carbon;
 use Vazaha\Mastodon\Models\Model;
 
 /**
- * @see https://link.to.docs
+ * Represents a user-defined filter for determining which statuses should not be shown to the user. Contains a single keyword or phrase.
  */
 class FilterModel extends Model
 {

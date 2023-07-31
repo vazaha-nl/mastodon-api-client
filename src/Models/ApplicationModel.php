@@ -1,11 +1,15 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
 /**
- * @see https://link.to.docs
+ * Represents an application that interfaces with the REST API to access accounts or post statuses.
  */
 class ApplicationModel extends Model
 {

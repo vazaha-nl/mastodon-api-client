@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
@@ -7,7 +11,7 @@ namespace Vazaha\Mastodon\Models;
 use Carbon\Carbon;
 
 /**
- * @see https://link.to.docs
+ * Represents a user of Mastodon and their associated profile.
  */
 class FieldModel extends Model
 {

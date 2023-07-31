@@ -1,11 +1,15 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
 /**
- * @see https://link.to.docs
+ * Represents a status ID that, if matched, should cause the filter action to be taken.
  */
 class FilterStatusModel extends Model
 {

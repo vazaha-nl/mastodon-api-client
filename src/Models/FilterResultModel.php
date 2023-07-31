@@ -1,11 +1,15 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
 /**
- * @see https://link.to.docs
+ * Represents a filter whose keywords matched a given status.
  */
 class FilterResultModel extends Model
 {

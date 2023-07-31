@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\V1;
@@ -9,7 +13,7 @@ use Vazaha\Mastodon\Models\AccountModel;
 use Vazaha\Mastodon\Models\Model;
 
 /**
- * @see https://link.to.docs
+ * Represents the software instance of Mastodon running on this domain.
  */
 class InstanceModel extends Model
 {

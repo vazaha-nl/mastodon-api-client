@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
@@ -9,7 +13,7 @@ use Vazaha\Mastodon\Collections\CustomEmojiCollection;
 use Vazaha\Mastodon\Collections\MediaAttachmentCollection;
 
 /**
- * @see https://link.to.docs
+ * Represents a revision of a status that has been edited.
  */
 class StatusEditModel extends Model
 {

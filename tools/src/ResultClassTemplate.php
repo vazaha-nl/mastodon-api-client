@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tools;
 
 use Tools\Enums\ClassType;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
+use Vazaha\Mastodon\Results\Result;
 
 class ResultClassTemplate extends ClassTemplate
 {
@@ -19,6 +22,7 @@ class ResultClassTemplate extends ClassTemplate
         $this->imports->add($modelClassName);
         $this->imports->add($resultClassName);
         $this->imports->add(new ClassName(ResultInterface::class));
+        $this->imports->add(new ClassName(Result::class));
 
         // var_dump($modelClassName); exit;
 

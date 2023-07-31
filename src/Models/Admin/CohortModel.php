@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
@@ -9,7 +13,7 @@ use Vazaha\Mastodon\Collections\CohortDataCollection;
 use Vazaha\Mastodon\Models\Model;
 
 /**
- * @see https://link.to.docs
+ * Represents a retention metric.
  */
 class CohortModel extends Model
 {

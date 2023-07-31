@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
@@ -7,7 +11,7 @@ namespace Vazaha\Mastodon\Models;
 use Vazaha\Mastodon\Collections\RuleCollection;
 
 /**
- * @see https://link.to.docs
+ * Represents the software instance of Mastodon running on this domain.
  */
 class InstanceModel extends Model
 {

@@ -1,11 +1,15 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
 /**
- * @see https://link.to.docs
+ * Represents a suggested account to follow and an associated reason for the suggestion.
  */
 class SuggestionModel extends Model
 {

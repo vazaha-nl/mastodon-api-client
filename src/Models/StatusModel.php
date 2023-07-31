@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
@@ -12,7 +16,7 @@ use Vazaha\Mastodon\Collections\Status\MentionCollection;
 use Vazaha\Mastodon\Collections\Status\TagCollection;
 
 /**
- * @see https://link.to.docs
+ * Represents a status posted by an account.
  */
 class StatusModel extends Model
 {

@@ -54,5 +54,5 @@ interface RequestInterface
 
     public function setSinceId(string $sinceId): static;
 
-    public function setLimit(int|null $limit): static;
+    public function setLimit(?int $limit): static;
 }

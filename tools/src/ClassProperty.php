@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tools;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Tools\Enums\ClassType;
 
 class ClassProperty
@@ -16,6 +17,7 @@ class ClassProperty
         'boolean' => 'bool',
         'hash' => 'array',
         'array' => 'array',
+        'object' => 'array',
         'array of string' => 'array',
         // 'datetime' => Carbon::class,
     ];
@@ -36,7 +38,9 @@ class ClassProperty
     {
         // print_r($array);
         $property = new static();
-        $property->name = str_replace(':', '_', $array['name']);
+        $property->name = $array['name'];
+        $property->name = str_replace(':', '_', $property->name);
+        $property->name = str_replace('[]', '', $property->name);
 
         if (!preg_match('/^[A-Za-z0-9_]*$/', $property->name)) {
             $property->show = false;
@@ -62,6 +66,14 @@ class ClassProperty
     {
         if (isset(self::TYPE_LOOKUP[$type])) {
             return self::TYPE_LOOKUP[$type];
+        }
+
+        if (Str::contains($type, 'array of ')) {
+            return 'array';
+        }
+
+        if (Str::startsWith($type, 'string ')) {
+            return 'string';
         }
 
         if ($type === 'datetime' || $type === 'timestamp') {

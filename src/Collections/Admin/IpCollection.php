@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 namespace Vazaha\Mastodon\Collections\Admin;
 
 use Vazaha\Mastodon\Collections\ModelCollection;

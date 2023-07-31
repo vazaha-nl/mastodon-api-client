@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tools;
 
 use Tools\Enums\ClassType;
@@ -17,7 +19,6 @@ class AbstractRequestClassTemplate extends ClassTemplate
         $this->imports->add($resultClassName);
         $this->imports->add(new ClassName(Request::class));
         $this->imports->add(new ClassName(RequestInterface::class));
-
 
         return [
             'namespace' => $this->entity->getNamespace($this->getClassType()),

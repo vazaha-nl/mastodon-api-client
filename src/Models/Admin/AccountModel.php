@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
@@ -11,7 +15,7 @@ use Vazaha\Mastodon\Models\Model;
 use Vazaha\Mastodon\Models\RoleModel;
 
 /**
- * @see https://link.to.docs
+ * Admin-level information about a given account.
  */
 class AccountModel extends Model
 {

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
@@ -7,7 +11,7 @@ namespace Vazaha\Mastodon\Models\Admin;
 use Vazaha\Mastodon\Models\Model;
 
 /**
- * @see https://link.to.docs
+ * Represents quantitative data about the server.
  */
 class MeasureModel extends Model
 {

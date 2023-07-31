@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Status;
@@ -7,7 +11,7 @@ namespace Vazaha\Mastodon\Models\Status;
 use Vazaha\Mastodon\Models\Model;
 
 /**
- * @see https://link.to.docs
+ * Represents a status posted by an account.
  */
 class TagModel extends Model
 {

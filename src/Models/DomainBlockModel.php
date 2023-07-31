@@ -1,11 +1,15 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
 /**
- * @see https://link.to.docs
+ * Represents a domain that is blocked by the instance.
  */
 class DomainBlockModel extends Model
 {

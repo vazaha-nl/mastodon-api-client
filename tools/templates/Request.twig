@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace {{ namespace }};
@@ -13,7 +17,7 @@ namespace {{ namespace }};
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\{{ resultClassName.getFQN() }}>
  */
-final class {{ classname }} extends Request implements RequestInterface
+final class {{ classname }} extends \{{ requestClassName.getFQN() }} implements RequestInterface
 {
 
     public function __construct(
@@ -55,11 +59,6 @@ final class {{ classname }} extends Request implements RequestInterface
             '{{ param.name }}' => $this->{{ param.name }},
 {% endfor %}
         ];
-    }
-
-    public function getResultClass(): string
-    {
-        return {{ resultClassName.getBaseName() }}::class;
     }
 
     public function getHttpMethod(): HttpMethod

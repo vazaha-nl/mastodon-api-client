@@ -15,7 +15,7 @@ trait HasPaging
 
     protected string $sinceId;
 
-    protected int|null $limit;
+    protected ?int $limit;
 
     public function getPagingParams(): array
     {
@@ -58,7 +58,7 @@ trait HasPaging
         }
 
         if (isset($params['limit'])) {
-            $this->setLimit((int)$params['limit']);
+            $this->setLimit((int) $params['limit']);
         }
 
         return $this;
@@ -85,7 +85,7 @@ trait HasPaging
         return $this;
     }
 
-    public function setLimit(null|int $limit): static
+    public function setLimit(?int $limit): static
     {
         $this->limit = $limit;
 

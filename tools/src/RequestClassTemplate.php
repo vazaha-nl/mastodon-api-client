@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tools;
 
 use Illuminate\Support\Collection;
-use Tools\Enums\ClassType;
-use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Illuminate\Support\Str;
+use Tools\Enums\ClassType;
 use Vazaha\Mastodon\Enums\HttpMethod;
-use Vazaha\Mastodon\Requests\Request;
+use Vazaha\Mastodon\Interfaces\RequestInterface;
 
 class RequestClassTemplate extends ClassTemplate
 {
@@ -15,8 +16,7 @@ class RequestClassTemplate extends ClassTemplate
 
     public function __construct(
         protected array $methodSpec,
-    )
-    {
+    ) {
         // var_dump($this->methodSpec); exit();
         $entity = new Entity($this->getNameForSpec($methodSpec));
         parent::__construct($entity);
@@ -26,14 +26,13 @@ class RequestClassTemplate extends ClassTemplate
     {
         $this->imports->add(new ClassName(RequestInterface::class));
         $this->imports->add(new ClassName(HttpMethod::class));
-        $this->imports->add(new ClassName(Request::class));
 
         $returnsEntity = $this->getReturnsEntity();
+        $requestClassName = $returnsEntity->toClassName(ClassType::REQUEST);
         $resultClassName = $returnsEntity->toClassName(ClassType::RESULT);
 
-        var_dump($resultClassName);
-
-        $this->imports->add($resultClassName);
+        $this->imports->add($requestClassName);
+        // $this->imports->add($resultClassName);
 
         return [
             'namespace' => $this->entity->getNamespace($this->getClassType()),
@@ -45,6 +44,7 @@ class RequestClassTemplate extends ClassTemplate
             'formParams' => $this->getFormParams(),
             'endpointExpression' => $this->parseUri(),
             'method' => $this->methodSpec['method'],
+            'requestClassName' => $requestClassName,
             'resultClassName' => $resultClassName,
             'allParams' => array_merge(
                 $this->getPathParams(),
@@ -66,6 +66,12 @@ class RequestClassTemplate extends ClassTemplate
     protected function parseUri(): string
     {
         $endpoint = $this->methodSpec['uri'];
+
+        if ($endpoint === null) {
+            var_dump($this->methodSpec);
+
+            exit;
+        }
         $sprintfArgs = [];
 
         while (preg_match('/:([a-z_]+)/', $endpoint, $matches)) {
@@ -75,7 +81,7 @@ class RequestClassTemplate extends ClassTemplate
         }
 
         if (empty($sprintfArgs)) {
-            return "'$endpoint'";
+            return "'{$endpoint}'";
         }
 
         return sprintf(
@@ -84,18 +90,17 @@ class RequestClassTemplate extends ClassTemplate
             implode(
                 ', ',
                 array_map(
-                    fn (string $param) => 'urlencode($this->' . $param . ')',
+                    static fn (string $param) => 'urlencode($this->' . $param . ')',
                     $sprintfArgs,
-                )
-            )
+                ),
+            ),
         );
-
     }
 
     protected function getPathParams(): array
     {
         return Collection::make($this->methodSpec['pathParams'] ?? [])
-            ->map(function (array $paramData) {
+            ->map(static function (array $paramData) {
                 return ClassProperty::fromArray($paramData);
             })
             ->toArray();
@@ -104,7 +109,7 @@ class RequestClassTemplate extends ClassTemplate
     protected function getQueryParams(): array
     {
         return Collection::make($this->methodSpec['queryParams'] ?? [])
-            ->map(function (array $paramData) {
+            ->map(static function (array $paramData) {
                 return ClassProperty::fromArray($paramData);
             })
             ->toArray();
@@ -113,7 +118,7 @@ class RequestClassTemplate extends ClassTemplate
     protected function getFormParams(): array
     {
         return Collection::make($this->methodSpec['formParams'] ?? [])
-            ->map(function (array $paramData) {
+            ->map(static function (array $paramData) {
                 return ClassProperty::fromArray($paramData);
             })
             ->toArray();
@@ -131,5 +136,4 @@ class RequestClassTemplate extends ClassTemplate
 
         return Str::studly($namespace) . '::' . Str::studly($name);
     }
-
 }

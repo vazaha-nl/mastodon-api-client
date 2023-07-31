@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
@@ -8,7 +12,7 @@ use Carbon\Carbon;
 use Vazaha\Mastodon\Collections\MediaAttachmentCollection;
 
 /**
- * @see https://link.to.docs
+ * Represents a status that will be published at a future scheduled date.
  */
 class ScheduledStatusModel extends Model
 {

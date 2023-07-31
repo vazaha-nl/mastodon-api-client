@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
@@ -9,7 +13,7 @@ use Vazaha\Mastodon\Collections\CustomEmojiCollection;
 use Vazaha\Mastodon\Collections\Poll\OptionCollection;
 
 /**
- * @see https://link.to.docs
+ * Represents a poll attached to a status.
  */
 class PollModel extends Model
 {

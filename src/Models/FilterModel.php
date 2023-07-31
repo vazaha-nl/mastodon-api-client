@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
@@ -9,7 +13,7 @@ use Vazaha\Mastodon\Collections\FilterKeywordCollection;
 use Vazaha\Mastodon\Collections\FilterStatusCollection;
 
 /**
- * @see https://link.to.docs
+ * Represents a user-defined filter for determining which statuses should not be shown to the user.
  */
 class FilterModel extends Model
 {

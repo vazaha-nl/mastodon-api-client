@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Poll;
@@ -7,7 +11,7 @@ namespace Vazaha\Mastodon\Models\Poll;
 use Vazaha\Mastodon\Models\Model;
 
 /**
- * @see https://link.to.docs
+ * Represents a poll attached to a status.
  */
 class OptionModel extends Model
 {

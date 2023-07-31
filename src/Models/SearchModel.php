@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
@@ -9,7 +13,7 @@ use Vazaha\Mastodon\Collections\StatusCollection;
 use Vazaha\Mastodon\Collections\TagCollection;
 
 /**
- * @see https://link.to.docs
+ * Represents the results of a search.
  */
 class SearchModel extends Model
 {

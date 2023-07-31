@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
@@ -7,7 +11,7 @@ namespace Vazaha\Mastodon\Models;
 use Vazaha\Mastodon\Collections\StatusCollection;
 
 /**
- * @see https://link.to.docs
+ * Represents the tree around a given status. Used for reconstructing threads of statuses.
  */
 class ContextModel extends Model
 {

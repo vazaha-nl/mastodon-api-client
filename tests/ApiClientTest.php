@@ -11,6 +11,7 @@ use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
 use Vazaha\Mastodon\Factories\ApiClientFactory;
 use Vazaha\Mastodon\Models\AccountModel;
 use Vazaha\Mastodon\Models\ListModel;
+use Vazaha\Mastodon\Requests\Accounts\GetRequest;
 use Vazaha\Mastodon\Requests\GetAccountRequest;
 use Vazaha\Mastodon\Requests\GetListsRequest;
 use Vazaha\Mastodon\Results\AccountResult;
@@ -50,7 +51,8 @@ class ApiClientTest extends TestCase
     {
         $response = $this->apiClient
             ->setBaseUri('https://example.org')
-            ->doRequest(new GetAccountRequest('testid'));
+            // ->doRequest(new GetAccountRequest('testid'));
+            ->doRequest(new GetRequest('foo'));
         self::assertInstanceOf(AccountResult::class, $response);
 
         $account = $response->getModel();

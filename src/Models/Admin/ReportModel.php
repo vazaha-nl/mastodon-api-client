@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
@@ -10,7 +14,7 @@ use Vazaha\Mastodon\Collections\StatusCollection;
 use Vazaha\Mastodon\Models\Model;
 
 /**
- * @see https://link.to.docs
+ * Admin-level information about a filed report.
  */
 class ReportModel extends Model
 {

@@ -18,6 +18,7 @@ class ModelClassTemplate extends ClassTemplate
 
     protected function getTemplateVars(): array
     {
+        $specs = $this->loadEntitySpecs();
         $this->imports->add(new ClassName(Model::class));
 
         return [
@@ -25,15 +26,15 @@ class ModelClassTemplate extends ClassTemplate
             'classname' => $this->entity->getBaseClassName($this->getClassType()),
             'classImports' => $this->imports,
             'properties' => $this->getProperties(),
+            'description' => $this->entitySpecs[$this->entity->name]['description'] ?? '',
         ];
     }
 
     protected function getProperties(): array
     {
-        $specs = $this->loadEntitySpecs();
         $this->collectionClasses = new ClassNameRepository();
 
-        $properties = $specs[$this->entity->name]['properties'];
+        $properties = $this->entitySpecs[$this->entity->name]['properties'];
 
         $p = [];
 

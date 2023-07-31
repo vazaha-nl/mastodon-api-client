@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Results;
@@ -9,7 +13,7 @@ use Vazaha\Mastodon\Models\AccountModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\AccountModel> $models
- * @property \Vazaha\Mastodon\Request\AccountRequest                                         $request
+ * @property \Vazaha\Mastodon\Requests\AccountRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Models\AccountModel                                       getModel()
  * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\AccountModel> getModels()
