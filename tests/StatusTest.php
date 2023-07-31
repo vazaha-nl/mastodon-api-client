@@ -11,7 +11,7 @@ use Vazaha\Mastodon\Collections\Status\TagCollection;
 use Vazaha\Mastodon\Models\AccountModel;
 use Vazaha\Mastodon\Models\Status\TagModel;
 use Vazaha\Mastodon\Models\StatusModel;
-use Vazaha\Mastodon\Requests\GetStatusRequest;
+use Vazaha\Mastodon\Requests\Statuses\GetRequest;
 use Vazaha\Mastodon\Results\StatusResult;
 
 class StatusTest extends TestCase
@@ -24,7 +24,7 @@ class StatusTest extends TestCase
             $this->createJsonResponseFromFile(200, 'status.json'),
         ])->setBaseUri('http://example.org');
 
-        $result = $client->doRequest(new GetStatusRequest('foo'));
+        $result = $client->doRequest(new GetRequest('foo'));
 
         self::assertInstanceOf(StatusResult::class, $result);
 

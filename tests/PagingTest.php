@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Tests\Concerns\CreatesMockClient;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Models\AccountModel;
-use Vazaha\Mastodon\Requests\GetAccountsFollowingRequest;
+use Vazaha\Mastodon\Requests\Accounts\FollowingRequest;
 use Vazaha\Mastodon\Results\AccountResult;
 
 class PagingTest extends TestCase
@@ -49,7 +49,7 @@ class PagingTest extends TestCase
     {
         $this->apiClient->setBaseUri('https://example.org');
 
-        $result = $this->apiClient->doRequest(new GetAccountsFollowingRequest('testid'));
+        $result = $this->apiClient->doRequest(new FollowingRequest('testid'));
         self::assertInstanceOf(AccountResult::class, $result);
 
         $accounts = $result->getModels();

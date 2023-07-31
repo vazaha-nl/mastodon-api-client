@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Tests\Concerns\CreatesMockClient;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Models\PreferencesModel;
-use Vazaha\Mastodon\Requests\GetPreferencesRequest;
+use Vazaha\Mastodon\Requests\Preferences\GetRequest;
 use Vazaha\Mastodon\Results\PreferencesResult;
 
 class PreferencesTest extends TestCase
@@ -31,7 +31,7 @@ class PreferencesTest extends TestCase
     {
         $result = $this->apiClient
             ->setBaseUri('foo')
-            ->doRequest(new GetPreferencesRequest());
+            ->doRequest(new GetRequest());
 
         self::assertInstanceOf(PreferencesResult::class, $result);
 

@@ -9,7 +9,7 @@ use Tests\Concerns\CreatesMockClient;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Exceptions\ApiClientException;
 use Vazaha\Mastodon\Models\ErrorModel;
-use Vazaha\Mastodon\Requests\GetAccountRequest;
+use Vazaha\Mastodon\Requests\Accounts\GetRequest;
 
 class ErrorTest extends TestCase
 {
@@ -29,13 +29,13 @@ class ErrorTest extends TestCase
     public function test400ErrorThrowsApiClientException(): void
     {
         $this->expectException(ApiClientException::class);
-        $this->apiClient->doRequest(new GetAccountRequest('id'));
+        $this->apiClient->doRequest(new GetRequest('id'));
     }
 
     public function testExceptionExposesErrorModel(): void
     {
         try {
-            $this->apiClient->doRequest(new GetAccountRequest('id'));
+            $this->apiClient->doRequest(new GetRequest('id'));
         } catch (ApiClientException $e) {
             $error = $e->getError();
             self::assertEquals(400, $e->getCode());

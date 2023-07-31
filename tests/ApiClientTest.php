@@ -12,8 +12,7 @@ use Vazaha\Mastodon\Factories\ApiClientFactory;
 use Vazaha\Mastodon\Models\AccountModel;
 use Vazaha\Mastodon\Models\ListModel;
 use Vazaha\Mastodon\Requests\Accounts\GetRequest;
-use Vazaha\Mastodon\Requests\GetAccountRequest;
-use Vazaha\Mastodon\Requests\GetListsRequest;
+use Vazaha\Mastodon\Requests\Lists\GetRequest as ListsGetRequest;
 use Vazaha\Mastodon\Results\AccountResult;
 use Vazaha\Mastodon\Results\ListResult;
 
@@ -44,7 +43,7 @@ class ApiClientTest extends TestCase
     public function testThrowsDomainNotSetExceptionWithoutDomain(): void
     {
         $this->expectException(BaseUriNotSetException::class);
-        $this->apiClient->doRequest(new GetAccountRequest('testid'));
+        $this->apiClient->doRequest(new GetRequest('testid'));
     }
 
     public function testGetAccountAndList(): void
@@ -62,7 +61,7 @@ class ApiClientTest extends TestCase
 
         $response = $this->apiClient
             ->setBaseUri('https://example.org')
-            ->doRequest(new GetListsRequest());
+            ->doRequest(new ListsGetRequest());
         self::assertInstanceOf(ListResult::class, $response);
 
         $list = $response->getModel();
@@ -76,7 +75,7 @@ class ApiClientTest extends TestCase
     {
         $response = $this->apiClient
             ->setBaseUri('https://example.org')
-            ->doRequest(new GetListsRequest());
+            ->doRequest(new ListsGetRequest());
         self::assertInstanceOf(ListResult::class, $response);
     }
 }
