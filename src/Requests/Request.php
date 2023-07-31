@@ -27,6 +27,16 @@ abstract class Request implements RequestInterface
         );
     }
 
+    /**
+     * @return array<string, mixed>
+     */
+    public function getOptions(): array
+    {
+        return array_filter([
+            'form_params' => $this->getFormParams(),
+        ]);
+    }
+
     public function getResultClass(): string
     {
         return Result::class;
