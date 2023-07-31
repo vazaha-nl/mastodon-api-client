@@ -40,6 +40,10 @@ class ModelClassTemplate extends ClassTemplate
         foreach ($properties as $propertyArray) {
             $property = ClassProperty::fromArray($propertyArray);
 
+            if (!$property->show) {
+                continue;
+            }
+
             if ($property->type instanceof ClassName) {
                 $this->imports->add($property->type);
 

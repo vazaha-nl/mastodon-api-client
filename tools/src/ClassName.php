@@ -4,9 +4,15 @@ declare(strict_types=1);
 
 namespace Tools;
 
+use Tools\Enums\ClassType;
+
 class ClassName
 {
     protected ?string $alias = null;
+
+    protected ?Entity $entity = null;
+
+    protected ?ClassType $classType = null;
 
     public function __construct(
         protected string $fqn,
@@ -16,6 +22,25 @@ class ClassName
     public function __toString(): string
     {
         return $this->toTypeString();
+    }
+
+    public static function fromEntity(Entity $entity, ClassType $classType): static
+    {
+        $static = new static($entity->getFQN($classType));
+        $static->entity = $entity;
+        $static->classType = $classType;
+
+        return $static;
+    }
+
+    public function getEntity(): ?Entity
+    {
+        return $this->entity ?? null;
+    }
+
+    public function getClassType(): ?ClassType
+    {
+        return $this->classType ?? null;
     }
 
     public function getFQN(): string

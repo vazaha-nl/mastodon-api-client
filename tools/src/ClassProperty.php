@@ -27,17 +27,25 @@ class ClassProperty
 
     public ?string $typeHint = null;
 
+    public bool $show = true;
+
     public static function fromArray(array $array): static
     {
+        // print_r($array);
         $property = new static();
-        $property->name = $array['name'];
+        $property->name = str_replace(':', '_', $array['name']);
+
+        if (!preg_match('/^[A-Za-z0-9_]*$/', $property->name)) {
+            $property->show = false;
+        }
+
         $property->nullable = (bool) $array['nullable'];
         $property->descriptionLines = explode(
             "\n",
             wordwrap($array['description'] ?? ''),
         );
 
-        $property->type = self::resolveType($array['type']);
+        $property->type = self::resolveType($array['type'] ?? 'string');
 
         if ($property->type === 'array') {
             // for phpstan....?
@@ -61,11 +69,11 @@ class ClassProperty
             $entityName = $matches[1];
             $entity = new Entity($entityName);
 
-            return $entity->toClassName(ClassType::COLLECTION);
+            return ClassName::fromEntity($entity, ClassType::COLLECTION);
         }
 
         $entity = new Entity($type);
 
-        return $entity->toClassName(ClassType::MODEL);
+        return ClassName::fromEntity($entity, ClassType::MODEL);
     }
 }
