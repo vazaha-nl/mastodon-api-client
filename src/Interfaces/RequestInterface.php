@@ -19,12 +19,12 @@ interface RequestInterface
     public function getUri(): UriInterface;
 
     /**
-     * @return array<string, string>
+     * @return array<string, mixed>
      */
     public function getQueryParams(): array;
 
     /**
-     * @return array<string, string>
+     * @return array<string, mixed>
      */
     public function getFormParams(): array;
 
@@ -39,7 +39,7 @@ interface RequestInterface
     public function getResultClass(): string;
 
     /**
-     * @return array<string, string>
+     * @return array<string, mixed>
      */
     public function getPagingParams(): array;
 
