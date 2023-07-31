@@ -8,16 +8,13 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\UriResolver;
 use GuzzleHttp\Psr7\Utils;
-use LogicException;
 use Psr\Http\Message\UriInterface;
 use Vazaha\Mastodon\Exceptions\ApiClientException;
 use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
 use Vazaha\Mastodon\Factories\ResultFactory;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
-use Vazaha\Mastodon\Models\OAuthTokenModel;
-use Vazaha\Mastodon\Requests\AuthorizeRequest;
-use Vazaha\Mastodon\Requests\CreateOAuthTokenRequest;
+use Vazaha\Mastodon\Models\TokenModel;
 use Vazaha\Mastodon\Results\ErrorResult;
 
 final class ApiClient
@@ -35,9 +32,9 @@ final class ApiClient
     ) {
     }
 
-    public function setAccessToken(OAuthTokenModel|string $token): self
+    public function setAccessToken(string|TokenModel $token): self
     {
-        if ($token instanceof OAuthTokenModel) {
+        if ($token instanceof TokenModel) {
             $token = $token->access_token;
         }
 
@@ -54,46 +51,6 @@ final class ApiClient
     public function getUri(RequestInterface $request): UriInterface
     {
         return UriResolver::resolve(Utils::uriFor($this->getBaseUri()), $request->getUri());
-    }
-
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \LogicException
-     * @throws \Vazaha\Mastodon\Exceptions\BaseUriNotSetException
-     */
-    public function requestOAuthToken(
-        string $clientId,
-        string $clientSecret,
-        string $redirectUri,
-        ?string $code = null,
-    ): OAuthTokenModel {
-        $request = new CreateOAuthTokenRequest($clientId, $clientSecret, $redirectUri, $code);
-        $result = $this->doRequest($request);
-
-        // type hint only needed for phpstan :(
-        /** @var null|\Vazaha\Mastodon\Models\OAuthTokenModel $token */
-        $token = $result->getModel();
-
-        if ($token === null) {
-            throw new LogicException('Token should never be null');
-        }
-
-        $this->setAccessToken($token);
-
-        return $token;
-    }
-
-    /**
-     * @param null|array<int, string|\Vazaha\Mastodon\Enums\Scope>|string $scope
-     */
-    public function getAuthorizationUrl(
-        string $clientId,
-        string $redirectUri,
-        null|array|string $scope = null,
-        ?bool $forceLogin = null,
-        ?string $lang = null,
-    ): UriInterface {
-        return $this->getUri(new AuthorizeRequest($clientId, $redirectUri, $scope, $forceLogin, $lang));
     }
 
     /**

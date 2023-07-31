@@ -46,12 +46,18 @@ class RequestClassTemplate extends ClassTemplate
             'method' => $this->methodSpec['method'],
             'requestClassName' => $requestClassName,
             'resultClassName' => $resultClassName,
-            'allParams' => array_merge(
-                $this->getPathParams(),
-                $this->getQueryParams(),
-                $this->getFormParams(),
-            ),
+            'allParams' => $this->getAllParams(),
         ];
+    }
+
+    protected function getAllParams(): array
+    {
+        return Collection::make($this->getPathParams())
+            ->concat($this->getQueryParams())
+            ->concat($this->getFormParams())
+            ->sortBy(static fn (ClassProperty $property) => $property->nullable ? 1 : 0)
+            ->values()
+            ->toArray();
     }
 
     protected function getReturnsEntity()

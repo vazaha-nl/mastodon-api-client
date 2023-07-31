@@ -27,11 +27,6 @@ final class TokenRequest extends \Vazaha\Mastodon\Requests\TokenRequest implemen
         public string $grant_type,
 
         /**
-         * A user authorization code, obtained via [GET /oauth/authorize](#authorize).
-         */
-        public ?string $code,
-
-        /**
          * The client ID, obtained during app registration.
          */
         public string $client_id,
@@ -47,6 +42,11 @@ final class TokenRequest extends \Vazaha\Mastodon\Requests\TokenRequest implemen
          * one of the `redirect_uris` declared during app registration.
          */
         public string $redirect_uri,
+
+        /**
+         * A user authorization code, obtained via [GET /oauth/authorize](#authorize).
+         */
+        public ?string $code = null,
 
         /**
          * List of requested OAuth scopes, separated by spaces (or by pluses, if using
