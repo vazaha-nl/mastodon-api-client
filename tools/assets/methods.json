@@ -3555,7 +3555,7 @@
   "preferences": {
     "get": {
       "uri": "/api/v1/preferences",
-      "returns": null,
+      "returns": "Preferences",
       "name": "get",
       "pathParams": [],
       "namespace": "preferences",

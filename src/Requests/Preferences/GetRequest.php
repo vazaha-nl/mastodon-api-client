@@ -14,9 +14,9 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 /**
  * View user preferences.
  *
- * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyResponseResult>
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\PreferencesResult>
  */
-final class GetRequest extends \Vazaha\Mastodon\Requests\EmptyResponseRequest implements RequestInterface
+final class GetRequest extends \Vazaha\Mastodon\Requests\PreferencesRequest implements RequestInterface
 {
     public function __construct(
     ) {
