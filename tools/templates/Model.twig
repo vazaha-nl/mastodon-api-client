@@ -19,6 +19,9 @@ class {{ classname }} extends Model
     {% for descriptionLine in property.descriptionLines %}
      * {{ descriptionLine }}
     {% endfor %}
+{% if property.typeHint %}
+     * @var {{ property.typeHint }} ${{ property.name }}
+{% endif %}
      */
     {% endif %}
     public {% if property.nullable %}?{% endif %}{{ property.type }} ${{ property.name }}{% if property.nullable %} = null{% endif %};

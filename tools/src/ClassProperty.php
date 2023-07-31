@@ -61,7 +61,7 @@ class ClassProperty
             return self::TYPE_LOOKUP[$type];
         }
 
-        if ($type === 'datetime') {
+        if ($type === 'datetime' || $type === 'timestamp') {
             return new ClassName(Carbon::class);
         }
 
