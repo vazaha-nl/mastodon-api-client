@@ -14,9 +14,9 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 /**
  * Cancel a scheduled status.
  *
- * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyResultResult>
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyResponseResult>
  */
-final class CancelRequest extends \Vazaha\Mastodon\Requests\EmptyResultRequest implements RequestInterface
+final class CancelRequest extends \Vazaha\Mastodon\Requests\EmptyResponseRequest implements RequestInterface
 {
     public function __construct(
         /**

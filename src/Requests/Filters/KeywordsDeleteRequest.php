@@ -14,9 +14,9 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 /**
  * Remove keywords from a filter.
  *
- * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyResultResult>
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyResponseResult>
  */
-final class KeywordsDeleteRequest extends \Vazaha\Mastodon\Requests\EmptyResultRequest implements RequestInterface
+final class KeywordsDeleteRequest extends \Vazaha\Mastodon\Requests\EmptyResponseRequest implements RequestInterface
 {
     public function __construct(
         /**

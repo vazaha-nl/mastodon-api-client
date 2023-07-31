@@ -13,10 +13,10 @@ use Tools\ResultClassTemplate;
 
 require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
-$entity = new Entity('EmptyResult');
+$entity = new Entity('EmptyResponse');
 $classTemplate = new ModelClassTemplate($entity);
 
-echo 'Writing file for EmptyResult entity... ';
+echo 'Writing file for EmptyResponse entity... ';
 $classTemplate->write(true);
 echo "Done!\n\n";
 

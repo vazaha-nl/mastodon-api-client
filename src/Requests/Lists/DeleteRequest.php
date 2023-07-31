@@ -14,9 +14,9 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 /**
  * Delete a list.
  *
- * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyResultResult>
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyResponseResult>
  */
-final class DeleteRequest extends \Vazaha\Mastodon\Requests\EmptyResultRequest implements RequestInterface
+final class DeleteRequest extends \Vazaha\Mastodon\Requests\EmptyResponseRequest implements RequestInterface
 {
     public function __construct(
         /**
