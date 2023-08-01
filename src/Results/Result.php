@@ -86,6 +86,7 @@ class Result implements ResultInterface
             return null;
         }
 
+        $this->httpResponse->getBody()->rewind();
         $json = $this->httpResponse->getBody()->getContents();
         $decoded = json_decode($json, true);
 
