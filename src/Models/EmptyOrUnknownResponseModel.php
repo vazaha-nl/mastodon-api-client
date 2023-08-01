@@ -8,6 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-class EmptyResultModel extends Model
+class EmptyOrUnknownResponseModel extends Model
 {
 }

@@ -14,9 +14,9 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 /**
  * Post a new status.
  *
- * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ScheduledStatusResult>
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
  */
-final class CreateRequest extends \Vazaha\Mastodon\Requests\ScheduledStatusRequest implements RequestInterface
+final class CreateRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {
     public function __construct(
         /**

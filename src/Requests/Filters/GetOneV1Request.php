@@ -14,9 +14,9 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 /**
  * View a single filter.
  *
- * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\FilterStatusResult>
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\V1\FilterResult>
  */
-final class GetOneV1Request extends \Vazaha\Mastodon\Requests\FilterStatusRequest implements RequestInterface
+final class GetOneV1Request extends \Vazaha\Mastodon\Requests\V1\FilterRequest implements RequestInterface
 {
     public function __construct(
         /**
