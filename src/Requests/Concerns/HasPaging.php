@@ -20,7 +20,9 @@ trait HasPaging
 
     protected ?int $limit;
 
-    /** @return array<string,string|int>  */
+    /**
+     * @return array<string,int|string>
+     */
     public function getPagingParams(): array
     {
         return array_filter([
@@ -38,7 +40,7 @@ trait HasPaging
             array_merge(
                 $this->getQueryParams(),
                 $this->getPagingParams(),
-            )
+            ),
         );
 
         if (!empty($query)) {

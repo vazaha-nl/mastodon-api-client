@@ -2,6 +2,14 @@
 
 A fully typed and feature complete [mastodon API](https://docs.joinmastodon.org/api/) client for PHP. 
 
+## Goals
+
+- Feature complete: every api method and entity should be implemented
+- Fully typed: no arbitrary arrays, but only fully typed objects, methods and properties, so you and your IDE know what's up
+- Well tested: Covered by unit tests and phpstan analysis on the highest level
+- Auto generated: all models and requests are auto generated based on the [Mastodon markup documentation](https://github.com/mastodon/documentation) (in absence of an openapi specification)
+
+
 ## Requirements
 
 - PHP >= 8.0
@@ -14,7 +22,6 @@ composer require vazaha-nl/mastodon-api-client
 ```
 
 ## Usage
-
 
 ### Create the api client
 
@@ -39,46 +46,35 @@ $client->setBaseUri('https://instance.example.org');
 $client->setAccessToken('token');
 
 ```
-### Create a a request
+### Create a a request and send it
 
 ```php
 
-// create the request
-$appRequest = new \Vazaha\Mastodon\Requests\Apps\CreateRequest(
-    'my client name',
-    'https://mysite.example.org/callback',
-    'read write',
-    'https://mysite.example.org',
-);
-// send the request
-$result = $client->doRequest($appRequest);
-// get the result model (in this case Application instance)
-// this can be used to request an access token.
-$app = $result->getModel();
-
+// create a request to get account with id `accountid`
+$request = new \Vazaha\Mastodon\Requests\Accounts\GetRequest('accountid');
+$result = $client->send($request);
+$account = $result->getModel();
 
 ```
 
-See the examples folder for more details.
-
-## Type hinting
-
-The complete code base is fully type hinted, using generics where possible/applicable. So IDEs with language server support will be able to understand the code and all types and properties very well, with no stubs or helpers needed. 
+See the `examples` folder for more examples.
 
 ## Auto generated classes
 
-The mastodon API does not yet have a complete specification like [OpenAPI](https://swagger.io/specification/), auto generation of classes was a challenge.
+Unfortunately, the mastodon API does not yet have a complete specification like [OpenAPI](https://swagger.io/specification/), auto generation of entities and methods was a challenge.
 
-However, it turned out to be very possible to parse the markdown from the [Markdown documentation](https://github.com/mastodon/documentation) and base the model, request, collection and result classes on this. 
+I tried using [AppMap](https://appmap.io/blog/2022/12/14/automatically-generating-openapi-docs-for-mastodon/), but so far, that turned out to be [unsuccessful](https://github.com/getappmap/appmap-ruby/issues/340). 
 
-The generator code can be found in the tools folder, along with the  json source data. The json files have been compiled with help of some (very quick & dirty) perl scripts. I intend to open source these scripts as well, but at the moment they are still way too rough around the edges.
+In the end I decided to to parse the markdown from the [Markdown documentation](https://github.com/mastodon/documentation) and base the model, request, collection and result classes on this. 
+
+The generator code can be found in the tools folder, along with the json source data. The json files have been compiled with help of some (very quick & dirty) perl scripts. I intend to open source these scripts as well, but they need some cleaning up and refactoring first.
 
 ## Testing
 
 The core of the client has been extensively tested using unit tests. The complete code base also passes the most strict checks by [phpstan](https://phpstan.org/). 
 
-
 ```
+
 # run tests
 composer test
 
@@ -92,12 +88,18 @@ composer analyse
 Coding style is enforced using `php-cs-fixer`. 
 
 ```
+
 # check only, no modifications will be made
 composer check-style
 
 # fix all files if possible
 composer fix-style
+
 ```
+
+## Bugs, issues, questions?
+
+Please open an issue on GitHub, or mail me directly at lennart@vazaha.nl.
 
 ## License
 
