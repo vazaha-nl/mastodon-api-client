@@ -41,7 +41,7 @@ class ReportModel extends Model
     /**
      * An optional reason for reporting.
      */
-    public string $comment;
+    public ?string $comment = null;
 
     /**
      * Whether a report was forwarded to a remote instance.

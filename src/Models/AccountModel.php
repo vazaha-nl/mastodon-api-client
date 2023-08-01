@@ -116,13 +116,13 @@ class AccountModel extends Model
     /**
      * An extra attribute returned only when an account is suspended.
      */
-    public bool $suspended;
+    public ?bool $suspended = null;
 
     /**
      * An extra attribute returned only when an account is silenced. If true,
      * indicates that the account should be hidden behind a warning screen.
      */
-    public bool $limited;
+    public ?bool $limited = null;
 
     /**
      * When the account was created.

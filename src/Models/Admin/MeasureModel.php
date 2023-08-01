@@ -33,7 +33,7 @@ class MeasureModel extends Model
     /**
      * A human-readable formatted value for this data item.
      */
-    public string $human_value;
+    public ?string $human_value = null;
 
     /**
      * The numeric total associated with the requested measure, in the previous
@@ -41,7 +41,7 @@ class MeasureModel extends Model
      * end_at dates, then offsetting both start and end dates backwards by the
      * length of the time period.
      */
-    public string $previous_total;
+    public ?string $previous_total = null;
 
     /**
      * The data available for the requested measure, split into daily buckets.

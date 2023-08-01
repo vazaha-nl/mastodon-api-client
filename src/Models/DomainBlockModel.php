@@ -31,5 +31,5 @@ class DomainBlockModel extends Model
     /**
      * An optional reason for the domain block.
      */
-    public string $comment;
+    public ?string $comment = null;
 }

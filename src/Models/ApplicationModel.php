@@ -34,10 +34,10 @@ class ApplicationModel extends Model
     /**
      * Client ID key, to be used for obtaining OAuth tokens.
      */
-    public string $client_id;
+    public ?string $client_id = null;
 
     /**
      * Client secret key, to be used for obtaining OAuth tokens.
      */
-    public string $client_secret;
+    public ?string $client_secret = null;
 }

@@ -31,10 +31,10 @@ class DataModel extends Model
     /**
      * The units associated with this data item&#039;s value, if applicable.
      */
-    public string $unit;
+    public ?string $unit = null;
 
     /**
      * A human-readable formatted value for this data item.
      */
-    public string $human_value;
+    public ?string $human_value = null;
 }

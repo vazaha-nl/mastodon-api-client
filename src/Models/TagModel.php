@@ -33,5 +33,5 @@ class TagModel extends Model
     /**
      * Whether the current token&#039;s authorized user is following this tag.
      */
-    public bool $following;
+    public ?bool $following = null;
 }

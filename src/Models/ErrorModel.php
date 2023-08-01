@@ -21,5 +21,5 @@ class ErrorModel extends Model
     /**
      * A longer description of the error, mainly provided with the OAuth API.
      */
-    public string $error_description;
+    public ?string $error_description = null;
 }

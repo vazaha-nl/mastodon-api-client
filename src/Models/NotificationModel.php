@@ -40,11 +40,11 @@ class NotificationModel extends Model
      * notification is `favourite`, `reblog`, `status`, `mention`, `poll`, or
      * `update`.
      */
-    public StatusModel $status;
+    public ?StatusModel $status = null;
 
     /**
      * Report that was the object of the notification. Attached when `type` of the
      * notification is `admin.report`.
      */
-    public ReportModel $report;
+    public ?ReportModel $report = null;
 }

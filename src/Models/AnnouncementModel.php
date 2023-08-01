@@ -64,7 +64,7 @@ class AnnouncementModel extends Model
     /**
      * Whether the announcement has been read by the current user.
      */
-    public bool $read;
+    public ?bool $read = null;
 
     /**
      * Accounts mentioned in the announcement text.

@@ -71,7 +71,7 @@ class StatusModel extends Model
      *
      * @var mixed[]
      */
-    public array $application;
+    public ?array $application = null;
 
     /**
      * Mentions of users within the status content.
@@ -154,34 +154,34 @@ class StatusModel extends Model
      * If the current token has an authorized user: Have you favourited this
      * status?
      */
-    public bool $favourited;
+    public ?bool $favourited = null;
 
     /**
      * If the current token has an authorized user: Have you boosted this status?
      */
-    public bool $reblogged;
+    public ?bool $reblogged = null;
 
     /**
      * If the current token has an authorized user: Have you muted notifications
      * for this status&#039;s conversation?
      */
-    public bool $muted;
+    public ?bool $muted = null;
 
     /**
      * If the current token has an authorized user: Have you bookmarked this
      * status?
      */
-    public bool $bookmarked;
+    public ?bool $bookmarked = null;
 
     /**
      * If the current token has an authorized user: Have you pinned this status?
      * Only appears if the status is pinnable.
      */
-    public bool $pinned;
+    public ?bool $pinned = null;
 
     /**
      * If the current token has an authorized user: The filter and keywords that
      * matched this status.
      */
-    public FilterResultCollection $filtered;
+    public ?FilterResultCollection $filtered = null;
 }

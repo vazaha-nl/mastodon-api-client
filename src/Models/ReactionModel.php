@@ -27,16 +27,16 @@ class ReactionModel extends Model
     /**
      * If there is a currently authorized user: Have you added this reaction?
      */
-    public bool $me;
+    public ?bool $me = null;
 
     /**
      * If the reaction is a custom emoji: A link to the custom emoji.
      */
-    public string $url;
+    public ?string $url = null;
 
     /**
      * If the reaction is a custom emoji: A link to a non-animated version of the
      * custom emoji.
      */
-    public string $static_url;
+    public ?string $static_url = null;
 }

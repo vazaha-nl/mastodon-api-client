@@ -49,7 +49,7 @@ class StatusEditModel extends Model
      *
      * @var mixed[]
      */
-    public array $poll;
+    public ?array $poll = null;
 
     /**
      * The current state of the poll options at this revision. Note that edits
