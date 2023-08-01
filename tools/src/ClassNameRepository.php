@@ -70,7 +70,9 @@ class ClassNameRepository
     {
         return $this->collection
             ->when($this->referenceClassName !== null, function (Collection $collection) {
-                return $collection->filter(fn (ClassName $className) => $className->getNamespace() !== $this->referenceClassName->getNamespace());
+                return $collection->filter(function (ClassName $className) {
+                    return $className->getNamespace() !== $this->referenceClassName->getNamespace();
+                });
             })
             ->sortBy(static fn (ClassName $className) => $className->getFQN())
             ->values();

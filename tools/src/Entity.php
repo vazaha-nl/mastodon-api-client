@@ -21,12 +21,22 @@ class Entity
 
     public function getDirectory(ClassType $classType): string
     {
-        return rtrim($this->projectRoot . sprintf('/src/%s', Str::plural($classType->value)) . '/' . $this->getRelativeDirectory(), '/');
+        return rtrim(
+            $this->projectRoot .
+            sprintf(
+                '/src/%s',
+                Str::plural($classType->value),
+            ) . '/' . $this->getRelativeDirectory(),
+            '/',
+        );
     }
 
     public function getNamespace(ClassType $classType): string
     {
-        $namespace = $this->rootNamespace . sprintf('\\%s', Str::plural($classType->value)) . '\\' . $this->getRelativeNamespace();
+        $namespace = $this->rootNamespace . sprintf(
+            '\\%s',
+            Str::plural($classType->value)
+        ) . '\\' . $this->getRelativeNamespace();
 
         return rtrim($namespace, '\\');
     }
