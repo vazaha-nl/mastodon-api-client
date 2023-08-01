@@ -45,7 +45,7 @@ class MethodSpecsRepository
             ->map(static fn (array $spec) => $spec['returns'])
             ->map(static function ($returns) {
                 if (empty($returns) || $returns === 'empty') {
-                    return 'EmptyResponse';
+                    return 'EmptyOrUnknownResponse';
                 }
 
                 return $returns;

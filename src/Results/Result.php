@@ -12,7 +12,7 @@ use Vazaha\Mastodon\Factories\ModelFactory;
 use Vazaha\Mastodon\Interfaces\ModelInterface;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
-use Vazaha\Mastodon\Models\EmptyResponseModel;
+use Vazaha\Mastodon\Models\EmptyOrUnknownResponseModel;
 use Vazaha\Mastodon\Results\Concerns\HasPaging;
 
 class Result implements ResultInterface
@@ -103,7 +103,7 @@ class Result implements ResultInterface
 
     public function getModelClass(): string
     {
-        return EmptyResponseModel::class;
+        return EmptyOrUnknownResponseModel::class;
     }
 
     protected function isJson(): bool

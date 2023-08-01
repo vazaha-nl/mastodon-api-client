@@ -61,7 +61,7 @@ class RequestClassTemplate extends ClassTemplate
     protected function getReturnsEntity()
     {
         if (empty($this->methodSpec['returns']) || $this->methodSpec['returns'] === 'empty') {
-            return new Entity('EmptyResponse');
+            return new Entity('EmptyOrUnknownResponse');
         }
 
         return new Entity($this->methodSpec['returns']);
