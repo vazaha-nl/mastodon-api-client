@@ -43,15 +43,14 @@ class ApiClientTest extends TestCase
     public function testThrowsDomainNotSetExceptionWithoutDomain(): void
     {
         $this->expectException(BaseUriNotSetException::class);
-        $this->apiClient->doRequest(new GetRequest('testid'));
+        $this->apiClient->send(new GetRequest('testid'));
     }
 
     public function testGetAccountAndList(): void
     {
         $response = $this->apiClient
             ->setBaseUri('https://example.org')
-            // ->doRequest(new GetAccountRequest('testid'));
-            ->doRequest(new GetRequest('foo'));
+            ->send(new GetRequest('foo'));
         self::assertInstanceOf(AccountResult::class, $response);
 
         $account = $response->getModel();
@@ -61,7 +60,7 @@ class ApiClientTest extends TestCase
 
         $response = $this->apiClient
             ->setBaseUri('https://example.org')
-            ->doRequest(new ListsGetRequest());
+            ->send(new ListsGetRequest());
         self::assertInstanceOf(ListResult::class, $response);
 
         $list = $response->getModel();
@@ -75,7 +74,7 @@ class ApiClientTest extends TestCase
     {
         $response = $this->apiClient
             ->setBaseUri('https://example.org')
-            ->doRequest(new ListsGetRequest());
+            ->send(new ListsGetRequest());
         self::assertInstanceOf(ListResult::class, $response);
     }
 }

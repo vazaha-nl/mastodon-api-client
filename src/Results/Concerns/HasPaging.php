@@ -21,7 +21,7 @@ trait HasPaging
         }
 
         /** @var \Vazaha\Mastodon\Results\Result $result */
-        $result = $this->apiClient->doRequest($this->request->setPagingParams($params));
+        $result = $this->apiClient->send($this->request->setPagingParams($params));
 
         return $result;
     }
@@ -35,7 +35,7 @@ trait HasPaging
         }
 
         /** @var \Vazaha\Mastodon\Results\Result $result */
-        $result = $this->apiClient->doRequest($this->request->setPagingParams($params));
+        $result = $this->apiClient->send($this->request->setPagingParams($params));
 
         return $result;
     }

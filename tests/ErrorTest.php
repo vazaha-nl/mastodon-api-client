@@ -29,13 +29,13 @@ class ErrorTest extends TestCase
     public function test400ErrorThrowsApiClientException(): void
     {
         $this->expectException(ApiClientException::class);
-        $this->apiClient->doRequest(new GetRequest('id'));
+        $this->apiClient->send(new GetRequest('id'));
     }
 
     public function testExceptionExposesErrorModel(): void
     {
         try {
-            $this->apiClient->doRequest(new GetRequest('id'));
+            $this->apiClient->send(new GetRequest('id'));
         } catch (ApiClientException $e) {
             $error = $e->getError();
             self::assertEquals(400, $e->getCode());

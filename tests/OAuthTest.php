@@ -29,7 +29,7 @@ class OAuthTest extends TestCase
     {
         $response = $this->apiClient
             ->setBaseUri('https://example.org')
-            ->doRequest(new TokenRequest('client_credentials', 'code', 'clientid', 'clientsecret', 'redirecturi'));
+            ->send(new TokenRequest('client_credentials', 'code', 'clientid', 'clientsecret', 'redirecturi'));
         self::assertInstanceOf(TokenResult::class, $response);
         $model = $response->getModel();
         self::assertInstanceOf(TokenModel::class, $model);

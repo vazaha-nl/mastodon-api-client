@@ -49,7 +49,7 @@ class PagingTest extends TestCase
     {
         $this->apiClient->setBaseUri('https://example.org');
 
-        $result = $this->apiClient->doRequest(new FollowingRequest('testid'));
+        $result = $this->apiClient->send(new FollowingRequest('testid'));
         self::assertInstanceOf(AccountResult::class, $result);
 
         $accounts = $result->getModels();

@@ -31,7 +31,7 @@ class PreferencesTest extends TestCase
     {
         $result = $this->apiClient
             ->setBaseUri('foo')
-            ->doRequest(new GetRequest());
+            ->send(new GetRequest());
 
         self::assertInstanceOf(PreferencesResult::class, $result);
 

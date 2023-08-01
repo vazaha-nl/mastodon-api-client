@@ -43,7 +43,5 @@ class ClassNameRepositoryTest extends TestCase
 
         $withAlias = $collection->filter(static fn (ClassName $className) => $className->getAlias() !== null);
         self::assertEquals(1, $withAlias->count());
-
-        echo $withAlias->first()->getAlias();
     }
 }

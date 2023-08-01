@@ -24,7 +24,7 @@ class StatusTest extends TestCase
             $this->createJsonResponseFromFile(200, 'status.json'),
         ])->setBaseUri('http://example.org');
 
-        $result = $client->doRequest(new GetRequest('foo'));
+        $result = $client->send(new GetRequest('foo'));
 
         self::assertInstanceOf(StatusResult::class, $result);
 

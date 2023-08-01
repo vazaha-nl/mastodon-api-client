@@ -62,7 +62,7 @@ final class ApiClient
      *
      * @return T
      */
-    public function doRequest(RequestInterface $request): ResultInterface
+    public function send(RequestInterface $request): ResultInterface
     {
         $resultFactory = new ResultFactory();
 
