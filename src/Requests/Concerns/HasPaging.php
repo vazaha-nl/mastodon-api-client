@@ -7,6 +7,9 @@ namespace Vazaha\Mastodon\Requests\Concerns;
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\UriInterface;
 
+/**
+ * @mixin \Vazaha\Mastodon\Requests\Request
+ */
 trait HasPaging
 {
     protected string $maxId;
@@ -17,6 +20,7 @@ trait HasPaging
 
     protected ?int $limit;
 
+    /** @return array<string,string|int>  */
     public function getPagingParams(): array
     {
         return array_filter([
@@ -29,15 +33,19 @@ trait HasPaging
 
     public function getUri(): UriInterface
     {
-        return Uri::withQueryValues(
-            new Uri(
-                $this->getEndpoint(),
-            ),
+        $uri = $this->getEndpoint();
+        $query = http_build_query(
             array_merge(
                 $this->getQueryParams(),
                 $this->getPagingParams(),
-            ),
+            )
         );
+
+        if (!empty($query)) {
+            $uri .= '?' . $query;
+        }
+
+        return new Uri($uri);
     }
 
     /**

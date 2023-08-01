@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
-use GuzzleHttp\Psr7\Uri;
-use Psr\Http\Message\UriInterface;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Requests\Concerns\HasPaging;
 use Vazaha\Mastodon\Results\Result;
@@ -16,18 +14,6 @@ use Vazaha\Mastodon\Results\Result;
 abstract class Request implements RequestInterface
 {
     use HasPaging;
-
-    // TODO FIXME rewrite, query param values are sometimes arrays!
-    // and that does not work with Uri::withQueryValues()
-    public function getUri(): UriInterface
-    {
-        return Uri::withQueryValues(
-            new Uri(
-                $this->getEndpoint(),
-            ),
-            $this->getQueryParams(),
-        );
-    }
 
     /**
      * @return array<string, mixed>
