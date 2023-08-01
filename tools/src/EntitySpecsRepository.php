@@ -21,7 +21,7 @@ class EntitySpecsRepository
 
     public function getEntityProperties(string $name): ?array
     {
-        $data = $this->entitySpecs[$name] ?? null;
+        $data = $this->getEntityData($name);
 
         if ($data === null) {
             return null;
@@ -38,6 +38,13 @@ class EntitySpecsRepository
         $this->loadEntitySpecs();
 
         return array_keys($this->entitySpecs);
+    }
+
+    public function getAllEntities(): array
+    {
+        $this->loadEntitySpecs();
+
+        return array_values($this->entitySpecs);
     }
 
     public function getNamesWithCollection(): array

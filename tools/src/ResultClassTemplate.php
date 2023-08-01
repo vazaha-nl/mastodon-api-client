@@ -10,8 +10,6 @@ use Vazaha\Mastodon\Results\Result;
 
 class ResultClassTemplate extends ClassTemplate
 {
-    protected string $template = 'Result.twig';
-
     protected function getTemplateVars(): array
     {
         $modelClassName = $this->entity->toClassName(ClassType::MODEL);
@@ -39,5 +37,10 @@ class ResultClassTemplate extends ClassTemplate
     protected function getClassType(): ClassType
     {
         return ClassType::RESULT;
+    }
+
+    protected function getTemplateName(): string
+    {
+        return 'Result.twig';
     }
 }

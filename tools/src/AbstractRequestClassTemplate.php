@@ -10,8 +10,6 @@ use Vazaha\Mastodon\Requests\Request;
 
 class AbstractRequestClassTemplate extends ClassTemplate
 {
-    protected string $template = 'AbstractRequest.twig';
-
     protected function getTemplateVars(): array
     {
         $resultClassName = $this->entity->toClassName(ClassType::RESULT);
@@ -31,5 +29,10 @@ class AbstractRequestClassTemplate extends ClassTemplate
     protected function getClassType(): ClassType
     {
         return ClassType::REQUEST;
+    }
+
+    protected function getTemplateName(): string
+    {
+        return 'AbstractRequest.twig';
     }
 }

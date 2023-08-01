@@ -21,6 +21,7 @@ abstract class ClassTemplate
     protected Environment $twig;
 
     public function __construct(
+        // TODO replace with ClassName?
         protected Entity $entity,
     ) {
         $projectRoot = dirname(__DIR__, 2);
@@ -35,7 +36,7 @@ abstract class ClassTemplate
 
     public function render(): string
     {
-        $template = $this->twig->load($this->template);
+        $template = $this->twig->load($this->getTemplateName());
 
         return $template->render($this->getTemplateVars());
     }
@@ -56,6 +57,8 @@ abstract class ClassTemplate
 
         return (bool) file_put_contents($this->getTargetPath(), $this->render());
     }
+
+    abstract protected function getTemplateName(): string;
 
     abstract protected function getTemplateVars(): array;
 

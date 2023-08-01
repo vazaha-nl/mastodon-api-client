@@ -9,8 +9,6 @@ use Tools\Enums\ClassType;
 
 class Entity
 {
-    public bool $overwriteExisting = false;
-
     protected string $projectRoot;
 
     protected string $rootNamespace = 'Vazaha\\Mastodon';
@@ -72,6 +70,6 @@ class Entity
 
     public function toClassName(ClassType $classType): ClassName
     {
-        return new ClassName($this->getFQN($classType));
+        return ClassName::fromEntity($this, $classType);
     }
 }

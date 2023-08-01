@@ -9,8 +9,6 @@ use Vazaha\Mastodon\Collections\ModelCollection;
 
 class CollectionClassTemplate extends ClassTemplate
 {
-    protected string $template = 'Collection.twig';
-
     protected function getTemplateVars(): array
     {
         $this->imports
@@ -29,5 +27,10 @@ class CollectionClassTemplate extends ClassTemplate
     protected function getClassType(): ClassType
     {
         return ClassType::COLLECTION;
+    }
+
+    protected function getTemplateName(): string
+    {
+        return 'Collection.twig';
     }
 }

@@ -12,8 +12,6 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 
 class RequestClassTemplate extends ClassTemplate
 {
-    protected string $template = 'Request.twig';
-
     public function __construct(
         protected array $methodSpec,
     ) {
@@ -141,5 +139,10 @@ class RequestClassTemplate extends ClassTemplate
         $name = $spec['name'];
 
         return Str::studly($namespace) . '::' . Str::studly($name);
+    }
+
+    protected function getTemplateName(): string
+    {
+        return 'Request.twig';
     }
 }

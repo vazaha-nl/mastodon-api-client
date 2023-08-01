@@ -14,8 +14,6 @@ class ModelClassTemplate extends ClassTemplate
 
     public ClassNameRepository $collectionClasses;
 
-    protected string $template = 'Model.twig';
-
     protected function getTemplateVars(): array
     {
         $specs = $this->loadEntitySpecs();
@@ -62,5 +60,10 @@ class ModelClassTemplate extends ClassTemplate
     protected function getClassType(): ClassType
     {
         return ClassType::MODEL;
+    }
+
+    protected function getTemplateName(): string
+    {
+        return 'Model.twig';
     }
 }

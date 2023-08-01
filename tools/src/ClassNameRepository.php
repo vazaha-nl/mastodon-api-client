@@ -60,6 +60,12 @@ class ClassNameRepository
             ->isNotEmpty();
     }
 
+    /**
+     * @template TKey of array-key
+     * @template TModel of \Tools\ClassName
+     *
+     * @return \Illuminate\Support\Collection<TKey, TModel>
+     */
     public function get(): Collection
     {
         return $this->collection
