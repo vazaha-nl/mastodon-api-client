@@ -20,11 +20,11 @@
     "license": "MIT",
     "name": "vazaha/mastodon-api-client",
     "require": {
-        "php": ">=8.0",
+        "php": ">=8.1",
         "guzzlehttp/guzzle": "^7.7",
         "illuminate/support": "^9 || ^10",
         "nesbot/carbon": "^2.68",
-        "illuminate/collections": "^10.16"
+        "illuminate/collections": "^9 || ^10"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.10",
