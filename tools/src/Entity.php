@@ -35,7 +35,7 @@ class Entity
     {
         $namespace = $this->rootNamespace . sprintf(
             '\\%s',
-            Str::plural($classType->value)
+            Str::plural($classType->value),
         ) . '\\' . $this->getRelativeNamespace();
 
         return rtrim($namespace, '\\');
