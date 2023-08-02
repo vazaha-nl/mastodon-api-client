@@ -9,13 +9,12 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\UriResolver;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\UriInterface;
-use Vazaha\Mastodon\Exceptions\ApiClientException;
 use Vazaha\Mastodon\Exceptions\BaseUriNotSetException;
+use Vazaha\Mastodon\Factories\ExceptionFactory;
 use Vazaha\Mastodon\Factories\ResultFactory;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
 use Vazaha\Mastodon\Models\TokenModel;
-use Vazaha\Mastodon\Results\ErrorResult;
 
 final class ApiClient
 {
@@ -76,14 +75,7 @@ final class ApiClient
                 ),
             );
         } catch (RequestException $e) {
-            $response = $e->getResponse();
-
-            if ($response !== null) {
-                $result = $resultFactory->build(ErrorResult::class, $this, $request, $response);
-                $error = $result->getModel();
-            }
-
-            throw new ApiClientException($e->getMessage(), $e->getCode(), $e, $error ?? null);
+            throw (new ExceptionFactory())->buildApiErrorException($e, $this, $request);
         }
 
         /** @phpstan-ignore-next-line */

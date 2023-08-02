@@ -8,7 +8,7 @@ use Exception;
 use Throwable;
 use Vazaha\Mastodon\Models\ErrorModel;
 
-class ApiClientException extends Exception
+class ApiErrorException extends Exception
 {
     protected ?ErrorModel $error;
 
