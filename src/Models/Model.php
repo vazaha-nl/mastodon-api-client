@@ -25,6 +25,10 @@ abstract class Model implements ModelInterface
         $model = new static();
 
         foreach ($array as $property => $value) {
+            if ($value === null) {
+                continue;
+            }
+
             $property = str_replace(':', '_', $property);
 
             if (!property_exists($model, $property)) {
