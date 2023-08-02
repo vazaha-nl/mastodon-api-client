@@ -16,9 +16,9 @@
             "Tools\\": "tools/src"
         }
     },
-    "description": "A fully typed mastodon API client for PHP",
+    "description": "A fully typed and feature complete Mastodon API client for PHP",
     "license": "MIT",
-    "name": "vazaha/mastodon-api-client",
+    "name": "vazaha-nl/mastodon-api-client",
     "require": {
         "php": ">=8.1",
         "guzzlehttp/guzzle": "^7.7",
