@@ -22,7 +22,7 @@ final class RelationshipsRequest extends \Vazaha\Mastodon\Requests\RelationshipR
         /**
          * Check relationships for the provided account IDs.
          *
-         * @var mixed[] $id
+         * @var null|mixed[] $id
          */
         public ?array $id = null,
     ) {

@@ -24,7 +24,7 @@ class CohortDataModel extends Model
      * The percentage rate of users who registered in the specified `period` and
      * were active for the given `date` bucket.
      */
-    public string $rate;
+    public int $rate;
 
     /**
      * How many users registered in the specified `period` and were active for the

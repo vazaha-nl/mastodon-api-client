@@ -65,6 +65,8 @@ class PollModel extends Model
     /**
      * When called with a user token, which options has the authorized user
      * chosen? Contains an array of index values for `options`.
+     *
+     * @var null|array<int>
      */
-    public ?int $own_votes = null;
+    public ?array $own_votes = null;
 }

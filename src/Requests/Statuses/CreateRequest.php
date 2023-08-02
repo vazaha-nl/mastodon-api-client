@@ -29,7 +29,7 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\StatusRequest implem
          * Include Attachment IDs to be attached as media. If provided, `status`
          * becomes optional, and `poll` cannot be used.
          *
-         * @var mixed[] $media_ids
+         * @var array<string> $media_ids
          */
         public array $media_ids,
 

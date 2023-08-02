@@ -27,7 +27,7 @@ final class AccountsRemoveRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnkno
         /**
          * The accounts that should be removed from the list.
          *
-         * @var mixed[] $account_ids
+         * @var array<string> $account_ids
          */
         public array $account_ids,
     ) {

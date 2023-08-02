@@ -27,7 +27,7 @@ final class VoteRequest extends \Vazaha\Mastodon\Requests\PollRequest implements
         /**
          * Provide your own votes as an index for each option (starting from 0).
          *
-         * @var mixed[] $choices
+         * @var array<int> $choices
          */
         public array $choices,
     ) {

@@ -33,7 +33,7 @@ final class UpdateV1Request extends \Vazaha\Mastodon\Requests\V1\FilterRequest i
          * Specify at least one of `home`, `notifications`, `public`, `thread`,
          * `account`.
          *
-         * @var mixed[] $context
+         * @var array<string> $context
          */
         public array $context,
 

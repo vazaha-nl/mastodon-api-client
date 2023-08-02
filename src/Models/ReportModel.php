@@ -53,13 +53,17 @@ class ReportModel extends Model
     /**
      * IDs of statuses that have been attached to this report for additional
      * context.
+     *
+     * @var null|array<string>
      */
-    public ?string $status_ids = null;
+    public ?array $status_ids = null;
 
     /**
      * IDs of the rules that have been cited as a violation by this report.
+     *
+     * @var null|array<string>
      */
-    public ?string $rule_ids = null;
+    public ?array $rule_ids = null;
 
     /**
      * The account that was reported.

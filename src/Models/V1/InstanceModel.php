@@ -68,8 +68,10 @@ class InstanceModel extends Model
 
     /**
      * Primary languages of the website and its staff.
+     *
+     * @var array<string>
      */
-    public string $languages;
+    public array $languages;
 
     /**
      * Whether registrations are enabled.

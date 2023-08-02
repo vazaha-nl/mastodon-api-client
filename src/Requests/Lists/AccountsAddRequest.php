@@ -27,7 +27,7 @@ final class AccountsAddRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownR
         /**
          * The accounts that should be added to the list.
          *
-         * @var mixed[] $account_ids
+         * @var array<string> $account_ids
          */
         public array $account_ids,
     ) {

@@ -28,7 +28,7 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\FilterRequest implem
          * Where the filter should be applied. Specify at least one of `home`,
          * `notifications`, `public`, `thread`, `account`.
          *
-         * @var mixed[] $context
+         * @var array<string> $context
          */
         public array $context,
 

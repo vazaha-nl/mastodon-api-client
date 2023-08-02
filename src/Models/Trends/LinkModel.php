@@ -18,7 +18,7 @@ class LinkModel extends Model
     /**
      * Usage statistics for given days (typically the past week).
      *
-     * @var mixed[]
+     * @var array<mixed>
      */
     public array $history;
 }

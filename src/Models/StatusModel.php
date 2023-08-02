@@ -69,7 +69,7 @@ class StatusModel extends Model
     /**
      * The application used to post this status.
      *
-     * @var mixed[]
+     * @var null|mixed[]
      */
     public ?array $application = null;
 

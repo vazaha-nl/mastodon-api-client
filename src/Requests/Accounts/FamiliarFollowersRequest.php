@@ -22,7 +22,7 @@ final class FamiliarFollowersRequest extends \Vazaha\Mastodon\Requests\FamiliarF
         /**
          * Find familiar followers for the provided account IDs.
          *
-         * @var mixed[] $id
+         * @var null|array<string> $id
          */
         public ?array $id = null,
     ) {

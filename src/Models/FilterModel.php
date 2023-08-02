@@ -29,8 +29,10 @@ class FilterModel extends Model
 
     /**
      * The contexts in which the filter should be applied.
+     *
+     * @var array<string>
      */
-    public string $context;
+    public array $context;
 
     /**
      * When the filter should no longer be applied.

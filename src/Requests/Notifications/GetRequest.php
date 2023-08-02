@@ -43,14 +43,14 @@ final class GetRequest extends \Vazaha\Mastodon\Requests\NotificationRequest imp
         /**
          * Types to include in the result.
          *
-         * @var mixed[] $types
+         * @var null|array<string> $types
          */
         public ?array $types = null,
 
         /**
          * Types to exclude from the results.
          *
-         * @var mixed[] $exclude_types
+         * @var null|array<string> $exclude_types
          */
         public ?array $exclude_types = null,
 

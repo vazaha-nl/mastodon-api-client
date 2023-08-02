@@ -28,7 +28,7 @@ final class {{ classname }} extends \{{ requestClassName.getFQN() }} implements 
      * {{ descriptionLine }}
     {% endfor %}
 {% if property.typeHint %}
-     * @var {{ property.typeHint }} ${{ property.name }}
+     * @var {{ property.typeHint | raw }} ${{ property.name }}
 {% endif %}
      */
     {% endif %}

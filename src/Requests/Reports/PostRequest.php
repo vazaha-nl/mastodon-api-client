@@ -27,7 +27,7 @@ final class PostRequest extends \Vazaha\Mastodon\Requests\ReportRequest implemen
         /**
          * You can attach statuses to the report to provide additional context.
          *
-         * @var mixed[] $status_ids
+         * @var null|array<string> $status_ids
          */
         public ?array $status_ids = null,
 
@@ -56,7 +56,7 @@ final class PostRequest extends \Vazaha\Mastodon\Requests\ReportRequest implemen
          * relref &quot;methods/instance#rules&quot; &gt;}}) and [GET /api/v1/instance]({{&lt; relref
          * &quot;methods/instance#get&quot; &gt;}}).
          *
-         * @var mixed[] $rule_ids
+         * @var null|array<int> $rule_ids
          */
         public ?array $rule_ids = null,
     ) {

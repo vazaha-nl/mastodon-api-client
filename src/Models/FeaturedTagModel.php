@@ -33,7 +33,7 @@ class FeaturedTagModel extends Model
     /**
      * The number of authored statuses containing this hashtag.
      */
-    public string $statuses_count;
+    public int $statuses_count;
 
     /**
      * The timestamp of the last authored status containing this hashtag.

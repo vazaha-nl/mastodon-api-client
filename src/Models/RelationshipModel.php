@@ -35,8 +35,10 @@ class RelationshipModel extends Model
 
     /**
      * Which languages are you following from this user?
+     *
+     * @var array<string>
      */
-    public string $languages;
+    public array $languages;
 
     /**
      * Are you followed by this user?

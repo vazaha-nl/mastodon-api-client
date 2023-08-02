@@ -49,7 +49,7 @@ final class UpdateCredentialsRequest extends \Vazaha\Mastodon\Requests\AccountRe
          * to a string (although the exact integer does not matter), and the value is
          * another hash including `name` and `value`. By default, max 4 fields.
          *
-         * @var mixed[] $fields_attributes
+         * @var null|mixed[] $fields_attributes
          */
         public ?array $fields_attributes = null,
     ) {

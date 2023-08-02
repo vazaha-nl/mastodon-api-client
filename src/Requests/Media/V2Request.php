@@ -31,7 +31,7 @@ final class V2Request extends \Vazaha\Mastodon\Requests\MediaAttachmentRequest i
          * The custom thumbnail of the media to be attached, encoded using multipart
          * form data.
          *
-         * @var mixed[] $thumbnail
+         * @var null|mixed[] $thumbnail
          */
         public ?array $thumbnail = null,
 

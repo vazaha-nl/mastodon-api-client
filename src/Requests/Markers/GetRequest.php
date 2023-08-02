@@ -24,7 +24,7 @@ final class GetRequest extends \Vazaha\Mastodon\Requests\MarkerRequest implement
          * values: `home`, `notifications`. If not provided, an empty object will be
          * returned.
          *
-         * @var mixed[] $timeline
+         * @var null|array<string> $timeline
          */
         public ?array $timeline = null,
     ) {

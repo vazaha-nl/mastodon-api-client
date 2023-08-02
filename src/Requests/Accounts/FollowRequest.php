@@ -38,7 +38,7 @@ final class FollowRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest 
          * Filter received statuses for these languages. If not provided, you will
          * receive this account&#039;s posts in all languages.
          *
-         * @var mixed[] $languages
+         * @var null|array<string> $languages
          */
         public ?array $languages = null,
     ) {

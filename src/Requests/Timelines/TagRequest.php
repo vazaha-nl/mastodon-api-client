@@ -27,21 +27,21 @@ final class TagRequest extends \Vazaha\Mastodon\Requests\StatusRequest implement
         /**
          * Return statuses that contain any of these additional tags.
          *
-         * @var mixed[] $any
+         * @var null|array<string> $any
          */
         public ?array $any = null,
 
         /**
          * Return statuses that contain all of these additional tags.
          *
-         * @var mixed[] $all
+         * @var null|array<string> $all
          */
         public ?array $all = null,
 
         /**
          * Return statuses that contain none of these additional tags.
          *
-         * @var mixed[] $none
+         * @var null|array<string> $none
          */
         public ?array $none = null,
 

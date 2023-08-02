@@ -28,7 +28,7 @@ final class UpdateRequest extends \Vazaha\Mastodon\Requests\MediaAttachmentReque
          * The custom thumbnail of the media to be attached, encoded using multipart
          * form data.
          *
-         * @var mixed[] $thumbnail
+         * @var null|mixed[] $thumbnail
          */
         public ?array $thumbnail = null,
 

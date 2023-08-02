@@ -47,7 +47,7 @@ class StatusEditModel extends Model
      * changing the poll options will be collapsed together into one edit, since
      * this action resets the poll.
      *
-     * @var mixed[]
+     * @var null|mixed[]
      */
     public ?array $poll = null;
 

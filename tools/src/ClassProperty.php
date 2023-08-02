@@ -13,6 +13,7 @@ class ClassProperty
     protected const TYPE_LOOKUP = [
         'integer' => 'int',
         'number' => 'int',
+        'float' => 'float',
         'string' => 'string',
         'boolean' => 'bool',
         'hash' => 'array',
@@ -27,6 +28,8 @@ class ClassProperty
     public ClassName|string $type;
 
     public bool $nullable;
+
+    public ?string $default;
 
     public array $descriptionLines;
 
@@ -47,48 +50,84 @@ class ClassProperty
         }
 
         $property->nullable = (bool) $array['nullable'];
+
+        if (isset($array['required'])) {
+            $property->nullable = !$array['required'];
+        }
+
         $property->descriptionLines = explode(
             "\n",
             wordwrap($array['description'] ?? ''),
         );
 
-        $property->type = self::resolveType($array['type'] ?? 'string');
+        $property->resolveTypeFromRaw($array['type'] ?? 'string');
 
+        // TODO move to resolve... fn
         if ($property->type === 'array') {
             // for phpstan....?
-            $property->typeHint = 'mixed[]';
+            $property->typeHint ??= ($property->nullable ? 'null|' : '') . 'mixed[]';
         }
 
         return $property;
     }
 
-    protected static function resolveType(string $type): ClassName|string
+    protected function resolveTypeFromRaw(string $type): void
     {
         if (isset(self::TYPE_LOOKUP[$type])) {
-            return self::TYPE_LOOKUP[$type];
-        }
+            $this->type = self::TYPE_LOOKUP[$type];
 
-        if (Str::contains($type, 'array of ')) {
-            return 'array';
+            return;
         }
 
         if (Str::startsWith($type, 'string ')) {
-            return 'string';
+            $this->type = 'string';
+
+            return;
         }
 
         if ($type === 'datetime' || $type === 'timestamp') {
-            return new ClassName(Carbon::class);
+            $this->type = new ClassName(Carbon::class);
+
+            return;
         }
 
         if (preg_match('/array\<(.*)\>/', $type, $matches)) {
-            $entityName = $matches[1];
-            $entity = new Entity($entityName);
+            $subType = $matches[1];
 
-            return ClassName::fromEntity($entity, ClassType::COLLECTION);
+            // TODO set correct typehint
+            if (preg_match('/string/i', $subType)) {
+                $this->type = 'array';
+                $this->typeHint = ($this->nullable ? 'null|' : '') . 'array<string>';
+                $this->default = $this->nullable ? '[]' : null;
+
+                return;
+            }
+
+            if (preg_match('/array|hash/i', $subType)) {
+                $this->type = 'array';
+                $this->typeHint = ($this->nullable ? 'null|' : '') . 'array<mixed>';
+                $this->default = $this->nullable ? '[]' : null;
+
+                return;
+            }
+
+            if (preg_match('/integer/i', $subType)) {
+                $this->type = 'array';
+                $this->typeHint = ($this->nullable ? 'null|' : '') . 'array<int>';
+                $this->default = $this->nullable ? '[]' : null;
+
+                return;
+            }
+
+            $entity = new Entity($subType);
+
+            $this->type = ClassName::fromEntity($entity, ClassType::COLLECTION);
+
+            return;
         }
 
         $entity = new Entity($type);
 
-        return ClassName::fromEntity($entity, ClassType::MODEL);
+        $this->type = ClassName::fromEntity($entity, ClassType::MODEL);
     }
 }

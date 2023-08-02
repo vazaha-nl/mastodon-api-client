@@ -48,7 +48,7 @@ final class EditRequest extends \Vazaha\Mastodon\Requests\StatusRequest implemen
          * Include Attachment IDs to be attached as media. If provided, `status`
          * becomes optional, and `poll` cannot be used.
          *
-         * @var mixed[] $media_ids
+         * @var null|array<string> $media_ids
          */
         public ?array $media_ids = null,
     ) {

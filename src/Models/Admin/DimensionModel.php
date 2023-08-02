@@ -23,7 +23,7 @@ class DimensionModel extends Model
     /**
      * The data available for the requested dimension.
      *
-     * @var mixed[]
+     * @var array<mixed>
      */
     public array $data;
 }

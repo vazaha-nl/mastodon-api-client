@@ -20,8 +20,10 @@ class FilterResultModel extends Model
 
     /**
      * The keyword within the filter that was matched.
+     *
+     * @var null|array<string>
      */
-    public ?string $keyword_matches = null;
+    public ?array $keyword_matches = null;
 
     /**
      * The status ID within the filter that was matched.
