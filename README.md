@@ -52,7 +52,15 @@ $client->setAccessToken('token');
 
 // create a request to get account with id `accountid`
 $request = new \Vazaha\Mastodon\Requests\Accounts\GetRequest('accountid');
-$result = $client->send($request);
+
+try {
+    $result = $client->send($request);
+} catch (\Vazaha\Mastodon\Exceptions\ApiErrorException $e) {
+    print 'Statuscode : ' . $e->getCode() . PHP_EOL;
+    print 'Error : ' . $e->getError()->error . PHP_EOL;
+    print 'Error description : ' . ($e->getError()->error_description ?? '(not set)') . PHP_EOL;
+}
+
 $account = $result->getModel();
 
 ```
