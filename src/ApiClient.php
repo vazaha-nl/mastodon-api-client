@@ -57,6 +57,7 @@ final class ApiClient
      *
      * @param \Vazaha\Mastodon\Interfaces\RequestInterface<T> $request
      *
+     * @throws \Vazaha\Mastodon\Exceptions\ApiErrorException
      * @throws \Vazaha\Mastodon\Exceptions\BaseUriNotSetException
      *
      * @return T
