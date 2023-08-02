@@ -27,7 +27,7 @@ $result = $client->send($appRequest);
 // returns a \Vazaha\Mastodon\Models\ApplicationModel instance
 $app = $result->getModel();
 
-if ($app instanceof ApplicationModel) {
+if ($app instanceof ApplicationModel && isset($app->client_id, $app->client_secret)) {
     // request oauth token for this app
     $tokenRequest = new TokenRequest(
         'client_credentials',

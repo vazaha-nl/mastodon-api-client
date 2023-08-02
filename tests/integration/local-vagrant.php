@@ -8,8 +8,10 @@ use GuzzleHttp\Middleware;
 use PHPUnit\Framework\Assert;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Exceptions\ApiErrorException;
+use Vazaha\Mastodon\Exceptions\UnauthorizedException;
 use Vazaha\Mastodon\Models\AccountModel;
 use Vazaha\Mastodon\Models\ApplicationModel;
+use Vazaha\Mastodon\Models\ErrorModel;
 use Vazaha\Mastodon\Models\ListModel;
 use Vazaha\Mastodon\Models\RelationshipModel;
 use Vazaha\Mastodon\Models\StatusModel;
@@ -52,7 +54,8 @@ $result = $client->send(
 
 $app = $result->getModel();
 Assert::assertInstanceOf(ApplicationModel::class, $app);
-
+Assert::assertIsString($app->client_id);
+Assert::assertIsString($app->client_secret);
 $result = $client->send(
     new TokenRequest(
         'client_credentials',
@@ -81,6 +84,7 @@ try {
 } catch (ApiErrorException $e) {
     $statusCode = $e->getCode();
     $error = $e->getError();
+    Assert::assertInstanceOf(ErrorModel::class, $error);
     print_r($statusCode);
     print_r($error->toArray());
 }
@@ -110,14 +114,22 @@ echo 'Auth url : ' . $client->getUri(
 );
 echo \PHP_EOL;
 
-$client->setAccessToken('f7_qlxpJ_w8G2l8nljLuSJSVBtDJeI7R-XwmheGod5A');
+// TODO replace with working token
+// or somehow do actual oauth redirect auth here
+$client->setAccessToken('wt4Cw-N1RKi7xo3EdpV5mM5JfBxzUcM30PzXKnNRuZc');
+
+echo "Veryfying credentials ... \n";
+$result = $client->send(new VerifyCredentialsRequest());
+// print_r($result->getModel()->toArray()); exit();
 
 try {
     $list = $client->send(
         new ListsGetRequest(),
     )->getModel();
-} catch (ApiErrorException $e) {
-    print_r($e->getError()->toArray());
+} catch (UnauthorizedException $e) {
+    $error = $e->getError();
+    Assert::assertInstanceOf(ErrorModel::class, $error);
+    print_r($error->toArray());
 }
 
 $list = $client->send(
@@ -140,6 +152,7 @@ $result = $client->send(
 );
 
 $myAccount = $result->getModel();
+Assert::assertInstanceOf(AccountModel::class, $myAccount);
 
 $following = $client->send(
     new FollowingRequest($myAccount->id),
