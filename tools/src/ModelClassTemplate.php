@@ -16,8 +16,18 @@ class ModelClassTemplate extends ClassTemplate
 
     protected function getTemplateVars(): array
     {
-        $specs = $this->loadEntitySpecs();
+        $this->loadEntitySpecs();
         $this->imports->add(new ClassName(Model::class));
+
+        $specs = $this->entitySpecs[$this->entity->name];
+
+        if (!empty($specs['parent']) && $specs['parent'] !== $this->entity->name) {
+            $parentClass = ClassName::fromEntity(
+                new Entity($this->entitySpecs[$this->entity->name]['parent']),
+                ClassType::MODEL,
+            );
+            $this->imports->add($parentClass);
+        }
 
         return [
             'namespace' => $this->entity->getNamespace($this->getClassType()),
@@ -25,6 +35,7 @@ class ModelClassTemplate extends ClassTemplate
             'classImports' => $this->imports,
             'properties' => $this->getProperties(),
             'description' => $this->entitySpecs[$this->entity->name]['description'] ?? '',
+            'parentClass' => $parentClass ?? null,
         ];
     }
 

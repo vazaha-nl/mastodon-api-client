@@ -8,12 +8,12 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
 
-use Vazaha\Mastodon\Models\Model;
+use Vazaha\Mastodon\Models\TagModel as ModelsTagModel;
 
 /**
  * Represents a hashtag used within the content of a status.
  */
-class TagModel extends Model
+class TagModel extends ModelsTagModel
 {
     /**
      * The ID of the Tag in the database.

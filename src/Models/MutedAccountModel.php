@@ -13,7 +13,7 @@ use Carbon\Carbon;
 /**
  * Represents a user of Mastodon and their associated profile.
  */
-class MutedAccountModel extends Model
+class MutedAccountModel extends AccountModel
 {
     /**
      * When a timed mute will expire, if applicable.

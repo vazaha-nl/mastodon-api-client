@@ -15,7 +15,7 @@ namespace {{ namespace }};
 /**
  * {{ description }}
  */
-class {{ classname }} extends Model
+class {{ classname }} extends {% if parentClass %}{{ parentClass }}{% else %}Model{% endif %}
 {
 {% for property in properties %}
     {% if property.descriptionLines %}

@@ -11,7 +11,7 @@ namespace Vazaha\Mastodon\Models;
 /**
  * Represents a user of Mastodon and their associated profile.
  */
-class CredentialAccountModel extends Model
+class CredentialAccountModel extends AccountModel
 {
     /**
      * An extra attribute that contains source values to be used with API methods
