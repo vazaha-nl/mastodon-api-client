@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is auto generated! Do not edit!
+ */
+
 declare(strict_types=1);
 
 namespace Tests\Generated\V1;
@@ -150,11 +154,6 @@ JSON;
         self::assertTrue(true);
 
         $array = json_decode($this->json, true);
-
-        if (!is_array($array)) {
-            // too bad...
-            return;
-        }
 
         $model = InstanceModel::fromArray($array);
 
