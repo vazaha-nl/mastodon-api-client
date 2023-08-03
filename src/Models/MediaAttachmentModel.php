@@ -57,4 +57,9 @@ class MediaAttachmentModel extends Model
      * preview thumbnails when media has not been downloaded yet.
      */
     public string $blurhash;
+
+    /**
+     * A shorter URL for the attachment.
+     */
+    public string $text_url;
 }

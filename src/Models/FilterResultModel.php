@@ -27,6 +27,8 @@ class FilterResultModel extends Model
 
     /**
      * The status ID within the filter that was matched.
+     *
+     * @var null|array<string>
      */
-    public ?string $status_matches = null;
+    public ?array $status_matches = null;
 }

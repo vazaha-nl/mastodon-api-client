@@ -46,8 +46,12 @@ class DomainBlockModel extends Model
      */
     public bool $reject_reports;
 
+    public ?string $private_comment = null;
+
+    public ?string $public_comment = null;
+
     /**
      * Whether to obfuscate public displays of this domain block.
      */
-    public ?string $obfuscate = null;
+    public bool $obfuscate;
 }

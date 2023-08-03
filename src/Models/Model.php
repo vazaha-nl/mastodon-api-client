@@ -25,11 +25,7 @@ abstract class Model implements ModelInterface
         $model = new static();
 
         foreach ($array as $property => $value) {
-            if ($value === null) {
-                continue;
-            }
-
-            $property = str_replace(':', '_', $property);
+            $property = static::sanitizePropertyName($property);
 
             if (!property_exists($model, $property)) {
                 // do not bork on this!
@@ -48,6 +44,11 @@ abstract class Model implements ModelInterface
     public function toArray(): array
     {
         return get_object_vars($this);
+    }
+
+    public static function sanitizePropertyName(string $property): string
+    {
+        return str_replace(':', '_', $property);
     }
 
     /**
@@ -69,7 +70,7 @@ abstract class Model implements ModelInterface
             return (int) $value;
         }
 
-        if ($type === 'string' && is_int($value)) {
+        if ($type === 'string' && (is_int($value) || null === $value)) {
             return (string) $value;
         }
 
