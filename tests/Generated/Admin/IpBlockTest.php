@@ -36,6 +36,10 @@ JSON;
 
         $array = json_decode($this->json, true);
 
+        if (!is_array($array)) {
+            return;
+        }
+
         $model = IpBlockModel::fromArray($array);
 
         foreach ($array as $property => $value) {

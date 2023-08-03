@@ -71,6 +71,10 @@ JSON;
 
         $array = json_decode($this->json, true);
 
+        if (!is_array($array)) {
+            return;
+        }
+
         $model = MeasureModel::fromArray($array);
 
         foreach ($array as $property => $value) {
