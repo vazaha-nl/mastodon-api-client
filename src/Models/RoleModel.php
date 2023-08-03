@@ -16,7 +16,7 @@ class RoleModel extends Model
     /**
      * The ID of the Role in the database.
      */
-    public int $id;
+    public string $id;
 
     /**
      * The name of the role.
