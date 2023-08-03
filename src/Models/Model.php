@@ -59,21 +59,29 @@ abstract class Model implements ModelInterface
      */
     protected static function resolvePropertyValue(string $property, $value)
     {
-        $className = static::getPropertyClassName($property);
+        $type = static::getPropertyType($property);
 
-        if ($className === null) {
+        if ($type === null) {
             return $value;
         }
 
-        if (is_array($value) && is_a($className, self::class, true)) {
-            return $className::fromArray($value);
+        if ($type === 'int' && is_string($value) && is_numeric($value)) {
+            return (int) $value;
         }
 
-        if (is_array($value) && is_a($className, ModelCollection::class, true)) {
-            return $className::fromArray($value);
+        if ($type === 'string' && is_int($value)) {
+            return (string) $value;
         }
 
-        if (is_a($className, DateTimeInterface::class, true)) {
+        if (is_array($value) && is_a($type, self::class, true)) {
+            return $type::fromArray($value);
+        }
+
+        if (is_array($value) && is_a($type, ModelCollection::class, true)) {
+            return $type::fromArray($value);
+        }
+
+        if (is_a($type, DateTimeInterface::class, true)) {
             if (is_int($value) || is_float($value)) {
                 return Carbon::createFromTimestamp($value);
             }
@@ -86,7 +94,7 @@ abstract class Model implements ModelInterface
         return $value;
     }
 
-    protected static function getPropertyClassName(string $property): ?string
+    protected static function getPropertyType(string $property): ?string
     {
         $reflectionClass = new ReflectionClass(static::class);
         $reflectionProperty = $reflectionClass->getProperty($property);
