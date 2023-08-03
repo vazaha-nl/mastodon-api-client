@@ -32,9 +32,11 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
+    - name: Check coding style
+      run: composer run-script check-style
+
     - name: Run test suite
       run: composer run-script test
 
     - name: Run PHPStan
       run: composer run-script analyse
-      
