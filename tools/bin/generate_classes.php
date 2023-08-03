@@ -10,6 +10,7 @@ use Tools\MethodSpecsRepository;
 use Tools\ModelClassTemplate;
 use Tools\RequestClassTemplate;
 use Tools\ResultClassTemplate;
+use Tools\TestClassTemplate;
 
 require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
@@ -61,4 +62,22 @@ foreach ($methodsRepo->getAllMethodSpecs() as $spec) {
     echo 'Writing ... ';
     $template->write(true);
     echo "Done!\n\n";
+}
+
+foreach ($specsRepo->getAllEntityNames() as $entityName) {
+    $spec = $specsRepo->getEntityData($entityName);
+
+    if (empty($spec['exampleJson'])) {
+        continue;
+    }
+
+    $decoded = json_decode($spec['exampleJson'], true);
+
+    if (!is_array($decoded)) {
+        continue;
+    }
+
+    $entity = new Entity($entityName);
+    $template = new TestClassTemplate($entity, $spec);
+    $template->write(true);
 }

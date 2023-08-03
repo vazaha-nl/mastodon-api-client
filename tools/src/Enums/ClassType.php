@@ -13,4 +13,6 @@ enum ClassType: string
     case REQUEST = 'Request';
 
     case RESULT = 'Result';
+
+    case TEST = 'Test';
 }

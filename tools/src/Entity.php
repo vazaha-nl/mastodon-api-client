@@ -21,6 +21,15 @@ class Entity
 
     public function getDirectory(ClassType $classType): string
     {
+        if ($classType === ClassType::TEST) {
+            return rtrim(
+                $this->projectRoot .
+                '/tests/Generated/' .
+                $this->getRelativeDirectory(),
+                '/',
+            );
+        }
+        // TODO sep. dir for Tests
         return rtrim(
             $this->projectRoot .
             sprintf(
@@ -33,6 +42,12 @@ class Entity
 
     public function getNamespace(ClassType $classType): string
     {
+        if ($classType === ClassType::TEST) {
+            $namespace = 'Tests\\Generated\\' . $this->getRelativeNamespace();
+
+            return rtrim($namespace, '\\');
+        }
+
         $namespace = $this->rootNamespace . sprintf(
             '\\%s',
             Str::plural($classType->value),
