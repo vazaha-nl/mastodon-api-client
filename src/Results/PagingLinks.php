@@ -6,9 +6,9 @@ namespace Vazaha\Mastodon\Results;
 
 class PagingLinks
 {
-    protected ?string $previousUrl;
+    protected ?string $previousUrl = null;
 
-    protected ?string $nextUrl;
+    protected ?string $nextUrl = null;
 
     public function __construct(
         protected ?string $contents = null,
