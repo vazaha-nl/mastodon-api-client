@@ -15,9 +15,12 @@ use Vazaha\Mastodon\Factories\ResultFactory;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
 use Vazaha\Mastodon\Models\TokenModel;
+use Vazaha\Mastodon\Proxies\MethodsProxy;
 
 final class ApiClient
 {
+    public MethodsProxy $methods;
+
     protected string $baseUri;
 
     protected ?string $clientId;
@@ -29,6 +32,7 @@ final class ApiClient
     public function __construct(
         protected ClientInterface $httpClient,
     ) {
+        $this->methods = new MethodsProxy($this);
     }
 
     public function setAccessToken(string|TokenModel $token): self
