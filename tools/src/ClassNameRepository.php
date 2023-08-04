@@ -20,10 +20,10 @@ class ClassNameRepository
         }
     }
 
-    public function add(ClassName $className): static
+    public function add(ClassName $className): ClassName
     {
-        if ($this->findByFQN($className->getFQN()) !== null) {
-            return $this;
+        if ($duplicate = $this->findByFQN($className->getFQN())) {
+            return $duplicate;
         }
 
         if ($this->findByBaseName($className->getBaseName()) !== null) {
@@ -32,7 +32,7 @@ class ClassNameRepository
 
         $this->collection->add($className);
 
-        return $this;
+        return $className;
     }
 
     public function findByFQN(string $fqn)
