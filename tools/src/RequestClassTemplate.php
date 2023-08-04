@@ -64,7 +64,13 @@ class RequestClassTemplate extends ClassTemplate
             return new Entity('EmptyOrUnknownResponse');
         }
 
-        return new Entity($this->methodSpec['returns']);
+        $entityName = $this->methodSpec['returns'];
+
+        if (preg_match('/array\<(.*)\>/', $entityName, $matches)) {
+            $entityName = $matches[1];
+        }
+
+        return new Entity($entityName);
     }
 
     protected function parseUri(): string

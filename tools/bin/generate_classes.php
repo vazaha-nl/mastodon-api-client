@@ -2,26 +2,45 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Str;
 use Tools\AbstractRequestClassTemplate;
 use Tools\CollectionClassTemplate;
 use Tools\Entity;
 use Tools\EntitySpecsRepository;
 use Tools\MethodSpecsRepository;
 use Tools\ModelClassTemplate;
+use Tools\ProxyClassTemplate;
+use Tools\ProxyContainerClassTemplate;
 use Tools\RequestClassTemplate;
 use Tools\ResultClassTemplate;
 use Tools\TestClassTemplate;
 
 require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
-$entity = new Entity('EmptyOrUnknownResponse');
-$classTemplate = new ModelClassTemplate($entity);
-
-echo 'Writing file for EmptyOrUnknownResponse entity... ';
-$classTemplate->write(true);
-echo "Done!\n\n";
-
 $specsRepo = new EntitySpecsRepository();
+$methodsRepo = new MethodSpecsRepository();
+
+foreach ($methodsRepo->getNamespaces() as $namespace) {
+    $accountsSpecs = $methodsRepo->getMethodsForNamespace($namespace);
+    $template = new ProxyClassTemplate(
+        new Entity(Str::studly($namespace)),
+        $accountsSpecs,
+    );
+    $template->write(true);
+}
+
+$template = new ProxyContainerClassTemplate(
+    new Entity('Methods'),
+    $methodsRepo->getNamespaces(),
+);
+$template->write(true);
+
+foreach ($methodsRepo->getAllMethodSpecs() as $spec) {
+    $template = new RequestClassTemplate($spec);
+    echo 'Writing ... ';
+    $template->write(true);
+    echo "Done!\n\n";
+}
 
 foreach ($specsRepo->getAllEntityNames() as $name) {
     $entity = new Entity($name);
@@ -40,8 +59,6 @@ foreach ($specsRepo->getNamesWithCollection() as $name) {
     $classTemplate->write(true);
     echo "Done!\n\n";
 }
-
-$methodsRepo = new MethodSpecsRepository();
 
 foreach ($methodsRepo->getAllReturnedEntities() as $entityName) {
     $entity = new Entity($entityName);

@@ -15,4 +15,6 @@ enum ClassType: string
     case RESULT = 'Result';
 
     case TEST = 'Test';
+
+    case PROXY = 'Proxy';
 }

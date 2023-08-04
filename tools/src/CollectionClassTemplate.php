@@ -11,9 +11,8 @@ class CollectionClassTemplate extends ClassTemplate
 {
     protected function getTemplateVars(): array
     {
-        $this->imports
-            ->add($this->entity->toClassName(ClassType::MODEL))
-            ->add(new ClassName(ModelCollection::class));
+        $this->imports->add($this->entity->toClassName(ClassType::MODEL));
+        $this->imports->add(new ClassName(ModelCollection::class));
 
         return [
             'namespace' => $this->entity->getNamespace($this->getClassType()),

@@ -1,0 +1,29 @@
+<?php
+
+/*
+ * This file is auto generated! Do not edit!
+ */
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+{% for classImport in classImports.get() %}
+{{ classImport.toImportString() }}
+{% endfor %}
+
+class {{ classname }} extends Proxy
+{
+{% for proxy in proxies %}
+    public {{ proxy.className.getBaseName() }} ${{ proxy.name }};
+
+{% endfor %}
+
+    public function __construct(
+        public ApiClient $apiClient,
+    ) {
+        {% for proxy in proxies %}
+        $this->{{ proxy.name }} = new {{ proxy.className.getBaseName() }}($apiClient);
+        {% endfor %}
+    }
+}

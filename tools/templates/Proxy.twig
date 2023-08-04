@@ -1,0 +1,70 @@
+<?php
+
+/*
+ * This file is auto generated! Do not edit!
+ */
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+{% for classImport in classImports.get() %}
+{{ classImport.toImportString() }}
+{% endfor %}
+
+class {{ classname }} extends Proxy
+{
+
+{% for method in methods %}
+
+/*
+ * {{ method.description }}
+{% for property in method.allParams %}
+ * @param {% if property.typeHint %}{{ property.typeHint | raw }}{% else %}{% if property.nullable %}?{% endif %}{{ property.type }}{% endif %} ${{ property.name }} {{ property.description | raw }}
+{% endfor %}
+ *
+{% if method.returnsArray %}
+ * @return \{{ method.resultClass.getFQN() }}<array-key,\{{ method.modelClass.getFQN() }}>
+{% else %}
+ * @return \{{ method.modelClass.getFQN() }}
+{% endif %}
+ */
+    public function {{ method.name }}(
+{% for property in method.allParams %}
+    {% if property.nullable %}?{% endif %}{{ property.type }} ${{ property.name }}{% if property.nullable %} = null{% endif %},
+{% endfor %}
+{% if method.returnsArray %}
+    ): {{ method.resultClass.toTypeString() }} {
+
+        /** @var \{{ method.resultClass.getFQN() }}<array-key,\{{ method.modelClass.getFQN() }}> */
+        $models = $this->apiClient
+            ->send(new {{ method.requestClass.getBaseName() }}(
+{% for property in method.allParams %}
+    ${{ property.name }},
+{% endfor %}
+            ));
+
+        return $models;
+    }
+{% else %}
+    ): {{ method.modelClass.toTypeString() }}
+    {
+        $result = $this->apiClient->send(new {{ method.requestClass.getBaseName() }}(
+{% for property in method.allParams %}
+    ${{ property.name }},
+{% endfor %}
+        ));
+
+        /** @var null|\{{ method.modelClass.getFQN() }} $model */
+        $model = $result->getModel();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+{% endif %}
+{% endfor %}
+
+}

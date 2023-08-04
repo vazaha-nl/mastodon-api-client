@@ -29,6 +29,20 @@ class MethodSpecsRepository
         return $this->methodSpecs[$namespace][$name] ?? null;
     }
 
+    public function getNamespaces(): array
+    {
+        $this->loadMethodSpecs();
+
+        return array_keys($this->methodSpecs);
+    }
+
+    public function getMethodsForNamespace(string $namespace): ?array
+    {
+        $this->loadMethodSpecs();
+
+        return $this->methodSpecs[$namespace] ?? null;
+    }
+
     public function getNameForSpec(array $spec): string
     {
         $namespace = $spec['namespace'];
@@ -46,6 +60,10 @@ class MethodSpecsRepository
             ->map(static function ($returns) {
                 if (empty($returns) || $returns === 'empty') {
                     return 'EmptyOrUnknownResponse';
+                }
+
+                if (preg_match('/array<(.*)>/', $returns, $matches)) {
+                    return $matches[1];
                 }
 
                 return $returns;
