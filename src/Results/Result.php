@@ -19,6 +19,12 @@ class Result extends Collection implements ResultInterface
 {
     use HasPaging;
 
+    protected ApiClient $apiClient;
+
+    protected RequestInterface $request;
+
+    protected ResponseInterface $httpResponse;
+
     /**
      * @var \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Interfaces\ModelInterface>
      */
@@ -29,12 +35,18 @@ class Result extends Collection implements ResultInterface
      *
      * @param \Vazaha\Mastodon\Interfaces\RequestInterface<T> $request
      */
-    public function __construct(
-        protected ApiClient $apiClient,
-        protected RequestInterface $request,
-        protected ResponseInterface $httpResponse,
-    ) {
-        $this->concat($this->getModels());
+    public function init(
+        ApiClient $apiClient,
+        RequestInterface $request,
+        ResponseInterface $httpResponse,
+    ): void {
+        $this->apiClient = $apiClient;
+        $this->request = $request;
+        $this->httpResponse = $httpResponse;
+
+        foreach ($this->getModels() as $model) {
+            $this->add($model);
+        }
     }
 
     /**

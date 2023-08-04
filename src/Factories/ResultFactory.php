@@ -31,7 +31,9 @@ class ResultFactory
         if (!is_a($className, Result::class, true)) {
             throw new LogicException($className . ' is not a subclass of ' . Result::class);
         }
+        $result = new $className();
+        $result->init($client, $request, $response);
 
-        return new $className($client, $request, $response);
+        return $result;
     }
 }
