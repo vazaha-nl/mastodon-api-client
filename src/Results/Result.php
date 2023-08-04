@@ -15,7 +15,7 @@ use Vazaha\Mastodon\Interfaces\ResultInterface;
 use Vazaha\Mastodon\Models\EmptyOrUnknownResponseModel;
 use Vazaha\Mastodon\Results\Concerns\HasPaging;
 
-class Result implements ResultInterface
+class Result extends Collection implements ResultInterface
 {
     use HasPaging;
 
@@ -34,6 +34,7 @@ class Result implements ResultInterface
         protected RequestInterface $request,
         protected ResponseInterface $httpResponse,
     ) {
+        $this->concat($this->getModels());
     }
 
     /**
