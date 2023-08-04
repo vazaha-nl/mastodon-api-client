@@ -15,10 +15,10 @@ use Vazaha\Mastodon\Models\ExtendedDescriptionModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ExtendedDescriptionModel> $models
  * @property \Vazaha\Mastodon\Requests\ExtendedDescriptionRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\ExtendedDescriptionModel                                       getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ExtendedDescriptionModel> getModels()
- * @method null|\Vazaha\Mastodon\Results\ExtendedDescriptionResult                                     getNextResult()
- * @method null|\Vazaha\Mastodon\Results\ExtendedDescriptionResult                                     getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Models\ExtendedDescriptionModel                                                                getModel()
+ * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ExtendedDescriptionModel>                          getModels()
+ * @method null|\Vazaha\Mastodon\Results\ExtendedDescriptionResult<array-key, \Vazaha\Mastodon\Models\ExtendedDescriptionModel> getNextResult()
+ * @method null|\Vazaha\Mastodon\Results\ExtendedDescriptionResult<array-key, \Vazaha\Mastodon\Models\ExtendedDescriptionModel> getPreviousResult()
  */
 class ExtendedDescriptionResult extends Result implements ResultInterface
 {

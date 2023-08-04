@@ -15,10 +15,10 @@ use Vazaha\Mastodon\Models\ReportModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ReportModel> $models
  * @property \Vazaha\Mastodon\Requests\ReportRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\ReportModel                                       getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ReportModel> getModels()
- * @method null|\Vazaha\Mastodon\Results\ReportResult                                     getNextResult()
- * @method null|\Vazaha\Mastodon\Results\ReportResult                                     getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Models\ReportModel                                                   getModel()
+ * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ReportModel>             getModels()
+ * @method null|\Vazaha\Mastodon\Results\ReportResult<array-key, \Vazaha\Mastodon\Models\ReportModel> getNextResult()
+ * @method null|\Vazaha\Mastodon\Results\ReportResult<array-key, \Vazaha\Mastodon\Models\ReportModel> getPreviousResult()
  */
 class ReportResult extends Result implements ResultInterface
 {

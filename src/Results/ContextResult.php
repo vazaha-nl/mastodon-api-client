@@ -15,10 +15,10 @@ use Vazaha\Mastodon\Models\ContextModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ContextModel> $models
  * @property \Vazaha\Mastodon\Requests\ContextRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\ContextModel                                       getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ContextModel> getModels()
- * @method null|\Vazaha\Mastodon\Results\ContextResult                                     getNextResult()
- * @method null|\Vazaha\Mastodon\Results\ContextResult                                     getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Models\ContextModel                                                    getModel()
+ * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ContextModel>              getModels()
+ * @method null|\Vazaha\Mastodon\Results\ContextResult<array-key, \Vazaha\Mastodon\Models\ContextModel> getNextResult()
+ * @method null|\Vazaha\Mastodon\Results\ContextResult<array-key, \Vazaha\Mastodon\Models\ContextModel> getPreviousResult()
  */
 class ContextResult extends Result implements ResultInterface
 {

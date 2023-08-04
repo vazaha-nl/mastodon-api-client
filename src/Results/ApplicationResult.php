@@ -15,10 +15,10 @@ use Vazaha\Mastodon\Models\ApplicationModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ApplicationModel> $models
  * @property \Vazaha\Mastodon\Requests\ApplicationRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\ApplicationModel                                       getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ApplicationModel> getModels()
- * @method null|\Vazaha\Mastodon\Results\ApplicationResult                                     getNextResult()
- * @method null|\Vazaha\Mastodon\Results\ApplicationResult                                     getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Models\ApplicationModel                                                        getModel()
+ * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ApplicationModel>                  getModels()
+ * @method null|\Vazaha\Mastodon\Results\ApplicationResult<array-key, \Vazaha\Mastodon\Models\ApplicationModel> getNextResult()
+ * @method null|\Vazaha\Mastodon\Results\ApplicationResult<array-key, \Vazaha\Mastodon\Models\ApplicationModel> getPreviousResult()
  */
 class ApplicationResult extends Result implements ResultInterface
 {

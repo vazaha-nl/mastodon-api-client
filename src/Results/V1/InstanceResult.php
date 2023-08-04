@@ -16,10 +16,10 @@ use Vazaha\Mastodon\Results\Result;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\V1\InstanceModel> $models
  * @property \Vazaha\Mastodon\Requests\V1\InstanceRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\V1\InstanceModel                                       getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\V1\InstanceModel> getModels()
- * @method null|\Vazaha\Mastodon\Results\V1\InstanceResult                                     getNextResult()
- * @method null|\Vazaha\Mastodon\Results\V1\InstanceResult                                     getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Models\V1\InstanceModel                                                        getModel()
+ * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\V1\InstanceModel>                  getModels()
+ * @method null|\Vazaha\Mastodon\Results\V1\InstanceResult<array-key, \Vazaha\Mastodon\Models\V1\InstanceModel> getNextResult()
+ * @method null|\Vazaha\Mastodon\Results\V1\InstanceResult<array-key, \Vazaha\Mastodon\Models\V1\InstanceModel> getPreviousResult()
  */
 class InstanceResult extends Result implements ResultInterface
 {

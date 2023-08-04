@@ -15,10 +15,10 @@ use Vazaha\Mastodon\Models\FilterStatusModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\FilterStatusModel> $models
  * @property \Vazaha\Mastodon\Requests\FilterStatusRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\FilterStatusModel                                       getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\FilterStatusModel> getModels()
- * @method null|\Vazaha\Mastodon\Results\FilterStatusResult                                     getNextResult()
- * @method null|\Vazaha\Mastodon\Results\FilterStatusResult                                     getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Models\FilterStatusModel                                                         getModel()
+ * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\FilterStatusModel>                   getModels()
+ * @method null|\Vazaha\Mastodon\Results\FilterStatusResult<array-key, \Vazaha\Mastodon\Models\FilterStatusModel> getNextResult()
+ * @method null|\Vazaha\Mastodon\Results\FilterStatusResult<array-key, \Vazaha\Mastodon\Models\FilterStatusModel> getPreviousResult()
  */
 class FilterStatusResult extends Result implements ResultInterface
 {

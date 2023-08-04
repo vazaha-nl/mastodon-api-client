@@ -15,10 +15,10 @@ use Vazaha\Mastodon\Models\WebPushSubscriptionModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\WebPushSubscriptionModel> $models
  * @property \Vazaha\Mastodon\Requests\WebPushSubscriptionRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\WebPushSubscriptionModel                                       getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\WebPushSubscriptionModel> getModels()
- * @method null|\Vazaha\Mastodon\Results\WebPushSubscriptionResult                                     getNextResult()
- * @method null|\Vazaha\Mastodon\Results\WebPushSubscriptionResult                                     getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Models\WebPushSubscriptionModel                                                                getModel()
+ * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\WebPushSubscriptionModel>                          getModels()
+ * @method null|\Vazaha\Mastodon\Results\WebPushSubscriptionResult<array-key, \Vazaha\Mastodon\Models\WebPushSubscriptionModel> getNextResult()
+ * @method null|\Vazaha\Mastodon\Results\WebPushSubscriptionResult<array-key, \Vazaha\Mastodon\Models\WebPushSubscriptionModel> getPreviousResult()
  */
 class WebPushSubscriptionResult extends Result implements ResultInterface
 {

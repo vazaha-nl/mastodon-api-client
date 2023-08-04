@@ -15,10 +15,10 @@ use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> $models
  * @property \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel                                       getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> getModels()
- * @method null|\Vazaha\Mastodon\Results\EmptyOrUnknownResult                                     getNextResult()
- * @method null|\Vazaha\Mastodon\Results\EmptyOrUnknownResult                                     getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel                                                           getModel()
+ * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>                     getModels()
+ * @method null|\Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> getNextResult()
+ * @method null|\Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> getPreviousResult()
  */
 class EmptyOrUnknownResult extends Result implements ResultInterface
 {

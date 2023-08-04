@@ -18,8 +18,8 @@ namespace {{ namespace }};
  *
  * @method null|\{{ modelClassName.getFQN() }}   getModel()
  * @method \Illuminate\Support\Collection<array-key, \{{ modelClassName.getFQN() }}> getModels()
- * @method null|\{{ resultClassName.getFQN() }} getNextResult()
- * @method null|\{{ resultClassName.getFQN() }} getPreviousResult()
+ * @method null|\{{ resultClassName.getFQN() }}<array-key, \{{ modelClassName.getFQN() }}> getNextResult()
+ * @method null|\{{ resultClassName.getFQN() }}<array-key, \{{ modelClassName.getFQN() }}> getPreviousResult()
  */
 class {{ classname }} extends Result implements ResultInterface
 {

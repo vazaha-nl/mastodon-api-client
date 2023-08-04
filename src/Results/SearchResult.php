@@ -15,10 +15,10 @@ use Vazaha\Mastodon\Models\SearchModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\SearchModel> $models
  * @property \Vazaha\Mastodon\Requests\SearchRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\SearchModel                                       getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\SearchModel> getModels()
- * @method null|\Vazaha\Mastodon\Results\SearchResult                                     getNextResult()
- * @method null|\Vazaha\Mastodon\Results\SearchResult                                     getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Models\SearchModel                                                   getModel()
+ * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\SearchModel>             getModels()
+ * @method null|\Vazaha\Mastodon\Results\SearchResult<array-key, \Vazaha\Mastodon\Models\SearchModel> getNextResult()
+ * @method null|\Vazaha\Mastodon\Results\SearchResult<array-key, \Vazaha\Mastodon\Models\SearchModel> getPreviousResult()
  */
 class SearchResult extends Result implements ResultInterface
 {

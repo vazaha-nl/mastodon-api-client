@@ -15,10 +15,10 @@ use Vazaha\Mastodon\Models\RelationshipModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\RelationshipModel> $models
  * @property \Vazaha\Mastodon\Requests\RelationshipRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\RelationshipModel                                       getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\RelationshipModel> getModels()
- * @method null|\Vazaha\Mastodon\Results\RelationshipResult                                     getNextResult()
- * @method null|\Vazaha\Mastodon\Results\RelationshipResult                                     getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Models\RelationshipModel                                                         getModel()
+ * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\RelationshipModel>                   getModels()
+ * @method null|\Vazaha\Mastodon\Results\RelationshipResult<array-key, \Vazaha\Mastodon\Models\RelationshipModel> getNextResult()
+ * @method null|\Vazaha\Mastodon\Results\RelationshipResult<array-key, \Vazaha\Mastodon\Models\RelationshipModel> getPreviousResult()
  */
 class RelationshipResult extends Result implements ResultInterface
 {
