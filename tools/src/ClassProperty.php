@@ -31,6 +31,8 @@ class ClassProperty
 
     public ?string $default;
 
+    public string $description;
+
     public array $descriptionLines;
 
     public ?string $typeHint = null;
@@ -55,6 +57,7 @@ class ClassProperty
             $property->nullable = !$array['required'];
         }
 
+        $property->description = $array['description'];
         $property->descriptionLines = explode(
             "\n",
             wordwrap($array['description'] ?? ''),
