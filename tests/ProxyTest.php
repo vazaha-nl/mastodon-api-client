@@ -19,7 +19,7 @@ class ProxyTest extends TestCase
             $this->createJsonResponseFromFile(200, 'account.json'),
         ])->setBaseUri('http://example.org');
 
-        $account = $client->methods->accounts->get('123');
+        $account = $client->methods()->accounts()->get('123');
 
         self::assertInstanceOf(AccountModel::class, $account);
         self::assertSame('23634', $account->id);
@@ -38,7 +38,7 @@ class ProxyTest extends TestCase
             $this->createJsonResponseFromFile(200, 'accounts2.json'),
         ])->setBaseUri('http://example.org');
 
-        $followers = $client->methods->accounts->followers('foo');
+        $followers = $client->methods()->accounts()->followers('foo');
 
         self::assertInstanceOf(AccountResult::class, $followers);
 

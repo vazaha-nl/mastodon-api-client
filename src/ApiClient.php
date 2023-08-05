@@ -19,7 +19,7 @@ use Vazaha\Mastodon\Proxies\MethodsProxy;
 
 final class ApiClient
 {
-    public MethodsProxy $methods;
+    protected MethodsProxy $methods;
 
     protected string $baseUri;
 
@@ -32,7 +32,15 @@ final class ApiClient
     public function __construct(
         protected ClientInterface $httpClient,
     ) {
-        $this->methods = new MethodsProxy($this);
+    }
+
+    public function methods(): MethodsProxy
+    {
+        if (!isset($this->methods)) {
+            $this->methods = new MethodsProxy($this);
+        }
+
+        return $this->methods;
     }
 
     public function setAccessToken(string|TokenModel $token): self

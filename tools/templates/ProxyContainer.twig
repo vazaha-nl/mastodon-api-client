@@ -15,15 +15,26 @@ namespace {{ namespace }};
 class {{ classname }} extends Proxy
 {
 {% for proxy in proxies %}
-    public {{ proxy.className.getBaseName() }} ${{ proxy.name }};
+    protected {{ proxy.className.getBaseName() }} ${{ proxy.name }};
 
 {% endfor %}
 
     public function __construct(
         public ApiClient $apiClient,
     ) {
-        {% for proxy in proxies %}
-        $this->{{ proxy.name }} = new {{ proxy.className.getBaseName() }}($apiClient);
-        {% endfor %}
     }
+
+    {% for proxy in proxies %}
+    /**
+     * {{ proxy.description | raw }}
+     */
+    public function {{ proxy.name }}(): {{ proxy.className.getBaseName() }}
+    {
+        if (!isset($this->{{ proxy.name }})) {
+            $this->{{ proxy.name }} = new {{ proxy.className.getBaseName() }}($this->apiClient);
+        }
+
+        return $this->{{ proxy.name }};
+    }
+    {% endfor %}
 }
