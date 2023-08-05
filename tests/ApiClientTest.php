@@ -77,4 +77,37 @@ class ApiClientTest extends TestCase
             ->send(new ListsGetRequest());
         self::assertInstanceOf(ListResult::class, $response);
     }
+
+    public function testGetAccountAndListUsingProxy(): void
+    {
+        $account = $this->apiClient
+            ->setBaseUri('https://example.org')
+            ->methods()
+            ->accounts()
+            ->get('foo');
+
+        self::assertInstanceOf(AccountModel::class, $account);
+        self::assertEquals('23634', $account->id);
+
+        $list = $this->apiClient
+            ->setBaseUri('https://example.org')
+            ->methods()
+            ->lists()
+            ->get()
+            ->first();
+
+        self::assertInstanceOf(ListModel::class, $list);
+        self::assertEquals(12345, $list->id);
+        self::assertEquals('Test List', $list->title);
+    }
+
+    public function testGetListsUsingProxy(): void
+    {
+        $response = $this->apiClient
+            ->setBaseUri('https://example.org')
+            ->methods()
+            ->lists()
+            ->get();
+        self::assertInstanceOf(ListResult::class, $response);
+    }
 }

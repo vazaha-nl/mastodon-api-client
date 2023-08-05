@@ -35,4 +35,15 @@ class OAuthTest extends TestCase
         self::assertInstanceOf(TokenModel::class, $model);
         self::assertEquals('test_token', $model->access_token);
     }
+
+    public function testCreateOAuthTokenUsingProxy(): void
+    {
+        $model = $this->apiClient
+            ->setBaseUri('https://example.org')
+            ->methods()
+            ->oauth()
+            ->token('client_credentials', 'code', 'clientid', 'clientsecret', 'redirecturi');
+        self::assertInstanceOf(TokenModel::class, $model);
+        self::assertEquals('test_token', $model->access_token);
+    }
 }

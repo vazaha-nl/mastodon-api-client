@@ -39,4 +39,22 @@ class StatusTest extends TestCase
         self::assertInstanceOf(TagModel::class, $status->tags->first());
         self::assertEquals('tagname1', $status->tags->first()->name);
     }
+
+    public function testGetStatusUsingProxy(): void
+    {
+        $client = $this->createMockClient([
+            $this->createJsonResponseFromFile(200, 'status.json'),
+        ])->setBaseUri('http://example.org');
+
+        $status = $client->methods()->statuses()->get('foo');
+
+        self::assertInstanceOf(StatusModel::class, $status);
+        self::assertEquals('103270115826048975', $status->id);
+        self::assertInstanceOf(AccountModel::class, $status->account);
+        self::assertEquals('1', $status->account->id);
+        self::assertInstanceOf(DateTimeInterface::class, $status->created_at);
+        self::assertInstanceOf(TagCollection::class, $status->tags);
+        self::assertInstanceOf(TagModel::class, $status->tags->first());
+        self::assertEquals('tagname1', $status->tags->first()->name);
+    }
 }

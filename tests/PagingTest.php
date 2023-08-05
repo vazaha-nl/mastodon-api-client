@@ -71,4 +71,35 @@ class PagingTest extends TestCase
         $nextResult = $nextResult->getNextResult();
         self::assertNull($nextResult);
     }
+
+    public function testPagingRequestAndResultUsingProxy(): void
+    {
+        $this->apiClient->setBaseUri('https://example.org');
+
+        $result = $this->apiClient
+            ->methods()
+            ->accounts()
+            ->following('testid');
+
+        self::assertInstanceOf(AccountResult::class, $result);
+
+        $accounts = $result->getModels();
+        self::assertInstanceOf(AccountModel::class, $accounts[0]);
+        self::assertEquals(1, $accounts[0]->id);
+
+        $previousResult = $result->getPreviousResult();
+        self::assertNull($previousResult);
+
+        $nextResult = $result->getNextResult();
+        self::assertInstanceOf(AccountResult::class, $nextResult);
+
+        $accounts = $nextResult->getModels();
+        self::assertEquals(3, $accounts[0]->id);
+
+        $previousResult = $nextResult->getPreviousResult();
+        self::assertInstanceOf(AccountResult::class, $nextResult);
+
+        $nextResult = $nextResult->getNextResult();
+        self::assertNull($nextResult);
+    }
 }

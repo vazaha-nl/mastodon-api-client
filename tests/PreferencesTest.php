@@ -39,4 +39,16 @@ class PreferencesTest extends TestCase
         self::assertInstanceOf(PreferencesModel::class, $preferences);
         self::assertEquals('public', $preferences->posting_default_visibility);
     }
+
+    public function testGetPreferencesUsingProxy(): void
+    {
+        $preferences = $this->apiClient
+            ->setBaseUri('foo')
+            ->methods()
+            ->preferences()
+            ->get();
+
+        self::assertInstanceOf(PreferencesModel::class, $preferences);
+        self::assertEquals('public', $preferences->posting_default_visibility);
+    }
 }
