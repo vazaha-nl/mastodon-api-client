@@ -18,28 +18,6 @@ use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 class AnnouncementsProxy extends Proxy
 {
     /**
-     * Remove a reaction from an announcement.
-     *
-     * @param string $id   the ID of the Announcement in the database
-     * @param string $name unicode emoji, or the shortcode of a custom emoji
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
-     */
-    public function deleteReactions(
-        string $id,
-        string $name,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new DeleteReactionsRequest(
-                $id,
-                $name,
-            ));
-
-        return $models;
-    }
-
-    /**
      * Dismiss an announcement.
      *
      * @param string $id the ID of the Announcement in the database
@@ -72,6 +50,28 @@ class AnnouncementsProxy extends Proxy
         $models = $this->apiClient
             ->send(new GetRequest(
                 $with_dismissed,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Remove a reaction from an announcement.
+     *
+     * @param string $id   the ID of the Announcement in the database
+     * @param string $name unicode emoji, or the shortcode of a custom emoji
+     *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     */
+    public function deleteReactions(
+        string $id,
+        string $name,
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new DeleteReactionsRequest(
+                $id,
+                $name,
             ));
 
         return $models;

@@ -36,25 +36,6 @@ class FollowRequestsProxy extends Proxy
     }
 
     /**
-     * View pending follow requests.
-     *
-     * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
-     *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
-     */
-    public function get(
-        ?int $limit = null,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
-        $models = $this->apiClient
-            ->send(new GetRequest(
-                $limit,
-            ));
-
-        return $models;
-    }
-
-    /**
      * Reject follow request.
      *
      * @param string $account_id the ID of the Account in the database
@@ -68,6 +49,25 @@ class FollowRequestsProxy extends Proxy
         $models = $this->apiClient
             ->send(new RejectRequest(
                 $account_id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * View pending follow requests.
+     *
+     * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
+     *
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     */
+    public function get(
+        ?int $limit = null,
+    ): AccountResult {
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
+        $models = $this->apiClient
+            ->send(new GetRequest(
+                $limit,
             ));
 
         return $models;

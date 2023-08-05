@@ -16,15 +16,11 @@ use Vazaha\Mastodon\Requests\Markers\GetRequest;
 class MarkersProxy extends Proxy
 {
     /**
-     * Get saved timeline positions.
-     *
-     * @param null|array<string> $timeline Specify the timeline(s) for which markers should be fetched. Possible values: `home`, `notifications`. If not provided, an empty object will be returned.
+     * Save your position in a timeline.
      */
-    public function get(
-        ?array $timeline = null,
+    public function create(
     ): MarkerModel {
-        $result = $this->apiClient->send(new GetRequest(
-            $timeline,
+        $result = $this->apiClient->send(new CreateRequest(
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\MarkerModel $model */
@@ -38,11 +34,15 @@ class MarkersProxy extends Proxy
     }
 
     /**
-     * Save your position in a timeline.
+     * Get saved timeline positions.
+     *
+     * @param null|array<string> $timeline Specify the timeline(s) for which markers should be fetched. Possible values: `home`, `notifications`. If not provided, an empty object will be returned.
      */
-    public function create(
+    public function get(
+        ?array $timeline = null,
     ): MarkerModel {
-        $result = $this->apiClient->send(new CreateRequest(
+        $result = $this->apiClient->send(new GetRequest(
+            $timeline,
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\MarkerModel $model */

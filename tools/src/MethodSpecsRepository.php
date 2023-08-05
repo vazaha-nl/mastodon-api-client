@@ -16,6 +16,16 @@ class MethodSpecsRepository
     {
         $this->loadMethodSpecs();
 
+        $specs = [];
+
+        foreach ($this->methodSpecs as $namespaceName => $namespaceSpec) {
+            foreach ($namespaceSpec['methods'] as $name => $method) {
+                $specs[$name] = $method;
+            }
+        }
+
+        return $specs;
+
         return Collection::make($this->methodSpecs)
             ->flatten(1)
             ->values()

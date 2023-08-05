@@ -19,6 +19,21 @@ use Vazaha\Mastodon\Results\TagResult;
 class FeaturedTagsProxy extends Proxy
 {
     /**
+     * View your featured tags.
+     *
+     * @return \Vazaha\Mastodon\Results\FeaturedTagResult<array-key,\Vazaha\Mastodon\Models\FeaturedTagModel>
+     */
+    public function get(
+    ): FeaturedTagResult {
+        /** @var \Vazaha\Mastodon\Results\FeaturedTagResult<array-key,\Vazaha\Mastodon\Models\FeaturedTagModel> */
+        $models = $this->apiClient
+            ->send(new GetRequest(
+            ));
+
+        return $models;
+    }
+
+    /**
      * Feature a tag.
      *
      * @param string $name the hashtag to be featured, without the hash sign
@@ -38,15 +53,19 @@ class FeaturedTagsProxy extends Proxy
     }
 
     /**
-     * View your featured tags.
+     * Unfeature a tag.
      *
-     * @return \Vazaha\Mastodon\Results\FeaturedTagResult<array-key,\Vazaha\Mastodon\Models\FeaturedTagModel>
+     * @param string $id the ID of the FeaturedTag in the database
+     *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
-    public function get(
-    ): FeaturedTagResult {
-        /** @var \Vazaha\Mastodon\Results\FeaturedTagResult<array-key,\Vazaha\Mastodon\Models\FeaturedTagModel> */
+    public function unfeature(
+        string $id,
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new GetRequest(
+            ->send(new UnfeatureRequest(
+                $id,
             ));
 
         return $models;
@@ -62,25 +81,6 @@ class FeaturedTagsProxy extends Proxy
         /** @var \Vazaha\Mastodon\Results\TagResult<array-key,\Vazaha\Mastodon\Models\TagModel> */
         $models = $this->apiClient
             ->send(new SuggestionsRequest(
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Unfeature a tag.
-     *
-     * @param string $id the ID of the FeaturedTag in the database
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
-     */
-    public function unfeature(
-        string $id,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new UnfeatureRequest(
-                $id,
             ));
 
         return $models;

@@ -23,91 +23,6 @@ use Vazaha\Mastodon\Results\ListResult;
 class ListsProxy extends Proxy
 {
     /**
-     * View accounts in a list.
-     *
-     * @param string $id    the ID of the List in the database
-     * @param ?int   $limit Maximum number of results. Defaults to 40 accounts. Max 80 accounts. Set to 0 in order to get all accounts without pagination.
-     *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
-     */
-    public function accounts(
-        string $id,
-        ?int $limit = null,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
-        $models = $this->apiClient
-            ->send(new AccountsRequest(
-                $id,
-                $limit,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Show a single list.
-     *
-     * @param string $id the ID of the List in the database
-     *
-     * @return \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel>
-     */
-    public function getOne(
-        string $id,
-    ): ListResult {
-        /** @var \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel> */
-        $models = $this->apiClient
-            ->send(new GetOneRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Remove accounts from list.
-     *
-     * @param string        $id          the ID of the List in the database
-     * @param array<string> $account_ids the accounts that should be removed from the list
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
-     */
-    public function accountsRemove(
-        string $id,
-        array $account_ids,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new AccountsRemoveRequest(
-                $id,
-                $account_ids,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Add accounts to a list.
-     *
-     * @param string        $id          the ID of the List in the database
-     * @param array<string> $account_ids the accounts that should be added to the list
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
-     */
-    public function accountsAdd(
-        string $id,
-        array $account_ids,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new AccountsAddRequest(
-                $id,
-                $account_ids,
-            ));
-
-        return $models;
-    }
-
-    /**
      * Create a list.
      *
      * @param string  $title          the title of the list to be created
@@ -124,6 +39,25 @@ class ListsProxy extends Proxy
             ->send(new CreateRequest(
                 $title,
                 $replies_policy,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Delete a list.
+     *
+     * @param string $id the ID of the List in the database
+     *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     */
+    public function delete(
+        string $id,
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new DeleteRequest(
+                $id,
             ));
 
         return $models;
@@ -155,19 +89,41 @@ class ListsProxy extends Proxy
     }
 
     /**
-     * Delete a list.
+     * Show a single list.
      *
      * @param string $id the ID of the List in the database
      *
+     * @return \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel>
+     */
+    public function getOne(
+        string $id,
+    ): ListResult {
+        /** @var \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel> */
+        $models = $this->apiClient
+            ->send(new GetOneRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Add accounts to a list.
+     *
+     * @param string        $id          the ID of the List in the database
+     * @param array<string> $account_ids the accounts that should be added to the list
+     *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
-    public function delete(
+    public function accountsAdd(
         string $id,
+        array $account_ids,
     ): EmptyOrUnknownResult {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new DeleteRequest(
+            ->send(new AccountsAddRequest(
                 $id,
+                $account_ids,
             ));
 
         return $models;
@@ -183,6 +139,50 @@ class ListsProxy extends Proxy
         /** @var \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
+            ));
+
+        return $models;
+    }
+
+    /**
+     * View accounts in a list.
+     *
+     * @param string $id    the ID of the List in the database
+     * @param ?int   $limit Maximum number of results. Defaults to 40 accounts. Max 80 accounts. Set to 0 in order to get all accounts without pagination.
+     *
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     */
+    public function accounts(
+        string $id,
+        ?int $limit = null,
+    ): AccountResult {
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
+        $models = $this->apiClient
+            ->send(new AccountsRequest(
+                $id,
+                $limit,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Remove accounts from list.
+     *
+     * @param string        $id          the ID of the List in the database
+     * @param array<string> $account_ids the accounts that should be removed from the list
+     *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     */
+    public function accountsRemove(
+        string $id,
+        array $account_ids,
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new AccountsRemoveRequest(
+                $id,
+                $account_ids,
             ));
 
         return $models;

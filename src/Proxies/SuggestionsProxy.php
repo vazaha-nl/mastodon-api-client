@@ -18,6 +18,25 @@ use Vazaha\Mastodon\Results\SuggestionResult;
 class SuggestionsProxy extends Proxy
 {
     /**
+     * Remove a suggestion.
+     *
+     * @param string $account_id the ID of the Account in the database
+     *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     */
+    public function remove(
+        string $account_id,
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new RemoveRequest(
+                $account_id,
+            ));
+
+        return $models;
+    }
+
+    /**
      * (DEPRECATED) View follow suggestions (v1).
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
@@ -50,25 +69,6 @@ class SuggestionsProxy extends Proxy
         $models = $this->apiClient
             ->send(new V2Request(
                 $limit,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Remove a suggestion.
-     *
-     * @param string $account_id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
-     */
-    public function remove(
-        string $account_id,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new RemoveRequest(
-                $account_id,
             ));
 
         return $models;

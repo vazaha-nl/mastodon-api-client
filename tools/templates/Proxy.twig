@@ -17,8 +17,8 @@ class {{ classname }} extends Proxy
 
 {% for method in methods %}
 
-/*
- * {{ method.description }}
+/**
+ * {{ method.description | raw }}
 {% for property in method.allParams %}
  * @param {% if property.typeHint %}{{ property.typeHint | raw }}{% else %}{% if property.nullable %}?{% endif %}{{ property.type }}{% endif %} ${{ property.name }} {{ property.description | raw }}
 {% endfor %}

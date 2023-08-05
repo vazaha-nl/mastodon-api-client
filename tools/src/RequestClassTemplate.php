@@ -15,7 +15,6 @@ class RequestClassTemplate extends ClassTemplate
     public function __construct(
         protected array $methodSpec,
     ) {
-        // var_dump($this->methodSpec); exit();
         $entity = new Entity($this->getNameForSpec($methodSpec));
         parent::__construct($entity);
     }
@@ -30,7 +29,6 @@ class RequestClassTemplate extends ClassTemplate
         $resultClassName = $returnsEntity->toClassName(ClassType::RESULT);
 
         $this->imports->add($requestClassName);
-        // $this->imports->add($resultClassName);
 
         return [
             'namespace' => $this->entity->getNamespace($this->getClassType()),
@@ -77,15 +75,9 @@ class RequestClassTemplate extends ClassTemplate
     {
         $endpoint = $this->methodSpec['uri'];
 
-        if ($endpoint === null) {
-            var_dump($this->methodSpec);
-
-            exit;
-        }
         $sprintfArgs = [];
 
         while (preg_match('/:([a-z_]+)/', $endpoint, $matches)) {
-            // var_dump($matches);
             $endpoint = preg_replace('/:' . $matches[1] . '/', '%s', $endpoint);
             $sprintfArgs[] = $matches[1];
         }

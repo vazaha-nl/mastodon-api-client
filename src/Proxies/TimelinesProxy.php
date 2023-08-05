@@ -18,22 +18,16 @@ use Vazaha\Mastodon\Results\StatusResult;
 class TimelinesProxy extends Proxy
 {
     /**
-     * View public timeline.
+     * (DEPRECATED) View direct timeline.
      *
-     * @param ?bool   $local      show only local statuses? Defaults to false
-     * @param ?bool   $remote     show only remote statuses? Defaults to false
-     * @param ?bool   $only_media show only statuses with media attached? Defaults to false
-     * @param ?string $max_id     return results older than ID
-     * @param ?string $since_id   return results newer than ID
-     * @param ?string $min_id     return results immediately newer than ID
-     * @param ?int    $limit      Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
+     * @param ?string $max_id   return results older than ID
+     * @param ?string $since_id return results newer than ID
+     * @param ?string $min_id   return results immediately newer than ID
+     * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
      */
-    public function public(
-        ?bool $local = null,
-        ?bool $remote = null,
-        ?bool $only_media = null,
+    public function direct(
         ?string $max_id = null,
         ?string $since_id = null,
         ?string $min_id = null,
@@ -41,10 +35,7 @@ class TimelinesProxy extends Proxy
     ): StatusResult {
         /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
-            ->send(new PublicRequest(
-                $local,
-                $remote,
-                $only_media,
+            ->send(new DirectRequest(
                 $max_id,
                 $since_id,
                 $min_id,
@@ -86,16 +77,22 @@ class TimelinesProxy extends Proxy
     }
 
     /**
-     * (DEPRECATED) View direct timeline.
+     * View public timeline.
      *
-     * @param ?string $max_id   return results older than ID
-     * @param ?string $since_id return results newer than ID
-     * @param ?string $min_id   return results immediately newer than ID
-     * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
+     * @param ?bool   $local      show only local statuses? Defaults to false
+     * @param ?bool   $remote     show only remote statuses? Defaults to false
+     * @param ?bool   $only_media show only statuses with media attached? Defaults to false
+     * @param ?string $max_id     return results older than ID
+     * @param ?string $since_id   return results newer than ID
+     * @param ?string $min_id     return results immediately newer than ID
+     * @param ?int    $limit      Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
      */
-    public function direct(
+    public function public(
+        ?bool $local = null,
+        ?bool $remote = null,
+        ?bool $only_media = null,
         ?string $max_id = null,
         ?string $since_id = null,
         ?string $min_id = null,
@@ -103,7 +100,10 @@ class TimelinesProxy extends Proxy
     ): StatusResult {
         /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
-            ->send(new DirectRequest(
+            ->send(new PublicRequest(
+                $local,
+                $remote,
+                $only_media,
                 $max_id,
                 $since_id,
                 $min_id,

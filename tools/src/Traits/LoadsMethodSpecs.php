@@ -18,4 +18,11 @@ trait LoadsMethodSpecs
 
         return $this->methodSpecs;
     }
+
+    public function getMethodSpecs(): array
+    {
+        $this->loadMethodSpecs();
+
+        return $this->methodSpecs;
+    }
 }

@@ -16,24 +16,6 @@ use Vazaha\Mastodon\Requests\Apps\VerifyCredentialsRequest;
 class AppsProxy extends Proxy
 {
     /**
-     * Verify your app works.
-     */
-    public function verifyCredentials(
-    ): ApplicationModel {
-        $result = $this->apiClient->send(new VerifyCredentialsRequest(
-        ));
-
-        /** @var null|\Vazaha\Mastodon\Models\ApplicationModel $model */
-        $model = $result->getModel();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
-    }
-
-    /**
      * Create an application.
      *
      * @param string  $client_name   A name for your application
@@ -52,6 +34,24 @@ class AppsProxy extends Proxy
             $redirect_uris,
             $scopes,
             $website,
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\ApplicationModel $model */
+        $model = $result->getModel();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
+     * Verify your app works.
+     */
+    public function verifyCredentials(
+    ): ApplicationModel {
+        $result = $this->apiClient->send(new VerifyCredentialsRequest(
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\ApplicationModel $model */

@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Proxies;
 
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
-use Vazaha\Mastodon\Models\InstanceModel;
+use Vazaha\Mastodon\Models\InstanceModel as ModelsInstanceModel;
 use Vazaha\Mastodon\Requests\Instance\ActivityRequest;
 use Vazaha\Mastodon\Requests\Instance\DomainBlocksRequest;
 use Vazaha\Mastodon\Requests\Instance\ExtendedDescriptionRequest;
@@ -21,20 +21,35 @@ use Vazaha\Mastodon\Results\DomainBlockResult;
 use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 use Vazaha\Mastodon\Results\ExtendedDescriptionResult;
 use Vazaha\Mastodon\Results\RuleResult;
-use Vazaha\Mastodon\Results\V1\InstanceResult as V1InstanceResult;
+use Vazaha\Mastodon\Results\V1\InstanceResult;
 
 class InstanceProxy extends Proxy
 {
     /**
-     * Weekly activity.
+     * (DEPRECATED) View server information (V1).
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\V1\InstanceResult<array-key,\Vazaha\Mastodon\Models\V1\InstanceModel>
      */
-    public function activity(
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+    public function v1(
+    ): InstanceResult {
+        /** @var \Vazaha\Mastodon\Results\V1\InstanceResult<array-key,\Vazaha\Mastodon\Models\V1\InstanceModel> */
         $models = $this->apiClient
-            ->send(new ActivityRequest(
+            ->send(new V1Request(
+            ));
+
+        return $models;
+    }
+
+    /**
+     * View extended description.
+     *
+     * @return \Vazaha\Mastodon\Results\ExtendedDescriptionResult<array-key,\Vazaha\Mastodon\Models\ExtendedDescriptionModel>
+     */
+    public function extendedDescription(
+    ): ExtendedDescriptionResult {
+        /** @var \Vazaha\Mastodon\Results\ExtendedDescriptionResult<array-key,\Vazaha\Mastodon\Models\ExtendedDescriptionModel> */
+        $models = $this->apiClient
+            ->send(new ExtendedDescriptionRequest(
             ));
 
         return $models;
@@ -44,7 +59,7 @@ class InstanceProxy extends Proxy
      * View server information.
      */
     public function v2(
-    ): InstanceModel {
+    ): ModelsInstanceModel {
         $result = $this->apiClient->send(new V2Request(
         ));
 
@@ -59,15 +74,30 @@ class InstanceProxy extends Proxy
     }
 
     /**
-     * View extended description.
+     * View moderated servers.
      *
-     * @return \Vazaha\Mastodon\Results\ExtendedDescriptionResult<array-key,\Vazaha\Mastodon\Models\ExtendedDescriptionModel>
+     * @return \Vazaha\Mastodon\Results\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\DomainBlockModel>
      */
-    public function extendedDescription(
-    ): ExtendedDescriptionResult {
-        /** @var \Vazaha\Mastodon\Results\ExtendedDescriptionResult<array-key,\Vazaha\Mastodon\Models\ExtendedDescriptionModel> */
+    public function domainBlocks(
+    ): DomainBlockResult {
+        /** @var \Vazaha\Mastodon\Results\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\DomainBlockModel> */
         $models = $this->apiClient
-            ->send(new ExtendedDescriptionRequest(
+            ->send(new DomainBlocksRequest(
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Weekly activity.
+     *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     */
+    public function activity(
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new ActivityRequest(
             ));
 
         return $models;
@@ -89,21 +119,6 @@ class InstanceProxy extends Proxy
     }
 
     /**
-     * (DEPRECATED) View server information (V1).
-     *
-     * @return \Vazaha\Mastodon\Results\V1\InstanceResult<array-key,\Vazaha\Mastodon\Models\V1\InstanceModel>
-     */
-    public function v1(
-    ): V1InstanceResult {
-        /** @var \Vazaha\Mastodon\Results\V1\InstanceResult<array-key,\Vazaha\Mastodon\Models\V1\InstanceModel> */
-        $models = $this->apiClient
-            ->send(new V1Request(
-            ));
-
-        return $models;
-    }
-
-    /**
      * List of rules.
      *
      * @return \Vazaha\Mastodon\Results\RuleResult<array-key,\Vazaha\Mastodon\Models\RuleModel>
@@ -113,21 +128,6 @@ class InstanceProxy extends Proxy
         /** @var \Vazaha\Mastodon\Results\RuleResult<array-key,\Vazaha\Mastodon\Models\RuleModel> */
         $models = $this->apiClient
             ->send(new RulesRequest(
-            ));
-
-        return $models;
-    }
-
-    /**
-     * View moderated servers.
-     *
-     * @return \Vazaha\Mastodon\Results\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\DomainBlockModel>
-     */
-    public function domainBlocks(
-    ): DomainBlockResult {
-        /** @var \Vazaha\Mastodon\Results\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\DomainBlockModel> */
-        $models = $this->apiClient
-            ->send(new DomainBlocksRequest(
             ));
 
         return $models;

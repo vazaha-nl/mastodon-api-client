@@ -18,7 +18,7 @@ use Vazaha\Mastodon\Results\ScheduledStatusResult;
 class ScheduledStatusesProxy extends Proxy
 {
     /**
-     * Update a scheduled status&#039;s publishing date.
+     * Update a scheduled status's publishing date.
      *
      * @param string  $id           the ID of the ScheduledStatus in the database
      * @param ?string $scheduled_at ISO 8601 Datetime at which the status will be published. Must be at least 5 minutes into the future.
@@ -68,25 +68,6 @@ class ScheduledStatusesProxy extends Proxy
     }
 
     /**
-     * View a single scheduled status.
-     *
-     * @param string $id the ID of the ScheduledStatus in the database
-     *
-     * @return \Vazaha\Mastodon\Results\ScheduledStatusResult<array-key,\Vazaha\Mastodon\Models\ScheduledStatusModel>
-     */
-    public function getOne(
-        string $id,
-    ): ScheduledStatusResult {
-        /** @var \Vazaha\Mastodon\Results\ScheduledStatusResult<array-key,\Vazaha\Mastodon\Models\ScheduledStatusModel> */
-        $models = $this->apiClient
-            ->send(new GetOneRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
-    /**
      * Cancel a scheduled status.
      *
      * @param string $id the ID of the ScheduledStatus in the database
@@ -99,6 +80,25 @@ class ScheduledStatusesProxy extends Proxy
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new CancelRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * View a single scheduled status.
+     *
+     * @param string $id the ID of the ScheduledStatus in the database
+     *
+     * @return \Vazaha\Mastodon\Results\ScheduledStatusResult<array-key,\Vazaha\Mastodon\Models\ScheduledStatusModel>
+     */
+    public function getOne(
+        string $id,
+    ): ScheduledStatusResult {
+        /** @var \Vazaha\Mastodon\Results\ScheduledStatusResult<array-key,\Vazaha\Mastodon\Models\ScheduledStatusModel> */
+        $models = $this->apiClient
+            ->send(new GetOneRequest(
                 $id,
             ));
 

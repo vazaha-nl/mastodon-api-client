@@ -45,7 +45,7 @@ class ProxyClassTemplate extends ClassTemplate
 
     protected function getMethods(): array
     {
-        return Collection::make($this->spec)
+        return Collection::make($this->spec['methods'])
             ->map(function (array $methodSpec) {
                 $allParams = [];
 

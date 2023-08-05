@@ -35,25 +35,6 @@ class DomainBlocksProxy extends Proxy
     }
 
     /**
-     * Block a domain.
-     *
-     * @param string $domain domain to block
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
-     */
-    public function block(
-        string $domain,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new BlockRequest(
-                $domain,
-            ));
-
-        return $models;
-    }
-
-    /**
      * Unblock a domain.
      *
      * @param string $domain domain to unblock
@@ -66,6 +47,25 @@ class DomainBlocksProxy extends Proxy
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new UnblockRequest(
+                $domain,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Block a domain.
+     *
+     * @param string $domain domain to block
+     *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     */
+    public function block(
+        string $domain,
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new BlockRequest(
                 $domain,
             ));
 

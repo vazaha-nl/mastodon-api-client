@@ -21,17 +21,17 @@ $specsRepo = new EntitySpecsRepository();
 $methodsRepo = new MethodSpecsRepository();
 
 foreach ($methodsRepo->getNamespaces() as $namespace) {
-    $accountsSpecs = $methodsRepo->getMethodsForNamespace($namespace);
+    $namespaceSpecs = $methodsRepo->getMethodsForNamespace($namespace);
     $template = new ProxyClassTemplate(
         new Entity(Str::studly($namespace)),
-        $accountsSpecs,
+        $namespaceSpecs,
     );
     $template->write(true);
 }
 
 $template = new ProxyContainerClassTemplate(
     new Entity('Methods'),
-    $methodsRepo->getNamespaces(),
+    $methodsRepo->getMethodSpecs(),
 );
 $template->write(true);
 

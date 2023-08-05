@@ -17,18 +17,18 @@ use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 class ConversationsProxy extends Proxy
 {
     /**
-     * Remove a conversation.
+     * Mark a conversation as read.
      *
      * @param string $id the ID of the Conversation in the database
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\ConversationResult<array-key,\Vazaha\Mastodon\Models\ConversationModel>
      */
-    public function delete(
+    public function read(
         string $id,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+    ): ConversationResult {
+        /** @var \Vazaha\Mastodon\Results\ConversationResult<array-key,\Vazaha\Mastodon\Models\ConversationModel> */
         $models = $this->apiClient
-            ->send(new DeleteRequest(
+            ->send(new ReadRequest(
                 $id,
             ));
 
@@ -55,18 +55,18 @@ class ConversationsProxy extends Proxy
     }
 
     /**
-     * Mark a conversation as read.
+     * Remove a conversation.
      *
      * @param string $id the ID of the Conversation in the database
      *
-     * @return \Vazaha\Mastodon\Results\ConversationResult<array-key,\Vazaha\Mastodon\Models\ConversationModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
-    public function read(
+    public function delete(
         string $id,
-    ): ConversationResult {
-        /** @var \Vazaha\Mastodon\Results\ConversationResult<array-key,\Vazaha\Mastodon\Models\ConversationModel> */
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new ReadRequest(
+            ->send(new DeleteRequest(
                 $id,
             ));
 

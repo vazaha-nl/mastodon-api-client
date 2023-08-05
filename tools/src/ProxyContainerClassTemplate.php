@@ -13,7 +13,7 @@ class ProxyContainerClassTemplate extends ClassTemplate
 {
     public function __construct(
         Entity $entity,
-        protected array $namespaces,
+        protected array $methodSpecs,
     ) {
         parent::__construct($entity);
     }
@@ -25,22 +25,10 @@ class ProxyContainerClassTemplate extends ClassTemplate
 
     protected function getTemplateVars(): array
     {
-        $proxies = Collection::make($this->getProxyClassNames())
-            ->map(static function (ClassName $className) {
-                $name = Str::camel($className->getBaseName());
-                $name = str_replace('Proxy', '', $name);
-
-                return [
-                    'name' => $name,
-                    'className' => $className,
-                ];
-            })
-            ->toArray();
-
         $this->imports->add(new ClassName(ApiClient::class));
 
         return [
-            'proxies' => $proxies,
+            'proxies' => $this->getProxies(),
             'namespace' => $this->entity->getNamespace($this->getClassType()),
             'classname' => $this->entity->getBaseClassName($this->getClassType()),
             'classImports' => $this->imports,
@@ -52,10 +40,10 @@ class ProxyContainerClassTemplate extends ClassTemplate
         return ClassType::PROXY;
     }
 
-    protected function getProxyClassNames(): array
+    protected function getProxies(): array
     {
-        return Collection::make($this->namespaces)
-            ->map(function (string $namespace) {
+        return Collection::make($this->methodSpecs)
+            ->map(function (array $spec, string $namespace) {
                 $entityName = Str::studly($namespace);
                 $entity = new Entity($entityName);
 
@@ -63,7 +51,14 @@ class ProxyContainerClassTemplate extends ClassTemplate
 
                 $this->imports->add($className);
 
-                return $className;
+                $name = Str::camel($className->getBaseName());
+                $name = str_replace('Proxy', '', $name);
+
+                return [
+                    'name' => $name,
+                    'className' => $className,
+                    'description' => $spec['description'] ?? '',
+                ];
             })
             ->toArray();
     }

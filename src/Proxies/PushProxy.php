@@ -37,28 +37,6 @@ class PushProxy extends Proxy
     }
 
     /**
-     * Change types of notifications.
-     *
-     * @param ?string $policy specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users
-     */
-    public function update(
-        ?string $policy = null,
-    ): WebPushSubscriptionModel {
-        $result = $this->apiClient->send(new UpdateRequest(
-            $policy,
-        ));
-
-        /** @var null|\Vazaha\Mastodon\Models\WebPushSubscriptionModel $model */
-        $model = $result->getModel();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
-    }
-
-    /**
      * Subscribe to push notifications.
      */
     public function create(
@@ -82,6 +60,28 @@ class PushProxy extends Proxy
     public function get(
     ): WebPushSubscriptionModel {
         $result = $this->apiClient->send(new GetRequest(
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\WebPushSubscriptionModel $model */
+        $model = $result->getModel();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
+     * Change types of notifications.
+     *
+     * @param ?string $policy specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users
+     */
+    public function update(
+        ?string $policy = null,
+    ): WebPushSubscriptionModel {
+        $result = $this->apiClient->send(new UpdateRequest(
+            $policy,
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\WebPushSubscriptionModel $model */
