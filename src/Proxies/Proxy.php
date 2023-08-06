@@ -6,10 +6,10 @@ namespace Vazaha\Mastodon\Proxies;
 
 use Vazaha\Mastodon\ApiClient;
 
-class Proxy
+abstract class Proxy
 {
     public function __construct(
-        public ApiClient $apiClient,
+        protected ApiClient $apiClient,
     ) {
     }
 }
