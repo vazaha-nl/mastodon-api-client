@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Vazaha\Mastodon\Collections\RuleCollection;
 use Vazaha\Mastodon\Collections\StatusCollection;
 use Vazaha\Mastodon\Models\Model;
@@ -31,7 +31,7 @@ class ReportModel extends Model
     /**
      * When an action was taken, if this report is currently resolved.
      */
-    public ?Carbon $action_taken_at = null;
+    public ?DateTimeInterface $action_taken_at = null;
 
     /**
      * The category under which the report is classified.
@@ -51,12 +51,12 @@ class ReportModel extends Model
     /**
      * The time the report was filed.
      */
-    public Carbon $created_at;
+    public DateTimeInterface $created_at;
 
     /**
      * The time of last action on this report.
      */
-    public Carbon $updated_at;
+    public DateTimeInterface $updated_at;
 
     /**
      * The account which filed the report.

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Vazaha\Mastodon\Collections\MediaAttachmentCollection;
 
 /**
@@ -24,7 +24,7 @@ class ScheduledStatusModel extends Model
     /**
      * The timestamp for when the status will be posted.
      */
-    public Carbon $scheduled_at;
+    public DateTimeInterface $scheduled_at;
 
     /**
      * The parameters that were used when scheduling the status, to be used when

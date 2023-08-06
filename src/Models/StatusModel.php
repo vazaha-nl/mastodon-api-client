@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Vazaha\Mastodon\Collections\CustomEmojiCollection;
 use Vazaha\Mastodon\Collections\FilterResultCollection;
 use Vazaha\Mastodon\Collections\MediaAttachmentCollection;
@@ -33,7 +33,7 @@ class StatusModel extends Model
     /**
      * The date when this status was created.
      */
-    public Carbon $created_at;
+    public DateTimeInterface $created_at;
 
     /**
      * The account that authored this status.
@@ -148,7 +148,7 @@ class StatusModel extends Model
     /**
      * Timestamp of when the status was last edited.
      */
-    public ?Carbon $edited_at = null;
+    public ?DateTimeInterface $edited_at = null;
 
     /**
      * If the current token has an authorized user: Have you favourited this

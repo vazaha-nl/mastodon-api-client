@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Vazaha\Mastodon\Collections\Announcement\AccountCollection;
 use Vazaha\Mastodon\Collections\Announcement\StatusCollection;
 use Vazaha\Mastodon\Collections\CustomEmojiCollection;
@@ -33,12 +33,12 @@ class AnnouncementModel extends Model
     /**
      * When the announcement will start.
      */
-    public ?Carbon $starts_at = null;
+    public ?DateTimeInterface $starts_at = null;
 
     /**
      * When the announcement will end.
      */
-    public ?Carbon $ends_at = null;
+    public ?DateTimeInterface $ends_at = null;
 
     /**
      * Whether the announcement is currently active.
@@ -54,12 +54,12 @@ class AnnouncementModel extends Model
     /**
      * When the announcement was published.
      */
-    public Carbon $published_at;
+    public DateTimeInterface $published_at;
 
     /**
      * When the announcement was last updated.
      */
-    public Carbon $updated_at;
+    public DateTimeInterface $updated_at;
 
     /**
      * Whether the announcement has been read by the current user.

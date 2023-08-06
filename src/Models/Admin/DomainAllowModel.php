@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Vazaha\Mastodon\Models\Model;
 
 /**
@@ -29,5 +29,5 @@ class DomainAllowModel extends Model
     /**
      * When the domain was allowed to federate.
      */
-    public Carbon $created_at;
+    public DateTimeInterface $created_at;
 }

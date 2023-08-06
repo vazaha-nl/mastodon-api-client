@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Vazaha\Mastodon\Models\Model;
 
 /**
@@ -29,7 +29,7 @@ class DomainBlockModel extends Model
     /**
      * When the domain was blocked from federating.
      */
-    public Carbon $created_at;
+    public DateTimeInterface $created_at;
 
     /**
      * The policy to be applied by this domain block.

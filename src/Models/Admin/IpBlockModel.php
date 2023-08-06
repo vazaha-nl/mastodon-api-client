@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Vazaha\Mastodon\Models\Model;
 
 /**
@@ -39,10 +39,10 @@ class IpBlockModel extends Model
     /**
      * When the IP block was created.
      */
-    public Carbon $created_at;
+    public DateTimeInterface $created_at;
 
     /**
      * When the IP block will expire.
      */
-    public ?Carbon $expires_at = null;
+    public ?DateTimeInterface $expires_at = null;
 }

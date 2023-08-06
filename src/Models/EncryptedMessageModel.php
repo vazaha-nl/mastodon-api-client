@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 
 /**
  * Represents an encrypted message.
@@ -54,5 +54,5 @@ class EncryptedMessageModel extends Model
     /**
      * A timestamp for when the message was created.
      */
-    public Carbon $created_at;
+    public DateTimeInterface $created_at;
 }

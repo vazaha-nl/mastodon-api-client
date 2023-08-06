@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Vazaha\Mastodon\Collections\CustomEmojiCollection;
 use Vazaha\Mastodon\Collections\MediaAttachmentCollection;
 
@@ -35,7 +35,7 @@ class StatusEditModel extends Model
     /**
      * The timestamp of when the revision was published.
      */
-    public Carbon $created_at;
+    public DateTimeInterface $created_at;
 
     /**
      * The account that published this revision.

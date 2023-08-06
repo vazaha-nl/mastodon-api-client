@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\V1;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Vazaha\Mastodon\Models\Model;
 
 /**
@@ -36,7 +36,7 @@ class FilterModel extends Model
     /**
      * When the filter should no longer be applied.
      */
-    public ?Carbon $expires_at = null;
+    public ?DateTimeInterface $expires_at = null;
 
     /**
      * Should matching entities in home and notifications be dropped by the

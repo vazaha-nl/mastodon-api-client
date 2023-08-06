@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Vazaha\Mastodon\Collections\CustomEmojiCollection;
 use Vazaha\Mastodon\Collections\FieldCollection;
 
@@ -127,12 +127,12 @@ class AccountModel extends Model
     /**
      * When the account was created.
      */
-    public Carbon $created_at;
+    public DateTimeInterface $created_at;
 
     /**
      * When the most recent status was posted.
      */
-    public ?Carbon $last_status_at = null;
+    public ?DateTimeInterface $last_status_at = null;
 
     /**
      * How many statuses are attached to this account.

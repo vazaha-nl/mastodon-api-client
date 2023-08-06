@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 
 /**
  * Represents a proof from an external identity provider.
@@ -28,7 +28,7 @@ class IdentityProofModel extends Model
     /**
      * When the identity proof was last updated.
      */
-    public Carbon $updated_at;
+    public DateTimeInterface $updated_at;
 
     /**
      * A link to a statement of identity proof, hosted by the identity provider.

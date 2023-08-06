@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Vazaha\Mastodon\Collections\FilterKeywordCollection;
 use Vazaha\Mastodon\Collections\FilterStatusCollection;
 
@@ -37,7 +37,7 @@ class FilterModel extends Model
     /**
      * When the filter should no longer be applied.
      */
-    public ?Carbon $expires_at = null;
+    public ?DateTimeInterface $expires_at = null;
 
     /**
      * The action to be taken when a status matches this filter.

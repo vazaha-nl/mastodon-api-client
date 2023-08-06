@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 
 /**
  * Represents a user of Mastodon and their associated profile.
@@ -28,5 +28,5 @@ class FieldModel extends Model
     /**
      * Timestamp of when the server verified a URL value for a rel=&quot;me&quot; link.
      */
-    public ?Carbon $verified_at = null;
+    public ?DateTimeInterface $verified_at = null;
 }

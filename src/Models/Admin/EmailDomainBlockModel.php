@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Vazaha\Mastodon\Models\Model;
 
 /**
@@ -29,7 +29,7 @@ class EmailDomainBlockModel extends Model
     /**
      * When the email domain was disallowed from signups.
      */
-    public Carbon $created_at;
+    public DateTimeInterface $created_at;
 
     /**
      * Usage statistics for given days (typically the past week).

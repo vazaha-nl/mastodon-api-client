@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Vazaha\Mastodon\Collections\CustomEmojiCollection;
 use Vazaha\Mastodon\Collections\Poll\OptionCollection;
 
@@ -25,7 +25,7 @@ class PollModel extends Model
     /**
      * When the poll ends.
      */
-    public ?Carbon $expires_at = null;
+    public ?DateTimeInterface $expires_at = null;
 
     /**
      * Is the poll currently expired?

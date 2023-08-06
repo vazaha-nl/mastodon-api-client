@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 
 /**
  * Represents a hashtag that is featured on a profile.
@@ -38,5 +38,5 @@ class FeaturedTagModel extends Model
     /**
      * The timestamp of the last authored status containing this hashtag.
      */
-    public Carbon $last_status_at;
+    public DateTimeInterface $last_status_at;
 }

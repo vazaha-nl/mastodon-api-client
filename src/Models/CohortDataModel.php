@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 
 /**
  * Represents a retention metric.
@@ -18,7 +18,7 @@ class CohortDataModel extends Model
     /**
      * The timestamp for the start of the bucket, at midnight.
      */
-    public Carbon $date;
+    public DateTimeInterface $date;
 
     /**
      * The percentage rate of users who registered in the specified `period` and

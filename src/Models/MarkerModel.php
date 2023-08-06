@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 
 /**
  * Represents the last read position within a user&#039;s timelines.
@@ -28,5 +28,5 @@ class MarkerModel extends Model
     /**
      * The timestamp of when the marker was set.
      */
-    public Carbon $updated_at;
+    public DateTimeInterface $updated_at;
 }

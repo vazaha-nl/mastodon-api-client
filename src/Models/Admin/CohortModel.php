@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Vazaha\Mastodon\Collections\CohortDataCollection;
 use Vazaha\Mastodon\Models\Model;
 
@@ -20,7 +20,7 @@ class CohortModel extends Model
     /**
      * The timestamp for the start of the period, at midnight.
      */
-    public Carbon $period;
+    public DateTimeInterface $period;
 
     /**
      * The size of the bucket for the returned data.
