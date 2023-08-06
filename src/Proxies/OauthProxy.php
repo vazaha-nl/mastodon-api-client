@@ -18,34 +18,6 @@ use Vazaha\Mastodon\Requests\Oauth\TokenRequest;
 class OauthProxy extends Proxy
 {
     /**
-     * Revoke a token.
-     *
-     * @param string $client_id     the client ID, obtained during app registration
-     * @param string $client_secret the client secret, obtained during app registration
-     * @param string $token         the previously obtained token, to be invalidated
-     */
-    public function revoke(
-        string $client_id,
-        string $client_secret,
-        string $token,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new RevokeRequest(
-            $client_id,
-            $client_secret,
-            $token,
-        ));
-
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->getModel();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
-    }
-
-    /**
      * Authorize a user.
      *
      * @param string  $response_type should be set equal to `code`
@@ -70,6 +42,34 @@ class OauthProxy extends Proxy
             $scope,
             $force_login,
             $lang,
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->getModel();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
+     * Revoke a token.
+     *
+     * @param string $client_id     the client ID, obtained during app registration
+     * @param string $client_secret the client secret, obtained during app registration
+     * @param string $token         the previously obtained token, to be invalidated
+     */
+    public function revoke(
+        string $client_id,
+        string $client_secret,
+        string $token,
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new RevokeRequest(
+            $client_id,
+            $client_secret,
+            $token,
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */

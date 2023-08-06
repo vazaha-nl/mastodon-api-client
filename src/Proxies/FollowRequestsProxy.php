@@ -36,25 +36,6 @@ class FollowRequestsProxy extends Proxy
     }
 
     /**
-     * Reject follow request.
-     *
-     * @param string $account_id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
-     */
-    public function reject(
-        string $account_id,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new RejectRequest(
-                $account_id,
-            ));
-
-        return $models;
-    }
-
-    /**
      * View pending follow requests.
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
@@ -68,6 +49,25 @@ class FollowRequestsProxy extends Proxy
         $models = $this->apiClient
             ->send(new GetRequest(
                 $limit,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Reject follow request.
+     *
+     * @param string $account_id the ID of the Account in the database
+     *
+     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
+     */
+    public function reject(
+        string $account_id,
+    ): RelationshipResult {
+        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
+        $models = $this->apiClient
+            ->send(new RejectRequest(
+                $account_id,
             ));
 
         return $models;

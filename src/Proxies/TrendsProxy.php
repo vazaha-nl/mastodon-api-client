@@ -40,28 +40,6 @@ class TrendsProxy extends Proxy
     }
 
     /**
-     * View trending tags.
-     *
-     * @param ?int $limit  Maximum number of results to return. Defaults to 10 tags. Max 20 tags.
-     * @param ?int $offset skip the first n results
-     *
-     * @return \Vazaha\Mastodon\Results\TagResult<array-key,\Vazaha\Mastodon\Models\TagModel>
-     */
-    public function tags(
-        ?int $limit = null,
-        ?int $offset = null,
-    ): TagResult {
-        /** @var \Vazaha\Mastodon\Results\TagResult<array-key,\Vazaha\Mastodon\Models\TagModel> */
-        $models = $this->apiClient
-            ->send(new TagsRequest(
-                $limit,
-                $offset,
-            ));
-
-        return $models;
-    }
-
-    /**
      * View trending statuses.
      *
      * @param ?int $limit  Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
@@ -76,6 +54,28 @@ class TrendsProxy extends Proxy
         /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
             ->send(new StatusesRequest(
+                $limit,
+                $offset,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * View trending tags.
+     *
+     * @param ?int $limit  Maximum number of results to return. Defaults to 10 tags. Max 20 tags.
+     * @param ?int $offset skip the first n results
+     *
+     * @return \Vazaha\Mastodon\Results\TagResult<array-key,\Vazaha\Mastodon\Models\TagModel>
+     */
+    public function tags(
+        ?int $limit = null,
+        ?int $offset = null,
+    ): TagResult {
+        /** @var \Vazaha\Mastodon\Results\TagResult<array-key,\Vazaha\Mastodon\Models\TagModel> */
+        $models = $this->apiClient
+            ->send(new TagsRequest(
                 $limit,
                 $offset,
             ));

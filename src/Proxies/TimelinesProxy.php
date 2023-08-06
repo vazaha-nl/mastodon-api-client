@@ -46,6 +46,34 @@ class TimelinesProxy extends Proxy
     }
 
     /**
+     * View home timeline.
+     *
+     * @param ?string $max_id   return results older than ID
+     * @param ?string $since_id return results newer than ID
+     * @param ?string $min_id   return results immediately newer than ID
+     * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
+     *
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     */
+    public function home(
+        ?string $max_id = null,
+        ?string $since_id = null,
+        ?string $min_id = null,
+        ?int $limit = null,
+    ): StatusResult {
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
+        $models = $this->apiClient
+            ->send(new HomeRequest(
+                $max_id,
+                $since_id,
+                $min_id,
+                $limit,
+            ));
+
+        return $models;
+    }
+
+    /**
      * View list timeline.
      *
      * @param string  $list_id  local ID of the List in the database
@@ -104,34 +132,6 @@ class TimelinesProxy extends Proxy
                 $local,
                 $remote,
                 $only_media,
-                $max_id,
-                $since_id,
-                $min_id,
-                $limit,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * View home timeline.
-     *
-     * @param ?string $max_id   return results older than ID
-     * @param ?string $since_id return results newer than ID
-     * @param ?string $min_id   return results immediately newer than ID
-     * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
-     *
-     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
-     */
-    public function home(
-        ?string $max_id = null,
-        ?string $since_id = null,
-        ?string $min_id = null,
-        ?int $limit = null,
-    ): StatusResult {
-        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
-        $models = $this->apiClient
-            ->send(new HomeRequest(
                 $max_id,
                 $since_id,
                 $min_id,

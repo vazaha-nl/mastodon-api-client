@@ -47,19 +47,245 @@ use Vazaha\Mastodon\Results\StatusResult;
 class AccountsProxy extends Proxy
 {
     /**
-     * Unmute account.
+     * Block account.
      *
      * @param string $id the ID of the Account in the database
      *
      * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
-    public function unmute(
+    public function block(
         string $id,
     ): RelationshipResult {
         /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
         $models = $this->apiClient
-            ->send(new UnmuteRequest(
+            ->send(new BlockRequest(
                 $id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Register an account.
+     *
+     * @param string  $username  The desired username for the account
+     * @param string  $email     The email address to be used for login
+     * @param string  $password  The password to be used for login
+     * @param bool    $agreement Whether the user agrees to the local rules, terms, and policies. These should be presented to the user in order to allow them to consent before setting this parameter to TRUE.
+     * @param string  $locale    the language of the confirmation email that will be sent
+     * @param ?string $reason    if registrations require manual approval, this text will be reviewed by moderators
+     */
+    public function create(
+        string $username,
+        string $email,
+        string $password,
+        bool $agreement,
+        string $locale,
+        ?string $reason = null,
+    ): TokenModel {
+        $result = $this->apiClient->send(new CreateRequest(
+            $username,
+            $email,
+            $password,
+            $agreement,
+            $locale,
+            $reason,
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\TokenModel $model */
+        $model = $result->getModel();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
+     * Find familiar followers.
+     *
+     * @param null|array<string> $id find familiar followers for the provided account IDs
+     *
+     * @return \Vazaha\Mastodon\Results\FamiliarFollowersResult<array-key,\Vazaha\Mastodon\Models\FamiliarFollowersModel>
+     */
+    public function familiarFollowers(
+        ?array $id = null,
+    ): FamiliarFollowersResult {
+        /** @var \Vazaha\Mastodon\Results\FamiliarFollowersResult<array-key,\Vazaha\Mastodon\Models\FamiliarFollowersModel> */
+        $models = $this->apiClient
+            ->send(new FamiliarFollowersRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Get account's featured tags.
+     *
+     * @param string $id the ID of the Account in the database
+     *
+     * @return \Vazaha\Mastodon\Results\FeaturedTagResult<array-key,\Vazaha\Mastodon\Models\FeaturedTagModel>
+     */
+    public function featuredTags(
+        string $id,
+    ): FeaturedTagResult {
+        /** @var \Vazaha\Mastodon\Results\FeaturedTagResult<array-key,\Vazaha\Mastodon\Models\FeaturedTagModel> */
+        $models = $this->apiClient
+            ->send(new FeaturedTagsRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Follow account.
+     *
+     * @param string             $id        the ID of the Account in the database
+     * @param ?bool              $reblogs   receive this account's reblogs in home timeline? Defaults to true
+     * @param ?bool              $notify    receive notifications when this account posts a status? Defaults to false
+     * @param null|array<string> $languages Filter received statuses for these languages. If not provided, you will receive this account's posts in all languages.
+     *
+     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
+     */
+    public function follow(
+        string $id,
+        ?bool $reblogs = null,
+        ?bool $notify = null,
+        ?array $languages = null,
+    ): RelationshipResult {
+        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
+        $models = $this->apiClient
+            ->send(new FollowRequest(
+                $id,
+                $reblogs,
+                $notify,
+                $languages,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Get account's followers.
+     *
+     * @param string $id    the ID of the Account in the database
+     * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
+     *
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     */
+    public function followers(
+        string $id,
+        ?int $limit = null,
+    ): AccountResult {
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
+        $models = $this->apiClient
+            ->send(new FollowersRequest(
+                $id,
+                $limit,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Get account's following.
+     *
+     * @param string $id    the ID of the Account in the database
+     * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
+     *
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     */
+    public function following(
+        string $id,
+        ?int $limit = null,
+    ): AccountResult {
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
+        $models = $this->apiClient
+            ->send(new FollowingRequest(
+                $id,
+                $limit,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Get account.
+     *
+     * @param string $id the ID of the Account in the database
+     */
+    public function get(
+        string $id,
+    ): AccountModel {
+        $result = $this->apiClient->send(new GetRequest(
+            $id,
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\AccountModel $model */
+        $model = $result->getModel();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
+     * (DEPRECATED) Identity proofs.
+     *
+     * @param string $id the ID of the Account in the database
+     *
+     * @return \Vazaha\Mastodon\Results\IdentityProofResult<array-key,\Vazaha\Mastodon\Models\IdentityProofModel>
+     */
+    public function identityProofs(
+        string $id,
+    ): IdentityProofResult {
+        /** @var \Vazaha\Mastodon\Results\IdentityProofResult<array-key,\Vazaha\Mastodon\Models\IdentityProofModel> */
+        $models = $this->apiClient
+            ->send(new IdentityProofsRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Get lists containing this account.
+     *
+     * @param string $id the ID of the Account in the database
+     *
+     * @return \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel>
+     */
+    public function lists(
+        string $id,
+    ): ListResult {
+        /** @var \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel> */
+        $models = $this->apiClient
+            ->send(new ListsRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Lookup account ID from Webfinger address.
+     *
+     * @param string $acct the username or Webfinger address to lookup
+     *
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     */
+    public function lookup(
+        string $acct,
+    ): AccountResult {
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
+        $models = $this->apiClient
+            ->send(new LookupRequest(
+                $acct,
             ));
 
         return $models;
@@ -91,6 +317,66 @@ class AccountsProxy extends Proxy
     }
 
     /**
+     * Set private note on profile.
+     *
+     * @param string  $id      the ID of the Account in the database
+     * @param ?string $comment The comment to be set on that user. Provide an empty string or leave out this parameter to clear the currently set note.
+     *
+     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
+     */
+    public function note(
+        string $id,
+        ?string $comment = null,
+    ): RelationshipResult {
+        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
+        $models = $this->apiClient
+            ->send(new NoteRequest(
+                $id,
+                $comment,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Feature account on your profile.
+     *
+     * @param string $id the ID of the Account in the database
+     *
+     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
+     */
+    public function pin(
+        string $id,
+    ): RelationshipResult {
+        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
+        $models = $this->apiClient
+            ->send(new PinRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Check relationships to other accounts.
+     *
+     * @param null|mixed[] $id check relationships for the provided account IDs
+     *
+     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
+     */
+    public function relationships(
+        ?array $id = null,
+    ): RelationshipResult {
+        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
+        $models = $this->apiClient
+            ->send(new RelationshipsRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
      * Remove account from followers.
      *
      * @param string $id the ID of the Account in the database
@@ -103,25 +389,6 @@ class AccountsProxy extends Proxy
         /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
         $models = $this->apiClient
             ->send(new RemoveFromFollowersRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Unblock account.
-     *
-     * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
-     */
-    public function unblock(
-        string $id,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new UnblockRequest(
                 $id,
             ));
 
@@ -154,25 +421,6 @@ class AccountsProxy extends Proxy
                 $offset,
                 $resolve,
                 $following,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Block account.
-     *
-     * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
-     */
-    public function block(
-        string $id,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new BlockRequest(
-                $id,
             ));
 
         return $models;
@@ -225,125 +473,60 @@ class AccountsProxy extends Proxy
     }
 
     /**
-     * Get account's followers.
-     *
-     * @param string $id    the ID of the Account in the database
-     * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
-     *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
-     */
-    public function followers(
-        string $id,
-        ?int $limit = null,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
-        $models = $this->apiClient
-            ->send(new FollowersRequest(
-                $id,
-                $limit,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Get account's featured tags.
+     * Unblock account.
      *
      * @param string $id the ID of the Account in the database
      *
-     * @return \Vazaha\Mastodon\Results\FeaturedTagResult<array-key,\Vazaha\Mastodon\Models\FeaturedTagModel>
-     */
-    public function featuredTags(
-        string $id,
-    ): FeaturedTagResult {
-        /** @var \Vazaha\Mastodon\Results\FeaturedTagResult<array-key,\Vazaha\Mastodon\Models\FeaturedTagModel> */
-        $models = $this->apiClient
-            ->send(new FeaturedTagsRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Get account's following.
-     *
-     * @param string $id    the ID of the Account in the database
-     * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
-     *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
-     */
-    public function following(
-        string $id,
-        ?int $limit = null,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
-        $models = $this->apiClient
-            ->send(new FollowingRequest(
-                $id,
-                $limit,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Set private note on profile.
-     *
-     * @param string  $id      the ID of the Account in the database
-     * @param ?string $comment The comment to be set on that user. Provide an empty string or leave out this parameter to clear the currently set note.
-     *
      * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
-    public function note(
+    public function unblock(
         string $id,
-        ?string $comment = null,
     ): RelationshipResult {
         /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
         $models = $this->apiClient
-            ->send(new NoteRequest(
+            ->send(new UnblockRequest(
                 $id,
-                $comment,
             ));
 
         return $models;
     }
 
     /**
-     * Register an account.
+     * Unfollow account.
      *
-     * @param string  $username  The desired username for the account
-     * @param string  $email     The email address to be used for login
-     * @param string  $password  The password to be used for login
-     * @param bool    $agreement Whether the user agrees to the local rules, terms, and policies. These should be presented to the user in order to allow them to consent before setting this parameter to TRUE.
-     * @param string  $locale    the language of the confirmation email that will be sent
-     * @param ?string $reason    if registrations require manual approval, this text will be reviewed by moderators
+     * @param string $id the ID of the Account in the database
+     *
+     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
-    public function create(
-        string $username,
-        string $email,
-        string $password,
-        bool $agreement,
-        string $locale,
-        ?string $reason = null,
-    ): TokenModel {
-        $result = $this->apiClient->send(new CreateRequest(
-            $username,
-            $email,
-            $password,
-            $agreement,
-            $locale,
-            $reason,
-        ));
+    public function unfollow(
+        string $id,
+    ): RelationshipResult {
+        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
+        $models = $this->apiClient
+            ->send(new UnfollowRequest(
+                $id,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\TokenModel $model */
-        $model = $result->getModel();
+        return $models;
+    }
 
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
+    /**
+     * Unmute account.
+     *
+     * @param string $id the ID of the Account in the database
+     *
+     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
+     */
+    public function unmute(
+        string $id,
+    ): RelationshipResult {
+        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
+        $models = $this->apiClient
+            ->send(new UnmuteRequest(
+                $id,
+            ));
 
-        return $model;
+        return $models;
     }
 
     /**
@@ -363,65 +546,6 @@ class AccountsProxy extends Proxy
             ));
 
         return $models;
-    }
-
-    /**
-     * Lookup account ID from Webfinger address.
-     *
-     * @param string $acct the username or Webfinger address to lookup
-     *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
-     */
-    public function lookup(
-        string $acct,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
-        $models = $this->apiClient
-            ->send(new LookupRequest(
-                $acct,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Verify account credentials.
-     */
-    public function verifyCredentials(
-    ): CredentialAccountModel {
-        $result = $this->apiClient->send(new VerifyCredentialsRequest(
-        ));
-
-        /** @var null|\Vazaha\Mastodon\Models\CredentialAccountModel $model */
-        $model = $result->getModel();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
-    }
-
-    /**
-     * Get account.
-     *
-     * @param string $id the ID of the Account in the database
-     */
-    public function get(
-        string $id,
-    ): AccountModel {
-        $result = $this->apiClient->send(new GetRequest(
-            $id,
-        ));
-
-        /** @var null|\Vazaha\Mastodon\Models\AccountModel $model */
-        $model = $result->getModel();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
     }
 
     /**
@@ -462,144 +586,20 @@ class AccountsProxy extends Proxy
     }
 
     /**
-     * (DEPRECATED) Identity proofs.
-     *
-     * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\IdentityProofResult<array-key,\Vazaha\Mastodon\Models\IdentityProofModel>
+     * Verify account credentials.
      */
-    public function identityProofs(
-        string $id,
-    ): IdentityProofResult {
-        /** @var \Vazaha\Mastodon\Results\IdentityProofResult<array-key,\Vazaha\Mastodon\Models\IdentityProofModel> */
-        $models = $this->apiClient
-            ->send(new IdentityProofsRequest(
-                $id,
-            ));
+    public function verifyCredentials(
+    ): CredentialAccountModel {
+        $result = $this->apiClient->send(new VerifyCredentialsRequest(
+        ));
 
-        return $models;
-    }
+        /** @var null|\Vazaha\Mastodon\Models\CredentialAccountModel $model */
+        $model = $result->getModel();
 
-    /**
-     * Get lists containing this account.
-     *
-     * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel>
-     */
-    public function lists(
-        string $id,
-    ): ListResult {
-        /** @var \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel> */
-        $models = $this->apiClient
-            ->send(new ListsRequest(
-                $id,
-            ));
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
 
-        return $models;
-    }
-
-    /**
-     * Feature account on your profile.
-     *
-     * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
-     */
-    public function pin(
-        string $id,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new PinRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Find familiar followers.
-     *
-     * @param null|array<string> $id find familiar followers for the provided account IDs
-     *
-     * @return \Vazaha\Mastodon\Results\FamiliarFollowersResult<array-key,\Vazaha\Mastodon\Models\FamiliarFollowersModel>
-     */
-    public function familiarFollowers(
-        ?array $id = null,
-    ): FamiliarFollowersResult {
-        /** @var \Vazaha\Mastodon\Results\FamiliarFollowersResult<array-key,\Vazaha\Mastodon\Models\FamiliarFollowersModel> */
-        $models = $this->apiClient
-            ->send(new FamiliarFollowersRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Follow account.
-     *
-     * @param string             $id        the ID of the Account in the database
-     * @param ?bool              $reblogs   receive this account's reblogs in home timeline? Defaults to true
-     * @param ?bool              $notify    receive notifications when this account posts a status? Defaults to false
-     * @param null|array<string> $languages Filter received statuses for these languages. If not provided, you will receive this account's posts in all languages.
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
-     */
-    public function follow(
-        string $id,
-        ?bool $reblogs = null,
-        ?bool $notify = null,
-        ?array $languages = null,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new FollowRequest(
-                $id,
-                $reblogs,
-                $notify,
-                $languages,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Check relationships to other accounts.
-     *
-     * @param null|mixed[] $id check relationships for the provided account IDs
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
-     */
-    public function relationships(
-        ?array $id = null,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new RelationshipsRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Unfollow account.
-     *
-     * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
-     */
-    public function unfollow(
-        string $id,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new UnfollowRequest(
-                $id,
-            ));
-
-        return $models;
+        return $model;
     }
 }

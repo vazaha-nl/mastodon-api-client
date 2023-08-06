@@ -17,28 +17,6 @@ use Vazaha\Mastodon\Requests\Tags\UnfollowRequest;
 class TagsProxy extends Proxy
 {
     /**
-     * Unfollow a hashtag.
-     *
-     * @param string $id the name of the hashtag
-     */
-    public function unfollow(
-        string $id,
-    ): TagModel {
-        $result = $this->apiClient->send(new UnfollowRequest(
-            $id,
-        ));
-
-        /** @var null|\Vazaha\Mastodon\Models\TagModel $model */
-        $model = $result->getModel();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
-    }
-
-    /**
      * Follow a hashtag.
      *
      * @param string $id the name of the hashtag
@@ -69,6 +47,28 @@ class TagsProxy extends Proxy
         string $id,
     ): TagModel {
         $result = $this->apiClient->send(new GetRequest(
+            $id,
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\TagModel $model */
+        $model = $result->getModel();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
+     * Unfollow a hashtag.
+     *
+     * @param string $id the name of the hashtag
+     */
+    public function unfollow(
+        string $id,
+    ): TagModel {
+        $result = $this->apiClient->send(new UnfollowRequest(
             $id,
         ));
 

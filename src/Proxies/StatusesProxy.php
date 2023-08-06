@@ -42,6 +42,66 @@ use Vazaha\Mastodon\Results\StatusSourceResult;
 class StatusesProxy extends Proxy
 {
     /**
+     * Bookmark a status.
+     *
+     * @param string $id the ID of the Status in the database
+     *
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     */
+    public function bookmark(
+        string $id,
+    ): StatusResult {
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
+        $models = $this->apiClient
+            ->send(new BookmarkRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Boost a status.
+     *
+     * @param string  $id         the ID of the Status in the database
+     * @param ?string $visibility Any visibility except `limited` or `direct` (i.e. `public`, `unlisted`, `private`). Defaults to public. Currently unused in UI.
+     *
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     */
+    public function boost(
+        string $id,
+        ?string $visibility = null,
+    ): StatusResult {
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
+        $models = $this->apiClient
+            ->send(new BoostRequest(
+                $id,
+                $visibility,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * (DEPRECATED) Fetch preview card.
+     *
+     * @param string $id the local ID of the Status in the database
+     *
+     * @return \Vazaha\Mastodon\Results\PreviewCardResult<array-key,\Vazaha\Mastodon\Models\PreviewCardModel>
+     */
+    public function card(
+        string $id,
+    ): PreviewCardResult {
+        /** @var \Vazaha\Mastodon\Results\PreviewCardResult<array-key,\Vazaha\Mastodon\Models\PreviewCardModel> */
+        $models = $this->apiClient
+            ->send(new CardRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
      * Get parent and child statuses in context.
      *
      * @param string $id the ID of the Status in the database
@@ -64,22 +124,118 @@ class StatusesProxy extends Proxy
     }
 
     /**
-     * Boost a status.
+     * Post a new status.
      *
-     * @param string  $id         the ID of the Status in the database
-     * @param ?string $visibility Any visibility except `limited` or `direct` (i.e. `public`, `unlisted`, `private`). Defaults to public. Currently unused in UI.
+     * @param string        $status         The text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.
+     * @param array<string> $media_ids      Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+     * @param ?string       $in_reply_to_id ID of the status being replied to, if status is a reply
+     * @param ?bool         $sensitive      mark status and attached media as sensitive? Defaults to false
+     * @param ?string       $spoiler_text   Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field.
+     * @param ?string       $visibility     sets the visibility of the posted status to `public`, `unlisted`, `private`, `direct`
+     * @param ?string       $language       ISO 639 language code for this status
+     * @param ?string       $scheduled_at   ISO 8601 Datetime at which to schedule a status. Providing this parameter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future.
+     */
+    public function create(
+        string $status,
+        array $media_ids,
+        ?string $in_reply_to_id = null,
+        ?bool $sensitive = null,
+        ?string $spoiler_text = null,
+        ?string $visibility = null,
+        ?string $language = null,
+        ?string $scheduled_at = null,
+    ): StatusModel {
+        $result = $this->apiClient->send(new CreateRequest(
+            $status,
+            $media_ids,
+            $in_reply_to_id,
+            $sensitive,
+            $spoiler_text,
+            $visibility,
+            $language,
+            $scheduled_at,
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
+        $model = $result->getModel();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
+     * Delete a status.
+     *
+     * @param string $id the ID of the Status in the database
+     */
+    public function delete(
+        string $id,
+    ): StatusModel {
+        $result = $this->apiClient->send(new DeleteRequest(
+            $id,
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
+        $model = $result->getModel();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
+     * Edit a status.
+     *
+     * @param string             $id           the ID of the Status in the database
+     * @param ?string            $status       the plain text content of the status
+     * @param ?string            $spoiler_text the plain text subject or content warning of the status
+     * @param ?bool              $sensitive    whether the status should be marked as sensitive
+     * @param ?string            $language     ISO 639 language code for the status
+     * @param null|array<string> $media_ids    Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
      */
-    public function boost(
+    public function edit(
         string $id,
-        ?string $visibility = null,
+        ?string $status = null,
+        ?string $spoiler_text = null,
+        ?bool $sensitive = null,
+        ?string $language = null,
+        ?array $media_ids = null,
     ): StatusResult {
         /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
-            ->send(new BoostRequest(
+            ->send(new EditRequest(
                 $id,
-                $visibility,
+                $status,
+                $spoiler_text,
+                $sensitive,
+                $language,
+                $media_ids,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Favourite a status.
+     *
+     * @param string $id the ID of the Status in the database
+     *
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     */
+    public function favourite(
+        string $id,
+    ): StatusResult {
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
+        $models = $this->apiClient
+            ->send(new FavouriteRequest(
+                $id,
             ));
 
         return $models;
@@ -108,18 +264,119 @@ class StatusesProxy extends Proxy
     }
 
     /**
-     * Unpin status from profile.
+     * View a single status.
+     *
+     * @param string $id the ID of the Status in the database
+     */
+    public function get(
+        string $id,
+    ): StatusModel {
+        $result = $this->apiClient->send(new GetRequest(
+            $id,
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
+        $model = $result->getModel();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
+     * View edit history of a status.
      *
      * @param string $id the local ID of the Status in the database
      *
+     * @return \Vazaha\Mastodon\Results\StatusEditResult<array-key,\Vazaha\Mastodon\Models\StatusEditModel>
+     */
+    public function history(
+        string $id,
+    ): StatusEditResult {
+        /** @var \Vazaha\Mastodon\Results\StatusEditResult<array-key,\Vazaha\Mastodon\Models\StatusEditModel> */
+        $models = $this->apiClient
+            ->send(new HistoryRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Mute a conversation.
+     *
+     * @param string $id the ID of the Status in the database
+     *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
      */
-    public function unpin(
+    public function mute(
         string $id,
     ): StatusResult {
         /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
-            ->send(new UnpinRequest(
+            ->send(new MuteRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * Pin status to profile.
+     *
+     * @param string $id The local ID of the Status in the database. The status should be authored by the authorized account.
+     *
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     */
+    public function pin(
+        string $id,
+    ): StatusResult {
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
+        $models = $this->apiClient
+            ->send(new PinRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * See who boosted a status.
+     *
+     * @param string $id    the ID of the Status in the database
+     * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
+     *
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     */
+    public function rebloggedBy(
+        string $id,
+        ?int $limit = null,
+    ): AccountResult {
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
+        $models = $this->apiClient
+            ->send(new RebloggedByRequest(
+                $id,
+                $limit,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * View status source.
+     *
+     * @param string $id the local ID of the Status in the database
+     *
+     * @return \Vazaha\Mastodon\Results\StatusSourceResult<array-key,\Vazaha\Mastodon\Models\StatusSourceModel>
+     */
+    public function source(
+        string $id,
+    ): StatusSourceResult {
+        /** @var \Vazaha\Mastodon\Results\StatusSourceResult<array-key,\Vazaha\Mastodon\Models\StatusSourceModel> */
+        $models = $this->apiClient
+            ->send(new SourceRequest(
                 $id,
             ));
 
@@ -171,181 +428,6 @@ class StatusesProxy extends Proxy
     }
 
     /**
-     * Post a new status.
-     *
-     * @param string        $status         The text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.
-     * @param array<string> $media_ids      Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
-     * @param ?string       $in_reply_to_id ID of the status being replied to, if status is a reply
-     * @param ?bool         $sensitive      mark status and attached media as sensitive? Defaults to false
-     * @param ?string       $spoiler_text   Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field.
-     * @param ?string       $visibility     sets the visibility of the posted status to `public`, `unlisted`, `private`, `direct`
-     * @param ?string       $language       ISO 639 language code for this status
-     * @param ?string       $scheduled_at   ISO 8601 Datetime at which to schedule a status. Providing this parameter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future.
-     */
-    public function create(
-        string $status,
-        array $media_ids,
-        ?string $in_reply_to_id = null,
-        ?bool $sensitive = null,
-        ?string $spoiler_text = null,
-        ?string $visibility = null,
-        ?string $language = null,
-        ?string $scheduled_at = null,
-    ): StatusModel {
-        $result = $this->apiClient->send(new CreateRequest(
-            $status,
-            $media_ids,
-            $in_reply_to_id,
-            $sensitive,
-            $spoiler_text,
-            $visibility,
-            $language,
-            $scheduled_at,
-        ));
-
-        /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
-        $model = $result->getModel();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
-    }
-
-    /**
-     * Undo boost of a status.
-     *
-     * @param string $id the ID of the Status in the database
-     *
-     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
-     */
-    public function unreblog(
-        string $id,
-    ): StatusResult {
-        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
-        $models = $this->apiClient
-            ->send(new UnreblogRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * View a single status.
-     *
-     * @param string $id the ID of the Status in the database
-     */
-    public function get(
-        string $id,
-    ): StatusModel {
-        $result = $this->apiClient->send(new GetRequest(
-            $id,
-        ));
-
-        /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
-        $model = $result->getModel();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
-    }
-
-    /**
-     * (DEPRECATED) Fetch preview card.
-     *
-     * @param string $id the local ID of the Status in the database
-     *
-     * @return \Vazaha\Mastodon\Results\PreviewCardResult<array-key,\Vazaha\Mastodon\Models\PreviewCardModel>
-     */
-    public function card(
-        string $id,
-    ): PreviewCardResult {
-        /** @var \Vazaha\Mastodon\Results\PreviewCardResult<array-key,\Vazaha\Mastodon\Models\PreviewCardModel> */
-        $models = $this->apiClient
-            ->send(new CardRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * View edit history of a status.
-     *
-     * @param string $id the local ID of the Status in the database
-     *
-     * @return \Vazaha\Mastodon\Results\StatusEditResult<array-key,\Vazaha\Mastodon\Models\StatusEditModel>
-     */
-    public function history(
-        string $id,
-    ): StatusEditResult {
-        /** @var \Vazaha\Mastodon\Results\StatusEditResult<array-key,\Vazaha\Mastodon\Models\StatusEditModel> */
-        $models = $this->apiClient
-            ->send(new HistoryRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Edit a status.
-     *
-     * @param string             $id           the ID of the Status in the database
-     * @param ?string            $status       the plain text content of the status
-     * @param ?string            $spoiler_text the plain text subject or content warning of the status
-     * @param ?bool              $sensitive    whether the status should be marked as sensitive
-     * @param ?string            $language     ISO 639 language code for the status
-     * @param null|array<string> $media_ids    Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
-     *
-     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
-     */
-    public function edit(
-        string $id,
-        ?string $status = null,
-        ?string $spoiler_text = null,
-        ?bool $sensitive = null,
-        ?string $language = null,
-        ?array $media_ids = null,
-    ): StatusResult {
-        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
-        $models = $this->apiClient
-            ->send(new EditRequest(
-                $id,
-                $status,
-                $spoiler_text,
-                $sensitive,
-                $language,
-                $media_ids,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * View status source.
-     *
-     * @param string $id the local ID of the Status in the database
-     *
-     * @return \Vazaha\Mastodon\Results\StatusSourceResult<array-key,\Vazaha\Mastodon\Models\StatusSourceModel>
-     */
-    public function source(
-        string $id,
-    ): StatusSourceResult {
-        /** @var \Vazaha\Mastodon\Results\StatusSourceResult<array-key,\Vazaha\Mastodon\Models\StatusSourceModel> */
-        $models = $this->apiClient
-            ->send(new SourceRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
-    /**
      * Undo favourite of a status.
      *
      * @param string $id the ID of the Status in the database
@@ -359,47 +441,6 @@ class StatusesProxy extends Proxy
         $models = $this->apiClient
             ->send(new UnfavouriteRequest(
                 $id,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Mute a conversation.
-     *
-     * @param string $id the ID of the Status in the database
-     *
-     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
-     */
-    public function mute(
-        string $id,
-    ): StatusResult {
-        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
-        $models = $this->apiClient
-            ->send(new MuteRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * See who boosted a status.
-     *
-     * @param string $id    the ID of the Status in the database
-     * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
-     *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
-     */
-    public function rebloggedBy(
-        string $id,
-        ?int $limit = null,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
-        $models = $this->apiClient
-            ->send(new RebloggedByRequest(
-                $id,
-                $limit,
             ));
 
         return $models;
@@ -425,18 +466,18 @@ class StatusesProxy extends Proxy
     }
 
     /**
-     * Bookmark a status.
+     * Unpin status from profile.
      *
-     * @param string $id the ID of the Status in the database
+     * @param string $id the local ID of the Status in the database
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
      */
-    public function bookmark(
+    public function unpin(
         string $id,
     ): StatusResult {
         /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
-            ->send(new BookmarkRequest(
+            ->send(new UnpinRequest(
                 $id,
             ));
 
@@ -444,62 +485,21 @@ class StatusesProxy extends Proxy
     }
 
     /**
-     * Pin status to profile.
-     *
-     * @param string $id The local ID of the Status in the database. The status should be authored by the authorized account.
-     *
-     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
-     */
-    public function pin(
-        string $id,
-    ): StatusResult {
-        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
-        $models = $this->apiClient
-            ->send(new PinRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Favourite a status.
+     * Undo boost of a status.
      *
      * @param string $id the ID of the Status in the database
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
      */
-    public function favourite(
+    public function unreblog(
         string $id,
     ): StatusResult {
         /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
-            ->send(new FavouriteRequest(
+            ->send(new UnreblogRequest(
                 $id,
             ));
 
         return $models;
-    }
-
-    /**
-     * Delete a status.
-     *
-     * @param string $id the ID of the Status in the database
-     */
-    public function delete(
-        string $id,
-    ): StatusModel {
-        $result = $this->apiClient->send(new DeleteRequest(
-            $id,
-        ));
-
-        /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
-        $model = $result->getModel();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
     }
 }

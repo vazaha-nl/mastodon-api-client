@@ -19,14 +19,14 @@ use Vazaha\Mastodon\Requests\Push\UpdateRequest;
 class PushProxy extends Proxy
 {
     /**
-     * Remove current subscription.
+     * Subscribe to push notifications.
      */
-    public function delete(
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new DeleteRequest(
+    public function create(
+    ): WebPushSubscriptionModel {
+        $result = $this->apiClient->send(new CreateRequest(
         ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        /** @var null|\Vazaha\Mastodon\Models\WebPushSubscriptionModel $model */
         $model = $result->getModel();
 
         if ($model === null) {
@@ -37,14 +37,14 @@ class PushProxy extends Proxy
     }
 
     /**
-     * Subscribe to push notifications.
+     * Remove current subscription.
      */
-    public function create(
-    ): WebPushSubscriptionModel {
-        $result = $this->apiClient->send(new CreateRequest(
+    public function delete(
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new DeleteRequest(
         ));
 
-        /** @var null|\Vazaha\Mastodon\Models\WebPushSubscriptionModel $model */
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
         $model = $result->getModel();
 
         if ($model === null) {

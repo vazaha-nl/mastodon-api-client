@@ -34,18 +34,37 @@ class NotificationsProxy extends Proxy
     }
 
     /**
-     * Get a single notification.
+     * Dismiss a single notification.
      *
      * @param string $id the ID of the Notification in the database
      *
-     * @return \Vazaha\Mastodon\Results\NotificationResult<array-key,\Vazaha\Mastodon\Models\NotificationModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
-    public function getOne(
+    public function dismiss(
         string $id,
-    ): NotificationResult {
-        /** @var \Vazaha\Mastodon\Results\NotificationResult<array-key,\Vazaha\Mastodon\Models\NotificationModel> */
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new GetOneRequest(
+            ->send(new DismissRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * (REMOVED) Dismiss a single notification.
+     *
+     * @param string $id the ID of the notification in the database
+     *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     */
+    public function dismissDeprecated(
+        string $id,
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new DismissDeprecatedRequest(
                 $id,
             ));
 
@@ -90,37 +109,18 @@ class NotificationsProxy extends Proxy
     }
 
     /**
-     * (REMOVED) Dismiss a single notification.
-     *
-     * @param string $id the ID of the notification in the database
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
-     */
-    public function dismissDeprecated(
-        string $id,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new DismissDeprecatedRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
-    /**
-     * Dismiss a single notification.
+     * Get a single notification.
      *
      * @param string $id the ID of the Notification in the database
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\NotificationResult<array-key,\Vazaha\Mastodon\Models\NotificationModel>
      */
-    public function dismiss(
+    public function getOne(
         string $id,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+    ): NotificationResult {
+        /** @var \Vazaha\Mastodon\Results\NotificationResult<array-key,\Vazaha\Mastodon\Models\NotificationModel> */
         $models = $this->apiClient
-            ->send(new DismissRequest(
+            ->send(new GetOneRequest(
                 $id,
             ));
 

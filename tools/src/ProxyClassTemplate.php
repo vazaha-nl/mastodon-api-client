@@ -76,6 +76,7 @@ class ProxyClassTemplate extends ClassTemplate
 
                 return $methodSpec;
             })
+            ->sortBy('name')
             ->values()
             ->toArray();
     }
