@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Tools;
 
+use DateTimeInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Tools\Enums\ClassType;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Proxies\Proxy;
 
 class ProxyClassTemplate extends ClassTemplate
 {
@@ -27,7 +29,10 @@ class ProxyClassTemplate extends ClassTemplate
     protected function getTemplateVars(): array
     {
         $this->imports->add(new ClassName(InvalidResponseException::class));
+        $this->imports->add(new ClassName(Proxy::class));
         $this->imports->add(new ClassName(ApiClient::class));
+        $this->imports->add(new ClassName(DateTimeInterface::class));
+
         $methods = $this->getMethods();
 
         return [

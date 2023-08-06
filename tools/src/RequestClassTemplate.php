@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tools;
 
+use DateTimeInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Tools\Enums\ClassType;
@@ -23,6 +24,7 @@ class RequestClassTemplate extends ClassTemplate
     {
         $this->imports->add(new ClassName(RequestInterface::class));
         $this->imports->add(new ClassName(HttpMethod::class));
+        $this->imports->add(new ClassName(DateTimeInterface::class));
 
         $returnsEntity = $this->getReturnsEntity();
         $requestClassName = $returnsEntity->toClassName(ClassType::REQUEST);

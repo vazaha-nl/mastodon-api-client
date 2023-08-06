@@ -16,6 +16,7 @@ class Entity
     public function __construct(
         public string $name,
     ) {
+        $this->name = $this->makeStudly($name);
         $this->projectRoot = dirname(__DIR__, 2);
     }
 
@@ -96,5 +97,19 @@ class Entity
     public function toClassName(ClassType $classType): ClassName
     {
         return ClassName::fromEntity($this, $classType);
+    }
+
+    protected function makeStudly(?string $name = null): ?string
+    {
+        if ($name === null) {
+            return null;
+        }
+
+        $parts = preg_split('/[\/:]+/', $name);
+
+        return implode(
+            '::',
+            array_map(static fn (string $part) => Str::studly($part), $parts),
+        );
     }
 }

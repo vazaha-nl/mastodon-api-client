@@ -22,7 +22,7 @@ abstract class ClassTemplate
 
     public function __construct(
         // TODO replace with ClassName?
-        protected Entity $entity,
+        public Entity $entity,
     ) {
         $projectRoot = dirname(__DIR__, 2);
         $loader = new \Twig\Loader\FilesystemLoader($projectRoot . '/tools/templates');

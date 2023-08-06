@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Tools\Enums\ClassType;
 use Vazaha\Mastodon\ApiClient;
+use Vazaha\Mastodon\Proxies\Proxy;
 
 class ProxyContainerClassTemplate extends ClassTemplate
 {
@@ -25,6 +26,7 @@ class ProxyContainerClassTemplate extends ClassTemplate
 
     protected function getTemplateVars(): array
     {
+        $this->imports->add(new ClassName(Proxy::class));
         $this->imports->add(new ClassName(ApiClient::class));
 
         return [
@@ -42,7 +44,7 @@ class ProxyContainerClassTemplate extends ClassTemplate
 
     protected function getProxies(): array
     {
-        return Collection::make($this->methodSpecs)
+        return Collection::make($this->methodSpecs['namespaces'])
             ->map(function (array $spec, string $namespace) {
                 $entityName = Str::studly($namespace);
                 $entity = new Entity($entityName);

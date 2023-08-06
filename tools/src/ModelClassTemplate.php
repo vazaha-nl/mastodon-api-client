@@ -43,7 +43,7 @@ class ModelClassTemplate extends ClassTemplate
     {
         $this->collectionClasses = new ClassNameRepository();
 
-        $properties = $this->entitySpecs[$this->entity->name]['properties'];
+        $properties = $this->entitySpecs[$this->entity->name]['properties'] ?? [];
 
         $p = [];
 

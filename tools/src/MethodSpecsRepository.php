@@ -12,24 +12,31 @@ class MethodSpecsRepository
 {
     use LoadsMethodSpecs;
 
-    public function getAllMethodSpecs(): array
+    public function getAllMethodSpecs(?array $root = null): array
     {
         $this->loadMethodSpecs();
 
+        if ($root === null) {
+            $root = $this->methodSpecs;
+        }
+
         $specs = [];
 
-        foreach ($this->methodSpecs as $namespaceName => $namespaceSpec) {
-            foreach ($namespaceSpec['methods'] as $name => $method) {
-                $specs[$name] = $method;
+        foreach ($root['namespaces'] as $namespaceName => $namespaceSpec) {
+            if (isset($namespaceSpec['methods'])) {
+                foreach ($namespaceSpec['methods'] as $name => $method) {
+                    $specs[] = $method;
+                }
+            }
+
+            if (isset($namespaceSpec['namespaces'])) {
+                foreach ($this->getAllMethodSpecs($namespaceSpec) as $method) {
+                    $specs[] = $method;
+                }
             }
         }
 
         return $specs;
-
-        return Collection::make($this->methodSpecs)
-            ->flatten(1)
-            ->values()
-            ->toArray();
     }
 
     public function get(string $namespace, string $name): ?array

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tools;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Illuminate\Support\Str;
 use Tools\Enums\ClassType;
 
@@ -20,7 +20,6 @@ class ClassProperty
         'array' => 'array',
         'object' => 'array',
         'array of string' => 'array',
-        // 'datetime' => Carbon::class,
     ];
 
     public string $name;
@@ -89,7 +88,7 @@ class ClassProperty
         }
 
         if ($type === 'datetime' || $type === 'timestamp') {
-            $this->type = new ClassName(Carbon::class);
+            $this->type = new ClassName(DateTimeInterface::class);
 
             return;
         }
