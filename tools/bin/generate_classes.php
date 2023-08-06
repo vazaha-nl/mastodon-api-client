@@ -74,13 +74,6 @@ foreach ($methodsRepo->getAllReturnedEntities() as $entityName) {
     echo "Done!\n\n";
 }
 
-foreach ($methodsRepo->getAllMethodSpecs() as $spec) {
-    $template = new RequestClassTemplate($spec);
-    echo 'Writing ... ';
-    $template->write(true);
-    echo "Done!\n\n";
-}
-
 foreach ($specsRepo->getAllEntityNames() as $entityName) {
     $spec = $specsRepo->getEntityData($entityName);
 
