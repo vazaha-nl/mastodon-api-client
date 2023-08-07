@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Integration;
 
 use PHPUnit\Framework\TestCase;
@@ -10,7 +12,7 @@ class ApiClientTestCase extends TestCase
 {
     protected ApiClient $apiClient;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

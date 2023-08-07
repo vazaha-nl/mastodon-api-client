@@ -49,34 +49,6 @@ class Result extends Collection implements ResultInterface
     }
 
     /**
-     * @throws \InvalidArgumentException
-     * @throws \RuntimeException
-     *
-     * @return \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Interfaces\ModelInterface>
-     */
-    protected function getModels(): Collection
-    {
-        if (!isset($this->models)) {
-            $decoded = $this->getDecodedBody();
-
-            if ($decoded === null) {
-                return $this->models = new Collection();
-            }
-
-            $modelFactory = new ModelFactory();
-
-            if (!array_is_list($decoded)) {
-                $decoded = [$decoded];
-            }
-
-            $this->models = Collection::make($decoded)
-                ->map(fn (array $modelData) => $modelFactory->build($this->getModelClass(), $modelData));
-        }
-
-        return $this->models;
-    }
-
-    /**
      * @throws \RuntimeException
      * @throws \Vazaha\Mastodon\Exceptions\InvalidResponseException
      *
@@ -107,6 +79,34 @@ class Result extends Collection implements ResultInterface
     public function getModelClass(): string
     {
         return EmptyOrUnknownModel::class;
+    }
+
+    /**
+     * @throws \InvalidArgumentException
+     * @throws \RuntimeException
+     *
+     * @return \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Interfaces\ModelInterface>
+     */
+    protected function getModels(): Collection
+    {
+        if (!isset($this->models)) {
+            $decoded = $this->getDecodedBody();
+
+            if ($decoded === null) {
+                return $this->models = new Collection();
+            }
+
+            $modelFactory = new ModelFactory();
+
+            if (!array_is_list($decoded)) {
+                $decoded = [$decoded];
+            }
+
+            $this->models = Collection::make($decoded)
+                ->map(fn (array $modelData) => $modelFactory->build($this->getModelClass(), $modelData));
+        }
+
+        return $this->models;
     }
 
     protected function isJson(): bool

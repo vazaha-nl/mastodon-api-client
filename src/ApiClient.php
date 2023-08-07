@@ -70,7 +70,7 @@ final class ApiClient
                 $scope,
                 $force_login,
                 $lang,
-            )
+            ),
         );
     }
 
