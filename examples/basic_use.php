@@ -2,8 +2,7 @@
 
 declare(strict_types=1);
 
-use Vazaha\Mastodon\Requests\Accounts\FollowersRequest;
-use Vazaha\Mastodon\Requests\Accounts\GetRequest;
+use Vazaha\Mastodon\Exceptions\NotFoundException;
 
 require 'vendor/autoload.php';
 
@@ -17,24 +16,38 @@ $client = new \Vazaha\Mastodon\ApiClient(new \GuzzleHttp\Client());
 // set baseuri
 $client->setBaseUri('https://mastodon.nl');
 
-// create a request and send it
-$request = new GetRequest('accountid');
-$result = $client->send($request);
-$account = $result->getModel();
+// get authorize url for user
+$url = $client->getAuthorizeUrl(
+    'code',
+    'client id',
+    'http://example.org/callback',
+    'read write',
+);
+// example: redirect user to this url
+header('Location: ' . $url);
 
-// multiple results
-$request = new FollowersRequest('accountid');
-$result = $client->send($request);
-// returns Collection of Account models
-$followers = $result->getModels();
-
-foreach ($followers as $follower) {
-    print_r($follower->toArray());
-    // ..
+// get an account by id
+try {
+    // returns instance of \Vazaha\Mastodon\Models\AccountModel
+    $account = $client->methods()->accounts()->get('the account id');
+} catch (NotFoundException $e) {
+    // no account exists with this id
+    exit('account not found');
 }
 
-// get the next page
-while ($result = $result->getNextResult()) {
-    $accounts = $result->getModels();
-    // ...
+echo 'Found account: ' . $account->display_name . \PHP_EOL;
+
+// get followers of an account (paged result)
+// returns a subclass of \Illuminate\Support\Collection, which acts as a plain array
+$followers = $client->methods()->accounts()->followers($account->id);
+
+foreach ($followers as $follower) {
+    echo 'Follower : ' . $follower->display_name . \PHP_EOL;
+}
+
+// get the next page(s) of results
+while ($followers = $followers->getNextPage()) {
+    foreach ($followers as $follower) {
+        echo 'Follower : ' . $follower->display_name . \PHP_EOL;
+    }
 }
