@@ -25,19 +25,19 @@ try {
     exit('account not found');
 }
 
-print 'Found account: ' . $account->display_name . \PHP_EOL;
+echo 'Found account: ' . $account->display_name . \PHP_EOL;
 
 // get followers of an account (paged result)
 // returns a subclass of \Illuminate\Support\Collection, which acts as a plain array
 $followers = $client->methods()->accounts()->followers($account->id);
 
 foreach ($followers as $follower) {
-    print 'Follower : ' . $follower->display_name . \PHP_EOL;
+    echo 'Follower : ' . $follower->display_name . \PHP_EOL;
 }
 
 // get the next page(s) of results
 while ($followers = $followers->getNextPage()) {
     foreach ($followers as $follower) {
-        print 'Follower : ' . $follower->display_name . \PHP_EOL;
+        echo 'Follower : ' . $follower->display_name . \PHP_EOL;
     }
 }

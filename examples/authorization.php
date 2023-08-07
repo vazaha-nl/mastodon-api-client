@@ -22,7 +22,7 @@ $app = $client->methods()->apps()->create(
 );
 
 if (!isset($app->client_id, $app->client_secret)) {
-    die('could not create app!');
+    exit('could not create app!');
 }
 
 // request oauth token for this app
