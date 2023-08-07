@@ -54,7 +54,7 @@ class Result extends Collection implements ResultInterface
      *
      * @return \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Interfaces\ModelInterface>
      */
-    public function getModels(): Collection
+    protected function getModels(): Collection
     {
         if (!isset($this->models)) {
             $decoded = $this->getDecodedBody();
