@@ -19,9 +19,9 @@ class MarkerTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "last_read_id": "103194548672408537",
-  "version": 462,
-  "updated_at": "2019-11-24T19:39:39.337Z"
+   "version" : 462,
+   "updated_at" : "2019-11-24T19:39:39.337Z",
+   "last_read_id" : "103194548672408537"
 }
 
 JSON;
@@ -35,6 +35,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = MarkerModel::fromArray($array);

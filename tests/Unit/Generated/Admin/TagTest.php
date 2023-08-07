@@ -19,49 +19,49 @@ class TagTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "name": "caturday",
-  "url": "https://mastodon.example/tags/caturday",
-  "history": [
-    {
-      "day": "1669507200",
-      "accounts": "53",
-      "uses": "56"
-    },
-    {
-      "day": "1669420800",
-      "accounts": "142",
-      "uses": "171"
-    },
-    {
-      "day": "1669334400",
-      "accounts": "11",
-      "uses": "11"
-    },
-    {
-      "day": "1669248000",
-      "accounts": "8",
-      "uses": "9"
-    },
-    {
-      "day": "1669161600",
-      "accounts": "8",
-      "uses": "20"
-    },
-    {
-      "day": "1669075200",
-      "accounts": "11",
-      "uses": "11"
-    },
-    {
-      "day": "1668988800",
-      "accounts": "17",
-      "uses": "22"
-    }
-  ],
-  "id": "802",
-  "trendable": true,
-  "usable": true,
-  "requires_review": false
+   "name" : "caturday",
+   "url" : "https://mastodon.example/tags/caturday",
+   "trendable" : true,
+   "requires_review" : false,
+   "history" : [
+      {
+         "day" : "1669507200",
+         "uses" : "56",
+         "accounts" : "53"
+      },
+      {
+         "day" : "1669420800",
+         "uses" : "171",
+         "accounts" : "142"
+      },
+      {
+         "day" : "1669334400",
+         "uses" : "11",
+         "accounts" : "11"
+      },
+      {
+         "day" : "1669248000",
+         "accounts" : "8",
+         "uses" : "9"
+      },
+      {
+         "day" : "1669161600",
+         "uses" : "20",
+         "accounts" : "8"
+      },
+      {
+         "uses" : "11",
+         "accounts" : "11",
+         "day" : "1669075200"
+      },
+      {
+         "accounts" : "17",
+         "uses" : "22",
+         "day" : "1668988800"
+      }
+   ],
+   "id" : "802",
+   "usable" : true
 }
 
 JSON;
@@ -75,6 +75,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = TagModel::fromArray($array);

@@ -19,10 +19,10 @@ class DomainBlockTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "domain":"daji******.com",
-  "digest":"3752f63a7079d60c2de5dceb8bd7608e86a15544eb78a494a482041c3684b37f",
-  "severity":"suspend",
-  "comment":"Inappropriate content"
+   "severity" : "suspend",
+   "digest" : "3752f63a7079d60c2de5dceb8bd7608e86a15544eb78a494a482041c3684b37f",
+   "comment" : "Inappropriate content",
+   "domain" : "daji******.com"
 }
 
 JSON;
@@ -36,6 +36,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = DomainBlockModel::fromArray($array);

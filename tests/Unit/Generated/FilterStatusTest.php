@@ -19,8 +19,8 @@ class FilterStatusTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-	"id": "1",
-	"status_id": "109031743575371913"
+   "id" : "1",
+   "status_id" : "109031743575371913"
 }
 
 JSON;
@@ -34,6 +34,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = FilterStatusModel::fromArray($array);

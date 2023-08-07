@@ -19,8 +19,8 @@ class IpTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-	"ip": "192.168.42.1",
-	"used_at": "2022-09-15T01:38:58.851Z"
+   "used_at" : "2022-09-15T01:38:58.851Z",
+   "ip" : "192.168.42.1"
 }
 
 JSON;
@@ -34,6 +34,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = IpModel::fromArray($array);

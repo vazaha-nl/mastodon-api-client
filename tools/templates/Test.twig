@@ -33,6 +33,10 @@ JSON;
             return;
         }
 
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
+        }
+
         $model = {{ modelClass }}::fromArray($array);
 
         foreach ($array as $property => $value) {

@@ -40,7 +40,7 @@ class StatusEditModel extends Model
     /**
      * The account that published this revision.
      */
-    public string $account;
+    public AccountModel $account;
 
     /**
      * The current state of the poll options at this revision. Note that edits

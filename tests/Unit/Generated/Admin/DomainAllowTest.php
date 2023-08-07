@@ -19,9 +19,9 @@ class DomainAllowTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-	"id": "1",
-	"domain": "mastodon.social",
-	"created_at": "2022-09-14T21:23:02.755Z"
+   "id" : "1",
+   "created_at" : "2022-09-14T21:23:02.755Z",
+   "domain" : "mastodon.social"
 }
 
 JSON;
@@ -35,6 +35,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = DomainAllowModel::fromArray($array);

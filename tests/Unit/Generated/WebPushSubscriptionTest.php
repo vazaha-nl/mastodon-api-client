@@ -19,16 +19,16 @@ class WebPushSubscriptionTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "id": 328183,
-  "endpoint": "https://yourdomain.example/listener",
-  "alerts": {
-    "follow": false,
-    "favourite": false,
-    "reblog": false,
-    "mention": true,
-    "poll": false
-  },
-  "server_key": "BCk-QqERU0q-CfYZjcuB6lnyyOYfJ2AifKqfeGIm7Z-HiTU5T9eTG5GxVA0_OH5mMlI4UkkDTpaZwozy0TzdZ2M="
+   "id" : 328183,
+   "alerts" : {
+      "favourite" : false,
+      "mention" : true,
+      "reblog" : false,
+      "follow" : false,
+      "poll" : false
+   },
+   "endpoint" : "https://yourdomain.example/listener",
+   "server_key" : "BCk-QqERU0q-CfYZjcuB6lnyyOYfJ2AifKqfeGIm7Z-HiTU5T9eTG5GxVA0_OH5mMlI4UkkDTpaZwozy0TzdZ2M="
 }
 
 JSON;
@@ -42,6 +42,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = WebPushSubscriptionModel::fromArray($array);

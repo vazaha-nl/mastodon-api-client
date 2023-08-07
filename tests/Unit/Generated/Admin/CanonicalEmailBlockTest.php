@@ -19,8 +19,8 @@ class CanonicalEmailBlockTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-	"id": "2",
-	"canonical_email_hash": "b344e55d11b3fc25d0d53194e0475838bf17e9be67ce3e6469956222d9a34f9c"
+   "canonical_email_hash" : "b344e55d11b3fc25d0d53194e0475838bf17e9be67ce3e6469956222d9a34f9c",
+   "id" : "2"
 }
 
 JSON;
@@ -34,6 +34,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = CanonicalEmailBlockModel::fromArray($array);

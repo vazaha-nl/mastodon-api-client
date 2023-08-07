@@ -19,9 +19,9 @@ class FilterKeywordTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-	"id": "1197",
-	"keyword": "bad word",
-	"whole_word": false
+   "id" : "1197",
+   "whole_word" : false,
+   "keyword" : "bad word"
 }
 
 JSON;
@@ -35,6 +35,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = FilterKeywordModel::fromArray($array);

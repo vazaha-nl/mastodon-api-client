@@ -19,12 +19,12 @@ class IpBlockTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "id": "1",
-  "ip": "8.8.8.8/32",
-  "severity": "no_access",
-  "comment": "",
-  "created_at": "2022-11-16T07:22:00.501Z",
-  "expires_at": null
+   "severity" : "no_access",
+   "created_at" : "2022-11-16T07:22:00.501Z",
+   "id" : "1",
+   "ip" : "8.8.8.8/32",
+   "expires_at" : null,
+   "comment" : ""
 }
 
 JSON;
@@ -38,6 +38,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = IpBlockModel::fromArray($array);

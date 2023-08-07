@@ -19,11 +19,11 @@ class PreferencesTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "posting:default:visibility": "public",
-  "posting:default:sensitive": false,
-  "posting:default:language": null,
-  "reading:expand:media": "default",
-  "reading:expand:spoilers": false
+   "posting:default:language" : null,
+   "posting:default:sensitive" : false,
+   "reading:expand:media" : "default",
+   "posting:default:visibility" : "public",
+   "reading:expand:spoilers" : false
 }
 
 JSON;
@@ -37,6 +37,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = PreferencesModel::fromArray($array);

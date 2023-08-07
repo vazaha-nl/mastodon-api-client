@@ -19,9 +19,9 @@ class StatusSourceTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "id": "108942703571991143",
-  "text": "this is a status that will be edited",
-  "spoiler_text": ""
+   "id" : "108942703571991143",
+   "text" : "this is a status that will be edited",
+   "spoiler_text" : ""
 }
 
 JSON;
@@ -35,6 +35,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = StatusSourceModel::fromArray($array);

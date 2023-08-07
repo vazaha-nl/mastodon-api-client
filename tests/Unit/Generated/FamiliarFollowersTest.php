@@ -9,20 +9,36 @@ declare(strict_types=1);
 namespace Tests\Unit\Generated;
 
 use PHPUnit\Framework\TestCase;
-use Vazaha\Mastodon\Models\ApplicationModel;
+use Vazaha\Mastodon\Models\FamiliarFollowersModel;
 
-class ApplicationTest extends TestCase
+class FamiliarFollowersTest extends TestCase
 {
     protected string $json;
 
     protected function setUp(): void
     {
         $this->json = <<<'JSON'
-{
-   "website" : null,
-   "name" : "test app",
-   "vapid_key" : "BCk-QqERU0q-CfYZjcuB6lnyyOYfJ2AifKqfeGIm7Z-HiTU5T9eTG5GxVA0_OH5mMlI4UkkDTpaZwozy0TzdZ2M="
-}
+[
+   {
+      "id" : "1",
+      "accounts" : [
+         {
+            "username" : "moss",
+            "acct" : "moss@goblin.camp",
+            "id" : "1087990"
+         },
+         {
+            "username" : "vivianrose",
+            "acct" : "vivianrose",
+            "id" : "1092723"
+         }
+      ]
+   },
+   {
+      "id" : "2",
+      "accounts" : []
+   }
+]
 
 JSON;
     }
@@ -41,10 +57,10 @@ JSON;
             $array = $array[0] ?? [];
         }
 
-        $model = ApplicationModel::fromArray($array);
+        $model = FamiliarFollowersModel::fromArray($array);
 
         foreach ($array as $property => $value) {
-            $property = ApplicationModel::sanitizePropertyName($property);
+            $property = FamiliarFollowersModel::sanitizePropertyName($property);
 
             self::assertObjectHasProperty($property, $model);
 

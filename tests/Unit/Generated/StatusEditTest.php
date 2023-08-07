@@ -9,9 +9,9 @@ declare(strict_types=1);
 namespace Tests\Unit\Generated;
 
 use PHPUnit\Framework\TestCase;
-use Vazaha\Mastodon\Models\ApplicationModel;
+use Vazaha\Mastodon\Models\StatusEditModel;
 
-class ApplicationTest extends TestCase
+class StatusEditTest extends TestCase
 {
     protected string $json;
 
@@ -19,9 +19,31 @@ class ApplicationTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "website" : null,
-   "name" : "test app",
-   "vapid_key" : "BCk-QqERU0q-CfYZjcuB6lnyyOYfJ2AifKqfeGIm7Z-HiTU5T9eTG5GxVA0_OH5mMlI4UkkDTpaZwozy0TzdZ2M="
+   "sensitive" : false,
+   "poll" : {
+      "options" : [
+         {
+            "title" : "cool"
+         },
+         {
+            "title" : "uncool"
+         },
+         {
+            "title" : "spiderman (this option has been changed)"
+         }
+      ]
+   },
+   "media_attachments" : [],
+   "emojis" : [],
+   "created_at" : "2022-09-05T00:03:32.480Z",
+   "spoiler_text" : "",
+   "content" : "<p>this is a status that has been edited three times. this time a poll has been added.</p>",
+   "account" : {
+      "display_name" : "infinite love ⴳ",
+      "username" : "trwnh",
+      "acct" : "trwnh",
+      "id" : "14715"
+   }
 }
 
 JSON;
@@ -41,10 +63,10 @@ JSON;
             $array = $array[0] ?? [];
         }
 
-        $model = ApplicationModel::fromArray($array);
+        $model = StatusEditModel::fromArray($array);
 
         foreach ($array as $property => $value) {
-            $property = ApplicationModel::sanitizePropertyName($property);
+            $property = StatusEditModel::sanitizePropertyName($property);
 
             self::assertObjectHasProperty($property, $model);
 

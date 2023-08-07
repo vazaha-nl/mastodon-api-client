@@ -19,8 +19,8 @@ class ErrorTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "error": "invalid_grant",
-  "error_description": "The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client."
+   "error_description" : "The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.",
+   "error" : "invalid_grant"
 }
 
 JSON;
@@ -34,6 +34,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = ErrorModel::fromArray($array);

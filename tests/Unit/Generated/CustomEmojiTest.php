@@ -19,11 +19,11 @@ class CustomEmojiTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "shortcode": "blobaww",
-  "url": "https://files.mastodon.social/custom_emojis/images/000/011/739/original/blobaww.png",
-  "static_url": "https://files.mastodon.social/custom_emojis/images/000/011/739/static/blobaww.png",
-  "visible_in_picker": true,
-  "category": "Blobs"
+   "category" : "Blobs",
+   "visible_in_picker" : true,
+   "shortcode" : "blobaww",
+   "url" : "https://files.mastodon.social/custom_emojis/images/000/011/739/original/blobaww.png",
+   "static_url" : "https://files.mastodon.social/custom_emojis/images/000/011/739/static/blobaww.png"
 }
 
 JSON;
@@ -37,6 +37,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = CustomEmojiModel::fromArray($array);

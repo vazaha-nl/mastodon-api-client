@@ -19,8 +19,8 @@ class RuleTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-	"id": "2",
-	"text": "No racism, sexism, homophobia, transphobia, xenophobia, or casteism"
+   "text" : "No racism, sexism, homophobia, transphobia, xenophobia, or casteism",
+   "id" : "2"
 }
 
 JSON;
@@ -34,6 +34,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = RuleModel::fromArray($array);

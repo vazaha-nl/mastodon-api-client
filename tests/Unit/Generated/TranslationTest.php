@@ -19,9 +19,9 @@ class TranslationTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "content": "<p>Hola mundo</p>",
-  "detected_source_language": "en",
-  "provider": "DeepL.com"
+   "detected_source_language" : "en",
+   "provider" : "DeepL.com",
+   "content" : "<p>Hola mundo</p>"
 }
 
 JSON;
@@ -35,6 +35,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = TranslationModel::fromArray($array);

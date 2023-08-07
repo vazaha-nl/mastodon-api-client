@@ -19,11 +19,11 @@ class FeaturedTagTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "id": "627",
-  "name": "nowplaying",
-  "url": "https://mastodon.social/@trwnh/tagged/nowplaying",
-  "statuses_count": 70,
-  "last_status_at": "2022-08-29T12:03:35.061Z"
+   "statuses_count" : 70,
+   "id" : "627",
+   "url" : "https://mastodon.social/@trwnh/tagged/nowplaying",
+   "name" : "nowplaying",
+   "last_status_at" : "2022-08-29T12:03:35.061Z"
 }
 
 JSON;
@@ -37,6 +37,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = FeaturedTagModel::fromArray($array);

@@ -9,9 +9,9 @@ declare(strict_types=1);
 namespace Tests\Unit\Generated;
 
 use PHPUnit\Framework\TestCase;
-use Vazaha\Mastodon\Models\ApplicationModel;
+use Vazaha\Mastodon\Models\ContextModel;
 
-class ApplicationTest extends TestCase
+class ContextTest extends TestCase
 {
     protected string $json;
 
@@ -19,9 +19,30 @@ class ApplicationTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "website" : null,
-   "name" : "test app",
-   "vapid_key" : "BCk-QqERU0q-CfYZjcuB6lnyyOYfJ2AifKqfeGIm7Z-HiTU5T9eTG5GxVA0_OH5mMlI4UkkDTpaZwozy0TzdZ2M="
+   "ancestors" : [
+      {
+         "in_reply_to_id" : null,
+         "id" : "103188938570975982",
+         "created_at" : "2019-11-23T19:44:00.124Z"
+      },
+      {
+         "created_at" : "2019-11-23T19:52:23.398Z",
+         "id" : "103188971072973252",
+         "in_reply_to_id" : "103188938570975982"
+      },
+      {
+         "in_reply_to_id" : "103188971072973252",
+         "id" : "103188982235527758",
+         "created_at" : "2019-11-23T19:55:08.208Z"
+      }
+   ],
+   "descendants" : [
+      {
+         "in_reply_to_id" : "103189005915505698",
+         "created_at" : "2019-11-23T20:06:36.011Z",
+         "id" : "103189026958574542"
+      }
+   ]
 }
 
 JSON;
@@ -41,10 +62,10 @@ JSON;
             $array = $array[0] ?? [];
         }
 
-        $model = ApplicationModel::fromArray($array);
+        $model = ContextModel::fromArray($array);
 
         foreach ($array as $property => $value) {
-            $property = ApplicationModel::sanitizePropertyName($property);
+            $property = ContextModel::sanitizePropertyName($property);
 
             self::assertObjectHasProperty($property, $model);
 

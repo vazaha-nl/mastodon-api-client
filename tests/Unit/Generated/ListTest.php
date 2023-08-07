@@ -19,8 +19,8 @@ class ListTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "id": "12249",
-  "title": "Friends"
+   "id" : "12249",
+   "title" : "Friends"
 }
 
 JSON;
@@ -34,6 +34,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = ListModel::fromArray($array);

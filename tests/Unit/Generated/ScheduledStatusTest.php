@@ -19,23 +19,23 @@ class ScheduledStatusTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "id": "1",
-  "scheduled_at": "2022-09-29T00:00:00.000Z",
-  "params": {
-    "poll": null,
-    "text": "test post",
-    "language": null,
-    "media_ids": null,
-    "sensitive": null,
-    "visibility": null,
-    "idempotency": null,
-    "scheduled_at": null,
-    "spoiler_text": null,
-    "application_id": 3,
-    "in_reply_to_id": null,
-    "with_rate_limit": false
-  },
-  "media_attachments": []
+   "scheduled_at" : "2022-09-29T00:00:00.000Z",
+   "params" : {
+      "in_reply_to_id" : null,
+      "with_rate_limit" : false,
+      "language" : null,
+      "spoiler_text" : null,
+      "visibility" : null,
+      "sensitive" : null,
+      "text" : "test post",
+      "idempotency" : null,
+      "scheduled_at" : null,
+      "media_ids" : null,
+      "application_id" : 3,
+      "poll" : null
+   },
+   "media_attachments" : [],
+   "id" : "1"
 }
 
 JSON;
@@ -49,6 +49,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = ScheduledStatusModel::fromArray($array);

@@ -19,46 +19,46 @@ class EmailDomainBlockTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "id": "1",
-  "domain": "foo",
-  "created_at": "2022-11-16T06:09:36.176Z",
-  "history": [
-    {
-      "day": "1668556800",
-      "accounts": "0",
-      "uses": "0"
-    },
-    {
-      "day": "1668470400",
-      "accounts": "0",
-      "uses": "0"
-    },
-    {
-      "day": "1668384000",
-      "accounts": "0",
-      "uses": "0"
-    },
-    {
-      "day": "1668297600",
-      "accounts": "0",
-      "uses": "0"
-    },
-    {
-      "day": "1668211200",
-      "accounts": "0",
-      "uses": "0"
-    },
-    {
-      "day": "1668124800",
-      "accounts": "0",
-      "uses": "0"
-    },
-    {
-      "day": "1668038400",
-      "accounts": "0",
-      "uses": "0"
-    }
-  ]
+   "id" : "1",
+   "history" : [
+      {
+         "day" : "1668556800",
+         "uses" : "0",
+         "accounts" : "0"
+      },
+      {
+         "uses" : "0",
+         "accounts" : "0",
+         "day" : "1668470400"
+      },
+      {
+         "accounts" : "0",
+         "uses" : "0",
+         "day" : "1668384000"
+      },
+      {
+         "day" : "1668297600",
+         "uses" : "0",
+         "accounts" : "0"
+      },
+      {
+         "accounts" : "0",
+         "uses" : "0",
+         "day" : "1668211200"
+      },
+      {
+         "day" : "1668124800",
+         "accounts" : "0",
+         "uses" : "0"
+      },
+      {
+         "day" : "1668038400",
+         "accounts" : "0",
+         "uses" : "0"
+      }
+   ],
+   "created_at" : "2022-11-16T06:09:36.176Z",
+   "domain" : "foo"
 }
 
 JSON;
@@ -72,6 +72,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = EmailDomainBlockModel::fromArray($array);

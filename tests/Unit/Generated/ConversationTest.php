@@ -9,9 +9,9 @@ declare(strict_types=1);
 namespace Tests\Unit\Generated;
 
 use PHPUnit\Framework\TestCase;
-use Vazaha\Mastodon\Models\ApplicationModel;
+use Vazaha\Mastodon\Models\ConversationModel;
 
-class ApplicationTest extends TestCase
+class ConversationTest extends TestCase
 {
     protected string $json;
 
@@ -19,9 +19,21 @@ class ApplicationTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "website" : null,
-   "name" : "test app",
-   "vapid_key" : "BCk-QqERU0q-CfYZjcuB6lnyyOYfJ2AifKqfeGIm7Z-HiTU5T9eTG5GxVA0_OH5mMlI4UkkDTpaZwozy0TzdZ2M="
+   "unread" : true,
+   "id" : "418450",
+   "accounts" : [
+      {
+         "username" : "amic",
+         "id" : "482403",
+         "acct" : "amic@nulled.red"
+      }
+   ],
+   "last_status" : {
+      "in_reply_to_account_id" : "14715",
+      "id" : "103196583826321184",
+      "created_at" : "2019-11-25T04:08:24.000Z",
+      "in_reply_to_id" : "103196540587943467"
+   }
 }
 
 JSON;
@@ -41,10 +53,10 @@ JSON;
             $array = $array[0] ?? [];
         }
 
-        $model = ApplicationModel::fromArray($array);
+        $model = ConversationModel::fromArray($array);
 
         foreach ($array as $property => $value) {
-            $property = ApplicationModel::sanitizePropertyName($property);
+            $property = ConversationModel::sanitizePropertyName($property);
 
             self::assertObjectHasProperty($property, $model);
 

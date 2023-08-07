@@ -19,46 +19,46 @@ class TagTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "name": "nowplaying",
-  "url": "https://mastodon.social/tags/nowplaying",
-  "history": [
-    {
-      "day": "1574553600",
-      "uses": "200",
-      "accounts": "31"
-    },
-    {
-      "day": "1574467200",
-      "uses": "272",
-      "accounts": "39"
-    },
-    {
-      "day": "1574380800",
-      "uses": "345",
-      "accounts": "40"
-    },
-    {
-      "day": "1574294400",
-      "uses": "366",
-      "accounts": "46"
-    },
-    {
-      "day": "1574208000",
-      "uses": "226",
-      "accounts": "32"
-    },
-    {
-      "day": "1574121600",
-      "uses": "217",
-      "accounts": "42"
-    },
-    {
-      "day": "1574035200",
-      "uses": "214",
-      "accounts": "34"
-    }
-  ],
-  "following": false
+   "following" : false,
+   "history" : [
+      {
+         "day" : "1574553600",
+         "accounts" : "31",
+         "uses" : "200"
+      },
+      {
+         "accounts" : "39",
+         "uses" : "272",
+         "day" : "1574467200"
+      },
+      {
+         "uses" : "345",
+         "accounts" : "40",
+         "day" : "1574380800"
+      },
+      {
+         "day" : "1574294400",
+         "accounts" : "46",
+         "uses" : "366"
+      },
+      {
+         "day" : "1574208000",
+         "uses" : "226",
+         "accounts" : "32"
+      },
+      {
+         "accounts" : "42",
+         "uses" : "217",
+         "day" : "1574121600"
+      },
+      {
+         "day" : "1574035200",
+         "uses" : "214",
+         "accounts" : "34"
+      }
+   ],
+   "name" : "nowplaying",
+   "url" : "https://mastodon.social/tags/nowplaying"
 }
 
 JSON;
@@ -72,6 +72,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = TagModel::fromArray($array);

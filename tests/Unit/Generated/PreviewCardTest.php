@@ -19,20 +19,20 @@ class PreviewCardTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "url": "https://www.theguardian.com/money/2019/dec/07/i-lost-my-193000-inheritance-with-one-wrong-digit-on-my-sort-code",
-  "title": "‘I lost my £193,000 inheritance – with one wrong digit on my sort code’",
-  "description": "When Peter Teich’s money went to another Barclays customer, the bank offered £25 as a token gesture",
-  "type": "link",
-  "author_name": "",
-  "author_url": "",
-  "provider_name": "",
-  "provider_url": "",
-  "html": "",
-  "width": 0,
-  "height": 0,
-  "image": null,
-  "embed_url": "",
-  "blurhash": null
+   "image" : null,
+   "blurhash" : null,
+   "type" : "link",
+   "title" : "‘I lost my £193,000 inheritance – with one wrong digit on my sort code’",
+   "author_url" : "",
+   "embed_url" : "",
+   "width" : 0,
+   "html" : "",
+   "author_name" : "",
+   "height" : 0,
+   "description" : "When Peter Teich’s money went to another Barclays customer, the bank offered £25 as a token gesture",
+   "provider_url" : "",
+   "url" : "https://www.theguardian.com/money/2019/dec/07/i-lost-my-193000-inheritance-with-one-wrong-digit-on-my-sort-code",
+   "provider_name" : ""
 }
 
 JSON;
@@ -46,6 +46,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = PreviewCardModel::fromArray($array);

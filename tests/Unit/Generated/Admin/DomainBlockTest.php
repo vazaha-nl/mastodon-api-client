@@ -19,15 +19,15 @@ class DomainBlockTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "id": "1",
-  "domain": "example.com",
-  "created_at": "2022-11-16T08:15:34.238Z",
-  "severity": "noop",
-  "reject_media": false,
-  "reject_reports": false,
-  "private_comment": null,
-  "public_comment": null,
-  "obfuscate": false
+   "reject_media" : false,
+   "public_comment" : null,
+   "obfuscate" : false,
+   "reject_reports" : false,
+   "severity" : "noop",
+   "id" : "1",
+   "created_at" : "2022-11-16T08:15:34.238Z",
+   "domain" : "example.com",
+   "private_comment" : null
 }
 
 JSON;
@@ -41,6 +41,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = DomainBlockModel::fromArray($array);

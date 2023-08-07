@@ -19,27 +19,27 @@ class PollTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "id": "34830",
-  "expires_at": "2019-12-05T04:05:08.302Z",
-  "expired": true,
-  "multiple": false,
-  "votes_count": 10,
-  "voters_count": null,
-  "voted": true,
-  "own_votes": [
-    1
-  ],
-  "options": [
-    {
-      "title": "accept",
-      "votes_count": 6
-    },
-    {
-      "title": "deny",
-      "votes_count": 4
-    }
-  ],
-  "emojis": []
+   "options" : [
+      {
+         "votes_count" : 6,
+         "title" : "accept"
+      },
+      {
+         "title" : "deny",
+         "votes_count" : 4
+      }
+   ],
+   "own_votes" : [
+      1
+   ],
+   "voted" : true,
+   "expires_at" : "2019-12-05T04:05:08.302Z",
+   "voters_count" : null,
+   "id" : "34830",
+   "multiple" : false,
+   "expired" : true,
+   "emojis" : [],
+   "votes_count" : 10
 }
 
 JSON;
@@ -53,6 +53,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = PollModel::fromArray($array);

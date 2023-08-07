@@ -9,9 +9,9 @@ declare(strict_types=1);
 namespace Tests\Unit\Generated;
 
 use PHPUnit\Framework\TestCase;
-use Vazaha\Mastodon\Models\ApplicationModel;
+use Vazaha\Mastodon\Models\NotificationModel;
 
-class ApplicationTest extends TestCase
+class NotificationTest extends TestCase
 {
     protected string $json;
 
@@ -19,9 +19,23 @@ class ApplicationTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "website" : null,
-   "name" : "test app",
-   "vapid_key" : "BCk-QqERU0q-CfYZjcuB6lnyyOYfJ2AifKqfeGIm7Z-HiTU5T9eTG5GxVA0_OH5mMlI4UkkDTpaZwozy0TzdZ2M="
+   "status" : {
+      "account" : {
+         "username" : "trwnh",
+         "id" : "14715",
+         "acct" : "trwnh"
+      },
+      "created_at" : "2019-11-23T07:28:34.210Z",
+      "id" : "103186046267791694"
+   },
+   "type" : "favourite",
+   "created_at" : "2019-11-23T07:29:18.903Z",
+   "account" : {
+      "acct" : "haskal@cybre.space",
+      "id" : "297420",
+      "username" : "haskal"
+   },
+   "id" : "34975535"
 }
 
 JSON;
@@ -41,10 +55,10 @@ JSON;
             $array = $array[0] ?? [];
         }
 
-        $model = ApplicationModel::fromArray($array);
+        $model = NotificationModel::fromArray($array);
 
         foreach ($array as $property => $value) {
-            $property = ApplicationModel::sanitizePropertyName($property);
+            $property = NotificationModel::sanitizePropertyName($property);
 
             self::assertObjectHasProperty($property, $model);
 

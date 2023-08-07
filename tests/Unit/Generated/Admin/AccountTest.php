@@ -19,58 +19,58 @@ class AccountTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "id": "108965278956942133",
-  "username": "admin",
-  "domain": null,
-  "created_at": "2022-09-08T23:03:26.762Z",
-  "email": "admin@mastodon.local",
-  "ip": "192.168.42.1",
-  "role": {
-    "id": 3,
-    "name": "Owner",
-    "color": "",
-    "position": 1000,
-    "permissions": 1,
-    "highlighted": true,
-    "created_at": "2022-09-08T22:48:07.983Z",
-    "updated_at": "2022-09-08T22:48:07.983Z"
-  },
-  "confirmed": true,
-  "suspended": false,
-  "silenced": false,
-  "disabled": false,
-  "approved": true,
-  "locale": null,
-  "invite_request": null,
-  "ips": [
-    {
-      "ip": "192.168.42.1",
-      "used_at": "2022-09-15T01:38:58.851Z"
-    }
-  ],
-  "account": {
-    "id": "108965278956942133",
-    "username": "admin",
-    "acct": "admin",
-    "display_name": "",
-    "locked": false,
-    "bot": false,
-    "discoverable": null,
-    "group": false,
-    "created_at": "2022-09-08T00:00:00.000Z",
-    "note": "",
-    "url": "http://mastodon.local/@admin",
-    "avatar": "http://mastodon.local/avatars/original/missing.png",
-    "avatar_static": "http://mastodon.local/avatars/original/missing.png",
-    "header": "http://mastodon.local/headers/original/missing.png",
-    "header_static": "http://mastodon.local/headers/original/missing.png",
-    "followers_count": 0,
-    "following_count": 0,
-    "statuses_count": 0,
-    "last_status_at": null,
-    "emojis": [],
-    "fields": []
-  }
+   "locale" : null,
+   "id" : "108965278956942133",
+   "created_at" : "2022-09-08T23:03:26.762Z",
+   "domain" : null,
+   "silenced" : false,
+   "role" : {
+      "permissions" : 1,
+      "position" : 1000,
+      "color" : "",
+      "id" : 3,
+      "created_at" : "2022-09-08T22:48:07.983Z",
+      "name" : "Owner",
+      "highlighted" : true,
+      "updated_at" : "2022-09-08T22:48:07.983Z"
+   },
+   "ips" : [
+      {
+         "ip" : "192.168.42.1",
+         "used_at" : "2022-09-15T01:38:58.851Z"
+      }
+   ],
+   "disabled" : false,
+   "suspended" : false,
+   "approved" : true,
+   "ip" : "192.168.42.1",
+   "confirmed" : true,
+   "invite_request" : null,
+   "account" : {
+      "following_count" : 0,
+      "fields" : [],
+      "last_status_at" : null,
+      "url" : "http://mastodon.local/@admin",
+      "created_at" : "2022-09-08T00:00:00.000Z",
+      "id" : "108965278956942133",
+      "followers_count" : 0,
+      "header" : "http://mastodon.local/headers/original/missing.png",
+      "emojis" : [],
+      "avatar_static" : "http://mastodon.local/avatars/original/missing.png",
+      "note" : "",
+      "username" : "admin",
+      "statuses_count" : 0,
+      "locked" : false,
+      "display_name" : "",
+      "header_static" : "http://mastodon.local/headers/original/missing.png",
+      "avatar" : "http://mastodon.local/avatars/original/missing.png",
+      "group" : false,
+      "discoverable" : null,
+      "bot" : false,
+      "acct" : "admin"
+   },
+   "email" : "admin@mastodon.local",
+   "username" : "admin"
 }
 
 JSON;
@@ -84,6 +84,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = AccountModel::fromArray($array);

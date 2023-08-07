@@ -19,19 +19,19 @@ class RelationshipTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "id": "1",
-  "following": true,
-  "showing_reblogs": true,
-  "notifying": false,
-  "followed_by": true,
-  "blocking": false,
-  "blocked_by": false,
-  "muting": false,
-  "muting_notifications": false,
-  "requested": false,
-  "domain_blocking": false,
-  "endorsed": false,
-  "note": ""
+   "endorsed" : false,
+   "muting_notifications" : false,
+   "notifying" : false,
+   "id" : "1",
+   "muting" : false,
+   "blocking" : false,
+   "domain_blocking" : false,
+   "note" : "",
+   "following" : true,
+   "requested" : false,
+   "blocked_by" : false,
+   "showing_reblogs" : true,
+   "followed_by" : true
 }
 
 JSON;
@@ -45,6 +45,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = RelationshipModel::fromArray($array);

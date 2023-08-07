@@ -19,10 +19,10 @@ class TokenTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-  "access_token": "ZA-Yj3aBD8U8Cm7lKUp-lm9O9BmDgdhHzDeqsY8tlL0",
-  "token_type": "Bearer",
-  "scope": "read write follow push",
-  "created_at": 1573979017
+   "scope" : "read write follow push",
+   "access_token" : "ZA-Yj3aBD8U8Cm7lKUp-lm9O9BmDgdhHzDeqsY8tlL0",
+   "created_at" : 1573979017,
+   "token_type" : "Bearer"
 }
 
 JSON;
@@ -36,6 +36,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = TokenModel::fromArray($array);

@@ -19,26 +19,26 @@ class FilterTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-	"id": "19972",
-	"title": "Test filter",
-	"context": [
-		"home"
-	],
-	"expires_at": "2022-09-20T17:27:39.296Z",
-	"filter_action": "warn",
-	"keywords": [
-		{
-			"id": "1197",
-			"keyword": "bad word",
-			"whole_word": false
-		}
-	],
-	"statuses": [
-		{
-			"id": "1",
-			"status_id": "109031743575371913"
-		}
-    ]
+   "id" : "19972",
+   "context" : [
+      "home"
+   ],
+   "filter_action" : "warn",
+   "title" : "Test filter",
+   "expires_at" : "2022-09-20T17:27:39.296Z",
+   "statuses" : [
+      {
+         "id" : "1",
+         "status_id" : "109031743575371913"
+      }
+   ],
+   "keywords" : [
+      {
+         "keyword" : "bad word",
+         "whole_word" : false,
+         "id" : "1197"
+      }
+   ]
 }
 
 JSON;
@@ -52,6 +52,10 @@ JSON;
 
         if (!is_array($array)) {
             return;
+        }
+
+        if (array_is_list($array)) {
+            $array = $array[0] ?? [];
         }
 
         $model = FilterModel::fromArray($array);

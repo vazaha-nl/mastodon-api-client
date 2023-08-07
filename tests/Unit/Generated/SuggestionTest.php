@@ -9,9 +9,9 @@ declare(strict_types=1);
 namespace Tests\Unit\Generated;
 
 use PHPUnit\Framework\TestCase;
-use Vazaha\Mastodon\Models\ApplicationModel;
+use Vazaha\Mastodon\Models\SuggestionModel;
 
-class ApplicationTest extends TestCase
+class SuggestionTest extends TestCase
 {
     protected string $json;
 
@@ -19,9 +19,12 @@ class ApplicationTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "website" : null,
-   "name" : "test app",
-   "vapid_key" : "BCk-QqERU0q-CfYZjcuB6lnyyOYfJ2AifKqfeGIm7Z-HiTU5T9eTG5GxVA0_OH5mMlI4UkkDTpaZwozy0TzdZ2M="
+   "account" : {
+      "id" : "109031732217496096",
+      "acct" : "alice",
+      "username" : "alice"
+   },
+   "source" : "staff"
 }
 
 JSON;
@@ -41,10 +44,10 @@ JSON;
             $array = $array[0] ?? [];
         }
 
-        $model = ApplicationModel::fromArray($array);
+        $model = SuggestionModel::fromArray($array);
 
         foreach ($array as $property => $value) {
-            $property = ApplicationModel::sanitizePropertyName($property);
+            $property = SuggestionModel::sanitizePropertyName($property);
 
             self::assertObjectHasProperty($property, $model);
 
