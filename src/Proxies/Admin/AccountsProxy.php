@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies\Admin;
 
+use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Models\Admin\AccountModel;
+use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Proxies\Proxy;
 use Vazaha\Mastodon\Requests\Admin\Accounts\ActionRequest;
 use Vazaha\Mastodon\Requests\Admin\Accounts\ApproveRequest;
@@ -21,7 +24,6 @@ use Vazaha\Mastodon\Requests\Admin\Accounts\UnsuspendRequest;
 use Vazaha\Mastodon\Requests\Admin\Accounts\V1Request;
 use Vazaha\Mastodon\Requests\Admin\Accounts\V2Request;
 use Vazaha\Mastodon\Results\Admin\AccountResult;
-use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 class AccountsProxy extends Proxy
 {
@@ -34,8 +36,6 @@ class AccountsProxy extends Proxy
      * @param ?string $warning_preset_id       the ID of a preset warning
      * @param ?string $text                    additional clarification for why this action was taken
      * @param ?bool   $send_email_notification Should an email be sent to the user with the above information?
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
     public function action(
         string $id,
@@ -44,171 +44,200 @@ class AccountsProxy extends Proxy
         ?string $warning_preset_id = null,
         ?string $text = null,
         ?bool $send_email_notification = null,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new ActionRequest(
-                $id,
-                $type,
-                $report_id,
-                $warning_preset_id,
-                $text,
-                $send_email_notification,
-            ));
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new ActionRequest(
+            $id,
+            $type,
+            $report_id,
+            $warning_preset_id,
+            $text,
+            $send_email_notification,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Approve a pending account.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel>
      */
     public function approve(
         string $id,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel> */
-        $models = $this->apiClient
-            ->send(new ApproveRequest(
-                $id,
-            ));
+    ): AccountModel {
+        $result = $this->apiClient->send(new ApproveRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Delete an account.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel>
      */
     public function delete(
         string $id,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel> */
-        $models = $this->apiClient
-            ->send(new DeleteRequest(
-                $id,
-            ));
+    ): AccountModel {
+        $result = $this->apiClient->send(new DeleteRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Enable a currently disabled account.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel>
      */
     public function enable(
         string $id,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel> */
-        $models = $this->apiClient
-            ->send(new EnableRequest(
-                $id,
-            ));
+    ): AccountModel {
+        $result = $this->apiClient->send(new EnableRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * View a specific account.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel>
      */
     public function getOne(
         string $id,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel> */
-        $models = $this->apiClient
-            ->send(new GetOneRequest(
-                $id,
-            ));
+    ): AccountModel {
+        $result = $this->apiClient->send(new GetOneRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Reject a pending account.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel>
      */
     public function reject(
         string $id,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel> */
-        $models = $this->apiClient
-            ->send(new RejectRequest(
-                $id,
-            ));
+    ): AccountModel {
+        $result = $this->apiClient->send(new RejectRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Unmark an account as sensitive.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel>
      */
     public function unsensitive(
         string $id,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel> */
-        $models = $this->apiClient
-            ->send(new UnsensitiveRequest(
-                $id,
-            ));
+    ): AccountModel {
+        $result = $this->apiClient->send(new UnsensitiveRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Unsilence an account.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel>
      */
     public function unsilence(
         string $id,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel> */
-        $models = $this->apiClient
-            ->send(new UnsilenceRequest(
-                $id,
-            ));
+    ): AccountModel {
+        $result = $this->apiClient->send(new UnsilenceRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Unsuspend an account.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel>
      */
     public function unsuspend(
         string $id,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel> */
-        $models = $this->apiClient
-            ->send(new UnsuspendRequest(
-                $id,
-            ));
+    ): AccountModel {
+        $result = $this->apiClient->send(new UnsuspendRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**

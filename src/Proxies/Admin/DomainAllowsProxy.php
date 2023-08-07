@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies\Admin;
 
+use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Models\Admin\DomainAllowModel;
 use Vazaha\Mastodon\Proxies\Proxy;
 use Vazaha\Mastodon\Requests\Admin\DomainAllows\CreateRequest;
 use Vazaha\Mastodon\Requests\Admin\DomainAllows\DeleteRequest;
@@ -21,38 +23,44 @@ class DomainAllowsProxy extends Proxy
      * Allow a domain to federate.
      *
      * @param string $domain the domain to allow federation with
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainAllowModel>
      */
     public function create(
         string $domain,
-    ): DomainAllowResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainAllowModel> */
-        $models = $this->apiClient
-            ->send(new CreateRequest(
-                $domain,
-            ));
+    ): DomainAllowModel {
+        $result = $this->apiClient->send(new CreateRequest(
+            $domain,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\DomainAllowModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Delete an allowed domain.
      *
      * @param string $id the ID of the DomainAllow in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainAllowModel>
      */
     public function delete(
         string $id,
-    ): DomainAllowResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainAllowModel> */
-        $models = $this->apiClient
-            ->send(new DeleteRequest(
-                $id,
-            ));
+    ): DomainAllowModel {
+        $result = $this->apiClient->send(new DeleteRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\DomainAllowModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -78,18 +86,21 @@ class DomainAllowsProxy extends Proxy
      * Get a single allowed domain.
      *
      * @param string $id the ID of the DomainAllow in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainAllowModel>
      */
     public function getOne(
         string $id,
-    ): DomainAllowResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainAllowModel> */
-        $models = $this->apiClient
-            ->send(new GetOneRequest(
-                $id,
-            ));
+    ): DomainAllowModel {
+        $result = $this->apiClient->send(new GetOneRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\DomainAllowModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 }

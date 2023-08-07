@@ -33,7 +33,7 @@ class OembedProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();

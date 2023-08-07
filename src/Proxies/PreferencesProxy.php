@@ -23,7 +23,7 @@ class PreferencesProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\PreferencesModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();

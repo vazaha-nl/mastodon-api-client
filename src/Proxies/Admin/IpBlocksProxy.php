@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies\Admin;
 
+use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Models\Admin\IpBlockModel;
 use Vazaha\Mastodon\Proxies\Proxy;
 use Vazaha\Mastodon\Requests\Admin\IpBlocks\CreateRequest;
 use Vazaha\Mastodon\Requests\Admin\IpBlocks\DeleteRequest;
@@ -25,44 +27,50 @@ class IpBlocksProxy extends Proxy
      * @param ?string $ip         The IP address and prefix to block. Defaults to `0.0.0.0/32`
      * @param ?string $comment    the reason for this IP block
      * @param ?int    $expires_in the number of seconds in which this IP block will expire
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\IpBlockModel>
      */
     public function create(
         string $severity,
         ?string $ip = null,
         ?string $comment = null,
         ?int $expires_in = null,
-    ): IpBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\IpBlockModel> */
-        $models = $this->apiClient
-            ->send(new CreateRequest(
-                $severity,
-                $ip,
-                $comment,
-                $expires_in,
-            ));
+    ): IpBlockModel {
+        $result = $this->apiClient->send(new CreateRequest(
+            $severity,
+            $ip,
+            $comment,
+            $expires_in,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\IpBlockModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Delete an IP block.
      *
      * @param string $id the ID of the DomainAllow in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\IpBlockModel>
      */
     public function delete(
         string $id,
-    ): IpBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\IpBlockModel> */
-        $models = $this->apiClient
-            ->send(new DeleteRequest(
-                $id,
-            ));
+    ): IpBlockModel {
+        $result = $this->apiClient->send(new DeleteRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\IpBlockModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -88,19 +96,22 @@ class IpBlocksProxy extends Proxy
      * Get a single IP block.
      *
      * @param string $id the ID of the IpBlock in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\IpBlockModel>
      */
     public function getOne(
         string $id,
-    ): IpBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\IpBlockModel> */
-        $models = $this->apiClient
-            ->send(new GetOneRequest(
-                $id,
-            ));
+    ): IpBlockModel {
+        $result = $this->apiClient->send(new GetOneRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\IpBlockModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -111,8 +122,6 @@ class IpBlocksProxy extends Proxy
      * @param ?string $severity   The policy to apply to this IP range: `sign_up_requires_approval`, `sign_up_block`, or `no_access`
      * @param ?string $comment    the reason for this IP block
      * @param ?int    $expires_in the number of seconds in which this IP block will expire
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\IpBlockModel>
      */
     public function update(
         string $id,
@@ -120,17 +129,22 @@ class IpBlocksProxy extends Proxy
         ?string $severity = null,
         ?string $comment = null,
         ?int $expires_in = null,
-    ): IpBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\IpBlockModel> */
-        $models = $this->apiClient
-            ->send(new UpdateRequest(
-                $id,
-                $ip,
-                $severity,
-                $comment,
-                $expires_in,
-            ));
+    ): IpBlockModel {
+        $result = $this->apiClient->send(new UpdateRequest(
+            $id,
+            $ip,
+            $severity,
+            $comment,
+            $expires_in,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\IpBlockModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 }

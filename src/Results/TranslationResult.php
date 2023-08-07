@@ -15,10 +15,8 @@ use Vazaha\Mastodon\Models\TranslationModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\TranslationModel> $models
  * @property \Vazaha\Mastodon\Requests\TranslationRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\TranslationModel                                                        getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\TranslationModel>                  getModels()
- * @method null|\Vazaha\Mastodon\Results\TranslationResult<array-key, \Vazaha\Mastodon\Models\TranslationModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\TranslationResult<array-key, \Vazaha\Mastodon\Models\TranslationModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\TranslationResult<array-key, \Vazaha\Mastodon\Models\TranslationModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\TranslationResult<array-key, \Vazaha\Mastodon\Models\TranslationModel> getPreviousPage()
  */
 class TranslationResult extends Result implements ResultInterface
 {

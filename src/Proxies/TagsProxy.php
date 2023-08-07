@@ -29,7 +29,7 @@ class TagsProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\TagModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -51,7 +51,7 @@ class TagsProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\TagModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -73,7 +73,7 @@ class TagsProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\TagModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();

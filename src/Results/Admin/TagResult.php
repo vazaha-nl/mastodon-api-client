@@ -16,10 +16,8 @@ use Vazaha\Mastodon\Results\Result;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\TagModel> $models
  * @property \Vazaha\Mastodon\Requests\Admin\TagRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\Admin\TagModel                                                      getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\TagModel>                getModels()
- * @method null|\Vazaha\Mastodon\Results\Admin\TagResult<array-key, \Vazaha\Mastodon\Models\Admin\TagModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\Admin\TagResult<array-key, \Vazaha\Mastodon\Models\Admin\TagModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\Admin\TagResult<array-key, \Vazaha\Mastodon\Models\Admin\TagModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\Admin\TagResult<array-key, \Vazaha\Mastodon\Models\Admin\TagModel> getPreviousPage()
  */
 class TagResult extends Result implements ResultInterface
 {

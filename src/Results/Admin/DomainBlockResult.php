@@ -16,10 +16,8 @@ use Vazaha\Mastodon\Results\Result;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\DomainBlockModel> $models
  * @property \Vazaha\Mastodon\Requests\Admin\DomainBlockRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\Admin\DomainBlockModel                                                              getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\DomainBlockModel>                        getModels()
- * @method null|\Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\DomainBlockModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\DomainBlockModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\DomainBlockModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\DomainBlockModel> getPreviousPage()
  */
 class DomainBlockResult extends Result implements ResultInterface
 {

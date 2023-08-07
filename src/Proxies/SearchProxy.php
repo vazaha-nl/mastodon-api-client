@@ -96,7 +96,7 @@ class SearchProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\SearchModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();

@@ -11,6 +11,7 @@ namespace Vazaha\Mastodon\Proxies;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Models\AccountModel;
 use Vazaha\Mastodon\Models\CredentialAccountModel;
+use Vazaha\Mastodon\Models\RelationshipModel;
 use Vazaha\Mastodon\Models\TokenModel;
 use Vazaha\Mastodon\Requests\Accounts\BlockRequest;
 use Vazaha\Mastodon\Requests\Accounts\CreateRequest;
@@ -50,19 +51,22 @@ class AccountsProxy extends Proxy
      * Block account.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
     public function block(
         string $id,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new BlockRequest(
-                $id,
-            ));
+    ): RelationshipModel {
+        $result = $this->apiClient->send(new BlockRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -93,7 +97,7 @@ class AccountsProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\TokenModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -147,25 +151,28 @@ class AccountsProxy extends Proxy
      * @param ?bool              $reblogs   receive this account's reblogs in home timeline? Defaults to true
      * @param ?bool              $notify    receive notifications when this account posts a status? Defaults to false
      * @param null|array<string> $languages Filter received statuses for these languages. If not provided, you will receive this account's posts in all languages.
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
     public function follow(
         string $id,
         ?bool $reblogs = null,
         ?bool $notify = null,
         ?array $languages = null,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new FollowRequest(
-                $id,
-                $reblogs,
-                $notify,
-                $languages,
-            ));
+    ): RelationshipModel {
+        $result = $this->apiClient->send(new FollowRequest(
+            $id,
+            $reblogs,
+            $notify,
+            $languages,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -225,7 +232,7 @@ class AccountsProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\AccountModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -276,19 +283,22 @@ class AccountsProxy extends Proxy
      * Lookup account ID from Webfinger address.
      *
      * @param string $acct the username or Webfinger address to lookup
-     *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
      */
     public function lookup(
         string $acct,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
-        $models = $this->apiClient
-            ->send(new LookupRequest(
-                $acct,
-            ));
+    ): AccountModel {
+        $result = $this->apiClient->send(new LookupRequest(
+            $acct,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\AccountModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -297,23 +307,26 @@ class AccountsProxy extends Proxy
      * @param string $id            the ID of the Account in the database
      * @param ?bool  $notifications mute notifications in addition to statuses? Defaults to true
      * @param ?int   $duration      How long the mute should last, in seconds. Defaults to 0 (indefinite).
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
     public function mute(
         string $id,
         ?bool $notifications = null,
         ?int $duration = null,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new MuteRequest(
-                $id,
-                $notifications,
-                $duration,
-            ));
+    ): RelationshipModel {
+        $result = $this->apiClient->send(new MuteRequest(
+            $id,
+            $notifications,
+            $duration,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -321,40 +334,46 @@ class AccountsProxy extends Proxy
      *
      * @param string  $id      the ID of the Account in the database
      * @param ?string $comment The comment to be set on that user. Provide an empty string or leave out this parameter to clear the currently set note.
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
     public function note(
         string $id,
         ?string $comment = null,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new NoteRequest(
-                $id,
-                $comment,
-            ));
+    ): RelationshipModel {
+        $result = $this->apiClient->send(new NoteRequest(
+            $id,
+            $comment,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Feature account on your profile.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
     public function pin(
         string $id,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new PinRequest(
-                $id,
-            ));
+    ): RelationshipModel {
+        $result = $this->apiClient->send(new PinRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -380,19 +399,22 @@ class AccountsProxy extends Proxy
      * Remove account from followers.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
     public function removeFromFollowers(
         string $id,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new RemoveFromFollowersRequest(
-                $id,
-            ));
+    ): RelationshipModel {
+        $result = $this->apiClient->send(new RemoveFromFollowersRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -476,76 +498,88 @@ class AccountsProxy extends Proxy
      * Unblock account.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
     public function unblock(
         string $id,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new UnblockRequest(
-                $id,
-            ));
+    ): RelationshipModel {
+        $result = $this->apiClient->send(new UnblockRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Unfollow account.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
     public function unfollow(
         string $id,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new UnfollowRequest(
-                $id,
-            ));
+    ): RelationshipModel {
+        $result = $this->apiClient->send(new UnfollowRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Unmute account.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
     public function unmute(
         string $id,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new UnmuteRequest(
-                $id,
-            ));
+    ): RelationshipModel {
+        $result = $this->apiClient->send(new UnmuteRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Unfeature account from profile.
      *
      * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
     public function unpin(
         string $id,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new UnpinRequest(
-                $id,
-            ));
+    ): RelationshipModel {
+        $result = $this->apiClient->send(new UnpinRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -553,6 +587,8 @@ class AccountsProxy extends Proxy
      *
      * @param ?string      $display_name      the display name to use for the profile
      * @param ?string      $note              the account bio
+     * @param ?string      $avatar            Avatar image encoded using `multipart/form-data`
+     * @param ?string      $header            Header image encoded using `multipart/form-data`
      * @param ?bool        $locked            whether manual approval of follow requests is required
      * @param ?bool        $bot               whether the account has a bot flag
      * @param ?bool        $discoverable      whether the account should be shown in the profile directory
@@ -561,6 +597,8 @@ class AccountsProxy extends Proxy
     public function updateCredentials(
         ?string $display_name = null,
         ?string $note = null,
+        ?string $avatar = null,
+        ?string $header = null,
         ?bool $locked = null,
         ?bool $bot = null,
         ?bool $discoverable = null,
@@ -569,6 +607,8 @@ class AccountsProxy extends Proxy
         $result = $this->apiClient->send(new UpdateCredentialsRequest(
             $display_name,
             $note,
+            $avatar,
+            $header,
             $locked,
             $bot,
             $discoverable,
@@ -576,7 +616,7 @@ class AccountsProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\AccountModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -594,7 +634,7 @@ class AccountsProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\CredentialAccountModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();

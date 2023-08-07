@@ -15,10 +15,8 @@ use Vazaha\Mastodon\Models\AnnouncementModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\AnnouncementModel> $models
  * @property \Vazaha\Mastodon\Requests\AnnouncementRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\AnnouncementModel                                                         getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\AnnouncementModel>                   getModels()
- * @method null|\Vazaha\Mastodon\Results\AnnouncementResult<array-key, \Vazaha\Mastodon\Models\AnnouncementModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\AnnouncementResult<array-key, \Vazaha\Mastodon\Models\AnnouncementModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\AnnouncementResult<array-key, \Vazaha\Mastodon\Models\AnnouncementModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\AnnouncementResult<array-key, \Vazaha\Mastodon\Models\AnnouncementModel> getPreviousPage()
  */
 class AnnouncementResult extends Result implements ResultInterface
 {

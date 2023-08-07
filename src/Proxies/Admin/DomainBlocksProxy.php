@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies\Admin;
 
+use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Models\Admin\DomainBlockModel;
 use Vazaha\Mastodon\Proxies\Proxy;
 use Vazaha\Mastodon\Requests\Admin\DomainBlocks\CreateRequest;
 use Vazaha\Mastodon\Requests\Admin\DomainBlocks\DeleteRequest;
@@ -28,8 +30,6 @@ class DomainBlocksProxy extends Proxy
      * @param ?string $private_comment a private note about this domain block, visible only to admins
      * @param ?string $public_comment  a public note about this domain block, optionally shown on the about page
      * @param ?bool   $obfuscate       Whether to partially censor the domain when shown in public. Defaults to false
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainBlockModel>
      */
     public function create(
         string $domain,
@@ -39,39 +39,47 @@ class DomainBlocksProxy extends Proxy
         ?string $private_comment = null,
         ?string $public_comment = null,
         ?bool $obfuscate = null,
-    ): DomainBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainBlockModel> */
-        $models = $this->apiClient
-            ->send(new CreateRequest(
-                $domain,
-                $severity,
-                $reject_media,
-                $reject_reports,
-                $private_comment,
-                $public_comment,
-                $obfuscate,
-            ));
+    ): DomainBlockModel {
+        $result = $this->apiClient->send(new CreateRequest(
+            $domain,
+            $severity,
+            $reject_media,
+            $reject_reports,
+            $private_comment,
+            $public_comment,
+            $obfuscate,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\DomainBlockModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Remove a domain block.
      *
      * @param string $id the ID of the DomainAllow in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainBlockModel>
      */
     public function delete(
         string $id,
-    ): DomainBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainBlockModel> */
-        $models = $this->apiClient
-            ->send(new DeleteRequest(
-                $id,
-            ));
+    ): DomainBlockModel {
+        $result = $this->apiClient->send(new DeleteRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\DomainBlockModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -97,19 +105,22 @@ class DomainBlocksProxy extends Proxy
      * Get a single blocked domain.
      *
      * @param string $id the ID of the DomainBlock in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainBlockModel>
      */
     public function getOne(
         string $id,
-    ): DomainBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainBlockModel> */
-        $models = $this->apiClient
-            ->send(new GetOneRequest(
-                $id,
-            ));
+    ): DomainBlockModel {
+        $result = $this->apiClient->send(new GetOneRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\DomainBlockModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -122,8 +133,6 @@ class DomainBlocksProxy extends Proxy
      * @param ?string $private_comment a private note about this domain block, visible only to admins
      * @param ?string $public_comment  a public note about this domain block, optionally shown on the about page
      * @param ?bool   $obfuscate       Whether to partially censor the domain when shown in public. Defaults to false
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainBlockModel>
      */
     public function update(
         string $id,
@@ -133,19 +142,24 @@ class DomainBlocksProxy extends Proxy
         ?string $private_comment = null,
         ?string $public_comment = null,
         ?bool $obfuscate = null,
-    ): DomainBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainBlockModel> */
-        $models = $this->apiClient
-            ->send(new UpdateRequest(
-                $id,
-                $severity,
-                $reject_media,
-                $reject_reports,
-                $private_comment,
-                $public_comment,
-                $obfuscate,
-            ));
+    ): DomainBlockModel {
+        $result = $this->apiClient->send(new UpdateRequest(
+            $id,
+            $severity,
+            $reject_media,
+            $reject_reports,
+            $private_comment,
+            $public_comment,
+            $obfuscate,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\DomainBlockModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 }

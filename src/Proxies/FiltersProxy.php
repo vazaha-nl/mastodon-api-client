@@ -8,6 +8,12 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies;
 
+use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
+use Vazaha\Mastodon\Models\FilterKeywordModel;
+use Vazaha\Mastodon\Models\FilterModel;
+use Vazaha\Mastodon\Models\FilterStatusModel;
+use Vazaha\Mastodon\Models\V1\FilterModel as V1FilterModel;
 use Vazaha\Mastodon\Requests\Filters\CreateRequest;
 use Vazaha\Mastodon\Requests\Filters\CreateV1Request;
 use Vazaha\Mastodon\Requests\Filters\DeleteRequest;
@@ -27,7 +33,6 @@ use Vazaha\Mastodon\Requests\Filters\StatusesGetRequest;
 use Vazaha\Mastodon\Requests\Filters\StatusesRemoveRequest;
 use Vazaha\Mastodon\Requests\Filters\UpdateRequest;
 use Vazaha\Mastodon\Requests\Filters\UpdateV1Request;
-use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 use Vazaha\Mastodon\Results\FilterKeywordResult;
 use Vazaha\Mastodon\Results\FilterResult;
 use Vazaha\Mastodon\Results\FilterStatusResult;
@@ -42,25 +47,28 @@ class FiltersProxy extends Proxy
      * @param array<string> $context       Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
      * @param ?string       $filter_action The policy to be applied when the filter is matched. Specify `warn` or `hide`.
      * @param ?int          $expires_in    How many seconds from now should the filter expire?
-     *
-     * @return \Vazaha\Mastodon\Results\FilterResult<array-key,\Vazaha\Mastodon\Models\FilterModel>
      */
     public function create(
         string $title,
         array $context,
         ?string $filter_action = null,
         ?int $expires_in = null,
-    ): FilterResult {
-        /** @var \Vazaha\Mastodon\Results\FilterResult<array-key,\Vazaha\Mastodon\Models\FilterModel> */
-        $models = $this->apiClient
-            ->send(new CreateRequest(
-                $title,
-                $context,
-                $filter_action,
-                $expires_in,
-            ));
+    ): FilterModel {
+        $result = $this->apiClient->send(new CreateRequest(
+            $title,
+            $context,
+            $filter_action,
+            $expires_in,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\FilterModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -71,8 +79,6 @@ class FiltersProxy extends Proxy
      * @param ?bool         $irreversible should the server irreversibly drop matching entities from home and notifications? Defaults to false
      * @param ?bool         $whole_word   should the filter consider word boundaries for this keyword? Defaults to false
      * @param ?int          $expires_in   Number of seconds from now that the filter should expire. Otherwise, `null` for a filter that doesn't expire.
-     *
-     * @return \Vazaha\Mastodon\Results\V1\FilterResult<array-key,\Vazaha\Mastodon\Models\V1\FilterModel>
      */
     public function createV1(
         string $phrase,
@@ -80,56 +86,67 @@ class FiltersProxy extends Proxy
         ?bool $irreversible = null,
         ?bool $whole_word = null,
         ?int $expires_in = null,
-    ): V1FilterResult {
-        /** @var \Vazaha\Mastodon\Results\V1\FilterResult<array-key,\Vazaha\Mastodon\Models\V1\FilterModel> */
-        $models = $this->apiClient
-            ->send(new CreateV1Request(
-                $phrase,
-                $context,
-                $irreversible,
-                $whole_word,
-                $expires_in,
-            ));
+    ): V1FilterModel {
+        $result = $this->apiClient->send(new CreateV1Request(
+            $phrase,
+            $context,
+            $irreversible,
+            $whole_word,
+            $expires_in,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\V1\FilterModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Delete a filter.
      *
      * @param string $id the ID of the Filter in the database
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
     public function delete(
         string $id,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new DeleteRequest(
-                $id,
-            ));
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new DeleteRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Remove a filter.
      *
      * @param string $id the ID of the Filter in the database
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
     public function deleteV1(
         string $id,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new DeleteV1Request(
-                $id,
-            ));
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new DeleteV1Request(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -151,38 +168,44 @@ class FiltersProxy extends Proxy
      * View a specific filter.
      *
      * @param string $id the ID of the Filter in the database
-     *
-     * @return \Vazaha\Mastodon\Results\FilterResult<array-key,\Vazaha\Mastodon\Models\FilterModel>
      */
     public function getOne(
         string $id,
-    ): FilterResult {
-        /** @var \Vazaha\Mastodon\Results\FilterResult<array-key,\Vazaha\Mastodon\Models\FilterModel> */
-        $models = $this->apiClient
-            ->send(new GetOneRequest(
-                $id,
-            ));
+    ): FilterModel {
+        $result = $this->apiClient->send(new GetOneRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\FilterModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * View a single filter.
      *
      * @param string $id the ID of the FilterKeyword in the database
-     *
-     * @return \Vazaha\Mastodon\Results\V1\FilterResult<array-key,\Vazaha\Mastodon\Models\V1\FilterModel>
      */
     public function getOneV1(
         string $id,
-    ): V1FilterResult {
-        /** @var \Vazaha\Mastodon\Results\V1\FilterResult<array-key,\Vazaha\Mastodon\Models\V1\FilterModel> */
-        $models = $this->apiClient
-            ->send(new GetOneV1Request(
-                $id,
-            ));
+    ): V1FilterModel {
+        $result = $this->apiClient->send(new GetOneV1Request(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\V1\FilterModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -206,42 +229,48 @@ class FiltersProxy extends Proxy
      * @param string $filter_id  the ID of the Filter in the database
      * @param string $keyword    the keyword to be added to the filter group
      * @param ?bool  $whole_word whether the keyword should consider word boundaries
-     *
-     * @return \Vazaha\Mastodon\Results\FilterKeywordResult<array-key,\Vazaha\Mastodon\Models\FilterKeywordModel>
      */
     public function keywordsCreate(
         string $filter_id,
         string $keyword,
         ?bool $whole_word = null,
-    ): FilterKeywordResult {
-        /** @var \Vazaha\Mastodon\Results\FilterKeywordResult<array-key,\Vazaha\Mastodon\Models\FilterKeywordModel> */
-        $models = $this->apiClient
-            ->send(new KeywordsCreateRequest(
-                $filter_id,
-                $keyword,
-                $whole_word,
-            ));
+    ): FilterKeywordModel {
+        $result = $this->apiClient->send(new KeywordsCreateRequest(
+            $filter_id,
+            $keyword,
+            $whole_word,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\FilterKeywordModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Remove keywords from a filter.
      *
      * @param string $id the ID of the FilterKeyword in the database
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
     public function keywordsDelete(
         string $id,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new KeywordsDeleteRequest(
-                $id,
-            ));
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new KeywordsDeleteRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -267,19 +296,22 @@ class FiltersProxy extends Proxy
      * View a single keyword.
      *
      * @param string $id the ID of the FilterKeyword in the database
-     *
-     * @return \Vazaha\Mastodon\Results\FilterKeywordResult<array-key,\Vazaha\Mastodon\Models\FilterKeywordModel>
      */
     public function keywordsGetOne(
         string $id,
-    ): FilterKeywordResult {
-        /** @var \Vazaha\Mastodon\Results\FilterKeywordResult<array-key,\Vazaha\Mastodon\Models\FilterKeywordModel> */
-        $models = $this->apiClient
-            ->send(new KeywordsGetOneRequest(
-                $id,
-            ));
+    ): FilterKeywordModel {
+        $result = $this->apiClient->send(new KeywordsGetOneRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\FilterKeywordModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -288,42 +320,48 @@ class FiltersProxy extends Proxy
      * @param string $id         the ID of the FilterKeyword in the database
      * @param string $keyword    the keyword to be added to the filter group
      * @param ?bool  $whole_word whether the keyword should consider word boundaries
-     *
-     * @return \Vazaha\Mastodon\Results\FilterKeywordResult<array-key,\Vazaha\Mastodon\Models\FilterKeywordModel>
      */
     public function keywordsUpdate(
         string $id,
         string $keyword,
         ?bool $whole_word = null,
-    ): FilterKeywordResult {
-        /** @var \Vazaha\Mastodon\Results\FilterKeywordResult<array-key,\Vazaha\Mastodon\Models\FilterKeywordModel> */
-        $models = $this->apiClient
-            ->send(new KeywordsUpdateRequest(
-                $id,
-                $keyword,
-                $whole_word,
-            ));
+    ): FilterKeywordModel {
+        $result = $this->apiClient->send(new KeywordsUpdateRequest(
+            $id,
+            $keyword,
+            $whole_word,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\FilterKeywordModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Add a status to a filter group.
      *
      * @param string $filter_id the ID of the Filter in the database
-     *
-     * @return \Vazaha\Mastodon\Results\FilterStatusResult<array-key,\Vazaha\Mastodon\Models\FilterStatusModel>
      */
     public function statusesAdd(
         string $filter_id,
-    ): FilterStatusResult {
-        /** @var \Vazaha\Mastodon\Results\FilterStatusResult<array-key,\Vazaha\Mastodon\Models\FilterStatusModel> */
-        $models = $this->apiClient
-            ->send(new StatusesAddRequest(
-                $filter_id,
-            ));
+    ): FilterStatusModel {
+        $result = $this->apiClient->send(new StatusesAddRequest(
+            $filter_id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\FilterStatusModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -349,38 +387,44 @@ class FiltersProxy extends Proxy
      * View a single status filter.
      *
      * @param string $id the ID of the FilterStatus in the database
-     *
-     * @return \Vazaha\Mastodon\Results\FilterStatusResult<array-key,\Vazaha\Mastodon\Models\FilterStatusModel>
      */
     public function statusesGetOne(
         string $id,
-    ): FilterStatusResult {
-        /** @var \Vazaha\Mastodon\Results\FilterStatusResult<array-key,\Vazaha\Mastodon\Models\FilterStatusModel> */
-        $models = $this->apiClient
-            ->send(new StatusesGetOneRequest(
-                $id,
-            ));
+    ): FilterStatusModel {
+        $result = $this->apiClient->send(new StatusesGetOneRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\FilterStatusModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Remove a status from a filter group.
      *
      * @param string $id the ID of the FilterStatus in the database
-     *
-     * @return \Vazaha\Mastodon\Results\FilterStatusResult<array-key,\Vazaha\Mastodon\Models\FilterStatusModel>
      */
     public function statusesRemove(
         string $id,
-    ): FilterStatusResult {
-        /** @var \Vazaha\Mastodon\Results\FilterStatusResult<array-key,\Vazaha\Mastodon\Models\FilterStatusModel> */
-        $models = $this->apiClient
-            ->send(new StatusesRemoveRequest(
-                $id,
-            ));
+    ): FilterStatusModel {
+        $result = $this->apiClient->send(new StatusesRemoveRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\FilterStatusModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -391,8 +435,6 @@ class FiltersProxy extends Proxy
      * @param null|array<string> $context       Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
      * @param ?string            $filter_action The policy to be applied when the filter is matched. Specify `warn` or `hide`.
      * @param ?int               $expires_in    How many seconds from now should the filter expire?
-     *
-     * @return \Vazaha\Mastodon\Results\FilterResult<array-key,\Vazaha\Mastodon\Models\FilterModel>
      */
     public function update(
         string $id,
@@ -400,18 +442,23 @@ class FiltersProxy extends Proxy
         ?array $context = null,
         ?string $filter_action = null,
         ?int $expires_in = null,
-    ): FilterResult {
-        /** @var \Vazaha\Mastodon\Results\FilterResult<array-key,\Vazaha\Mastodon\Models\FilterModel> */
-        $models = $this->apiClient
-            ->send(new UpdateRequest(
-                $id,
-                $title,
-                $context,
-                $filter_action,
-                $expires_in,
-            ));
+    ): FilterModel {
+        $result = $this->apiClient->send(new UpdateRequest(
+            $id,
+            $title,
+            $context,
+            $filter_action,
+            $expires_in,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\FilterModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -423,8 +470,6 @@ class FiltersProxy extends Proxy
      * @param ?bool         $irreversible should the server irreversibly drop matching entities from home and notifications? Defaults to false
      * @param ?bool         $whole_word   should the filter consider word boundaries? Defaults to false
      * @param ?int          $expires_in   Number of seconds from now that the filter should expire. Otherwise, `null` for a filter that doesn't expire.
-     *
-     * @return \Vazaha\Mastodon\Results\V1\FilterResult<array-key,\Vazaha\Mastodon\Models\V1\FilterModel>
      */
     public function updateV1(
         string $id,
@@ -433,18 +478,23 @@ class FiltersProxy extends Proxy
         ?bool $irreversible = null,
         ?bool $whole_word = null,
         ?int $expires_in = null,
-    ): V1FilterResult {
-        /** @var \Vazaha\Mastodon\Results\V1\FilterResult<array-key,\Vazaha\Mastodon\Models\V1\FilterModel> */
-        $models = $this->apiClient
-            ->send(new UpdateV1Request(
-                $id,
-                $phrase,
-                $context,
-                $irreversible,
-                $whole_word,
-                $expires_in,
-            ));
+    ): V1FilterModel {
+        $result = $this->apiClient->send(new UpdateV1Request(
+            $id,
+            $phrase,
+            $context,
+            $irreversible,
+            $whole_word,
+            $expires_in,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\V1\FilterModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 }

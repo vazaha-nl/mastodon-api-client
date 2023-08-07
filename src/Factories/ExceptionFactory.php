@@ -30,7 +30,9 @@ class ExceptionFactory
         }
 
         $result = (new ResultFactory())->build(ErrorResult::class, $apiClient, $request, $response);
-        $error = $result->getModel();
+
+        /** @var \Vazaha\Mastodon\Models\ErrorModel $error */
+        $error = $result->first();
 
         switch ($response->getStatusCode()) {
             case 400:

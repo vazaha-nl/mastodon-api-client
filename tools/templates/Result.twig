@@ -16,10 +16,8 @@ namespace {{ namespace }};
  * @property \Illuminate\Support\Collection<array-key, \{{ modelClassName.getFQN() }}>    $models
  * @property \{{ requestClassName.getFQN() }} $request
  *
- * @method null|\{{ modelClassName.getFQN() }}   getModel()
- * @method \Illuminate\Support\Collection<array-key, \{{ modelClassName.getFQN() }}> getModels()
- * @method null|\{{ resultClassName.getFQN() }}<array-key, \{{ modelClassName.getFQN() }}> getNextResult()
- * @method null|\{{ resultClassName.getFQN() }}<array-key, \{{ modelClassName.getFQN() }}> getPreviousResult()
+ * @method null|\{{ resultClassName.getFQN() }}<array-key, \{{ modelClassName.getFQN() }}> getNextPage()
+ * @method null|\{{ resultClassName.getFQN() }}<array-key, \{{ modelClassName.getFQN() }}> getPreviousPage()
  */
 class {{ classname }} extends Result implements ResultInterface
 {

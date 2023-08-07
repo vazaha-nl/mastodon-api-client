@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies;
 
+use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Requests\Lists\AccountsAddRequest;
 use Vazaha\Mastodon\Requests\Lists\AccountsRemoveRequest;
 use Vazaha\Mastodon\Requests\Lists\AccountsRequest;
@@ -17,7 +19,6 @@ use Vazaha\Mastodon\Requests\Lists\GetOneRequest;
 use Vazaha\Mastodon\Requests\Lists\GetRequest;
 use Vazaha\Mastodon\Requests\Lists\UpdateRequest;
 use Vazaha\Mastodon\Results\AccountResult;
-use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 use Vazaha\Mastodon\Results\ListResult;
 
 class ListsProxy extends Proxy
@@ -49,21 +50,24 @@ class ListsProxy extends Proxy
      *
      * @param string        $id          the ID of the List in the database
      * @param array<string> $account_ids the accounts that should be added to the list
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
     public function accountsAdd(
         string $id,
         array $account_ids,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new AccountsAddRequest(
-                $id,
-                $account_ids,
-            ));
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new AccountsAddRequest(
+            $id,
+            $account_ids,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -71,21 +75,24 @@ class ListsProxy extends Proxy
      *
      * @param string        $id          the ID of the List in the database
      * @param array<string> $account_ids the accounts that should be removed from the list
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
     public function accountsRemove(
         string $id,
         array $account_ids,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new AccountsRemoveRequest(
-                $id,
-                $account_ids,
-            ));
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new AccountsRemoveRequest(
+            $id,
+            $account_ids,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -114,19 +121,22 @@ class ListsProxy extends Proxy
      * Delete a list.
      *
      * @param string $id the ID of the List in the database
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
     public function delete(
         string $id,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new DeleteRequest(
-                $id,
-            ));
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new DeleteRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**

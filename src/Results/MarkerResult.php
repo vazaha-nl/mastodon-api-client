@@ -15,10 +15,8 @@ use Vazaha\Mastodon\Models\MarkerModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\MarkerModel> $models
  * @property \Vazaha\Mastodon\Requests\MarkerRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\MarkerModel                                                   getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\MarkerModel>             getModels()
- * @method null|\Vazaha\Mastodon\Results\MarkerResult<array-key, \Vazaha\Mastodon\Models\MarkerModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\MarkerResult<array-key, \Vazaha\Mastodon\Models\MarkerModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\MarkerResult<array-key, \Vazaha\Mastodon\Models\MarkerModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\MarkerResult<array-key, \Vazaha\Mastodon\Models\MarkerModel> getPreviousPage()
  */
 class MarkerResult extends Result implements ResultInterface
 {

@@ -15,10 +15,8 @@ use Vazaha\Mastodon\Models\TokenModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\TokenModel> $models
  * @property \Vazaha\Mastodon\Requests\TokenRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\TokenModel                                                  getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\TokenModel>            getModels()
- * @method null|\Vazaha\Mastodon\Results\TokenResult<array-key, \Vazaha\Mastodon\Models\TokenModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\TokenResult<array-key, \Vazaha\Mastodon\Models\TokenModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\TokenResult<array-key, \Vazaha\Mastodon\Models\TokenModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\TokenResult<array-key, \Vazaha\Mastodon\Models\TokenModel> getPreviousPage()
  */
 class TokenResult extends Result implements ResultInterface
 {

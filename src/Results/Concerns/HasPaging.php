@@ -12,7 +12,7 @@ use Vazaha\Mastodon\Results\PagingLinks;
  */
 trait HasPaging
 {
-    public function getNextResult(): ?ResultInterface
+    public function getNextPage(): ?ResultInterface
     {
         $params = $this->getPagingLinks()->getNextQueryParams();
 
@@ -26,7 +26,7 @@ trait HasPaging
         return $result;
     }
 
-    public function getPreviousResult(): ?ResultInterface
+    public function getPreviousPage(): ?ResultInterface
     {
         $params = $this->getPagingLinks()->getPreviousQueryParams();
 

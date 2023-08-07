@@ -8,67 +8,78 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies;
 
+use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
+use Vazaha\Mastodon\Models\NotificationModel;
 use Vazaha\Mastodon\Requests\Notifications\ClearRequest;
 use Vazaha\Mastodon\Requests\Notifications\DismissDeprecatedRequest;
 use Vazaha\Mastodon\Requests\Notifications\DismissRequest;
 use Vazaha\Mastodon\Requests\Notifications\GetOneRequest;
 use Vazaha\Mastodon\Requests\Notifications\GetRequest;
-use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 use Vazaha\Mastodon\Results\NotificationResult;
 
 class NotificationsProxy extends Proxy
 {
     /**
      * Dismiss all notifications.
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
     public function clear(
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new ClearRequest(
-            ));
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new ClearRequest(
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Dismiss a single notification.
      *
      * @param string $id the ID of the Notification in the database
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
     public function dismiss(
         string $id,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new DismissRequest(
-                $id,
-            ));
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new DismissRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * (REMOVED) Dismiss a single notification.
      *
      * @param string $id the ID of the notification in the database
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
     public function dismissDeprecated(
         string $id,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new DismissDeprecatedRequest(
-                $id,
-            ));
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new DismissDeprecatedRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -112,18 +123,21 @@ class NotificationsProxy extends Proxy
      * Get a single notification.
      *
      * @param string $id the ID of the Notification in the database
-     *
-     * @return \Vazaha\Mastodon\Results\NotificationResult<array-key,\Vazaha\Mastodon\Models\NotificationModel>
      */
     public function getOne(
         string $id,
-    ): NotificationResult {
-        /** @var \Vazaha\Mastodon\Results\NotificationResult<array-key,\Vazaha\Mastodon\Models\NotificationModel> */
-        $models = $this->apiClient
-            ->send(new GetOneRequest(
-                $id,
-            ));
+    ): NotificationModel {
+        $result = $this->apiClient->send(new GetOneRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\NotificationModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 }

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies\Admin;
 
+use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel;
 use Vazaha\Mastodon\Proxies\Proxy;
 use Vazaha\Mastodon\Requests\Admin\EmailDomainBlocks\CreateRequest;
 use Vazaha\Mastodon\Requests\Admin\EmailDomainBlocks\DeleteRequest;
@@ -21,38 +23,44 @@ class EmailDomainBlocksProxy extends Proxy
      * Block an email domain from signups.
      *
      * @param string $domain the domain to block federation with
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel>
      */
     public function create(
         string $domain,
-    ): EmailDomainBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel> */
-        $models = $this->apiClient
-            ->send(new CreateRequest(
-                $domain,
-            ));
+    ): EmailDomainBlockModel {
+        $result = $this->apiClient->send(new CreateRequest(
+            $domain,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Delete an email domain block.
      *
      * @param string $id the ID of the DomainAllow in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel>
      */
     public function delete(
         string $id,
-    ): EmailDomainBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel> */
-        $models = $this->apiClient
-            ->send(new DeleteRequest(
-                $id,
-            ));
+    ): EmailDomainBlockModel {
+        $result = $this->apiClient->send(new DeleteRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -78,18 +86,21 @@ class EmailDomainBlocksProxy extends Proxy
      * Get a single blocked email domain.
      *
      * @param string $id the ID of the DomainBlock in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel>
      */
     public function getOne(
         string $id,
-    ): EmailDomainBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel> */
-        $models = $this->apiClient
-            ->send(new GetOneRequest(
-                $id,
-            ));
+    ): EmailDomainBlockModel {
+        $result = $this->apiClient->send(new GetOneRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 }

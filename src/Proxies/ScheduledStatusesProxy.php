@@ -8,11 +8,13 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies;
 
+use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
+use Vazaha\Mastodon\Models\ScheduledStatusModel;
 use Vazaha\Mastodon\Requests\ScheduledStatuses\CancelRequest;
 use Vazaha\Mastodon\Requests\ScheduledStatuses\GetOneRequest;
 use Vazaha\Mastodon\Requests\ScheduledStatuses\GetRequest;
 use Vazaha\Mastodon\Requests\ScheduledStatuses\UpdateRequest;
-use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 use Vazaha\Mastodon\Results\ScheduledStatusResult;
 
 class ScheduledStatusesProxy extends Proxy
@@ -21,19 +23,22 @@ class ScheduledStatusesProxy extends Proxy
      * Cancel a scheduled status.
      *
      * @param string $id the ID of the ScheduledStatus in the database
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
     public function cancel(
         string $id,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new CancelRequest(
-                $id,
-            ));
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new CancelRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -68,19 +73,22 @@ class ScheduledStatusesProxy extends Proxy
      * View a single scheduled status.
      *
      * @param string $id the ID of the ScheduledStatus in the database
-     *
-     * @return \Vazaha\Mastodon\Results\ScheduledStatusResult<array-key,\Vazaha\Mastodon\Models\ScheduledStatusModel>
      */
     public function getOne(
         string $id,
-    ): ScheduledStatusResult {
-        /** @var \Vazaha\Mastodon\Results\ScheduledStatusResult<array-key,\Vazaha\Mastodon\Models\ScheduledStatusModel> */
-        $models = $this->apiClient
-            ->send(new GetOneRequest(
-                $id,
-            ));
+    ): ScheduledStatusModel {
+        $result = $this->apiClient->send(new GetOneRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\ScheduledStatusModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -88,20 +96,23 @@ class ScheduledStatusesProxy extends Proxy
      *
      * @param string  $id           the ID of the ScheduledStatus in the database
      * @param ?string $scheduled_at ISO 8601 Datetime at which the status will be published. Must be at least 5 minutes into the future.
-     *
-     * @return \Vazaha\Mastodon\Results\ScheduledStatusResult<array-key,\Vazaha\Mastodon\Models\ScheduledStatusModel>
      */
     public function update(
         string $id,
         ?string $scheduled_at = null,
-    ): ScheduledStatusResult {
-        /** @var \Vazaha\Mastodon\Results\ScheduledStatusResult<array-key,\Vazaha\Mastodon\Models\ScheduledStatusModel> */
-        $models = $this->apiClient
-            ->send(new UpdateRequest(
-                $id,
-                $scheduled_at,
-            ));
+    ): ScheduledStatusModel {
+        $result = $this->apiClient->send(new UpdateRequest(
+            $id,
+            $scheduled_at,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\ScheduledStatusModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 }

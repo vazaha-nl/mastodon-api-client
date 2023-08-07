@@ -16,10 +16,8 @@ use Vazaha\Mastodon\Results\Result;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\IpBlockModel> $models
  * @property \Vazaha\Mastodon\Requests\Admin\IpBlockRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\Admin\IpBlockModel                                                          getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\IpBlockModel>                    getModels()
- * @method null|\Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\IpBlockModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\IpBlockModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\IpBlockModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\IpBlockModel> getPreviousPage()
  */
 class IpBlockResult extends Result implements ResultInterface
 {

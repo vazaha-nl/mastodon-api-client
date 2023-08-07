@@ -15,10 +15,8 @@ use Vazaha\Mastodon\Models\RuleModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\RuleModel> $models
  * @property \Vazaha\Mastodon\Requests\RuleRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\RuleModel                                                 getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\RuleModel>           getModels()
- * @method null|\Vazaha\Mastodon\Results\RuleResult<array-key, \Vazaha\Mastodon\Models\RuleModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\RuleResult<array-key, \Vazaha\Mastodon\Models\RuleModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\RuleResult<array-key, \Vazaha\Mastodon\Models\RuleModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\RuleResult<array-key, \Vazaha\Mastodon\Models\RuleModel> getPreviousPage()
  */
 class RuleResult extends Result implements ResultInterface
 {

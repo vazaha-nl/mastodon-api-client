@@ -8,11 +8,13 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies;
 
+use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Models\ConversationModel;
+use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Requests\Conversations\DeleteRequest;
 use Vazaha\Mastodon\Requests\Conversations\GetRequest;
 use Vazaha\Mastodon\Requests\Conversations\ReadRequest;
 use Vazaha\Mastodon\Results\ConversationResult;
-use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 class ConversationsProxy extends Proxy
 {
@@ -20,19 +22,22 @@ class ConversationsProxy extends Proxy
      * Remove a conversation.
      *
      * @param string $id the ID of the Conversation in the database
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
     public function delete(
         string $id,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new DeleteRequest(
-                $id,
-            ));
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new DeleteRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -58,18 +63,21 @@ class ConversationsProxy extends Proxy
      * Mark a conversation as read.
      *
      * @param string $id the ID of the Conversation in the database
-     *
-     * @return \Vazaha\Mastodon\Results\ConversationResult<array-key,\Vazaha\Mastodon\Models\ConversationModel>
      */
     public function read(
         string $id,
-    ): ConversationResult {
-        /** @var \Vazaha\Mastodon\Results\ConversationResult<array-key,\Vazaha\Mastodon\Models\ConversationModel> */
-        $models = $this->apiClient
-            ->send(new ReadRequest(
-                $id,
-            ));
+    ): ConversationModel {
+        $result = $this->apiClient->send(new ReadRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\ConversationModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 }

@@ -28,7 +28,7 @@ class PollsProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\PollModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -53,7 +53,7 @@ class PollsProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\PollModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();

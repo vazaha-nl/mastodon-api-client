@@ -16,10 +16,8 @@ use Vazaha\Mastodon\Results\Result;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\DimensionModel> $models
  * @property \Vazaha\Mastodon\Requests\Admin\DimensionRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\Admin\DimensionModel                                                            getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\DimensionModel>                      getModels()
- * @method null|\Vazaha\Mastodon\Results\Admin\DimensionResult<array-key, \Vazaha\Mastodon\Models\Admin\DimensionModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\Admin\DimensionResult<array-key, \Vazaha\Mastodon\Models\Admin\DimensionModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\Admin\DimensionResult<array-key, \Vazaha\Mastodon\Models\Admin\DimensionModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\Admin\DimensionResult<array-key, \Vazaha\Mastodon\Models\Admin\DimensionModel> getPreviousPage()
  */
 class DimensionResult extends Result implements ResultInterface
 {

@@ -37,7 +37,7 @@ class AppsProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\ApplicationModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -55,7 +55,7 @@ class AppsProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\ApplicationModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();

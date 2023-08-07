@@ -15,10 +15,8 @@ use Vazaha\Mastodon\Models\FilterKeywordModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\FilterKeywordModel> $models
  * @property \Vazaha\Mastodon\Requests\FilterKeywordRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\FilterKeywordModel                                                          getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\FilterKeywordModel>                    getModels()
- * @method null|\Vazaha\Mastodon\Results\FilterKeywordResult<array-key, \Vazaha\Mastodon\Models\FilterKeywordModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\FilterKeywordResult<array-key, \Vazaha\Mastodon\Models\FilterKeywordModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\FilterKeywordResult<array-key, \Vazaha\Mastodon\Models\FilterKeywordModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\FilterKeywordResult<array-key, \Vazaha\Mastodon\Models\FilterKeywordModel> getPreviousPage()
  */
 class FilterKeywordResult extends Result implements ResultInterface
 {

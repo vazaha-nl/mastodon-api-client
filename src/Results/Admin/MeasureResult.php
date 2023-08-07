@@ -16,10 +16,8 @@ use Vazaha\Mastodon\Results\Result;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\MeasureModel> $models
  * @property \Vazaha\Mastodon\Requests\Admin\MeasureRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\Admin\MeasureModel                                                          getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\MeasureModel>                    getModels()
- * @method null|\Vazaha\Mastodon\Results\Admin\MeasureResult<array-key, \Vazaha\Mastodon\Models\Admin\MeasureModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\Admin\MeasureResult<array-key, \Vazaha\Mastodon\Models\Admin\MeasureModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\Admin\MeasureResult<array-key, \Vazaha\Mastodon\Models\Admin\MeasureModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\Admin\MeasureResult<array-key, \Vazaha\Mastodon\Models\Admin\MeasureModel> getPreviousPage()
  */
 class MeasureResult extends Result implements ResultInterface
 {

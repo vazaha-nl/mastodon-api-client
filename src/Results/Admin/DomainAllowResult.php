@@ -16,10 +16,8 @@ use Vazaha\Mastodon\Results\Result;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\DomainAllowModel> $models
  * @property \Vazaha\Mastodon\Requests\Admin\DomainAllowRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\Admin\DomainAllowModel                                                              getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\DomainAllowModel>                        getModels()
- * @method null|\Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key, \Vazaha\Mastodon\Models\Admin\DomainAllowModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key, \Vazaha\Mastodon\Models\Admin\DomainAllowModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key, \Vazaha\Mastodon\Models\Admin\DomainAllowModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key, \Vazaha\Mastodon\Models\Admin\DomainAllowModel> getPreviousPage()
  */
 class DomainAllowResult extends Result implements ResultInterface
 {

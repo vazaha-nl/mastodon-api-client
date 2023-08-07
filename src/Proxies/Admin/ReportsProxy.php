@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies\Admin;
 
+use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Models\Admin\ReportModel;
 use Vazaha\Mastodon\Proxies\Proxy;
 use Vazaha\Mastodon\Requests\Admin\Reports\AssignToSelfRequest;
 use Vazaha\Mastodon\Requests\Admin\Reports\GetOneRequest;
@@ -24,19 +26,22 @@ class ReportsProxy extends Proxy
      * Assign report to self.
      *
      * @param string $id the ID of the Report in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel>
      */
     public function assignToSelf(
         string $id,
-    ): ReportResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel> */
-        $models = $this->apiClient
-            ->send(new AssignToSelfRequest(
-                $id,
-            ));
+    ): ReportModel {
+        $result = $this->apiClient->send(new AssignToSelfRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\ReportModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -71,76 +76,88 @@ class ReportsProxy extends Proxy
      * View a single report.
      *
      * @param string $id the ID of the Report in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel>
      */
     public function getOne(
         string $id,
-    ): ReportResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel> */
-        $models = $this->apiClient
-            ->send(new GetOneRequest(
-                $id,
-            ));
+    ): ReportModel {
+        $result = $this->apiClient->send(new GetOneRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\ReportModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Reopen a closed report.
      *
      * @param string $id the ID of the Report in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel>
      */
     public function reopen(
         string $id,
-    ): ReportResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel> */
-        $models = $this->apiClient
-            ->send(new ReopenRequest(
-                $id,
-            ));
+    ): ReportModel {
+        $result = $this->apiClient->send(new ReopenRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\ReportModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Mark report as resolved.
      *
      * @param string $id the ID of the Report in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel>
      */
     public function resolve(
         string $id,
-    ): ReportResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel> */
-        $models = $this->apiClient
-            ->send(new ResolveRequest(
-                $id,
-            ));
+    ): ReportModel {
+        $result = $this->apiClient->send(new ResolveRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\ReportModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
      * Unassign report.
      *
      * @param string $id the ID of the Report in the database
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel>
      */
     public function unassign(
         string $id,
-    ): ReportResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel> */
-        $models = $this->apiClient
-            ->send(new UnassignRequest(
-                $id,
-            ));
+    ): ReportModel {
+        $result = $this->apiClient->send(new UnassignRequest(
+            $id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\ReportModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -149,22 +166,25 @@ class ReportsProxy extends Proxy
      * @param string          $id       the ID of the Report in the database
      * @param ?string         $category change the classification of the report to `spam`, `violation`, or `other`
      * @param null|array<int> $rule_ids For `violation` category reports, specify the ID of the exact rules broken. Rules and their IDs are available via [GET /api/v1/instance/rules]({{< relref "methods/instance#rules" >}}) and [GET /api/v1/instance]({{< relref "methods/instance#get" >}}).
-     *
-     * @return \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel>
      */
     public function update(
         string $id,
         ?string $category = null,
         ?array $rule_ids = null,
-    ): ReportResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel> */
-        $models = $this->apiClient
-            ->send(new UpdateRequest(
-                $id,
-                $category,
-                $rule_ids,
-            ));
+    ): ReportModel {
+        $result = $this->apiClient->send(new UpdateRequest(
+            $id,
+            $category,
+            $rule_ids,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\Admin\ReportModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 }

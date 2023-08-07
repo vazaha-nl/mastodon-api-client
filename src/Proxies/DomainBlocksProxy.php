@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies;
 
+use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Requests\DomainBlocks\BlockRequest;
 use Vazaha\Mastodon\Requests\DomainBlocks\GetRequest;
 use Vazaha\Mastodon\Requests\DomainBlocks\UnblockRequest;
@@ -19,19 +21,22 @@ class DomainBlocksProxy extends Proxy
      * Block a domain.
      *
      * @param string $domain domain to block
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
     public function block(
         string $domain,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new BlockRequest(
-                $domain,
-            ));
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new BlockRequest(
+            $domain,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -57,18 +62,21 @@ class DomainBlocksProxy extends Proxy
      * Unblock a domain.
      *
      * @param string $domain domain to unblock
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
     public function unblock(
         string $domain,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new UnblockRequest(
-                $domain,
-            ));
+    ): EmptyOrUnknownModel {
+        $result = $this->apiClient->send(new UnblockRequest(
+            $domain,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 }

@@ -8,11 +8,12 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies;
 
+use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Models\RelationshipModel;
 use Vazaha\Mastodon\Requests\FollowRequests\AcceptRequest;
 use Vazaha\Mastodon\Requests\FollowRequests\GetRequest;
 use Vazaha\Mastodon\Requests\FollowRequests\RejectRequest;
 use Vazaha\Mastodon\Results\AccountResult;
-use Vazaha\Mastodon\Results\RelationshipResult;
 
 class FollowRequestsProxy extends Proxy
 {
@@ -20,19 +21,22 @@ class FollowRequestsProxy extends Proxy
      * Accept follow request.
      *
      * @param string $account_id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
     public function accept(
         string $account_id,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new AcceptRequest(
-                $account_id,
-            ));
+    ): RelationshipModel {
+        $result = $this->apiClient->send(new AcceptRequest(
+            $account_id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -58,18 +62,21 @@ class FollowRequestsProxy extends Proxy
      * Reject follow request.
      *
      * @param string $account_id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
      */
     public function reject(
         string $account_id,
-    ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
-        $models = $this->apiClient
-            ->send(new RejectRequest(
-                $account_id,
-            ));
+    ): RelationshipModel {
+        $result = $this->apiClient->send(new RejectRequest(
+            $account_id,
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 }

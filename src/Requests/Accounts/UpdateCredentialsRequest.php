@@ -30,6 +30,16 @@ final class UpdateCredentialsRequest extends \Vazaha\Mastodon\Requests\AccountRe
         public ?string $note = null,
 
         /**
+         * Avatar image encoded using `multipart/form-data`.
+         */
+        public ?string $avatar = null,
+
+        /**
+         * Header image encoded using `multipart/form-data`.
+         */
+        public ?string $header = null,
+
+        /**
          * Whether manual approval of follow requests is required.
          */
         public ?bool $locked = null,
@@ -71,6 +81,8 @@ final class UpdateCredentialsRequest extends \Vazaha\Mastodon\Requests\AccountRe
         return [
             'display_name' => $this->display_name,
             'note' => $this->note,
+            'avatar' => $this->avatar,
+            'header' => $this->header,
             'locked' => $this->locked,
             'bot' => $this->bot,
             'discoverable' => $this->discoverable,

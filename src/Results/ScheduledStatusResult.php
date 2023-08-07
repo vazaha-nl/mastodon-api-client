@@ -15,10 +15,8 @@ use Vazaha\Mastodon\Models\ScheduledStatusModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ScheduledStatusModel> $models
  * @property \Vazaha\Mastodon\Requests\ScheduledStatusRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\ScheduledStatusModel                                                            getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ScheduledStatusModel>                      getModels()
- * @method null|\Vazaha\Mastodon\Results\ScheduledStatusResult<array-key, \Vazaha\Mastodon\Models\ScheduledStatusModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\ScheduledStatusResult<array-key, \Vazaha\Mastodon\Models\ScheduledStatusModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\ScheduledStatusResult<array-key, \Vazaha\Mastodon\Models\ScheduledStatusModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\ScheduledStatusResult<array-key, \Vazaha\Mastodon\Models\ScheduledStatusModel> getPreviousPage()
  */
 class ScheduledStatusResult extends Result implements ResultInterface
 {

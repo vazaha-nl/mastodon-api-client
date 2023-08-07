@@ -9,7 +9,6 @@ use Psr\Http\Message\ResponseInterface;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Factories\ModelFactory;
-use Vazaha\Mastodon\Interfaces\ModelInterface;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
 use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
@@ -75,16 +74,6 @@ class Result extends Collection implements ResultInterface
         }
 
         return $this->models;
-    }
-
-    public function getModel(): ?ModelInterface
-    {
-        return $this->getModels()->first();
-    }
-
-    public function getCount(): int
-    {
-        return count($this->getModels());
     }
 
     /**

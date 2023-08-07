@@ -15,10 +15,8 @@ use Vazaha\Mastodon\Models\PreviewCardModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\PreviewCardModel> $models
  * @property \Vazaha\Mastodon\Requests\PreviewCardRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\PreviewCardModel                                                        getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\PreviewCardModel>                  getModels()
- * @method null|\Vazaha\Mastodon\Results\PreviewCardResult<array-key, \Vazaha\Mastodon\Models\PreviewCardModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\PreviewCardResult<array-key, \Vazaha\Mastodon\Models\PreviewCardModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\PreviewCardResult<array-key, \Vazaha\Mastodon\Models\PreviewCardModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\PreviewCardResult<array-key, \Vazaha\Mastodon\Models\PreviewCardModel> getPreviousPage()
  */
 class PreviewCardResult extends Result implements ResultInterface
 {

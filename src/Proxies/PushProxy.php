@@ -27,7 +27,7 @@ class PushProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\WebPushSubscriptionModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -45,7 +45,7 @@ class PushProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -63,7 +63,7 @@ class PushProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\WebPushSubscriptionModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -85,7 +85,7 @@ class PushProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\WebPushSubscriptionModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();

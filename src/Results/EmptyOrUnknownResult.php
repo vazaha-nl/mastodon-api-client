@@ -15,10 +15,8 @@ use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> $models
  * @property \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel                                                           getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>                     getModels()
- * @method null|\Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> getPreviousPage()
  */
 class EmptyOrUnknownResult extends Result implements ResultInterface
 {

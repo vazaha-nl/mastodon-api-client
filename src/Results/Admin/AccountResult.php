@@ -16,10 +16,8 @@ use Vazaha\Mastodon\Results\Result;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\AccountModel> $models
  * @property \Vazaha\Mastodon\Requests\Admin\AccountRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\Admin\AccountModel                                                          getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\AccountModel>                    getModels()
- * @method null|\Vazaha\Mastodon\Results\Admin\AccountResult<array-key, \Vazaha\Mastodon\Models\Admin\AccountModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\Admin\AccountResult<array-key, \Vazaha\Mastodon\Models\Admin\AccountModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\Admin\AccountResult<array-key, \Vazaha\Mastodon\Models\Admin\AccountModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\Admin\AccountResult<array-key, \Vazaha\Mastodon\Models\Admin\AccountModel> getPreviousPage()
  */
 class AccountResult extends Result implements ResultInterface
 {

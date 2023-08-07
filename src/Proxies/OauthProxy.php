@@ -45,7 +45,7 @@ class OauthProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -73,7 +73,7 @@ class OauthProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -110,7 +110,7 @@ class OauthProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\TokenModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();

@@ -24,7 +24,7 @@ class MarkersProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\MarkerModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -46,7 +46,7 @@ class MarkersProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\MarkerModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();

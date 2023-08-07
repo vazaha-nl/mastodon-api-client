@@ -16,10 +16,8 @@ use Vazaha\Mastodon\Results\Result;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\CohortModel> $models
  * @property \Vazaha\Mastodon\Requests\Admin\CohortRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\Admin\CohortModel                                                         getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\CohortModel>                   getModels()
- * @method null|\Vazaha\Mastodon\Results\Admin\CohortResult<array-key, \Vazaha\Mastodon\Models\Admin\CohortModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\Admin\CohortResult<array-key, \Vazaha\Mastodon\Models\Admin\CohortModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\Admin\CohortResult<array-key, \Vazaha\Mastodon\Models\Admin\CohortModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\Admin\CohortResult<array-key, \Vazaha\Mastodon\Models\Admin\CohortModel> getPreviousPage()
  */
 class CohortResult extends Result implements ResultInterface
 {

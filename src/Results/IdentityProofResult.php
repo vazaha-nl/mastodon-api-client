@@ -15,10 +15,8 @@ use Vazaha\Mastodon\Models\IdentityProofModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\IdentityProofModel> $models
  * @property \Vazaha\Mastodon\Requests\IdentityProofRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\IdentityProofModel                                                          getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\IdentityProofModel>                    getModels()
- * @method null|\Vazaha\Mastodon\Results\IdentityProofResult<array-key, \Vazaha\Mastodon\Models\IdentityProofModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\IdentityProofResult<array-key, \Vazaha\Mastodon\Models\IdentityProofModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\IdentityProofResult<array-key, \Vazaha\Mastodon\Models\IdentityProofModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\IdentityProofResult<array-key, \Vazaha\Mastodon\Models\IdentityProofModel> getPreviousPage()
  */
 class IdentityProofResult extends Result implements ResultInterface
 {

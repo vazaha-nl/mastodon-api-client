@@ -15,10 +15,8 @@ use Vazaha\Mastodon\Models\StatusModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\StatusModel> $models
  * @property \Vazaha\Mastodon\Requests\StatusRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\StatusModel                                                   getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\StatusModel>             getModels()
- * @method null|\Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> getPreviousPage()
  */
 class StatusResult extends Result implements ResultInterface
 {

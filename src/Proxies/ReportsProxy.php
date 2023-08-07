@@ -42,7 +42,7 @@ class ReportsProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\ReportModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();

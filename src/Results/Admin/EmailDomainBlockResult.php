@@ -16,10 +16,8 @@ use Vazaha\Mastodon\Results\Result;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel> $models
  * @property \Vazaha\Mastodon\Requests\Admin\EmailDomainBlockRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel                                                                   getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel>                             getModels()
- * @method null|\Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel> getPreviousPage()
  */
 class EmailDomainBlockResult extends Result implements ResultInterface
 {

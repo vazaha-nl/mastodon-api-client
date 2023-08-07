@@ -15,10 +15,8 @@ use Vazaha\Mastodon\Models\FeaturedTagModel;
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel> $models
  * @property \Vazaha\Mastodon\Requests\FeaturedTagRequest                                        $request
  *
- * @method null|\Vazaha\Mastodon\Models\FeaturedTagModel                                                        getModel()
- * @method \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel>                  getModels()
- * @method null|\Vazaha\Mastodon\Results\FeaturedTagResult<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel> getNextResult()
- * @method null|\Vazaha\Mastodon\Results\FeaturedTagResult<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel> getPreviousResult()
+ * @method null|\Vazaha\Mastodon\Results\FeaturedTagResult<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel> getNextPage()
+ * @method null|\Vazaha\Mastodon\Results\FeaturedTagResult<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel> getPreviousPage()
  */
 class FeaturedTagResult extends Result implements ResultInterface
 {

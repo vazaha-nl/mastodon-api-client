@@ -9,7 +9,9 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Proxies;
 
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Models\ExtendedDescriptionModel;
 use Vazaha\Mastodon\Models\InstanceModel;
+use Vazaha\Mastodon\Models\V1\InstanceModel as V1InstanceModel;
 use Vazaha\Mastodon\Requests\Instance\ActivityRequest;
 use Vazaha\Mastodon\Requests\Instance\DomainBlocksRequest;
 use Vazaha\Mastodon\Requests\Instance\ExtendedDescriptionRequest;
@@ -19,9 +21,7 @@ use Vazaha\Mastodon\Requests\Instance\V1Request;
 use Vazaha\Mastodon\Requests\Instance\V2Request;
 use Vazaha\Mastodon\Results\DomainBlockResult;
 use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
-use Vazaha\Mastodon\Results\ExtendedDescriptionResult;
 use Vazaha\Mastodon\Results\RuleResult;
-use Vazaha\Mastodon\Results\V1\InstanceResult as V1InstanceResult;
 
 class InstanceProxy extends Proxy
 {
@@ -57,17 +57,20 @@ class InstanceProxy extends Proxy
 
     /**
      * View extended description.
-     *
-     * @return \Vazaha\Mastodon\Results\ExtendedDescriptionResult<array-key,\Vazaha\Mastodon\Models\ExtendedDescriptionModel>
      */
     public function extendedDescription(
-    ): ExtendedDescriptionResult {
-        /** @var \Vazaha\Mastodon\Results\ExtendedDescriptionResult<array-key,\Vazaha\Mastodon\Models\ExtendedDescriptionModel> */
-        $models = $this->apiClient
-            ->send(new ExtendedDescriptionRequest(
-            ));
+    ): ExtendedDescriptionModel {
+        $result = $this->apiClient->send(new ExtendedDescriptionRequest(
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\ExtendedDescriptionModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -102,17 +105,20 @@ class InstanceProxy extends Proxy
 
     /**
      * (DEPRECATED) View server information (V1).
-     *
-     * @return \Vazaha\Mastodon\Results\V1\InstanceResult<array-key,\Vazaha\Mastodon\Models\V1\InstanceModel>
      */
     public function v1(
-    ): V1InstanceResult {
-        /** @var \Vazaha\Mastodon\Results\V1\InstanceResult<array-key,\Vazaha\Mastodon\Models\V1\InstanceModel> */
-        $models = $this->apiClient
-            ->send(new V1Request(
-            ));
+    ): V1InstanceModel {
+        $result = $this->apiClient->send(new V1Request(
+        ));
 
-        return $models;
+        /** @var null|\Vazaha\Mastodon\Models\V1\InstanceModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
     }
 
     /**
@@ -124,7 +130,7 @@ class InstanceProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\InstanceModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();

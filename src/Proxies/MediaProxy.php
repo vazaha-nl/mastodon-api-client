@@ -30,7 +30,7 @@ class MediaProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\MediaAttachmentModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -61,7 +61,7 @@ class MediaProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\MediaAttachmentModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -92,7 +92,7 @@ class MediaProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\MediaAttachmentModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
@@ -123,7 +123,7 @@ class MediaProxy extends Proxy
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\MediaAttachmentModel $model */
-        $model = $result->getModel();
+        $model = $result->first();
 
         if ($model === null) {
             throw new InvalidResponseException();
