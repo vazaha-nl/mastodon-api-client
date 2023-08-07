@@ -32,7 +32,7 @@ class PagingTest extends TestCase
                 200,
                 'accounts2.json',
                 [
-                    'Link' => '<https://example.org/accounts?max_id=2>; rel="previous"',
+                    'Link' => '<https://example.org/accounts?max_id=2>; rel="prev"',
                 ],
             ),
             $this->createJsonResponseFromFile(
@@ -52,24 +52,22 @@ class PagingTest extends TestCase
         $result = $this->apiClient->send(new FollowingRequest('testid'));
         self::assertInstanceOf(AccountResult::class, $result);
 
-        $accounts = $result->getModels();
-        self::assertInstanceOf(AccountModel::class, $accounts[0]);
-        self::assertEquals(1, $accounts[0]->id);
+        self::assertInstanceOf(AccountModel::class, $result[0]);
+        self::assertEquals(1, $result[0]->id);
 
-        $previousResult = $result->getPreviousResult();
-        self::assertNull($previousResult);
+        $previousPage = $result->getPreviousPage();
+        self::assertNull($previousPage);
 
-        $nextResult = $result->getNextResult();
-        self::assertInstanceOf(AccountResult::class, $nextResult);
+        $nextPage = $result->getNextPage();
+        self::assertInstanceOf(AccountResult::class, $nextPage);
+        self::assertInstanceOf(AccountModel::class, $nextPage[0]);
+        self::assertEquals(3, $nextPage[0]->id);
 
-        $accounts = $nextResult->getModels();
-        self::assertEquals(3, $accounts[0]->id);
+        $previousPage = $nextPage->getPreviousPage();
+        self::assertInstanceOf(AccountResult::class, $previousPage);
 
-        $previousResult = $nextResult->getPreviousResult();
-        self::assertInstanceOf(AccountResult::class, $nextResult);
-
-        $nextResult = $nextResult->getNextResult();
-        self::assertNull($nextResult);
+        $nextPage = $nextPage->getNextPage();
+        self::assertNull($nextPage);
     }
 
     public function testPagingRequestAndResultUsingProxy(): void
@@ -83,23 +81,25 @@ class PagingTest extends TestCase
 
         self::assertInstanceOf(AccountResult::class, $result);
 
-        $accounts = $result->getModels();
-        self::assertInstanceOf(AccountModel::class, $accounts[0]);
-        self::assertEquals(1, $accounts[0]->id);
+        self::assertInstanceOf(AccountModel::class, $result[0]);
+        self::assertEquals(1, $result[0]->id);
 
-        $previousResult = $result->getPreviousResult();
+        $previousResult = $result->getPreviousPage();
         self::assertNull($previousResult);
 
-        $nextResult = $result->getNextResult();
-        self::assertInstanceOf(AccountResult::class, $nextResult);
+        $nextPage = $result->getNextPage();
+        self::assertInstanceOf(AccountResult::class, $nextPage);
+        self::assertInstanceOf(AccountModel::class, $nextPage[0]);
 
-        $accounts = $nextResult->getModels();
-        self::assertEquals(3, $accounts[0]->id);
+        self::assertEquals(3, $nextPage[0]->id);
 
-        $previousResult = $nextResult->getPreviousResult();
-        self::assertInstanceOf(AccountResult::class, $nextResult);
+        $previousPage = $nextPage->getPreviousPage();
+        self::assertInstanceOf(AccountResult::class, $previousPage);
+        self::assertInstanceOf(AccountModel::class, $previousPage[0]);
 
-        $nextResult = $nextResult->getNextResult();
-        self::assertNull($nextResult);
+        self::assertEquals(1, $previousPage[0]->id);
+
+        $nextPage = $nextPage->getNextPage();
+        self::assertNull($nextPage);
     }
 }

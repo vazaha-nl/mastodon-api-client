@@ -48,22 +48,22 @@ class ApiClientTest extends TestCase
 
     public function testGetAccountAndList(): void
     {
-        $response = $this->apiClient
+        $result = $this->apiClient
             ->setBaseUri('https://example.org')
             ->send(new GetRequest('foo'));
-        self::assertInstanceOf(AccountResult::class, $response);
+        self::assertInstanceOf(AccountResult::class, $result);
 
-        $account = $response->getModel();
+        $account = $result->first();
 
         self::assertInstanceOf(AccountModel::class, $account);
         self::assertEquals('23634', $account->id);
 
-        $response = $this->apiClient
+        $result = $this->apiClient
             ->setBaseUri('https://example.org')
             ->send(new ListsGetRequest());
-        self::assertInstanceOf(ListResult::class, $response);
+        self::assertInstanceOf(ListResult::class, $result);
 
-        $list = $response->getModel();
+        $list = $result->first();
 
         self::assertInstanceOf(ListModel::class, $list);
         self::assertEquals(12345, $list->id);
@@ -72,10 +72,10 @@ class ApiClientTest extends TestCase
 
     public function testGetLists(): void
     {
-        $response = $this->apiClient
+        $result = $this->apiClient
             ->setBaseUri('https://example.org')
             ->send(new ListsGetRequest());
-        self::assertInstanceOf(ListResult::class, $response);
+        self::assertInstanceOf(ListResult::class, $result);
     }
 
     public function testGetAccountAndListUsingProxy(): void
@@ -103,11 +103,23 @@ class ApiClientTest extends TestCase
 
     public function testGetListsUsingProxy(): void
     {
-        $response = $this->apiClient
+        $result = $this->apiClient
             ->setBaseUri('https://example.org')
             ->methods()
             ->lists()
             ->get();
-        self::assertInstanceOf(ListResult::class, $response);
+        self::assertInstanceOf(ListResult::class, $result);
+    }
+
+    public function testLookupAccount(): void
+    {
+        $account = $this->apiClient
+            ->setBaseUri('https://example.org')
+            ->methods()
+            ->accounts()
+            ->lookup('acct');
+
+        self::assertInstanceOf(AccountModel::class, $account);
+        self::assertSame('23634', $account->id);
     }
 }

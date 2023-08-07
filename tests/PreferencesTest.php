@@ -35,7 +35,7 @@ class PreferencesTest extends TestCase
 
         self::assertInstanceOf(PreferencesResult::class, $result);
 
-        $preferences = $result->getModel();
+        $preferences = $result->first();
         self::assertInstanceOf(PreferencesModel::class, $preferences);
         self::assertEquals('public', $preferences->posting_default_visibility);
     }

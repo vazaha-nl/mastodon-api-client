@@ -50,7 +50,7 @@ class ProxyTest extends TestCase
         self::assertInstanceOf(AccountModel::class, $account);
         self::assertSame('1', $account->id);
 
-        $nextPageFollowers = $followers->getNextResult();
+        $nextPageFollowers = $followers->getNextPage();
 
         self::assertInstanceOf(AccountResult::class, $nextPageFollowers);
 

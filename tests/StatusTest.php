@@ -28,7 +28,7 @@ class StatusTest extends TestCase
 
         self::assertInstanceOf(StatusResult::class, $result);
 
-        $status = $result->getModel();
+        $status = $result->first();
 
         self::assertInstanceOf(StatusModel::class, $status);
         self::assertEquals('103270115826048975', $status->id);

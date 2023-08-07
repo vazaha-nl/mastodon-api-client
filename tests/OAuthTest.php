@@ -31,7 +31,7 @@ class OAuthTest extends TestCase
             ->setBaseUri('https://example.org')
             ->send(new TokenRequest('client_credentials', 'code', 'clientid', 'clientsecret', 'redirecturi'));
         self::assertInstanceOf(TokenResult::class, $response);
-        $model = $response->getModel();
+        $model = $response->first();
         self::assertInstanceOf(TokenModel::class, $model);
         self::assertEquals('test_token', $model->access_token);
     }

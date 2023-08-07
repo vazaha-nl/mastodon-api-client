@@ -52,4 +52,44 @@ class PagingLinkTest extends TestCase
         ];
         self::assertEquals($expected2, $pagingLinks->getPreviousQueryParams());
     }
+
+    public function testInvalidLinksMakeItBehaveProperly(): void
+    {
+        $pagingLinks = new PagingLinks(
+            '<https://example.org/next?foo=1&bar=2>; rel="FOO", ' .
+            '<https://example.org/previous?bla=boo&boo=baz>; rel="BAR"',
+        );
+
+        self::assertNull($pagingLinks->getNextUrl());
+        self::assertNull($pagingLinks->getPreviousUrl());
+    }
+
+    public function testGarbageContentDoesNotBreakIt(): void
+    {
+        $pagingLinks = new PagingLinks('GARBAGE');
+
+        self::assertNull($pagingLinks->getNextUrl());
+        self::assertNull($pagingLinks->getPreviousUrl());
+
+        $pagingLinks = new PagingLinks('<GARBAGE>');
+
+        self::assertNull($pagingLinks->getNextUrl());
+        self::assertNull($pagingLinks->getPreviousUrl());
+
+        $pagingLinks = new PagingLinks(
+            'GARBAGE; rel="next", ' .
+            'MORE GARBAGE; rel="prev"',
+        );
+
+        self::assertNull($pagingLinks->getNextUrl());
+        self::assertNull($pagingLinks->getPreviousUrl());
+
+        $pagingLinks = new PagingLinks(
+            '<GARBAGE>; rel="next", ' .
+            '<MORE GARBAGE>; rel="prev"',
+        );
+
+        self::assertSame('GARBAGE', $pagingLinks->getNextUrl());
+        self::assertSame('MORE GARBAGE', $pagingLinks->getPreviousUrl());
+    }
 }
