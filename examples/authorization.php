@@ -33,6 +33,11 @@ $token = $client->methods()->oauth()->token(
     'https://example.org/callback',
 );
 
+// authorize the client with:
+$client->setAccessToken($token);
+// or:
+$client->setAccessToken($token->access_token);
+
 // store the $app->client_id, $app->client_secret, $token->access_token some place safe
 
 // get user based authorization:
@@ -63,5 +68,9 @@ $token = $client->methods()->oauth()->token(
     $code,
     'read write',
 );
+// authorize the client with:
+$client->setAccessToken($token);
+// or:
+$client->setAccessToken($token->access_token);
 
 // store the $app->client_id, $app->client_secret, $token->access_token some place safe

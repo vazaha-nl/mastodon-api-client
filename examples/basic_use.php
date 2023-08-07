@@ -14,17 +14,7 @@ $client = $factory->build();
 $client = new \Vazaha\Mastodon\ApiClient(new \GuzzleHttp\Client());
 
 // set baseuri
-$client->setBaseUri('https://mastodon.nl');
-
-// get authorize url for user
-$url = $client->getAuthorizeUrl(
-    'code',
-    'client id',
-    'http://example.org/callback',
-    'read write',
-);
-// example: redirect user to this url
-header('Location: ' . $url);
+$client->setBaseUri('https://instance.example.org');
 
 // get an account by id
 try {
@@ -35,19 +25,19 @@ try {
     exit('account not found');
 }
 
-echo 'Found account: ' . $account->display_name . \PHP_EOL;
+print 'Found account: ' . $account->display_name . \PHP_EOL;
 
 // get followers of an account (paged result)
 // returns a subclass of \Illuminate\Support\Collection, which acts as a plain array
 $followers = $client->methods()->accounts()->followers($account->id);
 
 foreach ($followers as $follower) {
-    echo 'Follower : ' . $follower->display_name . \PHP_EOL;
+    print 'Follower : ' . $follower->display_name . \PHP_EOL;
 }
 
 // get the next page(s) of results
 while ($followers = $followers->getNextPage()) {
     foreach ($followers as $follower) {
-        echo 'Follower : ' . $follower->display_name . \PHP_EOL;
+        print 'Follower : ' . $follower->display_name . \PHP_EOL;
     }
 }
