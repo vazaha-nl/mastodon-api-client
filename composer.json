@@ -41,7 +41,10 @@
             "php-cs-fixer fix"
         ],
         "test": [
-            "vendor/bin/phpunit --no-coverage"
+            "vendor/bin/phpunit --no-coverage --testsuite tests"
+        ],
+        "integration-test": [
+            "vendor/bin/phpunit --no-coverage --testsuite integration_tests"
         ],
         "analyse": [
             "vendor/bin/phpstan analyse -c phpstan.neon"

@@ -6,8 +6,11 @@
     </report>
   </coverage>
   <testsuites>
-    <testsuite name="Mastodon API Client Test Suite">
-      <directory>tests</directory>
+    <testsuite name="tests">
+      <directory>tests/Unit</directory>
+    </testsuite>
+    <testsuite name="integration_tests">
+      <directory>tests/Integration</directory>
     </testsuite>
   </testsuites>
   <source>

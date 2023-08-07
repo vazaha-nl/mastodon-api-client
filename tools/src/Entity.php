@@ -25,7 +25,7 @@ class Entity
         if ($classType === ClassType::TEST) {
             return rtrim(
                 $this->projectRoot .
-                '/tests/Generated/' .
+                '/tests/Unit/Generated/' .
                 $this->getRelativeDirectory(),
                 '/',
             );
@@ -44,7 +44,7 @@ class Entity
     public function getNamespace(ClassType $classType): string
     {
         if ($classType === ClassType::TEST) {
-            $namespace = 'Tests\\Generated\\' . $this->getRelativeNamespace();
+            $namespace = 'Tests\\Unit\\Generated\\' . $this->getRelativeNamespace();
 
             return rtrim($namespace, '\\');
         }
