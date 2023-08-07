@@ -16,6 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
 use Vazaha\Mastodon\Models\TokenModel;
 use Vazaha\Mastodon\Proxies\MethodsProxy;
+use Vazaha\Mastodon\Requests\Oauth\AuthorizeRequest;
 
 final class ApiClient
 {
@@ -41,6 +42,36 @@ final class ApiClient
         }
 
         return $this->methods;
+    }
+
+    /**
+     * Get url to authorize a user.
+     *
+     * @param string  $response_type should be set equal to `code`
+     * @param string  $client_id     the client ID, obtained during app registration
+     * @param string  $redirect_uri  Set a URI to redirect the user to. If this parameter is set to `urn:ietf:wg:oauth:2.0:oob` then the authorization code will be shown instead. Must match one of the `redirect_uris` declared during app registration.
+     * @param ?string $scope         List of requested OAuth scopes, separated by spaces (or by pluses, if using query parameters). Must be a subset of `scopes` declared during app registration. If not provided, defaults to `read`.
+     * @param ?bool   $force_login   forces the user to re-login, which is necessary for authorizing with multiple accounts from the same instance
+     * @param ?string $lang          the ISO 639-1 two-letter language code to use while rendering the authorization form
+     */
+    public function getAuthorizeUrl(
+        string $response_type,
+        string $client_id,
+        string $redirect_uri,
+        ?string $scope = null,
+        ?bool $force_login = null,
+        ?string $lang = null,
+    ): UriInterface {
+        return $this->getUri(
+            new AuthorizeRequest(
+                $response_type,
+                $client_id,
+                $redirect_uri,
+                $scope,
+                $force_login,
+                $lang,
+            )
+        );
     }
 
     public function setAccessToken(string|TokenModel $token): self

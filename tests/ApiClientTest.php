@@ -122,4 +122,18 @@ class ApiClientTest extends TestCase
         self::assertInstanceOf(AccountModel::class, $account);
         self::assertSame('23634', $account->id);
     }
+
+    public function testGetAuthorizeUrl(): void
+    {
+        $uri = $this->apiClient
+            ->setBaseUri('http://example.org')
+            ->getAuthorizeUrl(
+                'code',
+                'clientid',
+                'http://example.org/callback',
+                'read write',
+            );
+
+        self::assertStringStartsWith('http://example.org', (string)$uri);
+    }
 }
