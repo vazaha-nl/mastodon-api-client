@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Factories\ApiClientFactory;
 
-class ApiClientTestCase extends TestCase
+abstract class ApiClientTestCase extends TestCase
 {
     protected ApiClient $apiClient;
 
