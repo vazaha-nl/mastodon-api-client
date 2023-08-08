@@ -64,6 +64,14 @@ final class UpdateCredentialsRequest extends \Vazaha\Mastodon\Requests\AccountRe
          * @var null|mixed[] $fields_attributes
          */
         public ?array $fields_attributes = null,
+
+        /**
+         * source[privacy]: Default post privacy for authored statuses. Can be
+         * `public`, `unlisted`, or `private`.
+         *
+         * @var null|mixed[] $source
+         */
+        public ?array $source = null,
     ) {
     }
 
@@ -89,6 +97,7 @@ final class UpdateCredentialsRequest extends \Vazaha\Mastodon\Requests\AccountRe
             'bot' => $this->bot,
             'discoverable' => $this->discoverable,
             'fields_attributes' => $this->fields_attributes,
+            'source' => $this->source,
         ];
     }
 

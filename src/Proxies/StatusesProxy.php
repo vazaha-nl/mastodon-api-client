@@ -144,6 +144,7 @@ class StatusesProxy extends Proxy
      *
      * @param string        $status         The text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.
      * @param array<string> $media_ids      Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+     * @param null|mixed[]  $poll           poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
      * @param ?string       $in_reply_to_id ID of the status being replied to, if status is a reply
      * @param ?bool         $sensitive      mark status and attached media as sensitive? Defaults to false
      * @param ?string       $spoiler_text   Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field.
@@ -156,6 +157,7 @@ class StatusesProxy extends Proxy
     public function create(
         string $status,
         array $media_ids,
+        ?array $poll = null,
         ?string $in_reply_to_id = null,
         ?bool $sensitive = null,
         ?string $spoiler_text = null,
@@ -166,6 +168,7 @@ class StatusesProxy extends Proxy
         $result = $this->apiClient->send(new CreateRequest(
             $status,
             $media_ids,
+            $poll,
             $in_reply_to_id,
             $sensitive,
             $spoiler_text,
@@ -217,6 +220,7 @@ class StatusesProxy extends Proxy
      * @param ?bool              $sensitive    whether the status should be marked as sensitive
      * @param ?string            $language     ISO 639 language code for the status
      * @param null|array<string> $media_ids    Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+     * @param null|mixed[]       $poll         poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#edit
      */
@@ -227,6 +231,7 @@ class StatusesProxy extends Proxy
         ?bool $sensitive = null,
         ?string $language = null,
         ?array $media_ids = null,
+        ?array $poll = null,
     ): StatusModel {
         $result = $this->apiClient->send(new EditRequest(
             $id,
@@ -235,6 +240,7 @@ class StatusesProxy extends Proxy
             $sensitive,
             $language,
             $media_ids,
+            $poll,
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */

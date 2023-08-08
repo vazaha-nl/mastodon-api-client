@@ -21,11 +21,18 @@ class PushProxy extends Proxy
     /**
      * Subscribe to push notifications.
      *
+     * @param null|mixed[] $subscription subscription[endpoint]: The endpoint URL that is called when a notification event occurs
+     * @param null|mixed[] $data         data[alerts][mention]: Receive mention notifications? Defaults to false
+     *
      * @see https://docs.joinmastodon.org/methods/push/#create
      */
     public function create(
+        ?array $subscription = null,
+        ?array $data = null,
     ): WebPushSubscriptionModel {
         $result = $this->apiClient->send(new CreateRequest(
+            $subscription,
+            $data,
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\WebPushSubscriptionModel $model */
@@ -81,14 +88,17 @@ class PushProxy extends Proxy
     /**
      * Change types of notifications.
      *
-     * @param ?string $policy specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users
+     * @param null|mixed[] $data   data[alerts][mention]: Receive mention notifications? Defaults to false
+     * @param ?string      $policy specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users
      *
      * @see https://docs.joinmastodon.org/methods/push/#update
      */
     public function update(
+        ?array $data = null,
         ?string $policy = null,
     ): WebPushSubscriptionModel {
         $result = $this->apiClient->send(new UpdateRequest(
+            $data,
             $policy,
         ));
 

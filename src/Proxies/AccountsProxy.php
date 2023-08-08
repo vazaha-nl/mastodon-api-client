@@ -637,6 +637,7 @@ class AccountsProxy extends Proxy
      * @param ?bool        $bot               whether the account has a bot flag
      * @param ?bool        $discoverable      whether the account should be shown in the profile directory
      * @param null|mixed[] $fields_attributes The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields.
+     * @param null|mixed[] $source            source[privacy]: Default post privacy for authored statuses. Can be `public`, `unlisted`, or `private`.
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#update_credentials
      */
@@ -649,6 +650,7 @@ class AccountsProxy extends Proxy
         ?bool $bot = null,
         ?bool $discoverable = null,
         ?array $fields_attributes = null,
+        ?array $source = null,
     ): AccountModel {
         $result = $this->apiClient->send(new UpdateCredentialsRequest(
             $display_name,
@@ -659,6 +661,7 @@ class AccountsProxy extends Proxy
             $bot,
             $discoverable,
             $fields_attributes,
+            $source,
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\AccountModel $model */

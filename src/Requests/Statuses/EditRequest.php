@@ -53,6 +53,14 @@ final class EditRequest extends \Vazaha\Mastodon\Requests\StatusRequest implemen
          * @var null|array<string> $media_ids
          */
         public ?array $media_ids = null,
+
+        /**
+         * poll[options][]: Possible answers to the poll. If provided, `media_ids`
+         * cannot be used, and `poll[expires_in]` must be provided.
+         *
+         * @var null|mixed[] $poll
+         */
+        public ?array $poll = null,
     ) {
     }
 
@@ -75,6 +83,7 @@ final class EditRequest extends \Vazaha\Mastodon\Requests\StatusRequest implemen
             'sensitive' => $this->sensitive,
             'language' => $this->language,
             'media_ids' => $this->media_ids,
+            'poll' => $this->poll,
         ];
     }
 

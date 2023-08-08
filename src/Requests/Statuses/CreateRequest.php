@@ -36,6 +36,14 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\StatusRequest implem
         public array $media_ids,
 
         /**
+         * poll[options][]: Possible answers to the poll. If provided, `media_ids`
+         * cannot be used, and `poll[expires_in]` must be provided.
+         *
+         * @var null|mixed[] $poll
+         */
+        public ?array $poll = null,
+
+        /**
          * ID of the status being replied to, if status is a reply.
          */
         public ?string $in_reply_to_id = null,
@@ -87,6 +95,7 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\StatusRequest implem
         return [
             'status' => $this->status,
             'media_ids' => $this->media_ids,
+            'poll' => $this->poll,
             'in_reply_to_id' => $this->in_reply_to_id,
             'sensitive' => $this->sensitive,
             'spoiler_text' => $this->spoiler_text,

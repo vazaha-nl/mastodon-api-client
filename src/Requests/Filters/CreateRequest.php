@@ -44,6 +44,14 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\FilterRequest implem
          * How many seconds from now should the filter expire?
          */
         public ?int $expires_in = null,
+
+        /**
+         * keywords_attributes[][keyword]: A keyword to be added to the newly-created
+         * filter group.
+         *
+         * @var null|mixed[] $keywords_attributes
+         */
+        public ?array $keywords_attributes = null,
     ) {
     }
 
@@ -65,6 +73,7 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\FilterRequest implem
             'context' => $this->context,
             'filter_action' => $this->filter_action,
             'expires_in' => $this->expires_in,
+            'keywords_attributes' => $this->keywords_attributes,
         ];
     }
 

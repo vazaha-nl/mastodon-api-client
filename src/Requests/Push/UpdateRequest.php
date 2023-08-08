@@ -22,6 +22,13 @@ final class UpdateRequest extends \Vazaha\Mastodon\Requests\WebPushSubscriptionR
 {
     public function __construct(
         /**
+         * data[alerts][mention]: Receive mention notifications? Defaults to false.
+         *
+         * @var null|mixed[] $data
+         */
+        public ?array $data = null,
+
+        /**
          * Specify whether to receive push notifications from `all`, `followed`,
          * `follower`, or `none` users.
          */
@@ -43,6 +50,7 @@ final class UpdateRequest extends \Vazaha\Mastodon\Requests\WebPushSubscriptionR
     public function getFormParams(): array
     {
         return [
+            'data' => $this->data,
             'policy' => $this->policy,
         ];
     }

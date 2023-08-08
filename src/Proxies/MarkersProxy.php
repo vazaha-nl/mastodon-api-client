@@ -18,11 +18,18 @@ class MarkersProxy extends Proxy
     /**
      * Save your position in a timeline.
      *
+     * @param null|mixed[] $home          home[last_read_id]: ID of the last status read in the home timeline
+     * @param null|mixed[] $notifications notifications[last_read_id]: ID of the last notification read
+     *
      * @see https://docs.joinmastodon.org/methods/markers/#create
      */
     public function create(
+        ?array $home = null,
+        ?array $notifications = null,
     ): MarkerModel {
         $result = $this->apiClient->send(new CreateRequest(
+            $home,
+            $notifications,
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\MarkerModel $model */

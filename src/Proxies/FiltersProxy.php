@@ -11,9 +11,9 @@ namespace Vazaha\Mastodon\Proxies;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Models\FilterKeywordModel;
-use Vazaha\Mastodon\Models\FilterModel as ModelsFilterModel;
+use Vazaha\Mastodon\Models\FilterModel;
 use Vazaha\Mastodon\Models\FilterStatusModel;
-use Vazaha\Mastodon\Models\V1\FilterModel;
+use Vazaha\Mastodon\Models\V1\FilterModel as V1FilterModel;
 use Vazaha\Mastodon\Requests\Filters\CreateRequest;
 use Vazaha\Mastodon\Requests\Filters\CreateV1Request;
 use Vazaha\Mastodon\Requests\Filters\DeleteRequest;
@@ -34,19 +34,20 @@ use Vazaha\Mastodon\Requests\Filters\StatusesRemoveRequest;
 use Vazaha\Mastodon\Requests\Filters\UpdateRequest;
 use Vazaha\Mastodon\Requests\Filters\UpdateV1Request;
 use Vazaha\Mastodon\Results\FilterKeywordResult;
-use Vazaha\Mastodon\Results\FilterResult as ResultsFilterResult;
+use Vazaha\Mastodon\Results\FilterResult;
 use Vazaha\Mastodon\Results\FilterStatusResult;
-use Vazaha\Mastodon\Results\V1\FilterResult;
+use Vazaha\Mastodon\Results\V1\FilterResult as V1FilterResult;
 
 class FiltersProxy extends Proxy
 {
     /**
      * Create a filter.
      *
-     * @param string        $title         the name of the filter group
-     * @param array<string> $context       Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
-     * @param ?string       $filter_action The policy to be applied when the filter is matched. Specify `warn` or `hide`.
-     * @param ?int          $expires_in    How many seconds from now should the filter expire?
+     * @param string        $title               the name of the filter group
+     * @param array<string> $context             Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
+     * @param ?string       $filter_action       The policy to be applied when the filter is matched. Specify `warn` or `hide`.
+     * @param ?int          $expires_in          How many seconds from now should the filter expire?
+     * @param null|mixed[]  $keywords_attributes keywords_attributes[][keyword]: A keyword to be added to the newly-created filter group
      *
      * @see https://docs.joinmastodon.org/methods/filters/#create
      */
@@ -55,12 +56,14 @@ class FiltersProxy extends Proxy
         array $context,
         ?string $filter_action = null,
         ?int $expires_in = null,
-    ): ModelsFilterModel {
+        ?array $keywords_attributes = null,
+    ): FilterModel {
         $result = $this->apiClient->send(new CreateRequest(
             $title,
             $context,
             $filter_action,
             $expires_in,
+            $keywords_attributes,
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\FilterModel $model */
@@ -90,7 +93,7 @@ class FiltersProxy extends Proxy
         ?bool $irreversible = null,
         ?bool $whole_word = null,
         ?int $expires_in = null,
-    ): FilterModel {
+    ): V1FilterModel {
         $result = $this->apiClient->send(new CreateV1Request(
             $phrase,
             $context,
@@ -165,7 +168,7 @@ class FiltersProxy extends Proxy
      * @see https://docs.joinmastodon.org/methods/filters/#get
      */
     public function get(
-    ): ResultsFilterResult {
+    ): FilterResult {
         /** @var \Vazaha\Mastodon\Results\FilterResult<array-key,\Vazaha\Mastodon\Models\FilterModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
@@ -183,7 +186,7 @@ class FiltersProxy extends Proxy
      */
     public function getOne(
         string $id,
-    ): ModelsFilterModel {
+    ): FilterModel {
         $result = $this->apiClient->send(new GetOneRequest(
             $id,
         ));
@@ -207,7 +210,7 @@ class FiltersProxy extends Proxy
      */
     public function getOneV1(
         string $id,
-    ): FilterModel {
+    ): V1FilterModel {
         $result = $this->apiClient->send(new GetOneV1Request(
             $id,
         ));
@@ -230,7 +233,7 @@ class FiltersProxy extends Proxy
      * @see https://docs.joinmastodon.org/methods/filters/#get-v1
      */
     public function getV1(
-    ): FilterResult {
+    ): V1FilterResult {
         /** @var \Vazaha\Mastodon\Results\V1\FilterResult<array-key,\Vazaha\Mastodon\Models\V1\FilterModel> */
         $models = $this->apiClient
             ->send(new GetV1Request(
@@ -464,11 +467,12 @@ class FiltersProxy extends Proxy
     /**
      * Update a filter.
      *
-     * @param string             $id            the ID of the Filter in the database
-     * @param ?string            $title         the name of the filter group
-     * @param null|array<string> $context       Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
-     * @param ?string            $filter_action The policy to be applied when the filter is matched. Specify `warn` or `hide`.
-     * @param ?int               $expires_in    How many seconds from now should the filter expire?
+     * @param string             $id                  the ID of the Filter in the database
+     * @param ?string            $title               the name of the filter group
+     * @param null|array<string> $context             Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
+     * @param ?string            $filter_action       The policy to be applied when the filter is matched. Specify `warn` or `hide`.
+     * @param ?int               $expires_in          How many seconds from now should the filter expire?
+     * @param null|mixed[]       $keywords_attributes keywords_attributes[][keyword]: A keyword to be added to the newly-created filter group
      *
      * @see https://docs.joinmastodon.org/methods/filters/#update
      */
@@ -478,13 +482,15 @@ class FiltersProxy extends Proxy
         ?array $context = null,
         ?string $filter_action = null,
         ?int $expires_in = null,
-    ): ModelsFilterModel {
+        ?array $keywords_attributes = null,
+    ): FilterModel {
         $result = $this->apiClient->send(new UpdateRequest(
             $id,
             $title,
             $context,
             $filter_action,
             $expires_in,
+            $keywords_attributes,
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\FilterModel $model */
@@ -516,7 +522,7 @@ class FiltersProxy extends Proxy
         ?bool $irreversible = null,
         ?bool $whole_word = null,
         ?int $expires_in = null,
-    ): FilterModel {
+    ): V1FilterModel {
         $result = $this->apiClient->send(new UpdateV1Request(
             $id,
             $phrase,

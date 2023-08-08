@@ -21,6 +21,19 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 final class CreateRequest extends \Vazaha\Mastodon\Requests\MarkerRequest implements RequestInterface
 {
     public function __construct(
+        /**
+         * home[last_read_id]: ID of the last status read in the home timeline.
+         *
+         * @var null|mixed[] $home
+         */
+        public ?array $home = null,
+
+        /**
+         * notifications[last_read_id]: ID of the last notification read.
+         *
+         * @var null|mixed[] $notifications
+         */
+        public ?array $notifications = null,
     ) {
     }
 
@@ -38,6 +51,8 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\MarkerRequest implem
     public function getFormParams(): array
     {
         return [
+            'home' => $this->home,
+            'notifications' => $this->notifications,
         ];
     }
 
