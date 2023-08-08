@@ -14,6 +14,8 @@ use Vazaha\Mastodon\Collections\MediaAttachmentCollection;
 
 /**
  * Represents a revision of a status that has been edited.
+ *
+ * @see https://docs.joinmastodon.org/entities/StatusEdit/
  */
 class StatusEditModel extends Model
 {

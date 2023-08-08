@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a suggested account to follow and an associated reason for the suggestion.
+ *
+ * @see https://docs.joinmastodon.org/entities/Suggestion/
  */
 class SuggestionModel extends Model
 {

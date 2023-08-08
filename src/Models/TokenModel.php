@@ -12,6 +12,8 @@ use DateTimeInterface;
 
 /**
  * Represents an OAuth token used for authenticating with the API and performing actions.
+ *
+ * @see https://docs.joinmastodon.org/entities/Token/
  */
 class TokenModel extends Model
 {

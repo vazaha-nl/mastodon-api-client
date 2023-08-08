@@ -12,6 +12,8 @@ use DateTimeInterface;
 
 /**
  * Reports filed against users and/or statuses, to be taken action on by moderators.
+ *
+ * @see https://docs.joinmastodon.org/entities/Report/
  */
 class ReportModel extends Model
 {

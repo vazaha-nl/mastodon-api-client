@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a rule that server users should follow.
+ *
+ * @see https://docs.joinmastodon.org/entities/Rule/
  */
 class RuleModel extends Model
 {

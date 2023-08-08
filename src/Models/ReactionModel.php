@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents an emoji reaction to an Announcement.
+ *
+ * @see https://docs.joinmastodon.org/entities/Reaction/
  */
 class ReactionModel extends Model
 {

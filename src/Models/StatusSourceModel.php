@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a status&#039;s source as plain text.
+ *
+ * @see https://docs.joinmastodon.org/entities/StatusSource/
  */
 class StatusSourceModel extends Model
 {

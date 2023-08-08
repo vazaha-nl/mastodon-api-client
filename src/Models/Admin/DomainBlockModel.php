@@ -13,6 +13,8 @@ use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents a domain limited from federating.
+ *
+ * @see https://docs.joinmastodon.org/entities/Admin_DomainBlock/
  */
 class DomainBlockModel extends Model
 {

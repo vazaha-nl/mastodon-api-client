@@ -12,6 +12,8 @@ use Vazaha\Mastodon\Collections\AccountCollection;
 
 /**
  * Represents a subset of your follows who also follow some other user.
+ *
+ * @see https://docs.joinmastodon.org/entities/FamiliarFollowers/
  */
 class FamiliarFollowersModel extends Model
 {

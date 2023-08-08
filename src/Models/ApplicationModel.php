@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents an application that interfaces with the REST API to access accounts or post statuses.
+ *
+ * @see https://docs.joinmastodon.org/entities/Application/
  */
 class ApplicationModel extends Model
 {

@@ -13,6 +13,8 @@ use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents a domain allowed to federate.
+ *
+ * @see https://docs.joinmastodon.org/entities/Admin_DomainAllow/
  */
 class DomainAllowModel extends Model
 {

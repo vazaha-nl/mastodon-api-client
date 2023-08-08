@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a status ID that, if matched, should cause the filter action to be taken.
+ *
+ * @see https://docs.joinmastodon.org/entities/FilterStatus/
  */
 class FilterStatusModel extends Model
 {

@@ -13,6 +13,8 @@ use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents a user-defined filter for determining which statuses should not be shown to the user. Contains a single keyword or phrase.
+ *
+ * @see https://docs.joinmastodon.org/entities/V1_Filter/
  */
 class FilterModel extends Model
 {

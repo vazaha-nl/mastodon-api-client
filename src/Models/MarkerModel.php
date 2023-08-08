@@ -12,6 +12,8 @@ use DateTimeInterface;
 
 /**
  * Represents the last read position within a user&#039;s timelines.
+ *
+ * @see https://docs.joinmastodon.org/entities/Marker/
  */
 class MarkerModel extends Model
 {

@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a user of Mastodon and their associated profile.
+ *
+ * @see https://docs.joinmastodon.org/entities/Account/#CredentialAccount
  */
 class CredentialAccountModel extends AccountModel
 {

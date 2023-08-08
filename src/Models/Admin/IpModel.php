@@ -13,6 +13,8 @@ use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents an IP address associated with a user.
+ *
+ * @see https://docs.joinmastodon.org/entities/Admin_Ip/
  */
 class IpModel extends Model
 {

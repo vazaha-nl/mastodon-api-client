@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a user&#039;s preferences.
+ *
+ * @see https://docs.joinmastodon.org/entities/Preferences/
  */
 class PreferencesModel extends Model
 {

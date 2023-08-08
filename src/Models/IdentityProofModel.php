@@ -12,6 +12,8 @@ use DateTimeInterface;
 
 /**
  * Represents a proof from an external identity provider.
+ *
+ * @see https://docs.joinmastodon.org/entities/IdentityProof/
  */
 class IdentityProofModel extends Model
 {

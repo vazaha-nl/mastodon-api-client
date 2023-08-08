@@ -12,6 +12,8 @@ use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents a canonical email block (hashed).
+ *
+ * @see https://docs.joinmastodon.org/entities/Admin_CanonicalEmailBlock/
  */
 class CanonicalEmailBlockModel extends Model
 {

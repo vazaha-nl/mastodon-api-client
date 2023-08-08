@@ -13,6 +13,8 @@ use Vazaha\Mastodon\Collections\MediaAttachmentCollection;
 
 /**
  * Represents a status that will be published at a future scheduled date.
+ *
+ * @see https://docs.joinmastodon.org/entities/ScheduledStatus/
  */
 class ScheduledStatusModel extends Model
 {

@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents the result of machine translating some status content.
+ *
+ * @see https://docs.joinmastodon.org/entities/Translation/
  */
 class TranslationModel extends Model
 {

@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a custom user role that grants permissions.
+ *
+ * @see https://docs.joinmastodon.org/entities/Role/
  */
 class RoleModel extends Model
 {

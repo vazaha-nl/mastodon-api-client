@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a keyword that, if matched, should cause the filter action to be taken.
+ *
+ * @see https://docs.joinmastodon.org/entities/FilterKeyword/
  */
 class FilterKeywordModel extends Model
 {

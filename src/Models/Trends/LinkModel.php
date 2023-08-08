@@ -12,6 +12,8 @@ use Vazaha\Mastodon\Models\PreviewCardModel;
 
 /**
  * Represents a rich preview card that is generated using OpenGraph tags from a URL.
+ *
+ * @see https://docs.joinmastodon.org/entities/PreviewCard/#trends-link
  */
 class LinkModel extends PreviewCardModel
 {

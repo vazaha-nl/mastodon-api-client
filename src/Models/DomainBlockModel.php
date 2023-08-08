@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a domain that is blocked by the instance.
+ *
+ * @see https://docs.joinmastodon.org/entities/DomainBlock/
  */
 class DomainBlockModel extends Model
 {

@@ -12,6 +12,8 @@ use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents quantitative data about the server.
+ *
+ * @see https://docs.joinmastodon.org/entities/Admin_Measure/
  */
 class MeasureModel extends Model
 {

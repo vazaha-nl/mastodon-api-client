@@ -12,6 +12,8 @@ use DateTimeInterface;
 
 /**
  * Represents an encrypted message.
+ *
+ * @see https://docs.joinmastodon.org/entities/EncryptedMessage/
  */
 class EncryptedMessageModel extends Model
 {

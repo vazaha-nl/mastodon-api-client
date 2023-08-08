@@ -14,6 +14,8 @@ use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents the software instance of Mastodon running on this domain.
+ *
+ * @see https://docs.joinmastodon.org/entities/V1_Instance/
  */
 class InstanceModel extends Model
 {

@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents the relationship between accounts, such as following / blocking / muting / etc.
+ *
+ * @see https://docs.joinmastodon.org/entities/Relationship/
  */
 class RelationshipModel extends Model
 {

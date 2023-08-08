@@ -35,6 +35,7 @@ class ModelClassTemplate extends ClassTemplate
             'classImports' => $this->imports,
             'properties' => $this->getProperties(),
             'description' => $this->entitySpecs[$this->entity->name]['description'] ?? '',
+            'url' => $this->entitySpecs[$this->entity->name]['url'] ?? '',
             'parentClass' => $parentClass ?? null,
         ];
     }

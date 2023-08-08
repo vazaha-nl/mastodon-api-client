@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a rich preview card that is generated using OpenGraph tags from a URL.
+ *
+ * @see https://docs.joinmastodon.org/entities/PreviewCard/
  */
 class PreviewCardModel extends Model
 {

@@ -13,6 +13,8 @@ use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents an IP address range that cannot be used to sign up.
+ *
+ * @see https://docs.joinmastodon.org/entities/Admin_IpBlock/
  */
 class IpBlockModel extends Model
 {

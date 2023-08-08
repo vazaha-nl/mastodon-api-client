@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents an error message.
+ *
+ * @see https://docs.joinmastodon.org/entities/Error/
  */
 class ErrorModel extends Model
 {

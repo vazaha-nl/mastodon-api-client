@@ -12,6 +12,8 @@ use DateTimeInterface;
 
 /**
  * Represents a notification of an event relevant to the user.
+ *
+ * @see https://docs.joinmastodon.org/entities/Notification/
  */
 class NotificationModel extends Model
 {

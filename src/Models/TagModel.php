@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a hashtag used within the content of a status.
+ *
+ * @see https://docs.joinmastodon.org/entities/Tag/
  */
 class TagModel extends Model
 {

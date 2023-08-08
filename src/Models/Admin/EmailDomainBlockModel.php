@@ -13,6 +13,8 @@ use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents an email domain that cannot be used to sign up.
+ *
+ * @see https://docs.joinmastodon.org/entities/Admin_EmailDomainBlock/
  */
 class EmailDomainBlockModel extends Model
 {

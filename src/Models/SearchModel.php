@@ -14,6 +14,8 @@ use Vazaha\Mastodon\Collections\TagCollection;
 
 /**
  * Represents the results of a search.
+ *
+ * @see https://docs.joinmastodon.org/entities/Search/
  */
 class SearchModel extends Model
 {

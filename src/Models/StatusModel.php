@@ -17,6 +17,8 @@ use Vazaha\Mastodon\Collections\Status\TagCollection;
 
 /**
  * Represents a status posted by an account.
+ *
+ * @see https://docs.joinmastodon.org/entities/Status/
  */
 class StatusModel extends Model
 {

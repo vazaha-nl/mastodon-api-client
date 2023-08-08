@@ -12,6 +12,8 @@ use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents qualitative data about the server.
+ *
+ * @see https://docs.joinmastodon.org/entities/Admin_Dimension/
  */
 class DimensionModel extends Model
 {

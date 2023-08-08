@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Models\Model;
 
 /**
  * Admin-level information about a filed report.
+ *
+ * @see https://docs.joinmastodon.org/entities/Admin_Report/
  */
 class ReportModel extends Model
 {

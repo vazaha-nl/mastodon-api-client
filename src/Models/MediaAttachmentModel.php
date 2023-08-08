@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a file or media attachment that can be added to a status.
+ *
+ * @see https://docs.joinmastodon.org/entities/MediaAttachment/
  */
 class MediaAttachmentModel extends Model
 {

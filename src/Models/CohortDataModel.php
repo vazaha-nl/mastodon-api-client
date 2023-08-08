@@ -12,6 +12,8 @@ use DateTimeInterface;
 
 /**
  * Represents a retention metric.
+ *
+ * @see https://docs.joinmastodon.org/entities/Admin_Cohort/#CohortData
  */
 class CohortDataModel extends Model
 {

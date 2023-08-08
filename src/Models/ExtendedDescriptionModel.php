@@ -12,6 +12,8 @@ use DateTimeInterface;
 
 /**
  * Represents an extended description for the instance, to be shown on its about page.
+ *
+ * @see https://docs.joinmastodon.org/entities/ExtendedDescription/
  */
 class ExtendedDescriptionModel extends Model
 {

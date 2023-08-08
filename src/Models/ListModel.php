@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a list of some users that the authenticated user follows.
+ *
+ * @see https://docs.joinmastodon.org/entities/List/
  */
 class ListModel extends Model
 {

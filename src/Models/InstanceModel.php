@@ -12,6 +12,8 @@ use Vazaha\Mastodon\Collections\RuleCollection;
 
 /**
  * Represents the software instance of Mastodon running on this domain.
+ *
+ * @see https://docs.joinmastodon.org/entities/Instance/
  */
 class InstanceModel extends Model
 {

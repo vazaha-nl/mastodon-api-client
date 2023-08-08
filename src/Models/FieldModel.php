@@ -12,6 +12,8 @@ use DateTimeInterface;
 
 /**
  * Represents a user of Mastodon and their associated profile.
+ *
+ * @see https://docs.joinmastodon.org/entities/Account/#Field
  */
 class FieldModel extends Model
 {

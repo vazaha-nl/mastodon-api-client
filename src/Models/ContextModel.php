@@ -12,6 +12,8 @@ use Vazaha\Mastodon\Collections\StatusCollection;
 
 /**
  * Represents the tree around a given status. Used for reconstructing threads of statuses.
+ *
+ * @see https://docs.joinmastodon.org/entities/Context/
  */
 class ContextModel extends Model
 {

@@ -14,6 +14,10 @@ namespace {{ namespace }};
 
 /**
  * {{ description }}
+ *
+{% if url %}
+ * @see {{ url }}
+{% endif %}
  */
 class {{ classname }} extends {% if parentClass %}{{ parentClass }}{% else %}Model{% endif %}
 {

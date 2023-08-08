@@ -12,6 +12,8 @@ use DateTimeInterface;
 
 /**
  * Represents a hashtag that is featured on a profile.
+ *
+ * @see https://docs.joinmastodon.org/entities/FeaturedTag/
  */
 class FeaturedTagModel extends Model
 {

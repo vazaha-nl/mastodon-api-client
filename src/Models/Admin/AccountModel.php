@@ -16,6 +16,8 @@ use Vazaha\Mastodon\Models\RoleModel;
 
 /**
  * Admin-level information about a given account.
+ *
+ * @see https://docs.joinmastodon.org/entities/Admin_Account/
  */
 class AccountModel extends Model
 {

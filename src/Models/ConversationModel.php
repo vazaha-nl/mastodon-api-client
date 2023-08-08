@@ -12,6 +12,8 @@ use Vazaha\Mastodon\Collections\AccountCollection;
 
 /**
  * Represents a conversation with &quot;direct message&quot; visibility.
+ *
+ * @see https://docs.joinmastodon.org/entities/Conversation/
  */
 class ConversationModel extends Model
 {

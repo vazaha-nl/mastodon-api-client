@@ -17,6 +17,8 @@ use Vazaha\Mastodon\Collections\Status\TagCollection;
 
 /**
  * Represents an announcement set by an administrator.
+ *
+ * @see https://docs.joinmastodon.org/entities/Announcement/
  */
 class AnnouncementModel extends Model
 {

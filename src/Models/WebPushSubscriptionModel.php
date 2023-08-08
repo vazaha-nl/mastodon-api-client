@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a subscription to the push streaming server.
+ *
+ * @see https://docs.joinmastodon.org/entities/WebPushSubscription/
  */
 class WebPushSubscriptionModel extends Model
 {

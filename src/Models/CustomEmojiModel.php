@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a custom emoji.
+ *
+ * @see https://docs.joinmastodon.org/entities/CustomEmoji/
  */
 class CustomEmojiModel extends Model
 {

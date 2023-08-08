@@ -12,6 +12,8 @@ use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents a poll attached to a status.
+ *
+ * @see https://docs.joinmastodon.org/entities/Poll/#Option
  */
 class OptionModel extends Model
 {

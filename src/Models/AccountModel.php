@@ -14,6 +14,8 @@ use Vazaha\Mastodon\Collections\FieldCollection;
 
 /**
  * Represents a user of Mastodon and their associated profile.
+ *
+ * @see https://docs.joinmastodon.org/entities/Account/
  */
 class AccountModel extends Model
 {

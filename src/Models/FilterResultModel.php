@@ -10,6 +10,8 @@ namespace Vazaha\Mastodon\Models;
 
 /**
  * Represents a filter whose keywords matched a given status.
+ *
+ * @see https://docs.joinmastodon.org/entities/FilterResult/
  */
 class FilterResultModel extends Model
 {

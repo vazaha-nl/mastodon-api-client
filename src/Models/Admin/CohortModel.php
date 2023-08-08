@@ -14,6 +14,8 @@ use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents a retention metric.
+ *
+ * @see https://docs.joinmastodon.org/entities/Admin_Cohort/
  */
 class CohortModel extends Model
 {

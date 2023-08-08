@@ -12,6 +12,8 @@ use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents an announcement set by an administrator.
+ *
+ * @see https://docs.joinmastodon.org/entities/Announcement/#Status
  */
 class StatusModel extends Model
 {
