@@ -43,7 +43,37 @@ abstract class Model implements ModelInterface
      */
     public function toArray(): array
     {
-        return get_object_vars($this);
+        $array = [];
+
+        foreach (get_object_vars($this) as $name => $value) {
+            if ($value === null) {
+                continue;
+            }
+
+            if ($value instanceof self) {
+                $array[$name] = $value->toArray();
+
+                continue;
+            }
+
+            if ($value instanceof ModelCollection) {
+                $array[$name] = $value
+                    ->map(static fn (Model $model) => $model->toArray())
+                    ->toArray();
+
+                continue;
+            }
+
+            if ($value instanceof DateTimeInterface) {
+                $array['name'] = $value->format('Y-m-d\TH:i:s.vp');
+
+                continue;
+            }
+
+            $array[$name] = $value;
+        }
+
+        return $array;
     }
 
     public static function sanitizePropertyName(string $property): string

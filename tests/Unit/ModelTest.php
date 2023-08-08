@@ -17,6 +17,7 @@ class ModelTest extends TestCase
         $array = [
             'moved' => [
                 'id' => '123',
+                'last_status_at' => '2019-11-17T00:02:23.693Z',
             ],
             'fields' => [
                 [
@@ -32,6 +33,13 @@ class ModelTest extends TestCase
         self::assertSame('name1', $account->fields->first()->name);
         self::assertInstanceOf(AccountModel::class, $account->moved);
         self::assertSame('123', $account->moved->id);
+
+        $modelArray = $account->toArray();
+        // key order is irrelevant...
+        ksort($array);
+        ksort($modelArray);
+
+        self::assertEqualsCanonicalizing($array, $modelArray);
     }
 
     public function testAssignStringifiedIntToIntPropertyShouldNotBreak(): void
