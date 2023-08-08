@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Add a status to a filter group.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\FilterStatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/filters/#statuses-add
  */
 final class StatusesAddRequest extends \Vazaha\Mastodon\Requests\FilterStatusRequest implements RequestInterface
 {

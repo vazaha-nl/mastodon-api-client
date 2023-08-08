@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Get saved timeline positions.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\MarkerResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/markers/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\MarkerRequest implements RequestInterface
 {

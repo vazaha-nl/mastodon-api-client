@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View suggested tags to feature.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\TagResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/featured_tags/#suggestions
  */
 final class SuggestionsRequest extends \Vazaha\Mastodon\Requests\TagRequest implements RequestInterface
 {

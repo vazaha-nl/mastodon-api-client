@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Revoke a token.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyOrUnknownResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/oauth/#revoke
  */
 final class RevokeRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {

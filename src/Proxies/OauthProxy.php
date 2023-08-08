@@ -26,6 +26,8 @@ class OauthProxy extends Proxy
      * @param ?string $scope         List of requested OAuth scopes, separated by spaces (or by pluses, if using query parameters). Must be a subset of `scopes` declared during app registration. If not provided, defaults to `read`.
      * @param ?bool   $force_login   forces the user to re-login, which is necessary for authorizing with multiple accounts from the same instance
      * @param ?string $lang          the ISO 639-1 two-letter language code to use while rendering the authorization form
+     *
+     * @see https://docs.joinmastodon.org/methods/oauth/#authorize
      */
     public function authorize(
         string $response_type,
@@ -60,6 +62,8 @@ class OauthProxy extends Proxy
      * @param string $client_id     the client ID, obtained during app registration
      * @param string $client_secret the client secret, obtained during app registration
      * @param string $token         the previously obtained token, to be invalidated
+     *
+     * @see https://docs.joinmastodon.org/methods/oauth/#revoke
      */
     public function revoke(
         string $client_id,
@@ -91,6 +95,8 @@ class OauthProxy extends Proxy
      * @param string  $redirect_uri  Set a URI to redirect the user to. If this parameter is set to urn:ietf:wg:oauth:2.0:oob then the token will be shown instead. Must match one of the `redirect_uris` declared during app registration.
      * @param ?string $code          a user authorization code, obtained via [GET /oauth/authorize](#authorize)
      * @param ?string $scope         List of requested OAuth scopes, separated by spaces (or by pluses, if using query parameters). If `code` was provided, then this must be equal to the `scope` requested from the user. Otherwise, it must be a subset of `scopes` declared during app registration. If not provided, defaults to `read`.
+     *
+     * @see https://docs.joinmastodon.org/methods/oauth/#token
      */
     public function token(
         string $grant_type,

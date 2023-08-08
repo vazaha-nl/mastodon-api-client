@@ -24,6 +24,8 @@ class TrendsProxy extends Proxy
      * @param ?int $offset skip the first n results
      *
      * @return \Vazaha\Mastodon\Results\Trends\LinkResult<array-key,\Vazaha\Mastodon\Models\Trends\LinkModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/trends/#links
      */
     public function links(
         ?int $limit = null,
@@ -46,6 +48,8 @@ class TrendsProxy extends Proxy
      * @param ?int $offset skip the first n results
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/trends/#statuses
      */
     public function statuses(
         ?int $limit = null,
@@ -68,6 +72,8 @@ class TrendsProxy extends Proxy
      * @param ?int $offset skip the first n results
      *
      * @return \Vazaha\Mastodon\Results\TagResult<array-key,\Vazaha\Mastodon\Models\TagModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/trends/#tags
      */
     public function tags(
         ?int $limit = null,

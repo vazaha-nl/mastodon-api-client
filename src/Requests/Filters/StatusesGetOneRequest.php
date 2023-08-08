@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View a single status filter.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\FilterStatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/filters/#statuses-get-one
  */
 final class StatusesGetOneRequest extends \Vazaha\Mastodon\Requests\FilterStatusRequest implements RequestInterface
 {

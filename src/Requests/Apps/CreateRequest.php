@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Create an application.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ApplicationResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/apps/#create
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\ApplicationRequest implements RequestInterface
 {

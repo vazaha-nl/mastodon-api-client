@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Unfollow a hashtag.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\TagResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/tags/#unfollow
  */
 final class UnfollowRequest extends \Vazaha\Mastodon\Requests\TagRequest implements RequestInterface
 {

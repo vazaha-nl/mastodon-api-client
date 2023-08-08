@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Update a domain block.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\IpBlockResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/ip_blocks/#update
  */
 final class UpdateRequest extends \Vazaha\Mastodon\Requests\Admin\IpBlockRequest implements RequestInterface
 {

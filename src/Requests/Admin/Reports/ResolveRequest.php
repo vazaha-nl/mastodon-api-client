@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Mark report as resolved.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\ReportResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/reports/#resolve
  */
 final class ResolveRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest implements RequestInterface
 {

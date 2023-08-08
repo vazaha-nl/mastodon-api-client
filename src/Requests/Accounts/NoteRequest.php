@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Set private note on profile.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\RelationshipResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#note
  */
 final class NoteRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
 {

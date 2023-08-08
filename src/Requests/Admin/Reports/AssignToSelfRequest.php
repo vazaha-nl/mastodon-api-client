@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Assign report to self.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\ReportResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/reports/#assign_to_self
  */
 final class AssignToSelfRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest implements RequestInterface
 {

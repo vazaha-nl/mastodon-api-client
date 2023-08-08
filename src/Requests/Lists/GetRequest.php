@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View your lists.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ListResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/lists/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\ListRequest implements RequestInterface
 {

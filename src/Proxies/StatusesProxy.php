@@ -44,6 +44,8 @@ class StatusesProxy extends Proxy
      * Bookmark a status.
      *
      * @param string $id the ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#bookmark
      */
     public function bookmark(
         string $id,
@@ -67,6 +69,8 @@ class StatusesProxy extends Proxy
      *
      * @param string  $id         the ID of the Status in the database
      * @param ?string $visibility Any visibility except `limited` or `direct` (i.e. `public`, `unlisted`, `private`). Defaults to public. Currently unused in UI.
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#boost
      */
     public function boost(
         string $id,
@@ -91,6 +95,8 @@ class StatusesProxy extends Proxy
      * (DEPRECATED) Fetch preview card.
      *
      * @param string $id the local ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#card
      */
     public function card(
         string $id,
@@ -113,6 +119,8 @@ class StatusesProxy extends Proxy
      * Get parent and child statuses in context.
      *
      * @param string $id the ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#context
      */
     public function context(
         string $id,
@@ -142,6 +150,8 @@ class StatusesProxy extends Proxy
      * @param ?string       $visibility     sets the visibility of the posted status to `public`, `unlisted`, `private`, `direct`
      * @param ?string       $language       ISO 639 language code for this status
      * @param ?string       $scheduled_at   ISO 8601 Datetime at which to schedule a status. Providing this parameter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future.
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#create
      */
     public function create(
         string $status,
@@ -178,6 +188,8 @@ class StatusesProxy extends Proxy
      * Delete a status.
      *
      * @param string $id the ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#delete
      */
     public function delete(
         string $id,
@@ -205,6 +217,8 @@ class StatusesProxy extends Proxy
      * @param ?bool              $sensitive    whether the status should be marked as sensitive
      * @param ?string            $language     ISO 639 language code for the status
      * @param null|array<string> $media_ids    Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#edit
      */
     public function edit(
         string $id,
@@ -237,6 +251,8 @@ class StatusesProxy extends Proxy
      * Favourite a status.
      *
      * @param string $id the ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#favourite
      */
     public function favourite(
         string $id,
@@ -262,6 +278,8 @@ class StatusesProxy extends Proxy
      * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
      * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#favourited_by
      */
     public function favouritedBy(
         string $id,
@@ -281,6 +299,8 @@ class StatusesProxy extends Proxy
      * View a single status.
      *
      * @param string $id the ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#get
      */
     public function get(
         string $id,
@@ -305,6 +325,8 @@ class StatusesProxy extends Proxy
      * @param string $id the local ID of the Status in the database
      *
      * @return \Vazaha\Mastodon\Results\StatusEditResult<array-key,\Vazaha\Mastodon\Models\StatusEditModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#history
      */
     public function history(
         string $id,
@@ -322,6 +344,8 @@ class StatusesProxy extends Proxy
      * Mute a conversation.
      *
      * @param string $id the ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#mute
      */
     public function mute(
         string $id,
@@ -344,6 +368,8 @@ class StatusesProxy extends Proxy
      * Pin status to profile.
      *
      * @param string $id The local ID of the Status in the database. The status should be authored by the authorized account.
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#pin
      */
     public function pin(
         string $id,
@@ -369,6 +395,8 @@ class StatusesProxy extends Proxy
      * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
      * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#reblogged_by
      */
     public function rebloggedBy(
         string $id,
@@ -388,6 +416,8 @@ class StatusesProxy extends Proxy
      * View status source.
      *
      * @param string $id the local ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#source
      */
     public function source(
         string $id,
@@ -411,6 +441,8 @@ class StatusesProxy extends Proxy
      *
      * @param string  $id   the ID of the Status in the database
      * @param ?string $lang The status content will be translated into this language. Defaults to the user's current locale.
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#translate
      */
     public function translate(
         string $id,
@@ -435,6 +467,8 @@ class StatusesProxy extends Proxy
      * Undo bookmark of a status.
      *
      * @param string $id the ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#unbookmark
      */
     public function unbookmark(
         string $id,
@@ -457,6 +491,8 @@ class StatusesProxy extends Proxy
      * Undo favourite of a status.
      *
      * @param string $id the ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#unfavourite
      */
     public function unfavourite(
         string $id,
@@ -479,6 +515,8 @@ class StatusesProxy extends Proxy
      * Unmute a conversation.
      *
      * @param string $id the ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#unmute
      */
     public function unmute(
         string $id,
@@ -501,6 +539,8 @@ class StatusesProxy extends Proxy
      * Unpin status from profile.
      *
      * @param string $id the local ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#unpin
      */
     public function unpin(
         string $id,
@@ -523,6 +563,8 @@ class StatusesProxy extends Proxy
      * Undo boost of a status.
      *
      * @param string $id the ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#unreblog
      */
     public function unreblog(
         string $id,

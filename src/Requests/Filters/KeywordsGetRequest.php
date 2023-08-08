@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View keywords added to a filter.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\FilterKeywordResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/filters/#keywords-get
  */
 final class KeywordsGetRequest extends \Vazaha\Mastodon\Requests\FilterKeywordRequest implements RequestInterface
 {

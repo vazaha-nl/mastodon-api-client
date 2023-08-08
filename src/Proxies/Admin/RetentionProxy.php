@@ -23,6 +23,8 @@ class RetentionProxy extends Proxy
      * @param string            $frequency Specify whether to use `day` or `month` buckets. If any other value is provided, defaults to `day`.
      *
      * @return \Vazaha\Mastodon\Results\Admin\CohortResult<array-key,\Vazaha\Mastodon\Models\Admin\CohortModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/retention/#create
      */
     public function create(
         DateTimeInterface $start_at,

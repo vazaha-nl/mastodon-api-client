@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Weekly activity.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyOrUnknownResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/instance/#activity
  */
 final class ActivityRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {

@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View public timeline.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/timelines/#public
  */
 final class PublicRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {

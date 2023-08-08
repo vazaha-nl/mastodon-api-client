@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View edit history of a status.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusEditResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/statuses/#history
  */
 final class HistoryRequest extends \Vazaha\Mastodon\Requests\StatusEditRequest implements RequestInterface
 {

@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View accounts in a list.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/lists/#accounts
  */
 final class AccountsRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {

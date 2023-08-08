@@ -22,6 +22,8 @@ class SuggestionsProxy extends Proxy
      * Remove a suggestion.
      *
      * @param string $account_id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/suggestions/#remove
      */
     public function remove(
         string $account_id,
@@ -46,6 +48,8 @@ class SuggestionsProxy extends Proxy
      * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
      * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/suggestions/#v1
      */
     public function v1(
         ?int $limit = null,
@@ -65,6 +69,8 @@ class SuggestionsProxy extends Proxy
      * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
      * @return \Vazaha\Mastodon\Results\SuggestionResult<array-key,\Vazaha\Mastodon\Models\SuggestionModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/suggestions/#v2
      */
     public function v2(
         ?int $limit = null,

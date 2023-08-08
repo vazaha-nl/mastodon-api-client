@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Update a list.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ListResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/lists/#update
  */
 final class UpdateRequest extends \Vazaha\Mastodon\Requests\ListRequest implements RequestInterface
 {

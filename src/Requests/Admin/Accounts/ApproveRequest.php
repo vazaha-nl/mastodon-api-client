@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Approve a pending account.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#approve
  */
 final class ApproveRequest extends \Vazaha\Mastodon\Requests\Admin\AccountRequest implements RequestInterface
 {

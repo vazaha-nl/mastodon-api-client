@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Update a report.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\ReportResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/reports/#update
  */
 final class UpdateRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest implements RequestInterface
 {

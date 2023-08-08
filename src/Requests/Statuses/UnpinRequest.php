@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Unpin status from profile.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/statuses/#unpin
  */
 final class UnpinRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {

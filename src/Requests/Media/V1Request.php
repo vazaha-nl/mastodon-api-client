@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * (DEPRECATED) Upload media as an attachment.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\MediaAttachmentResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/media/#v1
  */
 final class V1Request extends \Vazaha\Mastodon\Requests\MediaAttachmentRequest implements RequestInterface
 {

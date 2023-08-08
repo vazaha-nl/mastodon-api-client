@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Search for matching accounts.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#search
  */
 final class SearchRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {

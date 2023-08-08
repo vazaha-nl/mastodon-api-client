@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Reject follow request.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\RelationshipResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/follow_requests/#reject
  */
 final class RejectRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
 {

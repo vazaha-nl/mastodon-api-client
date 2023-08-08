@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Verify your app works.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ApplicationResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/apps/#verify_credentials
  */
 final class VerifyCredentialsRequest extends \Vazaha\Mastodon\Requests\ApplicationRequest implements RequestInterface
 {

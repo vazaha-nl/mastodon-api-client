@@ -22,6 +22,8 @@ class AppsProxy extends Proxy
      * @param string  $redirect_uris Where the user should be redirected after authorization. To display the authorization code to the user instead of redirecting to a web page, use `urn:ietf:wg:oauth:2.0:oob` in this parameter.
      * @param ?string $scopes        Space separated list of scopes. If none is provided, defaults to `read`. See [OAuth Scopes]({{< relref "api/oauth-scopes" >}}) for a list of possible scopes.
      * @param ?string $website       A URL to the homepage of your app
+     *
+     * @see https://docs.joinmastodon.org/methods/apps/#create
      */
     public function create(
         string $client_name,
@@ -48,6 +50,8 @@ class AppsProxy extends Proxy
 
     /**
      * Verify your app works.
+     *
+     * @see https://docs.joinmastodon.org/methods/apps/#verify_credentials
      */
     public function verifyCredentials(
     ): ApplicationModel {

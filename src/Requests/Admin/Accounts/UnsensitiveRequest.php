@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Unmark an account as sensitive.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#unsensitive
  */
 final class UnsensitiveRequest extends \Vazaha\Mastodon\Requests\Admin\AccountRequest implements RequestInterface
 {

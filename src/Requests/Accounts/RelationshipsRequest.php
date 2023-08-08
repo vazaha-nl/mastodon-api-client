@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Check relationships to other accounts.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\RelationshipResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#relationships
  */
 final class RelationshipsRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
 {

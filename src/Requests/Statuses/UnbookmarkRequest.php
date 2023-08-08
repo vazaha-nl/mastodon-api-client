@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Undo bookmark of a status.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/statuses/#unbookmark
  */
 final class UnbookmarkRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {

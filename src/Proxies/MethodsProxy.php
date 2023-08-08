@@ -95,6 +95,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Methods concerning accounts and profiles.
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/
      */
     public function accounts(): AccountsProxy
     {
@@ -116,6 +118,8 @@ class MethodsProxy extends Proxy
 
     /**
      * For announcements set by administration.
+     *
+     * @see https://docs.joinmastodon.org/methods/announcements/
      */
     public function announcements(): AnnouncementsProxy
     {
@@ -128,6 +132,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Register client applications that can be used to obtain OAuth tokens.
+     *
+     * @see https://docs.joinmastodon.org/methods/apps/
      */
     public function apps(): AppsProxy
     {
@@ -140,6 +146,8 @@ class MethodsProxy extends Proxy
 
     /**
      * View your blocks. See also accounts/:id/{block,unblock}.
+     *
+     * @see https://docs.joinmastodon.org/methods/blocks/
      */
     public function blocks(): BlocksProxy
     {
@@ -152,6 +160,8 @@ class MethodsProxy extends Proxy
 
     /**
      * View your bookmarks. See also statuses/:id/{bookmark,unbookmark}.
+     *
+     * @see https://docs.joinmastodon.org/methods/bookmarks/
      */
     public function bookmarks(): BookmarksProxy
     {
@@ -164,6 +174,8 @@ class MethodsProxy extends Proxy
 
     /**
      *  Direct conversations with other participants. (Currently, just threads containing a post with "direct" visibility.).
+     *
+     * @see https://docs.joinmastodon.org/methods/conversations/
      */
     public function conversations(): ConversationsProxy
     {
@@ -176,6 +188,8 @@ class MethodsProxy extends Proxy
 
     /**
      *  Each site can define and upload its own custom emoji to be attached to profiles or statuses.
+     *
+     * @see https://docs.joinmastodon.org/methods/custom_emojis/
      */
     public function customEmojis(): CustomEmojisProxy
     {
@@ -188,6 +202,8 @@ class MethodsProxy extends Proxy
 
     /**
      * A directory of profiles that your website is aware of.
+     *
+     * @see https://docs.joinmastodon.org/methods/directory/
      */
     public function directory(): DirectoryProxy
     {
@@ -200,6 +216,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Manage a user's blocked domains.
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_blocks/
      */
     public function domainBlocks(): DomainBlocksProxy
     {
@@ -212,6 +230,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Request a new confirmation email, potentially to a new email address.
+     *
+     * @see https://docs.joinmastodon.org/methods/emails/
      */
     public function emails(): EmailsProxy
     {
@@ -224,6 +244,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Feature other profiles on your own profile. See also accounts/:id/{pin,unpin}.
+     *
+     * @see https://docs.joinmastodon.org/methods/endorsements/
      */
     public function endorsements(): EndorsementsProxy
     {
@@ -236,6 +258,8 @@ class MethodsProxy extends Proxy
 
     /**
      * View your favourites. See also statuses/:id/{favourite,unfavourite}.
+     *
+     * @see https://docs.joinmastodon.org/methods/favourites/
      */
     public function favourites(): FavouritesProxy
     {
@@ -248,6 +272,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Feature tags that you use frequently on your profile.
+     *
+     * @see https://docs.joinmastodon.org/methods/featured_tags/
      */
     public function featuredTags(): FeaturedTagsProxy
     {
@@ -260,6 +286,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Create and manage filters.
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/
      */
     public function filters(): FiltersProxy
     {
@@ -272,6 +300,8 @@ class MethodsProxy extends Proxy
 
     /**
      * View and manage follow requests.
+     *
+     * @see https://docs.joinmastodon.org/methods/follow_requests/
      */
     public function followRequests(): FollowRequestsProxy
     {
@@ -284,6 +314,8 @@ class MethodsProxy extends Proxy
 
     /**
      * View your followed hashtags.
+     *
+     * @see https://docs.joinmastodon.org/methods/followed_tags/
      */
     public function followedTags(): FollowedTagsProxy
     {
@@ -296,6 +328,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Discover information about a Mastodon website.
+     *
+     * @see https://docs.joinmastodon.org/methods/instance/
      */
     public function instance(): InstanceProxy
     {
@@ -308,6 +342,8 @@ class MethodsProxy extends Proxy
 
     /**
      *  View and manage lists. See also: /api/v1/timelines/list/id for loading a list timeline.
+     *
+     * @see https://docs.joinmastodon.org/methods/lists/
      */
     public function lists(): ListsProxy
     {
@@ -320,6 +356,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Save and restore your position in timelines.
+     *
+     * @see https://docs.joinmastodon.org/methods/markers/
      */
     public function markers(): MarkersProxy
     {
@@ -332,6 +370,8 @@ class MethodsProxy extends Proxy
 
     /**
      *  Attach media to authored statuses. See Using Mastodon > Posting toots > Attachments for more information about size and format limits.
+     *
+     * @see https://docs.joinmastodon.org/methods/media/
      */
     public function media(): MediaProxy
     {
@@ -344,6 +384,8 @@ class MethodsProxy extends Proxy
 
     /**
      * View your mutes. See also accounts/:id/{mute,unmute}.
+     *
+     * @see https://docs.joinmastodon.org/methods/mutes/
      */
     public function mutes(): MutesProxy
     {
@@ -356,6 +398,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Receive notifications for activity on your account or statuses.
+     *
+     * @see https://docs.joinmastodon.org/methods/notifications/
      */
     public function notifications(): NotificationsProxy
     {
@@ -368,6 +412,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Generate and manage OAuth tokens.
+     *
+     * @see https://docs.joinmastodon.org/methods/oauth/
      */
     public function oauth(): OauthProxy
     {
@@ -380,6 +426,8 @@ class MethodsProxy extends Proxy
 
     /**
      * For generating OEmbed previews.
+     *
+     * @see https://docs.joinmastodon.org/methods/oembed/
      */
     public function oembed(): OembedProxy
     {
@@ -392,6 +440,8 @@ class MethodsProxy extends Proxy
 
     /**
      *  View and vote on polls attached to statuses. To discover poll ID, you will need to GET a Status first and then check for a `poll` property.
+     *
+     * @see https://docs.joinmastodon.org/methods/polls/
      */
     public function polls(): PollsProxy
     {
@@ -404,6 +454,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Preferred common behaviors to be shared across clients.
+     *
+     * @see https://docs.joinmastodon.org/methods/preferences/
      */
     public function preferences(): PreferencesProxy
     {
@@ -416,6 +468,8 @@ class MethodsProxy extends Proxy
 
     /**
      * For use by identity providers.
+     *
+     * @see https://docs.joinmastodon.org/methods/proofs/
      */
     public function proofs(): ProofsProxy
     {
@@ -428,6 +482,8 @@ class MethodsProxy extends Proxy
 
     /**
      *  Subscribe to and receive push notifications when a server-side notification is received, via the Web Push API.
+     *
+     * @see https://docs.joinmastodon.org/methods/push/
      */
     public function push(): PushProxy
     {
@@ -440,6 +496,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Report problematic users to your moderators.
+     *
+     * @see https://docs.joinmastodon.org/methods/reports/
      */
     public function reports(): ReportsProxy
     {
@@ -452,6 +510,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Manage statuses that were scheduled to be published at a future date.
+     *
+     * @see https://docs.joinmastodon.org/methods/scheduled_statuses/
      */
     public function scheduledStatuses(): ScheduledStatusesProxy
     {
@@ -464,6 +524,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Search for content in accounts, statuses and hashtags.
+     *
+     * @see https://docs.joinmastodon.org/methods/search/
      */
     public function search(): SearchProxy
     {
@@ -476,6 +538,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Publish, interact, and view information about statuses.
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/
      */
     public function statuses(): StatusesProxy
     {
@@ -488,6 +552,8 @@ class MethodsProxy extends Proxy
 
     /**
      *  Subscribe to server-sent events for real-time updates via a long-lived HTTP connection or via WebSocket.
+     *
+     * @see https://docs.joinmastodon.org/methods/streaming/
      */
     public function streaming(): StreamingProxy
     {
@@ -500,6 +566,8 @@ class MethodsProxy extends Proxy
 
     /**
      *  Server-generated suggestions on who to follow, based on previous positive interactions.
+     *
+     * @see https://docs.joinmastodon.org/methods/suggestions/
      */
     public function suggestions(): SuggestionsProxy
     {
@@ -512,6 +580,8 @@ class MethodsProxy extends Proxy
 
     /**
      * View information about or follow/unfollow hashtags.
+     *
+     * @see https://docs.joinmastodon.org/methods/tags/
      */
     public function tags(): TagsProxy
     {
@@ -524,6 +594,8 @@ class MethodsProxy extends Proxy
 
     /**
      * Read and view timelines of statuses.
+     *
+     * @see https://docs.joinmastodon.org/methods/timelines/
      */
     public function timelines(): TimelinesProxy
     {
@@ -536,6 +608,8 @@ class MethodsProxy extends Proxy
 
     /**
      * View hashtags that are currently being used more frequently than usual.
+     *
+     * @see https://docs.joinmastodon.org/methods/trends/
      */
     public function trends(): TrendsProxy
     {

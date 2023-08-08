@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View follow suggestions (v2).
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\SuggestionResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/suggestions/#v2
  */
 final class V2Request extends \Vazaha\Mastodon\Requests\SuggestionRequest implements RequestInterface
 {

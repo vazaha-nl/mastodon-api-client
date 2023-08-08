@@ -16,6 +16,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Get dimensional data.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\DimensionResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/dimensions/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\Admin\DimensionRequest implements RequestInterface
 {

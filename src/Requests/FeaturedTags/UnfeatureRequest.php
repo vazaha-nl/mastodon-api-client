@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Unfeature a tag.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyOrUnknownResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/featured_tags/#unfeature
  */
 final class UnfeatureRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {

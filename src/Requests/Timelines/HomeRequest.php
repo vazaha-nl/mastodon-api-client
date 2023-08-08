@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View home timeline.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/timelines/#home
  */
 final class HomeRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {

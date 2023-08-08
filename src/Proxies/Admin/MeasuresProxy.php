@@ -23,6 +23,8 @@ class MeasuresProxy extends Proxy
      * @param DateTimeInterface $end_at   The end date for the time period. If a time is provided, it will be ignored.
      *
      * @return \Vazaha\Mastodon\Results\Admin\MeasureResult<array-key,\Vazaha\Mastodon\Models\Admin\MeasureModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/measures/#get
      */
     public function get(
         array $keys,

@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Update media attachment.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\MediaAttachmentResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/media/#update
  */
 final class UpdateRequest extends \Vazaha\Mastodon\Requests\MediaAttachmentRequest implements RequestInterface
 {

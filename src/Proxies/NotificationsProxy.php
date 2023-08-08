@@ -22,6 +22,8 @@ class NotificationsProxy extends Proxy
 {
     /**
      * Dismiss all notifications.
+     *
+     * @see https://docs.joinmastodon.org/methods/notifications/#clear
      */
     public function clear(
     ): EmptyOrUnknownModel {
@@ -42,6 +44,8 @@ class NotificationsProxy extends Proxy
      * Dismiss a single notification.
      *
      * @param string $id the ID of the Notification in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/notifications/#dismiss
      */
     public function dismiss(
         string $id,
@@ -64,6 +68,8 @@ class NotificationsProxy extends Proxy
      * (REMOVED) Dismiss a single notification.
      *
      * @param string $id the ID of the notification in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/notifications/#dismiss-deprecated
      */
     public function dismissDeprecated(
         string $id,
@@ -94,6 +100,8 @@ class NotificationsProxy extends Proxy
      * @param ?string            $account_id    return only notifications received from the specified account
      *
      * @return \Vazaha\Mastodon\Results\NotificationResult<array-key,\Vazaha\Mastodon\Models\NotificationModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/notifications/#get
      */
     public function get(
         ?string $max_id = null,
@@ -123,6 +131,8 @@ class NotificationsProxy extends Proxy
      * Get a single notification.
      *
      * @param string $id the ID of the Notification in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/notifications/#get-one
      */
     public function getOne(
         string $id,

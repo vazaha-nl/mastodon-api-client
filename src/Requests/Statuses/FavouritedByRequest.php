@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * See who favourited a status.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/statuses/#favourited_by
  */
 final class FavouritedByRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {

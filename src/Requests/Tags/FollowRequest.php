@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Follow a hashtag.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\TagResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/tags/#follow
  */
 final class FollowRequest extends \Vazaha\Mastodon\Requests\TagRequest implements RequestInterface
 {

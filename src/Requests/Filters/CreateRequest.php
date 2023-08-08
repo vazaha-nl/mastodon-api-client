@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Create a filter.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\FilterResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/filters/#create
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\FilterRequest implements RequestInterface
 {

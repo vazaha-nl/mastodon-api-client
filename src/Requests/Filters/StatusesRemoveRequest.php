@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Remove a status from a filter group.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\FilterStatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/filters/#statuses-remove
  */
 final class StatusesRemoveRequest extends \Vazaha\Mastodon\Requests\FilterStatusRequest implements RequestInterface
 {

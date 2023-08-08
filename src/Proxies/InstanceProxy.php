@@ -29,6 +29,8 @@ class InstanceProxy extends Proxy
      * Weekly activity.
      *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/instance/#activity
      */
     public function activity(
     ): EmptyOrUnknownResult {
@@ -44,6 +46,8 @@ class InstanceProxy extends Proxy
      * View moderated servers.
      *
      * @return \Vazaha\Mastodon\Results\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\DomainBlockModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/instance/#domain_blocks
      */
     public function domainBlocks(
     ): DomainBlockResult {
@@ -57,6 +61,8 @@ class InstanceProxy extends Proxy
 
     /**
      * View extended description.
+     *
+     * @see https://docs.joinmastodon.org/methods/instance/#extended_description
      */
     public function extendedDescription(
     ): ExtendedDescriptionModel {
@@ -77,6 +83,8 @@ class InstanceProxy extends Proxy
      * List of connected domains.
      *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/instance/#peers
      */
     public function peers(
     ): EmptyOrUnknownResult {
@@ -92,6 +100,8 @@ class InstanceProxy extends Proxy
      * List of rules.
      *
      * @return \Vazaha\Mastodon\Results\RuleResult<array-key,\Vazaha\Mastodon\Models\RuleModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/instance/#rules
      */
     public function rules(
     ): RuleResult {
@@ -105,6 +115,8 @@ class InstanceProxy extends Proxy
 
     /**
      * (DEPRECATED) View server information (V1).
+     *
+     * @see https://docs.joinmastodon.org/methods/instance/#v1
      */
     public function v1(
     ): V1InstanceModel {
@@ -123,6 +135,8 @@ class InstanceProxy extends Proxy
 
     /**
      * View server information.
+     *
+     * @see https://docs.joinmastodon.org/methods/instance/#v2
      */
     public function v2(
     ): InstanceModel {

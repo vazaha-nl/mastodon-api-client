@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Mark a conversation as read.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ConversationResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/conversations/#read
  */
 final class ReadRequest extends \Vazaha\Mastodon\Requests\ConversationRequest implements RequestInterface
 {

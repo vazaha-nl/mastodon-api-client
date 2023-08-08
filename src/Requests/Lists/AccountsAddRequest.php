@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Add accounts to a list.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyOrUnknownResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/lists/#accounts-add
  */
 final class AccountsAddRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {

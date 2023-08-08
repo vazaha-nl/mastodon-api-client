@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Remove a filter.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyOrUnknownResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/filters/#delete-v1
  */
 final class DeleteV1Request extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {

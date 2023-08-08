@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View extended description.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ExtendedDescriptionResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/instance/#extended_description
  */
 final class ExtendedDescriptionRequest extends \Vazaha\Mastodon\Requests\ExtendedDescriptionRequest implements RequestInterface
 {

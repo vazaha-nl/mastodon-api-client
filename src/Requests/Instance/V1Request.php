@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * (DEPRECATED) View server information (V1).
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\V1\InstanceResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/instance/#v1
  */
 final class V1Request extends \Vazaha\Mastodon\Requests\V1\InstanceRequest implements RequestInterface
 {

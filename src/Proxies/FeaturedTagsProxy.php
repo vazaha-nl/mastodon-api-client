@@ -24,6 +24,8 @@ class FeaturedTagsProxy extends Proxy
      * Feature a tag.
      *
      * @param string $name the hashtag to be featured, without the hash sign
+     *
+     * @see https://docs.joinmastodon.org/methods/featured_tags/#feature
      */
     public function feature(
         string $name,
@@ -46,6 +48,8 @@ class FeaturedTagsProxy extends Proxy
      * View your featured tags.
      *
      * @return \Vazaha\Mastodon\Results\FeaturedTagResult<array-key,\Vazaha\Mastodon\Models\FeaturedTagModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/featured_tags/#get
      */
     public function get(
     ): FeaturedTagResult {
@@ -61,6 +65,8 @@ class FeaturedTagsProxy extends Proxy
      * View suggested tags to feature.
      *
      * @return \Vazaha\Mastodon\Results\TagResult<array-key,\Vazaha\Mastodon\Models\TagModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/featured_tags/#suggestions
      */
     public function suggestions(
     ): TagResult {
@@ -76,6 +82,8 @@ class FeaturedTagsProxy extends Proxy
      * Unfeature a tag.
      *
      * @param string $id the ID of the FeaturedTag in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/featured_tags/#unfeature
      */
     public function unfeature(
         string $id,

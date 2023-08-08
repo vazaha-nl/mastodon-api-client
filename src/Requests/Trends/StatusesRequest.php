@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View trending statuses.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/trends/#statuses
  */
 final class StatusesRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {

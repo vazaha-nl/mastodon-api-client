@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Unfeature account from profile.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\RelationshipResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#unpin
  */
 final class UnpinRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
 {

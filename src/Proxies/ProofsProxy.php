@@ -19,6 +19,8 @@ class ProofsProxy extends Proxy
      *
      * @param ?string $provider The identity provider to be looked up. Currently only supports `keybase` (case-sensitive).
      * @param ?string $username the username on the selected identity provider
+     *
+     * @see https://docs.joinmastodon.org/methods/proofs/#get
      */
     public function get(
         ?string $provider = null,

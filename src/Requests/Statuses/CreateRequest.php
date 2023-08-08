@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Post a new status.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/statuses/#create
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {

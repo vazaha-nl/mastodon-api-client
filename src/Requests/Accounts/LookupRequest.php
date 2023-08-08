@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Lookup account ID from Webfinger address.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#lookup
  */
 final class LookupRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {

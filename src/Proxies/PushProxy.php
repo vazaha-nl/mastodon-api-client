@@ -20,6 +20,8 @@ class PushProxy extends Proxy
 {
     /**
      * Subscribe to push notifications.
+     *
+     * @see https://docs.joinmastodon.org/methods/push/#create
      */
     public function create(
     ): WebPushSubscriptionModel {
@@ -38,6 +40,8 @@ class PushProxy extends Proxy
 
     /**
      * Remove current subscription.
+     *
+     * @see https://docs.joinmastodon.org/methods/push/#delete
      */
     public function delete(
     ): EmptyOrUnknownModel {
@@ -56,6 +60,8 @@ class PushProxy extends Proxy
 
     /**
      * Get current subscription.
+     *
+     * @see https://docs.joinmastodon.org/methods/push/#get
      */
     public function get(
     ): WebPushSubscriptionModel {
@@ -76,6 +82,8 @@ class PushProxy extends Proxy
      * Change types of notifications.
      *
      * @param ?string $policy specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users
+     *
+     * @see https://docs.joinmastodon.org/methods/push/#update
      */
     public function update(
         ?string $policy = null,

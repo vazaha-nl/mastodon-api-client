@@ -22,6 +22,8 @@ class TrendsProxy extends Proxy
      * View trending links.
      *
      * @return \Vazaha\Mastodon\Results\Trends\LinkResult<array-key,\Vazaha\Mastodon\Models\Trends\LinkModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/trends/#links
      */
     public function links(
     ): LinkResult {
@@ -37,6 +39,8 @@ class TrendsProxy extends Proxy
      * View trending statuses.
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/trends/#statuses
      */
     public function statuses(
     ): StatusResult {
@@ -52,6 +56,8 @@ class TrendsProxy extends Proxy
      * View trending tags.
      *
      * @return \Vazaha\Mastodon\Results\Admin\TagResult<array-key,\Vazaha\Mastodon\Models\Admin\TagModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/trends/#tags
      */
     public function tags(
     ): TagResult {

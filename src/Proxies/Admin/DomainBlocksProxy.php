@@ -30,6 +30,8 @@ class DomainBlocksProxy extends Proxy
      * @param ?string $private_comment a private note about this domain block, visible only to admins
      * @param ?string $public_comment  a public note about this domain block, optionally shown on the about page
      * @param ?bool   $obfuscate       Whether to partially censor the domain when shown in public. Defaults to false
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_blocks/#create
      */
     public function create(
         string $domain,
@@ -64,6 +66,8 @@ class DomainBlocksProxy extends Proxy
      * Remove a domain block.
      *
      * @param string $id the ID of the DomainAllow in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_blocks/#delete
      */
     public function delete(
         string $id,
@@ -88,6 +92,8 @@ class DomainBlocksProxy extends Proxy
      * @param ?int $limit Maximum number of results to return. Defaults to 100 blocks. Max 200 blocks.
      *
      * @return \Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainBlockModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_blocks/#get
      */
     public function get(
         ?int $limit = null,
@@ -105,6 +111,8 @@ class DomainBlocksProxy extends Proxy
      * Get a single blocked domain.
      *
      * @param string $id the ID of the DomainBlock in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_blocks/#get-one
      */
     public function getOne(
         string $id,
@@ -133,6 +141,8 @@ class DomainBlocksProxy extends Proxy
      * @param ?string $private_comment a private note about this domain block, visible only to admins
      * @param ?string $public_comment  a public note about this domain block, optionally shown on the about page
      * @param ?bool   $obfuscate       Whether to partially censor the domain when shown in public. Defaults to false
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_blocks/#update
      */
     public function update(
         string $id,

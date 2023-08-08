@@ -23,6 +23,8 @@ class DomainAllowsProxy extends Proxy
      * Allow a domain to federate.
      *
      * @param string $domain the domain to allow federation with
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_allows/#create
      */
     public function create(
         string $domain,
@@ -45,6 +47,8 @@ class DomainAllowsProxy extends Proxy
      * Delete an allowed domain.
      *
      * @param string $id the ID of the DomainAllow in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_allows/#delete
      */
     public function delete(
         string $id,
@@ -69,6 +73,8 @@ class DomainAllowsProxy extends Proxy
      * @param ?int $limit Maximum number of results to return. Defaults to 100 allows. Max 200 allows.
      *
      * @return \Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainAllowModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_allows/#get
      */
     public function get(
         ?int $limit = null,
@@ -86,6 +92,8 @@ class DomainAllowsProxy extends Proxy
      * Get a single allowed domain.
      *
      * @param string $id the ID of the DomainAllow in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_allows/#get-one
      */
     public function getOne(
         string $id,

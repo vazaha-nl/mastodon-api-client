@@ -45,6 +45,7 @@ class RequestClassTemplate extends ClassTemplate
             'requestClassName' => $requestClassName,
             'resultClassName' => $resultClassName,
             'allParams' => $this->getAllParams(),
+            'url' => $this->methodSpec['url'] ?? '',
         ];
     }
 

@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * (DEPRECATED) View direct timeline.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/timelines/#direct
  */
 final class DirectRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {

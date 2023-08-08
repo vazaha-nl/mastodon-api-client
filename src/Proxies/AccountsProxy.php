@@ -51,6 +51,8 @@ class AccountsProxy extends Proxy
      * Block account.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#block
      */
     public function block(
         string $id,
@@ -78,6 +80,8 @@ class AccountsProxy extends Proxy
      * @param bool    $agreement Whether the user agrees to the local rules, terms, and policies. These should be presented to the user in order to allow them to consent before setting this parameter to TRUE.
      * @param string  $locale    the language of the confirmation email that will be sent
      * @param ?string $reason    if registrations require manual approval, this text will be reviewed by moderators
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#create
      */
     public function create(
         string $username,
@@ -112,6 +116,8 @@ class AccountsProxy extends Proxy
      * @param null|array<string> $id find familiar followers for the provided account IDs
      *
      * @return \Vazaha\Mastodon\Results\FamiliarFollowersResult<array-key,\Vazaha\Mastodon\Models\FamiliarFollowersModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#familiar_followers
      */
     public function familiarFollowers(
         ?array $id = null,
@@ -131,6 +137,8 @@ class AccountsProxy extends Proxy
      * @param string $id the ID of the Account in the database
      *
      * @return \Vazaha\Mastodon\Results\FeaturedTagResult<array-key,\Vazaha\Mastodon\Models\FeaturedTagModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#featured_tags
      */
     public function featuredTags(
         string $id,
@@ -151,6 +159,8 @@ class AccountsProxy extends Proxy
      * @param ?bool              $reblogs   receive this account's reblogs in home timeline? Defaults to true
      * @param ?bool              $notify    receive notifications when this account posts a status? Defaults to false
      * @param null|array<string> $languages Filter received statuses for these languages. If not provided, you will receive this account's posts in all languages.
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#follow
      */
     public function follow(
         string $id,
@@ -182,6 +192,8 @@ class AccountsProxy extends Proxy
      * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
      * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#followers
      */
     public function followers(
         string $id,
@@ -204,6 +216,8 @@ class AccountsProxy extends Proxy
      * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
      * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#following
      */
     public function following(
         string $id,
@@ -223,6 +237,8 @@ class AccountsProxy extends Proxy
      * Get account.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#get
      */
     public function get(
         string $id,
@@ -247,6 +263,8 @@ class AccountsProxy extends Proxy
      * @param string $id the ID of the Account in the database
      *
      * @return \Vazaha\Mastodon\Results\IdentityProofResult<array-key,\Vazaha\Mastodon\Models\IdentityProofModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#identity_proofs
      */
     public function identityProofs(
         string $id,
@@ -266,6 +284,8 @@ class AccountsProxy extends Proxy
      * @param string $id the ID of the Account in the database
      *
      * @return \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#lists
      */
     public function lists(
         string $id,
@@ -283,6 +303,8 @@ class AccountsProxy extends Proxy
      * Lookup account ID from Webfinger address.
      *
      * @param string $acct the username or Webfinger address to lookup
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#lookup
      */
     public function lookup(
         string $acct,
@@ -307,6 +329,8 @@ class AccountsProxy extends Proxy
      * @param string $id            the ID of the Account in the database
      * @param ?bool  $notifications mute notifications in addition to statuses? Defaults to true
      * @param ?int   $duration      How long the mute should last, in seconds. Defaults to 0 (indefinite).
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#mute
      */
     public function mute(
         string $id,
@@ -334,6 +358,8 @@ class AccountsProxy extends Proxy
      *
      * @param string  $id      the ID of the Account in the database
      * @param ?string $comment The comment to be set on that user. Provide an empty string or leave out this parameter to clear the currently set note.
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#note
      */
     public function note(
         string $id,
@@ -358,6 +384,8 @@ class AccountsProxy extends Proxy
      * Feature account on your profile.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#pin
      */
     public function pin(
         string $id,
@@ -382,6 +410,8 @@ class AccountsProxy extends Proxy
      * @param null|mixed[] $id check relationships for the provided account IDs
      *
      * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#relationships
      */
     public function relationships(
         ?array $id = null,
@@ -399,6 +429,8 @@ class AccountsProxy extends Proxy
      * Remove account from followers.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#remove_from_followers
      */
     public function removeFromFollowers(
         string $id,
@@ -427,6 +459,8 @@ class AccountsProxy extends Proxy
      * @param ?bool  $following Limit the search to users you are following. Defaults to false.
      *
      * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#search
      */
     public function search(
         string $q,
@@ -463,6 +497,8 @@ class AccountsProxy extends Proxy
      * @param ?string $tagged          filter for statuses using a specific hashtag
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#statuses
      */
     public function statuses(
         string $id,
@@ -498,6 +534,8 @@ class AccountsProxy extends Proxy
      * Unblock account.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#unblock
      */
     public function unblock(
         string $id,
@@ -520,6 +558,8 @@ class AccountsProxy extends Proxy
      * Unfollow account.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#unfollow
      */
     public function unfollow(
         string $id,
@@ -542,6 +582,8 @@ class AccountsProxy extends Proxy
      * Unmute account.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#unmute
      */
     public function unmute(
         string $id,
@@ -564,6 +606,8 @@ class AccountsProxy extends Proxy
      * Unfeature account from profile.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#unpin
      */
     public function unpin(
         string $id,
@@ -593,6 +637,8 @@ class AccountsProxy extends Proxy
      * @param ?bool        $bot               whether the account has a bot flag
      * @param ?bool        $discoverable      whether the account should be shown in the profile directory
      * @param null|mixed[] $fields_attributes The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields.
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#update_credentials
      */
     public function updateCredentials(
         ?string $display_name = null,
@@ -627,6 +673,8 @@ class AccountsProxy extends Proxy
 
     /**
      * Verify account credentials.
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#verify_credentials
      */
     public function verifyCredentials(
     ): CredentialAccountModel {

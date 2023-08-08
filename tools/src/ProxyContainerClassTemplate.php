@@ -60,6 +60,7 @@ class ProxyContainerClassTemplate extends ClassTemplate
                     'name' => $name,
                     'className' => $className,
                     'description' => $spec['description'] ?? '',
+                    'url' => $spec['url'] ?? '',
                 ];
             })
             ->sortBy('name')

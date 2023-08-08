@@ -16,6 +16,8 @@ class PreferencesProxy extends Proxy
 {
     /**
      * View user preferences.
+     *
+     * @see https://docs.joinmastodon.org/methods/preferences/#get
      */
     public function get(
     ): PreferencesModel {

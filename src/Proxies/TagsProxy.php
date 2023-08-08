@@ -20,6 +20,8 @@ class TagsProxy extends Proxy
      * Follow a hashtag.
      *
      * @param string $id the name of the hashtag
+     *
+     * @see https://docs.joinmastodon.org/methods/tags/#follow
      */
     public function follow(
         string $id,
@@ -42,6 +44,8 @@ class TagsProxy extends Proxy
      * View information about a single tag.
      *
      * @param string $id the name of the hashtag
+     *
+     * @see https://docs.joinmastodon.org/methods/tags/#get
      */
     public function get(
         string $id,
@@ -64,6 +68,8 @@ class TagsProxy extends Proxy
      * Unfollow a hashtag.
      *
      * @param string $id the name of the hashtag
+     *
+     * @see https://docs.joinmastodon.org/methods/tags/#unfollow
      */
     public function unfollow(
         string $id,

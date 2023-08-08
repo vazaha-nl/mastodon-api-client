@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Vote on a poll.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\PollResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/polls/#vote
  */
 final class VoteRequest extends \Vazaha\Mastodon\Requests\PollRequest implements RequestInterface
 {

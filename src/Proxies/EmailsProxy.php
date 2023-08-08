@@ -16,6 +16,8 @@ class EmailsProxy extends Proxy
 {
     /**
      * Resend confirmation email.
+     *
+     * @see https://docs.joinmastodon.org/methods/emails/#confirmation
      */
     public function confirmation(
     ): EmptyOrUnknownModel {

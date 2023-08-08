@@ -23,6 +23,8 @@ class ReportsProxy extends Proxy
      * @param ?bool              $forward    if the account is remote, should the report be forwarded to the remote admin? Defaults to false
      * @param ?string            $category   Specify if the report is due to `spam`, `violation` of enumerated instance rules, or some `other` reason. Defaults to `other`. Will be set to `violation` if `rule_ids[]` is provided (regardless of any category value you provide).
      * @param null|array<int>    $rule_ids   For `violation` category reports, specify the ID of the exact rules broken. Rules and their IDs are available via [GET /api/v1/instance/rules]({{< relref "methods/instance#rules" >}}) and [GET /api/v1/instance]({{< relref "methods/instance#get" >}}).
+     *
+     * @see https://docs.joinmastodon.org/methods/reports/#post
      */
     public function post(
         string $account_id,

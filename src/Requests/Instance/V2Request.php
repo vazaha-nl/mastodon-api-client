@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View server information.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\InstanceResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/instance/#v2
  */
 final class V2Request extends \Vazaha\Mastodon\Requests\InstanceRequest implements RequestInterface
 {

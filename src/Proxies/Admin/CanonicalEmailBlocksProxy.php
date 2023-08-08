@@ -25,6 +25,8 @@ class CanonicalEmailBlocksProxy extends Proxy
      *
      * @param string  $email                The email to canonicalize, hash, and block. If this parameter is provided, `canonical_email_hash` will be ignored.
      * @param ?string $canonical_email_hash The hash to test against. If `email` is not provided, this parameter is required.
+     *
+     * @see https://docs.joinmastodon.org/methods/canonical_email_blocks/#create
      */
     public function create(
         string $email,
@@ -49,6 +51,8 @@ class CanonicalEmailBlocksProxy extends Proxy
      * Delete a canonical email block.
      *
      * @param string $id the ID of the Admin::CanonicalEmailBlock in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/canonical_email_blocks/#delete
      */
     public function delete(
         string $id,
@@ -73,6 +77,8 @@ class CanonicalEmailBlocksProxy extends Proxy
      * @param ?int $limit Maximum number of results to return. Defaults to 100 blocks. Max 200 blocks.
      *
      * @return \Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/canonical_email_blocks/#get
      */
     public function get(
         ?int $limit = null,
@@ -90,6 +96,8 @@ class CanonicalEmailBlocksProxy extends Proxy
      * Show a single canonical email block.
      *
      * @param string $id the ID of the Admin::CanonicalEmailBlock in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/canonical_email_blocks/#get-one
      */
     public function getOne(
         string $id,
@@ -114,6 +122,8 @@ class CanonicalEmailBlocksProxy extends Proxy
      * @param string $email the email to canonicalize and hash
      *
      * @return \Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/canonical_email_blocks/#test
      */
     public function test(
         string $email,

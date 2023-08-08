@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View scheduled statuses.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ScheduledStatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\ScheduledStatusRequest implements RequestInterface
 {

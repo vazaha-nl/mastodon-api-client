@@ -26,6 +26,8 @@ class TimelinesProxy extends Proxy
      * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/timelines/#direct
      */
     public function direct(
         ?string $max_id = null,
@@ -54,6 +56,8 @@ class TimelinesProxy extends Proxy
      * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/timelines/#home
      */
     public function home(
         ?string $max_id = null,
@@ -83,6 +87,8 @@ class TimelinesProxy extends Proxy
      * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/timelines/#list
      */
     public function list(
         string $list_id,
@@ -116,6 +122,8 @@ class TimelinesProxy extends Proxy
      * @param ?int    $limit      Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/timelines/#public
      */
     public function public(
         ?bool $local = null,
@@ -157,6 +165,8 @@ class TimelinesProxy extends Proxy
      * @param ?int               $limit      Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/timelines/#tag
      */
     public function tag(
         string $hashtag,

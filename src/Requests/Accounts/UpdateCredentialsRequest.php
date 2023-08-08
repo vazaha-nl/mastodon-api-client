@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Update account credentials.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#update_credentials
  */
 final class UpdateCredentialsRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {

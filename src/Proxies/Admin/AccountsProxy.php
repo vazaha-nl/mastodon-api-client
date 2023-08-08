@@ -36,6 +36,8 @@ class AccountsProxy extends Proxy
      * @param ?string $warning_preset_id       the ID of a preset warning
      * @param ?string $text                    additional clarification for why this action was taken
      * @param ?bool   $send_email_notification Should an email be sent to the user with the above information?
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#action
      */
     public function action(
         string $id,
@@ -68,6 +70,8 @@ class AccountsProxy extends Proxy
      * Approve a pending account.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#approve
      */
     public function approve(
         string $id,
@@ -90,6 +94,8 @@ class AccountsProxy extends Proxy
      * Delete an account.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#delete
      */
     public function delete(
         string $id,
@@ -112,6 +118,8 @@ class AccountsProxy extends Proxy
      * Enable a currently disabled account.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#enable
      */
     public function enable(
         string $id,
@@ -134,6 +142,8 @@ class AccountsProxy extends Proxy
      * View a specific account.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#get-one
      */
     public function getOne(
         string $id,
@@ -156,6 +166,8 @@ class AccountsProxy extends Proxy
      * Reject a pending account.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#reject
      */
     public function reject(
         string $id,
@@ -178,6 +190,8 @@ class AccountsProxy extends Proxy
      * Unmark an account as sensitive.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#unsensitive
      */
     public function unsensitive(
         string $id,
@@ -200,6 +214,8 @@ class AccountsProxy extends Proxy
      * Unsilence an account.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#unsilence
      */
     public function unsilence(
         string $id,
@@ -222,6 +238,8 @@ class AccountsProxy extends Proxy
      * Unsuspend an account.
      *
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#unsuspend
      */
     public function unsuspend(
         string $id,
@@ -263,6 +281,8 @@ class AccountsProxy extends Proxy
      * @param ?int    $limit        Maximum number of results to return. Defaults to 100 accounts. Max 200 accounts.
      *
      * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#v1
      */
     public function v1(
         ?bool $local = null,
@@ -329,6 +349,8 @@ class AccountsProxy extends Proxy
      * @param ?int               $limit        Maximum number of results to return. Defaults to 100 accounts. Max 200 accounts.
      *
      * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#v2
      */
     public function v2(
         ?string $origin = null,

@@ -11,9 +11,9 @@ namespace Vazaha\Mastodon\Proxies;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Models\FilterKeywordModel;
-use Vazaha\Mastodon\Models\FilterModel;
+use Vazaha\Mastodon\Models\FilterModel as ModelsFilterModel;
 use Vazaha\Mastodon\Models\FilterStatusModel;
-use Vazaha\Mastodon\Models\V1\FilterModel as V1FilterModel;
+use Vazaha\Mastodon\Models\V1\FilterModel;
 use Vazaha\Mastodon\Requests\Filters\CreateRequest;
 use Vazaha\Mastodon\Requests\Filters\CreateV1Request;
 use Vazaha\Mastodon\Requests\Filters\DeleteRequest;
@@ -34,9 +34,9 @@ use Vazaha\Mastodon\Requests\Filters\StatusesRemoveRequest;
 use Vazaha\Mastodon\Requests\Filters\UpdateRequest;
 use Vazaha\Mastodon\Requests\Filters\UpdateV1Request;
 use Vazaha\Mastodon\Results\FilterKeywordResult;
-use Vazaha\Mastodon\Results\FilterResult;
+use Vazaha\Mastodon\Results\FilterResult as ResultsFilterResult;
 use Vazaha\Mastodon\Results\FilterStatusResult;
-use Vazaha\Mastodon\Results\V1\FilterResult as V1FilterResult;
+use Vazaha\Mastodon\Results\V1\FilterResult;
 
 class FiltersProxy extends Proxy
 {
@@ -47,13 +47,15 @@ class FiltersProxy extends Proxy
      * @param array<string> $context       Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
      * @param ?string       $filter_action The policy to be applied when the filter is matched. Specify `warn` or `hide`.
      * @param ?int          $expires_in    How many seconds from now should the filter expire?
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#create
      */
     public function create(
         string $title,
         array $context,
         ?string $filter_action = null,
         ?int $expires_in = null,
-    ): FilterModel {
+    ): ModelsFilterModel {
         $result = $this->apiClient->send(new CreateRequest(
             $title,
             $context,
@@ -79,6 +81,8 @@ class FiltersProxy extends Proxy
      * @param ?bool         $irreversible should the server irreversibly drop matching entities from home and notifications? Defaults to false
      * @param ?bool         $whole_word   should the filter consider word boundaries for this keyword? Defaults to false
      * @param ?int          $expires_in   Number of seconds from now that the filter should expire. Otherwise, `null` for a filter that doesn't expire.
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#create-v1
      */
     public function createV1(
         string $phrase,
@@ -86,7 +90,7 @@ class FiltersProxy extends Proxy
         ?bool $irreversible = null,
         ?bool $whole_word = null,
         ?int $expires_in = null,
-    ): V1FilterModel {
+    ): FilterModel {
         $result = $this->apiClient->send(new CreateV1Request(
             $phrase,
             $context,
@@ -109,6 +113,8 @@ class FiltersProxy extends Proxy
      * Delete a filter.
      *
      * @param string $id the ID of the Filter in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#delete
      */
     public function delete(
         string $id,
@@ -131,6 +137,8 @@ class FiltersProxy extends Proxy
      * Remove a filter.
      *
      * @param string $id the ID of the Filter in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#delete-v1
      */
     public function deleteV1(
         string $id,
@@ -153,9 +161,11 @@ class FiltersProxy extends Proxy
      * View all filters.
      *
      * @return \Vazaha\Mastodon\Results\FilterResult<array-key,\Vazaha\Mastodon\Models\FilterModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#get
      */
     public function get(
-    ): FilterResult {
+    ): ResultsFilterResult {
         /** @var \Vazaha\Mastodon\Results\FilterResult<array-key,\Vazaha\Mastodon\Models\FilterModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
@@ -168,10 +178,12 @@ class FiltersProxy extends Proxy
      * View a specific filter.
      *
      * @param string $id the ID of the Filter in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#get-one
      */
     public function getOne(
         string $id,
-    ): FilterModel {
+    ): ModelsFilterModel {
         $result = $this->apiClient->send(new GetOneRequest(
             $id,
         ));
@@ -190,10 +202,12 @@ class FiltersProxy extends Proxy
      * View a single filter.
      *
      * @param string $id the ID of the FilterKeyword in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#get-one-v1
      */
     public function getOneV1(
         string $id,
-    ): V1FilterModel {
+    ): FilterModel {
         $result = $this->apiClient->send(new GetOneV1Request(
             $id,
         ));
@@ -212,9 +226,11 @@ class FiltersProxy extends Proxy
      * View your filters.
      *
      * @return \Vazaha\Mastodon\Results\V1\FilterResult<array-key,\Vazaha\Mastodon\Models\V1\FilterModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#get-v1
      */
     public function getV1(
-    ): V1FilterResult {
+    ): FilterResult {
         /** @var \Vazaha\Mastodon\Results\V1\FilterResult<array-key,\Vazaha\Mastodon\Models\V1\FilterModel> */
         $models = $this->apiClient
             ->send(new GetV1Request(
@@ -229,6 +245,8 @@ class FiltersProxy extends Proxy
      * @param string $filter_id  the ID of the Filter in the database
      * @param string $keyword    the keyword to be added to the filter group
      * @param ?bool  $whole_word whether the keyword should consider word boundaries
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#keywords-create
      */
     public function keywordsCreate(
         string $filter_id,
@@ -255,6 +273,8 @@ class FiltersProxy extends Proxy
      * Remove keywords from a filter.
      *
      * @param string $id the ID of the FilterKeyword in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#keywords-delete
      */
     public function keywordsDelete(
         string $id,
@@ -279,6 +299,8 @@ class FiltersProxy extends Proxy
      * @param string $filter_id the ID of the Filter in the database
      *
      * @return \Vazaha\Mastodon\Results\FilterKeywordResult<array-key,\Vazaha\Mastodon\Models\FilterKeywordModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#keywords-get
      */
     public function keywordsGet(
         string $filter_id,
@@ -296,6 +318,8 @@ class FiltersProxy extends Proxy
      * View a single keyword.
      *
      * @param string $id the ID of the FilterKeyword in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#keywords-get-one
      */
     public function keywordsGetOne(
         string $id,
@@ -320,6 +344,8 @@ class FiltersProxy extends Proxy
      * @param string $id         the ID of the FilterKeyword in the database
      * @param string $keyword    the keyword to be added to the filter group
      * @param ?bool  $whole_word whether the keyword should consider word boundaries
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#keywords-update
      */
     public function keywordsUpdate(
         string $id,
@@ -346,6 +372,8 @@ class FiltersProxy extends Proxy
      * Add a status to a filter group.
      *
      * @param string $filter_id the ID of the Filter in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#statuses-add
      */
     public function statusesAdd(
         string $filter_id,
@@ -370,6 +398,8 @@ class FiltersProxy extends Proxy
      * @param string $filter_id the ID of the Filter in the database
      *
      * @return \Vazaha\Mastodon\Results\FilterStatusResult<array-key,\Vazaha\Mastodon\Models\FilterStatusModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#statuses-get
      */
     public function statusesGet(
         string $filter_id,
@@ -387,6 +417,8 @@ class FiltersProxy extends Proxy
      * View a single status filter.
      *
      * @param string $id the ID of the FilterStatus in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#statuses-get-one
      */
     public function statusesGetOne(
         string $id,
@@ -409,6 +441,8 @@ class FiltersProxy extends Proxy
      * Remove a status from a filter group.
      *
      * @param string $id the ID of the FilterStatus in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#statuses-remove
      */
     public function statusesRemove(
         string $id,
@@ -435,6 +469,8 @@ class FiltersProxy extends Proxy
      * @param null|array<string> $context       Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
      * @param ?string            $filter_action The policy to be applied when the filter is matched. Specify `warn` or `hide`.
      * @param ?int               $expires_in    How many seconds from now should the filter expire?
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#update
      */
     public function update(
         string $id,
@@ -442,7 +478,7 @@ class FiltersProxy extends Proxy
         ?array $context = null,
         ?string $filter_action = null,
         ?int $expires_in = null,
-    ): FilterModel {
+    ): ModelsFilterModel {
         $result = $this->apiClient->send(new UpdateRequest(
             $id,
             $title,
@@ -470,6 +506,8 @@ class FiltersProxy extends Proxy
      * @param ?bool         $irreversible should the server irreversibly drop matching entities from home and notifications? Defaults to false
      * @param ?bool         $whole_word   should the filter consider word boundaries? Defaults to false
      * @param ?int          $expires_in   Number of seconds from now that the filter should expire. Otherwise, `null` for a filter that doesn't expire.
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#update-v1
      */
     public function updateV1(
         string $id,
@@ -478,7 +516,7 @@ class FiltersProxy extends Proxy
         ?bool $irreversible = null,
         ?bool $whole_word = null,
         ?int $expires_in = null,
-    ): V1FilterModel {
+    ): FilterModel {
         $result = $this->apiClient->send(new UpdateV1Request(
             $id,
             $phrase,

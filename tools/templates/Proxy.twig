@@ -28,6 +28,10 @@ class {{ classname }} extends Proxy
 {% else %}
  * @return \{{ method.modelClass.getFQN() }}
 {% endif %}
+ *
+{% if method.url %}
+ * @see {{ method.url }}
+{% endif %}
  */
     public function {{ method.name }}(
 {% for property in method.allParams %}

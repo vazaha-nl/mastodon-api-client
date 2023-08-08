@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View all followed tags.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\TagResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/followed_tags/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\TagRequest implements RequestInterface
 {

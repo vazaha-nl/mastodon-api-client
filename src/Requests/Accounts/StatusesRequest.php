@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Get account&#039;s statuses.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#statuses
  */
 final class StatusesRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {

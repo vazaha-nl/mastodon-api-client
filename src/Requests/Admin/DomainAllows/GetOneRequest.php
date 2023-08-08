@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Get a single allowed domain.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\DomainAllowResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/domain_allows/#get-one
  */
 final class GetOneRequest extends \Vazaha\Mastodon\Requests\Admin\DomainAllowRequest implements RequestInterface
 {

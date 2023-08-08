@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * (REMOVED) Search results (v1).
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\SearchResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/search/#v1
  */
 final class V1Request extends \Vazaha\Mastodon\Requests\SearchRequest implements RequestInterface
 {

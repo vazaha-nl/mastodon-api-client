@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Unmute a conversation.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/statuses/#unmute
  */
 final class UnmuteRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {

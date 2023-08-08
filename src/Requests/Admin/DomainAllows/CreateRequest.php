@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Allow a domain to federate.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\DomainAllowResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/domain_allows/#create
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\Admin\DomainAllowRequest implements RequestInterface
 {

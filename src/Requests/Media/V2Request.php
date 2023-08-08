@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Upload media as an attachment (async).
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\MediaAttachmentResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/media/#v2
  */
 final class V2Request extends \Vazaha\Mastodon\Requests\MediaAttachmentRequest implements RequestInterface
 {

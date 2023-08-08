@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * (DEPRECATED) Identity proofs.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\IdentityProofResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#identity_proofs
  */
 final class IdentityProofsRequest extends \Vazaha\Mastodon\Requests\IdentityProofRequest implements RequestInterface
 {

@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Get a single notification.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\NotificationResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/notifications/#get-one
  */
 final class GetOneRequest extends \Vazaha\Mastodon\Requests\NotificationRequest implements RequestInterface
 {

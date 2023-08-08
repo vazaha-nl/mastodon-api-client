@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View trending tags.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\TagResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/trends/#tags
  */
 final class TagsRequest extends \Vazaha\Mastodon\Requests\TagRequest implements RequestInterface
 {

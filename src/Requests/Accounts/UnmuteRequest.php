@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Unmute account.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\RelationshipResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#unmute
  */
 final class UnmuteRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
 {

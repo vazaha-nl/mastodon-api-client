@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Pin status to profile.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/statuses/#pin
  */
 final class PinRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {

@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * List all allowed domains.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\DomainAllowResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/domain_allows/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\Admin\DomainAllowRequest implements RequestInterface
 {

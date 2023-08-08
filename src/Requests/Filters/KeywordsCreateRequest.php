@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Add a keyword to a filter.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\FilterKeywordResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/filters/#keywords-create
  */
 final class KeywordsCreateRequest extends \Vazaha\Mastodon\Requests\FilterKeywordRequest implements RequestInterface
 {

@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * (DEPRECATED) View follow suggestions (v1).
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/suggestions/#v1
  */
 final class V1Request extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {

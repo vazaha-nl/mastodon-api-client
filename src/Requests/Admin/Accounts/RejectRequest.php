@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Reject a pending account.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#reject
  */
 final class RejectRequest extends \Vazaha\Mastodon\Requests\Admin\AccountRequest implements RequestInterface
 {

@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Mute account.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\RelationshipResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#mute
  */
 final class MuteRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
 {

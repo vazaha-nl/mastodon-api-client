@@ -16,6 +16,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Get measurable data.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\MeasureResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/measures/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\Admin\MeasureRequest implements RequestInterface
 {

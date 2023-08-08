@@ -30,6 +30,8 @@ class ListsProxy extends Proxy
      * @param ?int   $limit Maximum number of results. Defaults to 40 accounts. Max 80 accounts. Set to 0 in order to get all accounts without pagination.
      *
      * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/lists/#accounts
      */
     public function accounts(
         string $id,
@@ -50,6 +52,8 @@ class ListsProxy extends Proxy
      *
      * @param string        $id          the ID of the List in the database
      * @param array<string> $account_ids the accounts that should be added to the list
+     *
+     * @see https://docs.joinmastodon.org/methods/lists/#accounts-add
      */
     public function accountsAdd(
         string $id,
@@ -75,6 +79,8 @@ class ListsProxy extends Proxy
      *
      * @param string        $id          the ID of the List in the database
      * @param array<string> $account_ids the accounts that should be removed from the list
+     *
+     * @see https://docs.joinmastodon.org/methods/lists/#accounts-remove
      */
     public function accountsRemove(
         string $id,
@@ -102,6 +108,8 @@ class ListsProxy extends Proxy
      * @param ?string $replies_policy One of `followed`, `list`, or `none`. Defaults to `list`.
      *
      * @return \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/lists/#create
      */
     public function create(
         string $title,
@@ -121,6 +129,8 @@ class ListsProxy extends Proxy
      * Delete a list.
      *
      * @param string $id the ID of the List in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/lists/#delete
      */
     public function delete(
         string $id,
@@ -143,6 +153,8 @@ class ListsProxy extends Proxy
      * View your lists.
      *
      * @return \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/lists/#get
      */
     public function get(
     ): ListResult {
@@ -160,6 +172,8 @@ class ListsProxy extends Proxy
      * @param string $id the ID of the List in the database
      *
      * @return \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/lists/#get-one
      */
     public function getOne(
         string $id,
@@ -181,6 +195,8 @@ class ListsProxy extends Proxy
      * @param ?string $replies_policy One of `followed`, `list`, or `none`. Defaults to `list`.
      *
      * @return \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/lists/#update
      */
     public function update(
         string $id,

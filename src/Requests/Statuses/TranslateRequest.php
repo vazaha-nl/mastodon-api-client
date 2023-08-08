@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Translate a status.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\TranslationResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/statuses/#translate
  */
 final class TranslateRequest extends \Vazaha\Mastodon\Requests\TranslationRequest implements RequestInterface
 {

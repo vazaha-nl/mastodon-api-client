@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Get lists containing this account.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ListResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#lists
  */
 final class ListsRequest extends \Vazaha\Mastodon\Requests\ListRequest implements RequestInterface
 {

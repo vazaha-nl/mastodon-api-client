@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View user preferences.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\PreferencesResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/preferences/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\PreferencesRequest implements RequestInterface
 {

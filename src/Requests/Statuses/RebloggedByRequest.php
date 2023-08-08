@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * See who boosted a status.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/statuses/#reblogged_by
  */
 final class RebloggedByRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {

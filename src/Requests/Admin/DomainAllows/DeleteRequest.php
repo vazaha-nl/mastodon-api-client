@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Delete an allowed domain.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\DomainAllowResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/domain_allows/#delete
  */
 final class DeleteRequest extends \Vazaha\Mastodon\Requests\Admin\DomainAllowRequest implements RequestInterface
 {

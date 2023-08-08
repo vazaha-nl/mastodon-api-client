@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Verify account credentials.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\CredentialAccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#verify_credentials
  */
 final class VerifyCredentialsRequest extends \Vazaha\Mastodon\Requests\CredentialAccountRequest implements RequestInterface
 {

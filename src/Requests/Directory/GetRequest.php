@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View profile directory.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/directory/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {

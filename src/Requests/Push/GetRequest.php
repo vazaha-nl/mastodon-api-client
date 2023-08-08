@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Get current subscription.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\WebPushSubscriptionResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/push/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\WebPushSubscriptionRequest implements RequestInterface
 {

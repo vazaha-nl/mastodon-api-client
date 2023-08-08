@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * File a report.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ReportResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/reports/#post
  */
 final class PostRequest extends \Vazaha\Mastodon\Requests\ReportRequest implements RequestInterface
 {

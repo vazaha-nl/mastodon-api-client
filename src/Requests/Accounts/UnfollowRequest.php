@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Unfollow account.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\RelationshipResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#unfollow
  */
 final class UnfollowRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
 {

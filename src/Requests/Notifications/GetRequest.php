@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Get all notifications.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\NotificationResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/notifications/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\NotificationRequest implements RequestInterface
 {

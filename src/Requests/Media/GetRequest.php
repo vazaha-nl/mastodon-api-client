@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Get media attachment.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\MediaAttachmentResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/media/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\MediaAttachmentRequest implements RequestInterface
 {

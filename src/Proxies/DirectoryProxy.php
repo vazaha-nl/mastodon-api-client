@@ -22,6 +22,8 @@ class DirectoryProxy extends Proxy
      * @param ?bool   $local  if true, returns only local accounts
      *
      * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/directory/#get
      */
     public function get(
         ?int $offset = null,

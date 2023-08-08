@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Unsilence an account.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#unsilence
  */
 final class UnsilenceRequest extends \Vazaha\Mastodon\Requests\Admin\AccountRequest implements RequestInterface
 {

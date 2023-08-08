@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View trending links.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Trends\LinkResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/trends/#links
  */
 final class LinksRequest extends \Vazaha\Mastodon\Requests\Trends\LinkRequest implements RequestInterface
 {

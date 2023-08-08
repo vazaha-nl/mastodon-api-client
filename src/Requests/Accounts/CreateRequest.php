@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Register an account.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\TokenResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#create
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\TokenRequest implements RequestInterface
 {

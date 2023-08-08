@@ -16,6 +16,8 @@ class StreamingProxy extends Proxy
 {
     /**
      * Check if the server is alive.
+     *
+     * @see https://docs.joinmastodon.org/methods/streaming/#health
      */
     public function health(
     ): EmptyOrUnknownModel {

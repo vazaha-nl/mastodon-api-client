@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Get account&#039;s following.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#following
  */
 final class FollowingRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {

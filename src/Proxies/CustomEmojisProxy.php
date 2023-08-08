@@ -17,6 +17,8 @@ class CustomEmojisProxy extends Proxy
      * View all custom emoji.
      *
      * @return \Vazaha\Mastodon\Results\CustomEmojiResult<array-key,\Vazaha\Mastodon\Models\CustomEmojiModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/custom_emojis/#get
      */
     public function get(
     ): CustomEmojiResult {

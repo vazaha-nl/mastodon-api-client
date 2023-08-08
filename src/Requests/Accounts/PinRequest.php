@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Feature account on your profile.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\RelationshipResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#pin
  */
 final class PinRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
 {

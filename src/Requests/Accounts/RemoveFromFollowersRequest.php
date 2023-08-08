@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Remove account from followers.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\RelationshipResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#remove_from_followers
  */
 final class RemoveFromFollowersRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
 {

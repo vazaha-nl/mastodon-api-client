@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Obtain a token.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\TokenResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/oauth/#token
  */
 final class TokenRequest extends \Vazaha\Mastodon\Requests\TokenRequest implements RequestInterface
 {

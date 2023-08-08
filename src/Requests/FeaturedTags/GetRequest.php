@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View your featured tags.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\FeaturedTagResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/featured_tags/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\FeaturedTagRequest implements RequestInterface
 {

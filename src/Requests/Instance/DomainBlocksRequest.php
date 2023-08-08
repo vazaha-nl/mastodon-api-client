@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View moderated servers.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\DomainBlockResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/instance/#domain_blocks
  */
 final class DomainBlocksRequest extends \Vazaha\Mastodon\Requests\DomainBlockRequest implements RequestInterface
 {

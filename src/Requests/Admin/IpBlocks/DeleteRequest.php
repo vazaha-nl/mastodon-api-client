@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Delete an IP block.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\IpBlockResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/ip_blocks/#delete
  */
 final class DeleteRequest extends \Vazaha\Mastodon\Requests\Admin\IpBlockRequest implements RequestInterface
 {

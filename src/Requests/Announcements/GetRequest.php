@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View all announcements.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AnnouncementResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/announcements/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\AnnouncementRequest implements RequestInterface
 {

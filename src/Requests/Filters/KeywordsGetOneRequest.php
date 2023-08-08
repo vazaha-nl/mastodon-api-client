@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View a single keyword.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\FilterKeywordResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/filters/#keywords-get-one
  */
 final class KeywordsGetOneRequest extends \Vazaha\Mastodon\Requests\FilterKeywordRequest implements RequestInterface
 {

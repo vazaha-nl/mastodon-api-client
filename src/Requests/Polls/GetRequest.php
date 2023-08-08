@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View a poll.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\PollResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/polls/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\PollRequest implements RequestInterface
 {

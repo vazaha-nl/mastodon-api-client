@@ -27,6 +27,8 @@ class IpBlocksProxy extends Proxy
      * @param ?string $ip         The IP address and prefix to block. Defaults to `0.0.0.0/32`
      * @param ?string $comment    the reason for this IP block
      * @param ?int    $expires_in the number of seconds in which this IP block will expire
+     *
+     * @see https://docs.joinmastodon.org/methods/ip_blocks/#create
      */
     public function create(
         string $severity,
@@ -55,6 +57,8 @@ class IpBlocksProxy extends Proxy
      * Delete an IP block.
      *
      * @param string $id the ID of the DomainAllow in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/ip_blocks/#delete
      */
     public function delete(
         string $id,
@@ -79,6 +83,8 @@ class IpBlocksProxy extends Proxy
      * @param ?int $limit Maximum number of results to return. Defaults to 100 blocks. Max 200 blocks.
      *
      * @return \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\IpBlockModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/ip_blocks/#get
      */
     public function get(
         ?int $limit = null,
@@ -96,6 +102,8 @@ class IpBlocksProxy extends Proxy
      * Get a single IP block.
      *
      * @param string $id the ID of the IpBlock in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/ip_blocks/#get-one
      */
     public function getOne(
         string $id,
@@ -122,6 +130,8 @@ class IpBlocksProxy extends Proxy
      * @param ?string $severity   The policy to apply to this IP range: `sign_up_requires_approval`, `sign_up_block`, or `no_access`
      * @param ?string $comment    the reason for this IP block
      * @param ?int    $expires_in the number of seconds in which this IP block will expire
+     *
+     * @see https://docs.joinmastodon.org/methods/ip_blocks/#update
      */
     public function update(
         string $id,

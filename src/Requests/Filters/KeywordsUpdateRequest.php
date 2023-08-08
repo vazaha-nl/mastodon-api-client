@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Edit a keyword within a filter.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\FilterKeywordResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/filters/#keywords-update
  */
 final class KeywordsUpdateRequest extends \Vazaha\Mastodon\Requests\FilterKeywordRequest implements RequestInterface
 {

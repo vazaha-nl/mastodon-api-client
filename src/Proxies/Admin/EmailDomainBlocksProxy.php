@@ -23,6 +23,8 @@ class EmailDomainBlocksProxy extends Proxy
      * Block an email domain from signups.
      *
      * @param string $domain the domain to block federation with
+     *
+     * @see https://docs.joinmastodon.org/methods/email_domain_blocks/#create
      */
     public function create(
         string $domain,
@@ -45,6 +47,8 @@ class EmailDomainBlocksProxy extends Proxy
      * Delete an email domain block.
      *
      * @param string $id the ID of the DomainAllow in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/email_domain_blocks/#delete
      */
     public function delete(
         string $id,
@@ -69,6 +73,8 @@ class EmailDomainBlocksProxy extends Proxy
      * @param ?int $limit Maximum number of results to return. Defaults to 100 blocks. Max 200 blocks.
      *
      * @return \Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/email_domain_blocks/#get
      */
     public function get(
         ?int $limit = null,
@@ -86,6 +92,8 @@ class EmailDomainBlocksProxy extends Proxy
      * Get a single blocked email domain.
      *
      * @param string $id the ID of the DomainBlock in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/email_domain_blocks/#get-one
      */
     public function getOne(
         string $id,

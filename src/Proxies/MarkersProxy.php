@@ -17,6 +17,8 @@ class MarkersProxy extends Proxy
 {
     /**
      * Save your position in a timeline.
+     *
+     * @see https://docs.joinmastodon.org/methods/markers/#create
      */
     public function create(
     ): MarkerModel {
@@ -37,6 +39,8 @@ class MarkersProxy extends Proxy
      * Get saved timeline positions.
      *
      * @param null|array<string> $timeline Specify the timeline(s) for which markers should be fetched. Possible values: `home`, `notifications`. If not provided, an empty object will be returned.
+     *
+     * @see https://docs.joinmastodon.org/methods/markers/#get
      */
     public function get(
         ?array $timeline = null,

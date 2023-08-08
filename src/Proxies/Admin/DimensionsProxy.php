@@ -24,6 +24,8 @@ class DimensionsProxy extends Proxy
      * @param ?int               $limit    the maximum number of results to return for sources, servers, languages, tag or instance dimensions
      *
      * @return \Vazaha\Mastodon\Results\Admin\DimensionResult<array-key,\Vazaha\Mastodon\Models\Admin\DimensionModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/dimensions/#get
      */
     public function get(
         array $keys,

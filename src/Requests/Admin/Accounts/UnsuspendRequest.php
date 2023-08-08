@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Unsuspend an account.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#unsuspend
  */
 final class UnsuspendRequest extends \Vazaha\Mastodon\Requests\Admin\AccountRequest implements RequestInterface
 {

@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Save your position in a timeline.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\MarkerResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/markers/#create
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\MarkerRequest implements RequestInterface
 {

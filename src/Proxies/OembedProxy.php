@@ -20,6 +20,8 @@ class OembedProxy extends Proxy
      * @param string $url       URL of a status
      * @param ?int   $maxwidth  Width of the iframe. Defaults to 400
      * @param ?int   $maxheight Height of the iframe. Defaults to null
+     *
+     * @see https://docs.joinmastodon.org/methods/oembed/#get
      */
     public function get(
         string $url,

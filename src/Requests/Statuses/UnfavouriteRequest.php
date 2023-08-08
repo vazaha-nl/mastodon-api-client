@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Undo favourite of a status.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/statuses/#unfavourite
  */
 final class UnfavouriteRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {

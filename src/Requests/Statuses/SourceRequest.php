@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View status source.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusSourceResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/statuses/#source
  */
 final class SourceRequest extends \Vazaha\Mastodon\Requests\StatusSourceRequest implements RequestInterface
 {

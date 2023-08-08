@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Update a filter.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\V1\FilterResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/filters/#update-v1
  */
 final class UpdateV1Request extends \Vazaha\Mastodon\Requests\V1\FilterRequest implements RequestInterface
 {

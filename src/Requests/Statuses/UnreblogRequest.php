@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Undo boost of a status.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/statuses/#unreblog
  */
 final class UnreblogRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {

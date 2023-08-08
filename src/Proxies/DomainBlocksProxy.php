@@ -21,6 +21,8 @@ class DomainBlocksProxy extends Proxy
      * Block a domain.
      *
      * @param string $domain domain to block
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_blocks/#block
      */
     public function block(
         string $domain,
@@ -45,6 +47,8 @@ class DomainBlocksProxy extends Proxy
      * @param ?int $limit Maximum number of results to return. Defaults to 100 domain blocks. Max 200 domain blocks.
      *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_blocks/#get
      */
     public function get(
         ?int $limit = null,
@@ -62,6 +66,8 @@ class DomainBlocksProxy extends Proxy
      * Unblock a domain.
      *
      * @param string $domain domain to unblock
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_blocks/#unblock
      */
     public function unblock(
         string $domain,

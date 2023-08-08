@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View all reports.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\ReportResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/reports/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest implements RequestInterface
 {

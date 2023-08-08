@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View blocked users.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/blocks/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {

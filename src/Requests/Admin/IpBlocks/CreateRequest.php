@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Block an IP address range from signing up.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\IpBlockResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/ip_blocks/#create
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\Admin\IpBlockRequest implements RequestInterface
 {

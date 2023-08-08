@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View all status filters.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\FilterStatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/filters/#statuses-get
  */
 final class StatusesGetRequest extends \Vazaha\Mastodon\Requests\FilterStatusRequest implements RequestInterface
 {

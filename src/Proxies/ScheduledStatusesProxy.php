@@ -23,6 +23,8 @@ class ScheduledStatusesProxy extends Proxy
      * Cancel a scheduled status.
      *
      * @param string $id the ID of the ScheduledStatus in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#cancel
      */
     public function cancel(
         string $id,
@@ -50,6 +52,8 @@ class ScheduledStatusesProxy extends Proxy
      * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
      * @return \Vazaha\Mastodon\Results\ScheduledStatusResult<array-key,\Vazaha\Mastodon\Models\ScheduledStatusModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#get
      */
     public function get(
         ?string $max_id = null,
@@ -73,6 +77,8 @@ class ScheduledStatusesProxy extends Proxy
      * View a single scheduled status.
      *
      * @param string $id the ID of the ScheduledStatus in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#get-one
      */
     public function getOne(
         string $id,
@@ -96,6 +102,8 @@ class ScheduledStatusesProxy extends Proxy
      *
      * @param string  $id           the ID of the ScheduledStatus in the database
      * @param ?string $scheduled_at ISO 8601 Datetime at which the status will be published. Must be at least 5 minutes into the future.
+     *
+     * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#update
      */
     public function update(
         string $id,

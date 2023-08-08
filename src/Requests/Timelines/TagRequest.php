@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View hashtag timeline.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/timelines/#tag
  */
 final class TagRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {

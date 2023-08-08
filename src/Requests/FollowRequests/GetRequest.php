@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View pending follow requests.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/follow_requests/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {

@@ -23,6 +23,8 @@ class AnnouncementsProxy extends Proxy
      *
      * @param string $id   the ID of the Announcement in the database
      * @param string $name unicode emoji, or the shortcode of a custom emoji
+     *
+     * @see https://docs.joinmastodon.org/methods/announcements/#delete-reactions
      */
     public function deleteReactions(
         string $id,
@@ -47,6 +49,8 @@ class AnnouncementsProxy extends Proxy
      * Dismiss an announcement.
      *
      * @param string $id the ID of the Announcement in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/announcements/#dismiss
      */
     public function dismiss(
         string $id,
@@ -71,6 +75,8 @@ class AnnouncementsProxy extends Proxy
      * @param ?bool $with_dismissed If true, response will include announcements dismissed by the user. Defaults to false.
      *
      * @return \Vazaha\Mastodon\Results\AnnouncementResult<array-key,\Vazaha\Mastodon\Models\AnnouncementModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/announcements/#get
      */
     public function get(
         ?bool $with_dismissed = null,
@@ -89,6 +95,8 @@ class AnnouncementsProxy extends Proxy
      *
      * @param string $id   the ID of the Announcement in the database
      * @param string $name unicode emoji, or the shortcode of a custom emoji
+     *
+     * @see https://docs.joinmastodon.org/methods/announcements/#put-reactions
      */
     public function putReactions(
         string $id,

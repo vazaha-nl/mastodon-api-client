@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View all conversations.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ConversationResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/conversations/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\ConversationRequest implements RequestInterface
 {

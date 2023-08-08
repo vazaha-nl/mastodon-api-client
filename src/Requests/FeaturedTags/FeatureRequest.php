@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Feature a tag.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\FeaturedTagResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/featured_tags/#feature
  */
 final class FeatureRequest extends \Vazaha\Mastodon\Requests\FeaturedTagRequest implements RequestInterface
 {

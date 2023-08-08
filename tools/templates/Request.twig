@@ -16,6 +16,10 @@ namespace {{ namespace }};
  * {{ description }}
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\{{ resultClassName.getFQN() }}>
+ *
+{% if url %}
+ * @see {{ url }}
+{% endif %}
  */
 final class {{ classname }} extends \{{ requestClassName.getFQN() }} implements RequestInterface
 {

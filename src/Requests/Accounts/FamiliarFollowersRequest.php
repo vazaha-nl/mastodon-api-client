@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * Find familiar followers.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\FamiliarFollowersResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/accounts/#familiar_followers
  */
 final class FamiliarFollowersRequest extends \Vazaha\Mastodon\Requests\FamiliarFollowersRequest implements RequestInterface
 {

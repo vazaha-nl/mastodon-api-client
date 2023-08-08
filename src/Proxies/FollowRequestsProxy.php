@@ -21,6 +21,8 @@ class FollowRequestsProxy extends Proxy
      * Accept follow request.
      *
      * @param string $account_id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/follow_requests/#accept
      */
     public function accept(
         string $account_id,
@@ -45,6 +47,8 @@ class FollowRequestsProxy extends Proxy
      * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
      * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/follow_requests/#get
      */
     public function get(
         ?int $limit = null,
@@ -62,6 +66,8 @@ class FollowRequestsProxy extends Proxy
      * Reject follow request.
      *
      * @param string $account_id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/follow_requests/#reject
      */
     public function reject(
         string $account_id,

@@ -27,6 +27,10 @@ class {{ classname }} extends Proxy
     {% for proxy in proxies %}
     /**
      * {{ proxy.description | raw }}
+     *
+    {% if proxy.url %}
+     * @see {{ proxy.url }}
+    {% endif %}
      */
     public function {{ proxy.name }}(): {{ proxy.className.getBaseName() }}
     {

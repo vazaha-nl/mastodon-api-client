@@ -19,6 +19,8 @@ class PollsProxy extends Proxy
      * View a poll.
      *
      * @param string $id the ID of the Poll in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/polls/#get
      */
     public function get(
         string $id,
@@ -42,6 +44,8 @@ class PollsProxy extends Proxy
      *
      * @param string     $id      the ID of the Poll in the database
      * @param array<int> $choices provide your own votes as an index for each option (starting from 0)
+     *
+     * @see https://docs.joinmastodon.org/methods/polls/#vote
      */
     public function vote(
         string $id,

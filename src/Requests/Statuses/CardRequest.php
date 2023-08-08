@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * (DEPRECATED) Fetch preview card.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\PreviewCardResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/statuses/#card
  */
 final class CardRequest extends \Vazaha\Mastodon\Requests\PreviewCardRequest implements RequestInterface
 {

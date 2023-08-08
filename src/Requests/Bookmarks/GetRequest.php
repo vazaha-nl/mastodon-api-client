@@ -15,6 +15,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  * View bookmarked statuses.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/bookmarks/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {
