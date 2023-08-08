@@ -20,36 +20,20 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class ActionRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {
+    /**
+     * @param string  $id                      the ID of the Account in the database
+     * @param string  $type                    the type of action to be taken: `none`, `sensitive`, `disable`, `silence`, or `suspend`
+     * @param ?string $report_id               the ID of an associated report that caused this action to be taken
+     * @param ?string $warning_preset_id       the ID of a preset warning
+     * @param ?string $text                    additional clarification for why this action was taken
+     * @param ?bool   $send_email_notification Should an email be sent to the user with the above information?
+     */
     public function __construct(
-        /**
-         * The ID of the Account in the database.
-         */
         public string $id,
-
-        /**
-         * The type of action to be taken: `none`, `sensitive`, `disable`, `silence`,
-         * or `suspend`.
-         */
         public string $type,
-
-        /**
-         * The ID of an associated report that caused this action to be taken.
-         */
         public ?string $report_id = null,
-
-        /**
-         * The ID of a preset warning.
-         */
         public ?string $warning_preset_id = null,
-
-        /**
-         * Additional clarification for why this action was taken.
-         */
         public ?string $text = null,
-
-        /**
-         * Should an email be sent to the user with the above information?
-         */
         public ?bool $send_email_notification = null,
     ) {
     }

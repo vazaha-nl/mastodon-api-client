@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class CardRequest extends \Vazaha\Mastodon\Requests\PreviewCardRequest implements RequestInterface
 {
+    /**
+     * @param string $id the local ID of the Status in the database
+     */
     public function __construct(
-        /**
-         * The local ID of the Status in the database.
-         */
         public string $id,
     ) {
     }

@@ -12,7 +12,7 @@ use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 
 /**
- * Update a scheduled status&#039;s publishing date.
+ * Update a scheduled status's publishing date.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\ScheduledStatusResult>
  *
@@ -20,16 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class UpdateRequest extends \Vazaha\Mastodon\Requests\ScheduledStatusRequest implements RequestInterface
 {
+    /**
+     * @param string  $id           the ID of the ScheduledStatus in the database
+     * @param ?string $scheduled_at ISO 8601 Datetime at which the status will be published. Must be at least 5 minutes into the future.
+     */
     public function __construct(
-        /**
-         * The ID of the ScheduledStatus in the database.
-         */
         public string $id,
-
-        /**
-         * ISO 8601 Datetime at which the status will be published. Must be at least 5
-         * minutes into the future.
-         */
         public ?string $scheduled_at = null,
     ) {
     }

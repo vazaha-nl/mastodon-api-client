@@ -20,11 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\AnnouncementRequest implements RequestInterface
 {
+    /**
+     * @param ?bool $with_dismissed If true, response will include announcements dismissed by the user. Defaults to false.
+     */
     public function __construct(
-        /**
-         * If true, response will include announcements dismissed by the user.
-         * Defaults to false.
-         */
         public ?bool $with_dismissed = null,
     ) {
     }

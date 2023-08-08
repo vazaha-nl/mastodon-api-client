@@ -20,14 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\MarkerRequest implements RequestInterface
 {
+    /**
+     * @param null|array<string> $timeline Specify the timeline(s) for which markers should be fetched. Possible values: `home`, `notifications`. If not provided, an empty object will be returned.
+     */
     public function __construct(
-        /**
-         * Specify the timeline(s) for which markers should be fetched. Possible
-         * values: `home`, `notifications`. If not provided, an empty object will be
-         * returned.
-         *
-         * @var null|array<string> $timeline
-         */
         public ?array $timeline = null,
     ) {
     }

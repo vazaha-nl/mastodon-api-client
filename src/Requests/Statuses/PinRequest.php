@@ -20,11 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class PinRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {
+    /**
+     * @param string $id The local ID of the Status in the database. The status should be authored by the authorized account.
+     */
     public function __construct(
-        /**
-         * The local ID of the Status in the database. The status should be authored
-         * by the authorized account.
-         */
         public string $id,
     ) {
     }

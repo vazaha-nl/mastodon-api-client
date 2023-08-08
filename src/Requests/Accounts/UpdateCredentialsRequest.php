@@ -20,57 +20,26 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class UpdateCredentialsRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {
+    /**
+     * @param ?string      $display_name      the display name to use for the profile
+     * @param ?string      $note              the account bio
+     * @param ?string      $avatar            Avatar image encoded using `multipart/form-data`
+     * @param ?string      $header            Header image encoded using `multipart/form-data`
+     * @param ?bool        $locked            whether manual approval of follow requests is required
+     * @param ?bool        $bot               whether the account has a bot flag
+     * @param ?bool        $discoverable      whether the account should be shown in the profile directory
+     * @param null|mixed[] $fields_attributes The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields.
+     * @param null|mixed[] $source            source[privacy]: Default post privacy for authored statuses. Can be `public`, `unlisted`, or `private`.
+     */
     public function __construct(
-        /**
-         * The display name to use for the profile.
-         */
         public ?string $display_name = null,
-
-        /**
-         * The account bio.
-         */
         public ?string $note = null,
-
-        /**
-         * Avatar image encoded using `multipart/form-data`.
-         */
         public ?string $avatar = null,
-
-        /**
-         * Header image encoded using `multipart/form-data`.
-         */
         public ?string $header = null,
-
-        /**
-         * Whether manual approval of follow requests is required.
-         */
         public ?bool $locked = null,
-
-        /**
-         * Whether the account has a bot flag.
-         */
         public ?bool $bot = null,
-
-        /**
-         * Whether the account should be shown in the profile directory.
-         */
         public ?bool $discoverable = null,
-
-        /**
-         * The profile fields to be set. Inside this hash, the key is an integer cast
-         * to a string (although the exact integer does not matter), and the value is
-         * another hash including `name` and `value`. By default, max 4 fields.
-         *
-         * @var null|mixed[] $fields_attributes
-         */
         public ?array $fields_attributes = null,
-
-        /**
-         * source[privacy]: Default post privacy for authored statuses. Can be
-         * `public`, `unlisted`, or `private`.
-         *
-         * @var null|mixed[] $source
-         */
         public ?array $source = null,
     ) {
     }

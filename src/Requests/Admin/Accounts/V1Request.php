@@ -20,96 +20,44 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class V1Request extends \Vazaha\Mastodon\Requests\Admin\AccountRequest implements RequestInterface
 {
+    /**
+     * @param ?bool   $local        Filter for local accounts?
+     * @param ?bool   $remote       Filter for remote accounts?
+     * @param ?bool   $active       Filter for currently active accounts?
+     * @param ?bool   $pending      Filter for currently pending accounts?
+     * @param ?bool   $disabled     Filter for currently disabled accounts?
+     * @param ?bool   $silenced     Filter for currently silenced accounts?
+     * @param ?bool   $suspended    Filter for currently suspended accounts?
+     * @param ?bool   $sensitized   Filter for accounts force-marked as sensitive?
+     * @param ?string $username     Search for the given username
+     * @param ?string $display_name Search for the given display name
+     * @param ?string $by_domain    Filter by the given domain
+     * @param ?string $email        Lookup a user with this email
+     * @param ?string $ip           Lookup users with this IP address
+     * @param ?bool   $staff        Filter for staff accounts?
+     * @param ?string $max_id       return results older than ID
+     * @param ?string $since_id     return results newer than ID
+     * @param ?string $min_id       return results immediately newer than ID
+     * @param ?int    $limit        Maximum number of results to return. Defaults to 100 accounts. Max 200 accounts.
+     */
     public function __construct(
-        /**
-         * Filter for local accounts?
-         */
         public ?bool $local = null,
-
-        /**
-         * Filter for remote accounts?
-         */
         public ?bool $remote = null,
-
-        /**
-         * Filter for currently active accounts?
-         */
         public ?bool $active = null,
-
-        /**
-         * Filter for currently pending accounts?
-         */
         public ?bool $pending = null,
-
-        /**
-         * Filter for currently disabled accounts?
-         */
         public ?bool $disabled = null,
-
-        /**
-         * Filter for currently silenced accounts?
-         */
         public ?bool $silenced = null,
-
-        /**
-         * Filter for currently suspended accounts?
-         */
         public ?bool $suspended = null,
-
-        /**
-         * Filter for accounts force-marked as sensitive?
-         */
         public ?bool $sensitized = null,
-
-        /**
-         * Search for the given username.
-         */
         public ?string $username = null,
-
-        /**
-         * Search for the given display name.
-         */
         public ?string $display_name = null,
-
-        /**
-         * Filter by the given domain.
-         */
         public ?string $by_domain = null,
-
-        /**
-         * Lookup a user with this email.
-         */
         public ?string $email = null,
-
-        /**
-         * Lookup users with this IP address.
-         */
         public ?string $ip = null,
-
-        /**
-         * Filter for staff accounts?
-         */
         public ?bool $staff = null,
-
-        /**
-         * Return results older than ID.
-         */
         public ?string $max_id = null,
-
-        /**
-         * Return results newer than ID.
-         */
         public ?string $since_id = null,
-
-        /**
-         * Return results immediately newer than ID.
-         */
         public ?string $min_id = null,
-
-        /**
-         * Maximum number of results to return. Defaults to 100 accounts. Max 200
-         * accounts.
-         */
         public ?int $limit = null,
     ) {
     }

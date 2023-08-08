@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class StatusesAddRequest extends \Vazaha\Mastodon\Requests\FilterStatusRequest implements RequestInterface
 {
+    /**
+     * @param string $filter_id the ID of the Filter in the database
+     */
     public function __construct(
-        /**
-         * The ID of the Filter in the database.
-         */
         public string $filter_id,
     ) {
     }

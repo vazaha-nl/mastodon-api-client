@@ -20,17 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class VoteRequest extends \Vazaha\Mastodon\Requests\PollRequest implements RequestInterface
 {
+    /**
+     * @param string     $id      the ID of the Poll in the database
+     * @param array<int> $choices provide your own votes as an index for each option (starting from 0)
+     */
     public function __construct(
-        /**
-         * The ID of the Poll in the database.
-         */
         public string $id,
-
-        /**
-         * Provide your own votes as an index for each option (starting from 0).
-         *
-         * @var array<int> $choices
-         */
         public array $choices,
     ) {
     }

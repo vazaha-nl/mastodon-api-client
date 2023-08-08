@@ -20,20 +20,14 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class UpdateRequest extends \Vazaha\Mastodon\Requests\ListRequest implements RequestInterface
 {
+    /**
+     * @param string  $id             the ID of the List in the database
+     * @param string  $title          the title of the list to be created
+     * @param ?string $replies_policy One of `followed`, `list`, or `none`. Defaults to `list`.
+     */
     public function __construct(
-        /**
-         * The ID of the List in the database.
-         */
         public string $id,
-
-        /**
-         * The title of the list to be created.
-         */
         public string $title,
-
-        /**
-         * One of `followed`, `list`, or `none`. Defaults to `list`.
-         */
         public ?string $replies_policy = null,
     ) {
     }

@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetOneRequest extends \Vazaha\Mastodon\Requests\Admin\CanonicalEmailBlockRequest implements RequestInterface
 {
+    /**
+     * @param string $id the ID of the Admin::CanonicalEmailBlock in the database
+     */
     public function __construct(
-        /**
-         * The ID of the Admin::CanonicalEmailBlock in the database.
-         */
         public string $id,
     ) {
     }

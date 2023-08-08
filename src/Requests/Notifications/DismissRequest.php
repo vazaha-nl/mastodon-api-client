@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class DismissRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {
+    /**
+     * @param string $id the ID of the Notification in the database
+     */
     public function __construct(
-        /**
-         * The ID of the Notification in the database.
-         */
         public string $id,
     ) {
     }

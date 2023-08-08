@@ -20,15 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class PutReactionsRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {
+    /**
+     * @param string $id   the ID of the Announcement in the database
+     * @param string $name unicode emoji, or the shortcode of a custom emoji
+     */
     public function __construct(
-        /**
-         * The ID of the Announcement in the database.
-         */
         public string $id,
-
-        /**
-         * Unicode emoji, or the shortcode of a custom emoji.
-         */
         public string $name,
     ) {
     }

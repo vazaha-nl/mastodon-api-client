@@ -20,11 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {
+    /**
+     * @param ?int $limit Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
+     */
     public function __construct(
-        /**
-         * Maximum number of results to return. Defaults to 20 statuses. Max 40
-         * statuses.
-         */
         public ?int $limit = null,
     ) {
     }

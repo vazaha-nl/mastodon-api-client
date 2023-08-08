@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class BlockRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {
+    /**
+     * @param string $domain domain to block
+     */
     public function __construct(
-        /**
-         * Domain to block.
-         */
         public string $domain,
     ) {
     }

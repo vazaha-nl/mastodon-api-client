@@ -20,26 +20,16 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\Admin\IpBlockRequest implements RequestInterface
 {
+    /**
+     * @param string  $severity   The policy to apply to this IP range: `sign_up_requires_approval`, `sign_up_block`, or `no_access`
+     * @param ?string $ip         The IP address and prefix to block. Defaults to `0.0.0.0/32`
+     * @param ?string $comment    the reason for this IP block
+     * @param ?int    $expires_in the number of seconds in which this IP block will expire
+     */
     public function __construct(
-        /**
-         * The policy to apply to this IP range: `sign_up_requires_approval`,
-         * `sign_up_block`, or `no_access`.
-         */
         public string $severity,
-
-        /**
-         * The IP address and prefix to block. Defaults to `0.0.0.0/32`.
-         */
         public ?string $ip = null,
-
-        /**
-         * The reason for this IP block.
-         */
         public ?string $comment = null,
-
-        /**
-         * The number of seconds in which this IP block will expire.
-         */
         public ?int $expires_in = null,
     ) {
     }

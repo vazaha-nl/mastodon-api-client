@@ -21,23 +21,14 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\Admin\CohortRequest implements RequestInterface
 {
+    /**
+     * @param DateTimeInterface $start_at  The start date for the time period. If a time is provided, it will be ignored.
+     * @param DateTimeInterface $end_at    The end date for the time period. If a time is provided, it will be ignored.
+     * @param string            $frequency Specify whether to use `day` or `month` buckets. If any other value is provided, defaults to `day`.
+     */
     public function __construct(
-        /**
-         * The start date for the time period. If a time is provided, it will be
-         * ignored.
-         */
         public DateTimeInterface $start_at,
-
-        /**
-         * The end date for the time period. If a time is provided, it will be
-         * ignored.
-         */
         public DateTimeInterface $end_at,
-
-        /**
-         * Specify whether to use `day` or `month` buckets. If any other value is
-         * provided, defaults to `day`.
-         */
         public string $frequency,
     ) {
     }

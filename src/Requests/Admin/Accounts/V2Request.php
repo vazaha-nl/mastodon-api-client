@@ -20,80 +20,36 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class V2Request extends \Vazaha\Mastodon\Requests\Admin\AccountRequest implements RequestInterface
 {
+    /**
+     * @param ?string            $origin       filter for `local` or `remote` accounts
+     * @param ?string            $status       filter for `active`, `pending`, `disabled`, `silenced`, or `suspended` accounts
+     * @param ?string            $permissions  filter for accounts with `staff` permissions (users that can manage reports)
+     * @param null|array<string> $role_ids     filter for users with these roles
+     * @param ?string            $invited_by   lookup users invited by the account with this ID
+     * @param ?string            $username     search for the given username
+     * @param ?string            $display_name search for the given display name
+     * @param ?string            $by_domain    filter by the given domain
+     * @param ?string            $email        lookup a user with this email
+     * @param ?string            $ip           lookup users with this IP address
+     * @param ?string            $max_id       return results older than ID
+     * @param ?string            $since_id     return results newer than ID
+     * @param ?string            $min_id       return results immediately newer than ID
+     * @param ?int               $limit        Maximum number of results to return. Defaults to 100 accounts. Max 200 accounts.
+     */
     public function __construct(
-        /**
-         * Filter for `local` or `remote` accounts.
-         */
         public ?string $origin = null,
-
-        /**
-         * Filter for `active`, `pending`, `disabled`, `silenced`, or `suspended`
-         * accounts.
-         */
         public ?string $status = null,
-
-        /**
-         * Filter for accounts with `staff` permissions (users that can manage
-         * reports).
-         */
         public ?string $permissions = null,
-
-        /**
-         * Filter for users with these roles.
-         *
-         * @var null|array<string> $role_ids
-         */
         public ?array $role_ids = null,
-
-        /**
-         * Lookup users invited by the account with this ID.
-         */
         public ?string $invited_by = null,
-
-        /**
-         * Search for the given username.
-         */
         public ?string $username = null,
-
-        /**
-         * Search for the given display name.
-         */
         public ?string $display_name = null,
-
-        /**
-         * Filter by the given domain.
-         */
         public ?string $by_domain = null,
-
-        /**
-         * Lookup a user with this email.
-         */
         public ?string $email = null,
-
-        /**
-         * Lookup users with this IP address.
-         */
         public ?string $ip = null,
-
-        /**
-         * Return results older than ID.
-         */
         public ?string $max_id = null,
-
-        /**
-         * Return results newer than ID.
-         */
         public ?string $since_id = null,
-
-        /**
-         * Return results immediately newer than ID.
-         */
         public ?string $min_id = null,
-
-        /**
-         * Maximum number of results to return. Defaults to 100 accounts. Max 200
-         * accounts.
-         */
         public ?int $limit = null,
     ) {
     }

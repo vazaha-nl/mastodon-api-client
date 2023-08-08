@@ -13,7 +13,7 @@ namespace {{ namespace }};
 {% endfor %}
 
 /**
- * {{ description }}
+ * {{ description | raw }}
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\{{ resultClassName.getFQN() }}>
  *
@@ -24,18 +24,13 @@ namespace {{ namespace }};
 final class {{ classname }} extends \{{ requestClassName.getFQN() }} implements RequestInterface
 {
 
+    /**
+    {% for property in allParams %}
+     * @param {% if property.typeHint %}{{ property.typeHint | raw }}{% else %}{% if property.nullable %}?{% endif %}{{ property.type }}{% endif %} ${{ property.name }} {{ property.description | raw }}
+    {% endfor %}
+     */
     public function __construct(
 {% for property in allParams %}
-    {% if property.descriptionLines %}
-    /**
-    {% for descriptionLine in property.descriptionLines %}
-     * {{ descriptionLine }}
-    {% endfor %}
-{% if property.typeHint %}
-     * @var {{ property.typeHint | raw }} ${{ property.name }}
-{% endif %}
-     */
-    {% endif %}
     public {% if property.nullable %}?{% endif %}{{ property.type }} ${{ property.name }}{% if property.nullable %} = null{% endif %},
 
 {% endfor %}

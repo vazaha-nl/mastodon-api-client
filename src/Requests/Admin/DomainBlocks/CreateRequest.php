@@ -20,42 +20,22 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\Admin\DomainBlockRequest implements RequestInterface
 {
+    /**
+     * @param string  $domain          the domain to block federation with
+     * @param ?string $severity        Whether to apply a `silence`, `suspend`, or `noop` to the domain. Defaults to `silence`
+     * @param ?bool   $reject_media    Whether media attachments should be rejected. Defaults to false
+     * @param ?bool   $reject_reports  Whether reports from this domain should be rejected. Defaults to false
+     * @param ?string $private_comment a private note about this domain block, visible only to admins
+     * @param ?string $public_comment  a public note about this domain block, optionally shown on the about page
+     * @param ?bool   $obfuscate       Whether to partially censor the domain when shown in public. Defaults to false
+     */
     public function __construct(
-        /**
-         * The domain to block federation with.
-         */
         public string $domain,
-
-        /**
-         * Whether to apply a `silence`, `suspend`, or `noop` to the domain. Defaults
-         * to `silence`.
-         */
         public ?string $severity = null,
-
-        /**
-         * Whether media attachments should be rejected. Defaults to false.
-         */
         public ?bool $reject_media = null,
-
-        /**
-         * Whether reports from this domain should be rejected. Defaults to false.
-         */
         public ?bool $reject_reports = null,
-
-        /**
-         * A private note about this domain block, visible only to admins.
-         */
         public ?string $private_comment = null,
-
-        /**
-         * A public note about this domain block, optionally shown on the about page.
-         */
         public ?string $public_comment = null,
-
-        /**
-         * Whether to partially censor the domain when shown in public. Defaults to
-         * false.
-         */
         public ?bool $obfuscate = null,
     ) {
     }

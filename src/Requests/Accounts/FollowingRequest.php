@@ -12,7 +12,7 @@ use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 
 /**
- * Get account&#039;s following.
+ * Get account's following.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
  *
@@ -20,16 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class FollowingRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {
+    /**
+     * @param string $id    the ID of the Account in the database
+     * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
+     */
     public function __construct(
-        /**
-         * The ID of the Account in the database.
-         */
         public string $id,
-
-        /**
-         * Maximum number of results to return. Defaults to 40 accounts. Max 80
-         * accounts.
-         */
         public ?int $limit = null,
     ) {
     }

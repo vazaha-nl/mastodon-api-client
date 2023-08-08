@@ -20,31 +20,18 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class SearchRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {
+    /**
+     * @param string $q         search query for accounts
+     * @param ?int   $limit     Maximum number of results. Defaults to 40 accounts. Max 80 accounts.
+     * @param ?int   $offset    skip the first n results
+     * @param ?bool  $resolve   Attempt WebFinger lookup. Defaults to false. Use this when `q` is an exact address.
+     * @param ?bool  $following Limit the search to users you are following. Defaults to false.
+     */
     public function __construct(
-        /**
-         * Search query for accounts.
-         */
         public string $q,
-
-        /**
-         * Maximum number of results. Defaults to 40 accounts. Max 80 accounts.
-         */
         public ?int $limit = null,
-
-        /**
-         * Skip the first n results.
-         */
         public ?int $offset = null,
-
-        /**
-         * Attempt WebFinger lookup. Defaults to false. Use this when `q` is an exact
-         * address.
-         */
         public ?bool $resolve = null,
-
-        /**
-         * Limit the search to users you are following. Defaults to false.
-         */
         public ?bool $following = null,
     ) {
     }

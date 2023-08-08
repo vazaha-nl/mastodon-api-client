@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class TestRequest extends \Vazaha\Mastodon\Requests\Admin\CanonicalEmailBlockRequest implements RequestInterface
 {
+    /**
+     * @param string $email the email to canonicalize and hash
+     */
     public function __construct(
-        /**
-         * The email to canonicalize and hash.
-         */
         public string $email,
     ) {
     }

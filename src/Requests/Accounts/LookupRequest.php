@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class LookupRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {
+    /**
+     * @param string $acct the username or Webfinger address to lookup
+     */
     public function __construct(
-        /**
-         * The username or Webfinger address to lookup.
-         */
         public string $acct,
     ) {
     }

@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class FeatureRequest extends \Vazaha\Mastodon\Requests\FeaturedTagRequest implements RequestInterface
 {
+    /**
+     * @param string $name the hashtag to be featured, without the hash sign
+     */
     public function __construct(
-        /**
-         * The hashtag to be featured, without the hash sign.
-         */
         public string $name,
     ) {
     }

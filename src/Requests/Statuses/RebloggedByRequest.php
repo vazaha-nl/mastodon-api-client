@@ -20,16 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class RebloggedByRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {
+    /**
+     * @param string $id    the ID of the Status in the database
+     * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
+     */
     public function __construct(
-        /**
-         * The ID of the Status in the database.
-         */
         public string $id,
-
-        /**
-         * Maximum number of results to return. Defaults to 40 accounts. Max 80
-         * accounts.
-         */
         public ?int $limit = null,
     ) {
     }

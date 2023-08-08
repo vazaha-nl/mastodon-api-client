@@ -12,7 +12,7 @@ use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 
 /**
- * Get account&#039;s featured tags.
+ * Get account's featured tags.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\FeaturedTagResult>
  *
@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class FeaturedTagsRequest extends \Vazaha\Mastodon\Requests\FeaturedTagRequest implements RequestInterface
 {
+    /**
+     * @param string $id the ID of the Account in the database
+     */
     public function __construct(
-        /**
-         * The ID of the Account in the database.
-         */
         public string $id,
     ) {
     }

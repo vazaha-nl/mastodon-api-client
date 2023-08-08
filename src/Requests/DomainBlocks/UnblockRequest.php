@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class UnblockRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {
+    /**
+     * @param string $domain domain to unblock
+     */
     public function __construct(
-        /**
-         * Domain to unblock.
-         */
         public string $domain,
     ) {
     }

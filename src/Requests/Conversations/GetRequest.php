@@ -20,11 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\ConversationRequest implements RequestInterface
 {
+    /**
+     * @param ?int $limit Maximum number of results to return. Defaults to 20 conversations. Max 40 conversations.
+     */
     public function __construct(
-        /**
-         * Maximum number of results to return. Defaults to 20 conversations. Max 40
-         * conversations.
-         */
         public ?int $limit = null,
     ) {
     }

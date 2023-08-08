@@ -20,16 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class NoteRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
 {
+    /**
+     * @param string  $id      the ID of the Account in the database
+     * @param ?string $comment The comment to be set on that user. Provide an empty string or leave out this parameter to clear the currently set note.
+     */
     public function __construct(
-        /**
-         * The ID of the Account in the database.
-         */
         public string $id,
-
-        /**
-         * The comment to be set on that user. Provide an empty string or leave out
-         * this parameter to clear the currently set note.
-         */
         public ?string $comment = null,
     ) {
     }

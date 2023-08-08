@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\PollRequest implements RequestInterface
 {
+    /**
+     * @param string $id the ID of the Poll in the database
+     */
     public function __construct(
-        /**
-         * The ID of the Poll in the database.
-         */
         public string $id,
     ) {
     }

@@ -20,11 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\Admin\DomainAllowRequest implements RequestInterface
 {
+    /**
+     * @param ?int $limit Maximum number of results to return. Defaults to 100 allows. Max 200 allows.
+     */
     public function __construct(
-        /**
-         * Maximum number of results to return. Defaults to 100 allows. Max 200
-         * allows.
-         */
         public ?int $limit = null,
     ) {
     }

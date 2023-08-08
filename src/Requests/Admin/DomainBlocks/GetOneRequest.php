@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetOneRequest extends \Vazaha\Mastodon\Requests\Admin\DomainBlockRequest implements RequestInterface
 {
+    /**
+     * @param string $id the ID of the DomainBlock in the database
+     */
     public function __construct(
-        /**
-         * The ID of the DomainBlock in the database.
-         */
         public string $id,
     ) {
     }

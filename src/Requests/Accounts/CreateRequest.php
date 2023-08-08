@@ -20,38 +20,20 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\TokenRequest implements RequestInterface
 {
+    /**
+     * @param string  $username  The desired username for the account
+     * @param string  $email     The email address to be used for login
+     * @param string  $password  The password to be used for login
+     * @param bool    $agreement Whether the user agrees to the local rules, terms, and policies. These should be presented to the user in order to allow them to consent before setting this parameter to TRUE.
+     * @param string  $locale    the language of the confirmation email that will be sent
+     * @param ?string $reason    if registrations require manual approval, this text will be reviewed by moderators
+     */
     public function __construct(
-        /**
-         * The desired username for the account.
-         */
         public string $username,
-
-        /**
-         * The email address to be used for login.
-         */
         public string $email,
-
-        /**
-         * The password to be used for login.
-         */
         public string $password,
-
-        /**
-         * Whether the user agrees to the local rules, terms, and policies. These
-         * should be presented to the user in order to allow them to consent before
-         * setting this parameter to TRUE.
-         */
         public bool $agreement,
-
-        /**
-         * The language of the confirmation email that will be sent.
-         */
         public string $locale,
-
-        /**
-         * If registrations require manual approval, this text will be reviewed by
-         * moderators.
-         */
         public ?string $reason = null,
     ) {
     }

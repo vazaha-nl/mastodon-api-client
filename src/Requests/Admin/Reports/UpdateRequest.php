@@ -20,25 +20,14 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class UpdateRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest implements RequestInterface
 {
+    /**
+     * @param string          $id       the ID of the Report in the database
+     * @param ?string         $category change the classification of the report to `spam`, `violation`, or `other`
+     * @param null|array<int> $rule_ids For `violation` category reports, specify the ID of the exact rules broken. Rules and their IDs are available via [GET /api/v1/instance/rules]({{< relref "methods/instance#rules" >}}) and [GET /api/v1/instance]({{< relref "methods/instance#get" >}}).
+     */
     public function __construct(
-        /**
-         * The ID of the Report in the database.
-         */
         public string $id,
-
-        /**
-         * Change the classification of the report to `spam`, `violation`, or `other`.
-         */
         public ?string $category = null,
-
-        /**
-         * For `violation` category reports, specify the ID of the exact rules broken.
-         * Rules and their IDs are available via [GET /api/v1/instance/rules]({{&lt;
-         * relref &quot;methods/instance#rules&quot; &gt;}}) and [GET /api/v1/instance]({{&lt; relref
-         * &quot;methods/instance#get&quot; &gt;}}).
-         *
-         * @var null|array<int> $rule_ids
-         */
         public ?array $rule_ids = null,
     ) {
     }

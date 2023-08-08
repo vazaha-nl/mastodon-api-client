@@ -20,26 +20,16 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest implements RequestInterface
 {
+    /**
+     * @param ?bool   $resolved          Filter for resolved reports?
+     * @param ?string $account_id        filter for reports filed by this account
+     * @param ?string $target_account_id filter for reports targeting this account
+     * @param ?int    $limit             Maximum number of results to return. Defaults to 100 reports. Max 200 reports.
+     */
     public function __construct(
-        /**
-         * Filter for resolved reports?
-         */
         public ?bool $resolved = null,
-
-        /**
-         * Filter for reports filed by this account.
-         */
         public ?string $account_id = null,
-
-        /**
-         * Filter for reports targeting this account.
-         */
         public ?string $target_account_id = null,
-
-        /**
-         * Maximum number of results to return. Defaults to 100 reports. Max 200
-         * reports.
-         */
         public ?int $limit = null,
     ) {
     }

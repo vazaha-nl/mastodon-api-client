@@ -20,16 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class AccountsRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {
+    /**
+     * @param string $id    the ID of the List in the database
+     * @param ?int   $limit Maximum number of results. Defaults to 40 accounts. Max 80 accounts. Set to 0 in order to get all accounts without pagination.
+     */
     public function __construct(
-        /**
-         * The ID of the List in the database.
-         */
         public string $id,
-
-        /**
-         * Maximum number of results. Defaults to 40 accounts. Max 80 accounts. Set to
-         * 0 in order to get all accounts without pagination.
-         */
         public ?int $limit = null,
     ) {
     }

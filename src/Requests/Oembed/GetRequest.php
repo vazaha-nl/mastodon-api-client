@@ -20,20 +20,14 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {
+    /**
+     * @param string $url       URL of a status
+     * @param ?int   $maxwidth  Width of the iframe. Defaults to 400
+     * @param ?int   $maxheight Height of the iframe. Defaults to null
+     */
     public function __construct(
-        /**
-         * URL of a status.
-         */
         public string $url,
-
-        /**
-         * Width of the iframe. Defaults to 400.
-         */
         public ?int $maxwidth = null,
-
-        /**
-         * Height of the iframe. Defaults to null.
-         */
         public ?int $maxheight = null,
     ) {
     }

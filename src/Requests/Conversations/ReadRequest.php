@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class ReadRequest extends \Vazaha\Mastodon\Requests\ConversationRequest implements RequestInterface
 {
+    /**
+     * @param string $id the ID of the Conversation in the database
+     */
     public function __construct(
-        /**
-         * The ID of the Conversation in the database.
-         */
         public string $id,
     ) {
     }

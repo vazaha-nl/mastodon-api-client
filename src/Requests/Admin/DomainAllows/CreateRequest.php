@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\Admin\DomainAllowRequest implements RequestInterface
 {
+    /**
+     * @param string $domain the domain to allow federation with
+     */
     public function __construct(
-        /**
-         * The domain to allow federation with.
-         */
         public string $domain,
     ) {
     }

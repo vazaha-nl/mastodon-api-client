@@ -20,12 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class FamiliarFollowersRequest extends \Vazaha\Mastodon\Requests\FamiliarFollowersRequest implements RequestInterface
 {
+    /**
+     * @param null|array<string> $id find familiar followers for the provided account IDs
+     */
     public function __construct(
-        /**
-         * Find familiar followers for the provided account IDs.
-         *
-         * @var null|array<string> $id
-         */
         public ?array $id = null,
     ) {
     }

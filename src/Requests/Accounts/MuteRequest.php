@@ -20,20 +20,14 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class MuteRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
 {
+    /**
+     * @param string $id            the ID of the Account in the database
+     * @param ?bool  $notifications mute notifications in addition to statuses? Defaults to true
+     * @param ?int   $duration      How long the mute should last, in seconds. Defaults to 0 (indefinite).
+     */
     public function __construct(
-        /**
-         * The ID of the Account in the database.
-         */
         public string $id,
-
-        /**
-         * Mute notifications in addition to statuses? Defaults to true.
-         */
         public ?bool $notifications = null,
-
-        /**
-         * How long the mute should last, in seconds. Defaults to 0 (indefinite).
-         */
         public ?int $duration = null,
     ) {
     }

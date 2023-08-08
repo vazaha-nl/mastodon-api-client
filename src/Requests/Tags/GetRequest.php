@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\TagRequest implements RequestInterface
 {
+    /**
+     * @param string $id the name of the hashtag
+     */
     public function __construct(
-        /**
-         * The name of the hashtag.
-         */
         public string $id,
     ) {
     }

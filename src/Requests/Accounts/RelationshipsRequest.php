@@ -20,12 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class RelationshipsRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
 {
+    /**
+     * @param null|mixed[] $id check relationships for the provided account IDs
+     */
     public function __construct(
-        /**
-         * Check relationships for the provided account IDs.
-         *
-         * @var null|mixed[] $id
-         */
         public ?array $id = null,
     ) {
     }

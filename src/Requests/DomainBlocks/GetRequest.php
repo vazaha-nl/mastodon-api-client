@@ -20,11 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {
+    /**
+     * @param ?int $limit Maximum number of results to return. Defaults to 100 domain blocks. Max 200 domain blocks.
+     */
     public function __construct(
-        /**
-         * Maximum number of results to return. Defaults to 100 domain blocks. Max 200
-         * domain blocks.
-         */
         public ?int $limit = null,
     ) {
     }

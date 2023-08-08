@@ -20,40 +20,20 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class UpdateV1Request extends \Vazaha\Mastodon\Requests\V1\FilterRequest implements RequestInterface
 {
+    /**
+     * @param string        $id           the ID of the FilterKeyword in the database
+     * @param string        $phrase       the text to be filtered
+     * @param array<string> $context      specify at least one of `home`, `notifications`, `public`, `thread`, `account`
+     * @param ?bool         $irreversible should the server irreversibly drop matching entities from home and notifications? Defaults to false
+     * @param ?bool         $whole_word   should the filter consider word boundaries? Defaults to false
+     * @param ?int          $expires_in   Number of seconds from now that the filter should expire. Otherwise, `null` for a filter that doesn't expire.
+     */
     public function __construct(
-        /**
-         * The ID of the FilterKeyword in the database.
-         */
         public string $id,
-
-        /**
-         * The text to be filtered.
-         */
         public string $phrase,
-
-        /**
-         * Specify at least one of `home`, `notifications`, `public`, `thread`,
-         * `account`.
-         *
-         * @var array<string> $context
-         */
         public array $context,
-
-        /**
-         * Should the server irreversibly drop matching entities from home and
-         * notifications? Defaults to false.
-         */
         public ?bool $irreversible = null,
-
-        /**
-         * Should the filter consider word boundaries? Defaults to false.
-         */
         public ?bool $whole_word = null,
-
-        /**
-         * Number of seconds from now that the filter should expire. Otherwise, `null`
-         * for a filter that doesn&#039;t expire.
-         */
         public ?int $expires_in = null,
     ) {
     }

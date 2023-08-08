@@ -20,28 +20,16 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class FollowRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
 {
+    /**
+     * @param string             $id        the ID of the Account in the database
+     * @param ?bool              $reblogs   receive this account's reblogs in home timeline? Defaults to true
+     * @param ?bool              $notify    receive notifications when this account posts a status? Defaults to false
+     * @param null|array<string> $languages Filter received statuses for these languages. If not provided, you will receive this account's posts in all languages.
+     */
     public function __construct(
-        /**
-         * The ID of the Account in the database.
-         */
         public string $id,
-
-        /**
-         * Receive this account&#039;s reblogs in home timeline? Defaults to true.
-         */
         public ?bool $reblogs = null,
-
-        /**
-         * Receive notifications when this account posts a status? Defaults to false.
-         */
         public ?bool $notify = null,
-
-        /**
-         * Filter received statuses for these languages. If not provided, you will
-         * receive this account&#039;s posts in all languages.
-         *
-         * @var null|array<string> $languages
-         */
         public ?array $languages = null,
     ) {
     }

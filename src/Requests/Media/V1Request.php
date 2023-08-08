@@ -20,33 +20,16 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class V1Request extends \Vazaha\Mastodon\Requests\MediaAttachmentRequest implements RequestInterface
 {
+    /**
+     * @param mixed[]      $file        The file to be attached, encoded using multipart form data. The file must have a MIME type.
+     * @param null|mixed[] $thumbnail   the custom thumbnail of the media to be attached, encoded using multipart form data
+     * @param ?string      $description a plain-text description of the media, for accessibility purposes
+     * @param ?string      $focus       Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See [Focal points for cropping media thumbnails]({{< relref "api/guidelines#focal-points" >}}) for more information.
+     */
     public function __construct(
-        /**
-         * The file to be attached, encoded using multipart form data. The file must
-         * have a MIME type.
-         *
-         * @var mixed[] $file
-         */
         public array $file,
-
-        /**
-         * The custom thumbnail of the media to be attached, encoded using multipart
-         * form data.
-         *
-         * @var null|mixed[] $thumbnail
-         */
         public ?array $thumbnail = null,
-
-        /**
-         * A plain-text description of the media, for accessibility purposes.
-         */
         public ?string $description = null,
-
-        /**
-         * Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See
-         * [Focal points for cropping media thumbnails]({{&lt; relref
-         * &quot;api/guidelines#focal-points&quot; &gt;}}) for more information.
-         */
         public ?string $focus = null,
     ) {
     }

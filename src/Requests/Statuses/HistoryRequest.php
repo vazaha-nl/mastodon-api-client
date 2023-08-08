@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class HistoryRequest extends \Vazaha\Mastodon\Requests\StatusEditRequest implements RequestInterface
 {
+    /**
+     * @param string $id the local ID of the Status in the database
+     */
     public function __construct(
-        /**
-         * The local ID of the Status in the database.
-         */
         public string $id,
     ) {
     }

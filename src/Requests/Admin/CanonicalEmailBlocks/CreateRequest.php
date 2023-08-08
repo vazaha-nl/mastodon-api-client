@@ -20,17 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\Admin\CanonicalEmailBlockRequest implements RequestInterface
 {
+    /**
+     * @param string  $email                The email to canonicalize, hash, and block. If this parameter is provided, `canonical_email_hash` will be ignored.
+     * @param ?string $canonical_email_hash The hash to test against. If `email` is not provided, this parameter is required.
+     */
     public function __construct(
-        /**
-         * The email to canonicalize, hash, and block. If this parameter is provided,
-         * `canonical_email_hash` will be ignored.
-         */
         public string $email,
-
-        /**
-         * The hash to test against. If `email` is not provided, this parameter is
-         * required.
-         */
         public ?string $canonical_email_hash = null,
     ) {
     }

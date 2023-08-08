@@ -20,20 +20,14 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class RevokeRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {
+    /**
+     * @param string $client_id     the client ID, obtained during app registration
+     * @param string $client_secret the client secret, obtained during app registration
+     * @param string $token         the previously obtained token, to be invalidated
+     */
     public function __construct(
-        /**
-         * The client ID, obtained during app registration.
-         */
         public string $client_id,
-
-        /**
-         * The client secret, obtained during app registration.
-         */
         public string $client_secret,
-
-        /**
-         * The previously obtained token, to be invalidated.
-         */
         public string $token,
     ) {
     }

@@ -20,15 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class LinksRequest extends \Vazaha\Mastodon\Requests\Trends\LinkRequest implements RequestInterface
 {
+    /**
+     * @param ?int $limit  Maximum number of results to return. Defaults to 10 links. Max 20 links.
+     * @param ?int $offset skip the first n results
+     */
     public function __construct(
-        /**
-         * Maximum number of results to return. Defaults to 10 links. Max 20 links.
-         */
         public ?int $limit = null,
-
-        /**
-         * Skip the first n results.
-         */
         public ?int $offset = null,
     ) {
     }

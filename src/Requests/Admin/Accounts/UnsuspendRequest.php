@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class UnsuspendRequest extends \Vazaha\Mastodon\Requests\Admin\AccountRequest implements RequestInterface
 {
+    /**
+     * @param string $id the ID of the Account in the database
+     */
     public function __construct(
-        /**
-         * The ID of the Account in the database.
-         */
         public string $id,
     ) {
     }

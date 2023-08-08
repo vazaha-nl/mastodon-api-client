@@ -20,20 +20,14 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class KeywordsUpdateRequest extends \Vazaha\Mastodon\Requests\FilterKeywordRequest implements RequestInterface
 {
+    /**
+     * @param string $id         the ID of the FilterKeyword in the database
+     * @param string $keyword    the keyword to be added to the filter group
+     * @param ?bool  $whole_word whether the keyword should consider word boundaries
+     */
     public function __construct(
-        /**
-         * The ID of the FilterKeyword in the database.
-         */
         public string $id,
-
-        /**
-         * The keyword to be added to the filter group.
-         */
         public string $keyword,
-
-        /**
-         * Whether the keyword should consider word boundaries.
-         */
         public ?bool $whole_word = null,
     ) {
     }

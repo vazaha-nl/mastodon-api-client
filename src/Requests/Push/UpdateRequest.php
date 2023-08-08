@@ -20,18 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class UpdateRequest extends \Vazaha\Mastodon\Requests\WebPushSubscriptionRequest implements RequestInterface
 {
+    /**
+     * @param null|mixed[] $data   data[alerts][mention]: Receive mention notifications? Defaults to false
+     * @param ?string      $policy specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users
+     */
     public function __construct(
-        /**
-         * data[alerts][mention]: Receive mention notifications? Defaults to false.
-         *
-         * @var null|mixed[] $data
-         */
         public ?array $data = null,
-
-        /**
-         * Specify whether to receive push notifications from `all`, `followed`,
-         * `follower`, or `none` users.
-         */
         public ?string $policy = null,
     ) {
     }

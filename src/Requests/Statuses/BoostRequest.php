@@ -20,16 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class BoostRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {
+    /**
+     * @param string  $id         the ID of the Status in the database
+     * @param ?string $visibility Any visibility except `limited` or `direct` (i.e. `public`, `unlisted`, `private`). Defaults to public. Currently unused in UI.
+     */
     public function __construct(
-        /**
-         * The ID of the Status in the database.
-         */
         public string $id,
-
-        /**
-         * Any visibility except `limited` or `direct` (i.e. `public`, `unlisted`,
-         * `private`). Defaults to public. Currently unused in UI.
-         */
         public ?string $visibility = null,
     ) {
     }

@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class RemoveRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {
+    /**
+     * @param string $account_id the ID of the Account in the database
+     */
     public function __construct(
-        /**
-         * The ID of the Account in the database.
-         */
         public string $account_id,
     ) {
     }

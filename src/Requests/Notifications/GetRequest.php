@@ -20,45 +20,22 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\NotificationRequest implements RequestInterface
 {
+    /**
+     * @param ?string            $max_id        Return results older than this ID
+     * @param ?string            $since_id      Return results newer than this ID
+     * @param ?string            $min_id        Return results immediately newer than this ID
+     * @param ?int               $limit         Maximum number of results to return. Defaults to 15 notifications. Max 30 notifications.
+     * @param null|array<string> $types         types to include in the result
+     * @param null|array<string> $exclude_types types to exclude from the results
+     * @param ?string            $account_id    return only notifications received from the specified account
+     */
     public function __construct(
-        /**
-         * Return results older than this ID.
-         */
         public ?string $max_id = null,
-
-        /**
-         * Return results newer than this ID.
-         */
         public ?string $since_id = null,
-
-        /**
-         * Return results immediately newer than this ID.
-         */
         public ?string $min_id = null,
-
-        /**
-         * Maximum number of results to return. Defaults to 15 notifications. Max 30
-         * notifications.
-         */
         public ?int $limit = null,
-
-        /**
-         * Types to include in the result.
-         *
-         * @var null|array<string> $types
-         */
         public ?array $types = null,
-
-        /**
-         * Types to exclude from the results.
-         *
-         * @var null|array<string> $exclude_types
-         */
         public ?array $exclude_types = null,
-
-        /**
-         * Return only notifications received from the specified account.
-         */
         public ?string $account_id = null,
     ) {
     }

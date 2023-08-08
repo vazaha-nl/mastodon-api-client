@@ -20,17 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class AccountsAddRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {
+    /**
+     * @param string        $id          the ID of the List in the database
+     * @param array<string> $account_ids the accounts that should be added to the list
+     */
     public function __construct(
-        /**
-         * The ID of the List in the database.
-         */
         public string $id,
-
-        /**
-         * The accounts that should be added to the list.
-         *
-         * @var array<string> $account_ids
-         */
         public array $account_ids,
     ) {
     }

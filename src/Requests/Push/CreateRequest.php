@@ -20,20 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\WebPushSubscriptionRequest implements RequestInterface
 {
+    /**
+     * @param null|mixed[] $subscription subscription[endpoint]: The endpoint URL that is called when a notification event occurs
+     * @param null|mixed[] $data         data[alerts][mention]: Receive mention notifications? Defaults to false
+     */
     public function __construct(
-        /**
-         * subscription[endpoint]: The endpoint URL that is called when a notification
-         * event occurs.
-         *
-         * @var null|mixed[] $subscription
-         */
         public ?array $subscription = null,
-
-        /**
-         * data[alerts][mention]: Receive mention notifications? Defaults to false.
-         *
-         * @var null|mixed[] $data
-         */
         public ?array $data = null,
     ) {
     }

@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class UnassignRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest implements RequestInterface
 {
+    /**
+     * @param string $id the ID of the Report in the database
+     */
     public function __construct(
-        /**
-         * The ID of the Report in the database.
-         */
         public string $id,
     ) {
     }

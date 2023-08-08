@@ -20,61 +20,26 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {
+    /**
+     * @param string        $status         The text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.
+     * @param array<string> $media_ids      Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+     * @param null|mixed[]  $poll           poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
+     * @param ?string       $in_reply_to_id ID of the status being replied to, if status is a reply
+     * @param ?bool         $sensitive      mark status and attached media as sensitive? Defaults to false
+     * @param ?string       $spoiler_text   Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field.
+     * @param ?string       $visibility     sets the visibility of the posted status to `public`, `unlisted`, `private`, `direct`
+     * @param ?string       $language       ISO 639 language code for this status
+     * @param ?string       $scheduled_at   ISO 8601 Datetime at which to schedule a status. Providing this parameter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future.
+     */
     public function __construct(
-        /**
-         * The text content of the status. If `media_ids` is provided, this becomes
-         * optional. Attaching a `poll` is optional while `status` is provided.
-         */
         public string $status,
-
-        /**
-         * Include Attachment IDs to be attached as media. If provided, `status`
-         * becomes optional, and `poll` cannot be used.
-         *
-         * @var array<string> $media_ids
-         */
         public array $media_ids,
-
-        /**
-         * poll[options][]: Possible answers to the poll. If provided, `media_ids`
-         * cannot be used, and `poll[expires_in]` must be provided.
-         *
-         * @var null|mixed[] $poll
-         */
         public ?array $poll = null,
-
-        /**
-         * ID of the status being replied to, if status is a reply.
-         */
         public ?string $in_reply_to_id = null,
-
-        /**
-         * Mark status and attached media as sensitive? Defaults to false.
-         */
         public ?bool $sensitive = null,
-
-        /**
-         * Text to be shown as a warning or subject before the actual content.
-         * Statuses are generally collapsed behind this field.
-         */
         public ?string $spoiler_text = null,
-
-        /**
-         * Sets the visibility of the posted status to `public`, `unlisted`,
-         * `private`, `direct`.
-         */
         public ?string $visibility = null,
-
-        /**
-         * ISO 639 language code for this status.
-         */
         public ?string $language = null,
-
-        /**
-         * ISO 8601 Datetime at which to schedule a status. Providing this parameter
-         * will cause ScheduledStatus to be returned instead of Status. Must be at
-         * least 5 minutes in the future.
-         */
         public ?string $scheduled_at = null,
     ) {
     }

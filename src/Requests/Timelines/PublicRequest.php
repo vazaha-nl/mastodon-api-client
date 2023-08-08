@@ -20,41 +20,22 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class PublicRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {
+    /**
+     * @param ?bool   $local      show only local statuses? Defaults to false
+     * @param ?bool   $remote     show only remote statuses? Defaults to false
+     * @param ?bool   $only_media show only statuses with media attached? Defaults to false
+     * @param ?string $max_id     return results older than ID
+     * @param ?string $since_id   return results newer than ID
+     * @param ?string $min_id     return results immediately newer than ID
+     * @param ?int    $limit      Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
+     */
     public function __construct(
-        /**
-         * Show only local statuses? Defaults to false.
-         */
         public ?bool $local = null,
-
-        /**
-         * Show only remote statuses? Defaults to false.
-         */
         public ?bool $remote = null,
-
-        /**
-         * Show only statuses with media attached? Defaults to false.
-         */
         public ?bool $only_media = null,
-
-        /**
-         * Return results older than ID.
-         */
         public ?string $max_id = null,
-
-        /**
-         * Return results newer than ID.
-         */
         public ?string $since_id = null,
-
-        /**
-         * Return results immediately newer than ID.
-         */
         public ?string $min_id = null,
-
-        /**
-         * Maximum number of results to return. Defaults to 20 statuses. Max 40
-         * statuses.
-         */
         public ?int $limit = null,
     ) {
     }

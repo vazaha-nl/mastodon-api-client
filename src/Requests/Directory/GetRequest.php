@@ -20,26 +20,16 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {
+    /**
+     * @param ?int    $offset skip the first n results
+     * @param ?int    $limit  How many accounts to load. Defaults to 40 accounts. Max 80 accounts.
+     * @param ?string $order  use `active` to sort by most recently posted statuses (default) or `new` to sort by most recently created profiles
+     * @param ?bool   $local  if true, returns only local accounts
+     */
     public function __construct(
-        /**
-         * Skip the first n results.
-         */
         public ?int $offset = null,
-
-        /**
-         * How many accounts to load. Defaults to 40 accounts. Max 80 accounts.
-         */
         public ?int $limit = null,
-
-        /**
-         * Use `active` to sort by most recently posted statuses (default) or `new` to
-         * sort by most recently created profiles.
-         */
         public ?string $order = null,
-
-        /**
-         * If true, returns only local accounts.
-         */
         public ?bool $local = null,
     ) {
     }

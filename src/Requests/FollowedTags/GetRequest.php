@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\TagRequest implements RequestInterface
 {
+    /**
+     * @param ?int $limit Maximum number of results to return. Defaults to 100 tags. Max 200 tags.
+     */
     public function __construct(
-        /**
-         * Maximum number of results to return. Defaults to 100 tags. Max 200 tags.
-         */
         public ?int $limit = null,
     ) {
     }

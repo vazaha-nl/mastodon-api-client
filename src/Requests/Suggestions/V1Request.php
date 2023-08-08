@@ -20,11 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class V1Request extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
 {
+    /**
+     * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
+     */
     public function __construct(
-        /**
-         * Maximum number of results to return. Defaults to 40 accounts. Max 80
-         * accounts.
-         */
         public ?int $limit = null,
     ) {
     }

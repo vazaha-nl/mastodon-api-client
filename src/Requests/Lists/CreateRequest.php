@@ -20,15 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\ListRequest implements RequestInterface
 {
+    /**
+     * @param string  $title          the title of the list to be created
+     * @param ?string $replies_policy One of `followed`, `list`, or `none`. Defaults to `list`.
+     */
     public function __construct(
-        /**
-         * The title of the list to be created.
-         */
         public string $title,
-
-        /**
-         * One of `followed`, `list`, or `none`. Defaults to `list`.
-         */
         public ?string $replies_policy = null,
     ) {
     }

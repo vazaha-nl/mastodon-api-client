@@ -20,16 +20,12 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {
+    /**
+     * @param ?string $provider The identity provider to be looked up. Currently only supports `keybase` (case-sensitive).
+     * @param ?string $username the username on the selected identity provider
+     */
     public function __construct(
-        /**
-         * The identity provider to be looked up. Currently only supports `keybase`
-         * (case-sensitive).
-         */
         public ?string $provider = null,
-
-        /**
-         * The username on the selected identity provider.
-         */
         public ?string $username = null,
     ) {
     }

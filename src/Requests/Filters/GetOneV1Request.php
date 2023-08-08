@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class GetOneV1Request extends \Vazaha\Mastodon\Requests\V1\FilterRequest implements RequestInterface
 {
+    /**
+     * @param string $id the ID of the FilterKeyword in the database
+     */
     public function __construct(
-        /**
-         * The ID of the FilterKeyword in the database.
-         */
         public string $id,
     ) {
     }

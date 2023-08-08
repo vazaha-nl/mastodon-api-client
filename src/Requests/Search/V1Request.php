@@ -20,46 +20,24 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class V1Request extends \Vazaha\Mastodon\Requests\SearchRequest implements RequestInterface
 {
+    /**
+     * @param string  $q          the search query
+     * @param ?string $type       Specify whether to search for only `accounts`, `hashtags`, `statuses`
+     * @param ?bool   $resolve    attempt WebFinger lookup? Defaults to false
+     * @param ?string $account_id if provided, will only return statuses authored by this account
+     * @param ?string $max_id     return results older than this ID
+     * @param ?string $min_id     return results immediately newer than this ID
+     * @param ?int    $limit      Maximum number of results to return, per type. Defaults to 20 results per category. Max 40 results per category.
+     * @param ?int    $offset     Offset in search results, used for pagination. Defaults to 0.
+     */
     public function __construct(
-        /**
-         * The search query.
-         */
         public string $q,
-
-        /**
-         * Specify whether to search for only `accounts`, `hashtags`, `statuses`.
-         */
         public ?string $type = null,
-
-        /**
-         * Attempt WebFinger lookup? Defaults to false.
-         */
         public ?bool $resolve = null,
-
-        /**
-         * If provided, will only return statuses authored by this account.
-         */
         public ?string $account_id = null,
-
-        /**
-         * Return results older than this ID.
-         */
         public ?string $max_id = null,
-
-        /**
-         * Return results immediately newer than this ID.
-         */
         public ?string $min_id = null,
-
-        /**
-         * Maximum number of results to return, per type. Defaults to 20 results per
-         * category. Max 40 results per category.
-         */
         public ?int $limit = null,
-
-        /**
-         * Offset in search results, used for pagination. Defaults to 0.
-         */
         public ?int $offset = null,
     ) {
     }

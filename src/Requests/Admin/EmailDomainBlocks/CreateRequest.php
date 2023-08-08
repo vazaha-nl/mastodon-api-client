@@ -20,10 +20,10 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\Admin\EmailDomainBlockRequest implements RequestInterface
 {
+    /**
+     * @param string $domain the domain to block federation with
+     */
     public function __construct(
-        /**
-         * The domain to block federation with.
-         */
         public string $domain,
     ) {
     }
