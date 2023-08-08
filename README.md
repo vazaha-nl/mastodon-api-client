@@ -5,8 +5,9 @@ A fully typed and feature complete [mastodon API](https://docs.joinmastodon.org/
 ## Key features
 
 - feature complete: every documented api method and entity has been implemented
-- fully typed: every function, argument and property is fully typed, using generics where applicable. Also, API calls return fully typed models, where possible.
-- well tested: covered by unit tests; passes phpstan analysis on the highest level
+- fully typed: every function, argument, property and result is typed, using generics where applicable
+- documented: every api method and argument is documented using docblocks, and contain a link to the relevant page at https://docs.joinmastodon.org
+- tested: the code is covered by unit tests, and passes phpstan analysis on the highest level
 - auto generated: classes are auto generated based on the [Mastodon markup documentation](https://github.com/mastodon/documentation) (in absence of a good openapi spec)
 
 ## Requirements
@@ -49,16 +50,16 @@ $client->setAccessToken('token...');
 
 Every method is exposed through the `$client->methods()` proxy. It is highly recommended to use a [LSP enabled IDE](https://langserver.org/).
 
-The methods are named and organized exactly like in the [official documentation](https://docs.joinmastodon.org/methods/). All categories, methods and arguments have been documented using docblocks, and fully type hinted.
+The methods are named and organized exactly like in the [official documentation](https://docs.joinmastodon.org/methods/), with documentation in docblocks. 
 
-In case of any client (4xx) http errors, custom exceptions (subclasses of `\Vazaha\Mastodon\Exceptions\ApiErrorException`) will be thrown, containing an [Error](https://docs.joinmastodon.org/entities/Error/) object.
+#### Calls with a single result
 
-#### Single result calls
+All API calls that return a single entity, will return a subclass of `\Vazaha\Mastodon\Models\Model`.
 
 ```php
 
-// get an account by id
 try {
+    // get an account by id
     // returns instance of \Vazaha\Mastodon\Models\AccountModel
     $account = $client->methods()->accounts()->get('the account id');
 } catch (NotFoundException $e) {
@@ -71,12 +72,14 @@ print 'Found account: ' . $account->display_name . \PHP_EOL;
 
 ```
 
-### Multiple result calls
+#### Calls with multiple results
+
+Calls that return a list of entities, will return a subclass of `\Vazaha\Mastodon\Results\Result`. This class is a subclass of `\Illuminate\Support\Collection` which can be accessed as a plain array. See https://laravel.com/docs/10.x/collections.
 
 ```php
 
 // get the followers of account with specified id.
-// returns a subclass of \Illuminate\Support\Collection, which acts as a plain array
+// returns instance of \Vazaha\Mastodon\Results\AccountResult
 $followers = $client->methods()->accounts()->followers($account->id);
 
 foreach ($followers as $follower) {
@@ -86,7 +89,39 @@ foreach ($followers as $follower) {
 
 ```
 
+#### Pagination
+
+Most API calls with multiple results have a hard limit on the amount of results returned. To get the next/previous page of a result, use the `getNextPage()` / `getPreviousPage()` methods. See for background: https://docs.joinmastodon.org/api/guidelines/#pagination
+
+```php
+
+while ($followers = $followers->getNextPage()) {
+    // ...
+}
+
+```
+
+#### Error handling
+
+In case of any client (4xx) http errors, custom exceptions (subclasses of `\Vazaha\Mastodon\Exceptions\ApiErrorException`) will be thrown, containing an [Error](https://docs.joinmastodon.org/entities/Error/) object.
+
 See the `examples/` folder for more examples and usage hints.
+
+### Laravel support
+
+There is some very basic Laravel support, enabling dependency injection of the ApiClient class.
+
+```php
+public function myControllerFunction(Request $request, ApiClient $client)
+{
+    /** @var \App\Models\User $user */
+    $user = $request->user();
+    $client->setBaseUri('http://instance.example.org')
+        ->setAccessToken($user->mastodon_access_token);
+    // ...
+}
+
+```
 
 ## Testing
 
@@ -99,6 +134,17 @@ composer test
 composer analyse
 
 ```
+
+There are some basic integration tests available as well. If you want to run these, you will need a local mastodon instance at http://mastodon.local. See https://docs.joinmastodon.org/dev/setup/#vagrant for instructions.
+
+
+```
+
+# run integration tests
+composer integration-test
+
+```
+
 
 ## Coding style
 
