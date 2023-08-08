@@ -26,7 +26,7 @@ class RelationshipModel extends Model
     public bool $following;
 
     /**
-     * Are you receiving this user&#039;s boosts in your home timeline?
+     * Are you receiving this user's boosts in your home timeline?
      */
     public bool $showing_reblogs;
 
@@ -73,7 +73,7 @@ class RelationshipModel extends Model
     public bool $requested;
 
     /**
-     * Are you blocking this user&#039;s domain?
+     * Are you blocking this user's domain?
      */
     public bool $domain_blocking;
 
@@ -83,7 +83,7 @@ class RelationshipModel extends Model
     public bool $endorsed;
 
     /**
-     * This user&#039;s profile bio.
+     * This user's profile bio.
      */
     public string $note;
 }

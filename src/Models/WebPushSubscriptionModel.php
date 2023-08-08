@@ -26,7 +26,7 @@ class WebPushSubscriptionModel extends Model
     public string $endpoint;
 
     /**
-     * The streaming server&#039;s VAPID key.
+     * The streaming server's VAPID key.
      */
     public string $server_key;
 

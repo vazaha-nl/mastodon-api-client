@@ -18,7 +18,7 @@ use DateTimeInterface;
 class FieldModel extends Model
 {
     /**
-     * The key of a given field&#039;s key-value pair.
+     * The key of a given field's key-value pair.
      */
     public string $name;
 
@@ -28,7 +28,7 @@ class FieldModel extends Model
     public string $value;
 
     /**
-     * Timestamp of when the server verified a URL value for a rel=&quot;me&quot; link.
+     * Timestamp of when the server verified a URL value for a rel="me" link.
      */
     public ?DateTimeInterface $verified_at = null;
 }

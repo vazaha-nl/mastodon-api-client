@@ -42,14 +42,14 @@ class FilterModel extends Model
 
     /**
      * Should matching entities in home and notifications be dropped by the
-     * server? See [implementation guidelines for filters]({{&lt; relref
-     * &quot;api/guidelines#filters&quot; &gt;}}).
+     * server? See [implementation guidelines for filters]({{< relref
+     * "api/guidelines#filters" >}}).
      */
     public bool $irreversible;
 
     /**
      * Should the filter consider word boundaries? See [implementation guidelines
-     * for filters]({{&lt; relref &quot;api/guidelines#filters&quot; &gt;}}).
+     * for filters]({{< relref "api/guidelines#filters" >}}).
      */
     public bool $whole_word;
 }

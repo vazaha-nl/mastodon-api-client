@@ -26,7 +26,7 @@ class StatusSourceModel extends Model
     public string $text;
 
     /**
-     * The plain text used to compose the status&#039;s subject or content warning.
+     * The plain text used to compose the status's subject or content warning.
      */
     public string $spoiler_text;
 }

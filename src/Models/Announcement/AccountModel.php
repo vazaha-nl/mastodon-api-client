@@ -28,7 +28,7 @@ class AccountModel extends Model
     public string $username;
 
     /**
-     * The location of the mentioned user&#039;s profile.
+     * The location of the mentioned user's profile.
      */
     public string $url;
 

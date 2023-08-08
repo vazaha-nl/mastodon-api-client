@@ -103,13 +103,13 @@ class AccountModel extends Model
     public ModelsAccountModel $account;
 
     /**
-     * The ID of the [Application]({{&lt; relref &quot;entities/application&quot; &gt;}}) that
+     * The ID of the [Application]({{< relref "entities/application" >}}) that
      * created this account, if applicable.
      */
     public ?string $created_by_application_id = null;
 
     /**
-     * The ID of the [Account]({{&lt; relref &quot;entities/account&quot; &gt;}}) that invited
+     * The ID of the [Account]({{< relref "entities/account" >}}) that invited
      * this user, if applicable.
      */
     public ?string $invited_by_account_id = null;

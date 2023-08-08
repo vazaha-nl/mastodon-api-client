@@ -17,7 +17,7 @@ class ReactionModel extends Model
 {
     /**
      * The emoji used for the reaction. Either a unicode emoji, or a custom
-     * emoji&#039;s shortcode.
+     * emoji's shortcode.
      */
     public string $name;
 

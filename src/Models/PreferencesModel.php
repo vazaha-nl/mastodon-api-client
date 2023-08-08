@@ -17,22 +17,22 @@ class PreferencesModel extends Model
 {
     /**
      * Default visibility for new posts. Equivalent to
-     * [CredentialAccount#source\[privacy\]]({{&lt; relref
-     * &quot;entities/Account#source-privacy&quot; &gt;}}).
+     * [CredentialAccount#source\[privacy\]]({{< relref
+     * "entities/Account#source-privacy" >}}).
      */
     public string $posting_default_visibility;
 
     /**
      * Default sensitivity flag for new posts. Equivalent to
-     * [CredentialAccount#source\[sensitive\]]({{&lt; relref
-     * &quot;entities/Account#source-sensitive&quot; &gt;}}).
+     * [CredentialAccount#source\[sensitive\]]({{< relref
+     * "entities/Account#source-sensitive" >}}).
      */
     public bool $posting_default_sensitive;
 
     /**
      * Default language for new posts. Equivalent to
-     * [CredentialAccount#source\[language\]]({{&lt; relref
-     * &quot;entities/Account#source-language&quot; &gt;}}).
+     * [CredentialAccount#source\[language\]]({{< relref
+     * "entities/Account#source-language" >}}).
      */
     public ?string $posting_default_language = null;
 

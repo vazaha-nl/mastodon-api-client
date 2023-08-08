@@ -27,7 +27,7 @@ class FilterKeywordModel extends Model
 
     /**
      * Should the filter consider word boundaries? See [implementation guidelines
-     * for filters]({{&lt; relref &quot;api/guidelines#filters&quot; &gt;}}).
+     * for filters]({{< relref "api/guidelines#filters" >}}).
      */
     public bool $whole_word;
 }

@@ -33,7 +33,7 @@ class TagModel extends Model
     public array $history;
 
     /**
-     * Whether the current token&#039;s authorized user is following this tag.
+     * Whether the current token's authorized user is following this tag.
      */
     public ?bool $following = null;
 }

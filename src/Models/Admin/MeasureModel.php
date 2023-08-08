@@ -23,7 +23,7 @@ class MeasureModel extends Model
     public string $key;
 
     /**
-     * The units associated with this data item&#039;s value, if applicable.
+     * The units associated with this data item's value, if applicable.
      */
     public ?string $unit = null;
 

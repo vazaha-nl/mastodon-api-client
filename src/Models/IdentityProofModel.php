@@ -23,7 +23,7 @@ class IdentityProofModel extends Model
     public string $provider;
 
     /**
-     * The account owner&#039;s username on the identity provider&#039;s service.
+     * The account owner's username on the identity provider's service.
      */
     public string $provider_username;
 
@@ -38,7 +38,7 @@ class IdentityProofModel extends Model
     public string $proof_url;
 
     /**
-     * The account owner&#039;s profile URL on the identity provider.
+     * The account owner's profile URL on the identity provider.
      */
     public string $profile_url;
 }

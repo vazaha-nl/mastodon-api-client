@@ -17,9 +17,9 @@ class CredentialAccountModel extends AccountModel
 {
     /**
      * An extra attribute that contains source values to be used with API methods
-     * that [verify credentials]({{&lt; relref &quot;methods/accounts#verify_credentials&quot;
-     * &gt;}}) and [update credentials]({{&lt; relref
-     * &quot;methods/accounts#update_credentials&quot; &gt;}}).
+     * that [verify credentials]({{< relref "methods/accounts#verify_credentials"
+     * >}}) and [update credentials]({{< relref
+     * "methods/accounts#update_credentials" >}}).
      *
      * @var mixed[]
      */

@@ -36,17 +36,17 @@ class AccountModel extends Model
     public string $acct;
 
     /**
-     * The location of the user&#039;s profile page.
+     * The location of the user's profile page.
      */
     public string $url;
 
     /**
-     * The profile&#039;s display name.
+     * The profile's display name.
      */
     public string $display_name;
 
     /**
-     * The profile&#039;s bio or description.
+     * The profile's bio or description.
      */
     public string $note;
 

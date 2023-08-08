@@ -106,7 +106,7 @@ class StatusModel extends Model
     public int $replies_count;
 
     /**
-     * A link to the status&#039;s HTML representation.
+     * A link to the status's HTML representation.
      */
     public ?string $url = null;
 
@@ -165,7 +165,7 @@ class StatusModel extends Model
 
     /**
      * If the current token has an authorized user: Have you muted notifications
-     * for this status&#039;s conversation?
+     * for this status's conversation?
      */
     public ?bool $muted = null;
 

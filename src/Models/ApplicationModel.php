@@ -26,10 +26,10 @@ class ApplicationModel extends Model
     public ?string $website = null;
 
     /**
-     * Used for Push Streaming API. Returned with [POST /api/v1/apps]({{&lt; relref
-     * &quot;methods/apps#create&quot; &gt;}}). Equivalent to
-     * [WebPushSubscription#server_key]({{&lt; relref
-     * &quot;entities/WebPushSubscription#server_key&quot; &gt;}}).
+     * Used for Push Streaming API. Returned with [POST /api/v1/apps]({{< relref
+     * "methods/apps#create" >}}). Equivalent to
+     * [WebPushSubscription#server_key]({{< relref
+     * "entities/WebPushSubscription#server_key" >}}).
      */
     public string $vapid_key;
 
