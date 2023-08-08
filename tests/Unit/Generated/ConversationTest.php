@@ -19,21 +19,21 @@ class ConversationTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "unread" : true,
-   "id" : "418450",
    "accounts" : [
       {
-         "username" : "amic",
+         "acct" : "amic@nulled.red",
          "id" : "482403",
-         "acct" : "amic@nulled.red"
+         "username" : "amic"
       }
    ],
+   "id" : "418450",
    "last_status" : {
-      "in_reply_to_account_id" : "14715",
-      "id" : "103196583826321184",
       "created_at" : "2019-11-25T04:08:24.000Z",
+      "id" : "103196583826321184",
+      "in_reply_to_account_id" : "14715",
       "in_reply_to_id" : "103196540587943467"
-   }
+   },
+   "unread" : true
 }
 
 JSON;

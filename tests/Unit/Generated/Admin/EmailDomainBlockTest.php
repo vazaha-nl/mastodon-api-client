@@ -19,46 +19,46 @@ class EmailDomainBlockTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "id" : "1",
+   "created_at" : "2022-11-16T06:09:36.176Z",
+   "domain" : "foo",
    "history" : [
       {
+         "accounts" : "0",
          "day" : "1668556800",
-         "uses" : "0",
-         "accounts" : "0"
-      },
-      {
-         "uses" : "0",
-         "accounts" : "0",
-         "day" : "1668470400"
-      },
-      {
-         "accounts" : "0",
-         "uses" : "0",
-         "day" : "1668384000"
-      },
-      {
-         "day" : "1668297600",
-         "uses" : "0",
-         "accounts" : "0"
-      },
-      {
-         "accounts" : "0",
-         "uses" : "0",
-         "day" : "1668211200"
-      },
-      {
-         "day" : "1668124800",
-         "accounts" : "0",
          "uses" : "0"
       },
       {
-         "day" : "1668038400",
          "accounts" : "0",
+         "day" : "1668470400",
+         "uses" : "0"
+      },
+      {
+         "accounts" : "0",
+         "day" : "1668384000",
+         "uses" : "0"
+      },
+      {
+         "accounts" : "0",
+         "day" : "1668297600",
+         "uses" : "0"
+      },
+      {
+         "accounts" : "0",
+         "day" : "1668211200",
+         "uses" : "0"
+      },
+      {
+         "accounts" : "0",
+         "day" : "1668124800",
+         "uses" : "0"
+      },
+      {
+         "accounts" : "0",
+         "day" : "1668038400",
          "uses" : "0"
       }
    ],
-   "created_at" : "2022-11-16T06:09:36.176Z",
-   "domain" : "foo"
+   "id" : "1"
 }
 
 JSON;

@@ -19,8 +19,8 @@ class RuleTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "text" : "No racism, sexism, homophobia, transphobia, xenophobia, or casteism",
-   "id" : "2"
+   "id" : "2",
+   "text" : "No racism, sexism, homophobia, transphobia, xenophobia, or casteism"
 }
 
 JSON;

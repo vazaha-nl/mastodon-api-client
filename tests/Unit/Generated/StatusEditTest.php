@@ -19,7 +19,16 @@ class StatusEditTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "sensitive" : false,
+   "account" : {
+      "acct" : "trwnh",
+      "display_name" : "infinite love ⴳ",
+      "id" : "14715",
+      "username" : "trwnh"
+   },
+   "content" : "<p>this is a status that has been edited three times. this time a poll has been added.</p>",
+   "created_at" : "2022-09-05T00:03:32.480Z",
+   "emojis" : [],
+   "media_attachments" : [],
    "poll" : {
       "options" : [
          {
@@ -33,17 +42,8 @@ class StatusEditTest extends TestCase
          }
       ]
    },
-   "media_attachments" : [],
-   "emojis" : [],
-   "created_at" : "2022-09-05T00:03:32.480Z",
-   "spoiler_text" : "",
-   "content" : "<p>this is a status that has been edited three times. this time a poll has been added.</p>",
-   "account" : {
-      "display_name" : "infinite love ⴳ",
-      "username" : "trwnh",
-      "acct" : "trwnh",
-      "id" : "14715"
-   }
+   "sensitive" : false,
+   "spoiler_text" : ""
 }
 
 JSON;

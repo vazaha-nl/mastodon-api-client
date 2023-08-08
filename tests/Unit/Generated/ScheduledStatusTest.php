@@ -19,23 +19,23 @@ class ScheduledStatusTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "scheduled_at" : "2022-09-29T00:00:00.000Z",
-   "params" : {
-      "in_reply_to_id" : null,
-      "with_rate_limit" : false,
-      "language" : null,
-      "spoiler_text" : null,
-      "visibility" : null,
-      "sensitive" : null,
-      "text" : "test post",
-      "idempotency" : null,
-      "scheduled_at" : null,
-      "media_ids" : null,
-      "application_id" : 3,
-      "poll" : null
-   },
+   "id" : "1",
    "media_attachments" : [],
-   "id" : "1"
+   "params" : {
+      "application_id" : 3,
+      "idempotency" : null,
+      "in_reply_to_id" : null,
+      "language" : null,
+      "media_ids" : null,
+      "poll" : null,
+      "scheduled_at" : null,
+      "sensitive" : null,
+      "spoiler_text" : null,
+      "text" : "test post",
+      "visibility" : null,
+      "with_rate_limit" : false
+   },
+   "scheduled_at" : "2022-09-29T00:00:00.000Z"
 }
 
 JSON;

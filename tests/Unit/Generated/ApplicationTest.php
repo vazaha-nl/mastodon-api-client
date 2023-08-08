@@ -19,9 +19,9 @@ class ApplicationTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "website" : null,
    "name" : "test app",
-   "vapid_key" : "BCk-QqERU0q-CfYZjcuB6lnyyOYfJ2AifKqfeGIm7Z-HiTU5T9eTG5GxVA0_OH5mMlI4UkkDTpaZwozy0TzdZ2M="
+   "vapid_key" : "BCk-QqERU0q-CfYZjcuB6lnyyOYfJ2AifKqfeGIm7Z-HiTU5T9eTG5GxVA0_OH5mMlI4UkkDTpaZwozy0TzdZ2M=",
+   "website" : null
 }
 
 JSON;

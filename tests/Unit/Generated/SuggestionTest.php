@@ -20,8 +20,8 @@ class SuggestionTest extends TestCase
         $this->json = <<<'JSON'
 {
    "account" : {
-      "id" : "109031732217496096",
       "acct" : "alice",
+      "id" : "109031732217496096",
       "username" : "alice"
    },
    "source" : "staff"

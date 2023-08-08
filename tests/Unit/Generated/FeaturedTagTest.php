@@ -19,11 +19,11 @@ class FeaturedTagTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "statuses_count" : 70,
    "id" : "627",
-   "url" : "https://mastodon.social/@trwnh/tagged/nowplaying",
+   "last_status_at" : "2022-08-29T12:03:35.061Z",
    "name" : "nowplaying",
-   "last_status_at" : "2022-08-29T12:03:35.061Z"
+   "statuses_count" : 70,
+   "url" : "https://mastodon.social/@trwnh/tagged/nowplaying"
 }
 
 JSON;

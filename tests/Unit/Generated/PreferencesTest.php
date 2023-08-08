@@ -21,8 +21,8 @@ class PreferencesTest extends TestCase
 {
    "posting:default:language" : null,
    "posting:default:sensitive" : false,
-   "reading:expand:media" : "default",
    "posting:default:visibility" : "public",
+   "reading:expand:media" : "default",
    "reading:expand:spoilers" : false
 }
 

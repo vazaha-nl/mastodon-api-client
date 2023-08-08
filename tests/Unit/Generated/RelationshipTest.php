@@ -19,19 +19,19 @@ class RelationshipTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "endorsed" : false,
-   "muting_notifications" : false,
-   "notifying" : false,
-   "id" : "1",
-   "muting" : false,
+   "blocked_by" : false,
    "blocking" : false,
    "domain_blocking" : false,
-   "note" : "",
+   "endorsed" : false,
+   "followed_by" : true,
    "following" : true,
+   "id" : "1",
+   "muting" : false,
+   "muting_notifications" : false,
+   "note" : "",
+   "notifying" : false,
    "requested" : false,
-   "blocked_by" : false,
-   "showing_reblogs" : true,
-   "followed_by" : true
+   "showing_reblogs" : true
 }
 
 JSON;

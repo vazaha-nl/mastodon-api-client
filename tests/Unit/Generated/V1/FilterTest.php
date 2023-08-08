@@ -19,17 +19,17 @@ class FilterTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "whole_word" : false,
-   "phrase" : "test",
-   "irreversible" : true,
    "context" : [
       "home",
       "notifications",
       "public",
       "thread"
    ],
+   "expires_at" : "2019-11-26T09:08:06.254Z",
    "id" : "8449",
-   "expires_at" : "2019-11-26T09:08:06.254Z"
+   "irreversible" : true,
+   "phrase" : "test",
+   "whole_word" : false
 }
 
 JSON;

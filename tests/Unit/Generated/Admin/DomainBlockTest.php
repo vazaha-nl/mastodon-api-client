@@ -19,15 +19,15 @@ class DomainBlockTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "reject_media" : false,
-   "public_comment" : null,
-   "obfuscate" : false,
-   "reject_reports" : false,
-   "severity" : "noop",
-   "id" : "1",
    "created_at" : "2022-11-16T08:15:34.238Z",
    "domain" : "example.com",
-   "private_comment" : null
+   "id" : "1",
+   "obfuscate" : false,
+   "private_comment" : null,
+   "public_comment" : null,
+   "reject_media" : false,
+   "reject_reports" : false,
+   "severity" : "noop"
 }
 
 JSON;

@@ -20,8 +20,8 @@ class FilterKeywordTest extends TestCase
         $this->json = <<<'JSON'
 {
    "id" : "1197",
-   "whole_word" : false,
-   "keyword" : "bad word"
+   "keyword" : "bad word",
+   "whole_word" : false
 }
 
 JSON;

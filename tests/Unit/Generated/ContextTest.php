@@ -21,9 +21,9 @@ class ContextTest extends TestCase
 {
    "ancestors" : [
       {
-         "in_reply_to_id" : null,
+         "created_at" : "2019-11-23T19:44:00.124Z",
          "id" : "103188938570975982",
-         "created_at" : "2019-11-23T19:44:00.124Z"
+         "in_reply_to_id" : null
       },
       {
          "created_at" : "2019-11-23T19:52:23.398Z",
@@ -31,16 +31,16 @@ class ContextTest extends TestCase
          "in_reply_to_id" : "103188938570975982"
       },
       {
-         "in_reply_to_id" : "103188971072973252",
+         "created_at" : "2019-11-23T19:55:08.208Z",
          "id" : "103188982235527758",
-         "created_at" : "2019-11-23T19:55:08.208Z"
+         "in_reply_to_id" : "103188971072973252"
       }
    ],
    "descendants" : [
       {
-         "in_reply_to_id" : "103189005915505698",
          "created_at" : "2019-11-23T20:06:36.011Z",
-         "id" : "103189026958574542"
+         "id" : "103189026958574542",
+         "in_reply_to_id" : "103189005915505698"
       }
    ]
 }

@@ -19,9 +19,9 @@ class MarkerTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "version" : 462,
+   "last_read_id" : "103194548672408537",
    "updated_at" : "2019-11-24T19:39:39.337Z",
-   "last_read_id" : "103194548672408537"
+   "version" : 462
 }
 
 JSON;

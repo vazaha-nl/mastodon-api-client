@@ -9,9 +9,9 @@ declare(strict_types=1);
 namespace Tests\Unit\Generated;
 
 use PHPUnit\Framework\TestCase;
-use Vazaha\Mastodon\Models\FilterModel;
+use Vazaha\Mastodon\Models\RoleModel;
 
-class FilterTest extends TestCase
+class RoleTest extends TestCase
 {
     protected string $json;
 
@@ -19,26 +19,11 @@ class FilterTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "context" : [
-      "home"
-   ],
-   "expires_at" : "2022-09-20T17:27:39.296Z",
-   "filter_action" : "warn",
-   "id" : "19972",
-   "keywords" : [
-      {
-         "id" : "1197",
-         "keyword" : "bad word",
-         "whole_word" : false
-      }
-   ],
-   "statuses" : [
-      {
-         "id" : "1",
-         "status_id" : "109031743575371913"
-      }
-   ],
-   "title" : "Test filter"
+   "color" : "#ff3838",
+   "highlighted" : true,
+   "id" : 3,
+   "name" : "Owner",
+   "permissions" : 1048575
 }
 
 JSON;
@@ -58,10 +43,10 @@ JSON;
             $array = $array[0] ?? [];
         }
 
-        $model = FilterModel::fromArray($array);
+        $model = RoleModel::fromArray($array);
 
         foreach ($array as $property => $value) {
-            $property = FilterModel::sanitizePropertyName($property);
+            $property = RoleModel::sanitizePropertyName($property);
 
             self::assertObjectHasProperty($property, $model);
 

@@ -6,12 +6,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Generated;
+namespace Tests\Unit\Generated\Admin;
 
 use PHPUnit\Framework\TestCase;
-use Vazaha\Mastodon\Models\TagModel;
+use Vazaha\Mastodon\Models\Admin\CohortModel;
 
-class TagTest extends TestCase
+class CohortTest extends TestCase
 {
     protected string $json;
 
@@ -19,46 +19,45 @@ class TagTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "following" : false,
-   "history" : [
+   "data" : [
       {
-         "accounts" : "31",
-         "day" : "1574553600",
-         "uses" : "200"
+         "date" : "2022-09-08T00:00:00+00:00",
+         "rate" : 1,
+         "value" : "2"
       },
       {
-         "accounts" : "39",
-         "day" : "1574467200",
-         "uses" : "272"
+         "date" : "2022-09-09T00:00:00+00:00",
+         "rate" : 1,
+         "value" : "2"
       },
       {
-         "accounts" : "40",
-         "day" : "1574380800",
-         "uses" : "345"
+         "date" : "2022-09-10T00:00:00+00:00",
+         "rate" : 0.5,
+         "value" : "1"
       },
       {
-         "accounts" : "46",
-         "day" : "1574294400",
-         "uses" : "366"
+         "date" : "2022-09-11T00:00:00+00:00",
+         "rate" : 0.5,
+         "value" : "1"
       },
       {
-         "accounts" : "32",
-         "day" : "1574208000",
-         "uses" : "226"
+         "date" : "2022-09-12T00:00:00+00:00",
+         "rate" : 0.5,
+         "value" : "1"
       },
       {
-         "accounts" : "42",
-         "day" : "1574121600",
-         "uses" : "217"
+         "date" : "2022-09-13T00:00:00+00:00",
+         "rate" : 0.5,
+         "value" : "1"
       },
       {
-         "accounts" : "34",
-         "day" : "1574035200",
-         "uses" : "214"
+         "date" : "2022-09-14T00:00:00+00:00",
+         "rate" : 0.5,
+         "value" : "1"
       }
    ],
-   "name" : "nowplaying",
-   "url" : "https://mastodon.social/tags/nowplaying"
+   "frequency" : "day",
+   "period" : "2022-09-08T00:00:00+00:00"
 }
 
 JSON;
@@ -78,10 +77,10 @@ JSON;
             $array = $array[0] ?? [];
         }
 
-        $model = TagModel::fromArray($array);
+        $model = CohortModel::fromArray($array);
 
         foreach ($array as $property => $value) {
-            $property = TagModel::sanitizePropertyName($property);
+            $property = CohortModel::sanitizePropertyName($property);
 
             self::assertObjectHasProperty($property, $model);
 

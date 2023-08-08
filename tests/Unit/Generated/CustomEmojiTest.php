@@ -20,10 +20,10 @@ class CustomEmojiTest extends TestCase
         $this->json = <<<'JSON'
 {
    "category" : "Blobs",
-   "visible_in_picker" : true,
    "shortcode" : "blobaww",
+   "static_url" : "https://files.mastodon.social/custom_emojis/images/000/011/739/static/blobaww.png",
    "url" : "https://files.mastodon.social/custom_emojis/images/000/011/739/original/blobaww.png",
-   "static_url" : "https://files.mastodon.social/custom_emojis/images/000/011/739/static/blobaww.png"
+   "visible_in_picker" : true
 }
 
 JSON;

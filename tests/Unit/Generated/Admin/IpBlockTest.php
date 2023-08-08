@@ -19,12 +19,12 @@ class IpBlockTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "severity" : "no_access",
+   "comment" : "",
    "created_at" : "2022-11-16T07:22:00.501Z",
+   "expires_at" : null,
    "id" : "1",
    "ip" : "8.8.8.8/32",
-   "expires_at" : null,
-   "comment" : ""
+   "severity" : "no_access"
 }
 
 JSON;

@@ -19,9 +19,9 @@ class TranslationTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
+   "content" : "<p>Hola mundo</p>",
    "detected_source_language" : "en",
-   "provider" : "DeepL.com",
-   "content" : "<p>Hola mundo</p>"
+   "provider" : "DeepL.com"
 }
 
 JSON;

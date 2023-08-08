@@ -19,23 +19,23 @@ class NotificationTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "status" : {
-      "account" : {
-         "username" : "trwnh",
-         "id" : "14715",
-         "acct" : "trwnh"
-      },
-      "created_at" : "2019-11-23T07:28:34.210Z",
-      "id" : "103186046267791694"
-   },
-   "type" : "favourite",
-   "created_at" : "2019-11-23T07:29:18.903Z",
    "account" : {
       "acct" : "haskal@cybre.space",
       "id" : "297420",
       "username" : "haskal"
    },
-   "id" : "34975535"
+   "created_at" : "2019-11-23T07:29:18.903Z",
+   "id" : "34975535",
+   "status" : {
+      "account" : {
+         "acct" : "trwnh",
+         "id" : "14715",
+         "username" : "trwnh"
+      },
+      "created_at" : "2019-11-23T07:28:34.210Z",
+      "id" : "103186046267791694"
+   },
+   "type" : "favourite"
 }
 
 JSON;

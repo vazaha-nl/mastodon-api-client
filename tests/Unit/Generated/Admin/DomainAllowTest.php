@@ -19,9 +19,9 @@ class DomainAllowTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "id" : "1",
    "created_at" : "2022-09-14T21:23:02.755Z",
-   "domain" : "mastodon.social"
+   "domain" : "mastodon.social",
+   "id" : "1"
 }
 
 JSON;

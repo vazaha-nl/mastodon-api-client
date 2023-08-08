@@ -25,8 +25,8 @@ class MeasureTest extends TestCase
          "value" : "0"
       },
       {
-         "value" : "0",
-         "date" : "2022-09-15T00:00:00.000+00:00"
+         "date" : "2022-09-15T00:00:00.000+00:00",
+         "value" : "0"
       },
       {
          "date" : "2022-09-16T00:00:00.000+00:00",
@@ -37,8 +37,8 @@ class MeasureTest extends TestCase
          "value" : "0"
       },
       {
-         "value" : "0",
-         "date" : "2022-09-18T00:00:00.000+00:00"
+         "date" : "2022-09-18T00:00:00.000+00:00",
+         "value" : "0"
       },
       {
          "date" : "2022-09-19T00:00:00.000+00:00",
@@ -49,12 +49,12 @@ class MeasureTest extends TestCase
          "value" : "0"
       },
       {
-         "value" : "0",
-         "date" : "2022-09-21T00:00:00.000+00:00"
+         "date" : "2022-09-21T00:00:00.000+00:00",
+         "value" : "0"
       },
       {
-         "value" : "0",
-         "date" : "2022-09-22T00:00:00.000+00:00"
+         "date" : "2022-09-22T00:00:00.000+00:00",
+         "value" : "0"
       }
    ],
    "key" : "instance_followers",

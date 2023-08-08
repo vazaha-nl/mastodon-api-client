@@ -19,11 +19,11 @@ class IdentityProofTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "updated_at" : "2019-07-21T20:14:39.596Z",
    "profile_url" : "https://keybase.io/gargron",
    "proof_url" : "https://keybase.io/gargron/sigchain#5cfc20c7018f2beefb42a68836da59a792e55daa4d118498c9b1898de7e845690f",
    "provider" : "Keybase",
-   "provider_username" : "gargron"
+   "provider_username" : "gargron",
+   "updated_at" : "2019-07-21T20:14:39.596Z"
 }
 
 JSON;

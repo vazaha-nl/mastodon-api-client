@@ -20,24 +20,24 @@ class MediaAttachmentTest extends TestCase
         $this->json = <<<'JSON'
 {
    "blurhash" : null,
-   "remote_url" : null,
-   "type" : "audio",
-   "meta" : {
-      "length" : "0:06:42.86",
-      "duration" : 402.86,
-      "original" : {
-         "duration" : 402.860408,
-         "bitrate" : 166290
-      },
-      "audio_bitrate" : "44100 Hz",
-      "audio_encode" : "mp3",
-      "audio_channels" : "stereo"
-   },
+   "description" : null,
    "id" : "21165404",
-   "url" : "https://files.mastodon.social/media_attachments/files/021/165/404/original/a31a4a46cd713cd2.mp3",
-   "text_url" : "https://mastodon.social/media/5O4uILClVqBWx0NNgvo",
+   "meta" : {
+      "audio_bitrate" : "44100 Hz",
+      "audio_channels" : "stereo",
+      "audio_encode" : "mp3",
+      "duration" : 402.86,
+      "length" : "0:06:42.86",
+      "original" : {
+         "bitrate" : 166290,
+         "duration" : 402.860408
+      }
+   },
    "preview_url" : "https://files.mastodon.social/media_attachments/files/021/165/404/small/a31a4a46cd713cd2.mp3",
-   "description" : null
+   "remote_url" : null,
+   "text_url" : "https://mastodon.social/media/5O4uILClVqBWx0NNgvo",
+   "type" : "audio",
+   "url" : "https://files.mastodon.social/media_attachments/files/021/165/404/original/a31a4a46cd713cd2.mp3"
 }
 
 JSON;

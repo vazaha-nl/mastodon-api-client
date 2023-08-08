@@ -19,9 +19,9 @@ class TokenTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "scope" : "read write follow push",
    "access_token" : "ZA-Yj3aBD8U8Cm7lKUp-lm9O9BmDgdhHzDeqsY8tlL0",
    "created_at" : 1573979017,
+   "scope" : "read write follow push",
    "token_type" : "Bearer"
 }
 

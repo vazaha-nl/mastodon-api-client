@@ -20,23 +20,23 @@ class FamiliarFollowersTest extends TestCase
         $this->json = <<<'JSON'
 [
    {
-      "id" : "1",
       "accounts" : [
          {
-            "username" : "moss",
             "acct" : "moss@goblin.camp",
-            "id" : "1087990"
+            "id" : "1087990",
+            "username" : "moss"
          },
          {
-            "username" : "vivianrose",
             "acct" : "vivianrose",
-            "id" : "1092723"
+            "id" : "1092723",
+            "username" : "vivianrose"
          }
-      ]
+      ],
+      "id" : "1"
    },
    {
-      "id" : "2",
-      "accounts" : []
+      "accounts" : [],
+      "id" : "2"
    }
 ]
 

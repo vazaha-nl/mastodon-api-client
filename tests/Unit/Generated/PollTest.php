@@ -19,10 +19,15 @@ class PollTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
+   "emojis" : [],
+   "expired" : true,
+   "expires_at" : "2019-12-05T04:05:08.302Z",
+   "id" : "34830",
+   "multiple" : false,
    "options" : [
       {
-         "votes_count" : 6,
-         "title" : "accept"
+         "title" : "accept",
+         "votes_count" : 6
       },
       {
          "title" : "deny",
@@ -33,12 +38,7 @@ class PollTest extends TestCase
       1
    ],
    "voted" : true,
-   "expires_at" : "2019-12-05T04:05:08.302Z",
    "voters_count" : null,
-   "id" : "34830",
-   "multiple" : false,
-   "expired" : true,
-   "emojis" : [],
    "votes_count" : 10
 }
 

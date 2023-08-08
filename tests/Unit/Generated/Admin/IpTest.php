@@ -19,8 +19,8 @@ class IpTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "used_at" : "2022-09-15T01:38:58.851Z",
-   "ip" : "192.168.42.1"
+   "ip" : "192.168.42.1",
+   "used_at" : "2022-09-15T01:38:58.851Z"
 }
 
 JSON;

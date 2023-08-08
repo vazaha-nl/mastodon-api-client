@@ -19,48 +19,48 @@ class TagTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "name" : "caturday",
-   "url" : "https://mastodon.example/tags/caturday",
-   "trendable" : true,
-   "requires_review" : false,
    "history" : [
       {
+         "accounts" : "53",
          "day" : "1669507200",
-         "uses" : "56",
-         "accounts" : "53"
+         "uses" : "56"
       },
       {
+         "accounts" : "142",
          "day" : "1669420800",
-         "uses" : "171",
-         "accounts" : "142"
+         "uses" : "171"
       },
       {
+         "accounts" : "11",
          "day" : "1669334400",
-         "uses" : "11",
-         "accounts" : "11"
+         "uses" : "11"
       },
       {
-         "day" : "1669248000",
          "accounts" : "8",
+         "day" : "1669248000",
          "uses" : "9"
       },
       {
+         "accounts" : "8",
          "day" : "1669161600",
-         "uses" : "20",
-         "accounts" : "8"
+         "uses" : "20"
       },
       {
-         "uses" : "11",
          "accounts" : "11",
-         "day" : "1669075200"
+         "day" : "1669075200",
+         "uses" : "11"
       },
       {
          "accounts" : "17",
-         "uses" : "22",
-         "day" : "1668988800"
+         "day" : "1668988800",
+         "uses" : "22"
       }
    ],
    "id" : "802",
+   "name" : "caturday",
+   "requires_review" : false,
+   "trendable" : true,
+   "url" : "https://mastodon.example/tags/caturday",
    "usable" : true
 }
 

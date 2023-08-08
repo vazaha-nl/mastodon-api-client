@@ -19,20 +19,20 @@ class PreviewCardTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "image" : null,
-   "blurhash" : null,
-   "type" : "link",
-   "title" : "‘I lost my £193,000 inheritance – with one wrong digit on my sort code’",
-   "author_url" : "",
-   "embed_url" : "",
-   "width" : 0,
-   "html" : "",
    "author_name" : "",
-   "height" : 0,
+   "author_url" : "",
+   "blurhash" : null,
    "description" : "When Peter Teich’s money went to another Barclays customer, the bank offered £25 as a token gesture",
+   "embed_url" : "",
+   "height" : 0,
+   "html" : "",
+   "image" : null,
+   "provider_name" : "",
    "provider_url" : "",
+   "title" : "‘I lost my £193,000 inheritance – with one wrong digit on my sort code’",
+   "type" : "link",
    "url" : "https://www.theguardian.com/money/2019/dec/07/i-lost-my-193000-inheritance-with-one-wrong-digit-on-my-sort-code",
-   "provider_name" : ""
+   "width" : 0
 }
 
 JSON;

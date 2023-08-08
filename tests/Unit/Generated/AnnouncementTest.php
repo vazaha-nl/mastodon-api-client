@@ -19,46 +19,46 @@ class AnnouncementTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "mentions" : [],
-   "content" : "<p>Looks like there was an issue processing audio attachments without embedded art since yesterday due to an experimental new feature. That issue has now been fixed, so you may see older posts with audio from other servers pop up in your feeds now as they are being finally properly processed. Sorry!</p>",
    "all_day" : false,
-   "read" : true,
-   "statuses" : [],
-   "published_at" : "2020-07-03T01:27:38.726Z",
+   "content" : "<p>Looks like there was an issue processing audio attachments without embedded art since yesterday due to an experimental new feature. That issue has now been fixed, so you may see older posts with audio from other servers pop up in your feeds now as they are being finally properly processed. Sorry!</p>",
+   "emojis" : [],
    "ends_at" : null,
-   "updated_at" : "2020-07-03T01:27:38.752Z",
+   "id" : "8",
+   "mentions" : [],
+   "published_at" : "2020-07-03T01:27:38.726Z",
    "reactions" : [
       {
-         "static_url" : "https://files.mastodon.social/custom_emojis/images/000/067/715/static/fdba57dff7576d53.png",
+         "count" : 9,
          "me" : false,
-         "url" : "https://files.mastodon.social/custom_emojis/images/000/067/715/original/fdba57dff7576d53.png",
          "name" : "bongoCat",
-         "count" : 9
-      },
-      {
-         "url" : "https://files.mastodon.social/custom_emojis/images/000/098/690/original/a8d36edc4a7032e8.png",
-         "name" : "thonking",
-         "static_url" : "https://files.mastodon.social/custom_emojis/images/000/098/690/static/a8d36edc4a7032e8.png",
-         "me" : false,
-         "count" : 1
+         "static_url" : "https://files.mastodon.social/custom_emojis/images/000/067/715/static/fdba57dff7576d53.png",
+         "url" : "https://files.mastodon.social/custom_emojis/images/000/067/715/original/fdba57dff7576d53.png"
       },
       {
          "count" : 1,
-         "name" : "AAAAAA",
-         "url" : "https://files.mastodon.social/custom_emojis/images/000/071/387/original/AAAAAA.png",
          "me" : false,
-         "static_url" : "https://files.mastodon.social/custom_emojis/images/000/071/387/static/AAAAAA.png"
+         "name" : "thonking",
+         "static_url" : "https://files.mastodon.social/custom_emojis/images/000/098/690/static/a8d36edc4a7032e8.png",
+         "url" : "https://files.mastodon.social/custom_emojis/images/000/098/690/original/a8d36edc4a7032e8.png"
       },
       {
-         "name" : "🤔",
+         "count" : 1,
+         "me" : false,
+         "name" : "AAAAAA",
+         "static_url" : "https://files.mastodon.social/custom_emojis/images/000/071/387/static/AAAAAA.png",
+         "url" : "https://files.mastodon.social/custom_emojis/images/000/071/387/original/AAAAAA.png"
+      },
+      {
+         "count" : 1,
          "me" : true,
-         "count" : 1
+         "name" : "🤔"
       }
    ],
+   "read" : true,
    "starts_at" : null,
-   "id" : "8",
+   "statuses" : [],
    "tags" : [],
-   "emojis" : []
+   "updated_at" : "2020-07-03T01:27:38.752Z"
 }
 
 JSON;

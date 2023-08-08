@@ -19,10 +19,10 @@ class DomainBlockTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "severity" : "suspend",
-   "digest" : "3752f63a7079d60c2de5dceb8bd7608e86a15544eb78a494a482041c3684b37f",
    "comment" : "Inappropriate content",
-   "domain" : "daji******.com"
+   "digest" : "3752f63a7079d60c2de5dceb8bd7608e86a15544eb78a494a482041c3684b37f",
+   "domain" : "daji******.com",
+   "severity" : "suspend"
 }
 
 JSON;

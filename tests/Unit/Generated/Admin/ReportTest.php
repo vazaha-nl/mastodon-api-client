@@ -19,42 +19,42 @@ class ReportTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "category" : "spam",
-   "rules" : [],
-   "assigned_account" : null,
-   "action_taken_at" : null,
    "account" : {
-      "email" : "admin@mastodon.local",
-      "username" : "admin",
       "account" : {
-         "username" : "admin",
          "acct" : "admin",
-         "id" : "108965218747268792"
+         "id" : "108965218747268792",
+         "username" : "admin"
       },
+      "created_at" : "2022-09-08T22:48:07.985Z",
       "domain" : null,
+      "email" : "admin@mastodon.local",
       "id" : "108965218747268792",
-      "created_at" : "2022-09-08T22:48:07.985Z"
+      "username" : "admin"
    },
-   "forwarded" : false,
+   "action_taken" : false,
+   "action_taken_at" : null,
+   "action_taken_by_account" : null,
+   "assigned_account" : null,
+   "category" : "spam",
+   "comment" : "",
    "created_at" : "2022-09-09T21:19:23.085Z",
+   "forwarded" : false,
    "id" : "1",
+   "rules" : [],
+   "statuses" : [],
    "target_account" : {
-      "id" : "108965430868193066",
+      "account" : {
+         "acct" : "goody",
+         "id" : "108965430868193066",
+         "username" : "goody"
+      },
       "created_at" : "2022-09-08T23:42:04.731Z",
       "domain" : null,
-      "account" : {
-         "username" : "goody",
-         "acct" : "goody",
-         "id" : "108965430868193066"
-      },
       "email" : "goody@mastodon.local",
+      "id" : "108965430868193066",
       "username" : "goody"
    },
-   "updated_at" : "2022-09-09T21:19:23.085Z",
-   "action_taken_by_account" : null,
-   "statuses" : [],
-   "action_taken" : false,
-   "comment" : ""
+   "updated_at" : "2022-09-09T21:19:23.085Z"
 }
 
 JSON;

@@ -20,8 +20,8 @@ class StatusSourceTest extends TestCase
         $this->json = <<<'JSON'
 {
    "id" : "108942703571991143",
-   "text" : "this is a status that will be edited",
-   "spoiler_text" : ""
+   "spoiler_text" : "",
+   "text" : "this is a status that will be edited"
 }
 
 JSON;

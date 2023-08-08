@@ -19,15 +19,15 @@ class WebPushSubscriptionTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "id" : 328183,
    "alerts" : {
       "favourite" : false,
-      "mention" : true,
-      "reblog" : false,
       "follow" : false,
-      "poll" : false
+      "mention" : true,
+      "poll" : false,
+      "reblog" : false
    },
    "endpoint" : "https://yourdomain.example/listener",
+   "id" : 328183,
    "server_key" : "BCk-QqERU0q-CfYZjcuB6lnyyOYfJ2AifKqfeGIm7Z-HiTU5T9eTG5GxVA0_OH5mMlI4UkkDTpaZwozy0TzdZ2M="
 }
 

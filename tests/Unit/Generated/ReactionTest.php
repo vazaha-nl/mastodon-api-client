@@ -9,37 +9,29 @@ declare(strict_types=1);
 namespace Tests\Unit\Generated;
 
 use PHPUnit\Framework\TestCase;
-use Vazaha\Mastodon\Models\FilterModel;
+use Vazaha\Mastodon\Models\ReactionModel;
 
-class FilterTest extends TestCase
+class ReactionTest extends TestCase
 {
     protected string $json;
 
     protected function setUp(): void
     {
         $this->json = <<<'JSON'
-{
-   "context" : [
-      "home"
-   ],
-   "expires_at" : "2022-09-20T17:27:39.296Z",
-   "filter_action" : "warn",
-   "id" : "19972",
-   "keywords" : [
-      {
-         "id" : "1197",
-         "keyword" : "bad word",
-         "whole_word" : false
-      }
-   ],
-   "statuses" : [
-      {
-         "id" : "1",
-         "status_id" : "109031743575371913"
-      }
-   ],
-   "title" : "Test filter"
-}
+[
+   {
+      "count" : 9,
+      "me" : false,
+      "name" : "bongoCat",
+      "static_url" : "https://files.mastodon.social/custom_emojis/images/000/067/715/static/fdba57dff7576d53.png",
+      "url" : "https://files.mastodon.social/custom_emojis/images/000/067/715/original/fdba57dff7576d53.png"
+   },
+   {
+      "count" : 1,
+      "me" : true,
+      "name" : "🤔"
+   }
+]
 
 JSON;
     }
@@ -58,10 +50,10 @@ JSON;
             $array = $array[0] ?? [];
         }
 
-        $model = FilterModel::fromArray($array);
+        $model = ReactionModel::fromArray($array);
 
         foreach ($array as $property => $value) {
-            $property = FilterModel::sanitizePropertyName($property);
+            $property = ReactionModel::sanitizePropertyName($property);
 
             self::assertObjectHasProperty($property, $model);
 

@@ -19,20 +19,20 @@ class FilterResultTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "status_matches" : [
-      "109031743575371913"
-   ],
    "filter" : {
-      "title" : "Hide completely",
-      "filter_action" : "hide",
       "context" : [
          "home"
       ],
       "expires_at" : "2022-09-20T17:27:39.296Z",
-      "id" : "3"
+      "filter_action" : "hide",
+      "id" : "3",
+      "title" : "Hide completely"
    },
    "keyword_matches" : [
       "bad word"
+   ],
+   "status_matches" : [
+      "109031743575371913"
    ]
 }
 
