@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Vazaha\Mastodon\Factories\ApiClientFactory;
 use Vazaha\Mastodon\Requests\Accounts\FollowingRequest;
 
 class RequestTest extends TestCase
@@ -28,5 +30,21 @@ class RequestTest extends TestCase
         $request->setLimit(123);
         $uri = (string) $request->getUri();
         self::assertStringContainsString('limit=123', $uri);
+    }
+
+    public function testInvalidParamsInArrayThrowException(): void
+    {
+        $apiClient = (new ApiClientFactory())
+            ->build();
+
+        $this->expectException(InvalidArgumentException::class);
+        $apiClient->methods()->statuses()->create(
+            'test status',
+            [],
+            [
+                'foobar' => static function (): void {
+                },
+            ],
+        );
     }
 }
