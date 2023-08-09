@@ -7,7 +7,7 @@ namespace Vazaha\Mastodon\Support;
 use InvalidArgumentException;
 
 /**
- * Helper class for files to be uploaded to the Mastodon API
+ * Helper class for files to be uploaded to the Mastodon API.
  */
 class File
 {
