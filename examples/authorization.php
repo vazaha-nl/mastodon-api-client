@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 use Vazaha\Mastodon\Factories\ApiClientFactory;
 
-require 'vendor/autoload.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 $factory = new ApiClientFactory();
 $client = $factory->build()
-    ->setBaseUri('https://instance.example.org');
+    ->setBaseUri('http://yourinstancehere.example');
 
 // manually set an access token for authenticated requests
 $client->setAccessToken('token');

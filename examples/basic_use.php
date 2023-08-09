@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Vazaha\Mastodon\Exceptions\NotFoundException;
 
-require 'vendor/autoload.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 // using the factory
 $factory = new \Vazaha\Mastodon\Factories\ApiClientFactory();
@@ -14,7 +14,7 @@ $client = $factory->build();
 $client = new \Vazaha\Mastodon\ApiClient(new \GuzzleHttp\Client());
 
 // set baseuri
-$client->setBaseUri('https://instance.example.org');
+$client->setBaseUri('https://yourinstancehere.example');
 
 // get an account by id
 try {
