@@ -5,16 +5,15 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Requests;
 
 use Vazaha\Mastodon\Interfaces\RequestInterface;
-use Vazaha\Mastodon\Requests\Concerns\ConstructsFormDataBody;
 use Vazaha\Mastodon\Requests\Concerns\HasPaging;
 use Vazaha\Mastodon\Results\Result;
+use Vazaha\Mastodon\Support\MultipartFormData;
 
 /**
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Result>
  */
 abstract class Request implements RequestInterface
 {
-    use ConstructsFormDataBody;
     use HasPaging;
 
     /**
@@ -23,8 +22,7 @@ abstract class Request implements RequestInterface
     public function getOptions(): array
     {
         return array_filter([
-            'headers' => $this->getHeaders(),
-            'body' => $this->getFormDataBody(),
+            'multipart' => (new MultipartFormData($this->getFormParams()))->toArray(),
         ]);
     }
 
