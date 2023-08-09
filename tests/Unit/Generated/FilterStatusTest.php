@@ -42,6 +42,9 @@ JSON;
 
         $model = FilterStatusModel::fromArray($array);
 
+        $modelArray = $model->toArray();
+        self::assertIsArray($modelArray);
+
         foreach ($array as $property => $value) {
             $property = FilterStatusModel::sanitizePropertyName($property);
 

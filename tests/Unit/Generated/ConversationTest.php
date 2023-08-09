@@ -55,6 +55,9 @@ JSON;
 
         $model = ConversationModel::fromArray($array);
 
+        $modelArray = $model->toArray();
+        self::assertIsArray($modelArray);
+
         foreach ($array as $property => $value) {
             $property = ConversationModel::sanitizePropertyName($property);
 

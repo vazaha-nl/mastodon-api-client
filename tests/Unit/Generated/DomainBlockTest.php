@@ -44,6 +44,9 @@ JSON;
 
         $model = DomainBlockModel::fromArray($array);
 
+        $modelArray = $model->toArray();
+        self::assertIsArray($modelArray);
+
         foreach ($array as $property => $value) {
             $property = DomainBlockModel::sanitizePropertyName($property);
 

@@ -46,6 +46,9 @@ JSON;
 
         $model = SuggestionModel::fromArray($array);
 
+        $modelArray = $model->toArray();
+        self::assertIsArray($modelArray);
+
         foreach ($array as $property => $value) {
             $property = SuggestionModel::sanitizePropertyName($property);
 

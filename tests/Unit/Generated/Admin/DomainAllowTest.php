@@ -43,6 +43,9 @@ JSON;
 
         $model = DomainAllowModel::fromArray($array);
 
+        $modelArray = $model->toArray();
+        self::assertIsArray($modelArray);
+
         foreach ($array as $property => $value) {
             $property = DomainAllowModel::sanitizePropertyName($property);
 

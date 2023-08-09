@@ -80,6 +80,9 @@ JSON;
 
         $model = EmailDomainBlockModel::fromArray($array);
 
+        $modelArray = $model->toArray();
+        self::assertIsArray($modelArray);
+
         foreach ($array as $property => $value) {
             $property = EmailDomainBlockModel::sanitizePropertyName($property);
 

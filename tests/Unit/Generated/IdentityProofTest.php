@@ -45,6 +45,9 @@ JSON;
 
         $model = IdentityProofModel::fromArray($array);
 
+        $modelArray = $model->toArray();
+        self::assertIsArray($modelArray);
+
         foreach ($array as $property => $value) {
             $property = IdentityProofModel::sanitizePropertyName($property);
 

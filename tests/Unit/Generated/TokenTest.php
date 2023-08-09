@@ -44,6 +44,9 @@ JSON;
 
         $model = TokenModel::fromArray($array);
 
+        $modelArray = $model->toArray();
+        self::assertIsArray($modelArray);
+
         foreach ($array as $property => $value) {
             $property = TokenModel::sanitizePropertyName($property);
 

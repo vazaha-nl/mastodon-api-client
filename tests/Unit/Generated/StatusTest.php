@@ -117,6 +117,9 @@ JSON;
 
         $model = StatusModel::fromArray($array);
 
+        $modelArray = $model->toArray();
+        self::assertIsArray($modelArray);
+
         foreach ($array as $property => $value) {
             $property = StatusModel::sanitizePropertyName($property);
 

@@ -43,6 +43,9 @@ JSON;
 
         $model = TranslationModel::fromArray($array);
 
+        $modelArray = $model->toArray();
+        self::assertIsArray($modelArray);
+
         foreach ($array as $property => $value) {
             $property = TranslationModel::sanitizePropertyName($property);
 

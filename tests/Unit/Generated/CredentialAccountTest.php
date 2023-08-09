@@ -103,6 +103,9 @@ JSON;
 
         $model = CredentialAccountModel::fromArray($array);
 
+        $modelArray = $model->toArray();
+        self::assertIsArray($modelArray);
+
         foreach ($array as $property => $value) {
             $property = CredentialAccountModel::sanitizePropertyName($property);
 

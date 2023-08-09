@@ -50,6 +50,9 @@ JSON;
 
         $model = WebPushSubscriptionModel::fromArray($array);
 
+        $modelArray = $model->toArray();
+        self::assertIsArray($modelArray);
+
         foreach ($array as $property => $value) {
             $property = WebPushSubscriptionModel::sanitizePropertyName($property);
 

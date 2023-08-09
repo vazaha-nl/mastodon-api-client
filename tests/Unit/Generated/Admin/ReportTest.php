@@ -76,6 +76,9 @@ JSON;
 
         $model = ReportModel::fromArray($array);
 
+        $modelArray = $model->toArray();
+        self::assertIsArray($modelArray);
+
         foreach ($array as $property => $value) {
             $property = ReportModel::sanitizePropertyName($property);
 

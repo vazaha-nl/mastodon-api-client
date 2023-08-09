@@ -46,6 +46,9 @@ JSON;
 
         $model = IpBlockModel::fromArray($array);
 
+        $modelArray = $model->toArray();
+        self::assertIsArray($modelArray);
+
         foreach ($array as $property => $value) {
             $property = IpBlockModel::sanitizePropertyName($property);
 
