@@ -100,7 +100,7 @@ class ClassProperty
             if (preg_match('/string/i', $subType)) {
                 $this->type = 'array';
                 $this->typeHint = ($this->nullable ? 'null|' : '') . 'array<string>';
-                $this->default = $this->nullable ? '[]' : null;
+                $this->default = $this->nullable ? 'null' : '[]';
 
                 return;
             }
@@ -108,7 +108,7 @@ class ClassProperty
             if (preg_match('/array|hash/i', $subType)) {
                 $this->type = 'array';
                 $this->typeHint = ($this->nullable ? 'null|' : '') . 'array<mixed>';
-                $this->default = $this->nullable ? '[]' : null;
+                $this->default = $this->nullable ? 'null' : '[]';
 
                 return;
             }
@@ -116,7 +116,7 @@ class ClassProperty
             if (preg_match('/integer/i', $subType)) {
                 $this->type = 'array';
                 $this->typeHint = ($this->nullable ? 'null|' : '') . 'array<int>';
-                $this->default = $this->nullable ? '[]' : null;
+                $this->default = $this->nullable ? 'null' : '[]';
 
                 return;
             }

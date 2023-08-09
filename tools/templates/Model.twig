@@ -32,7 +32,7 @@ class {{ classname }} extends {% if parentClass %}{{ parentClass }}{% else %}Mod
 {% endif %}
      */
     {% endif %}
-    public {% if property.nullable %}?{% endif %}{{ property.type }} ${{ property.name }}{% if property.nullable %} = null{% elseif property.default %} = {{ property.default }}{% endif %};
+    public {% if property.nullable %}?{% endif %}{{ property.type }} ${{ property.name }}{% if property.nullable %} = null{% endif %};
 
 {% endfor %}
 }

@@ -33,7 +33,7 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\StatusRequest implem
      */
     public function __construct(
         public string $status,
-        public array $media_ids,
+        public array $media_ids = [],
         public ?array $poll = null,
         public ?string $in_reply_to_id = null,
         public ?bool $sensitive = null,

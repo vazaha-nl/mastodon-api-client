@@ -26,7 +26,7 @@ final class AccountsRemoveRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnkno
      */
     public function __construct(
         public string $id,
-        public array $account_ids,
+        public array $account_ids = [],
     ) {
     }
 

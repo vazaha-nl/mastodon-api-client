@@ -49,7 +49,7 @@ class PollsProxy extends Proxy
      */
     public function vote(
         string $id,
-        array $choices,
+        array $choices = [],
     ): PollModel {
         $result = $this->apiClient->send(new VoteRequest(
             $id,

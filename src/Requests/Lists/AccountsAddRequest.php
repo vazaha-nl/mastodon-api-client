@@ -26,7 +26,7 @@ final class AccountsAddRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownR
      */
     public function __construct(
         public string $id,
-        public array $account_ids,
+        public array $account_ids = [],
     ) {
     }
 

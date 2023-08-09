@@ -35,7 +35,7 @@ class {{ classname }} extends Proxy
  */
     public function {{ method.name }}(
 {% for property in method.allParams %}
-    {% if property.nullable %}?{% endif %}{{ property.type }} ${{ property.name }}{% if property.nullable %} = null{% endif %},
+    {% if property.nullable %}?{% endif %}{{ property.type }} ${{ property.name }}{% if property.default %} = {{ property.default}}{% elseif property.nullable %} = null{% endif %},
 {% endfor %}
 {% if method.returnsArray %}
     ): {{ method.resultClass.toTypeString() }} {

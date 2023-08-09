@@ -32,7 +32,7 @@ class DimensionsProxy extends Proxy
      * @see https://docs.joinmastodon.org/methods/dimensions/#get
      */
     public function get(
-        array $keys,
+        array $keys = [],
         ?DateTimeInterface $start_at = null,
         ?DateTimeInterface $end_at = null,
         ?int $limit = null,

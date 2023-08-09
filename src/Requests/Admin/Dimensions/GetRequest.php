@@ -32,7 +32,7 @@ final class GetRequest extends \Vazaha\Mastodon\Requests\Admin\DimensionRequest 
      * @param null|mixed[]       $instance_languages instance_languages[domain]: When `instance_accounts` is one of the requested keys, you must provide a domain to obtain information about popular languages from that server
      */
     public function __construct(
-        public array $keys,
+        public array $keys = [],
         public ?DateTimeInterface $start_at = null,
         public ?DateTimeInterface $end_at = null,
         public ?int $limit = null,

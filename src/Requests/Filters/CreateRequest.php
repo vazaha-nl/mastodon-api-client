@@ -29,7 +29,7 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\FilterRequest implem
      */
     public function __construct(
         public string $title,
-        public array $context,
+        public array $context = [],
         public ?string $filter_action = null,
         public ?int $expires_in = null,
         public ?array $keywords_attributes = null,

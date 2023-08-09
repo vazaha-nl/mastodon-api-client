@@ -53,7 +53,7 @@ class FiltersProxy extends Proxy
      */
     public function create(
         string $title,
-        array $context,
+        array $context = [],
         ?string $filter_action = null,
         ?int $expires_in = null,
         ?array $keywords_attributes = null,
@@ -89,7 +89,7 @@ class FiltersProxy extends Proxy
      */
     public function createV1(
         string $phrase,
-        array $context,
+        array $context = [],
         ?bool $irreversible = null,
         ?bool $whole_word = null,
         ?int $expires_in = null,
@@ -518,7 +518,7 @@ class FiltersProxy extends Proxy
     public function updateV1(
         string $id,
         string $phrase,
-        array $context,
+        array $context = [],
         ?bool $irreversible = null,
         ?bool $whole_word = null,
         ?int $expires_in = null,

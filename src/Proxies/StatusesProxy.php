@@ -156,7 +156,7 @@ class StatusesProxy extends Proxy
      */
     public function create(
         string $status,
-        array $media_ids,
+        array $media_ids = [],
         ?array $poll = null,
         ?string $in_reply_to_id = null,
         ?bool $sensitive = null,

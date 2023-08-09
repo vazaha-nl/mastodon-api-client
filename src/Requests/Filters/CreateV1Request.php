@@ -29,7 +29,7 @@ final class CreateV1Request extends \Vazaha\Mastodon\Requests\V1\FilterRequest i
      */
     public function __construct(
         public string $phrase,
-        public array $context,
+        public array $context = [],
         public ?bool $irreversible = null,
         public ?bool $whole_word = null,
         public ?int $expires_in = null,

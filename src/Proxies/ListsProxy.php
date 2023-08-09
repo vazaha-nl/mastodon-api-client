@@ -57,7 +57,7 @@ class ListsProxy extends Proxy
      */
     public function accountsAdd(
         string $id,
-        array $account_ids,
+        array $account_ids = [],
     ): EmptyOrUnknownModel {
         $result = $this->apiClient->send(new AccountsAddRequest(
             $id,
@@ -84,7 +84,7 @@ class ListsProxy extends Proxy
      */
     public function accountsRemove(
         string $id,
-        array $account_ids,
+        array $account_ids = [],
     ): EmptyOrUnknownModel {
         $result = $this->apiClient->send(new AccountsRemoveRequest(
             $id,

@@ -26,7 +26,7 @@ final class VoteRequest extends \Vazaha\Mastodon\Requests\PollRequest implements
      */
     public function __construct(
         public string $id,
-        public array $choices,
+        public array $choices = [],
     ) {
     }
 

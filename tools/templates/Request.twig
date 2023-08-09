@@ -31,7 +31,7 @@ final class {{ classname }} extends \{{ requestClassName.getFQN() }} implements 
      */
     public function __construct(
 {% for property in allParams %}
-    public {% if property.nullable %}?{% endif %}{{ property.type }} ${{ property.name }}{% if property.nullable %} = null{% endif %},
+    public {% if property.nullable %}?{% endif %}{{ property.type }} ${{ property.name }}{% if property.default %} = {{ property.default}}{% elseif property.nullable %} = null{% endif %},
 
 {% endfor %}
     ) {
