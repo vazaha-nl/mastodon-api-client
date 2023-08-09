@@ -10,6 +10,7 @@ namespace Vazaha\Mastodon\Requests\Accounts;
 
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Support\File;
 
 /**
  * Update account credentials.
@@ -23,8 +24,8 @@ final class UpdateCredentialsRequest extends \Vazaha\Mastodon\Requests\AccountRe
     /**
      * @param ?string      $display_name      the display name to use for the profile
      * @param ?string      $note              the account bio
-     * @param ?string      $avatar            Avatar image encoded using `multipart/form-data`
-     * @param ?string      $header            Header image encoded using `multipart/form-data`
+     * @param ?File        $avatar            Avatar image encoded using `multipart/form-data`
+     * @param ?File        $header            Header image encoded using `multipart/form-data`
      * @param ?bool        $locked            whether manual approval of follow requests is required
      * @param ?bool        $bot               whether the account has a bot flag
      * @param ?bool        $discoverable      whether the account should be shown in the profile directory
@@ -34,8 +35,8 @@ final class UpdateCredentialsRequest extends \Vazaha\Mastodon\Requests\AccountRe
     public function __construct(
         public ?string $display_name = null,
         public ?string $note = null,
-        public ?string $avatar = null,
-        public ?string $header = null,
+        public ?File $avatar = null,
+        public ?File $header = null,
         public ?bool $locked = null,
         public ?bool $bot = null,
         public ?bool $discoverable = null,

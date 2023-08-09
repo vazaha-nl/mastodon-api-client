@@ -11,6 +11,7 @@ use Tools\Enums\ClassType;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Proxies\Proxy;
+use Vazaha\Mastodon\Support\File;
 
 class ProxyClassTemplate extends ClassTemplate
 {
@@ -32,6 +33,7 @@ class ProxyClassTemplate extends ClassTemplate
         $this->imports->add(new ClassName(Proxy::class));
         $this->imports->add(new ClassName(ApiClient::class));
         $this->imports->add(new ClassName(DateTimeInterface::class));
+        $this->imports->add(new ClassName(File::class));
 
         $methods = $this->getMethods();
 

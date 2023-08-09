@@ -10,6 +10,7 @@ namespace Vazaha\Mastodon\Requests\Media;
 
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Support\File;
 
 /**
  * Update media attachment.
@@ -21,14 +22,14 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 final class UpdateRequest extends \Vazaha\Mastodon\Requests\MediaAttachmentRequest implements RequestInterface
 {
     /**
-     * @param string       $id          the ID of the MediaAttachment in the database
-     * @param null|mixed[] $thumbnail   the custom thumbnail of the media to be attached, encoded using multipart form data
-     * @param ?string      $description a plain-text description of the media, for accessibility purposes
-     * @param ?string      $focus       Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See [Focal points for cropping media thumbnails]({{< relref "api/guidelines#focal-points" >}}) for more information.
+     * @param string  $id          the ID of the MediaAttachment in the database
+     * @param ?File   $thumbnail   the custom thumbnail of the media to be attached, encoded using multipart form data
+     * @param ?string $description a plain-text description of the media, for accessibility purposes
+     * @param ?string $focus       Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See [Focal points for cropping media thumbnails]({{< relref "api/guidelines#focal-points" >}}) for more information.
      */
     public function __construct(
         public string $id,
-        public ?array $thumbnail = null,
+        public ?File $thumbnail = null,
         public ?string $description = null,
         public ?string $focus = null,
     ) {

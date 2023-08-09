@@ -10,6 +10,7 @@ namespace Vazaha\Mastodon\Requests\Reports;
 
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Support\File;
 
 /**
  * File a report.

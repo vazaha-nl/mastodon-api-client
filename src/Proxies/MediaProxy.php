@@ -14,6 +14,7 @@ use Vazaha\Mastodon\Requests\Media\GetRequest;
 use Vazaha\Mastodon\Requests\Media\UpdateRequest;
 use Vazaha\Mastodon\Requests\Media\V1Request;
 use Vazaha\Mastodon\Requests\Media\V2Request;
+use Vazaha\Mastodon\Support\File;
 
 class MediaProxy extends Proxy
 {
@@ -44,16 +45,16 @@ class MediaProxy extends Proxy
     /**
      * Update media attachment.
      *
-     * @param string       $id          the ID of the MediaAttachment in the database
-     * @param null|mixed[] $thumbnail   the custom thumbnail of the media to be attached, encoded using multipart form data
-     * @param ?string      $description a plain-text description of the media, for accessibility purposes
-     * @param ?string      $focus       Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See [Focal points for cropping media thumbnails]({{< relref "api/guidelines#focal-points" >}}) for more information.
+     * @param string  $id          the ID of the MediaAttachment in the database
+     * @param ?File   $thumbnail   the custom thumbnail of the media to be attached, encoded using multipart form data
+     * @param ?string $description a plain-text description of the media, for accessibility purposes
+     * @param ?string $focus       Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See [Focal points for cropping media thumbnails]({{< relref "api/guidelines#focal-points" >}}) for more information.
      *
      * @see https://docs.joinmastodon.org/methods/media/#update
      */
     public function update(
         string $id,
-        ?array $thumbnail = null,
+        ?File $thumbnail = null,
         ?string $description = null,
         ?string $focus = null,
     ): MediaAttachmentModel {
@@ -77,16 +78,16 @@ class MediaProxy extends Proxy
     /**
      * (DEPRECATED) Upload media as an attachment.
      *
-     * @param mixed[]      $file        The file to be attached, encoded using multipart form data. The file must have a MIME type.
-     * @param null|mixed[] $thumbnail   the custom thumbnail of the media to be attached, encoded using multipart form data
-     * @param ?string      $description a plain-text description of the media, for accessibility purposes
-     * @param ?string      $focus       Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See [Focal points for cropping media thumbnails]({{< relref "api/guidelines#focal-points" >}}) for more information.
+     * @param File    $file        The file to be attached, encoded using multipart form data. The file must have a MIME type.
+     * @param ?File   $thumbnail   the custom thumbnail of the media to be attached, encoded using multipart form data
+     * @param ?string $description a plain-text description of the media, for accessibility purposes
+     * @param ?string $focus       Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See [Focal points for cropping media thumbnails]({{< relref "api/guidelines#focal-points" >}}) for more information.
      *
      * @see https://docs.joinmastodon.org/methods/media/#v1
      */
     public function v1(
-        array $file,
-        ?array $thumbnail = null,
+        File $file,
+        ?File $thumbnail = null,
         ?string $description = null,
         ?string $focus = null,
     ): MediaAttachmentModel {
@@ -110,16 +111,16 @@ class MediaProxy extends Proxy
     /**
      * Upload media as an attachment (async).
      *
-     * @param mixed[]      $file        The file to be attached, encoded using multipart form data. The file must have a MIME type.
-     * @param null|mixed[] $thumbnail   the custom thumbnail of the media to be attached, encoded using multipart form data
-     * @param ?string      $description a plain-text description of the media, for accessibility purposes
-     * @param ?string      $focus       Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See [Focal points for cropping media thumbnails]({{< relref "api/guidelines#focal-points" >}}) for more information.
+     * @param File    $file        The file to be attached, encoded using multipart form data. The file must have a MIME type.
+     * @param ?File   $thumbnail   the custom thumbnail of the media to be attached, encoded using multipart form data
+     * @param ?string $description a plain-text description of the media, for accessibility purposes
+     * @param ?string $focus       Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See [Focal points for cropping media thumbnails]({{< relref "api/guidelines#focal-points" >}}) for more information.
      *
      * @see https://docs.joinmastodon.org/methods/media/#v2
      */
     public function v2(
-        array $file,
-        ?array $thumbnail = null,
+        File $file,
+        ?File $thumbnail = null,
         ?string $description = null,
         ?string $focus = null,
     ): MediaAttachmentModel {

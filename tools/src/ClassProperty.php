@@ -20,6 +20,7 @@ class ClassProperty
         'array' => 'array',
         'object' => 'array',
         'array of string' => 'array',
+        'file' => 'File',
     ];
 
     public string $name;
