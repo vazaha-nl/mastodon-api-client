@@ -16,7 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\ReportResult>
  *
- * @see https://docs.joinmastodon.org/methods/reports/#reopen
+ * @see https://docs.joinmastodon.org/methods/admin/reports/#reopen
  */
 final class ReopenRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest implements RequestInterface
 {

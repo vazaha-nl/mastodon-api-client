@@ -17,7 +17,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\DimensionResult>
  *
- * @see https://docs.joinmastodon.org/methods/dimensions/#get
+ * @see https://docs.joinmastodon.org/methods/admin/dimensions/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\Admin\DimensionRequest implements RequestInterface
 {

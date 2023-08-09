@@ -16,7 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult>
  *
- * @see https://docs.joinmastodon.org/methods/canonical_email_blocks/#get
+ * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\Admin\CanonicalEmailBlockRequest implements RequestInterface
 {

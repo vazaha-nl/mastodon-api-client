@@ -53,7 +53,7 @@ class AdminProxy extends Proxy
     /**
      * Perform moderation actions with accounts.
      *
-     * @see https://docs.joinmastodon.org/methods/accounts/
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/
      */
     public function accounts(): AccountsProxy
     {
@@ -67,7 +67,7 @@ class AdminProxy extends Proxy
     /**
      * Block certain email addresses by their hash.
      *
-     * @see https://docs.joinmastodon.org/methods/canonical_email_blocks/
+     * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/
      */
     public function canonicalEmailBlocks(): CanonicalEmailBlocksProxy
     {
@@ -81,7 +81,7 @@ class AdminProxy extends Proxy
     /**
      * Obtain qualitative metrics about the server.
      *
-     * @see https://docs.joinmastodon.org/methods/dimensions/
+     * @see https://docs.joinmastodon.org/methods/admin/dimensions/
      */
     public function dimensions(): DimensionsProxy
     {
@@ -95,7 +95,7 @@ class AdminProxy extends Proxy
     /**
      * Allow certain domains to federate.
      *
-     * @see https://docs.joinmastodon.org/methods/domain_allows/
+     * @see https://docs.joinmastodon.org/methods/admin/domain_allows/
      */
     public function domainAllows(): DomainAllowsProxy
     {
@@ -109,7 +109,7 @@ class AdminProxy extends Proxy
     /**
      * Disallow certain domains to federate.
      *
-     * @see https://docs.joinmastodon.org/methods/domain_blocks/
+     * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/
      */
     public function domainBlocks(): DomainBlocksProxy
     {
@@ -123,7 +123,7 @@ class AdminProxy extends Proxy
     /**
      * Disallow certain email domains from signing up.
      *
-     * @see https://docs.joinmastodon.org/methods/email_domain_blocks/
+     * @see https://docs.joinmastodon.org/methods/admin/email_domain_blocks/
      */
     public function emailDomainBlocks(): EmailDomainBlocksProxy
     {
@@ -137,7 +137,7 @@ class AdminProxy extends Proxy
     /**
      * Disallow certain IP address ranges from signing up.
      *
-     * @see https://docs.joinmastodon.org/methods/ip_blocks/
+     * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/
      */
     public function ipBlocks(): IpBlocksProxy
     {
@@ -151,7 +151,7 @@ class AdminProxy extends Proxy
     /**
      * Obtain quantitative metrics about the server.
      *
-     * @see https://docs.joinmastodon.org/methods/measures/
+     * @see https://docs.joinmastodon.org/methods/admin/measures/
      */
     public function measures(): MeasuresProxy
     {
@@ -165,7 +165,7 @@ class AdminProxy extends Proxy
     /**
      * Perform moderation actions with reports.
      *
-     * @see https://docs.joinmastodon.org/methods/reports/
+     * @see https://docs.joinmastodon.org/methods/admin/reports/
      */
     public function reports(): ReportsProxy
     {
@@ -179,7 +179,7 @@ class AdminProxy extends Proxy
     /**
      * Show retention data over time.
      *
-     * @see https://docs.joinmastodon.org/methods/retention/
+     * @see https://docs.joinmastodon.org/methods/admin/retention/
      */
     public function retention(): RetentionProxy
     {
@@ -193,7 +193,7 @@ class AdminProxy extends Proxy
     /**
      * TODO.
      *
-     * @see https://docs.joinmastodon.org/methods/trends/
+     * @see https://docs.joinmastodon.org/methods/admin/trends/
      */
     public function trends(): TrendsProxy
     {

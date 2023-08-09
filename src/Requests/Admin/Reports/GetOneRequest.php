@@ -16,7 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\ReportResult>
  *
- * @see https://docs.joinmastodon.org/methods/reports/#get-one
+ * @see https://docs.joinmastodon.org/methods/admin/reports/#get-one
  */
 final class GetOneRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest implements RequestInterface
 {

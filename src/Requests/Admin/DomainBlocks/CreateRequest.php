@@ -16,7 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\DomainBlockResult>
  *
- * @see https://docs.joinmastodon.org/methods/domain_blocks/#create
+ * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#create
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\Admin\DomainBlockRequest implements RequestInterface
 {

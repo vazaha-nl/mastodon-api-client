@@ -16,7 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\ReportResult>
  *
- * @see https://docs.joinmastodon.org/methods/reports/#unassign
+ * @see https://docs.joinmastodon.org/methods/admin/reports/#unassign
  */
 final class UnassignRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest implements RequestInterface
 {

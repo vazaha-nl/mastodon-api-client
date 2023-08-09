@@ -33,7 +33,7 @@ class MeasuresProxy extends Proxy
      *
      * @return \Vazaha\Mastodon\Results\Admin\MeasureResult<array-key,\Vazaha\Mastodon\Models\Admin\MeasureModel>
      *
-     * @see https://docs.joinmastodon.org/methods/measures/#get
+     * @see https://docs.joinmastodon.org/methods/admin/measures/#get
      */
     public function get(
         array $keys,

@@ -17,7 +17,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\CohortResult>
  *
- * @see https://docs.joinmastodon.org/methods/retention/#create
+ * @see https://docs.joinmastodon.org/methods/admin/retention/#create
  */
 final class CreateRequest extends \Vazaha\Mastodon\Requests\Admin\CohortRequest implements RequestInterface
 {

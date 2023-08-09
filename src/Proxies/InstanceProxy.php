@@ -10,8 +10,8 @@ namespace Vazaha\Mastodon\Proxies;
 
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Models\ExtendedDescriptionModel;
-use Vazaha\Mastodon\Models\InstanceModel as ModelsInstanceModel;
-use Vazaha\Mastodon\Models\V1\InstanceModel;
+use Vazaha\Mastodon\Models\InstanceModel;
+use Vazaha\Mastodon\Models\V1\InstanceModel as V1InstanceModel;
 use Vazaha\Mastodon\Requests\Instance\ActivityRequest;
 use Vazaha\Mastodon\Requests\Instance\DomainBlocksRequest;
 use Vazaha\Mastodon\Requests\Instance\ExtendedDescriptionRequest;
@@ -119,7 +119,7 @@ class InstanceProxy extends Proxy
      * @see https://docs.joinmastodon.org/methods/instance/#v1
      */
     public function v1(
-    ): InstanceModel {
+    ): V1InstanceModel {
         $result = $this->apiClient->send(new V1Request(
         ));
 
@@ -139,7 +139,7 @@ class InstanceProxy extends Proxy
      * @see https://docs.joinmastodon.org/methods/instance/#v2
      */
     public function v2(
-    ): ModelsInstanceModel {
+    ): InstanceModel {
         $result = $this->apiClient->send(new V2Request(
         ));
 

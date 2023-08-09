@@ -24,7 +24,7 @@ class EmailDomainBlocksProxy extends Proxy
      *
      * @param string $domain the domain to block federation with
      *
-     * @see https://docs.joinmastodon.org/methods/email_domain_blocks/#create
+     * @see https://docs.joinmastodon.org/methods/admin/email_domain_blocks/#create
      */
     public function create(
         string $domain,
@@ -48,7 +48,7 @@ class EmailDomainBlocksProxy extends Proxy
      *
      * @param string $id the ID of the DomainAllow in the database
      *
-     * @see https://docs.joinmastodon.org/methods/email_domain_blocks/#delete
+     * @see https://docs.joinmastodon.org/methods/admin/email_domain_blocks/#delete
      */
     public function delete(
         string $id,
@@ -74,7 +74,7 @@ class EmailDomainBlocksProxy extends Proxy
      *
      * @return \Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel>
      *
-     * @see https://docs.joinmastodon.org/methods/email_domain_blocks/#get
+     * @see https://docs.joinmastodon.org/methods/admin/email_domain_blocks/#get
      */
     public function get(
         ?int $limit = null,
@@ -93,7 +93,7 @@ class EmailDomainBlocksProxy extends Proxy
      *
      * @param string $id the ID of the DomainBlock in the database
      *
-     * @see https://docs.joinmastodon.org/methods/email_domain_blocks/#get-one
+     * @see https://docs.joinmastodon.org/methods/admin/email_domain_blocks/#get-one
      */
     public function getOne(
         string $id,

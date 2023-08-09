@@ -16,7 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\AccountResult>
  *
- * @see https://docs.joinmastodon.org/methods/accounts/#v2
+ * @see https://docs.joinmastodon.org/methods/admin/accounts/#v2
  */
 final class V2Request extends \Vazaha\Mastodon\Requests\Admin\AccountRequest implements RequestInterface
 {

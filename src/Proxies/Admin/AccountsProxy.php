@@ -37,7 +37,7 @@ class AccountsProxy extends Proxy
      * @param ?string $text                    additional clarification for why this action was taken
      * @param ?bool   $send_email_notification Should an email be sent to the user with the above information?
      *
-     * @see https://docs.joinmastodon.org/methods/accounts/#action
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#action
      */
     public function action(
         string $id,
@@ -71,7 +71,7 @@ class AccountsProxy extends Proxy
      *
      * @param string $id the ID of the Account in the database
      *
-     * @see https://docs.joinmastodon.org/methods/accounts/#approve
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#approve
      */
     public function approve(
         string $id,
@@ -95,7 +95,7 @@ class AccountsProxy extends Proxy
      *
      * @param string $id the ID of the Account in the database
      *
-     * @see https://docs.joinmastodon.org/methods/accounts/#delete
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#delete
      */
     public function delete(
         string $id,
@@ -119,7 +119,7 @@ class AccountsProxy extends Proxy
      *
      * @param string $id the ID of the Account in the database
      *
-     * @see https://docs.joinmastodon.org/methods/accounts/#enable
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#enable
      */
     public function enable(
         string $id,
@@ -143,7 +143,7 @@ class AccountsProxy extends Proxy
      *
      * @param string $id the ID of the Account in the database
      *
-     * @see https://docs.joinmastodon.org/methods/accounts/#get-one
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#get-one
      */
     public function getOne(
         string $id,
@@ -167,7 +167,7 @@ class AccountsProxy extends Proxy
      *
      * @param string $id the ID of the Account in the database
      *
-     * @see https://docs.joinmastodon.org/methods/accounts/#reject
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#reject
      */
     public function reject(
         string $id,
@@ -191,7 +191,7 @@ class AccountsProxy extends Proxy
      *
      * @param string $id the ID of the Account in the database
      *
-     * @see https://docs.joinmastodon.org/methods/accounts/#unsensitive
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#unsensitive
      */
     public function unsensitive(
         string $id,
@@ -215,7 +215,7 @@ class AccountsProxy extends Proxy
      *
      * @param string $id the ID of the Account in the database
      *
-     * @see https://docs.joinmastodon.org/methods/accounts/#unsilence
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#unsilence
      */
     public function unsilence(
         string $id,
@@ -239,7 +239,7 @@ class AccountsProxy extends Proxy
      *
      * @param string $id the ID of the Account in the database
      *
-     * @see https://docs.joinmastodon.org/methods/accounts/#unsuspend
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#unsuspend
      */
     public function unsuspend(
         string $id,
@@ -282,7 +282,7 @@ class AccountsProxy extends Proxy
      *
      * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel>
      *
-     * @see https://docs.joinmastodon.org/methods/accounts/#v1
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#v1
      */
     public function v1(
         ?bool $local = null,
@@ -350,7 +350,7 @@ class AccountsProxy extends Proxy
      *
      * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel>
      *
-     * @see https://docs.joinmastodon.org/methods/accounts/#v2
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#v2
      */
     public function v2(
         ?string $origin = null,

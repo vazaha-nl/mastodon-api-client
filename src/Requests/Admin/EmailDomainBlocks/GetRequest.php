@@ -16,7 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult>
  *
- * @see https://docs.joinmastodon.org/methods/email_domain_blocks/#get
+ * @see https://docs.joinmastodon.org/methods/admin/email_domain_blocks/#get
  */
 final class GetRequest extends \Vazaha\Mastodon\Requests\Admin\EmailDomainBlockRequest implements RequestInterface
 {

@@ -16,7 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\AccountResult>
  *
- * @see https://docs.joinmastodon.org/methods/accounts/#delete
+ * @see https://docs.joinmastodon.org/methods/admin/accounts/#delete
  */
 final class DeleteRequest extends \Vazaha\Mastodon\Requests\Admin\AccountRequest implements RequestInterface
 {

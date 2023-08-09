@@ -16,7 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
  *
- * @see https://docs.joinmastodon.org/methods/trends/#statuses
+ * @see https://docs.joinmastodon.org/methods/admin/trends/#statuses
  */
 final class StatusesRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
 {

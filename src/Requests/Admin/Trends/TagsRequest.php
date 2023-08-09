@@ -16,7 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\TagResult>
  *
- * @see https://docs.joinmastodon.org/methods/trends/#tags
+ * @see https://docs.joinmastodon.org/methods/admin/trends/#tags
  */
 final class TagsRequest extends \Vazaha\Mastodon\Requests\Admin\TagRequest implements RequestInterface
 {

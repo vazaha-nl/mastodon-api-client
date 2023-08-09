@@ -16,7 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\IpBlockResult>
  *
- * @see https://docs.joinmastodon.org/methods/ip_blocks/#get-one
+ * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#get-one
  */
 final class GetOneRequest extends \Vazaha\Mastodon\Requests\Admin\IpBlockRequest implements RequestInterface
 {

@@ -27,7 +27,7 @@ class ReportsProxy extends Proxy
      *
      * @param string $id the ID of the Report in the database
      *
-     * @see https://docs.joinmastodon.org/methods/reports/#assign_to_self
+     * @see https://docs.joinmastodon.org/methods/admin/reports/#assign_to_self
      */
     public function assignToSelf(
         string $id,
@@ -56,7 +56,7 @@ class ReportsProxy extends Proxy
      *
      * @return \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel>
      *
-     * @see https://docs.joinmastodon.org/methods/reports/#get
+     * @see https://docs.joinmastodon.org/methods/admin/reports/#get
      */
     public function get(
         ?bool $resolved = null,
@@ -81,7 +81,7 @@ class ReportsProxy extends Proxy
      *
      * @param string $id the ID of the Report in the database
      *
-     * @see https://docs.joinmastodon.org/methods/reports/#get-one
+     * @see https://docs.joinmastodon.org/methods/admin/reports/#get-one
      */
     public function getOne(
         string $id,
@@ -105,7 +105,7 @@ class ReportsProxy extends Proxy
      *
      * @param string $id the ID of the Report in the database
      *
-     * @see https://docs.joinmastodon.org/methods/reports/#reopen
+     * @see https://docs.joinmastodon.org/methods/admin/reports/#reopen
      */
     public function reopen(
         string $id,
@@ -129,7 +129,7 @@ class ReportsProxy extends Proxy
      *
      * @param string $id the ID of the Report in the database
      *
-     * @see https://docs.joinmastodon.org/methods/reports/#resolve
+     * @see https://docs.joinmastodon.org/methods/admin/reports/#resolve
      */
     public function resolve(
         string $id,
@@ -153,7 +153,7 @@ class ReportsProxy extends Proxy
      *
      * @param string $id the ID of the Report in the database
      *
-     * @see https://docs.joinmastodon.org/methods/reports/#unassign
+     * @see https://docs.joinmastodon.org/methods/admin/reports/#unassign
      */
     public function unassign(
         string $id,
@@ -179,7 +179,7 @@ class ReportsProxy extends Proxy
      * @param ?string         $category change the classification of the report to `spam`, `violation`, or `other`
      * @param null|array<int> $rule_ids For `violation` category reports, specify the ID of the exact rules broken. Rules and their IDs are available via [GET /api/v1/instance/rules]({{< relref "methods/instance#rules" >}}) and [GET /api/v1/instance]({{< relref "methods/instance#get" >}}).
      *
-     * @see https://docs.joinmastodon.org/methods/reports/#update
+     * @see https://docs.joinmastodon.org/methods/admin/reports/#update
      */
     public function update(
         string $id,

@@ -16,7 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\DomainBlockResult>
  *
- * @see https://docs.joinmastodon.org/methods/domain_blocks/#get-one
+ * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#get-one
  */
 final class GetOneRequest extends \Vazaha\Mastodon\Requests\Admin\DomainBlockRequest implements RequestInterface
 {

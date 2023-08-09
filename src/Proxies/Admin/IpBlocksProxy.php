@@ -28,7 +28,7 @@ class IpBlocksProxy extends Proxy
      * @param ?string $comment    the reason for this IP block
      * @param ?int    $expires_in the number of seconds in which this IP block will expire
      *
-     * @see https://docs.joinmastodon.org/methods/ip_blocks/#create
+     * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#create
      */
     public function create(
         string $severity,
@@ -58,7 +58,7 @@ class IpBlocksProxy extends Proxy
      *
      * @param string $id the ID of the DomainAllow in the database
      *
-     * @see https://docs.joinmastodon.org/methods/ip_blocks/#delete
+     * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#delete
      */
     public function delete(
         string $id,
@@ -84,7 +84,7 @@ class IpBlocksProxy extends Proxy
      *
      * @return \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\IpBlockModel>
      *
-     * @see https://docs.joinmastodon.org/methods/ip_blocks/#get
+     * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#get
      */
     public function get(
         ?int $limit = null,
@@ -103,7 +103,7 @@ class IpBlocksProxy extends Proxy
      *
      * @param string $id the ID of the IpBlock in the database
      *
-     * @see https://docs.joinmastodon.org/methods/ip_blocks/#get-one
+     * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#get-one
      */
     public function getOne(
         string $id,
@@ -131,7 +131,7 @@ class IpBlocksProxy extends Proxy
      * @param ?string $comment    the reason for this IP block
      * @param ?int    $expires_in the number of seconds in which this IP block will expire
      *
-     * @see https://docs.joinmastodon.org/methods/ip_blocks/#update
+     * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#update
      */
     public function update(
         string $id,

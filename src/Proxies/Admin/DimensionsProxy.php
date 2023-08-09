@@ -29,7 +29,7 @@ class DimensionsProxy extends Proxy
      *
      * @return \Vazaha\Mastodon\Results\Admin\DimensionResult<array-key,\Vazaha\Mastodon\Models\Admin\DimensionModel>
      *
-     * @see https://docs.joinmastodon.org/methods/dimensions/#get
+     * @see https://docs.joinmastodon.org/methods/admin/dimensions/#get
      */
     public function get(
         array $keys = [],

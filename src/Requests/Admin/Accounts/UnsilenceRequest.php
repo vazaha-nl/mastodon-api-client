@@ -16,7 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Admin\AccountResult>
  *
- * @see https://docs.joinmastodon.org/methods/accounts/#unsilence
+ * @see https://docs.joinmastodon.org/methods/admin/accounts/#unsilence
  */
 final class UnsilenceRequest extends \Vazaha\Mastodon\Requests\Admin\AccountRequest implements RequestInterface
 {

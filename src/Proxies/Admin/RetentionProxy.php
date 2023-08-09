@@ -24,7 +24,7 @@ class RetentionProxy extends Proxy
      *
      * @return \Vazaha\Mastodon\Results\Admin\CohortResult<array-key,\Vazaha\Mastodon\Models\Admin\CohortModel>
      *
-     * @see https://docs.joinmastodon.org/methods/retention/#create
+     * @see https://docs.joinmastodon.org/methods/admin/retention/#create
      */
     public function create(
         DateTimeInterface $start_at,

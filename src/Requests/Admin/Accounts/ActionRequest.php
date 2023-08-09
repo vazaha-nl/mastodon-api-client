@@ -16,7 +16,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyOrUnknownResult>
  *
- * @see https://docs.joinmastodon.org/methods/accounts/#action
+ * @see https://docs.joinmastodon.org/methods/admin/accounts/#action
  */
 final class ActionRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
 {
