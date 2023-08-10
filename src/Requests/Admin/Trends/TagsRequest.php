@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\Trends;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\TagResult;
 
 /**
  * View trending tags.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/trends/#tags
  */
-final class TagsRequest extends \Vazaha\Mastodon\Requests\Admin\TagRequest implements RequestInterface
+final class TagsRequest extends Request implements RequestInterface
 {
     public function __construct(
     ) {
@@ -44,5 +46,10 @@ final class TagsRequest extends \Vazaha\Mastodon\Requests\Admin\TagRequest imple
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return TagResult::class;
     }
 }

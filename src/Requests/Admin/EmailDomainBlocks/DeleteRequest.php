@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\EmailDomainBlocks;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult;
 
 /**
  * Delete an email domain block.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/email_domain_blocks/#delete
  */
-final class DeleteRequest extends \Vazaha\Mastodon\Requests\Admin\EmailDomainBlockRequest implements RequestInterface
+final class DeleteRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the DomainAllow in the database
@@ -48,5 +50,10 @@ final class DeleteRequest extends \Vazaha\Mastodon\Requests\Admin\EmailDomainBlo
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::DELETE;
+    }
+
+    public function getResultClass(): string
+    {
+        return EmailDomainBlockResult::class;
     }
 }

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
 
-use Vazaha\Mastodon\Models\Model;
+use Vazaha\Mastodon\Abstracts\Model;
 
 /**
  * Represents qualitative data about the server.

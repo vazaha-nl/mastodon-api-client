@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Timelines;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\StatusResult;
 
 /**
  * View list timeline.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/timelines/#list
  */
-final class ListRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
+final class ListRequest extends Request implements RequestInterface
 {
     /**
      * @param string  $list_id  local ID of the List in the database
@@ -60,5 +62,10 @@ final class ListRequest extends \Vazaha\Mastodon\Requests\StatusRequest implemen
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return StatusResult::class;
     }
 }

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models;
 
 use DateTimeInterface;
+use Vazaha\Mastodon\Abstracts\Model;
 
 /**
  * Represents an OAuth token used for authenticating with the API and performing actions.

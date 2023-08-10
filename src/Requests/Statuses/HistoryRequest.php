@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Statuses;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\StatusEditResult;
 
 /**
  * View edit history of a status.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/statuses/#history
  */
-final class HistoryRequest extends \Vazaha\Mastodon\Requests\StatusEditRequest implements RequestInterface
+final class HistoryRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the local ID of the Status in the database
@@ -48,5 +50,10 @@ final class HistoryRequest extends \Vazaha\Mastodon\Requests\StatusEditRequest i
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return StatusEditResult::class;
     }
 }

@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Statuses;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\StatusResult;
 
 /**
  * Post a new status.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/statuses/#create
  */
-final class CreateRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
+final class CreateRequest extends Request implements RequestInterface
 {
     /**
      * @param string        $status         The text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.
@@ -73,5 +75,10 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\StatusRequest implem
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return StatusResult::class;
     }
 }

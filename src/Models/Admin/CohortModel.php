@@ -9,8 +9,8 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models\Admin;
 
 use DateTimeInterface;
+use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\Collections\CohortDataCollection;
-use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents a retention metric.

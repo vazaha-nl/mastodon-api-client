@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tools;
 
 use Tools\Enums\ClassType;
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
-use Vazaha\Mastodon\Requests\Request;
 
 class AbstractRequestClassTemplate extends ClassTemplate
 {

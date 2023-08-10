@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Results;
+namespace Vazaha\Mastodon\Abstracts;
 
 use Illuminate\Support\Collection;
 use Psr\Http\Message\ResponseInterface;
@@ -13,7 +13,7 @@ use Vazaha\Mastodon\Interfaces\ResultInterface;
 use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Results\Concerns\HasPaging;
 
-class Result extends Collection implements ResultInterface
+abstract class Result extends Collection implements ResultInterface
 {
     use HasPaging;
 

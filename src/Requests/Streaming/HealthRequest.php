@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Streaming;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 /**
  * Check if the server is alive.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/streaming/#health
  */
-final class HealthRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
+final class HealthRequest extends Request implements RequestInterface
 {
     public function __construct(
     ) {
@@ -44,5 +46,10 @@ final class HealthRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownReques
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return EmptyOrUnknownResult::class;
     }
 }

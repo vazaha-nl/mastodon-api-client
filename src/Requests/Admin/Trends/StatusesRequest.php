@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\Trends;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\StatusResult;
 
 /**
  * View trending statuses.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/trends/#statuses
  */
-final class StatusesRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
+final class StatusesRequest extends Request implements RequestInterface
 {
     public function __construct(
     ) {
@@ -44,5 +46,10 @@ final class StatusesRequest extends \Vazaha\Mastodon\Requests\StatusRequest impl
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return StatusResult::class;
     }
 }

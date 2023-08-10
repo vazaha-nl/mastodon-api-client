@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models\V1;
 
 use DateTimeInterface;
-use Vazaha\Mastodon\Models\Model;
+use Vazaha\Mastodon\Abstracts\Model;
 
 /**
  * Represents a user-defined filter for determining which statuses should not be shown to the user. Contains a single keyword or phrase.

@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Statuses;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\StatusResult;
 
 /**
  * Pin status to profile.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/statuses/#pin
  */
-final class PinRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
+final class PinRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id The local ID of the Status in the database. The status should be authored by the authorized account.
@@ -48,5 +50,10 @@ final class PinRequest extends \Vazaha\Mastodon\Requests\StatusRequest implement
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return StatusResult::class;
     }
 }

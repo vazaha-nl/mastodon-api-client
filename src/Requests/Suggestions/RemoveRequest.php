@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Suggestions;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 /**
  * Remove a suggestion.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/suggestions/#remove
  */
-final class RemoveRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
+final class RemoveRequest extends Request implements RequestInterface
 {
     /**
      * @param string $account_id the ID of the Account in the database
@@ -48,5 +50,10 @@ final class RemoveRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownReques
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::DELETE;
+    }
+
+    public function getResultClass(): string
+    {
+        return EmptyOrUnknownResult::class;
     }
 }

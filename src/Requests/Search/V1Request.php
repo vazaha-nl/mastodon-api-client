@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Search;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\SearchResult;
 
 /**
  * (REMOVED) Search results (v1).
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/search/#v1
  */
-final class V1Request extends \Vazaha\Mastodon\Requests\SearchRequest implements RequestInterface
+final class V1Request extends Request implements RequestInterface
 {
     /**
      * @param string  $q          the search query
@@ -70,5 +72,10 @@ final class V1Request extends \Vazaha\Mastodon\Requests\SearchRequest implements
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return SearchResult::class;
     }
 }

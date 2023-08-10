@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\IpBlocks;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\IpBlockResult;
 
 /**
  * Delete an IP block.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#delete
  */
-final class DeleteRequest extends \Vazaha\Mastodon\Requests\Admin\IpBlockRequest implements RequestInterface
+final class DeleteRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the DomainAllow in the database
@@ -48,5 +50,10 @@ final class DeleteRequest extends \Vazaha\Mastodon\Requests\Admin\IpBlockRequest
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::DELETE;
+    }
+
+    public function getResultClass(): string
+    {
+        return IpBlockResult::class;
     }
 }

@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies;
 
+use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Models\ReportModel;
 use Vazaha\Mastodon\Requests\Reports\PostRequest;

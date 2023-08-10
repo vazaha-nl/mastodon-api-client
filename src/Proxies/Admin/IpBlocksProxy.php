@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies\Admin;
 
+use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Models\Admin\IpBlockModel;
-use Vazaha\Mastodon\Proxies\Proxy;
 use Vazaha\Mastodon\Requests\Admin\IpBlocks\CreateRequest;
 use Vazaha\Mastodon\Requests\Admin\IpBlocks\DeleteRequest;
 use Vazaha\Mastodon\Requests\Admin\IpBlocks\GetOneRequest;

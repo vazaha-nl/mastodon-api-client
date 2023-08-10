@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\DomainBlocks;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\DomainBlockResult;
 
 /**
  * Remove a domain block.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#delete
  */
-final class DeleteRequest extends \Vazaha\Mastodon\Requests\Admin\DomainBlockRequest implements RequestInterface
+final class DeleteRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the DomainAllow in the database
@@ -48,5 +50,10 @@ final class DeleteRequest extends \Vazaha\Mastodon\Requests\Admin\DomainBlockReq
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::DELETE;
+    }
+
+    public function getResultClass(): string
+    {
+        return DomainBlockResult::class;
     }
 }

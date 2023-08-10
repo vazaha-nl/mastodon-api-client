@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
+use Vazaha\Mastodon\Abstracts\Model;
+
 /**
  * Represents a hashtag used within the content of a status.
  *

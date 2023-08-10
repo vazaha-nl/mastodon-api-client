@@ -9,8 +9,10 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Requests\Admin\Measures;
 
 use DateTimeInterface;
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\MeasureResult;
 
 /**
  * Get measurable data.
@@ -19,7 +21,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/measures/#get
  */
-final class GetRequest extends \Vazaha\Mastodon\Requests\Admin\MeasureRequest implements RequestInterface
+final class GetRequest extends Request implements RequestInterface
 {
     /**
      * @param array<string>     $keys                       Request specific measures by their keystring. Supported measures include:
@@ -83,5 +85,10 @@ final class GetRequest extends \Vazaha\Mastodon\Requests\Admin\MeasureRequest im
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return MeasureResult::class;
     }
 }

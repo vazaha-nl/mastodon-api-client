@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Trends;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Trends\LinkResult;
 
 /**
  * View trending links.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/trends/#links
  */
-final class LinksRequest extends \Vazaha\Mastodon\Requests\Trends\LinkRequest implements RequestInterface
+final class LinksRequest extends Request implements RequestInterface
 {
     /**
      * @param ?int $limit  Maximum number of results to return. Defaults to 10 links. Max 20 links.
@@ -52,5 +54,10 @@ final class LinksRequest extends \Vazaha\Mastodon\Requests\Trends\LinkRequest im
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return LinkResult::class;
     }
 }

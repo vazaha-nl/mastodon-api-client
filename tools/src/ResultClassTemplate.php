@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tools;
 
 use Tools\Enums\ClassType;
+use Vazaha\Mastodon\Abstracts\Result;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
-use Vazaha\Mastodon\Results\Result;
 
 class ResultClassTemplate extends ClassTemplate
 {

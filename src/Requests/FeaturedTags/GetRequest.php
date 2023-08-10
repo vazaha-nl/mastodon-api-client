@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\FeaturedTags;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\FeaturedTagResult;
 
 /**
  * View your featured tags.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/featured_tags/#get
  */
-final class GetRequest extends \Vazaha\Mastodon\Requests\FeaturedTagRequest implements RequestInterface
+final class GetRequest extends Request implements RequestInterface
 {
     public function __construct(
     ) {
@@ -44,5 +46,10 @@ final class GetRequest extends \Vazaha\Mastodon\Requests\FeaturedTagRequest impl
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return FeaturedTagResult::class;
     }
 }

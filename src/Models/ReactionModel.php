@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
+use Vazaha\Mastodon\Abstracts\Model;
+
 /**
  * Represents an emoji reaction to an Announcement.
  *

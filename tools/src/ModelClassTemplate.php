@@ -6,7 +6,7 @@ namespace Tools;
 
 use Tools\Enums\ClassType;
 use Tools\Traits\LoadsEntitySpecs;
-use Vazaha\Mastodon\Models\Model;
+use Vazaha\Mastodon\Abstracts\Model;
 
 class ModelClassTemplate extends ClassTemplate
 {

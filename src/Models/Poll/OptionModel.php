@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Poll;
 
-use Vazaha\Mastodon\Models\Model;
+use Vazaha\Mastodon\Abstracts\Model;
 
 /**
  * Represents a poll attached to a status.

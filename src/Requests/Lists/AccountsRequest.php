@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Lists;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\AccountResult;
 
 /**
  * View accounts in a list.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/lists/#accounts
  */
-final class AccountsRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
+final class AccountsRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id    the ID of the List in the database
@@ -51,5 +53,10 @@ final class AccountsRequest extends \Vazaha\Mastodon\Requests\AccountRequest imp
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return AccountResult::class;
     }
 }

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
+use Vazaha\Mastodon\Abstracts\Model;
+
 /**
  * Represents a suggested account to follow and an associated reason for the suggestion.
  *

@@ -9,9 +9,9 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models\Admin;
 
 use DateTimeInterface;
+use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\Collections\Admin\IpCollection;
 use Vazaha\Mastodon\Models\AccountModel as ModelsAccountModel;
-use Vazaha\Mastodon\Models\Model;
 use Vazaha\Mastodon\Models\RoleModel;
 
 /**

@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Oembed;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 /**
  * Get OEmbed info as JSON.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/oembed/#get
  */
-final class GetRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
+final class GetRequest extends Request implements RequestInterface
 {
     /**
      * @param string $url       URL of a status
@@ -55,5 +57,10 @@ final class GetRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest i
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return EmptyOrUnknownResult::class;
     }
 }

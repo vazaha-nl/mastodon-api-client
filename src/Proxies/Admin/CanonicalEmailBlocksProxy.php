@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies\Admin;
 
+use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel;
-use Vazaha\Mastodon\Proxies\Proxy;
 use Vazaha\Mastodon\Requests\Admin\CanonicalEmailBlocks\CreateRequest;
 use Vazaha\Mastodon\Requests\Admin\CanonicalEmailBlocks\DeleteRequest;
 use Vazaha\Mastodon\Requests\Admin\CanonicalEmailBlocks\GetOneRequest;

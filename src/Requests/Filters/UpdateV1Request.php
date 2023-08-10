@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Filters;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\V1\FilterResult;
 
 /**
  * Update a filter.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/filters/#update-v1
  */
-final class UpdateV1Request extends \Vazaha\Mastodon\Requests\V1\FilterRequest implements RequestInterface
+final class UpdateV1Request extends Request implements RequestInterface
 {
     /**
      * @param string        $id           the ID of the FilterKeyword in the database
@@ -63,5 +65,10 @@ final class UpdateV1Request extends \Vazaha\Mastodon\Requests\V1\FilterRequest i
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::PUT;
+    }
+
+    public function getResultClass(): string
+    {
+        return FilterResult::class;
     }
 }

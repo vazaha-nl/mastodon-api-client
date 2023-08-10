@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Accounts;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\RelationshipResult;
 
 /**
  * Check relationships to other accounts.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/accounts/#relationships
  */
-final class RelationshipsRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
+final class RelationshipsRequest extends Request implements RequestInterface
 {
     /**
      * @param null|mixed[] $id check relationships for the provided account IDs
@@ -49,5 +51,10 @@ final class RelationshipsRequest extends \Vazaha\Mastodon\Requests\RelationshipR
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return RelationshipResult::class;
     }
 }

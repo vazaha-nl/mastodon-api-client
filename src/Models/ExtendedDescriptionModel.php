@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models;
 
 use DateTimeInterface;
+use Vazaha\Mastodon\Abstracts\Model;
 
 /**
  * Represents an extended description for the instance, to be shown on its about page.

@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Statuses;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\TranslationResult;
 
 /**
  * Translate a status.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/statuses/#translate
  */
-final class TranslateRequest extends \Vazaha\Mastodon\Requests\TranslationRequest implements RequestInterface
+final class TranslateRequest extends Request implements RequestInterface
 {
     /**
      * @param string  $id   the ID of the Status in the database
@@ -51,5 +53,10 @@ final class TranslateRequest extends \Vazaha\Mastodon\Requests\TranslationReques
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return TranslationResult::class;
     }
 }

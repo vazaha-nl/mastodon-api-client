@@ -6,15 +6,15 @@ namespace Vazaha\Mastodon\Factories;
 
 use LogicException;
 use Psr\Http\Message\ResponseInterface;
+use Vazaha\Mastodon\Abstracts\Result;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
-use Vazaha\Mastodon\Results\Result;
 
 class ResultFactory
 {
     /**
-     * @template T of \Vazaha\Mastodon\Results\Result
+     * @template T of \Vazaha\Mastodon\Abstracts\Result
      * @template T2 of \Vazaha\Mastodon\Interfaces\ResultInterface
      *
      * @param class-string<T>                                  $className

@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Requests;
+namespace Vazaha\Mastodon\Abstracts;
 
 use Vazaha\Mastodon\Helpers\MultipartFormData;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Requests\Concerns\HasPaging;
-use Vazaha\Mastodon\Results\Result;
 
 /**
- * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Result>
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Abstracts\Result>
  */
 abstract class Request implements RequestInterface
 {

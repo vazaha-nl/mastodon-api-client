@@ -8,9 +8,11 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Media;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Helpers\UploadFile;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\MediaAttachmentResult;
 
 /**
  * Update media attachment.
@@ -19,7 +21,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/media/#update
  */
-final class UpdateRequest extends \Vazaha\Mastodon\Requests\MediaAttachmentRequest implements RequestInterface
+final class UpdateRequest extends Request implements RequestInterface
 {
     /**
      * @param string      $id          the ID of the MediaAttachment in the database
@@ -58,5 +60,10 @@ final class UpdateRequest extends \Vazaha\Mastodon\Requests\MediaAttachmentReque
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::PUT;
+    }
+
+    public function getResultClass(): string
+    {
+        return MediaAttachmentResult::class;
     }
 }

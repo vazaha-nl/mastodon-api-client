@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Conversations;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 /**
  * Remove a conversation.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/conversations/#delete
  */
-final class DeleteRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
+final class DeleteRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Conversation in the database
@@ -48,5 +50,10 @@ final class DeleteRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownReques
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::DELETE;
+    }
+
+    public function getResultClass(): string
+    {
+        return EmptyOrUnknownResult::class;
     }
 }

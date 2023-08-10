@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Notifications;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 /**
  * Dismiss all notifications.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/notifications/#clear
  */
-final class ClearRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest implements RequestInterface
+final class ClearRequest extends Request implements RequestInterface
 {
     public function __construct(
     ) {
@@ -44,5 +46,10 @@ final class ClearRequest extends \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return EmptyOrUnknownResult::class;
     }
 }

@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
+use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\Collections\AccountCollection;
 use Vazaha\Mastodon\Collections\StatusCollection;
 use Vazaha\Mastodon\Collections\TagCollection;

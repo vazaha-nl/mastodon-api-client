@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Markers;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\MarkerResult;
 
 /**
  * Save your position in a timeline.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/markers/#create
  */
-final class CreateRequest extends \Vazaha\Mastodon\Requests\MarkerRequest implements RequestInterface
+final class CreateRequest extends Request implements RequestInterface
 {
     /**
      * @param null|mixed[] $home          home[last_read_id]: ID of the last status read in the home timeline
@@ -52,5 +54,10 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\MarkerRequest implem
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return MarkerResult::class;
     }
 }

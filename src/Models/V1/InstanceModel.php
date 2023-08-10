@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\V1;
 
+use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\Collections\RuleCollection;
 use Vazaha\Mastodon\Models\AccountModel;
-use Vazaha\Mastodon\Models\Model;
 
 /**
  * Represents the software instance of Mastodon running on this domain.

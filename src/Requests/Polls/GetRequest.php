@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Polls;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\PollResult;
 
 /**
  * View a poll.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/polls/#get
  */
-final class GetRequest extends \Vazaha\Mastodon\Requests\PollRequest implements RequestInterface
+final class GetRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Poll in the database
@@ -48,5 +50,10 @@ final class GetRequest extends \Vazaha\Mastodon\Requests\PollRequest implements 
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return PollResult::class;
     }
 }

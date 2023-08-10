@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Results;
+namespace Vazaha\Mastodon\Helpers;
 
 class PagingLinks
 {

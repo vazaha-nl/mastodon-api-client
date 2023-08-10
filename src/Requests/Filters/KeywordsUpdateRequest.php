@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Filters;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\FilterKeywordResult;
 
 /**
  * Edit a keyword within a filter.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/filters/#keywords-update
  */
-final class KeywordsUpdateRequest extends \Vazaha\Mastodon\Requests\FilterKeywordRequest implements RequestInterface
+final class KeywordsUpdateRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id         the ID of the FilterKeyword in the database
@@ -54,5 +56,10 @@ final class KeywordsUpdateRequest extends \Vazaha\Mastodon\Requests\FilterKeywor
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::PUT;
+    }
+
+    public function getResultClass(): string
+    {
+        return FilterKeywordResult::class;
     }
 }

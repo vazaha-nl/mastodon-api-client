@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Statuses;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\ContextResult;
 
 /**
  * Get parent and child statuses in context.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/statuses/#context
  */
-final class ContextRequest extends \Vazaha\Mastodon\Requests\ContextRequest implements RequestInterface
+final class ContextRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Status in the database
@@ -48,5 +50,10 @@ final class ContextRequest extends \Vazaha\Mastodon\Requests\ContextRequest impl
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return ContextResult::class;
     }
 }

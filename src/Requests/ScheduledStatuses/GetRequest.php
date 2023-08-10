@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\ScheduledStatuses;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\ScheduledStatusResult;
 
 /**
  * View scheduled statuses.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#get
  */
-final class GetRequest extends \Vazaha\Mastodon\Requests\ScheduledStatusRequest implements RequestInterface
+final class GetRequest extends Request implements RequestInterface
 {
     /**
      * @param ?string $max_id   return results older than ID
@@ -58,5 +60,10 @@ final class GetRequest extends \Vazaha\Mastodon\Requests\ScheduledStatusRequest 
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return ScheduledStatusResult::class;
     }
 }

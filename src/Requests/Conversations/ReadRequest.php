@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Conversations;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\ConversationResult;
 
 /**
  * Mark a conversation as read.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/conversations/#read
  */
-final class ReadRequest extends \Vazaha\Mastodon\Requests\ConversationRequest implements RequestInterface
+final class ReadRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Conversation in the database
@@ -48,5 +50,10 @@ final class ReadRequest extends \Vazaha\Mastodon\Requests\ConversationRequest im
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return ConversationResult::class;
     }
 }

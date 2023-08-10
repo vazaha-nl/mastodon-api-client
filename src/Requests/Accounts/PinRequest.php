@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Accounts;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\RelationshipResult;
 
 /**
  * Feature account on your profile.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/accounts/#pin
  */
-final class PinRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
+final class PinRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Account in the database
@@ -48,5 +50,10 @@ final class PinRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest imp
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return RelationshipResult::class;
     }
 }

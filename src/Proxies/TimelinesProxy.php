@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies;
 
+use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\Requests\Timelines\DirectRequest;
 use Vazaha\Mastodon\Requests\Timelines\HomeRequest;
 use Vazaha\Mastodon\Requests\Timelines\ListRequest;

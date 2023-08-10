@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
+use Vazaha\Mastodon\Abstracts\Model;
+
 /**
  * Represents a user&#039;s preferences.
  *

@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Lists;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\ListResult;
 
 /**
  * Create a list.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/lists/#create
  */
-final class CreateRequest extends \Vazaha\Mastodon\Requests\ListRequest implements RequestInterface
+final class CreateRequest extends Request implements RequestInterface
 {
     /**
      * @param string  $title          the title of the list to be created
@@ -52,5 +54,10 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\ListRequest implemen
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return ListResult::class;
     }
 }

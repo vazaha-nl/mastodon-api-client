@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Tags;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\TagResult;
 
 /**
  * Unfollow a hashtag.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/tags/#unfollow
  */
-final class UnfollowRequest extends \Vazaha\Mastodon\Requests\TagRequest implements RequestInterface
+final class UnfollowRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the name of the hashtag
@@ -48,5 +50,10 @@ final class UnfollowRequest extends \Vazaha\Mastodon\Requests\TagRequest impleme
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return TagResult::class;
     }
 }

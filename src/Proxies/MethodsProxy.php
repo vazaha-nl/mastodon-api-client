@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies;
 
+use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\ApiClient;
 
 class MethodsProxy extends Proxy

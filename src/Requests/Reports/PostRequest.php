@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Reports;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\ReportResult;
 
 /**
  * File a report.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/reports/#post
  */
-final class PostRequest extends \Vazaha\Mastodon\Requests\ReportRequest implements RequestInterface
+final class PostRequest extends Request implements RequestInterface
 {
     /**
      * @param string             $account_id ID of the account to report
@@ -64,5 +66,10 @@ final class PostRequest extends \Vazaha\Mastodon\Requests\ReportRequest implemen
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return ReportResult::class;
     }
 }

@@ -9,9 +9,9 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models\Admin;
 
 use DateTimeInterface;
+use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\Collections\RuleCollection;
 use Vazaha\Mastodon\Collections\StatusCollection;
-use Vazaha\Mastodon\Models\Model;
 
 /**
  * Admin-level information about a filed report.

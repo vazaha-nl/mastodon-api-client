@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\DomainAllows;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\DomainAllowResult;
 
 /**
  * Get a single allowed domain.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get-one
  */
-final class GetOneRequest extends \Vazaha\Mastodon\Requests\Admin\DomainAllowRequest implements RequestInterface
+final class GetOneRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the DomainAllow in the database
@@ -48,5 +50,10 @@ final class GetOneRequest extends \Vazaha\Mastodon\Requests\Admin\DomainAllowReq
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return DomainAllowResult::class;
     }
 }

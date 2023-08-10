@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Statuses;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\StatusResult;
 
 /**
  * Undo bookmark of a status.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/statuses/#unbookmark
  */
-final class UnbookmarkRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
+final class UnbookmarkRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Status in the database
@@ -48,5 +50,10 @@ final class UnbookmarkRequest extends \Vazaha\Mastodon\Requests\StatusRequest im
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return StatusResult::class;
     }
 }

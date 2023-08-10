@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Filters;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\FilterStatusResult;
 
 /**
  * Add a status to a filter group.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/filters/#statuses-add
  */
-final class StatusesAddRequest extends \Vazaha\Mastodon\Requests\FilterStatusRequest implements RequestInterface
+final class StatusesAddRequest extends Request implements RequestInterface
 {
     /**
      * @param string $filter_id the ID of the Filter in the database
@@ -48,5 +50,10 @@ final class StatusesAddRequest extends \Vazaha\Mastodon\Requests\FilterStatusReq
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return FilterStatusResult::class;
     }
 }

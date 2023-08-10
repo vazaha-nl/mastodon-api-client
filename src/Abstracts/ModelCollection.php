@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Collections;
+namespace Vazaha\Mastodon\Abstracts;
 
 use Illuminate\Support\Collection;
 
 /**
  * @template TKey of array-key
- * @template TModel of \Vazaha\Mastodon\Models\Model
+ * @template TModel of \Vazaha\Mastodon\Abstracts\Model
  *
  * @extends Collection<TKey, TModel>
  */
 abstract class ModelCollection extends Collection
 {
     /**
-     * @return class-string<\Vazaha\Mastodon\Models\Model>
+     * @return class-string<\Vazaha\Mastodon\Abstracts\Model>
      */
     abstract public static function getModelClass(): string;
 

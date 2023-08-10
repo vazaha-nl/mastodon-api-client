@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Push;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\WebPushSubscriptionResult;
 
 /**
  * Subscribe to push notifications.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/push/#create
  */
-final class CreateRequest extends \Vazaha\Mastodon\Requests\WebPushSubscriptionRequest implements RequestInterface
+final class CreateRequest extends Request implements RequestInterface
 {
     /**
      * @param null|mixed[] $subscription subscription[endpoint]: The endpoint URL that is called when a notification event occurs
@@ -52,5 +54,10 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\WebPushSubscriptionR
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return WebPushSubscriptionResult::class;
     }
 }

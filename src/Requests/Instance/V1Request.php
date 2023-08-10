@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Instance;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\V1\InstanceResult;
 
 /**
  * (DEPRECATED) View server information (V1).
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/instance/#v1
  */
-final class V1Request extends \Vazaha\Mastodon\Requests\V1\InstanceRequest implements RequestInterface
+final class V1Request extends Request implements RequestInterface
 {
     public function __construct(
     ) {
@@ -44,5 +46,10 @@ final class V1Request extends \Vazaha\Mastodon\Requests\V1\InstanceRequest imple
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return InstanceResult::class;
     }
 }

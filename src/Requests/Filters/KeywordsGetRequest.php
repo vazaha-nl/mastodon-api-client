@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Filters;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\FilterKeywordResult;
 
 /**
  * View keywords added to a filter.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/filters/#keywords-get
  */
-final class KeywordsGetRequest extends \Vazaha\Mastodon\Requests\FilterKeywordRequest implements RequestInterface
+final class KeywordsGetRequest extends Request implements RequestInterface
 {
     /**
      * @param string $filter_id the ID of the Filter in the database
@@ -48,5 +50,10 @@ final class KeywordsGetRequest extends \Vazaha\Mastodon\Requests\FilterKeywordRe
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return FilterKeywordResult::class;
     }
 }

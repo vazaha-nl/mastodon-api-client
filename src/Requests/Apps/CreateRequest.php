@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Apps;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\ApplicationResult;
 
 /**
  * Create an application.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/apps/#create
  */
-final class CreateRequest extends \Vazaha\Mastodon\Requests\ApplicationRequest implements RequestInterface
+final class CreateRequest extends Request implements RequestInterface
 {
     /**
      * @param string  $client_name   A name for your application
@@ -58,5 +60,10 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\ApplicationRequest i
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return ApplicationResult::class;
     }
 }

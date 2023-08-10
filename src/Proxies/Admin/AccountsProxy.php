@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies\Admin;
 
+use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Models\Admin\AccountModel;
-use Vazaha\Mastodon\Proxies\Proxy;
 use Vazaha\Mastodon\Requests\Admin\Accounts\ActionRequest;
 use Vazaha\Mastodon\Requests\Admin\Accounts\ApproveRequest;
 use Vazaha\Mastodon\Requests\Admin\Accounts\DeleteRequest;

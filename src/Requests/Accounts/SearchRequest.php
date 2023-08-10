@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Accounts;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\AccountResult;
 
 /**
  * Search for matching accounts.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/accounts/#search
  */
-final class SearchRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
+final class SearchRequest extends Request implements RequestInterface
 {
     /**
      * @param string $q         search query for accounts
@@ -61,5 +63,10 @@ final class SearchRequest extends \Vazaha\Mastodon\Requests\AccountRequest imple
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return AccountResult::class;
     }
 }
