@@ -8,29 +8,25 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies;
 
-use Vazaha\Mastodon\Exceptions\InvalidResponseException;
-use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Requests\Emails\ConfirmationRequest;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 class EmailsProxy extends Proxy
 {
     /**
      * Resend confirmation email.
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/emails/#confirmation
      */
     public function confirmation(
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new ConfirmationRequest(
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new ConfirmationRequest(
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 }

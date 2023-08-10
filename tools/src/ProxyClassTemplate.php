@@ -67,6 +67,10 @@ class ProxyClassTemplate extends ClassTemplate
                     );
                 }
 
+                if ($methodSpec['returns'] === 'EmptyOrUnknown') {
+                    $methodSpec['returnsArray'] = true;
+                }
+
                 $methodSpec['name'] = Str::camel($methodSpec['name']);
                 $methodSpec['allParams'] = Collection::make($allParams)
                     ->sortBy('nullable')

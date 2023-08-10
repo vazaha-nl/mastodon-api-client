@@ -9,11 +9,11 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Proxies;
 
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
-use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Models\TokenModel;
 use Vazaha\Mastodon\Requests\Oauth\AuthorizeRequest;
 use Vazaha\Mastodon\Requests\Oauth\RevokeRequest;
 use Vazaha\Mastodon\Requests\Oauth\TokenRequest;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 class OauthProxy extends Proxy
 {
@@ -27,6 +27,8 @@ class OauthProxy extends Proxy
      * @param ?bool   $force_login   forces the user to re-login, which is necessary for authorizing with multiple accounts from the same instance
      * @param ?string $lang          the ISO 639-1 two-letter language code to use while rendering the authorization form
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/oauth/#authorize
      */
     public function authorize(
@@ -36,24 +38,19 @@ class OauthProxy extends Proxy
         ?string $scope = null,
         ?bool $force_login = null,
         ?string $lang = null,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new AuthorizeRequest(
-            $response_type,
-            $client_id,
-            $redirect_uri,
-            $scope,
-            $force_login,
-            $lang,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new AuthorizeRequest(
+                $response_type,
+                $client_id,
+                $redirect_uri,
+                $scope,
+                $force_login,
+                $lang,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**
@@ -63,27 +60,24 @@ class OauthProxy extends Proxy
      * @param string $client_secret the client secret, obtained during app registration
      * @param string $token         the previously obtained token, to be invalidated
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/oauth/#revoke
      */
     public function revoke(
         string $client_id,
         string $client_secret,
         string $token,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new RevokeRequest(
-            $client_id,
-            $client_secret,
-            $token,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new RevokeRequest(
+                $client_id,
+                $client_secret,
+                $token,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**

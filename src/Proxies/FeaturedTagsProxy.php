@@ -9,12 +9,12 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Proxies;
 
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
-use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Models\FeaturedTagModel;
 use Vazaha\Mastodon\Requests\FeaturedTags\FeatureRequest;
 use Vazaha\Mastodon\Requests\FeaturedTags\GetRequest;
 use Vazaha\Mastodon\Requests\FeaturedTags\SuggestionsRequest;
 use Vazaha\Mastodon\Requests\FeaturedTags\UnfeatureRequest;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 use Vazaha\Mastodon\Results\FeaturedTagResult;
 use Vazaha\Mastodon\Results\TagResult;
 
@@ -83,22 +83,19 @@ class FeaturedTagsProxy extends Proxy
      *
      * @param string $id the ID of the FeaturedTag in the database
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/featured_tags/#unfeature
      */
     public function unfeature(
         string $id,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new UnfeatureRequest(
-            $id,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new UnfeatureRequest(
+                $id,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 }

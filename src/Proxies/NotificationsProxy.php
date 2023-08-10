@@ -9,13 +9,13 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Proxies;
 
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
-use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Models\NotificationModel;
 use Vazaha\Mastodon\Requests\Notifications\ClearRequest;
 use Vazaha\Mastodon\Requests\Notifications\DismissDeprecatedRequest;
 use Vazaha\Mastodon\Requests\Notifications\DismissRequest;
 use Vazaha\Mastodon\Requests\Notifications\GetOneRequest;
 use Vazaha\Mastodon\Requests\Notifications\GetRequest;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 use Vazaha\Mastodon\Results\NotificationResult;
 
 class NotificationsProxy extends Proxy
@@ -23,21 +23,18 @@ class NotificationsProxy extends Proxy
     /**
      * Dismiss all notifications.
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/notifications/#clear
      */
     public function clear(
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new ClearRequest(
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new ClearRequest(
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**
@@ -45,23 +42,20 @@ class NotificationsProxy extends Proxy
      *
      * @param string $id the ID of the Notification in the database
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/notifications/#dismiss
      */
     public function dismiss(
         string $id,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new DismissRequest(
-            $id,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new DismissRequest(
+                $id,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**
@@ -69,23 +63,20 @@ class NotificationsProxy extends Proxy
      *
      * @param string $id the ID of the notification in the database
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/notifications/#dismiss-deprecated
      */
     public function dismissDeprecated(
         string $id,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new DismissDeprecatedRequest(
-            $id,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new DismissDeprecatedRequest(
+                $id,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**

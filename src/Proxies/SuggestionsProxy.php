@@ -8,12 +8,11 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies;
 
-use Vazaha\Mastodon\Exceptions\InvalidResponseException;
-use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Requests\Suggestions\RemoveRequest;
 use Vazaha\Mastodon\Requests\Suggestions\V1Request;
 use Vazaha\Mastodon\Requests\Suggestions\V2Request;
 use Vazaha\Mastodon\Results\AccountResult;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 use Vazaha\Mastodon\Results\SuggestionResult;
 
 class SuggestionsProxy extends Proxy
@@ -23,23 +22,20 @@ class SuggestionsProxy extends Proxy
      *
      * @param string $account_id the ID of the Account in the database
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/suggestions/#remove
      */
     public function remove(
         string $account_id,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new RemoveRequest(
-            $account_id,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new RemoveRequest(
+                $account_id,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**

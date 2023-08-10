@@ -10,11 +10,11 @@ namespace Vazaha\Mastodon\Proxies;
 
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Models\ConversationModel;
-use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Requests\Conversations\DeleteRequest;
 use Vazaha\Mastodon\Requests\Conversations\GetRequest;
 use Vazaha\Mastodon\Requests\Conversations\ReadRequest;
 use Vazaha\Mastodon\Results\ConversationResult;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 class ConversationsProxy extends Proxy
 {
@@ -23,23 +23,20 @@ class ConversationsProxy extends Proxy
      *
      * @param string $id the ID of the Conversation in the database
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/conversations/#delete
      */
     public function delete(
         string $id,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new DeleteRequest(
-            $id,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new DeleteRequest(
+                $id,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**

@@ -10,7 +10,6 @@ namespace Vazaha\Mastodon\Proxies\Admin;
 
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Models\Admin\AccountModel;
-use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Proxies\Proxy;
 use Vazaha\Mastodon\Requests\Admin\Accounts\ActionRequest;
 use Vazaha\Mastodon\Requests\Admin\Accounts\ApproveRequest;
@@ -24,6 +23,7 @@ use Vazaha\Mastodon\Requests\Admin\Accounts\UnsuspendRequest;
 use Vazaha\Mastodon\Requests\Admin\Accounts\V1Request;
 use Vazaha\Mastodon\Requests\Admin\Accounts\V2Request;
 use Vazaha\Mastodon\Results\Admin\AccountResult;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 class AccountsProxy extends Proxy
 {
@@ -37,6 +37,8 @@ class AccountsProxy extends Proxy
      * @param ?string $text                    additional clarification for why this action was taken
      * @param ?bool   $send_email_notification Should an email be sent to the user with the above information?
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/admin/accounts/#action
      */
     public function action(
@@ -46,24 +48,19 @@ class AccountsProxy extends Proxy
         ?string $warning_preset_id = null,
         ?string $text = null,
         ?bool $send_email_notification = null,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new ActionRequest(
-            $id,
-            $type,
-            $report_id,
-            $warning_preset_id,
-            $text,
-            $send_email_notification,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new ActionRequest(
+                $id,
+                $type,
+                $report_id,
+                $warning_preset_id,
+                $text,
+                $send_email_notification,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**

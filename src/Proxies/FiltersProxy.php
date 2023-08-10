@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Proxies;
 
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
-use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Models\FilterKeywordModel;
 use Vazaha\Mastodon\Models\FilterModel;
 use Vazaha\Mastodon\Models\FilterStatusModel;
@@ -33,6 +32,7 @@ use Vazaha\Mastodon\Requests\Filters\StatusesGetRequest;
 use Vazaha\Mastodon\Requests\Filters\StatusesRemoveRequest;
 use Vazaha\Mastodon\Requests\Filters\UpdateRequest;
 use Vazaha\Mastodon\Requests\Filters\UpdateV1Request;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 use Vazaha\Mastodon\Results\FilterKeywordResult;
 use Vazaha\Mastodon\Results\FilterResult;
 use Vazaha\Mastodon\Results\FilterStatusResult;
@@ -117,23 +117,20 @@ class FiltersProxy extends Proxy
      *
      * @param string $id the ID of the Filter in the database
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/filters/#delete
      */
     public function delete(
         string $id,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new DeleteRequest(
-            $id,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new DeleteRequest(
+                $id,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**
@@ -141,23 +138,20 @@ class FiltersProxy extends Proxy
      *
      * @param string $id the ID of the Filter in the database
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/filters/#delete-v1
      */
     public function deleteV1(
         string $id,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new DeleteV1Request(
-            $id,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new DeleteV1Request(
+                $id,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**
@@ -277,23 +271,20 @@ class FiltersProxy extends Proxy
      *
      * @param string $id the ID of the FilterKeyword in the database
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/filters/#keywords-delete
      */
     public function keywordsDelete(
         string $id,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new KeywordsDeleteRequest(
-            $id,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new KeywordsDeleteRequest(
+                $id,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**

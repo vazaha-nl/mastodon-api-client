@@ -9,12 +9,12 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Proxies;
 
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
-use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Models\ScheduledStatusModel;
 use Vazaha\Mastodon\Requests\ScheduledStatuses\CancelRequest;
 use Vazaha\Mastodon\Requests\ScheduledStatuses\GetOneRequest;
 use Vazaha\Mastodon\Requests\ScheduledStatuses\GetRequest;
 use Vazaha\Mastodon\Requests\ScheduledStatuses\UpdateRequest;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 use Vazaha\Mastodon\Results\ScheduledStatusResult;
 
 class ScheduledStatusesProxy extends Proxy
@@ -24,23 +24,20 @@ class ScheduledStatusesProxy extends Proxy
      *
      * @param string $id the ID of the ScheduledStatus in the database
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#cancel
      */
     public function cancel(
         string $id,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new CancelRequest(
-            $id,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new CancelRequest(
+                $id,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**

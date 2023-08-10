@@ -9,12 +9,12 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Proxies;
 
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
-use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Models\WebPushSubscriptionModel;
 use Vazaha\Mastodon\Requests\Push\CreateRequest;
 use Vazaha\Mastodon\Requests\Push\DeleteRequest;
 use Vazaha\Mastodon\Requests\Push\GetRequest;
 use Vazaha\Mastodon\Requests\Push\UpdateRequest;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 class PushProxy extends Proxy
 {
@@ -48,21 +48,18 @@ class PushProxy extends Proxy
     /**
      * Remove current subscription.
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/push/#delete
      */
     public function delete(
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new DeleteRequest(
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new DeleteRequest(
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**

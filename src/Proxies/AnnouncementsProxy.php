@@ -8,13 +8,12 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies;
 
-use Vazaha\Mastodon\Exceptions\InvalidResponseException;
-use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 use Vazaha\Mastodon\Requests\Announcements\DeleteReactionsRequest;
 use Vazaha\Mastodon\Requests\Announcements\DismissRequest;
 use Vazaha\Mastodon\Requests\Announcements\GetRequest;
 use Vazaha\Mastodon\Requests\Announcements\PutReactionsRequest;
 use Vazaha\Mastodon\Results\AnnouncementResult;
+use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 class AnnouncementsProxy extends Proxy
 {
@@ -24,25 +23,22 @@ class AnnouncementsProxy extends Proxy
      * @param string $id   the ID of the Announcement in the database
      * @param string $name unicode emoji, or the shortcode of a custom emoji
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/announcements/#delete-reactions
      */
     public function deleteReactions(
         string $id,
         string $name,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new DeleteReactionsRequest(
-            $id,
-            $name,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new DeleteReactionsRequest(
+                $id,
+                $name,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**
@@ -50,23 +46,20 @@ class AnnouncementsProxy extends Proxy
      *
      * @param string $id the ID of the Announcement in the database
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/announcements/#dismiss
      */
     public function dismiss(
         string $id,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new DismissRequest(
-            $id,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new DismissRequest(
+                $id,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**
@@ -96,24 +89,21 @@ class AnnouncementsProxy extends Proxy
      * @param string $id   the ID of the Announcement in the database
      * @param string $name unicode emoji, or the shortcode of a custom emoji
      *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
      * @see https://docs.joinmastodon.org/methods/announcements/#put-reactions
      */
     public function putReactions(
         string $id,
         string $name,
-    ): EmptyOrUnknownModel {
-        $result = $this->apiClient->send(new PutReactionsRequest(
-            $id,
-            $name,
-        ));
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new PutReactionsRequest(
+                $id,
+                $name,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\EmptyOrUnknownModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 }
