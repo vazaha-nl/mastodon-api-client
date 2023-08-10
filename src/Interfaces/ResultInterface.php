@@ -15,6 +15,8 @@ interface ResultInterface
 
     public function getHttpResponse(): ResponseInterface;
 
+    public function getBody(): string;
+
     /**
      * @return null|array<int|string, mixed[]>
      */

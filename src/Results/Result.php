@@ -7,7 +7,6 @@ namespace Vazaha\Mastodon\Results;
 use Illuminate\Support\Collection;
 use Psr\Http\Message\ResponseInterface;
 use Vazaha\Mastodon\ApiClient;
-use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Factories\ModelFactory;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
@@ -25,11 +24,6 @@ class Result extends Collection implements ResultInterface
     protected ResponseInterface $httpResponse;
 
     /**
-     * @var \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Interfaces\ModelInterface>
-     */
-    protected Collection $models;
-
-    /**
      * @template T of \Vazaha\Mastodon\Interfaces\ResultInterface
      *
      * @param \Vazaha\Mastodon\Interfaces\RequestInterface<T> $request
@@ -43,12 +37,20 @@ class Result extends Collection implements ResultInterface
         $this->request = $request;
         $this->httpResponse = $httpResponse;
 
-        foreach ($this->getModels() as $model) {
-            $this->add($model);
-        }
+        $this->constructModels();
     }
 
     /**
+     * Get the undecoded http body.
+     */
+    public function getBody(): string
+    {
+        return (string) $this->httpResponse->getBody();
+    }
+
+    /**
+     * Get the decoded json body, or null for non-json/undecodable responses.
+     *
      * @throws \RuntimeException
      * @throws \Vazaha\Mastodon\Exceptions\InvalidResponseException
      *
@@ -60,17 +62,18 @@ class Result extends Collection implements ResultInterface
             return null;
         }
 
-        $this->httpResponse->getBody()->rewind();
-        $json = $this->httpResponse->getBody()->getContents();
-        $decoded = json_decode($json, true);
+        $decoded = json_decode($this->getBody(), true);
 
         if (!is_array($decoded)) {
-            throw new InvalidResponseException('could not decode json : ' . $json);
+            return null;
         }
 
         return $decoded;
     }
 
+    /**
+     * Get the full http response object.
+     */
     public function getHttpResponse(): ResponseInterface
     {
         return $this->httpResponse;
@@ -81,32 +84,28 @@ class Result extends Collection implements ResultInterface
         return EmptyOrUnknownModel::class;
     }
 
-    /**
-     * @throws \InvalidArgumentException
-     * @throws \RuntimeException
-     *
-     * @return \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Interfaces\ModelInterface>
-     */
-    protected function getModels(): Collection
+    protected function constructModels(): void
     {
-        if (!isset($this->models)) {
-            $decoded = $this->getDecodedBody();
+        $decoded = $this->getDecodedBody();
 
-            if ($decoded === null) {
-                return $this->models = new Collection();
-            }
-
-            $modelFactory = new ModelFactory();
-
-            if (!array_is_list($decoded)) {
-                $decoded = [$decoded];
-            }
-
-            $this->models = Collection::make($decoded)
-                ->map(fn (array $modelData) => $modelFactory->build($this->getModelClass(), $modelData));
+        if ($decoded === null || !is_array($decoded)) {
+            return;
         }
 
-        return $this->models;
+        $modelFactory = new ModelFactory();
+
+        if (!array_is_list($decoded)) {
+            $decoded = [$decoded];
+        }
+
+        foreach ($decoded as $modelData) {
+            if (!is_array($modelData)) {
+                continue;
+            }
+
+            $model = $modelFactory->build($this->getModelClass(), $modelData);
+            $this->add($model);
+        }
     }
 
     protected function isJson(): bool
