@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Collections;
 
+use Vazaha\Mastodon\Abstracts\ModelCollection;
 use Vazaha\Mastodon\Models\RuleModel;
 
 /**

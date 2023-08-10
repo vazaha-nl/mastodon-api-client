@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies\Admin;
 
-use Vazaha\Mastodon\Proxies\Proxy;
+use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\Requests\Admin\Trends\LinksRequest;
 use Vazaha\Mastodon\Requests\Admin\Trends\StatusesRequest;
 use Vazaha\Mastodon\Requests\Admin\Trends\TagsRequest;

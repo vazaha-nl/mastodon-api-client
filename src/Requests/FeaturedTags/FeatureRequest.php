@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\FeaturedTags;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\FeaturedTagResult;
 
 /**
  * Feature a tag.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/featured_tags/#feature
  */
-final class FeatureRequest extends \Vazaha\Mastodon\Requests\FeaturedTagRequest implements RequestInterface
+final class FeatureRequest extends Request implements RequestInterface
 {
     /**
      * @param string $name the hashtag to be featured, without the hash sign
@@ -49,5 +51,10 @@ final class FeatureRequest extends \Vazaha\Mastodon\Requests\FeaturedTagRequest 
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return FeaturedTagResult::class;
     }
 }

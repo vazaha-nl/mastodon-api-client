@@ -8,9 +8,11 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Accounts;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Helpers\UploadFile;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\AccountResult;
 
 /**
  * Update account credentials.
@@ -19,7 +21,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/accounts/#update_credentials
  */
-final class UpdateCredentialsRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
+final class UpdateCredentialsRequest extends Request implements RequestInterface
 {
     /**
      * @param ?string      $display_name      the display name to use for the profile
@@ -74,5 +76,10 @@ final class UpdateCredentialsRequest extends \Vazaha\Mastodon\Requests\AccountRe
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::PATCH;
+    }
+
+    public function getResultClass(): string
+    {
+        return AccountResult::class;
     }
 }

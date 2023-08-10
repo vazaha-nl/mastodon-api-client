@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Announcement;
 
-use Vazaha\Mastodon\Models\Model;
+use Vazaha\Mastodon\Abstracts\Model;
 
 /**
  * Represents an announcement set by an administrator.

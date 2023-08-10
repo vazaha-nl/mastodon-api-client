@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 interface ResultInterface
 {
     /**
-     * @return class-string<\Vazaha\Mastodon\Models\Model>
+     * @return class-string<\Vazaha\Mastodon\Abstracts\Model>
      */
     public function getModelClass(): string;
 

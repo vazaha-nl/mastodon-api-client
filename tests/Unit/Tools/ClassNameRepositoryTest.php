@@ -9,8 +9,8 @@ use Illuminate\Contracts\Auth\Factory as AuthFactory;
 use PHPUnit\Framework\TestCase;
 use Tools\ClassName;
 use Tools\ClassNameRepository;
+use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\ApiClient;
-use Vazaha\Mastodon\Models\Model;
 
 class ClassNameRepositoryTest extends TestCase
 {

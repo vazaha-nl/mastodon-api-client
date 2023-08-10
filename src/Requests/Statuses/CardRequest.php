@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Statuses;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\PreviewCardResult;
 
 /**
  * (DEPRECATED) Fetch preview card.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/statuses/#card
  */
-final class CardRequest extends \Vazaha\Mastodon\Requests\PreviewCardRequest implements RequestInterface
+final class CardRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the local ID of the Status in the database
@@ -48,5 +50,10 @@ final class CardRequest extends \Vazaha\Mastodon\Requests\PreviewCardRequest imp
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return PreviewCardResult::class;
     }
 }

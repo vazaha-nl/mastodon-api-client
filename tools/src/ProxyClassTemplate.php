@@ -8,10 +8,10 @@ use DateTimeInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Tools\Enums\ClassType;
+use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Helpers\UploadFile;
-use Vazaha\Mastodon\Proxies\Proxy;
 
 class ProxyClassTemplate extends ClassTemplate
 {

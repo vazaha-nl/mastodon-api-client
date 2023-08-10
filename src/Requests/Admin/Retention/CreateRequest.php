@@ -9,8 +9,10 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Requests\Admin\Retention;
 
 use DateTimeInterface;
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\CohortResult;
 
 /**
  * Calculate retention data.
@@ -19,7 +21,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/retention/#create
  */
-final class CreateRequest extends \Vazaha\Mastodon\Requests\Admin\CohortRequest implements RequestInterface
+final class CreateRequest extends Request implements RequestInterface
 {
     /**
      * @param DateTimeInterface $start_at  The start date for the time period. If a time is provided, it will be ignored.
@@ -56,5 +58,10 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\Admin\CohortRequest 
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return CohortResult::class;
     }
 }

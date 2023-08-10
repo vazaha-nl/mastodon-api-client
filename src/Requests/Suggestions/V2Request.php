@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Suggestions;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\SuggestionResult;
 
 /**
  * View follow suggestions (v2).
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/suggestions/#v2
  */
-final class V2Request extends \Vazaha\Mastodon\Requests\SuggestionRequest implements RequestInterface
+final class V2Request extends Request implements RequestInterface
 {
     /**
      * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
@@ -49,5 +51,10 @@ final class V2Request extends \Vazaha\Mastodon\Requests\SuggestionRequest implem
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return SuggestionResult::class;
     }
 }

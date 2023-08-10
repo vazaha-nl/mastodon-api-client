@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models;
 
 use DateTimeInterface;
+use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\Collections\MediaAttachmentCollection;
 
 /**

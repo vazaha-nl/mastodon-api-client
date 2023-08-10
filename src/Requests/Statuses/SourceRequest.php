@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Statuses;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\StatusSourceResult;
 
 /**
  * View status source.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/statuses/#source
  */
-final class SourceRequest extends \Vazaha\Mastodon\Requests\StatusSourceRequest implements RequestInterface
+final class SourceRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the local ID of the Status in the database
@@ -48,5 +50,10 @@ final class SourceRequest extends \Vazaha\Mastodon\Requests\StatusSourceRequest 
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return StatusSourceResult::class;
     }
 }

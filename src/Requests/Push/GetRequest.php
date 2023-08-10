@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Push;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\WebPushSubscriptionResult;
 
 /**
  * Get current subscription.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/push/#get
  */
-final class GetRequest extends \Vazaha\Mastodon\Requests\WebPushSubscriptionRequest implements RequestInterface
+final class GetRequest extends Request implements RequestInterface
 {
     public function __construct(
     ) {
@@ -44,5 +46,10 @@ final class GetRequest extends \Vazaha\Mastodon\Requests\WebPushSubscriptionRequ
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return WebPushSubscriptionResult::class;
     }
 }

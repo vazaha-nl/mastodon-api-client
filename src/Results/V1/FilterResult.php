@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Results\V1;
 
+use Vazaha\Mastodon\Abstracts\Result;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
 use Vazaha\Mastodon\Models\V1\FilterModel;
-use Vazaha\Mastodon\Results\Result;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\V1\FilterModel> $models

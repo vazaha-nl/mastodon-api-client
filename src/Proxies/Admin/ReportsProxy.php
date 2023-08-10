@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies\Admin;
 
+use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Models\Admin\ReportModel;
-use Vazaha\Mastodon\Proxies\Proxy;
 use Vazaha\Mastodon\Requests\Admin\Reports\AssignToSelfRequest;
 use Vazaha\Mastodon\Requests\Admin\Reports\GetOneRequest;
 use Vazaha\Mastodon\Requests\Admin\Reports\GetRequest;

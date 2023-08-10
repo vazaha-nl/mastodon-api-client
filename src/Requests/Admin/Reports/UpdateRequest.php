@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\Reports;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\ReportResult;
 
 /**
  * Update a report.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/reports/#update
  */
-final class UpdateRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest implements RequestInterface
+final class UpdateRequest extends Request implements RequestInterface
 {
     /**
      * @param string          $id       the ID of the Report in the database
@@ -54,5 +56,10 @@ final class UpdateRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest 
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::PUT;
+    }
+
+    public function getResultClass(): string
+    {
+        return ReportResult::class;
     }
 }

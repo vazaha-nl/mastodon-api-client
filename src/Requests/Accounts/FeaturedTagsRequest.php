@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Accounts;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\FeaturedTagResult;
 
 /**
  * Get account's featured tags.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/accounts/#featured_tags
  */
-final class FeaturedTagsRequest extends \Vazaha\Mastodon\Requests\FeaturedTagRequest implements RequestInterface
+final class FeaturedTagsRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Account in the database
@@ -48,5 +50,10 @@ final class FeaturedTagsRequest extends \Vazaha\Mastodon\Requests\FeaturedTagReq
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return FeaturedTagResult::class;
     }
 }

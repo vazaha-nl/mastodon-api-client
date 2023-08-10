@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Statuses;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\AccountResult;
 
 /**
  * See who boosted a status.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/statuses/#reblogged_by
  */
-final class RebloggedByRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
+final class RebloggedByRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id    the ID of the Status in the database
@@ -51,5 +53,10 @@ final class RebloggedByRequest extends \Vazaha\Mastodon\Requests\AccountRequest 
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return AccountResult::class;
     }
 }

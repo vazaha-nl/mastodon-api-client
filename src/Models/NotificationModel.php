@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models;
 
 use DateTimeInterface;
+use Vazaha\Mastodon\Abstracts\Model;
 
 /**
  * Represents a notification of an event relevant to the user.

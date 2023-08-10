@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\Accounts;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\AccountResult;
 
 /**
  * Unmark an account as sensitive.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/accounts/#unsensitive
  */
-final class UnsensitiveRequest extends \Vazaha\Mastodon\Requests\Admin\AccountRequest implements RequestInterface
+final class UnsensitiveRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Account in the database
@@ -48,5 +50,10 @@ final class UnsensitiveRequest extends \Vazaha\Mastodon\Requests\Admin\AccountRe
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return AccountResult::class;
     }
 }

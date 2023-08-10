@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Trends;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\TagResult;
 
 /**
  * View trending tags.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/trends/#tags
  */
-final class TagsRequest extends \Vazaha\Mastodon\Requests\TagRequest implements RequestInterface
+final class TagsRequest extends Request implements RequestInterface
 {
     /**
      * @param ?int $limit  Maximum number of results to return. Defaults to 10 tags. Max 20 tags.
@@ -52,5 +54,10 @@ final class TagsRequest extends \Vazaha\Mastodon\Requests\TagRequest implements 
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return TagResult::class;
     }
 }

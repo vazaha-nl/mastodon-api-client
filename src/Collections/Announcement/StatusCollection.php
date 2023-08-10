@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Collections\Announcement;
 
-use Vazaha\Mastodon\Collections\ModelCollection;
+use Vazaha\Mastodon\Abstracts\ModelCollection;
 use Vazaha\Mastodon\Models\Announcement\StatusModel;
 
 /**

@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Oauth;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\TokenResult;
 
 /**
  * Obtain a token.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/oauth/#token
  */
-final class TokenRequest extends \Vazaha\Mastodon\Requests\TokenRequest implements RequestInterface
+final class TokenRequest extends Request implements RequestInterface
 {
     /**
      * @param string  $grant_type    Set equal to `authorization_code` if `code` is provided in order to gain user-level access. Otherwise, set equal to `client_credentials` to obtain app-level access only.
@@ -64,5 +66,10 @@ final class TokenRequest extends \Vazaha\Mastodon\Requests\TokenRequest implemen
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return TokenResult::class;
     }
 }

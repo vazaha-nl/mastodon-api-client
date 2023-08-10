@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Vazaha\Mastodon\Results\PagingLinks;
+use Vazaha\Mastodon\Helpers\PagingLinks;
 
 class PagingLinkTest extends TestCase
 {

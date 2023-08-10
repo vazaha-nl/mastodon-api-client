@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tools;
 
 use Tools\Enums\ClassType;
-use Vazaha\Mastodon\Collections\ModelCollection;
+use Vazaha\Mastodon\Abstracts\ModelCollection;
 
 class CollectionClassTemplate extends ClassTemplate
 {

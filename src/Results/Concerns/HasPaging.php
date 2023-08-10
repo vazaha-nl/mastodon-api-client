@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Results\Concerns;
 
+use Vazaha\Mastodon\Helpers\PagingLinks;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
-use Vazaha\Mastodon\Results\PagingLinks;
 
 /**
  * @property \Vazaha\Mastodon\Interfaces\RequestInterface $request
@@ -20,7 +20,7 @@ trait HasPaging
             return null;
         }
 
-        /** @var \Vazaha\Mastodon\Results\Result $result */
+        /** @var \Vazaha\Mastodon\Abstracts\Result $result */
         $result = $this->apiClient->send($this->request->setPagingParams($params));
 
         return $result;
@@ -34,7 +34,7 @@ trait HasPaging
             return null;
         }
 
-        /** @var \Vazaha\Mastodon\Results\Result $result */
+        /** @var \Vazaha\Mastodon\Abstracts\Result $result */
         $result = $this->apiClient->send($this->request->setPagingParams($params));
 
         return $result;

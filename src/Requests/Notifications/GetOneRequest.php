@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Notifications;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\NotificationResult;
 
 /**
  * Get a single notification.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/notifications/#get-one
  */
-final class GetOneRequest extends \Vazaha\Mastodon\Requests\NotificationRequest implements RequestInterface
+final class GetOneRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Notification in the database
@@ -48,5 +50,10 @@ final class GetOneRequest extends \Vazaha\Mastodon\Requests\NotificationRequest 
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return NotificationResult::class;
     }
 }

@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Accounts;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\RelationshipResult;
 
 /**
  * Remove account from followers.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/accounts/#remove_from_followers
  */
-final class RemoveFromFollowersRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
+final class RemoveFromFollowersRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Account in the database
@@ -48,5 +50,10 @@ final class RemoveFromFollowersRequest extends \Vazaha\Mastodon\Requests\Relatio
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return RelationshipResult::class;
     }
 }

@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Models;
+namespace Vazaha\Mastodon\Abstracts;
 
 use Carbon\Carbon;
 use DateTimeInterface;
 use ReflectionClass;
 use ReflectionNamedType;
-use Vazaha\Mastodon\Collections\ModelCollection;
 use Vazaha\Mastodon\Interfaces\ModelInterface;
 
 abstract class Model implements ModelInterface

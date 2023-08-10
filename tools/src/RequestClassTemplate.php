@@ -8,6 +8,7 @@ use DateTimeInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Tools\Enums\ClassType;
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Helpers\UploadFile;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
@@ -24,6 +25,7 @@ class RequestClassTemplate extends ClassTemplate
     protected function getTemplateVars(): array
     {
         $this->imports->add(new ClassName(RequestInterface::class));
+        $this->imports->add(new ClassName(Request::class));
         $this->imports->add(new ClassName(HttpMethod::class));
         $this->imports->add(new ClassName(DateTimeInterface::class));
         $this->imports->add(new ClassName(UploadFile::class));
@@ -31,6 +33,7 @@ class RequestClassTemplate extends ClassTemplate
         $returnsEntity = $this->getReturnsEntity();
         $requestClassName = $returnsEntity->toClassName(ClassType::REQUEST);
         $resultClassName = $returnsEntity->toClassName(ClassType::RESULT);
+        $this->imports->add($resultClassName);
 
         $this->imports->add($requestClassName);
 

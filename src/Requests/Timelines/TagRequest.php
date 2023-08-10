@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Timelines;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\StatusResult;
 
 /**
  * View hashtag timeline.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/timelines/#tag
  */
-final class TagRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
+final class TagRequest extends Request implements RequestInterface
 {
     /**
      * @param string             $hashtag    the name of the hashtag (not including the # symbol)
@@ -78,5 +80,10 @@ final class TagRequest extends \Vazaha\Mastodon\Requests\StatusRequest implement
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return StatusResult::class;
     }
 }

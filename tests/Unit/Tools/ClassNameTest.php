@@ -6,7 +6,7 @@ namespace Tests\Unit\Tools;
 
 use PHPUnit\Framework\TestCase;
 use Tools\ClassName;
-use Vazaha\Mastodon\Models\Model;
+use Vazaha\Mastodon\Abstracts\Model;
 
 class ClassNameTest extends TestCase
 {
@@ -20,6 +20,6 @@ class ClassNameTest extends TestCase
     {
         $className = new ClassName(Model::class);
         $className->generateAlias();
-        self::assertEquals('ModelsModel', (string) $className);
+        self::assertEquals('AbstractsModel', (string) $className);
     }
 }

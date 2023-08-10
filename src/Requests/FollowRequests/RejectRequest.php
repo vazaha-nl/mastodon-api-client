@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\FollowRequests;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\RelationshipResult;
 
 /**
  * Reject follow request.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/follow_requests/#reject
  */
-final class RejectRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
+final class RejectRequest extends Request implements RequestInterface
 {
     /**
      * @param string $account_id the ID of the Account in the database
@@ -48,5 +50,10 @@ final class RejectRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest 
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return RelationshipResult::class;
     }
 }

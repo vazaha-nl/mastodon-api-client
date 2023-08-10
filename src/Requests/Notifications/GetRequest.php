@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Notifications;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\NotificationResult;
 
 /**
  * Get all notifications.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/notifications/#get
  */
-final class GetRequest extends \Vazaha\Mastodon\Requests\NotificationRequest implements RequestInterface
+final class GetRequest extends Request implements RequestInterface
 {
     /**
      * @param ?string            $max_id        Return results older than this ID
@@ -67,5 +69,10 @@ final class GetRequest extends \Vazaha\Mastodon\Requests\NotificationRequest imp
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return NotificationResult::class;
     }
 }

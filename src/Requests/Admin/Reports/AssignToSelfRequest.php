@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\Reports;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\ReportResult;
 
 /**
  * Assign report to self.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/reports/#assign_to_self
  */
-final class AssignToSelfRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest implements RequestInterface
+final class AssignToSelfRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Report in the database
@@ -48,5 +50,10 @@ final class AssignToSelfRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRe
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return ReportResult::class;
     }
 }

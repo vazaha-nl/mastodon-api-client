@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\ScheduledStatuses;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\ScheduledStatusResult;
 
 /**
  * Update a scheduled status's publishing date.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#update
  */
-final class UpdateRequest extends \Vazaha\Mastodon\Requests\ScheduledStatusRequest implements RequestInterface
+final class UpdateRequest extends Request implements RequestInterface
 {
     /**
      * @param string  $id           the ID of the ScheduledStatus in the database
@@ -51,5 +53,10 @@ final class UpdateRequest extends \Vazaha\Mastodon\Requests\ScheduledStatusReque
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::PUT;
+    }
+
+    public function getResultClass(): string
+    {
+        return ScheduledStatusResult::class;
     }
 }

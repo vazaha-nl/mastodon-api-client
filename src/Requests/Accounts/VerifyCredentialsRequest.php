@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Accounts;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\CredentialAccountResult;
 
 /**
  * Verify account credentials.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/accounts/#verify_credentials
  */
-final class VerifyCredentialsRequest extends \Vazaha\Mastodon\Requests\CredentialAccountRequest implements RequestInterface
+final class VerifyCredentialsRequest extends Request implements RequestInterface
 {
     public function __construct(
     ) {
@@ -44,5 +46,10 @@ final class VerifyCredentialsRequest extends \Vazaha\Mastodon\Requests\Credentia
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return CredentialAccountResult::class;
     }
 }

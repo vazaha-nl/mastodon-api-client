@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\Accounts;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\AccountResult;
 
 /**
  * Delete an account.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/accounts/#delete
  */
-final class DeleteRequest extends \Vazaha\Mastodon\Requests\Admin\AccountRequest implements RequestInterface
+final class DeleteRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Account in the database
@@ -48,5 +50,10 @@ final class DeleteRequest extends \Vazaha\Mastodon\Requests\Admin\AccountRequest
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::DELETE;
+    }
+
+    public function getResultClass(): string
+    {
+        return AccountResult::class;
     }
 }

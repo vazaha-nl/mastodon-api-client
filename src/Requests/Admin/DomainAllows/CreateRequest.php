@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\DomainAllows;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\DomainAllowResult;
 
 /**
  * Allow a domain to federate.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#create
  */
-final class CreateRequest extends \Vazaha\Mastodon\Requests\Admin\DomainAllowRequest implements RequestInterface
+final class CreateRequest extends Request implements RequestInterface
 {
     /**
      * @param string $domain the domain to allow federation with
@@ -49,5 +51,10 @@ final class CreateRequest extends \Vazaha\Mastodon\Requests\Admin\DomainAllowReq
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return DomainAllowResult::class;
     }
 }

@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Proxies;
 
+use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\Requests\Suggestions\RemoveRequest;
 use Vazaha\Mastodon\Requests\Suggestions\V1Request;
 use Vazaha\Mastodon\Requests\Suggestions\V2Request;

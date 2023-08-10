@@ -8,9 +8,11 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Media;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Helpers\UploadFile;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\MediaAttachmentResult;
 
 /**
  * (DEPRECATED) Upload media as an attachment.
@@ -19,7 +21,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/media/#v1
  */
-final class V1Request extends \Vazaha\Mastodon\Requests\MediaAttachmentRequest implements RequestInterface
+final class V1Request extends Request implements RequestInterface
 {
     /**
      * @param UploadFile  $file        The file to be attached, encoded using multipart form data. The file must have a MIME type.
@@ -59,5 +61,10 @@ final class V1Request extends \Vazaha\Mastodon\Requests\MediaAttachmentRequest i
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return MediaAttachmentResult::class;
     }
 }

@@ -7,8 +7,8 @@ namespace Tools;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Tools\Enums\ClassType;
+use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\ApiClient;
-use Vazaha\Mastodon\Proxies\Proxy;
 
 class ProxyContainerClassTemplate extends ClassTemplate
 {

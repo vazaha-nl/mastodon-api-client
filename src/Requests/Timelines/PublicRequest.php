@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Timelines;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\StatusResult;
 
 /**
  * View public timeline.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/timelines/#public
  */
-final class PublicRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
+final class PublicRequest extends Request implements RequestInterface
 {
     /**
      * @param ?bool   $local      show only local statuses? Defaults to false
@@ -67,5 +69,10 @@ final class PublicRequest extends \Vazaha\Mastodon\Requests\StatusRequest implem
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return StatusResult::class;
     }
 }

@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Accounts;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\StatusResult;
 
 /**
  * Get account's statuses.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/accounts/#statuses
  */
-final class StatusesRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
+final class StatusesRequest extends Request implements RequestInterface
 {
     /**
      * @param string  $id              the ID of the Account in the database
@@ -75,5 +77,10 @@ final class StatusesRequest extends \Vazaha\Mastodon\Requests\StatusRequest impl
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return StatusResult::class;
     }
 }

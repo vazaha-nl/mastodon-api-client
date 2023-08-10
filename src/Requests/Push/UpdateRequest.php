@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Push;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\WebPushSubscriptionResult;
 
 /**
  * Change types of notifications.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/push/#update
  */
-final class UpdateRequest extends \Vazaha\Mastodon\Requests\WebPushSubscriptionRequest implements RequestInterface
+final class UpdateRequest extends Request implements RequestInterface
 {
     /**
      * @param null|mixed[] $data   data[alerts][mention]: Receive mention notifications? Defaults to false
@@ -52,5 +54,10 @@ final class UpdateRequest extends \Vazaha\Mastodon\Requests\WebPushSubscriptionR
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::PUT;
+    }
+
+    public function getResultClass(): string
+    {
+        return WebPushSubscriptionResult::class;
     }
 }

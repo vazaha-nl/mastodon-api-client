@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Filters;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\FilterStatusResult;
 
 /**
  * Remove a status from a filter group.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/filters/#statuses-remove
  */
-final class StatusesRemoveRequest extends \Vazaha\Mastodon\Requests\FilterStatusRequest implements RequestInterface
+final class StatusesRemoveRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the FilterStatus in the database
@@ -48,5 +50,10 @@ final class StatusesRemoveRequest extends \Vazaha\Mastodon\Requests\FilterStatus
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::DELETE;
+    }
+
+    public function getResultClass(): string
+    {
+        return FilterStatusResult::class;
     }
 }

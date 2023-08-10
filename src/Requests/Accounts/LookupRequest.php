@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Accounts;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\AccountResult;
 
 /**
  * Lookup account ID from Webfinger address.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/accounts/#lookup
  */
-final class LookupRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
+final class LookupRequest extends Request implements RequestInterface
 {
     /**
      * @param string $acct the username or Webfinger address to lookup
@@ -49,5 +51,10 @@ final class LookupRequest extends \Vazaha\Mastodon\Requests\AccountRequest imple
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return AccountResult::class;
     }
 }

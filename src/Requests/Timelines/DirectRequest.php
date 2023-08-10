@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Timelines;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\StatusResult;
 
 /**
  * (DEPRECATED) View direct timeline.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/timelines/#direct
  */
-final class DirectRequest extends \Vazaha\Mastodon\Requests\StatusRequest implements RequestInterface
+final class DirectRequest extends Request implements RequestInterface
 {
     /**
      * @param ?string $max_id   return results older than ID
@@ -58,5 +60,10 @@ final class DirectRequest extends \Vazaha\Mastodon\Requests\StatusRequest implem
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return StatusResult::class;
     }
 }

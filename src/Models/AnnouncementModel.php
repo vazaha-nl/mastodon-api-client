@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models;
 
 use DateTimeInterface;
+use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\Collections\Announcement\AccountCollection;
 use Vazaha\Mastodon\Collections\Announcement\StatusCollection;
 use Vazaha\Mastodon\Collections\CustomEmojiCollection;

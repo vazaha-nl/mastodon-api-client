@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Factories;
 
 use LogicException;
+use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\Interfaces\ModelInterface;
-use Vazaha\Mastodon\Models\Model;
 
 class ModelFactory
 {
     /**
-     * @template T of \Vazaha\Mastodon\Models\Model
+     * @template T of \Vazaha\Mastodon\Abstracts\Model
      *
      * @param class-string<T> $className
      * @param mixed[]         $modelData

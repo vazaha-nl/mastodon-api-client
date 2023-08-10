@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\CanonicalEmailBlocks;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult;
 
 /**
  * Test.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#test
  */
-final class TestRequest extends \Vazaha\Mastodon\Requests\Admin\CanonicalEmailBlockRequest implements RequestInterface
+final class TestRequest extends Request implements RequestInterface
 {
     /**
      * @param string $email the email to canonicalize and hash
@@ -49,5 +51,10 @@ final class TestRequest extends \Vazaha\Mastodon\Requests\Admin\CanonicalEmailBl
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return CanonicalEmailBlockResult::class;
     }
 }

@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Accounts;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\AccountResult;
 
 /**
  * Get account's followers.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/accounts/#followers
  */
-final class FollowersRequest extends \Vazaha\Mastodon\Requests\AccountRequest implements RequestInterface
+final class FollowersRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id    the ID of the Account in the database
@@ -51,5 +53,10 @@ final class FollowersRequest extends \Vazaha\Mastodon\Requests\AccountRequest im
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return AccountResult::class;
     }
 }

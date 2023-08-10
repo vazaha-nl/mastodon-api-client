@@ -34,7 +34,7 @@ interface RequestInterface
     public function getOptions(): array;
 
     /**
-     * @return class-string<\Vazaha\Mastodon\Results\Result>
+     * @return class-string<\Vazaha\Mastodon\Abstracts\Result>
      */
     public function getResultClass(): string;
 

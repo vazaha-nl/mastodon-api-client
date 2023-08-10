@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Accounts;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\RelationshipResult;
 
 /**
  * Mute account.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/accounts/#mute
  */
-final class MuteRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest implements RequestInterface
+final class MuteRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id            the ID of the Account in the database
@@ -54,5 +56,10 @@ final class MuteRequest extends \Vazaha\Mastodon\Requests\RelationshipRequest im
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return RelationshipResult::class;
     }
 }

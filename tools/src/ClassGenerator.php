@@ -21,8 +21,8 @@ class ClassGenerator
     {
         $this->generateModels();
         $this->generateCollections();
-        $this->generateAbstractRequestsAndResults();
         $this->generateRequests();
+        $this->generateResults();
         $this->generateProxies();
         $this->generateTests();
     }
@@ -58,18 +58,18 @@ class ClassGenerator
         }
     }
 
-    public function generateAbstractRequestsAndResults(): void
+    public function generateResults(): void
     {
         foreach ($this->methodSpecsRepository->getAllReturnedEntities() as $entityName) {
             $entity = new Entity($entityName);
 
             $template = new ResultClassTemplate($entity);
-            printf('Generating abstract request class for ' . $template->entity->name . \PHP_EOL);
+            printf('Generating result class for ' . $template->entity->name . \PHP_EOL);
             $template->write(true);
 
-            $template = new AbstractRequestClassTemplate($entity);
-            printf('Generating return class for ' . $template->entity->name . \PHP_EOL);
-            $template->write(true);
+            // $template = new AbstractRequestClassTemplate($entity);
+            // printf('Generating return class for ' . $template->entity->name . \PHP_EOL);
+            // $template->write(true);
         }
     }
 

@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Instance;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\DomainBlockResult;
 
 /**
  * View moderated servers.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/instance/#domain_blocks
  */
-final class DomainBlocksRequest extends \Vazaha\Mastodon\Requests\DomainBlockRequest implements RequestInterface
+final class DomainBlocksRequest extends Request implements RequestInterface
 {
     public function __construct(
     ) {
@@ -44,5 +46,10 @@ final class DomainBlocksRequest extends \Vazaha\Mastodon\Requests\DomainBlockReq
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return DomainBlockResult::class;
     }
 }

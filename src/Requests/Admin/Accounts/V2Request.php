@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\Accounts;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\AccountResult;
 
 /**
  * View accounts (v2).
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/accounts/#v2
  */
-final class V2Request extends \Vazaha\Mastodon\Requests\Admin\AccountRequest implements RequestInterface
+final class V2Request extends Request implements RequestInterface
 {
     /**
      * @param ?string            $origin       filter for `local` or `remote` accounts
@@ -88,5 +90,10 @@ final class V2Request extends \Vazaha\Mastodon\Requests\Admin\AccountRequest imp
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return AccountResult::class;
     }
 }

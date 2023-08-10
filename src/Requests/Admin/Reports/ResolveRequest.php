@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\Reports;
 
+use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\Admin\ReportResult;
 
 /**
  * Mark report as resolved.
@@ -18,7 +20,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
  *
  * @see https://docs.joinmastodon.org/methods/admin/reports/#resolve
  */
-final class ResolveRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest implements RequestInterface
+final class ResolveRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Report in the database
@@ -48,5 +50,10 @@ final class ResolveRequest extends \Vazaha\Mastodon\Requests\Admin\ReportRequest
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::POST;
+    }
+
+    public function getResultClass(): string
+    {
+        return ReportResult::class;
     }
 }

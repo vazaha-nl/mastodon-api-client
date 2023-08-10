@@ -21,7 +21,7 @@ namespace {{ namespace }};
  * @see {{ url }}
 {% endif %}
  */
-final class {{ classname }} extends \{{ requestClassName.getFQN() }} implements RequestInterface
+final class {{ classname }} extends Request implements RequestInterface
 {
 
     /**
@@ -63,5 +63,10 @@ final class {{ classname }} extends \{{ requestClassName.getFQN() }} implements 
     public function getHttpMethod(): HttpMethod
     {
         return HttpMethod::{{ method }};
+    }
+
+    public function getResultClass(): string
+    {
+        return {{ resultClassName.getBaseName() }}::class;
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Proxies;
+namespace Vazaha\Mastodon\Abstracts;
 
 use Vazaha\Mastodon\ApiClient;
 
