@@ -163,7 +163,6 @@ composer integration-test
 
 ```
 
-
 ## Coding style
 
 Coding style is enforced using `php-cs-fixer`. 
