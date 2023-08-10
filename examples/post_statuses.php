@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Vazaha\Mastodon\Factories\ApiClientFactory;
-use Vazaha\Mastodon\Support\File;
+use Vazaha\Mastodon\Helpers\UploadFile;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -36,9 +36,9 @@ $client->methods()->statuses()->create(
 // post a status with media (image/movie/etc)
 // first upload the image by creating a media attachment
 $mediaAttachment = $client->methods()->media()->v2(
-    new File('/path/to/media.gif'), // use the \Vazaha\Mastodon\Support\File helper
-    new File('/path/to/thumbnail.gif'), // optional
-    'the description of the attachment',
+    new UploadFile('/path/to/media.gif'), // use the \Vazaha\Mastodon\Helpers\UploadFile helper
+    new UploadFile('/path/to/thumbnail.gif'),
+    'a picture of something cool',
 );
 
 // then post the status with a reference to the just created media attachment

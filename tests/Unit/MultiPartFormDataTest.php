@@ -6,33 +6,33 @@ namespace Tests\Unit;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Vazaha\Mastodon\Support\File;
-use Vazaha\Mastodon\Support\MultipartFormData;
+use Vazaha\Mastodon\Helpers\MultipartFormData;
+use Vazaha\Mastodon\Helpers\UploadFile;
 
 class MultiPartFormDataTest extends TestCase
 {
     public function testInvalidFilePathThrowsException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $file = new File('invalid');
+        $file = new UploadFile('invalid');
     }
 
     public function testPathToDirThrowsException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $file = new File('/home');
+        $file = new UploadFile('/home');
     }
 
     public function testUnreadableFileThrowsException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $file = new File('/etc/shadow');
+        $file = new UploadFile('/etc/shadow');
     }
 
     public function testFileObject(): void
     {
         $path = __DIR__ . '/assets/account.json';
-        $file = new File($path);
+        $file = new UploadFile($path);
 
         $array = $file->toArray();
         self::assertSame('account.json', $array['filename']);
@@ -44,7 +44,7 @@ class MultiPartFormDataTest extends TestCase
     public function testMultipartGeneration(): void
     {
         $path = __DIR__ . '/assets/account.json';
-        $file = new File($path);
+        $file = new UploadFile($path);
 
         $params = [
             'single' => 'value',

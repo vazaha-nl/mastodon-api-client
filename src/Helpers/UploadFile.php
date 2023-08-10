@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Support;
+namespace Vazaha\Mastodon\Helpers;
 
 use InvalidArgumentException;
 
 /**
  * Helper class for files to be uploaded to the Mastodon API.
  */
-class File
+class UploadFile
 {
     /**
      * @param string $filePath The path of the file to be uploaded

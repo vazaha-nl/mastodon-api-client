@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests;
 
+use Vazaha\Mastodon\Helpers\MultipartFormData;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Requests\Concerns\HasPaging;
 use Vazaha\Mastodon\Results\Result;
-use Vazaha\Mastodon\Support\MultipartFormData;
 
 /**
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\Result>

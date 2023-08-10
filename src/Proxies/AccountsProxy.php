@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Proxies;
 
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
+use Vazaha\Mastodon\Helpers\UploadFile;
 use Vazaha\Mastodon\Models\AccountModel;
 use Vazaha\Mastodon\Models\CredentialAccountModel;
 use Vazaha\Mastodon\Models\RelationshipModel;
@@ -44,7 +45,6 @@ use Vazaha\Mastodon\Results\IdentityProofResult;
 use Vazaha\Mastodon\Results\ListResult;
 use Vazaha\Mastodon\Results\RelationshipResult;
 use Vazaha\Mastodon\Results\StatusResult;
-use Vazaha\Mastodon\Support\File;
 
 class AccountsProxy extends Proxy
 {
@@ -632,8 +632,8 @@ class AccountsProxy extends Proxy
      *
      * @param ?string      $display_name      the display name to use for the profile
      * @param ?string      $note              the account bio
-     * @param ?File        $avatar            Avatar image encoded using `multipart/form-data`
-     * @param ?File        $header            Header image encoded using `multipart/form-data`
+     * @param ?UploadFile  $avatar            Avatar image encoded using `multipart/form-data`
+     * @param ?UploadFile  $header            Header image encoded using `multipart/form-data`
      * @param ?bool        $locked            whether manual approval of follow requests is required
      * @param ?bool        $bot               whether the account has a bot flag
      * @param ?bool        $discoverable      whether the account should be shown in the profile directory
@@ -645,8 +645,8 @@ class AccountsProxy extends Proxy
     public function updateCredentials(
         ?string $display_name = null,
         ?string $note = null,
-        ?File $avatar = null,
-        ?File $header = null,
+        ?UploadFile $avatar = null,
+        ?UploadFile $header = null,
         ?bool $locked = null,
         ?bool $bot = null,
         ?bool $discoverable = null,

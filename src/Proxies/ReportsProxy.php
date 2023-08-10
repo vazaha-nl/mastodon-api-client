@@ -11,7 +11,6 @@ namespace Vazaha\Mastodon\Proxies;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Models\ReportModel;
 use Vazaha\Mastodon\Requests\Reports\PostRequest;
-use Vazaha\Mastodon\Support\File;
 
 class ReportsProxy extends Proxy
 {

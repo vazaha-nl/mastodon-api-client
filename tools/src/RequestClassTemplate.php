@@ -9,8 +9,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Tools\Enums\ClassType;
 use Vazaha\Mastodon\Enums\HttpMethod;
+use Vazaha\Mastodon\Helpers\UploadFile;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
-use Vazaha\Mastodon\Support\File;
 
 class RequestClassTemplate extends ClassTemplate
 {
@@ -26,7 +26,7 @@ class RequestClassTemplate extends ClassTemplate
         $this->imports->add(new ClassName(RequestInterface::class));
         $this->imports->add(new ClassName(HttpMethod::class));
         $this->imports->add(new ClassName(DateTimeInterface::class));
-        $this->imports->add(new ClassName(File::class));
+        $this->imports->add(new ClassName(UploadFile::class));
 
         $returnsEntity = $this->getReturnsEntity();
         $requestClassName = $returnsEntity->toClassName(ClassType::REQUEST);

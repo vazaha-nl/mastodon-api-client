@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Support;
+namespace Vazaha\Mastodon\Helpers;
 
 use InvalidArgumentException;
 
@@ -79,7 +79,7 @@ class MultipartFormData
             ];
         }
 
-        if ($contents instanceof File) {
+        if ($contents instanceof UploadFile) {
             return [
                 array_merge($contents->toArray(), [
                     'name' => $baseName,
