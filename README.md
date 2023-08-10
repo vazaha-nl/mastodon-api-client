@@ -6,9 +6,9 @@ A fully typed and feature complete [mastodon API](https://docs.joinmastodon.org/
 
 - feature complete: every documented api method and entity has been implemented
 - fully typed: every function, argument, property and result is typed, using generics where applicable
-- documented: every api method and argument is documented using docblocks, and contain a link to the relevant page at https://docs.joinmastodon.org
-- tested: the code is covered by unit tests, and passes phpstan analysis on the highest level
-- auto generated: classes are auto generated based on the [Mastodon markup documentation](https://github.com/mastodon/documentation) (in absence of a good openapi spec)
+- documented: every api entity, method and argument is documented using docblocks, and contain a link to the relevant page at https://docs.joinmastodon.org
+- tested: the code is covered by unit and integration tests, and passes phpstan analysis on the highest level
+- up to date: classes are auto generated based on the [Mastodon markup documentation](https://github.com/mastodon/documentation) (in absence of a good openapi spec)
 
 ## Requirements
 
@@ -39,7 +39,7 @@ $client = new \Vazaha\Mastodon\ApiClient(new \GuzzleHttp\Client());
 ```php
 
 // set base uri (required)
-$client->setBaseUri('https://instance.example.org');
+$client->setBaseUri('https://instance.example');
 
 // manually set access token
 $client->setAccessToken('token...');
@@ -74,7 +74,7 @@ print 'Found account: ' . $account->display_name . \PHP_EOL;
 
 #### Calls with multiple results
 
-Calls that return a list of entities, will return a subclass of `\Vazaha\Mastodon\Results\Result`. This class is a subclass of `\Illuminate\Support\Collection` which can be accessed as a plain array. See https://laravel.com/docs/10.x/collections.
+Calls that return a list of entities, will return a subclass of `\Vazaha\Mastodon\Results\Result`. This class is a subclass of `\Illuminate\Support\Collection` which can be accessed as an array. The collection will contain the result model(s) (implementations of `\Vazaha\Interfaces\ModelInterface`). The exact subclass will be type hinted and thus known to your IDE.
 
 ```php
 
@@ -91,7 +91,7 @@ foreach ($followers as $follower) {
 
 #### Pagination
 
-Most API calls with multiple results have a hard limit on the amount of results returned. To get the next/previous page of a result, use the `getNextPage()` / `getPreviousPage()` methods. See for background: https://docs.joinmastodon.org/api/guidelines/#pagination
+Most API calls with multiple results have a hard limit on the amount of results returned. To get the next/previous page of a result, use the `getNextPage()` / `getPreviousPage()` methods. This is done by parsing the `Link` http header. See for background: https://docs.joinmastodon.org/api/guidelines/#pagination
 
 ```php
 
@@ -101,22 +101,41 @@ while ($followers = $followers->getNextPage()) {
 
 ```
 
+#### Calls with empty or custom result
+
+Some calls do not return a model or array of models. Some have an empty result, some have a custom result, like an array of strings or custom hashes, or plain text. Refer to the documentation for details. In all those cases the Result will be an instance of `\Vazaha\Mastodon\Results\EmptyOrUnknownResult`, and the collection will be empty. Retrieve the response using one of the following methods:
+
+```php
+
+// get the decoded json content, if available
+$decoded = $result->getDecodedBody();
+
+// get the undecoded response body
+$body = $result->getBody();
+
+// get the entire Http Response object
+$response = $result->getHttpResponse();
+
+```
+
 #### Error handling
 
-In case of any client (4xx) http errors, custom exceptions (subclasses of `\Vazaha\Mastodon\Exceptions\ApiErrorException`) will be thrown, containing an [Error](https://docs.joinmastodon.org/entities/Error/) object.
+In case of any client (4xx) http errors, custom exceptions (subclasses of `\Vazaha\Mastodon\Exceptions\ApiErrorException`) will be thrown, containing an [Error](https://docs.joinmastodon.org/entities/Error/) object. There is a specific exception class for every status code.
 
-See the `examples/` folder for more examples and usage hints.
+#### More usage examples
+
+See the `examples/` folder.
 
 ### Laravel support
 
-There is some very basic Laravel support, enabling dependency injection of the ApiClient class.
+The `ServiceProvider` class, which will be automatically detected, provides very basic Laravel support, enabling dependency injection of the ApiClient class.
 
 ```php
 public function myControllerFunction(Request $request, ApiClient $client)
 {
     /** @var \App\Models\User $user */
     $user = $request->user();
-    $client->setBaseUri('http://instance.example.org')
+    $client->setBaseUri('https://instance.example')
         ->setAccessToken($user->mastodon_access_token);
     // ...
 }
@@ -136,7 +155,6 @@ composer analyse
 ```
 
 There are some basic integration tests available as well. If you want to run these, you will need a local mastodon instance at http://mastodon.local. See https://docs.joinmastodon.org/dev/setup/#vagrant for instructions.
-
 
 ```
 

@@ -8,7 +8,7 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 $factory = new ApiClientFactory();
 $client = $factory->build()
-    ->setBaseUri('http://yourinstancehere.example');
+    ->setBaseUri('https://instance.example');
 
 // manually set an access token for authenticated requests
 $client->setAccessToken('token');
@@ -16,21 +16,21 @@ $client->setAccessToken('token');
 // create an app and get app based authorization:
 $app = $client->methods()->apps()->create(
     'my client name',
-    'https://mysite.example.org/callback',
+    'https://mysite.example/callback',
     'read',
-    'https://mysite.example.org',
+    'https://mysite.example',
 );
 
 if (!isset($app->client_id, $app->client_secret)) {
     exit('could not create app!');
 }
 
-// request oauth token for this app
+// obtain oauth token for this app
 $token = $client->methods()->oauth()->token(
     'client_credentials',
     $app->client_id,
     $app->client_secret,
-    'https://example.org/callback',
+    'https://mysite.example/callback',
 );
 
 // authorize the client with:
@@ -46,7 +46,7 @@ $client->setAccessToken($token->access_token);
 $authUrl = $client->getAuthorizeUrl(
     'code',
     $app->client_id,
-    'https://mysite.example.org/callback',
+    'https://mysite.example/callback',
     'read write',
 );
 
@@ -64,7 +64,7 @@ $token = $client->methods()->oauth()->token(
     'authorization_code', // NB: different from app token call above!
     $app->client_id,
     $app->client_secret,
-    'https://mysite.example.org/callback',
+    'https://mysite.example/callback',
     $code,
     'read write',
 );

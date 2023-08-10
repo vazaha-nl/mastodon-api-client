@@ -9,8 +9,8 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 $factory = new ApiClientFactory();
 $client = $factory->build()
-    ->setBaseUri('http://yourinstancehere.example')
-    ->setAccessToken('youraccesstokenhere');
+    ->setBaseUri('http://instance.example')
+    ->setAccessToken('your access token');
 
 // post a text only status
 $client->methods()->statuses()->create(
@@ -37,7 +37,7 @@ $client->methods()->statuses()->create(
 // first upload the image by creating a media attachment
 $mediaAttachment = $client->methods()->media()->v2(
     new UploadFile('/path/to/media.gif'), // use the \Vazaha\Mastodon\Helpers\UploadFile helper
-    new UploadFile('/path/to/thumbnail.gif'),
+    new UploadFile('/path/to/thumbnail.gif'), // optional
     'a picture of something cool',
 );
 

@@ -14,7 +14,7 @@ $client = $factory->build();
 $client = new \Vazaha\Mastodon\ApiClient(new \GuzzleHttp\Client());
 
 // set baseuri
-$client->setBaseUri('https://yourinstancehere.example');
+$client->setBaseUri('https://instance.example');
 
 // get an account by id
 try {
