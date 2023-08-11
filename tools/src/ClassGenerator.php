@@ -66,10 +66,6 @@ class ClassGenerator
             $template = new ResultClassTemplate($entity);
             printf('Generating result class for ' . $template->entity->name . \PHP_EOL);
             $template->write(true);
-
-            // $template = new AbstractRequestClassTemplate($entity);
-            // printf('Generating return class for ' . $template->entity->name . \PHP_EOL);
-            // $template->write(true);
         }
     }
 
