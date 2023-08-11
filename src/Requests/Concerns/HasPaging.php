@@ -12,11 +12,11 @@ use Psr\Http\Message\UriInterface;
  */
 trait HasPaging
 {
-    protected string $maxId;
+    protected ?string $maxId;
 
-    protected string $minId;
+    protected ?string $minId;
 
-    protected string $sinceId;
+    protected ?string $sinceId;
 
     protected ?int $limit;
 
@@ -55,40 +55,32 @@ trait HasPaging
      */
     public function setPagingParams(array $params): static
     {
-        if (isset($params['max_id'])) {
-            $this->setMaxId((string) $params['max_id']);
-        }
+        $this->setMaxId(isset($params['max_id']) ? (string) $params['max_id'] : null);
 
-        if (isset($params['min_id'])) {
-            $this->setMinId((string) $params['min_id']);
-        }
+        $this->setMinId(isset($params['min_id']) ? (string) $params['min_id'] : null);
 
-        if (isset($params['since_id'])) {
-            $this->setSinceId((string) $params['since_id']);
-        }
+        $this->setSinceId(isset($params['since_id']) ? (string) $params['since_id'] : null);
 
-        if (isset($params['limit'])) {
-            $this->setLimit((int) $params['limit']);
-        }
+        $this->setLimit(isset($params['limit']) ? (int) $params['limit'] : null);
 
         return $this;
     }
 
-    public function setMaxId(string $maxId): static
+    public function setMaxId(?string $maxId): static
     {
         $this->maxId = $maxId;
 
         return $this;
     }
 
-    public function setMinId(string $minId): static
+    public function setMinId(?string $minId): static
     {
         $this->minId = $minId;
 
         return $this;
     }
 
-    public function setSinceId(string $sinceId): static
+    public function setSinceId(?string $sinceId): static
     {
         $this->sinceId = $sinceId;
 
