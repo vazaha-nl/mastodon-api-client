@@ -2,9 +2,9 @@
 
 A fully typed and feature complete [mastodon API](https://docs.joinmastodon.org/api/) client for PHP. 
 
-## Key features
+## Features
 
-- feature complete: every documented api method and entity has been implemented
+- complete: every documented api method and entity has been implemented
 - fully typed: every function, argument, property and result is typed, using generics where applicable
 - documented: every api entity, method and argument is documented using docblocks, and contain a link to the relevant page at https://docs.joinmastodon.org
 - tested: the code is covered by unit and integration tests, and passes phpstan analysis on the highest level
@@ -34,7 +34,7 @@ $client = $factory->build();
 $client = new \Vazaha\Mastodon\ApiClient(new \GuzzleHttp\Client());
 
 ```
-### Set base uri (required) and token (not required for all endpoints)
+### Set base uri / token
 
 ```php
 
