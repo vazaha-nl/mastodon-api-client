@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Vazaha\Mastodon\Helpers\MultipartFormData;
 use Vazaha\Mastodon\Helpers\UploadFile;
@@ -13,19 +12,19 @@ class MultiPartFormDataTest extends TestCase
 {
     public function testInvalidFilePathThrowsException(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $file = new UploadFile('invalid');
     }
 
     public function testPathToDirThrowsException(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $file = new UploadFile('/home');
     }
 
     public function testUnreadableFileThrowsException(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $file = new UploadFile('/etc/shadow');
     }
 

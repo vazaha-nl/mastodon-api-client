@@ -17,7 +17,7 @@ class PagingLinks
     }
 
     /**
-     * @return null|array<int|string,string>
+     * @return null|array<int|string, string>
      */
     public function getNextQueryParams(): ?array
     {
@@ -25,7 +25,7 @@ class PagingLinks
     }
 
     /**
-     * @return null|array<int|string,string>
+     * @return null|array<int|string, string>
      */
     public function getPreviousQueryParams(): ?array
     {

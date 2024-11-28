@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\Collections\FilterKeywordCollection;
 use Vazaha\Mastodon\Collections\FilterStatusCollection;
@@ -33,14 +32,14 @@ class FilterModel extends Model
     /**
      * The contexts in which the filter should be applied.
      *
-     * @var array<string>
+     * @var list<string>
      */
     public array $context;
 
     /**
      * When the filter should no longer be applied.
      */
-    public ?DateTimeInterface $expires_at = null;
+    public ?\DateTimeInterface $expires_at = null;
 
     /**
      * The action to be taken when a status matches this filter.

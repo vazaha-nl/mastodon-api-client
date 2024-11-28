@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
@@ -31,7 +30,7 @@ class DomainBlockModel extends Model
     /**
      * When the domain was blocked from federating.
      */
-    public DateTimeInterface $created_at;
+    public \DateTimeInterface $created_at;
 
     /**
      * The policy to be applied by this domain block.

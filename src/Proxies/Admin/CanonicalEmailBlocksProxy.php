@@ -76,14 +76,14 @@ class CanonicalEmailBlocksProxy extends Proxy
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 100 blocks. Max 200 blocks.
      *
-     * @return \Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel>
+     * @return \Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel>
      *
      * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#get
      */
     public function get(
         ?int $limit = null,
     ): CanonicalEmailBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel> */
+        /** @var \Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $limit,
@@ -121,14 +121,14 @@ class CanonicalEmailBlocksProxy extends Proxy
      *
      * @param string $email the email to canonicalize and hash
      *
-     * @return \Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel>
+     * @return \Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel>
      *
      * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#test
      */
     public function test(
         string $email,
     ): CanonicalEmailBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel> */
+        /** @var \Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel> */
         $models = $this->apiClient
             ->send(new TestRequest(
                 $email,

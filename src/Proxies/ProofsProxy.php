@@ -20,7 +20,7 @@ class ProofsProxy extends Proxy
      * @param ?string $provider The identity provider to be looked up. Currently only supports `keybase` (case-sensitive).
      * @param ?string $username the username on the selected identity provider
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/proofs/#get
      */
@@ -28,7 +28,7 @@ class ProofsProxy extends Proxy
         ?string $provider = null,
         ?string $username = null,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $provider,

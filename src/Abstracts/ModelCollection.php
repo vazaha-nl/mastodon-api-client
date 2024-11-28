@@ -20,7 +20,7 @@ abstract class ModelCollection extends Collection
     abstract public static function getModelClass(): string;
 
     /**
-     * @param array<int, mixed[]> $array
+     * @param array<int, list<mixed>> $array
      */
     public static function fromArray(array $array): static
     {

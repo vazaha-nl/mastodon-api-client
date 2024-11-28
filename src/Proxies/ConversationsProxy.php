@@ -24,14 +24,14 @@ class ConversationsProxy extends Proxy
      *
      * @param string $id the ID of the Conversation in the database
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/conversations/#delete
      */
     public function delete(
         string $id,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new DeleteRequest(
                 $id,
@@ -45,14 +45,14 @@ class ConversationsProxy extends Proxy
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 20 conversations. Max 40 conversations.
      *
-     * @return \Vazaha\Mastodon\Results\ConversationResult<array-key,\Vazaha\Mastodon\Models\ConversationModel>
+     * @return \Vazaha\Mastodon\Results\ConversationResult<array-key, \Vazaha\Mastodon\Models\ConversationModel>
      *
      * @see https://docs.joinmastodon.org/methods/conversations/#get
      */
     public function get(
         ?int $limit = null,
     ): ConversationResult {
-        /** @var \Vazaha\Mastodon\Results\ConversationResult<array-key,\Vazaha\Mastodon\Models\ConversationModel> */
+        /** @var \Vazaha\Mastodon\Results\ConversationResult<array-key, \Vazaha\Mastodon\Models\ConversationModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $limit,

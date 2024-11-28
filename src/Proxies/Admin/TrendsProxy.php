@@ -21,13 +21,13 @@ class TrendsProxy extends Proxy
     /**
      * View trending links.
      *
-     * @return \Vazaha\Mastodon\Results\Trends\LinkResult<array-key,\Vazaha\Mastodon\Models\Trends\LinkModel>
+     * @return \Vazaha\Mastodon\Results\Trends\LinkResult<array-key, \Vazaha\Mastodon\Models\Trends\LinkModel>
      *
      * @see https://docs.joinmastodon.org/methods/admin/trends/#links
      */
     public function links(
     ): LinkResult {
-        /** @var \Vazaha\Mastodon\Results\Trends\LinkResult<array-key,\Vazaha\Mastodon\Models\Trends\LinkModel> */
+        /** @var \Vazaha\Mastodon\Results\Trends\LinkResult<array-key, \Vazaha\Mastodon\Models\Trends\LinkModel> */
         $models = $this->apiClient
             ->send(new LinksRequest(
             ));
@@ -38,13 +38,13 @@ class TrendsProxy extends Proxy
     /**
      * View trending statuses.
      *
-     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
      *
      * @see https://docs.joinmastodon.org/methods/admin/trends/#statuses
      */
     public function statuses(
     ): StatusResult {
-        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
             ->send(new StatusesRequest(
             ));
@@ -55,13 +55,13 @@ class TrendsProxy extends Proxy
     /**
      * View trending tags.
      *
-     * @return \Vazaha\Mastodon\Results\Admin\TagResult<array-key,\Vazaha\Mastodon\Models\Admin\TagModel>
+     * @return \Vazaha\Mastodon\Results\Admin\TagResult<array-key, \Vazaha\Mastodon\Models\Admin\TagModel>
      *
      * @see https://docs.joinmastodon.org/methods/admin/trends/#tags
      */
     public function tags(
     ): TagResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\TagResult<array-key,\Vazaha\Mastodon\Models\Admin\TagModel> */
+        /** @var \Vazaha\Mastodon\Results\Admin\TagResult<array-key, \Vazaha\Mastodon\Models\Admin\TagModel> */
         $models = $this->apiClient
             ->send(new TagsRequest(
             ));

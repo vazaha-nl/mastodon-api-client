@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\V1;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
@@ -31,14 +30,14 @@ class FilterModel extends Model
     /**
      * The contexts in which the filter should be applied.
      *
-     * @var array<string>
+     * @var list<string>
      */
     public array $context;
 
     /**
      * When the filter should no longer be applied.
      */
-    public ?DateTimeInterface $expires_at = null;
+    public ?\DateTimeInterface $expires_at = null;
 
     /**
      * Should matching entities in home and notifications be dropped by the

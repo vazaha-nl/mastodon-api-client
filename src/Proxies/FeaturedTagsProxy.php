@@ -48,13 +48,13 @@ class FeaturedTagsProxy extends Proxy
     /**
      * View your featured tags.
      *
-     * @return \Vazaha\Mastodon\Results\FeaturedTagResult<array-key,\Vazaha\Mastodon\Models\FeaturedTagModel>
+     * @return \Vazaha\Mastodon\Results\FeaturedTagResult<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel>
      *
      * @see https://docs.joinmastodon.org/methods/featured_tags/#get
      */
     public function get(
     ): FeaturedTagResult {
-        /** @var \Vazaha\Mastodon\Results\FeaturedTagResult<array-key,\Vazaha\Mastodon\Models\FeaturedTagModel> */
+        /** @var \Vazaha\Mastodon\Results\FeaturedTagResult<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
             ));
@@ -65,13 +65,13 @@ class FeaturedTagsProxy extends Proxy
     /**
      * View suggested tags to feature.
      *
-     * @return \Vazaha\Mastodon\Results\TagResult<array-key,\Vazaha\Mastodon\Models\TagModel>
+     * @return \Vazaha\Mastodon\Results\TagResult<array-key, \Vazaha\Mastodon\Models\TagModel>
      *
      * @see https://docs.joinmastodon.org/methods/featured_tags/#suggestions
      */
     public function suggestions(
     ): TagResult {
-        /** @var \Vazaha\Mastodon\Results\TagResult<array-key,\Vazaha\Mastodon\Models\TagModel> */
+        /** @var \Vazaha\Mastodon\Results\TagResult<array-key, \Vazaha\Mastodon\Models\TagModel> */
         $models = $this->apiClient
             ->send(new SuggestionsRequest(
             ));
@@ -84,14 +84,14 @@ class FeaturedTagsProxy extends Proxy
      *
      * @param string $id the ID of the FeaturedTag in the database
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/featured_tags/#unfeature
      */
     public function unfeature(
         string $id,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new UnfeatureRequest(
                 $id,

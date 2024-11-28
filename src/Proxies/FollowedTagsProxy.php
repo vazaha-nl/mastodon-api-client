@@ -19,14 +19,14 @@ class FollowedTagsProxy extends Proxy
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 100 tags. Max 200 tags.
      *
-     * @return \Vazaha\Mastodon\Results\TagResult<array-key,\Vazaha\Mastodon\Models\TagModel>
+     * @return \Vazaha\Mastodon\Results\TagResult<array-key, \Vazaha\Mastodon\Models\TagModel>
      *
      * @see https://docs.joinmastodon.org/methods/followed_tags/#get
      */
     public function get(
         ?int $limit = null,
     ): TagResult {
-        /** @var \Vazaha\Mastodon\Results\TagResult<array-key,\Vazaha\Mastodon\Models\TagModel> */
+        /** @var \Vazaha\Mastodon\Results\TagResult<array-key, \Vazaha\Mastodon\Models\TagModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $limit,

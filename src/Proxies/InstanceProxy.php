@@ -29,13 +29,13 @@ class InstanceProxy extends Proxy
     /**
      * Weekly activity.
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/instance/#activity
      */
     public function activity(
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new ActivityRequest(
             ));
@@ -46,13 +46,13 @@ class InstanceProxy extends Proxy
     /**
      * View moderated servers.
      *
-     * @return \Vazaha\Mastodon\Results\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\DomainBlockModel>
+     * @return \Vazaha\Mastodon\Results\DomainBlockResult<array-key, \Vazaha\Mastodon\Models\DomainBlockModel>
      *
      * @see https://docs.joinmastodon.org/methods/instance/#domain_blocks
      */
     public function domainBlocks(
     ): DomainBlockResult {
-        /** @var \Vazaha\Mastodon\Results\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\DomainBlockModel> */
+        /** @var \Vazaha\Mastodon\Results\DomainBlockResult<array-key, \Vazaha\Mastodon\Models\DomainBlockModel> */
         $models = $this->apiClient
             ->send(new DomainBlocksRequest(
             ));
@@ -83,13 +83,13 @@ class InstanceProxy extends Proxy
     /**
      * List of connected domains.
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/instance/#peers
      */
     public function peers(
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new PeersRequest(
             ));
@@ -100,13 +100,13 @@ class InstanceProxy extends Proxy
     /**
      * List of rules.
      *
-     * @return \Vazaha\Mastodon\Results\RuleResult<array-key,\Vazaha\Mastodon\Models\RuleModel>
+     * @return \Vazaha\Mastodon\Results\RuleResult<array-key, \Vazaha\Mastodon\Models\RuleModel>
      *
      * @see https://docs.joinmastodon.org/methods/instance/#rules
      */
     public function rules(
     ): RuleResult {
-        /** @var \Vazaha\Mastodon\Results\RuleResult<array-key,\Vazaha\Mastodon\Models\RuleModel> */
+        /** @var \Vazaha\Mastodon\Results\RuleResult<array-key, \Vazaha\Mastodon\Models\RuleModel> */
         $models = $this->apiClient
             ->send(new RulesRequest(
             ));

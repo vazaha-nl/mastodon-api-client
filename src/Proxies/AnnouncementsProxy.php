@@ -24,7 +24,7 @@ class AnnouncementsProxy extends Proxy
      * @param string $id   the ID of the Announcement in the database
      * @param string $name unicode emoji, or the shortcode of a custom emoji
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/announcements/#delete-reactions
      */
@@ -32,7 +32,7 @@ class AnnouncementsProxy extends Proxy
         string $id,
         string $name,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new DeleteReactionsRequest(
                 $id,
@@ -47,14 +47,14 @@ class AnnouncementsProxy extends Proxy
      *
      * @param string $id the ID of the Announcement in the database
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/announcements/#dismiss
      */
     public function dismiss(
         string $id,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new DismissRequest(
                 $id,
@@ -68,14 +68,14 @@ class AnnouncementsProxy extends Proxy
      *
      * @param ?bool $with_dismissed If true, response will include announcements dismissed by the user. Defaults to false.
      *
-     * @return \Vazaha\Mastodon\Results\AnnouncementResult<array-key,\Vazaha\Mastodon\Models\AnnouncementModel>
+     * @return \Vazaha\Mastodon\Results\AnnouncementResult<array-key, \Vazaha\Mastodon\Models\AnnouncementModel>
      *
      * @see https://docs.joinmastodon.org/methods/announcements/#get
      */
     public function get(
         ?bool $with_dismissed = null,
     ): AnnouncementResult {
-        /** @var \Vazaha\Mastodon\Results\AnnouncementResult<array-key,\Vazaha\Mastodon\Models\AnnouncementModel> */
+        /** @var \Vazaha\Mastodon\Results\AnnouncementResult<array-key, \Vazaha\Mastodon\Models\AnnouncementModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $with_dismissed,
@@ -90,7 +90,7 @@ class AnnouncementsProxy extends Proxy
      * @param string $id   the ID of the Announcement in the database
      * @param string $name unicode emoji, or the shortcode of a custom emoji
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/announcements/#put-reactions
      */
@@ -98,7 +98,7 @@ class AnnouncementsProxy extends Proxy
         string $id,
         string $name,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new PutReactionsRequest(
                 $id,

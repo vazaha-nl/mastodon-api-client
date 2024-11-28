@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
@@ -57,5 +56,5 @@ class EncryptedMessageModel extends Model
     /**
      * A timestamp for when the message was created.
      */
-    public DateTimeInterface $created_at;
+    public \DateTimeInterface $created_at;
 }

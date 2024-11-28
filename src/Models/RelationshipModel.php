@@ -40,7 +40,7 @@ class RelationshipModel extends Model
     /**
      * Which languages are you following from this user?
      *
-     * @var array<string>
+     * @var list<string>
      */
     public array $languages;
 

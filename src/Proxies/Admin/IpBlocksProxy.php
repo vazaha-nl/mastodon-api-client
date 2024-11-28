@@ -82,14 +82,14 @@ class IpBlocksProxy extends Proxy
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 100 blocks. Max 200 blocks.
      *
-     * @return \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\IpBlockModel>
+     * @return \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\IpBlockModel>
      *
      * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#get
      */
     public function get(
         ?int $limit = null,
     ): IpBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\IpBlockModel> */
+        /** @var \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\IpBlockModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $limit,

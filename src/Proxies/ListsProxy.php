@@ -29,7 +29,7 @@ class ListsProxy extends Proxy
      * @param string $id    the ID of the List in the database
      * @param ?int   $limit Maximum number of results. Defaults to 40 accounts. Max 80 accounts. Set to 0 in order to get all accounts without pagination.
      *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
      *
      * @see https://docs.joinmastodon.org/methods/lists/#accounts
      */
@@ -37,7 +37,7 @@ class ListsProxy extends Proxy
         string $id,
         ?int $limit = null,
     ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
         $models = $this->apiClient
             ->send(new AccountsRequest(
                 $id,
@@ -50,10 +50,10 @@ class ListsProxy extends Proxy
     /**
      * Add accounts to a list.
      *
-     * @param string        $id          the ID of the List in the database
-     * @param array<string> $account_ids the accounts that should be added to the list
+     * @param string       $id          the ID of the List in the database
+     * @param list<string> $account_ids the accounts that should be added to the list
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/lists/#accounts-add
      */
@@ -61,7 +61,7 @@ class ListsProxy extends Proxy
         string $id,
         array $account_ids = [],
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new AccountsAddRequest(
                 $id,
@@ -74,10 +74,10 @@ class ListsProxy extends Proxy
     /**
      * Remove accounts from list.
      *
-     * @param string        $id          the ID of the List in the database
-     * @param array<string> $account_ids the accounts that should be removed from the list
+     * @param string       $id          the ID of the List in the database
+     * @param list<string> $account_ids the accounts that should be removed from the list
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/lists/#accounts-remove
      */
@@ -85,7 +85,7 @@ class ListsProxy extends Proxy
         string $id,
         array $account_ids = [],
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new AccountsRemoveRequest(
                 $id,
@@ -101,7 +101,7 @@ class ListsProxy extends Proxy
      * @param string  $title          the title of the list to be created
      * @param ?string $replies_policy One of `followed`, `list`, or `none`. Defaults to `list`.
      *
-     * @return \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel>
+     * @return \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel>
      *
      * @see https://docs.joinmastodon.org/methods/lists/#create
      */
@@ -109,7 +109,7 @@ class ListsProxy extends Proxy
         string $title,
         ?string $replies_policy = null,
     ): ListResult {
-        /** @var \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel> */
+        /** @var \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel> */
         $models = $this->apiClient
             ->send(new CreateRequest(
                 $title,
@@ -124,14 +124,14 @@ class ListsProxy extends Proxy
      *
      * @param string $id the ID of the List in the database
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/lists/#delete
      */
     public function delete(
         string $id,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new DeleteRequest(
                 $id,
@@ -143,13 +143,13 @@ class ListsProxy extends Proxy
     /**
      * View your lists.
      *
-     * @return \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel>
+     * @return \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel>
      *
      * @see https://docs.joinmastodon.org/methods/lists/#get
      */
     public function get(
     ): ListResult {
-        /** @var \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel> */
+        /** @var \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
             ));
@@ -162,14 +162,14 @@ class ListsProxy extends Proxy
      *
      * @param string $id the ID of the List in the database
      *
-     * @return \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel>
+     * @return \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel>
      *
      * @see https://docs.joinmastodon.org/methods/lists/#get-one
      */
     public function getOne(
         string $id,
     ): ListResult {
-        /** @var \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel> */
+        /** @var \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel> */
         $models = $this->apiClient
             ->send(new GetOneRequest(
                 $id,
@@ -185,7 +185,7 @@ class ListsProxy extends Proxy
      * @param string  $title          the title of the list to be created
      * @param ?string $replies_policy One of `followed`, `list`, or `none`. Defaults to `list`.
      *
-     * @return \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel>
+     * @return \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel>
      *
      * @see https://docs.joinmastodon.org/methods/lists/#update
      */
@@ -194,7 +194,7 @@ class ListsProxy extends Proxy
         string $title,
         ?string $replies_policy = null,
     ): ListResult {
-        /** @var \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel> */
+        /** @var \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel> */
         $models = $this->apiClient
             ->send(new UpdateRequest(
                 $id,

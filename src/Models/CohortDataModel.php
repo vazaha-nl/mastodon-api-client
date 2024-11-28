@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
@@ -21,7 +20,7 @@ class CohortDataModel extends Model
     /**
      * The timestamp for the start of the bucket, at midnight.
      */
-    public DateTimeInterface $date;
+    public \DateTimeInterface $date;
 
     /**
      * The percentage rate of users who registered in the specified `period` and

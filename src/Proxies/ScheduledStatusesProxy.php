@@ -25,14 +25,14 @@ class ScheduledStatusesProxy extends Proxy
      *
      * @param string $id the ID of the ScheduledStatus in the database
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#cancel
      */
     public function cancel(
         string $id,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new CancelRequest(
                 $id,
@@ -49,7 +49,7 @@ class ScheduledStatusesProxy extends Proxy
      * @param ?string $min_id   return results immediately newer than ID
      * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
-     * @return \Vazaha\Mastodon\Results\ScheduledStatusResult<array-key,\Vazaha\Mastodon\Models\ScheduledStatusModel>
+     * @return \Vazaha\Mastodon\Results\ScheduledStatusResult<array-key, \Vazaha\Mastodon\Models\ScheduledStatusModel>
      *
      * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#get
      */
@@ -59,7 +59,7 @@ class ScheduledStatusesProxy extends Proxy
         ?string $min_id = null,
         ?int $limit = null,
     ): ScheduledStatusResult {
-        /** @var \Vazaha\Mastodon\Results\ScheduledStatusResult<array-key,\Vazaha\Mastodon\Models\ScheduledStatusModel> */
+        /** @var \Vazaha\Mastodon\Results\ScheduledStatusResult<array-key, \Vazaha\Mastodon\Models\ScheduledStatusModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $max_id,

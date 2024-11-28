@@ -72,14 +72,14 @@ class EmailDomainBlocksProxy extends Proxy
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 100 blocks. Max 200 blocks.
      *
-     * @return \Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel>
+     * @return \Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel>
      *
      * @see https://docs.joinmastodon.org/methods/admin/email_domain_blocks/#get
      */
     public function get(
         ?int $limit = null,
     ): EmailDomainBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel> */
+        /** @var \Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $limit,

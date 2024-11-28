@@ -45,7 +45,7 @@ class MediaAttachmentModel extends Model
     /**
      * Metadata returned by Paperclip.
      *
-     * @var mixed[]
+     * @var list<mixed>
      */
     public array $meta;
 

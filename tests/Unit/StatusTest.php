@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use DateTimeInterface;
 use PHPUnit\Framework\TestCase;
 use Tests\Unit\Concerns\CreatesMockClient;
 use Vazaha\Mastodon\Collections\Status\TagCollection;
@@ -34,7 +33,7 @@ class StatusTest extends TestCase
         self::assertEquals('103270115826048975', $status->id);
         self::assertInstanceOf(AccountModel::class, $status->account);
         self::assertEquals('1', $status->account->id);
-        self::assertInstanceOf(DateTimeInterface::class, $status->created_at);
+        self::assertInstanceOf(\DateTimeInterface::class, $status->created_at);
         self::assertInstanceOf(TagCollection::class, $status->tags);
         self::assertInstanceOf(TagModel::class, $status->tags->first());
         self::assertEquals('tagname1', $status->tags->first()->name);
@@ -52,7 +51,7 @@ class StatusTest extends TestCase
         self::assertEquals('103270115826048975', $status->id);
         self::assertInstanceOf(AccountModel::class, $status->account);
         self::assertEquals('1', $status->account->id);
-        self::assertInstanceOf(DateTimeInterface::class, $status->created_at);
+        self::assertInstanceOf(\DateTimeInterface::class, $status->created_at);
         self::assertInstanceOf(TagCollection::class, $status->tags);
         self::assertInstanceOf(TagModel::class, $status->tags->first());
         self::assertEquals('tagname1', $status->tags->first()->name);

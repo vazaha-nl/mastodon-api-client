@@ -37,7 +37,7 @@ class AccountsProxy extends Proxy
      * @param ?string $text                    additional clarification for why this action was taken
      * @param ?bool   $send_email_notification Should an email be sent to the user with the above information?
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/admin/accounts/#action
      */
@@ -49,7 +49,7 @@ class AccountsProxy extends Proxy
         ?string $text = null,
         ?bool $send_email_notification = null,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new ActionRequest(
                 $id,
@@ -277,7 +277,7 @@ class AccountsProxy extends Proxy
      * @param ?string $min_id       return results immediately newer than ID
      * @param ?int    $limit        Maximum number of results to return. Defaults to 100 accounts. Max 200 accounts.
      *
-     * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel>
+     * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key, \Vazaha\Mastodon\Models\Admin\AccountModel>
      *
      * @see https://docs.joinmastodon.org/methods/admin/accounts/#v1
      */
@@ -301,7 +301,7 @@ class AccountsProxy extends Proxy
         ?string $min_id = null,
         ?int $limit = null,
     ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel> */
+        /** @var \Vazaha\Mastodon\Results\Admin\AccountResult<array-key, \Vazaha\Mastodon\Models\Admin\AccountModel> */
         $models = $this->apiClient
             ->send(new V1Request(
                 $local,
@@ -330,22 +330,22 @@ class AccountsProxy extends Proxy
     /**
      * View accounts (v2).
      *
-     * @param ?string            $origin       filter for `local` or `remote` accounts
-     * @param ?string            $status       filter for `active`, `pending`, `disabled`, `silenced`, or `suspended` accounts
-     * @param ?string            $permissions  filter for accounts with `staff` permissions (users that can manage reports)
-     * @param null|array<string> $role_ids     filter for users with these roles
-     * @param ?string            $invited_by   lookup users invited by the account with this ID
-     * @param ?string            $username     search for the given username
-     * @param ?string            $display_name search for the given display name
-     * @param ?string            $by_domain    filter by the given domain
-     * @param ?string            $email        lookup a user with this email
-     * @param ?string            $ip           lookup users with this IP address
-     * @param ?string            $max_id       return results older than ID
-     * @param ?string            $since_id     return results newer than ID
-     * @param ?string            $min_id       return results immediately newer than ID
-     * @param ?int               $limit        Maximum number of results to return. Defaults to 100 accounts. Max 200 accounts.
+     * @param ?string           $origin       filter for `local` or `remote` accounts
+     * @param ?string           $status       filter for `active`, `pending`, `disabled`, `silenced`, or `suspended` accounts
+     * @param ?string           $permissions  filter for accounts with `staff` permissions (users that can manage reports)
+     * @param null|list<string> $role_ids     filter for users with these roles
+     * @param ?string           $invited_by   lookup users invited by the account with this ID
+     * @param ?string           $username     search for the given username
+     * @param ?string           $display_name search for the given display name
+     * @param ?string           $by_domain    filter by the given domain
+     * @param ?string           $email        lookup a user with this email
+     * @param ?string           $ip           lookup users with this IP address
+     * @param ?string           $max_id       return results older than ID
+     * @param ?string           $since_id     return results newer than ID
+     * @param ?string           $min_id       return results immediately newer than ID
+     * @param ?int              $limit        Maximum number of results to return. Defaults to 100 accounts. Max 200 accounts.
      *
-     * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel>
+     * @return \Vazaha\Mastodon\Results\Admin\AccountResult<array-key, \Vazaha\Mastodon\Models\Admin\AccountModel>
      *
      * @see https://docs.joinmastodon.org/methods/admin/accounts/#v2
      */
@@ -365,7 +365,7 @@ class AccountsProxy extends Proxy
         ?string $min_id = null,
         ?int $limit = null,
     ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\AccountResult<array-key,\Vazaha\Mastodon\Models\Admin\AccountModel> */
+        /** @var \Vazaha\Mastodon\Results\Admin\AccountResult<array-key, \Vazaha\Mastodon\Models\Admin\AccountModel> */
         $models = $this->apiClient
             ->send(new V2Request(
                 $origin,

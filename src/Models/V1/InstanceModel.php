@@ -52,14 +52,14 @@ class InstanceModel extends Model
     /**
      * URLs of interest for clients apps.
      *
-     * @var mixed[]
+     * @var list<mixed>
      */
     public array $urls;
 
     /**
      * Statistics about how much information the instance contains.
      *
-     * @var mixed[]
+     * @var list<mixed>
      */
     public array $stats;
 
@@ -71,7 +71,7 @@ class InstanceModel extends Model
     /**
      * Primary languages of the website and its staff.
      *
-     * @var array<string>
+     * @var list<string>
      */
     public array $languages;
 
@@ -93,7 +93,7 @@ class InstanceModel extends Model
     /**
      * Configured values and limits for this website.
      *
-     * @var mixed[]
+     * @var list<mixed>
      */
     public array $configuration;
 

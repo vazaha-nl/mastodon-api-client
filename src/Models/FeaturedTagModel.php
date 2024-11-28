@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
@@ -41,5 +40,5 @@ class FeaturedTagModel extends Model
     /**
      * The timestamp of the last authored status containing this hashtag.
      */
-    public DateTimeInterface $last_status_at;
+    public \DateTimeInterface $last_status_at;
 }

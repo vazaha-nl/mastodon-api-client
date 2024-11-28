@@ -23,7 +23,7 @@ use Vazaha\Mastodon\Results\MarkerResult;
 final class GetRequest extends Request implements RequestInterface
 {
     /**
-     * @param null|array<string> $timeline Specify the timeline(s) for which markers should be fetched. Possible values: `home`, `notifications`. If not provided, an empty object will be returned.
+     * @param null|list<string> $timeline Specify the timeline(s) for which markers should be fetched. Possible values: `home`, `notifications`. If not provided, an empty object will be returned.
      */
     public function __construct(
         public ?array $timeline = null,

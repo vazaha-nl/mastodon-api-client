@@ -18,7 +18,7 @@ interface ResultInterface
     public function getBody(): string;
 
     /**
-     * @return null|array<int|string, mixed[]>
+     * @return null|array<int|string, list<mixed>>
      */
     public function getDecodedBody(): ?array;
 

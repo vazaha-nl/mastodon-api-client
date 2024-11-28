@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tools;
 
-use DateTimeInterface;
 use Illuminate\Support\Str;
 use Tools\Enums\ClassType;
 
@@ -89,7 +88,7 @@ class ClassProperty
         }
 
         if ($type === 'datetime' || $type === 'timestamp') {
-            $this->type = new ClassName(DateTimeInterface::class);
+            $this->type = new ClassName(\DateTimeInterface::class);
 
             return;
         }

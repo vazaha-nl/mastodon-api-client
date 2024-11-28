@@ -23,7 +23,7 @@ use Vazaha\Mastodon\Results\FamiliarFollowersResult;
 final class FamiliarFollowersRequest extends Request implements RequestInterface
 {
     /**
-     * @param null|array<string> $id find familiar followers for the provided account IDs
+     * @param null|list<string> $id find familiar followers for the provided account IDs
      */
     public function __construct(
         public ?array $id = null,

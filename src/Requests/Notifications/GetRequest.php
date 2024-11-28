@@ -23,13 +23,13 @@ use Vazaha\Mastodon\Results\NotificationResult;
 final class GetRequest extends Request implements RequestInterface
 {
     /**
-     * @param ?string            $max_id        Return results older than this ID
-     * @param ?string            $since_id      Return results newer than this ID
-     * @param ?string            $min_id        Return results immediately newer than this ID
-     * @param ?int               $limit         Maximum number of results to return. Defaults to 15 notifications. Max 30 notifications.
-     * @param null|array<string> $types         types to include in the result
-     * @param null|array<string> $exclude_types types to exclude from the results
-     * @param ?string            $account_id    return only notifications received from the specified account
+     * @param ?string           $max_id        Return results older than this ID
+     * @param ?string           $since_id      Return results newer than this ID
+     * @param ?string           $min_id        Return results immediately newer than this ID
+     * @param ?int              $limit         Maximum number of results to return. Defaults to 15 notifications. Max 30 notifications.
+     * @param null|list<string> $types         types to include in the result
+     * @param null|list<string> $exclude_types types to exclude from the results
+     * @param ?string           $account_id    return only notifications received from the specified account
      */
     public function __construct(
         public ?string $max_id = null,

@@ -23,8 +23,8 @@ use Vazaha\Mastodon\Results\MarkerResult;
 final class CreateRequest extends Request implements RequestInterface
 {
     /**
-     * @param null|mixed[] $home          home[last_read_id]: ID of the last status read in the home timeline
-     * @param null|mixed[] $notifications notifications[last_read_id]: ID of the last notification read
+     * @param null|list<mixed> $home          home[last_read_id]: ID of the last status read in the home timeline
+     * @param null|list<mixed> $notifications notifications[last_read_id]: ID of the last notification read
      */
     public function __construct(
         public ?array $home = null,

@@ -22,7 +22,7 @@ class DirectoryProxy extends Proxy
      * @param ?string $order  use `active` to sort by most recently posted statuses (default) or `new` to sort by most recently created profiles
      * @param ?bool   $local  if true, returns only local accounts
      *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
      *
      * @see https://docs.joinmastodon.org/methods/directory/#get
      */
@@ -32,7 +32,7 @@ class DirectoryProxy extends Proxy
         ?string $order = null,
         ?bool $local = null,
     ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $offset,

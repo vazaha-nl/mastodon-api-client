@@ -28,7 +28,7 @@ class OauthProxy extends Proxy
      * @param ?bool   $force_login   forces the user to re-login, which is necessary for authorizing with multiple accounts from the same instance
      * @param ?string $lang          the ISO 639-1 two-letter language code to use while rendering the authorization form
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/oauth/#authorize
      */
@@ -40,7 +40,7 @@ class OauthProxy extends Proxy
         ?bool $force_login = null,
         ?string $lang = null,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new AuthorizeRequest(
                 $response_type,
@@ -61,7 +61,7 @@ class OauthProxy extends Proxy
      * @param string $client_secret the client secret, obtained during app registration
      * @param string $token         the previously obtained token, to be invalidated
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/oauth/#revoke
      */
@@ -70,7 +70,7 @@ class OauthProxy extends Proxy
         string $client_secret,
         string $token,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new RevokeRequest(
                 $client_id,

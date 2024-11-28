@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
@@ -31,5 +30,5 @@ class FieldModel extends Model
     /**
      * Timestamp of when the server verified a URL value for a rel="me" link.
      */
-    public ?DateTimeInterface $verified_at = null;
+    public ?\DateTimeInterface $verified_at = null;
 }

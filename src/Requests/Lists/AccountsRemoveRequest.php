@@ -23,8 +23,8 @@ use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 final class AccountsRemoveRequest extends Request implements RequestInterface
 {
     /**
-     * @param string        $id          the ID of the List in the database
-     * @param array<string> $account_ids the accounts that should be removed from the list
+     * @param string       $id          the ID of the List in the database
+     * @param list<string> $account_ids the accounts that should be removed from the list
      */
     public function __construct(
         public string $id,

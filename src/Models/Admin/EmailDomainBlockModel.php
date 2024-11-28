@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
@@ -31,12 +30,12 @@ class EmailDomainBlockModel extends Model
     /**
      * When the email domain was disallowed from signups.
      */
-    public DateTimeInterface $created_at;
+    public \DateTimeInterface $created_at;
 
     /**
      * Usage statistics for given days (typically the past week).
      *
-     * @var array<mixed>
+     * @var list<mixed>
      */
     public array $history;
 }

@@ -54,7 +54,7 @@ class ReportsProxy extends Proxy
      * @param ?string $target_account_id filter for reports targeting this account
      * @param ?int    $limit             Maximum number of results to return. Defaults to 100 reports. Max 200 reports.
      *
-     * @return \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel>
+     * @return \Vazaha\Mastodon\Results\Admin\ReportResult<array-key, \Vazaha\Mastodon\Models\Admin\ReportModel>
      *
      * @see https://docs.joinmastodon.org/methods/admin/reports/#get
      */
@@ -64,7 +64,7 @@ class ReportsProxy extends Proxy
         ?string $target_account_id = null,
         ?int $limit = null,
     ): ReportResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\ReportResult<array-key,\Vazaha\Mastodon\Models\Admin\ReportModel> */
+        /** @var \Vazaha\Mastodon\Results\Admin\ReportResult<array-key, \Vazaha\Mastodon\Models\Admin\ReportModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $resolved,
@@ -175,9 +175,9 @@ class ReportsProxy extends Proxy
     /**
      * Update a report.
      *
-     * @param string          $id       the ID of the Report in the database
-     * @param ?string         $category change the classification of the report to `spam`, `violation`, or `other`
-     * @param null|array<int> $rule_ids For `violation` category reports, specify the ID of the exact rules broken. Rules and their IDs are available via [GET /api/v1/instance/rules]({{< relref "methods/instance#rules" >}}) and [GET /api/v1/instance]({{< relref "methods/instance#get" >}}).
+     * @param string         $id       the ID of the Report in the database
+     * @param ?string        $category change the classification of the report to `spam`, `violation`, or `other`
+     * @param null|list<int> $rule_ids For `violation` category reports, specify the ID of the exact rules broken. Rules and their IDs are available via [GET /api/v1/instance/rules]({{< relref "methods/instance#rules" >}}) and [GET /api/v1/instance]({{< relref "methods/instance#get" >}}).
      *
      * @see https://docs.joinmastodon.org/methods/admin/reports/#update
      */
