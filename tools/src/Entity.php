@@ -30,6 +30,7 @@ class Entity
                 '/',
             );
         }
+
         // TODO sep. dir for Tests
         return rtrim(
             $this->projectRoot .

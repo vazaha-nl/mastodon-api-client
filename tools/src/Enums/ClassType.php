@@ -7,14 +7,9 @@ namespace Tools\Enums;
 enum ClassType: string
 {
     case MODEL = 'Model';
-
     case COLLECTION = 'Collection';
-
     case REQUEST = 'Request';
-
     case RESULT = 'Result';
-
     case TEST = 'Test';
-
     case PROXY = 'Proxy';
 }
