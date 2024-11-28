@@ -22,15 +22,15 @@
     "require": {
         "php": ">=8.1",
         "guzzlehttp/guzzle": "^7.7",
-        "illuminate/support": "^9 || ^10",
+        "illuminate/support": "^9 || ^10 || ^11",
         "nesbot/carbon": "^2.68",
-        "illuminate/collections": "^9 || ^10"
+        "illuminate/collections": "^9 || ^10 || ^11"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^10",
         "squizlabs/php_codesniffer": "^3.7",
-        "ergebnis/php-cs-fixer-config": "^5.12",
+        "ergebnis/php-cs-fixer-config": "^5.12 || ^6.0",
         "twig/twig": "^3.7"
     },
     "scripts": {
