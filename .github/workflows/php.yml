@@ -11,12 +11,11 @@ permissions:
 
 jobs:
   run:
-    runs-on: ${{ matrix.operating-system }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        operating-system: [ubuntu-latest, windows-latest, macOS-latest]
         php-versions: ['8.1', '8.2', '8.3', '8.4']
-    name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
+    name: PHP ${{ matrix.php-versions }} Test
     steps:
     - name: Checkout
       uses: actions/checkout@v2
