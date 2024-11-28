@@ -12,8 +12,8 @@ class ModelFactory
     /**
      * @template T of \Vazaha\Mastodon\Abstracts\Model
      *
-     * @param class-string<T> $className
-     * @param list<mixed>     $modelData
+     * @param class-string<T>      $className
+     * @param array<string, mixed> $modelData
      *
      * @return T
      */
