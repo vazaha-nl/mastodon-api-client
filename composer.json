@@ -23,7 +23,7 @@
         "php": ">=8.1",
         "guzzlehttp/guzzle": "^7.7",
         "illuminate/support": "^9 || ^10 || ^11",
-        "nesbot/carbon": "^2.68",
+        "nesbot/carbon": "^2.68 || ^3.0",
         "illuminate/collections": "^9 || ^10 || ^11"
     },
     "require-dev": {
