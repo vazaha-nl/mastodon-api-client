@@ -4,4 +4,6 @@ parameters:
         - src
         - tests
         - examples
-    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        -
+            identifier: missingType.generics
