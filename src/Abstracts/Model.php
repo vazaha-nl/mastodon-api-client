@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Abstracts;
 
 use Carbon\Carbon;
-use DateTimeInterface;
-use ReflectionClass;
-use ReflectionNamedType;
 use Vazaha\Mastodon\Interfaces\ModelInterface;
 
 abstract class Model implements ModelInterface
@@ -63,7 +60,7 @@ abstract class Model implements ModelInterface
                 continue;
             }
 
-            if ($value instanceof DateTimeInterface) {
+            if ($value instanceof \DateTimeInterface) {
                 $array['name'] = $value->format('Y-m-d\TH:i:s.vp');
 
                 continue;
@@ -111,7 +108,7 @@ abstract class Model implements ModelInterface
             return $type::fromArray($value);
         }
 
-        if (is_a($type, DateTimeInterface::class, true)) {
+        if (is_a($type, \DateTimeInterface::class, true)) {
             if (is_int($value) || is_float($value)) {
                 return Carbon::createFromTimestamp($value);
             }
@@ -126,11 +123,11 @@ abstract class Model implements ModelInterface
 
     protected static function getPropertyType(string $property): ?string
     {
-        $reflectionClass = new ReflectionClass(static::class);
+        $reflectionClass = new \ReflectionClass(static::class);
         $reflectionProperty = $reflectionClass->getProperty($property);
         $reflectionType = $reflectionProperty->getType();
 
-        if (!$reflectionType instanceof ReflectionNamedType) {
+        if (!$reflectionType instanceof \ReflectionNamedType) {
             return null;
         }
 

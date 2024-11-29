@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\Collections\CustomEmojiCollection;
 use Vazaha\Mastodon\Collections\MediaAttachmentCollection;
@@ -38,7 +37,7 @@ class StatusEditModel extends Model
     /**
      * The timestamp of when the revision was published.
      */
-    public DateTimeInterface $created_at;
+    public \DateTimeInterface $created_at;
 
     /**
      * The account that published this revision.
@@ -50,7 +49,7 @@ class StatusEditModel extends Model
      * changing the poll options will be collapsed together into one edit, since
      * this action resets the poll.
      *
-     * @var null|mixed[]
+     * @var null|list<mixed>
      */
     public ?array $poll = null;
 

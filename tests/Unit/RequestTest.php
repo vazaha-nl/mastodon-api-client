@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Vazaha\Mastodon\Factories\ApiClientFactory;
 use Vazaha\Mastodon\Requests\Accounts\FollowingRequest;
@@ -37,7 +36,7 @@ class RequestTest extends TestCase
         $apiClient = (new ApiClientFactory())
             ->build();
 
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $apiClient->methods()->statuses()->create(
             'test status',
             [],

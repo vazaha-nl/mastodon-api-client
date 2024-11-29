@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
@@ -36,5 +35,5 @@ class TokenModel extends Model
     /**
      * When the token was generated.
      */
-    public DateTimeInterface $created_at;
+    public \DateTimeInterface $created_at;
 }

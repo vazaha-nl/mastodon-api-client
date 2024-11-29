@@ -26,7 +26,7 @@ class TimelinesProxy extends Proxy
      * @param ?string $min_id   return results immediately newer than ID
      * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
-     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
      *
      * @see https://docs.joinmastodon.org/methods/timelines/#direct
      */
@@ -36,7 +36,7 @@ class TimelinesProxy extends Proxy
         ?string $min_id = null,
         ?int $limit = null,
     ): StatusResult {
-        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
             ->send(new DirectRequest(
                 $max_id,
@@ -56,7 +56,7 @@ class TimelinesProxy extends Proxy
      * @param ?string $min_id   return results immediately newer than ID
      * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
-     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
      *
      * @see https://docs.joinmastodon.org/methods/timelines/#home
      */
@@ -66,7 +66,7 @@ class TimelinesProxy extends Proxy
         ?string $min_id = null,
         ?int $limit = null,
     ): StatusResult {
-        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
             ->send(new HomeRequest(
                 $max_id,
@@ -87,7 +87,7 @@ class TimelinesProxy extends Proxy
      * @param ?string $min_id   return results immediately newer than ID
      * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
-     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
      *
      * @see https://docs.joinmastodon.org/methods/timelines/#list
      */
@@ -98,7 +98,7 @@ class TimelinesProxy extends Proxy
         ?string $min_id = null,
         ?int $limit = null,
     ): StatusResult {
-        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
             ->send(new ListRequest(
                 $list_id,
@@ -122,7 +122,7 @@ class TimelinesProxy extends Proxy
      * @param ?string $min_id     return results immediately newer than ID
      * @param ?int    $limit      Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
-     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
      *
      * @see https://docs.joinmastodon.org/methods/timelines/#public
      */
@@ -135,7 +135,7 @@ class TimelinesProxy extends Proxy
         ?string $min_id = null,
         ?int $limit = null,
     ): StatusResult {
-        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
             ->send(new PublicRequest(
                 $local,
@@ -153,19 +153,19 @@ class TimelinesProxy extends Proxy
     /**
      * View hashtag timeline.
      *
-     * @param string             $hashtag    the name of the hashtag (not including the # symbol)
-     * @param null|array<string> $any        return statuses that contain any of these additional tags
-     * @param null|array<string> $all        return statuses that contain all of these additional tags
-     * @param null|array<string> $none       return statuses that contain none of these additional tags
-     * @param ?bool              $local      return only local statuses? Defaults to false
-     * @param ?bool              $remote     return only remote statuses? Defaults to false
-     * @param ?bool              $only_media return only statuses with media attachments? Defaults to false
-     * @param ?string            $max_id     return results older than ID
-     * @param ?string            $since_id   return results newer than ID
-     * @param ?string            $min_id     return results immediately newer than ID
-     * @param ?int               $limit      Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
+     * @param string            $hashtag    the name of the hashtag (not including the # symbol)
+     * @param null|list<string> $any        return statuses that contain any of these additional tags
+     * @param null|list<string> $all        return statuses that contain all of these additional tags
+     * @param null|list<string> $none       return statuses that contain none of these additional tags
+     * @param ?bool             $local      return only local statuses? Defaults to false
+     * @param ?bool             $remote     return only remote statuses? Defaults to false
+     * @param ?bool             $only_media return only statuses with media attachments? Defaults to false
+     * @param ?string           $max_id     return results older than ID
+     * @param ?string           $since_id   return results newer than ID
+     * @param ?string           $min_id     return results immediately newer than ID
+     * @param ?int              $limit      Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
-     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
      *
      * @see https://docs.joinmastodon.org/methods/timelines/#tag
      */
@@ -182,7 +182,7 @@ class TimelinesProxy extends Proxy
         ?string $min_id = null,
         ?int $limit = null,
     ): StatusResult {
-        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
             ->send(new TagRequest(
                 $hashtag,

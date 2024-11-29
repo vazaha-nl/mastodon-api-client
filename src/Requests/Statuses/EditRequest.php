@@ -23,13 +23,13 @@ use Vazaha\Mastodon\Results\StatusResult;
 final class EditRequest extends Request implements RequestInterface
 {
     /**
-     * @param string             $id           the ID of the Status in the database
-     * @param ?string            $status       the plain text content of the status
-     * @param ?string            $spoiler_text the plain text subject or content warning of the status
-     * @param ?bool              $sensitive    whether the status should be marked as sensitive
-     * @param ?string            $language     ISO 639 language code for the status
-     * @param null|array<string> $media_ids    Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
-     * @param null|mixed[]       $poll         poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
+     * @param string            $id           the ID of the Status in the database
+     * @param ?string           $status       the plain text content of the status
+     * @param ?string           $spoiler_text the plain text subject or content warning of the status
+     * @param ?bool             $sensitive    whether the status should be marked as sensitive
+     * @param ?string           $language     ISO 639 language code for the status
+     * @param null|list<string> $media_ids    Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+     * @param null|list<mixed>  $poll         poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
      */
     public function __construct(
         public string $id,

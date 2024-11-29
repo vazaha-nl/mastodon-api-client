@@ -12,7 +12,7 @@ abstract class ClassTemplate
     protected ClassNameRepository $imports;
 
     /**
-     * @var array<\Tools\ClassProperty>
+     * @var list<\Tools\ClassProperty>
      */
     protected array $properties;
 

@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Requests\Admin\Retention;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
@@ -24,13 +23,13 @@ use Vazaha\Mastodon\Results\Admin\CohortResult;
 final class CreateRequest extends Request implements RequestInterface
 {
     /**
-     * @param DateTimeInterface $start_at  The start date for the time period. If a time is provided, it will be ignored.
-     * @param DateTimeInterface $end_at    The end date for the time period. If a time is provided, it will be ignored.
-     * @param string            $frequency Specify whether to use `day` or `month` buckets. If any other value is provided, defaults to `day`.
+     * @param \DateTimeInterface $start_at  The start date for the time period. If a time is provided, it will be ignored.
+     * @param \DateTimeInterface $end_at    The end date for the time period. If a time is provided, it will be ignored.
+     * @param string             $frequency Specify whether to use `day` or `month` buckets. If any other value is provided, defaults to `day`.
      */
     public function __construct(
-        public DateTimeInterface $start_at,
-        public DateTimeInterface $end_at,
+        public \DateTimeInterface $start_at,
+        public \DateTimeInterface $end_at,
         public string $frequency,
     ) {
     }

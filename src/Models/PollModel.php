@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\Collections\CustomEmojiCollection;
 use Vazaha\Mastodon\Collections\Poll\OptionCollection;
@@ -28,7 +27,7 @@ class PollModel extends Model
     /**
      * When the poll ends.
      */
-    public ?DateTimeInterface $expires_at = null;
+    public ?\DateTimeInterface $expires_at = null;
 
     /**
      * Is the poll currently expired?
@@ -69,7 +68,7 @@ class PollModel extends Model
      * When called with a user token, which options has the authorized user
      * chosen? Contains an array of index values for `options`.
      *
-     * @var null|array<int>
+     * @var null|list<int>
      */
     public ?array $own_votes = null;
 }

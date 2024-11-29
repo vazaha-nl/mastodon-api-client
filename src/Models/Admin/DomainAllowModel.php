@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
@@ -31,5 +30,5 @@ class DomainAllowModel extends Model
     /**
      * When the domain was allowed to federate.
      */
-    public DateTimeInterface $created_at;
+    public \DateTimeInterface $created_at;
 }

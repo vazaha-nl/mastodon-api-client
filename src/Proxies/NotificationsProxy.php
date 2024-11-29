@@ -24,13 +24,13 @@ class NotificationsProxy extends Proxy
     /**
      * Dismiss all notifications.
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#clear
      */
     public function clear(
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new ClearRequest(
             ));
@@ -43,14 +43,14 @@ class NotificationsProxy extends Proxy
      *
      * @param string $id the ID of the Notification in the database
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#dismiss
      */
     public function dismiss(
         string $id,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new DismissRequest(
                 $id,
@@ -64,14 +64,14 @@ class NotificationsProxy extends Proxy
      *
      * @param string $id the ID of the notification in the database
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#dismiss-deprecated
      */
     public function dismissDeprecated(
         string $id,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new DismissDeprecatedRequest(
                 $id,
@@ -83,15 +83,15 @@ class NotificationsProxy extends Proxy
     /**
      * Get all notifications.
      *
-     * @param ?string            $max_id        Return results older than this ID
-     * @param ?string            $since_id      Return results newer than this ID
-     * @param ?string            $min_id        Return results immediately newer than this ID
-     * @param ?int               $limit         Maximum number of results to return. Defaults to 15 notifications. Max 30 notifications.
-     * @param null|array<string> $types         types to include in the result
-     * @param null|array<string> $exclude_types types to exclude from the results
-     * @param ?string            $account_id    return only notifications received from the specified account
+     * @param ?string           $max_id        Return results older than this ID
+     * @param ?string           $since_id      Return results newer than this ID
+     * @param ?string           $min_id        Return results immediately newer than this ID
+     * @param ?int              $limit         Maximum number of results to return. Defaults to 15 notifications. Max 30 notifications.
+     * @param null|list<string> $types         types to include in the result
+     * @param null|list<string> $exclude_types types to exclude from the results
+     * @param ?string           $account_id    return only notifications received from the specified account
      *
-     * @return \Vazaha\Mastodon\Results\NotificationResult<array-key,\Vazaha\Mastodon\Models\NotificationModel>
+     * @return \Vazaha\Mastodon\Results\NotificationResult<array-key, \Vazaha\Mastodon\Models\NotificationModel>
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#get
      */
@@ -104,7 +104,7 @@ class NotificationsProxy extends Proxy
         ?array $exclude_types = null,
         ?string $account_id = null,
     ): NotificationResult {
-        /** @var \Vazaha\Mastodon\Results\NotificationResult<array-key,\Vazaha\Mastodon\Models\NotificationModel> */
+        /** @var \Vazaha\Mastodon\Results\NotificationResult<array-key, \Vazaha\Mastodon\Models\NotificationModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $max_id,

@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
@@ -31,7 +30,7 @@ class ReportModel extends Model
     /**
      * When an action was taken against the report.
      */
-    public ?DateTimeInterface $action_taken_at = null;
+    public ?\DateTimeInterface $action_taken_at = null;
 
     /**
      * The generic reason for the report.
@@ -51,20 +50,20 @@ class ReportModel extends Model
     /**
      * When the report was created.
      */
-    public DateTimeInterface $created_at;
+    public \DateTimeInterface $created_at;
 
     /**
      * IDs of statuses that have been attached to this report for additional
      * context.
      *
-     * @var null|array<string>
+     * @var null|list<string>
      */
     public ?array $status_ids = null;
 
     /**
      * IDs of the rules that have been cited as a violation by this report.
      *
-     * @var null|array<string>
+     * @var null|list<string>
      */
     public ?array $rule_ids = null;
 

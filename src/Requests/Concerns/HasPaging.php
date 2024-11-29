@@ -21,7 +21,7 @@ trait HasPaging
     protected ?int $limit;
 
     /**
-     * @return array<string,int|string>
+     * @return array<string, int|string>
      */
     public function getPagingParams(): array
     {
@@ -51,7 +51,7 @@ trait HasPaging
     }
 
     /**
-     * @param array<int|string,int|string> $params
+     * @param array<int|string, int|string> $params
      */
     public function setPagingParams(array $params): static
     {

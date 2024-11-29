@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\Collections\Admin\IpCollection;
 use Vazaha\Mastodon\Models\AccountModel as ModelsAccountModel;
@@ -39,7 +38,7 @@ class AccountModel extends Model
     /**
      * When the account was first discovered.
      */
-    public DateTimeInterface $created_at;
+    public \DateTimeInterface $created_at;
 
     /**
      * The email address associated with the account.

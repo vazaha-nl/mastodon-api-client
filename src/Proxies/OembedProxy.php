@@ -21,7 +21,7 @@ class OembedProxy extends Proxy
      * @param ?int   $maxwidth  Width of the iframe. Defaults to 400
      * @param ?int   $maxheight Height of the iframe. Defaults to null
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/oembed/#get
      */
@@ -30,7 +30,7 @@ class OembedProxy extends Proxy
         ?int $maxwidth = null,
         ?int $maxheight = null,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $url,

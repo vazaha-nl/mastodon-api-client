@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Helpers;
 
-use InvalidArgumentException;
-
 class MultipartFormData
 {
     /**
@@ -87,6 +85,6 @@ class MultipartFormData
             ];
         }
 
-        throw new InvalidArgumentException('Invalid format in form params encountered for param ' . $baseName);
+        throw new \InvalidArgumentException('Invalid format in form params encountered for param ' . $baseName);
     }
 }

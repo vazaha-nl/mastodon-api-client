@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
@@ -31,5 +30,5 @@ class MarkerModel extends Model
     /**
      * The timestamp of when the marker was set.
      */
-    public DateTimeInterface $updated_at;
+    public \DateTimeInterface $updated_at;
 }

@@ -29,7 +29,7 @@ class SearchProxy extends Proxy
      * @param ?int    $limit      Maximum number of results to return, per type. Defaults to 20 results per category. Max 40 results per category.
      * @param ?int    $offset     Offset in search results, used for pagination. Defaults to 0.
      *
-     * @return \Vazaha\Mastodon\Results\SearchResult<array-key,\Vazaha\Mastodon\Models\SearchModel>
+     * @return \Vazaha\Mastodon\Results\SearchResult<array-key, \Vazaha\Mastodon\Models\SearchModel>
      *
      * @see https://docs.joinmastodon.org/methods/search/#v1
      */
@@ -43,7 +43,7 @@ class SearchProxy extends Proxy
         ?int $limit = null,
         ?int $offset = null,
     ): SearchResult {
-        /** @var \Vazaha\Mastodon\Results\SearchResult<array-key,\Vazaha\Mastodon\Models\SearchModel> */
+        /** @var \Vazaha\Mastodon\Results\SearchResult<array-key, \Vazaha\Mastodon\Models\SearchModel> */
         $models = $this->apiClient
             ->send(new V1Request(
                 $q,

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tools;
 
-use DateTimeInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Tools\Enums\ClassType;
@@ -32,7 +31,7 @@ class ProxyClassTemplate extends ClassTemplate
         $this->imports->add(new ClassName(InvalidResponseException::class));
         $this->imports->add(new ClassName(Proxy::class));
         $this->imports->add(new ClassName(ApiClient::class));
-        $this->imports->add(new ClassName(DateTimeInterface::class));
+        $this->imports->add(new ClassName(\DateTimeInterface::class));
         $this->imports->add(new ClassName(UploadFile::class));
 
         $methods = $this->getMethods();

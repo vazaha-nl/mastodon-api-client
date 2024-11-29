@@ -143,15 +143,15 @@ class StatusesProxy extends Proxy
     /**
      * Post a new status.
      *
-     * @param string        $status         The text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.
-     * @param array<string> $media_ids      Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
-     * @param null|mixed[]  $poll           poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
-     * @param ?string       $in_reply_to_id ID of the status being replied to, if status is a reply
-     * @param ?bool         $sensitive      mark status and attached media as sensitive? Defaults to false
-     * @param ?string       $spoiler_text   Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field.
-     * @param ?string       $visibility     sets the visibility of the posted status to `public`, `unlisted`, `private`, `direct`
-     * @param ?string       $language       ISO 639 language code for this status
-     * @param ?string       $scheduled_at   ISO 8601 Datetime at which to schedule a status. Providing this parameter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future.
+     * @param string                    $status         The text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.
+     * @param list<string>              $media_ids      Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+     * @param null|array<string, mixed> $poll           poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
+     * @param ?string                   $in_reply_to_id ID of the status being replied to, if status is a reply
+     * @param ?bool                     $sensitive      mark status and attached media as sensitive? Defaults to false
+     * @param ?string                   $spoiler_text   Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field.
+     * @param ?string                   $visibility     sets the visibility of the posted status to `public`, `unlisted`, `private`, `direct`
+     * @param ?string                   $language       ISO 639 language code for this status
+     * @param ?string                   $scheduled_at   ISO 8601 Datetime at which to schedule a status. Providing this parameter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future.
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#create
      */
@@ -215,13 +215,13 @@ class StatusesProxy extends Proxy
     /**
      * Edit a status.
      *
-     * @param string             $id           the ID of the Status in the database
-     * @param ?string            $status       the plain text content of the status
-     * @param ?string            $spoiler_text the plain text subject or content warning of the status
-     * @param ?bool              $sensitive    whether the status should be marked as sensitive
-     * @param ?string            $language     ISO 639 language code for the status
-     * @param null|array<string> $media_ids    Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
-     * @param null|mixed[]       $poll         poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
+     * @param string            $id           the ID of the Status in the database
+     * @param ?string           $status       the plain text content of the status
+     * @param ?string           $spoiler_text the plain text subject or content warning of the status
+     * @param ?bool             $sensitive    whether the status should be marked as sensitive
+     * @param ?string           $language     ISO 639 language code for the status
+     * @param null|list<string> $media_ids    Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+     * @param null|list<mixed>  $poll         poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#edit
      */
@@ -284,7 +284,7 @@ class StatusesProxy extends Proxy
      * @param string $id    the ID of the Status in the database
      * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#favourited_by
      */
@@ -292,7 +292,7 @@ class StatusesProxy extends Proxy
         string $id,
         ?int $limit = null,
     ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
         $models = $this->apiClient
             ->send(new FavouritedByRequest(
                 $id,
@@ -331,14 +331,14 @@ class StatusesProxy extends Proxy
      *
      * @param string $id the local ID of the Status in the database
      *
-     * @return \Vazaha\Mastodon\Results\StatusEditResult<array-key,\Vazaha\Mastodon\Models\StatusEditModel>
+     * @return \Vazaha\Mastodon\Results\StatusEditResult<array-key, \Vazaha\Mastodon\Models\StatusEditModel>
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#history
      */
     public function history(
         string $id,
     ): StatusEditResult {
-        /** @var \Vazaha\Mastodon\Results\StatusEditResult<array-key,\Vazaha\Mastodon\Models\StatusEditModel> */
+        /** @var \Vazaha\Mastodon\Results\StatusEditResult<array-key, \Vazaha\Mastodon\Models\StatusEditModel> */
         $models = $this->apiClient
             ->send(new HistoryRequest(
                 $id,
@@ -401,7 +401,7 @@ class StatusesProxy extends Proxy
      * @param string $id    the ID of the Status in the database
      * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#reblogged_by
      */
@@ -409,7 +409,7 @@ class StatusesProxy extends Proxy
         string $id,
         ?int $limit = null,
     ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
         $models = $this->apiClient
             ->send(new RebloggedByRequest(
                 $id,

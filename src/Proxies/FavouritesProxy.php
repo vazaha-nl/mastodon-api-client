@@ -19,14 +19,14 @@ class FavouritesProxy extends Proxy
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
-     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
      *
      * @see https://docs.joinmastodon.org/methods/favourites/#get
      */
     public function get(
         ?int $limit = null,
     ): StatusResult {
-        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $limit,

@@ -8,13 +8,12 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use InvalidArgumentException;
 use Vazaha\Mastodon\ApiClient;
 
 trait CreatesMockClient
 {
     /**
-     * @param array<\GuzzleHttp\Psr7\Response> $responses
+     * @param list<\GuzzleHttp\Psr7\Response> $responses
      *
      * @throws \RuntimeException
      */
@@ -29,7 +28,7 @@ trait CreatesMockClient
     }
 
     /**
-     * @param array<string,string> $headers
+     * @param array<string, string> $headers
      *
      * @throws \InvalidArgumentException
      */
@@ -38,7 +37,7 @@ trait CreatesMockClient
         $json = file_get_contents(dirname(__DIR__) . '/assets/' . $fileName);
 
         if (!$json) {
-            throw new InvalidArgumentException('Could not read json!');
+            throw new \InvalidArgumentException('Could not read json!');
         }
 
         return new Response(

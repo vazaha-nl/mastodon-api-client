@@ -23,14 +23,14 @@ class SuggestionsProxy extends Proxy
      *
      * @param string $account_id the ID of the Account in the database
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/suggestions/#remove
      */
     public function remove(
         string $account_id,
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new RemoveRequest(
                 $account_id,
@@ -44,14 +44,14 @@ class SuggestionsProxy extends Proxy
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
      *
      * @see https://docs.joinmastodon.org/methods/suggestions/#v1
      */
     public function v1(
         ?int $limit = null,
     ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
         $models = $this->apiClient
             ->send(new V1Request(
                 $limit,
@@ -65,14 +65,14 @@ class SuggestionsProxy extends Proxy
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
-     * @return \Vazaha\Mastodon\Results\SuggestionResult<array-key,\Vazaha\Mastodon\Models\SuggestionModel>
+     * @return \Vazaha\Mastodon\Results\SuggestionResult<array-key, \Vazaha\Mastodon\Models\SuggestionModel>
      *
      * @see https://docs.joinmastodon.org/methods/suggestions/#v2
      */
     public function v2(
         ?int $limit = null,
     ): SuggestionResult {
-        /** @var \Vazaha\Mastodon\Results\SuggestionResult<array-key,\Vazaha\Mastodon\Models\SuggestionModel> */
+        /** @var \Vazaha\Mastodon\Results\SuggestionResult<array-key, \Vazaha\Mastodon\Models\SuggestionModel> */
         $models = $this->apiClient
             ->send(new V2Request(
                 $limit,

@@ -23,11 +23,11 @@ use Vazaha\Mastodon\Results\FilterResult;
 final class CreateRequest extends Request implements RequestInterface
 {
     /**
-     * @param string        $title               the name of the filter group
-     * @param array<string> $context             Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
-     * @param ?string       $filter_action       The policy to be applied when the filter is matched. Specify `warn` or `hide`.
-     * @param ?int          $expires_in          How many seconds from now should the filter expire?
-     * @param null|mixed[]  $keywords_attributes keywords_attributes[][keyword]: A keyword to be added to the newly-created filter group
+     * @param string           $title               the name of the filter group
+     * @param list<string>     $context             Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
+     * @param ?string          $filter_action       The policy to be applied when the filter is matched. Specify `warn` or `hide`.
+     * @param ?int             $expires_in          How many seconds from now should the filter expire?
+     * @param null|list<mixed> $keywords_attributes keywords_attributes[][keyword]: A keyword to be added to the newly-created filter group
      */
     public function __construct(
         public string $title,

@@ -23,7 +23,7 @@ use Vazaha\Mastodon\Results\RelationshipResult;
 final class RelationshipsRequest extends Request implements RequestInterface
 {
     /**
-     * @param null|mixed[] $id check relationships for the provided account IDs
+     * @param null|list<mixed> $id check relationships for the provided account IDs
      */
     public function __construct(
         public ?array $id = null,

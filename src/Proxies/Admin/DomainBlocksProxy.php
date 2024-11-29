@@ -91,14 +91,14 @@ class DomainBlocksProxy extends Proxy
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 100 blocks. Max 200 blocks.
      *
-     * @return \Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainBlockModel>
+     * @return \Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\DomainBlockModel>
      *
      * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#get
      */
     public function get(
         ?int $limit = null,
     ): DomainBlockResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainBlockModel> */
+        /** @var \Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\DomainBlockModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $limit,

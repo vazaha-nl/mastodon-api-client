@@ -47,42 +47,42 @@ class InstanceModel extends Model
     /**
      * Usage data for this instance.
      *
-     * @var mixed[]
+     * @var list<mixed>
      */
     public array $usage;
 
     /**
      * An image used to represent this instance.
      *
-     * @var mixed[]
+     * @var list<mixed>
      */
     public array $thumbnail;
 
     /**
      * Primary languages of the website and its staff.
      *
-     * @var array<string>
+     * @var list<string>
      */
     public array $languages;
 
     /**
      * Configured values and limits for this website.
      *
-     * @var mixed[]
+     * @var list<mixed>
      */
     public array $configuration;
 
     /**
      * Information about registering for this website.
      *
-     * @var mixed[]
+     * @var list<mixed>
      */
     public array $registrations;
 
     /**
      * Hints related to contacting a representative of the website.
      *
-     * @var mixed[]
+     * @var list<mixed>
      */
     public array $contact;
 

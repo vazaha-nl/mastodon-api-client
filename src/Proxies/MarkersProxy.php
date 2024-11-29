@@ -19,8 +19,8 @@ class MarkersProxy extends Proxy
     /**
      * Save your position in a timeline.
      *
-     * @param null|mixed[] $home          home[last_read_id]: ID of the last status read in the home timeline
-     * @param null|mixed[] $notifications notifications[last_read_id]: ID of the last notification read
+     * @param null|list<mixed> $home          home[last_read_id]: ID of the last status read in the home timeline
+     * @param null|list<mixed> $notifications notifications[last_read_id]: ID of the last notification read
      *
      * @see https://docs.joinmastodon.org/methods/markers/#create
      */
@@ -46,7 +46,7 @@ class MarkersProxy extends Proxy
     /**
      * Get saved timeline positions.
      *
-     * @param null|array<string> $timeline Specify the timeline(s) for which markers should be fetched. Possible values: `home`, `notifications`. If not provided, an empty object will be returned.
+     * @param null|list<string> $timeline Specify the timeline(s) for which markers should be fetched. Possible values: `home`, `notifications`. If not provided, an empty object will be returned.
      *
      * @see https://docs.joinmastodon.org/methods/markers/#get
      */

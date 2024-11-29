@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Factories;
 
-use LogicException;
 use Psr\Http\Message\ResponseInterface;
 use Vazaha\Mastodon\Abstracts\Result;
 use Vazaha\Mastodon\ApiClient;
@@ -29,8 +28,9 @@ class ResultFactory
         ResponseInterface $response,
     ): ResultInterface {
         if (!is_a($className, Result::class, true)) {
-            throw new LogicException($className . ' is not a subclass of ' . Result::class);
+            throw new \LogicException($className . ' is not a subclass of ' . Result::class);
         }
+
         $result = new $className();
         $result->init($client, $request, $response);
 

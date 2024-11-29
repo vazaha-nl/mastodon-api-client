@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Admin;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
@@ -26,5 +25,5 @@ class IpModel extends Model
     /**
      * The timestamp of when the IP address was last used for this account.
      */
-    public DateTimeInterface $used_at;
+    public \DateTimeInterface $used_at;
 }

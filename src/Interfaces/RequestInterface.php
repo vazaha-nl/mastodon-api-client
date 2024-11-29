@@ -44,7 +44,7 @@ interface RequestInterface
     public function getPagingParams(): array;
 
     /**
-     * @param array<int|string,string> $params
+     * @param array<int|string, string> $params
      */
     public function setPagingParams(array $params): static;
 

@@ -35,7 +35,7 @@ class WebPushSubscriptionModel extends Model
     /**
      * Which alerts should be delivered to the `endpoint`.
      *
-     * @var mixed[]
+     * @var list<mixed>
      */
     public array $alerts;
 }

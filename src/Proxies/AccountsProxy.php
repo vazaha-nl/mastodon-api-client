@@ -115,16 +115,16 @@ class AccountsProxy extends Proxy
     /**
      * Find familiar followers.
      *
-     * @param null|array<string> $id find familiar followers for the provided account IDs
+     * @param null|list<string> $id find familiar followers for the provided account IDs
      *
-     * @return \Vazaha\Mastodon\Results\FamiliarFollowersResult<array-key,\Vazaha\Mastodon\Models\FamiliarFollowersModel>
+     * @return \Vazaha\Mastodon\Results\FamiliarFollowersResult<array-key, \Vazaha\Mastodon\Models\FamiliarFollowersModel>
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#familiar_followers
      */
     public function familiarFollowers(
         ?array $id = null,
     ): FamiliarFollowersResult {
-        /** @var \Vazaha\Mastodon\Results\FamiliarFollowersResult<array-key,\Vazaha\Mastodon\Models\FamiliarFollowersModel> */
+        /** @var \Vazaha\Mastodon\Results\FamiliarFollowersResult<array-key, \Vazaha\Mastodon\Models\FamiliarFollowersModel> */
         $models = $this->apiClient
             ->send(new FamiliarFollowersRequest(
                 $id,
@@ -138,14 +138,14 @@ class AccountsProxy extends Proxy
      *
      * @param string $id the ID of the Account in the database
      *
-     * @return \Vazaha\Mastodon\Results\FeaturedTagResult<array-key,\Vazaha\Mastodon\Models\FeaturedTagModel>
+     * @return \Vazaha\Mastodon\Results\FeaturedTagResult<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel>
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#featured_tags
      */
     public function featuredTags(
         string $id,
     ): FeaturedTagResult {
-        /** @var \Vazaha\Mastodon\Results\FeaturedTagResult<array-key,\Vazaha\Mastodon\Models\FeaturedTagModel> */
+        /** @var \Vazaha\Mastodon\Results\FeaturedTagResult<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel> */
         $models = $this->apiClient
             ->send(new FeaturedTagsRequest(
                 $id,
@@ -157,10 +157,10 @@ class AccountsProxy extends Proxy
     /**
      * Follow account.
      *
-     * @param string             $id        the ID of the Account in the database
-     * @param ?bool              $reblogs   receive this account's reblogs in home timeline? Defaults to true
-     * @param ?bool              $notify    receive notifications when this account posts a status? Defaults to false
-     * @param null|array<string> $languages Filter received statuses for these languages. If not provided, you will receive this account's posts in all languages.
+     * @param string            $id        the ID of the Account in the database
+     * @param ?bool             $reblogs   receive this account's reblogs in home timeline? Defaults to true
+     * @param ?bool             $notify    receive notifications when this account posts a status? Defaults to false
+     * @param null|list<string> $languages Filter received statuses for these languages. If not provided, you will receive this account's posts in all languages.
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#follow
      */
@@ -193,7 +193,7 @@ class AccountsProxy extends Proxy
      * @param string $id    the ID of the Account in the database
      * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#followers
      */
@@ -201,7 +201,7 @@ class AccountsProxy extends Proxy
         string $id,
         ?int $limit = null,
     ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
         $models = $this->apiClient
             ->send(new FollowersRequest(
                 $id,
@@ -217,7 +217,7 @@ class AccountsProxy extends Proxy
      * @param string $id    the ID of the Account in the database
      * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#following
      */
@@ -225,7 +225,7 @@ class AccountsProxy extends Proxy
         string $id,
         ?int $limit = null,
     ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
         $models = $this->apiClient
             ->send(new FollowingRequest(
                 $id,
@@ -264,14 +264,14 @@ class AccountsProxy extends Proxy
      *
      * @param string $id the ID of the Account in the database
      *
-     * @return \Vazaha\Mastodon\Results\IdentityProofResult<array-key,\Vazaha\Mastodon\Models\IdentityProofModel>
+     * @return \Vazaha\Mastodon\Results\IdentityProofResult<array-key, \Vazaha\Mastodon\Models\IdentityProofModel>
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#identity_proofs
      */
     public function identityProofs(
         string $id,
     ): IdentityProofResult {
-        /** @var \Vazaha\Mastodon\Results\IdentityProofResult<array-key,\Vazaha\Mastodon\Models\IdentityProofModel> */
+        /** @var \Vazaha\Mastodon\Results\IdentityProofResult<array-key, \Vazaha\Mastodon\Models\IdentityProofModel> */
         $models = $this->apiClient
             ->send(new IdentityProofsRequest(
                 $id,
@@ -285,14 +285,14 @@ class AccountsProxy extends Proxy
      *
      * @param string $id the ID of the Account in the database
      *
-     * @return \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel>
+     * @return \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel>
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#lists
      */
     public function lists(
         string $id,
     ): ListResult {
-        /** @var \Vazaha\Mastodon\Results\ListResult<array-key,\Vazaha\Mastodon\Models\ListModel> */
+        /** @var \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel> */
         $models = $this->apiClient
             ->send(new ListsRequest(
                 $id,
@@ -409,16 +409,16 @@ class AccountsProxy extends Proxy
     /**
      * Check relationships to other accounts.
      *
-     * @param null|mixed[] $id check relationships for the provided account IDs
+     * @param null|list<mixed> $id check relationships for the provided account IDs
      *
-     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel>
+     * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key, \Vazaha\Mastodon\Models\RelationshipModel>
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#relationships
      */
     public function relationships(
         ?array $id = null,
     ): RelationshipResult {
-        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key,\Vazaha\Mastodon\Models\RelationshipModel> */
+        /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key, \Vazaha\Mastodon\Models\RelationshipModel> */
         $models = $this->apiClient
             ->send(new RelationshipsRequest(
                 $id,
@@ -460,7 +460,7 @@ class AccountsProxy extends Proxy
      * @param ?bool  $resolve   Attempt WebFinger lookup. Defaults to false. Use this when `q` is an exact address.
      * @param ?bool  $following Limit the search to users you are following. Defaults to false.
      *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel>
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#search
      */
@@ -471,7 +471,7 @@ class AccountsProxy extends Proxy
         ?bool $resolve = null,
         ?bool $following = null,
     ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key,\Vazaha\Mastodon\Models\AccountModel> */
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
         $models = $this->apiClient
             ->send(new SearchRequest(
                 $q,
@@ -498,7 +498,7 @@ class AccountsProxy extends Proxy
      * @param ?bool   $pinned          Filter for pinned statuses only. Defaults to false, which includes all statuses. Pinned statuses do not receive special priority in the order of the returned results.
      * @param ?string $tagged          filter for statuses using a specific hashtag
      *
-     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#statuses
      */
@@ -514,7 +514,7 @@ class AccountsProxy extends Proxy
         ?bool $pinned = null,
         ?string $tagged = null,
     ): StatusResult {
-        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
             ->send(new StatusesRequest(
                 $id,
@@ -631,15 +631,15 @@ class AccountsProxy extends Proxy
     /**
      * Update account credentials.
      *
-     * @param ?string      $display_name      the display name to use for the profile
-     * @param ?string      $note              the account bio
-     * @param ?UploadFile  $avatar            Avatar image encoded using `multipart/form-data`
-     * @param ?UploadFile  $header            Header image encoded using `multipart/form-data`
-     * @param ?bool        $locked            whether manual approval of follow requests is required
-     * @param ?bool        $bot               whether the account has a bot flag
-     * @param ?bool        $discoverable      whether the account should be shown in the profile directory
-     * @param null|mixed[] $fields_attributes The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields.
-     * @param null|mixed[] $source            source[privacy]: Default post privacy for authored statuses. Can be `public`, `unlisted`, or `private`.
+     * @param ?string          $display_name      the display name to use for the profile
+     * @param ?string          $note              the account bio
+     * @param ?UploadFile      $avatar            Avatar image encoded using `multipart/form-data`
+     * @param ?UploadFile      $header            Header image encoded using `multipart/form-data`
+     * @param ?bool            $locked            whether manual approval of follow requests is required
+     * @param ?bool            $bot               whether the account has a bot flag
+     * @param ?bool            $discoverable      whether the account should be shown in the profile directory
+     * @param null|list<mixed> $fields_attributes The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields.
+     * @param null|list<mixed> $source            source[privacy]: Default post privacy for authored statuses. Can be `public`, `unlisted`, or `private`.
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#update_credentials
      */

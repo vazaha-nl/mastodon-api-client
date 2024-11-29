@@ -22,8 +22,8 @@ class PushProxy extends Proxy
     /**
      * Subscribe to push notifications.
      *
-     * @param null|mixed[] $subscription subscription[endpoint]: The endpoint URL that is called when a notification event occurs
-     * @param null|mixed[] $data         data[alerts][mention]: Receive mention notifications? Defaults to false
+     * @param null|list<mixed> $subscription subscription[endpoint]: The endpoint URL that is called when a notification event occurs
+     * @param null|list<mixed> $data         data[alerts][mention]: Receive mention notifications? Defaults to false
      *
      * @see https://docs.joinmastodon.org/methods/push/#create
      */
@@ -49,13 +49,13 @@ class PushProxy extends Proxy
     /**
      * Remove current subscription.
      *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/push/#delete
      */
     public function delete(
     ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key,\Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new DeleteRequest(
             ));
@@ -86,8 +86,8 @@ class PushProxy extends Proxy
     /**
      * Change types of notifications.
      *
-     * @param null|mixed[] $data   data[alerts][mention]: Receive mention notifications? Defaults to false
-     * @param ?string      $policy specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users
+     * @param null|list<mixed> $data   data[alerts][mention]: Receive mention notifications? Defaults to false
+     * @param ?string          $policy specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users
      *
      * @see https://docs.joinmastodon.org/methods/push/#update
      */

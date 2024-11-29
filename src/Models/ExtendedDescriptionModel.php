@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use DateTimeInterface;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
@@ -21,7 +20,7 @@ class ExtendedDescriptionModel extends Model
     /**
      * A timestamp of when the extended description was last updated.
      */
-    public DateTimeInterface $updated_at;
+    public \DateTimeInterface $updated_at;
 
     /**
      * The rendered HTML content of the extended description.

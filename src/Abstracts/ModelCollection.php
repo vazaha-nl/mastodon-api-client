@@ -20,14 +20,14 @@ abstract class ModelCollection extends Collection
     abstract public static function getModelClass(): string;
 
     /**
-     * @param array<int, mixed[]> $array
+     * @param list<array<string, mixed>> $array
      */
     public static function fromArray(array $array): static
     {
         $modelClass = static::getModelClass();
 
         $models = array_map(
-            static fn (array $modelData) => $modelClass::fromArray($modelData),
+            static fn (array $modelData): Model => $modelClass::fromArray($modelData),
             $array,
         );
 

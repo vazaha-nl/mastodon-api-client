@@ -54,7 +54,7 @@ abstract class Result extends Collection implements ResultInterface
      * @throws \RuntimeException
      * @throws \Vazaha\Mastodon\Exceptions\InvalidResponseException
      *
-     * @return null|array<int|string, mixed[]>
+     * @return null|array<int|string, list<mixed>>
      */
     public function getDecodedBody(): ?array
     {

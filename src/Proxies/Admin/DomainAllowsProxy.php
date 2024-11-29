@@ -72,14 +72,14 @@ class DomainAllowsProxy extends Proxy
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 100 allows. Max 200 allows.
      *
-     * @return \Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainAllowModel>
+     * @return \Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key, \Vazaha\Mastodon\Models\Admin\DomainAllowModel>
      *
      * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get
      */
     public function get(
         ?int $limit = null,
     ): DomainAllowResult {
-        /** @var \Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key,\Vazaha\Mastodon\Models\Admin\DomainAllowModel> */
+        /** @var \Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key, \Vazaha\Mastodon\Models\Admin\DomainAllowModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
                 $limit,

@@ -24,15 +24,15 @@ use Vazaha\Mastodon\Results\AccountResult;
 final class UpdateCredentialsRequest extends Request implements RequestInterface
 {
     /**
-     * @param ?string      $display_name      the display name to use for the profile
-     * @param ?string      $note              the account bio
-     * @param ?UploadFile  $avatar            Avatar image encoded using `multipart/form-data`
-     * @param ?UploadFile  $header            Header image encoded using `multipart/form-data`
-     * @param ?bool        $locked            whether manual approval of follow requests is required
-     * @param ?bool        $bot               whether the account has a bot flag
-     * @param ?bool        $discoverable      whether the account should be shown in the profile directory
-     * @param null|mixed[] $fields_attributes The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields.
-     * @param null|mixed[] $source            source[privacy]: Default post privacy for authored statuses. Can be `public`, `unlisted`, or `private`.
+     * @param ?string          $display_name      the display name to use for the profile
+     * @param ?string          $note              the account bio
+     * @param ?UploadFile      $avatar            Avatar image encoded using `multipart/form-data`
+     * @param ?UploadFile      $header            Header image encoded using `multipart/form-data`
+     * @param ?bool            $locked            whether manual approval of follow requests is required
+     * @param ?bool            $bot               whether the account has a bot flag
+     * @param ?bool            $discoverable      whether the account should be shown in the profile directory
+     * @param null|list<mixed> $fields_attributes The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields.
+     * @param null|list<mixed> $source            source[privacy]: Default post privacy for authored statuses. Can be `public`, `unlisted`, or `private`.
      */
     public function __construct(
         public ?string $display_name = null,

@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Exceptions;
 
-use Exception;
-use Throwable;
 use Vazaha\Mastodon\Models\ErrorModel;
 
-class ApiErrorException extends Exception
+class ApiErrorException extends \Exception
 {
     protected ?ErrorModel $error;
 
     public function __construct(
         string $message,
         int $statusCode,
-        ?Throwable $previous = null,
+        ?\Throwable $previous = null,
         ?ErrorModel $error = null,
     ) {
         parent::__construct($message, $statusCode, $previous);

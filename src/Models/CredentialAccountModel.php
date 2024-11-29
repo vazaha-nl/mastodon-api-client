@@ -21,7 +21,7 @@ class CredentialAccountModel extends AccountModel
      * >}}) and [update credentials]({{< relref
      * "methods/accounts#update_credentials" >}}).
      *
-     * @var mixed[]
+     * @var list<mixed>
      */
     public array $source;
 

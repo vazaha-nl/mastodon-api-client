@@ -24,7 +24,7 @@ class TrendsProxy extends Proxy
      * @param ?int $limit  Maximum number of results to return. Defaults to 10 links. Max 20 links.
      * @param ?int $offset skip the first n results
      *
-     * @return \Vazaha\Mastodon\Results\Trends\LinkResult<array-key,\Vazaha\Mastodon\Models\Trends\LinkModel>
+     * @return \Vazaha\Mastodon\Results\Trends\LinkResult<array-key, \Vazaha\Mastodon\Models\Trends\LinkModel>
      *
      * @see https://docs.joinmastodon.org/methods/trends/#links
      */
@@ -32,7 +32,7 @@ class TrendsProxy extends Proxy
         ?int $limit = null,
         ?int $offset = null,
     ): LinkResult {
-        /** @var \Vazaha\Mastodon\Results\Trends\LinkResult<array-key,\Vazaha\Mastodon\Models\Trends\LinkModel> */
+        /** @var \Vazaha\Mastodon\Results\Trends\LinkResult<array-key, \Vazaha\Mastodon\Models\Trends\LinkModel> */
         $models = $this->apiClient
             ->send(new LinksRequest(
                 $limit,
@@ -48,7 +48,7 @@ class TrendsProxy extends Proxy
      * @param ?int $limit  Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      * @param ?int $offset skip the first n results
      *
-     * @return \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel>
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
      *
      * @see https://docs.joinmastodon.org/methods/trends/#statuses
      */
@@ -56,7 +56,7 @@ class TrendsProxy extends Proxy
         ?int $limit = null,
         ?int $offset = null,
     ): StatusResult {
-        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key,\Vazaha\Mastodon\Models\StatusModel> */
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
             ->send(new StatusesRequest(
                 $limit,
@@ -72,7 +72,7 @@ class TrendsProxy extends Proxy
      * @param ?int $limit  Maximum number of results to return. Defaults to 10 tags. Max 20 tags.
      * @param ?int $offset skip the first n results
      *
-     * @return \Vazaha\Mastodon\Results\TagResult<array-key,\Vazaha\Mastodon\Models\TagModel>
+     * @return \Vazaha\Mastodon\Results\TagResult<array-key, \Vazaha\Mastodon\Models\TagModel>
      *
      * @see https://docs.joinmastodon.org/methods/trends/#tags
      */
@@ -80,7 +80,7 @@ class TrendsProxy extends Proxy
         ?int $limit = null,
         ?int $offset = null,
     ): TagResult {
-        /** @var \Vazaha\Mastodon\Results\TagResult<array-key,\Vazaha\Mastodon\Models\TagModel> */
+        /** @var \Vazaha\Mastodon\Results\TagResult<array-key, \Vazaha\Mastodon\Models\TagModel> */
         $models = $this->apiClient
             ->send(new TagsRequest(
                 $limit,
