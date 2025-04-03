@@ -35,13 +35,23 @@ trait HasPaging
 
     public function getUri(): UriInterface
     {
-        $uri = $this->getEndpoint();
-        $query = http_build_query(
-            array_merge(
-                $this->getQueryParams(),
-                $this->getPagingParams(),
-            ),
+        $params = array_merge(
+            $this->getQueryParams(),
+            $this->getPagingParams()
         );
+
+        $uri = $this->getEndpoint();
+        $query = http_build_query(array_filter($params, fn($v) => !is_array($v)), '', '&', PHP_QUERY_RFC3986);
+
+        foreach ($params as $key => $value) {
+            if (is_array($value)) {
+                foreach ($value as $item) {
+                    $query .= '&' . rawurlencode($key . '[]') . '=' . rawurlencode($item);
+                }
+            }
+        }
+
+        $query = ltrim($query, '&');
 
         if (!empty($query)) {
             $uri .= '?' . $query;
