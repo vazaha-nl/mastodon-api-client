@@ -37,11 +37,11 @@ trait HasPaging
     {
         $params = array_merge(
             $this->getQueryParams(),
-            $this->getPagingParams()
+            $this->getPagingParams(),
         );
 
         $uri = $this->getEndpoint();
-        $query = http_build_query(array_filter($params, fn($v) => !is_array($v)), '', '&', PHP_QUERY_RFC3986);
+        $query = http_build_query(array_filter($params, static fn ($v) => !is_array($v)), '', '&', \PHP_QUERY_RFC3986);
 
         foreach ($params as $key => $value) {
             if (is_array($value)) {
