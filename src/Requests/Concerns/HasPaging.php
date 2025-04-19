@@ -8,7 +8,7 @@ use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\UriInterface;
 
 /**
- * @mixin \Vazaha\Mastodon\Requests\Request
+ * @mixin \Vazaha\Mastodon\Abstracts\Request
  */
 trait HasPaging
 {
