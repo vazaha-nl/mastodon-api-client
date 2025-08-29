@@ -22,9 +22,9 @@
     "require": {
         "php": ">=8.1",
         "guzzlehttp/guzzle": "^7.7",
-        "illuminate/support": "^9 || ^10 || ^11",
+        "illuminate/support": "^9 || ^10 || ^11 || ^12",
         "nesbot/carbon": "^2.68 || ^3.0",
-        "illuminate/collections": "^9 || ^10 || ^11"
+        "illuminate/collections": "^9 || ^10 || ^11 || ^12"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.10",
