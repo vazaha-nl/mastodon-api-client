@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Ergebnis\PhpCsFixer\Config;
 
-$config = Config\Factory::fromRuleSet(Config\RuleSet\Php84::create());
+$config = Config\Factory::fromRuleSet(Config\RuleSet\Php81::create());
 
 $config->getFinder()->in(__DIR__)
     ->exclude([
