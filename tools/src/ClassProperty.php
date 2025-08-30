@@ -9,7 +9,7 @@ use Tools\Enums\ClassType;
 
 class ClassProperty
 {
-    protected const array TYPE_LOOKUP = [
+    protected const TYPE_LOOKUP = [
         'integer' => 'int',
         'number' => 'int',
         'float' => 'float',
