@@ -1,6 +1,6 @@
 # mastodon-api-client
 
-A fully typed and feature complete [mastodon API](https://docs.joinmastodon.org/api/) client for PHP. 
+A fully typed and complete [mastodon API](https://docs.joinmastodon.org/api/) client for PHP.
 
 ## Features
 
@@ -48,7 +48,7 @@ $client->setAccessToken('token...');
 
 ### Calling API methods
 
-Every method is exposed through the `$client->methods()` proxy. It is highly recommended to use a [LSP enabled IDE](https://langserver.org/).
+Every method is exposed through the `$client->methods()` proxy. It is highly recommended to use a [LSP enabled IDE](https://langserver.org/). 
 
 The methods are named and organized exactly like in the [official documentation](https://docs.joinmastodon.org/methods/), with documentation in docblocks. 
 
@@ -128,7 +128,7 @@ See the `examples/` folder.
 
 ### Laravel support
 
-The `ServiceProvider` class, which will be automatically detected, provides very basic Laravel support, enabling dependency injection of the ApiClient class.
+The `ServiceProvider` class, which will be automatically detected, provides very basic Laravel support, enabling dependency injection of the ApiClient class. For example in a controller:
 
 ```php
 public function myControllerFunction(Request $request, ApiClient $client)
@@ -144,21 +144,64 @@ public function myControllerFunction(Request $request, ApiClient $client)
 
 ## Testing
 
+### Phpstan
+
+All code should pass phpstan analysis on level 9.  
+
 ```
 
-# run unit tests
-composer test
-
-# run phpstan
 composer analyse
 
 ```
 
-There are some basic integration tests available as well. If you want to run these, you will need a local mastodon instance at http://mastodon.local. See https://docs.joinmastodon.org/dev/setup/#vagrant for instructions.
+### Unit tests
 
 ```
 
-# run integration tests
+composer test
+
+
+```
+
+### Integration tests
+
+These tests run on an actual (local!) mastodon instance. Do not use a live server for this.
+
+The easiest way to set up a local mastodon server is using Vagrant. See https://docs.joinmastodon.org/dev/setup/#vagrant for instructions. It is assumed that this server runs at http://mastodon.local. If you have a different setup, set the domain in `tests/Integration/.env`:
+
+```
+
+BASE_URI=http://your-local-mastodon-domain.tld
+
+```
+
+To run the tests, you will need a valid access token for the admin user. To get one, run the `tests/Integration/get_admin_access_token.php` script and follow the prompts. It will create an app and take you through the oauth flow. The credentials will be stored in `tests/Integration/.env`. 
+
+Apart from the admin token, you will also need a local test mastodon user `user1`. You can create one using the `toot` util. If you're using vagrant:
+
+```
+cd <path of mastodon repository>
+
+# bring the server up, if needed:
+vagrant up
+
+# ssh into your vagrant machine
+vagrant ssh
+
+cd /vagrant
+
+# create a confirmed user
+bin/tootctl accounts create user1 --email=user1@example.com --confirmed
+
+# approve the user
+bin/tootctl accounts modify user1 --approve
+
+```
+
+Running the integration tests:
+
+```
+
 composer integration-test
 
 ```
