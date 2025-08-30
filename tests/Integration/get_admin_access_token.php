@@ -40,7 +40,7 @@ if (!isset($clientId, $clientSecret)) {
         [
             'urn:ietf:wg:oauth:2.0:oob',
         ],
-        'read write push follow admin:read admin:write',
+        'read write profile push follow admin:read admin:write',
     );
 
     $clientId = $app->client_id;
@@ -56,7 +56,7 @@ $request = new AuthorizeRequest(
     'code',
     $clientId,
     'urn:ietf:wg:oauth:2.0:oob',
-    'read write push follow admin:read admin:write',
+    'read write profile push follow admin:read admin:write',
 );
 
 echo "Open the following url, login, and copy/paste the authorization code here:\n";
@@ -72,7 +72,7 @@ $token = $apiClient->methods()->oauth()->token(
     $clientId,
     $clientSecret,
     'urn:ietf:wg:oauth:2.0:oob',
-    scope: 'read write push follow admin:read admin:write',
+    scope: 'read write profile push follow admin:read admin:write',
 );
 
 echo "Done!\n";
