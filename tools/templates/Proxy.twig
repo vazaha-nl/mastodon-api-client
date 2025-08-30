@@ -20,7 +20,7 @@ class {{ classname }} extends Proxy
 /**
  * {{ method.description | raw }}
 {% for property in method.allParams %}
- * @param {% if property.typeHint %}{{ property.typeHint | raw }}{% else %}{% if property.nullable %}?{% endif %}{{ property.type }}{% endif %} ${{ property.name }} {{ property.description | docblock_string }}
+ * @param {% if property.typeHint %}{{ property.typeHint | raw }}{% else %}{% if property.nullable %}?{% endif %}{{ property.type }}{% endif %} ${{ property.name }} {{ property.description | docblock_string | raw }}
 {% endfor %}
 {% if method.returnsArray %}
  * @return \{{ method.resultClass.getFQN() }}<array-key,\{{ method.modelClass.getFQN() }}>

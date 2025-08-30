@@ -29,7 +29,7 @@ final class {{ classname }} extends Request implements RequestInterface
 
     /**
     {% for property in allParams %}
-     * @param {% if property.typeHint %}{{ property.typeHint | raw }}{% else %}{% if property.nullable %}?{% endif %}{{ property.type }}{% endif %} ${{ property.name }} {{ property.description | docblock_string }}
+     * @param {% if property.typeHint %}{{ property.typeHint | raw }}{% else %}{% if property.nullable %}?{% endif %}{{ property.type }}{% endif %} ${{ property.name }} {{ property.description | docblock_string | raw }}
     {% endfor %}
     {% if url %}
      * @link {{ url }}
