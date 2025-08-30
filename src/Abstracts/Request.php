@@ -6,7 +6,7 @@ namespace Vazaha\Mastodon\Abstracts;
 
 use Vazaha\Mastodon\Helpers\MultipartFormData;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
-use Vazaha\Mastodon\Requests\Concerns\HasPaging;
+use Vazaha\Mastodon\Traits\Requests\HasPaging;
 
 /**
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Abstracts\Result>
