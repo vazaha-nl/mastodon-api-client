@@ -6,3 +6,4 @@ build/
 *.sublime-workspace
 var/
 composer.lock
+**/.env
