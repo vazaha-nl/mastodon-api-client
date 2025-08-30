@@ -50,6 +50,7 @@ class RequestClassTemplate extends ClassTemplate
             'resultClassName' => $resultClassName,
             'allParams' => $this->getAllParams(),
             'url' => $this->methodSpec['url'] ?? '',
+            'deprecated' => $this->methodSpec['deprecated'] ?? false,
         ];
     }
 

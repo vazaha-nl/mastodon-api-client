@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tools;
 
 use Tools\Enums\ClassType;
+use Tools\Twig\ApiDocExtension;
 use Twig\Environment;
 
 abstract class ClassTemplate
@@ -30,6 +31,7 @@ abstract class ClassTemplate
             // 'cache' => $projectRoot . '/var/cache/templates',
             'cache' => false,
         ]);
+        $this->twig->addExtension(new ApiDocExtension());
 
         $this->imports = new ClassNameRepository($entity->toClassName($this->getClassType()));
     }

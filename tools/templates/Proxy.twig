@@ -20,17 +20,18 @@ class {{ classname }} extends Proxy
 /**
  * {{ method.description | raw }}
 {% for property in method.allParams %}
- * @param {% if property.typeHint %}{{ property.typeHint | raw }}{% else %}{% if property.nullable %}?{% endif %}{{ property.type }}{% endif %} ${{ property.name }} {{ property.description | raw }}
+ * @param {% if property.typeHint %}{{ property.typeHint | raw }}{% else %}{% if property.nullable %}?{% endif %}{{ property.type }}{% endif %} ${{ property.name }} {{ property.description | docblock_string }}
 {% endfor %}
- *
 {% if method.returnsArray %}
  * @return \{{ method.resultClass.getFQN() }}<array-key,\{{ method.modelClass.getFQN() }}>
 {% else %}
  * @return \{{ method.modelClass.getFQN() }}
 {% endif %}
- *
 {% if method.url %}
- * @see {{ method.url }}
+ * @link {{ method.url }}
+{% endif %}
+{% if method.deprecated %}
+ * @deprecated
 {% endif %}
  */
     public function {{ method.name }}(
