@@ -30,23 +30,17 @@ class AnnouncementTest extends TestCase
       {
          "count" : 9,
          "me" : false,
-         "name" : "bongoCat",
-         "static_url" : "https://files.mastodon.social/custom_emojis/images/000/067/715/static/fdba57dff7576d53.png",
-         "url" : "https://files.mastodon.social/custom_emojis/images/000/067/715/original/fdba57dff7576d53.png"
+         "name" : "bongoCat"
       },
       {
          "count" : 1,
          "me" : false,
-         "name" : "thonking",
-         "static_url" : "https://files.mastodon.social/custom_emojis/images/000/098/690/static/a8d36edc4a7032e8.png",
-         "url" : "https://files.mastodon.social/custom_emojis/images/000/098/690/original/a8d36edc4a7032e8.png"
+         "name" : "thonking"
       },
       {
          "count" : 1,
          "me" : false,
-         "name" : "AAAAAA",
-         "static_url" : "https://files.mastodon.social/custom_emojis/images/000/071/387/static/AAAAAA.png",
-         "url" : "https://files.mastodon.social/custom_emojis/images/000/071/387/original/AAAAAA.png"
+         "name" : "AAAAAA"
       },
       {
          "count" : 1,
@@ -66,8 +60,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -81,7 +73,6 @@ JSON;
         $model = AnnouncementModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = AnnouncementModel::sanitizePropertyName($property);

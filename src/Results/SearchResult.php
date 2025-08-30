@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\SearchModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\SearchModel> $models
- * @property \Vazaha\Mastodon\Requests\SearchRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\SearchResult<array-key, \Vazaha\Mastodon\Models\SearchModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\SearchResult<array-key, \Vazaha\Mastodon\Models\SearchModel> getPreviousPage()

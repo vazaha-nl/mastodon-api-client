@@ -23,7 +23,9 @@ use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 final class DeleteRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $id the ID of the List in the database
+     * @param string $id the ID of the list
+     *
+     * @see https://docs.joinmastodon.org/methods/lists/#delete
      */
     public function __construct(
         public string $id,

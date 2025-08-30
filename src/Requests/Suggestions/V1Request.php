@@ -14,15 +14,21 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Results\AccountResult;
 
 /**
- * (DEPRECATED) View follow suggestions (v1).
+ * View follow suggestions (v1).
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
  *
  * @see https://docs.joinmastodon.org/methods/suggestions/#v1
+ *
+ * @deprecated
  */
 final class V1Request extends Request implements RequestInterface
 {
     /**
+     * @see https://docs.joinmastodon.org/methods/suggestions/#v1
+     *
+     * @deprecated
+     *
      * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      */
     public function __construct(

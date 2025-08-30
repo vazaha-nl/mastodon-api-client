@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\RuleResult;
  */
 final class RulesRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/instance/#rules
+     */
     public function __construct(
     ) {
     }

@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\MarkerModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\MarkerModel> $models
- * @property \Vazaha\Mastodon\Requests\MarkerRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\MarkerResult<array-key, \Vazaha\Mastodon\Models\MarkerModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\MarkerResult<array-key, \Vazaha\Mastodon\Models\MarkerModel> getPreviousPage()

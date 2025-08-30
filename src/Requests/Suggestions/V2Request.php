@@ -24,6 +24,8 @@ final class V2Request extends Request implements RequestInterface
 {
     /**
      * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
+     *
+     * @see https://docs.joinmastodon.org/methods/suggestions/#v2
      */
     public function __construct(
         public ?int $limit = null,

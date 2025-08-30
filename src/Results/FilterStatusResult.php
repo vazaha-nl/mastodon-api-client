@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\FilterStatusModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\FilterStatusModel> $models
- * @property \Vazaha\Mastodon\Requests\FilterStatusRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\FilterStatusResult<array-key, \Vazaha\Mastodon\Models\FilterStatusModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\FilterStatusResult<array-key, \Vazaha\Mastodon\Models\FilterStatusModel> getPreviousPage()

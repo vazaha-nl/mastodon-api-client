@@ -24,6 +24,8 @@ final class GetRequest extends Request implements RequestInterface
 {
     /**
      * @param ?int $limit Maximum number of results to return. Defaults to 100 allows. Max 200 allows.
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get
      */
     public function __construct(
         public ?int $limit = null,

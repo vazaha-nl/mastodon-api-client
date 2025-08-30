@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\NotificationModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\NotificationModel> $models
- * @property \Vazaha\Mastodon\Requests\NotificationRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\NotificationResult<array-key, \Vazaha\Mastodon\Models\NotificationModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\NotificationResult<array-key, \Vazaha\Mastodon\Models\NotificationModel> getPreviousPage()

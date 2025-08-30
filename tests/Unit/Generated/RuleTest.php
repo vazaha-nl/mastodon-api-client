@@ -19,8 +19,15 @@ class RuleTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
+   "hint" : "Transphobic behavior such as intentional misgendering and deadnaming is strictly prohibited. Promotion of \"conversion therapy\" is strictly prohibited. Criticism of governments and religions is permissible unless being used as a proxy for discrimination.",
    "id" : "2",
-   "text" : "No racism, sexism, homophobia, transphobia, xenophobia, or casteism"
+   "text" : "No racism, sexism, homophobia, transphobia, ableism, xenophobia, or casteism.",
+   "translations" : {
+      "fr" : {
+         "hint" : "Les comportements transhobes tels que le deadnaming intentionel sont formellement interdits. La promotion des « thérapies de conversion » est formellement interdite. La critique des gouvernements et des religions est permise à moins qu'elle ne soit utilisée comme excuse pour de la discrimination.",
+         "text" : "Pas de racisme, sexisme, homophobie, transphobie, validisme, xénophobie ou casteisme."
+      }
+   }
 }
 
 JSON;
@@ -28,8 +35,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -43,7 +48,6 @@ JSON;
         $model = RuleModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = RuleModel::sanitizePropertyName($property);

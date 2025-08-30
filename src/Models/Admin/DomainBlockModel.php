@@ -28,6 +28,11 @@ class DomainBlockModel extends Model
     public string $domain;
 
     /**
+     * The sha256 hex digest of the domain that is not allowed to federated.
+     */
+    public string $digest;
+
+    /**
      * When the domain was blocked from federating.
      */
     public \DateTimeInterface $created_at;

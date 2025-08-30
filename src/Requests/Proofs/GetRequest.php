@@ -14,15 +14,21 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 /**
- * (REMOVED) View identity proofs.
+ * View identity proofs.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyOrUnknownResult>
  *
  * @see https://docs.joinmastodon.org/methods/proofs/#get
+ *
+ * @deprecated
  */
 final class GetRequest extends Request implements RequestInterface
 {
     /**
+     * @see https://docs.joinmastodon.org/methods/proofs/#get
+     *
+     * @deprecated
+     *
      * @param ?string $provider The identity provider to be looked up. Currently only supports `keybase` (case-sensitive).
      * @param ?string $username the username on the selected identity provider
      */

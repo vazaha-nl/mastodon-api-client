@@ -24,6 +24,8 @@ final class UnblockRequest extends Request implements RequestInterface
 {
     /**
      * @param string $domain domain to unblock
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_blocks/#unblock
      */
     public function __construct(
         public string $domain,

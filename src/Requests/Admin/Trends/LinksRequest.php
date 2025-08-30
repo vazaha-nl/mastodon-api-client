@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\Trends\LinkResult;
  */
 final class LinksRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/admin/trends/#links
+     */
     public function __construct(
     ) {
     }

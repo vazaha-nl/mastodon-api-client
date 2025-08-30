@@ -32,7 +32,7 @@ class ScheduledStatusModel extends Model
      * The parameters that were used when scheduling the status, to be used when
      * the status is posted.
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $params;
 

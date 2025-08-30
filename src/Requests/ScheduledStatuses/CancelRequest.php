@@ -24,6 +24,8 @@ final class CancelRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the ScheduledStatus in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#cancel
      */
     public function __construct(
         public string $id,

@@ -23,10 +23,14 @@ use Vazaha\Mastodon\Results\StatusResult;
 final class DeleteRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $id the ID of the Status in the database
+     * @param string $id           the ID of the Status in the database
+     * @param ?bool  $delete_media Whether to immediately delete the post's media attachments. If omitted or `false`, media attachments may be kept for approximately 24 hours so they can be re-used in a new post.
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#delete
      */
     public function __construct(
         public string $id,
+        public ?bool $delete_media = null,
     ) {
     }
 
@@ -38,6 +42,7 @@ final class DeleteRequest extends Request implements RequestInterface
     public function getQueryParams(): array
     {
         return [
+            'delete_media' => $this->delete_media,
         ];
     }
 

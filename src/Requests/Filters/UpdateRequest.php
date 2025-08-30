@@ -23,12 +23,14 @@ use Vazaha\Mastodon\Results\FilterResult;
 final class UpdateRequest extends Request implements RequestInterface
 {
     /**
-     * @param string            $id                  the ID of the Filter in the database
-     * @param ?string           $title               the name of the filter group
-     * @param null|list<string> $context             Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
-     * @param ?string           $filter_action       The policy to be applied when the filter is matched. Specify `warn` or `hide`.
-     * @param ?int              $expires_in          How many seconds from now should the filter expire?
-     * @param null|list<mixed>  $keywords_attributes keywords_attributes[][keyword]: A keyword to be added to the newly-created filter group
+     * @param string                       $id                  the ID of the Filter in the database
+     * @param ?string                      $title               the name of the filter group
+     * @param null|list<string>            $context             Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
+     * @param ?string                      $filter_action       The policy to be applied when the filter is matched. Specify `warn`, `hide` or `blur`.
+     * @param ?int                         $expires_in          How many seconds from now should the filter expire?
+     * @param null|array<array-key, mixed> $keywords_attributes keywords_attributes[][keyword]: A keyword to be added to the newly-created filter group
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#update
      */
     public function __construct(
         public string $id,

@@ -24,6 +24,8 @@ final class BlockRequest extends Request implements RequestInterface
 {
     /**
      * @param string $domain domain to block
+     *
+     * @see https://docs.joinmastodon.org/methods/domain_blocks/#block
      */
     public function __construct(
         public string $domain,

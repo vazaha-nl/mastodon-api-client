@@ -30,10 +30,12 @@ final class TagRequest extends Request implements RequestInterface
      * @param ?bool             $local      return only local statuses? Defaults to false
      * @param ?bool             $remote     return only remote statuses? Defaults to false
      * @param ?bool             $only_media return only statuses with media attachments? Defaults to false
-     * @param ?string           $max_id     return results older than ID
-     * @param ?string           $since_id   return results newer than ID
-     * @param ?string           $min_id     return results immediately newer than ID
+     * @param ?string           $max_id     All results returned will be lesser than this ID. In effect, sets an upper bound on results.
+     * @param ?string           $since_id   All results returned will be greater than this ID. In effect, sets a lower bound on results.
+     * @param ?string           $min_id     Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
      * @param ?int              $limit      Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
+     *
+     * @see https://docs.joinmastodon.org/methods/timelines/#tag
      */
     public function __construct(
         public string $hashtag,
@@ -64,7 +66,7 @@ final class TagRequest extends Request implements RequestInterface
             'local' => $this->local,
             'remote' => $this->remote,
             'only_media' => $this->only_media,
-            'max_id ' => $this->max_id,
+            'max_id' => $this->max_id,
             'since_id' => $this->since_id,
             'min_id' => $this->min_id,
             'limit' => $this->limit,

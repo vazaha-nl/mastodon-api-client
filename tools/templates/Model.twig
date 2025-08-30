@@ -25,7 +25,7 @@ class {{ classname }} extends {% if parentClass %}{{ parentClass }}{% else %}Mod
     {% if property.descriptionLines %}
     /**
     {% for descriptionLine in property.descriptionLines %}
-     * {{ descriptionLine | raw }}
+     * {{ descriptionLine | docblock_string | raw }}
     {% endfor %}
 {% if property.typeHint %}
      * @var {{ property.typeHint | raw }} ${{ property.name }}

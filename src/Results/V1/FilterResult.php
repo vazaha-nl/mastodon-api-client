@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\V1\FilterModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\V1\FilterModel> $models
- * @property \Vazaha\Mastodon\Requests\V1\FilterRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\V1\FilterResult<array-key, \Vazaha\Mastodon\Models\V1\FilterModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\V1\FilterResult<array-key, \Vazaha\Mastodon\Models\V1\FilterModel> getPreviousPage()

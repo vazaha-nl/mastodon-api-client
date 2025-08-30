@@ -23,8 +23,10 @@ use Vazaha\Mastodon\Results\WebPushSubscriptionResult;
 final class CreateRequest extends Request implements RequestInterface
 {
     /**
-     * @param null|list<mixed> $subscription subscription[endpoint]: The endpoint URL that is called when a notification event occurs
-     * @param null|list<mixed> $data         data[alerts][mention]: Receive mention notifications? Defaults to false
+     * @param null|array<array-key, mixed> $subscription subscription[endpoint]: The endpoint URL that is called when a notification event occurs
+     * @param null|array<array-key, mixed> $data         data[alerts][mention]: Receive mention notifications? Defaults to false
+     *
+     * @see https://docs.joinmastodon.org/methods/push/#create
      */
     public function __construct(
         public ?array $subscription = null,

@@ -14,15 +14,21 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Results\PreviewCardResult;
 
 /**
- * (DEPRECATED) Fetch preview card.
+ * Fetch preview card.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\PreviewCardResult>
  *
  * @see https://docs.joinmastodon.org/methods/statuses/#card
+ *
+ * @deprecated
  */
 final class CardRequest extends Request implements RequestInterface
 {
     /**
+     * @see https://docs.joinmastodon.org/methods/statuses/#card
+     *
+     * @deprecated
+     *
      * @param string $id the local ID of the Status in the database
      */
     public function __construct(

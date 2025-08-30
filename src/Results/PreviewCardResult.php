@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\PreviewCardModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\PreviewCardModel> $models
- * @property \Vazaha\Mastodon\Requests\PreviewCardRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\PreviewCardResult<array-key, \Vazaha\Mastodon\Models\PreviewCardModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\PreviewCardResult<array-key, \Vazaha\Mastodon\Models\PreviewCardModel> getPreviousPage()

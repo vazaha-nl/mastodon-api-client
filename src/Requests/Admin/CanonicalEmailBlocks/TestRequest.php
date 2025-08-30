@@ -24,6 +24,8 @@ final class TestRequest extends Request implements RequestInterface
 {
     /**
      * @param string $email the email to canonicalize and hash
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#test
      */
     public function __construct(
         public string $email,

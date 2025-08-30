@@ -24,6 +24,8 @@ final class UnbookmarkRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#unbookmark
      */
     public function __construct(
         public string $id,

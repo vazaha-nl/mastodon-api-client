@@ -27,6 +27,8 @@ final class GetRequest extends Request implements RequestInterface
      * @param ?string $account_id        filter for reports filed by this account
      * @param ?string $target_account_id filter for reports targeting this account
      * @param ?int    $limit             Maximum number of results to return. Defaults to 100 reports. Max 200 reports.
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/reports/#get
      */
     public function __construct(
         public ?bool $resolved = null,

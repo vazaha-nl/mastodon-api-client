@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\CustomEmojiModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\CustomEmojiModel> $models
- * @property \Vazaha\Mastodon\Requests\CustomEmojiRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\CustomEmojiResult<array-key, \Vazaha\Mastodon\Models\CustomEmojiModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\CustomEmojiResult<array-key, \Vazaha\Mastodon\Models\CustomEmojiModel> getPreviousPage()

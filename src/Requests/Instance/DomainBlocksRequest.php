@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\DomainBlockResult;
  */
 final class DomainBlocksRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/instance/#domain_blocks
+     */
     public function __construct(
     ) {
     }

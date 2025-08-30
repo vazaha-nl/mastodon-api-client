@@ -23,7 +23,9 @@ use Vazaha\Mastodon\Results\FeaturedTagResult;
 final class FeaturedTagsRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $id the ID of the Account in the database
+     * @param string $id the ID of the account
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#featured_tags
      */
     public function __construct(
         public string $id,

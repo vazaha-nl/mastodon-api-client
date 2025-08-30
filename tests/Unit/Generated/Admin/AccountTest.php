@@ -21,8 +21,6 @@ class AccountTest extends TestCase
 {
    "account" : {
       "acct" : "admin",
-      "avatar" : "http://mastodon.local/avatars/original/missing.png",
-      "avatar_static" : "http://mastodon.local/avatars/original/missing.png",
       "bot" : false,
       "created_at" : "2022-09-08T00:00:00.000Z",
       "discoverable" : null,
@@ -32,14 +30,11 @@ class AccountTest extends TestCase
       "followers_count" : 0,
       "following_count" : 0,
       "group" : false,
-      "header" : "http://mastodon.local/headers/original/missing.png",
-      "header_static" : "http://mastodon.local/headers/original/missing.png",
       "id" : "108965278956942133",
       "last_status_at" : null,
       "locked" : false,
       "note" : "",
       "statuses_count" : 0,
-      "url" : "http://mastodon.local/@admin",
       "username" : "admin"
    },
    "approved" : true,
@@ -78,8 +73,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -93,7 +86,6 @@ JSON;
         $model = AccountModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = AccountModel::sanitizePropertyName($property);

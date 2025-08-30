@@ -24,6 +24,8 @@ final class UnfeatureRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the FeaturedTag in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/featured_tags/#unfeature
      */
     public function __construct(
         public string $id,

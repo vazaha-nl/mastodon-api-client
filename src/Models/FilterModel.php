@@ -47,12 +47,14 @@ class FilterModel extends Model
     public string $filter_action;
 
     /**
-     * The keywords grouped under this filter.
+     * The keywords grouped under this filter. Omitted when part of a
+     * {@link https://docs.joinmastodon.org/entities/FilterResult FilterResult}.
      */
-    public FilterKeywordCollection $keywords;
+    public ?FilterKeywordCollection $keywords = null;
 
     /**
-     * The statuses grouped under this filter.
+     * The statuses grouped under this filter. Omitted when part of a
+     * {@link https://docs.joinmastodon.org/entities/FilterResult FilterResult}.
      */
-    public FilterStatusCollection $statuses;
+    public ?FilterStatusCollection $statuses = null;
 }

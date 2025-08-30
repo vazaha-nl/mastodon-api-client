@@ -26,6 +26,8 @@ final class KeywordsUpdateRequest extends Request implements RequestInterface
      * @param string $id         the ID of the FilterKeyword in the database
      * @param string $keyword    the keyword to be added to the filter group
      * @param ?bool  $whole_word whether the keyword should consider word boundaries
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#keywords-update
      */
     public function __construct(
         public string $id,

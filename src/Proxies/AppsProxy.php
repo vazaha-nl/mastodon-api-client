@@ -11,6 +11,7 @@ namespace Vazaha\Mastodon\Proxies;
 use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Models\ApplicationModel;
+use Vazaha\Mastodon\Models\CredentialApplicationModel;
 use Vazaha\Mastodon\Requests\Apps\CreateRequest;
 use Vazaha\Mastodon\Requests\Apps\VerifyCredentialsRequest;
 
@@ -19,19 +20,19 @@ class AppsProxy extends Proxy
     /**
      * Create an application.
      *
-     * @param string  $client_name   A name for your application
-     * @param string  $redirect_uris Where the user should be redirected after authorization. To display the authorization code to the user instead of redirecting to a web page, use `urn:ietf:wg:oauth:2.0:oob` in this parameter.
-     * @param ?string $scopes        Space separated list of scopes. If none is provided, defaults to `read`. See [OAuth Scopes]({{< relref "api/oauth-scopes" >}}) for a list of possible scopes.
-     * @param ?string $website       A URL to the homepage of your app
+     * @param string       $client_name   A name for your application
+     * @param list<string> $redirect_uris Where the user should be redirected after authorization. To display the authorization code to the user instead of redirecting to a web page, use `urn:ietf:wg:oauth:2.0:oob` in this parameter.
+     * @param ?string      $scopes        Space separated list of scopes. If none is provided, defaults to `read`. See {@link https://docs.joinmastodon.org/api/oauth-scopes OAuth Scopes} for a list of possible scopes.
+     * @param ?string      $website       A URL to the homepage of your app
      *
      * @see https://docs.joinmastodon.org/methods/apps/#create
      */
     public function create(
         string $client_name,
-        string $redirect_uris,
+        array $redirect_uris = [],
         ?string $scopes = null,
         ?string $website = null,
-    ): ApplicationModel {
+    ): CredentialApplicationModel {
         $result = $this->apiClient->send(new CreateRequest(
             $client_name,
             $redirect_uris,
@@ -39,7 +40,7 @@ class AppsProxy extends Proxy
             $website,
         ));
 
-        /** @var null|\Vazaha\Mastodon\Models\ApplicationModel $model */
+        /** @var null|\Vazaha\Mastodon\Models\CredentialApplicationModel $model */
         $model = $result->first();
 
         if ($model === null) {

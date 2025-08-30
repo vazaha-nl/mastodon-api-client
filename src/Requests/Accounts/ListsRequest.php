@@ -23,7 +23,9 @@ use Vazaha\Mastodon\Results\ListResult;
 final class ListsRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $id the ID of the Account in the database
+     * @param string $id the ID of the account
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#lists
      */
     public function __construct(
         public string $id,

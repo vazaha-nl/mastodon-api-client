@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\TokenModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\TokenModel> $models
- * @property \Vazaha\Mastodon\Requests\TokenRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\TokenResult<array-key, \Vazaha\Mastodon\Models\TokenModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\TokenResult<array-key, \Vazaha\Mastodon\Models\TokenModel> getPreviousPage()

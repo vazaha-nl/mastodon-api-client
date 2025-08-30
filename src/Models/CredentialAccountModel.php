@@ -21,12 +21,13 @@ class CredentialAccountModel extends AccountModel
      * >}}) and [update credentials]({{< relref
      * "methods/accounts#update_credentials" >}}).
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $source;
 
     /**
-     * The role assigned to the currently authorized user.
+     * The complete role assigned to the currently authorized user, including
+     * permissions and highlighted status.
      */
     public RoleModel $role;
 }

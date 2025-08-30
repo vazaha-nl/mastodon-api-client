@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> $models
- * @property \Vazaha\Mastodon\Requests\EmptyOrUnknownRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> getPreviousPage()

@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\CredentialAccountModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\CredentialAccountModel> $models
- * @property \Vazaha\Mastodon\Requests\CredentialAccountRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\CredentialAccountResult<array-key, \Vazaha\Mastodon\Models\CredentialAccountModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\CredentialAccountResult<array-key, \Vazaha\Mastodon\Models\CredentialAccountModel> getPreviousPage()

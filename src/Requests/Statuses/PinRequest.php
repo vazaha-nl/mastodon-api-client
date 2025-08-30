@@ -24,6 +24,8 @@ final class PinRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id The local ID of the Status in the database. The status should be authored by the authorized account.
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#pin
      */
     public function __construct(
         public string $id,

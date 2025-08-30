@@ -43,11 +43,6 @@ class AnnouncementModel extends Model
     public ?\DateTimeInterface $ends_at = null;
 
     /**
-     * Whether the announcement is currently active.
-     */
-    public bool $published;
-
-    /**
      * Whether the announcement should start and end on dates only instead of
      * datetimes. Will be false if there is no `starts_at` or `ends_at` time.
      */

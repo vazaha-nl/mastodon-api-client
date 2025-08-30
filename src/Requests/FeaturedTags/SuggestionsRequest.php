@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\TagResult;
  */
 final class SuggestionsRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/featured_tags/#suggestions
+     */
     public function __construct(
     ) {
     }

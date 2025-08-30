@@ -11,7 +11,7 @@ use Vazaha\Mastodon\Factories\ModelFactory;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Interfaces\ResultInterface;
 use Vazaha\Mastodon\Models\EmptyOrUnknownModel;
-use Vazaha\Mastodon\Results\Concerns\HasPaging;
+use Vazaha\Mastodon\Traits\Results\HasPaging;
 
 abstract class Result extends Collection implements ResultInterface
 {
@@ -54,7 +54,7 @@ abstract class Result extends Collection implements ResultInterface
      * @throws \RuntimeException
      * @throws \Vazaha\Mastodon\Exceptions\InvalidResponseException
      *
-     * @return null|array<int|string, list<mixed>>
+     * @return null|array<array-key, mixed>
      */
     public function getDecodedBody(): ?array
     {
@@ -88,7 +88,7 @@ abstract class Result extends Collection implements ResultInterface
     {
         $decoded = $this->getDecodedBody();
 
-        if ($decoded === null || !is_array($decoded)) {
+        if ($decoded === null) {
             return;
         }
 

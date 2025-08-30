@@ -27,6 +27,8 @@ final class CreateRequest extends Request implements RequestInterface
      * @param ?string $ip         The IP address and prefix to block. Defaults to `0.0.0.0/32`
      * @param ?string $comment    the reason for this IP block
      * @param ?int    $expires_in the number of seconds in which this IP block will expire
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#create
      */
     public function __construct(
         public string $severity,

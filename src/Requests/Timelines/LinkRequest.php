@@ -1,0 +1,74 @@
+<?php
+
+/*
+ * This file is auto generated! Do not edit!
+ */
+
+declare(strict_types=1);
+
+namespace Vazaha\Mastodon\Requests\Timelines;
+
+use Vazaha\Mastodon\Abstracts\Request;
+use Vazaha\Mastodon\Enums\HttpMethod;
+use Vazaha\Mastodon\Interfaces\RequestInterface;
+use Vazaha\Mastodon\Results\StatusResult;
+
+/**
+ * View link timeline.
+ *
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\StatusResult>
+ *
+ * @see https://docs.joinmastodon.org/methods/timelines/#link
+ */
+final class LinkRequest extends Request implements RequestInterface
+{
+    /**
+     * @param string  $url      the URL of the trending article
+     * @param ?string $max_id   All results returned will be lesser than this ID. In effect, sets an upper bound on results.
+     * @param ?string $since_id All results returned will be greater than this ID. In effect, sets a lower bound on results.
+     * @param ?string $min_id   Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
+     * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
+     *
+     * @see https://docs.joinmastodon.org/methods/timelines/#link
+     */
+    public function __construct(
+        public string $url,
+        public ?string $max_id = null,
+        public ?string $since_id = null,
+        public ?string $min_id = null,
+        public ?int $limit = null,
+    ) {
+    }
+
+    public function getEndpoint(): string
+    {
+        return sprintf('/api/v1/timelines/link?url=%s', urlencode($this->url));
+    }
+
+    public function getQueryParams(): array
+    {
+        return [
+            'url' => $this->url,
+            'max_id' => $this->max_id,
+            'since_id' => $this->since_id,
+            'min_id' => $this->min_id,
+            'limit' => $this->limit,
+        ];
+    }
+
+    public function getFormParams(): array
+    {
+        return [
+        ];
+    }
+
+    public function getHttpMethod(): HttpMethod
+    {
+        return HttpMethod::GET;
+    }
+
+    public function getResultClass(): string
+    {
+        return StatusResult::class;
+    }
+}

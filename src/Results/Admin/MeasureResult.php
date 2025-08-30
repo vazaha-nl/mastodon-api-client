@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\Admin\MeasureModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\MeasureModel> $models
- * @property \Vazaha\Mastodon\Requests\Admin\MeasureRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\Admin\MeasureResult<array-key, \Vazaha\Mastodon\Models\Admin\MeasureModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\Admin\MeasureResult<array-key, \Vazaha\Mastodon\Models\Admin\MeasureModel> getPreviousPage()

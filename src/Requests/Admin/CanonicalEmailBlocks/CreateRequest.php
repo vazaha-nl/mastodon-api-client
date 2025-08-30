@@ -25,6 +25,8 @@ final class CreateRequest extends Request implements RequestInterface
     /**
      * @param string  $email                The email to canonicalize, hash, and block. If this parameter is provided, `canonical_email_hash` will be ignored.
      * @param ?string $canonical_email_hash The hash to test against. If `email` is not provided, this parameter is required.
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#create
      */
     public function __construct(
         public string $email,

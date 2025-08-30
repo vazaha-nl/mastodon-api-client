@@ -22,8 +22,8 @@ class PushProxy extends Proxy
     /**
      * Subscribe to push notifications.
      *
-     * @param null|list<mixed> $subscription subscription[endpoint]: The endpoint URL that is called when a notification event occurs
-     * @param null|list<mixed> $data         data[alerts][mention]: Receive mention notifications? Defaults to false
+     * @param null|array<array-key, mixed> $subscription subscription[endpoint]: The endpoint URL that is called when a notification event occurs
+     * @param null|array<array-key, mixed> $data         data[alerts][mention]: Receive mention notifications? Defaults to false
      *
      * @see https://docs.joinmastodon.org/methods/push/#create
      */
@@ -86,8 +86,8 @@ class PushProxy extends Proxy
     /**
      * Change types of notifications.
      *
-     * @param null|list<mixed> $data   data[alerts][mention]: Receive mention notifications? Defaults to false
-     * @param ?string          $policy specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users
+     * @param null|array<array-key, mixed> $data   data[alerts][mention]: Receive mention notifications? Defaults to false
+     * @param ?string                      $policy specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users
      *
      * @see https://docs.joinmastodon.org/methods/push/#update
      */

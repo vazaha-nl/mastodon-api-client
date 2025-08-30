@@ -44,9 +44,9 @@ class ScheduledStatusesProxy extends Proxy
     /**
      * View scheduled statuses.
      *
-     * @param ?string $max_id   return results older than ID
-     * @param ?string $since_id return results newer than ID
-     * @param ?string $min_id   return results immediately newer than ID
+     * @param ?string $max_id   All results returned will be lesser than this ID. In effect, sets an upper bound on results.
+     * @param ?string $since_id All results returned will be greater than this ID. In effect, sets a lower bound on results.
+     * @param ?string $min_id   Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
      * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
      * @return \Vazaha\Mastodon\Results\ScheduledStatusResult<array-key, \Vazaha\Mastodon\Models\ScheduledStatusModel>
@@ -99,7 +99,7 @@ class ScheduledStatusesProxy extends Proxy
      * Update a scheduled status's publishing date.
      *
      * @param string  $id           the ID of the ScheduledStatus in the database
-     * @param ?string $scheduled_at ISO 8601 Datetime at which the status will be published. Must be at least 5 minutes into the future.
+     * @param ?string $scheduled_at Datetime at which the status will be published. Must be at least 5 minutes into the future.
      *
      * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#update
      */

@@ -102,13 +102,13 @@ class AccountModel extends Model
     public ModelsAccountModel $account;
 
     /**
-     * The ID of the [Application]({{< relref "entities/application" >}}) that
+     * The ID of the {@link https://docs.joinmastodon.org/entities/application Application} that
      * created this account, if applicable.
      */
     public ?string $created_by_application_id = null;
 
     /**
-     * The ID of the [Account]({{< relref "entities/account" >}}) that invited
+     * The ID of the {@link https://docs.joinmastodon.org/entities/account Account} that invited
      * this user, if applicable.
      */
     public ?string $invited_by_account_id = null;

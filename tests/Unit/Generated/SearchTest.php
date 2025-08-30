@@ -42,8 +42,7 @@ class SearchTest extends TestCase
                "uses" : "10"
             }
          ],
-         "name" : "cats",
-         "url" : "https://mastodon.social/tags/cats"
+         "name" : "cats"
       },
       {
          "history" : [
@@ -53,8 +52,7 @@ class SearchTest extends TestCase
                "uses" : "6"
             }
          ],
-         "name" : "catsofmastodon",
-         "url" : "https://mastodon.social/tags/catsofmastodon"
+         "name" : "catsofmastodon"
       }
    ],
    "statuses" : [
@@ -64,7 +62,6 @@ class SearchTest extends TestCase
          "id" : "103085519055545958"
       },
       {
-         "content" : "<p>Cats are inherently good at self-care. </p><p><a href=\"https://mspsocial.net/tags/cats\" class=\"mention hashtag\" rel=\"nofollow noopener noreferrer\" target=\"_blank\">#<span>cats</span}</p>",
          "created_at" : "2018-11-14T06:31:48.000Z",
          "id" : "101068121469614510",
          "spoiler_text" : "Cats"
@@ -77,8 +74,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -92,7 +87,6 @@ JSON;
         $model = SearchModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = SearchModel::sanitizePropertyName($property);

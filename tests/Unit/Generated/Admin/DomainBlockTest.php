@@ -20,6 +20,7 @@ class DomainBlockTest extends TestCase
         $this->json = <<<'JSON'
 {
    "created_at" : "2022-11-16T08:15:34.238Z",
+   "digest" : "a379a6f6eeafb9a55e378c118034e2751e682fab9f2d30ab13d2125586ce1947",
    "domain" : "example.com",
    "id" : "1",
    "obfuscate" : false,
@@ -35,8 +36,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -50,7 +49,6 @@ JSON;
         $model = DomainBlockModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = DomainBlockModel::sanitizePropertyName($property);

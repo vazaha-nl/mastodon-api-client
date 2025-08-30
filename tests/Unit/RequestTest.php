@@ -40,10 +40,8 @@ class RequestTest extends TestCase
         $apiClient->methods()->statuses()->create(
             'test status',
             [],
-            [
-                'foobar' => static function (): void {
-                },
-            ],
+            ['foobar' => static function (): void {
+            }],
         );
     }
 }

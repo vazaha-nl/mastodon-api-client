@@ -22,9 +22,7 @@ class ReactionTest extends TestCase
    {
       "count" : 9,
       "me" : false,
-      "name" : "bongoCat",
-      "static_url" : "https://files.mastodon.social/custom_emojis/images/000/067/715/static/fdba57dff7576d53.png",
-      "url" : "https://files.mastodon.social/custom_emojis/images/000/067/715/original/fdba57dff7576d53.png"
+      "name" : "bongoCat"
    },
    {
       "count" : 1,
@@ -38,8 +36,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -53,7 +49,6 @@ JSON;
         $model = ReactionModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = ReactionModel::sanitizePropertyName($property);

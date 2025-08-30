@@ -24,6 +24,8 @@ final class CreateRequest extends Request implements RequestInterface
 {
     /**
      * @param string $domain the domain to block federation with
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/email_domain_blocks/#create
      */
     public function __construct(
         public string $domain,

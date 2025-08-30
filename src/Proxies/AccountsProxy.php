@@ -17,6 +17,8 @@ use Vazaha\Mastodon\Models\RelationshipModel;
 use Vazaha\Mastodon\Models\TokenModel;
 use Vazaha\Mastodon\Requests\Accounts\BlockRequest;
 use Vazaha\Mastodon\Requests\Accounts\CreateRequest;
+use Vazaha\Mastodon\Requests\Accounts\EndorsementsRequest;
+use Vazaha\Mastodon\Requests\Accounts\EndorseRequest;
 use Vazaha\Mastodon\Requests\Accounts\FamiliarFollowersRequest;
 use Vazaha\Mastodon\Requests\Accounts\FeaturedTagsRequest;
 use Vazaha\Mastodon\Requests\Accounts\FollowersRequest;
@@ -24,6 +26,7 @@ use Vazaha\Mastodon\Requests\Accounts\FollowingRequest;
 use Vazaha\Mastodon\Requests\Accounts\FollowRequest;
 use Vazaha\Mastodon\Requests\Accounts\GetRequest;
 use Vazaha\Mastodon\Requests\Accounts\IdentityProofsRequest;
+use Vazaha\Mastodon\Requests\Accounts\IndexRequest;
 use Vazaha\Mastodon\Requests\Accounts\ListsRequest;
 use Vazaha\Mastodon\Requests\Accounts\LookupRequest;
 use Vazaha\Mastodon\Requests\Accounts\MuteRequest;
@@ -34,6 +37,7 @@ use Vazaha\Mastodon\Requests\Accounts\RemoveFromFollowersRequest;
 use Vazaha\Mastodon\Requests\Accounts\SearchRequest;
 use Vazaha\Mastodon\Requests\Accounts\StatusesRequest;
 use Vazaha\Mastodon\Requests\Accounts\UnblockRequest;
+use Vazaha\Mastodon\Requests\Accounts\UnendorseRequest;
 use Vazaha\Mastodon\Requests\Accounts\UnfollowRequest;
 use Vazaha\Mastodon\Requests\Accounts\UnmuteRequest;
 use Vazaha\Mastodon\Requests\Accounts\UnpinRequest;
@@ -52,7 +56,7 @@ class AccountsProxy extends Proxy
     /**
      * Block account.
      *
-     * @param string $id the ID of the Account in the database
+     * @param string $id the ID of the account
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#block
      */
@@ -113,6 +117,57 @@ class AccountsProxy extends Proxy
     }
 
     /**
+     * Feature account on your profile.
+     *
+     * @param string $id the ID of the account
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#endorse
+     */
+    public function endorse(
+        string $id,
+    ): RelationshipModel {
+        $result = $this->apiClient->send(new EndorseRequest(
+            $id,
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
+     * Get featured accounts.
+     *
+     * @param string $id    the ID of the account
+     * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#endorsements
+     */
+    public function endorsements(
+        string $id,
+        ?int $limit = null,
+    ): AccountModel {
+        $result = $this->apiClient->send(new EndorsementsRequest(
+            $id,
+            $limit,
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\AccountModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
      * Find familiar followers.
      *
      * @param null|list<string> $id find familiar followers for the provided account IDs
@@ -136,7 +191,7 @@ class AccountsProxy extends Proxy
     /**
      * Get account's featured tags.
      *
-     * @param string $id the ID of the Account in the database
+     * @param string $id the ID of the account
      *
      * @return \Vazaha\Mastodon\Results\FeaturedTagResult<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel>
      *
@@ -157,7 +212,7 @@ class AccountsProxy extends Proxy
     /**
      * Follow account.
      *
-     * @param string            $id        the ID of the Account in the database
+     * @param string            $id        the ID of the account
      * @param ?bool             $reblogs   receive this account's reblogs in home timeline? Defaults to true
      * @param ?bool             $notify    receive notifications when this account posts a status? Defaults to false
      * @param null|list<string> $languages Filter received statuses for these languages. If not provided, you will receive this account's posts in all languages.
@@ -190,7 +245,7 @@ class AccountsProxy extends Proxy
     /**
      * Get account's followers.
      *
-     * @param string $id    the ID of the Account in the database
+     * @param string $id    the ID of the account
      * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
      * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
@@ -214,7 +269,7 @@ class AccountsProxy extends Proxy
     /**
      * Get account's following.
      *
-     * @param string $id    the ID of the Account in the database
+     * @param string $id    the ID of the account
      * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
      * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
@@ -238,7 +293,7 @@ class AccountsProxy extends Proxy
     /**
      * Get account.
      *
-     * @param string $id the ID of the Account in the database
+     * @param string $id the ID of the account
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#get
      */
@@ -260,13 +315,15 @@ class AccountsProxy extends Proxy
     }
 
     /**
-     * (DEPRECATED) Identity proofs.
-     *
-     * @param string $id the ID of the Account in the database
-     *
-     * @return \Vazaha\Mastodon\Results\IdentityProofResult<array-key, \Vazaha\Mastodon\Models\IdentityProofModel>
+     * Identity proofs.
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#identity_proofs
+     *
+     * @deprecated
+     *
+     * @param string $id the ID of the account
+     *
+     * @return \Vazaha\Mastodon\Results\IdentityProofResult<array-key, \Vazaha\Mastodon\Models\IdentityProofModel>
      */
     public function identityProofs(
         string $id,
@@ -281,9 +338,30 @@ class AccountsProxy extends Proxy
     }
 
     /**
+     * Get multiple accounts.
+     *
+     * @param null|list<string> $id the IDs of the accounts
+     *
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#index
+     */
+    public function index(
+        ?array $id = null,
+    ): AccountResult {
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
+        $models = $this->apiClient
+            ->send(new IndexRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
      * Get lists containing this account.
      *
-     * @param string $id the ID of the Account in the database
+     * @param string $id the ID of the account
      *
      * @return \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel>
      *
@@ -328,7 +406,7 @@ class AccountsProxy extends Proxy
     /**
      * Mute account.
      *
-     * @param string $id            the ID of the Account in the database
+     * @param string $id            the ID of the account
      * @param ?bool  $notifications mute notifications in addition to statuses? Defaults to true
      * @param ?int   $duration      How long the mute should last, in seconds. Defaults to 0 (indefinite).
      *
@@ -358,7 +436,7 @@ class AccountsProxy extends Proxy
     /**
      * Set private note on profile.
      *
-     * @param string  $id      the ID of the Account in the database
+     * @param string  $id      the ID of the account
      * @param ?string $comment The comment to be set on that user. Provide an empty string or leave out this parameter to clear the currently set note.
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#note
@@ -385,9 +463,11 @@ class AccountsProxy extends Proxy
     /**
      * Feature account on your profile.
      *
-     * @param string $id the ID of the Account in the database
-     *
      * @see https://docs.joinmastodon.org/methods/accounts/#pin
+     *
+     * @deprecated
+     *
+     * @param string $id the ID of the account
      */
     public function pin(
         string $id,
@@ -409,7 +489,8 @@ class AccountsProxy extends Proxy
     /**
      * Check relationships to other accounts.
      *
-     * @param null|list<mixed> $id check relationships for the provided account IDs
+     * @param null|list<string> $id             check relationships for the provided account IDs
+     * @param ?bool             $with_suspended whether relationships should be returned for suspended users, defaults to false
      *
      * @return \Vazaha\Mastodon\Results\RelationshipResult<array-key, \Vazaha\Mastodon\Models\RelationshipModel>
      *
@@ -417,11 +498,13 @@ class AccountsProxy extends Proxy
      */
     public function relationships(
         ?array $id = null,
+        ?bool $with_suspended = null,
     ): RelationshipResult {
         /** @var \Vazaha\Mastodon\Results\RelationshipResult<array-key, \Vazaha\Mastodon\Models\RelationshipModel> */
         $models = $this->apiClient
             ->send(new RelationshipsRequest(
                 $id,
+                $with_suspended,
             ));
 
         return $models;
@@ -430,7 +513,7 @@ class AccountsProxy extends Proxy
     /**
      * Remove account from followers.
      *
-     * @param string $id the ID of the Account in the database
+     * @param string $id the ID of the account
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#remove_from_followers
      */
@@ -487,10 +570,10 @@ class AccountsProxy extends Proxy
     /**
      * Get account's statuses.
      *
-     * @param string  $id              the ID of the Account in the database
-     * @param ?string $max_id          Return results older than this ID
-     * @param ?string $since_id        Return results newer than this ID
-     * @param ?string $min_id          Return results immediately newer than this ID
+     * @param string  $id              the ID of the account
+     * @param ?string $max_id          All results returned will be lesser than this ID. In effect, sets an upper bound on results.
+     * @param ?string $since_id        All results returned will be greater than this ID. In effect, sets a lower bound on results.
+     * @param ?string $min_id          Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
      * @param ?int    $limit           Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      * @param ?bool   $only_media      filter out statuses without attachments
      * @param ?bool   $exclude_replies filter out statuses in reply to a different account
@@ -535,7 +618,7 @@ class AccountsProxy extends Proxy
     /**
      * Unblock account.
      *
-     * @param string $id the ID of the Account in the database
+     * @param string $id the ID of the account
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#unblock
      */
@@ -557,9 +640,33 @@ class AccountsProxy extends Proxy
     }
 
     /**
+     * Unfeature account from profile.
+     *
+     * @param string $id the ID of the account
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#unendorse
+     */
+    public function unendorse(
+        string $id,
+    ): RelationshipModel {
+        $result = $this->apiClient->send(new UnendorseRequest(
+            $id,
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
      * Unfollow account.
      *
-     * @param string $id the ID of the Account in the database
+     * @param string $id the ID of the account
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#unfollow
      */
@@ -583,7 +690,7 @@ class AccountsProxy extends Proxy
     /**
      * Unmute account.
      *
-     * @param string $id the ID of the Account in the database
+     * @param string $id the ID of the account
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#unmute
      */
@@ -607,9 +714,11 @@ class AccountsProxy extends Proxy
     /**
      * Unfeature account from profile.
      *
-     * @param string $id the ID of the Account in the database
-     *
      * @see https://docs.joinmastodon.org/methods/accounts/#unpin
+     *
+     * @deprecated
+     *
+     * @param string $id the ID of the account
      */
     public function unpin(
         string $id,
@@ -631,15 +740,18 @@ class AccountsProxy extends Proxy
     /**
      * Update account credentials.
      *
-     * @param ?string          $display_name      the display name to use for the profile
-     * @param ?string          $note              the account bio
-     * @param ?UploadFile      $avatar            Avatar image encoded using `multipart/form-data`
-     * @param ?UploadFile      $header            Header image encoded using `multipart/form-data`
-     * @param ?bool            $locked            whether manual approval of follow requests is required
-     * @param ?bool            $bot               whether the account has a bot flag
-     * @param ?bool            $discoverable      whether the account should be shown in the profile directory
-     * @param null|list<mixed> $fields_attributes The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields.
-     * @param null|list<mixed> $source            source[privacy]: Default post privacy for authored statuses. Can be `public`, `unlisted`, or `private`.
+     * @param ?string                      $display_name        the display name to use for the profile
+     * @param ?string                      $note                the account bio
+     * @param ?UploadFile                  $avatar              Avatar image encoded using `multipart/form-data`
+     * @param ?UploadFile                  $header              Header image encoded using `multipart/form-data`
+     * @param ?bool                        $locked              whether manual approval of follow requests is required
+     * @param ?bool                        $bot                 whether the account has a bot flag
+     * @param ?bool                        $discoverable        whether the account should be shown in the profile directory
+     * @param ?bool                        $hide_collections    whether to hide followers and followed accounts
+     * @param ?bool                        $indexable           whether public posts should be searchable to anyone
+     * @param null|list<string>            $attribution_domains Domains of websites allowed to credit the account. Maximum of 10 domains.
+     * @param null|array<array-key, mixed> $fields_attributes   The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields.
+     * @param null|array<array-key, mixed> $source              source[privacy]: Default post privacy for authored statuses. Can be `public`, `unlisted`, or `private`.
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#update_credentials
      */
@@ -651,9 +763,12 @@ class AccountsProxy extends Proxy
         ?bool $locked = null,
         ?bool $bot = null,
         ?bool $discoverable = null,
+        ?bool $hide_collections = null,
+        ?bool $indexable = null,
+        ?array $attribution_domains = null,
         ?array $fields_attributes = null,
         ?array $source = null,
-    ): AccountModel {
+    ): CredentialAccountModel {
         $result = $this->apiClient->send(new UpdateCredentialsRequest(
             $display_name,
             $note,
@@ -662,11 +777,14 @@ class AccountsProxy extends Proxy
             $locked,
             $bot,
             $discoverable,
+            $hide_collections,
+            $indexable,
+            $attribution_domains,
             $fields_attributes,
             $source,
         ));
 
-        /** @var null|\Vazaha\Mastodon\Models\AccountModel $model */
+        /** @var null|\Vazaha\Mastodon\Models\CredentialAccountModel $model */
         $model = $result->first();
 
         if ($model === null) {

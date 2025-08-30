@@ -24,6 +24,8 @@ final class GetRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the MediaAttachment in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/media/#get
      */
     public function __construct(
         public string $id,

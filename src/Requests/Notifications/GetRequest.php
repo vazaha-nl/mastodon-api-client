@@ -23,13 +23,16 @@ use Vazaha\Mastodon\Results\NotificationResult;
 final class GetRequest extends Request implements RequestInterface
 {
     /**
-     * @param ?string           $max_id        Return results older than this ID
-     * @param ?string           $since_id      Return results newer than this ID
-     * @param ?string           $min_id        Return results immediately newer than this ID
-     * @param ?int              $limit         Maximum number of results to return. Defaults to 15 notifications. Max 30 notifications.
-     * @param null|list<string> $types         types to include in the result
-     * @param null|list<string> $exclude_types types to exclude from the results
-     * @param ?string           $account_id    return only notifications received from the specified account
+     * @param ?string           $max_id           All results returned will be lesser than this ID. In effect, sets an upper bound on results.
+     * @param ?string           $since_id         All results returned will be greater than this ID. In effect, sets a lower bound on results.
+     * @param ?string           $min_id           Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
+     * @param ?int              $limit            Maximum number of results to return. Defaults to 40 notifications. Max 80 notifications.
+     * @param null|list<string> $types            types to include in the result
+     * @param null|list<string> $exclude_types    types to exclude from the results
+     * @param ?string           $account_id       return only notifications received from the specified account
+     * @param ?bool             $include_filtered Whether to include notifications filtered by the user's {@link https://docs.joinmastodon.org/entities/NotificationPolicy NotificationPolicy}. Defaults to false.
+     *
+     * @see https://docs.joinmastodon.org/methods/notifications/#get
      */
     public function __construct(
         public ?string $max_id = null,
@@ -39,6 +42,7 @@ final class GetRequest extends Request implements RequestInterface
         public ?array $types = null,
         public ?array $exclude_types = null,
         public ?string $account_id = null,
+        public ?bool $include_filtered = null,
     ) {
     }
 
@@ -50,13 +54,14 @@ final class GetRequest extends Request implements RequestInterface
     public function getQueryParams(): array
     {
         return [
-            'max_id ' => $this->max_id,
+            'max_id' => $this->max_id,
             'since_id' => $this->since_id,
             'min_id' => $this->min_id,
             'limit' => $this->limit,
             'types' => $this->types,
             'exclude_types' => $this->exclude_types,
             'account_id' => $this->account_id,
+            'include_filtered' => $this->include_filtered,
         ];
     }
 

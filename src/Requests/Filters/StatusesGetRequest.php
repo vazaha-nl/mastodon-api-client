@@ -24,6 +24,8 @@ final class StatusesGetRequest extends Request implements RequestInterface
 {
     /**
      * @param string $filter_id the ID of the Filter in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#statuses-get
      */
     public function __construct(
         public string $filter_id,

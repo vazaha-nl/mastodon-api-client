@@ -26,6 +26,8 @@ final class CreateRequest extends Request implements RequestInterface
      * @param \DateTimeInterface $start_at  The start date for the time period. If a time is provided, it will be ignored.
      * @param \DateTimeInterface $end_at    The end date for the time period. If a time is provided, it will be ignored.
      * @param string             $frequency Specify whether to use `day` or `month` buckets. If any other value is provided, defaults to `day`.
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/retention/#create
      */
     public function __construct(
         public \DateTimeInterface $start_at,

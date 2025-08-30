@@ -19,10 +19,16 @@ use Vazaha\Mastodon\Results\V1\FilterResult;
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\V1\FilterResult>
  *
  * @see https://docs.joinmastodon.org/methods/filters/#create-v1
+ *
+ * @deprecated
  */
 final class CreateV1Request extends Request implements RequestInterface
 {
     /**
+     * @see https://docs.joinmastodon.org/methods/filters/#create-v1
+     *
+     * @deprecated
+     *
      * @param string       $phrase       the text to be filtered
      * @param list<string> $context      Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
      * @param ?bool        $irreversible should the server irreversibly drop matching entities from home and notifications? Defaults to false

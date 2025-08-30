@@ -25,6 +25,8 @@ final class LinksRequest extends Request implements RequestInterface
     /**
      * @param ?int $limit  Maximum number of results to return. Defaults to 10 links. Max 20 links.
      * @param ?int $offset skip the first n results
+     *
+     * @see https://docs.joinmastodon.org/methods/trends/#links
      */
     public function __construct(
         public ?int $limit = null,

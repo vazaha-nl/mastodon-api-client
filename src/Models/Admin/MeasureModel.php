@@ -48,7 +48,7 @@ class MeasureModel extends Model
     /**
      * The data available for the requested measure, split into daily buckets.
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $data;
 }

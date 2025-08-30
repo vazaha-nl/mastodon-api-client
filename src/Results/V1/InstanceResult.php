@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\V1\InstanceModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\V1\InstanceModel> $models
- * @property \Vazaha\Mastodon\Requests\V1\InstanceRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\V1\InstanceResult<array-key, \Vazaha\Mastodon\Models\V1\InstanceModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\V1\InstanceResult<array-key, \Vazaha\Mastodon\Models\V1\InstanceModel> getPreviousPage()

@@ -23,7 +23,9 @@ use Vazaha\Mastodon\Results\RelationshipResult;
 final class RemoveFromFollowersRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $id the ID of the Account in the database
+     * @param string $id the ID of the account
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#remove_from_followers
      */
     public function __construct(
         public string $id,

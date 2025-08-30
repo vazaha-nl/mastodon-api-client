@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\ExtendedDescriptionResult;
  */
 final class ExtendedDescriptionRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/instance/#extended_description
+     */
     public function __construct(
     ) {
     }

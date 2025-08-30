@@ -19,10 +19,16 @@ use Vazaha\Mastodon\Results\V1\FilterResult;
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\V1\FilterResult>
  *
  * @see https://docs.joinmastodon.org/methods/filters/#update-v1
+ *
+ * @deprecated
  */
 final class UpdateV1Request extends Request implements RequestInterface
 {
     /**
+     * @see https://docs.joinmastodon.org/methods/filters/#update-v1
+     *
+     * @deprecated
+     *
      * @param string       $id           the ID of the FilterKeyword in the database
      * @param string       $phrase       the text to be filtered
      * @param list<string> $context      specify at least one of `home`, `notifications`, `public`, `thread`, `account`

@@ -17,15 +17,19 @@ class EmailsProxy extends Proxy
     /**
      * Resend confirmation email.
      *
+     * @param ?string $email if provided, updates the unconfirmed user's email before resending the confirmation email
+     *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
      * @see https://docs.joinmastodon.org/methods/emails/#confirmation
      */
     public function confirmation(
+        ?string $email = null,
     ): EmptyOrUnknownResult {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new ConfirmationRequest(
+                $email,
             ));
 
         return $models;

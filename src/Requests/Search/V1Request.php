@@ -14,21 +14,27 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Results\SearchResult;
 
 /**
- * (REMOVED) Search results (v1).
+ * Perform a search (v1).
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\SearchResult>
  *
  * @see https://docs.joinmastodon.org/methods/search/#v1
+ *
+ * @deprecated
  */
 final class V1Request extends Request implements RequestInterface
 {
     /**
+     * @see https://docs.joinmastodon.org/methods/search/#v1
+     *
+     * @deprecated
+     *
      * @param string  $q          the search query
      * @param ?string $type       Specify whether to search for only `accounts`, `hashtags`, `statuses`
      * @param ?bool   $resolve    attempt WebFinger lookup? Defaults to false
      * @param ?string $account_id if provided, will only return statuses authored by this account
-     * @param ?string $max_id     return results older than this ID
-     * @param ?string $min_id     return results immediately newer than this ID
+     * @param ?string $max_id     All results returned will be lesser than this ID. In effect, sets an upper bound on results.
+     * @param ?string $min_id     Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
      * @param ?int    $limit      Maximum number of results to return, per type. Defaults to 20 results per category. Max 40 results per category.
      * @param ?int    $offset     Offset in search results, used for pagination. Defaults to 0.
      */
@@ -56,7 +62,7 @@ final class V1Request extends Request implements RequestInterface
             'type' => $this->type,
             'resolve' => $this->resolve,
             'account_id' => $this->account_id,
-            'max_id ' => $this->max_id,
+            'max_id' => $this->max_id,
             'min_id' => $this->min_id,
             'limit' => $this->limit,
             'offset' => $this->offset,

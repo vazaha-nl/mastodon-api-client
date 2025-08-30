@@ -49,14 +49,12 @@ class StatusEditModel extends Model
      * changing the poll options will be collapsed together into one edit, since
      * this action resets the poll.
      *
-     * @var null|list<mixed>
+     * @var null|array<array-key, mixed>
      */
     public ?array $poll = null;
 
     /**
-     * The current state of the poll options at this revision. Note that edits
-     * changing the poll options will be collapsed together into one edit, since
-     * this action resets the poll.
+     * The current state of the media attachments at this revision.
      */
     public MediaAttachmentCollection $media_attachments;
 

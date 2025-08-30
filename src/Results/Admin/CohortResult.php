@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\Admin\CohortModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\CohortModel> $models
- * @property \Vazaha\Mastodon\Requests\Admin\CohortRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\Admin\CohortResult<array-key, \Vazaha\Mastodon\Models\Admin\CohortModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\Admin\CohortResult<array-key, \Vazaha\Mastodon\Models\Admin\CohortModel> getPreviousPage()

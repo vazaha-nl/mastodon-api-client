@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
  */
 final class HealthRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/streaming/#health
+     */
     public function __construct(
     ) {
     }

@@ -23,14 +23,18 @@ use Vazaha\Mastodon\Results\ListResult;
 final class UpdateRequest extends Request implements RequestInterface
 {
     /**
-     * @param string  $id             the ID of the List in the database
+     * @param string  $id             the ID of the list
      * @param string  $title          the title of the list to be created
      * @param ?string $replies_policy One of `followed`, `list`, or `none`. Defaults to `list`.
+     * @param ?bool   $exclusive      whether members of this list need to get removed from the “Home” feed
+     *
+     * @see https://docs.joinmastodon.org/methods/lists/#update
      */
     public function __construct(
         public string $id,
         public string $title,
         public ?string $replies_policy = null,
+        public ?bool $exclusive = null,
     ) {
     }
 
@@ -50,6 +54,7 @@ final class UpdateRequest extends Request implements RequestInterface
         return [
             'title' => $this->title,
             'replies_policy' => $this->replies_policy,
+            'exclusive' => $this->exclusive,
         ];
     }
 

@@ -25,14 +25,16 @@ final class V2Request extends Request implements RequestInterface
     /**
      * @param string  $q                  the search query
      * @param ?string $type               Specify whether to search for only `accounts`, `hashtags`, `statuses`
-     * @param ?bool   $resolve            attempt WebFinger lookup? Defaults to false
+     * @param ?bool   $resolve            Only relevant if `type` includes `accounts` or if `query` is a HTTPS URL. In the first case, if `true` and (a) the search query is for a remote account (e.g., `someaccount@someother.server`) and (b) the local server does not know about the account, WebFinger is used to try and resolve the account at `someother.server`. This provides the best recall at higher latency. If `false`, only accounts the server knows about are returned. In the second case, if `true`, resolving the URL and returning the matching status is attempted. If `false`, this resolving logic is circumvented and a regular search is performed instead.
      * @param ?bool   $following          only include accounts that the user is following? Defaults to false
      * @param ?string $account_id         if provided, will only return statuses authored by this account
      * @param ?bool   $exclude_unreviewed Filter out unreviewed tags? Defaults to false. Use true when trying to find trending tags.
-     * @param ?string $max_id             return results older than this ID
-     * @param ?string $min_id             return results immediately newer than this ID
+     * @param ?string $max_id             All results returned will be lesser than this ID. In effect, sets an upper bound on results.
+     * @param ?string $min_id             Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
      * @param ?int    $limit              Maximum number of results to return, per type. Defaults to 20 results per category. Max 40 results per category.
      * @param ?int    $offset             skip the first n results
+     *
+     * @see https://docs.joinmastodon.org/methods/search/#v2
      */
     public function __construct(
         public string $q,
@@ -62,7 +64,7 @@ final class V2Request extends Request implements RequestInterface
             'following' => $this->following,
             'account_id' => $this->account_id,
             'exclude_unreviewed' => $this->exclude_unreviewed,
-            'max_id ' => $this->max_id,
+            'max_id' => $this->max_id,
             'min_id' => $this->min_id,
             'limit' => $this->limit,
             'offset' => $this->offset,

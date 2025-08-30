@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\PollModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\PollModel> $models
- * @property \Vazaha\Mastodon\Requests\PollRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\PollResult<array-key, \Vazaha\Mastodon\Models\PollModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\PollResult<array-key, \Vazaha\Mastodon\Models\PollModel> getPreviousPage()

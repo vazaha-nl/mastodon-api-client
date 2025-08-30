@@ -19,11 +19,17 @@ use Vazaha\Mastodon\Results\RelationshipResult;
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\RelationshipResult>
  *
  * @see https://docs.joinmastodon.org/methods/accounts/#pin
+ *
+ * @deprecated
  */
 final class PinRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $id the ID of the Account in the database
+     * @see https://docs.joinmastodon.org/methods/accounts/#pin
+     *
+     * @deprecated
+     *
+     * @param string $id the ID of the account
      */
     public function __construct(
         public string $id,

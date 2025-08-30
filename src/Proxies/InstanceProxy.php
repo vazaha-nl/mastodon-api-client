@@ -11,13 +11,19 @@ namespace Vazaha\Mastodon\Proxies;
 use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Models\ExtendedDescriptionModel;
-use Vazaha\Mastodon\Models\InstanceModel;
-use Vazaha\Mastodon\Models\V1\InstanceModel as V1InstanceModel;
+use Vazaha\Mastodon\Models\InstanceModel as ModelsInstanceModel;
+use Vazaha\Mastodon\Models\PrivacyPolicyModel;
+use Vazaha\Mastodon\Models\TermsOfServiceModel;
+use Vazaha\Mastodon\Models\V1\InstanceModel;
 use Vazaha\Mastodon\Requests\Instance\ActivityRequest;
 use Vazaha\Mastodon\Requests\Instance\DomainBlocksRequest;
 use Vazaha\Mastodon\Requests\Instance\ExtendedDescriptionRequest;
 use Vazaha\Mastodon\Requests\Instance\PeersRequest;
+use Vazaha\Mastodon\Requests\Instance\PrivacyPolicyRequest;
 use Vazaha\Mastodon\Requests\Instance\RulesRequest;
+use Vazaha\Mastodon\Requests\Instance\TermsOfServiceDateRequest;
+use Vazaha\Mastodon\Requests\Instance\TermsOfServiceRequest;
+use Vazaha\Mastodon\Requests\Instance\TranslationLanguagesRequest;
 use Vazaha\Mastodon\Requests\Instance\V1Request;
 use Vazaha\Mastodon\Requests\Instance\V2Request;
 use Vazaha\Mastodon\Results\DomainBlockResult;
@@ -98,6 +104,26 @@ class InstanceProxy extends Proxy
     }
 
     /**
+     * View privacy policy.
+     *
+     * @see https://docs.joinmastodon.org/methods/instance/#privacy_policy
+     */
+    public function privacyPolicy(
+    ): PrivacyPolicyModel {
+        $result = $this->apiClient->send(new PrivacyPolicyRequest(
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\PrivacyPolicyModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
      * List of rules.
      *
      * @return \Vazaha\Mastodon\Results\RuleResult<array-key, \Vazaha\Mastodon\Models\RuleModel>
@@ -115,12 +141,75 @@ class InstanceProxy extends Proxy
     }
 
     /**
-     * (DEPRECATED) View server information (V1).
+     * View terms of service.
+     *
+     * @see https://docs.joinmastodon.org/methods/instance/#terms_of_service
+     */
+    public function termsOfService(
+    ): TermsOfServiceModel {
+        $result = $this->apiClient->send(new TermsOfServiceRequest(
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\TermsOfServiceModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
+     * View a specific version of the terms of service.
+     *
+     * @param string $date the effective date of the terms of service
+     *
+     * @see https://docs.joinmastodon.org/methods/instance/#terms_of_service_date
+     */
+    public function termsOfServiceDate(
+        string $date,
+    ): TermsOfServiceModel {
+        $result = $this->apiClient->send(new TermsOfServiceDateRequest(
+            $date,
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\TermsOfServiceModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
+     * View translation languages.
+     *
+     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/instance/#translation_languages
+     */
+    public function translationLanguages(
+    ): EmptyOrUnknownResult {
+        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
+        $models = $this->apiClient
+            ->send(new TranslationLanguagesRequest(
+            ));
+
+        return $models;
+    }
+
+    /**
+     * View server information (v1).
      *
      * @see https://docs.joinmastodon.org/methods/instance/#v1
+     *
+     * @deprecated
      */
     public function v1(
-    ): V1InstanceModel {
+    ): InstanceModel {
         $result = $this->apiClient->send(new V1Request(
         ));
 
@@ -140,7 +229,7 @@ class InstanceProxy extends Proxy
      * @see https://docs.joinmastodon.org/methods/instance/#v2
      */
     public function v2(
-    ): InstanceModel {
+    ): ModelsInstanceModel {
         $result = $this->apiClient->send(new V2Request(
         ));
 

@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\ScheduledStatusModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ScheduledStatusModel> $models
- * @property \Vazaha\Mastodon\Requests\ScheduledStatusRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\ScheduledStatusResult<array-key, \Vazaha\Mastodon\Models\ScheduledStatusModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\ScheduledStatusResult<array-key, \Vazaha\Mastodon\Models\ScheduledStatusModel> getPreviousPage()

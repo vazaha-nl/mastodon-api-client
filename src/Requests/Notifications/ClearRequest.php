@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
  */
 final class ClearRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/notifications/#clear
+     */
     public function __construct(
     ) {
     }

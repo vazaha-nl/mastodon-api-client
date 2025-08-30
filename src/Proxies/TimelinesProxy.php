@@ -11,6 +11,7 @@ namespace Vazaha\Mastodon\Proxies;
 use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\Requests\Timelines\DirectRequest;
 use Vazaha\Mastodon\Requests\Timelines\HomeRequest;
+use Vazaha\Mastodon\Requests\Timelines\LinkRequest;
 use Vazaha\Mastodon\Requests\Timelines\ListRequest;
 use Vazaha\Mastodon\Requests\Timelines\PublicRequest;
 use Vazaha\Mastodon\Requests\Timelines\TagRequest;
@@ -19,16 +20,18 @@ use Vazaha\Mastodon\Results\StatusResult;
 class TimelinesProxy extends Proxy
 {
     /**
-     * (DEPRECATED) View direct timeline.
+     * View direct timeline.
      *
-     * @param ?string $max_id   return results older than ID
-     * @param ?string $since_id return results newer than ID
-     * @param ?string $min_id   return results immediately newer than ID
+     * @see https://docs.joinmastodon.org/methods/timelines/#direct
+     *
+     * @deprecated
+     *
+     * @param ?string $max_id   All results returned will be lesser than this ID. In effect, sets an upper bound on results.
+     * @param ?string $since_id All results returned will be greater than this ID. In effect, sets a lower bound on results.
+     * @param ?string $min_id   Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
      * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
-     *
-     * @see https://docs.joinmastodon.org/methods/timelines/#direct
      */
     public function direct(
         ?string $max_id = null,
@@ -51,9 +54,9 @@ class TimelinesProxy extends Proxy
     /**
      * View home timeline.
      *
-     * @param ?string $max_id   return results older than ID
-     * @param ?string $since_id return results newer than ID
-     * @param ?string $min_id   return results immediately newer than ID
+     * @param ?string $max_id   All results returned will be lesser than this ID. In effect, sets an upper bound on results.
+     * @param ?string $since_id All results returned will be greater than this ID. In effect, sets a lower bound on results.
+     * @param ?string $min_id   Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
      * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
@@ -79,12 +82,45 @@ class TimelinesProxy extends Proxy
     }
 
     /**
+     * View link timeline.
+     *
+     * @param string  $url      the URL of the trending article
+     * @param ?string $max_id   All results returned will be lesser than this ID. In effect, sets an upper bound on results.
+     * @param ?string $since_id All results returned will be greater than this ID. In effect, sets a lower bound on results.
+     * @param ?string $min_id   Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
+     * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
+     *
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/timelines/#link
+     */
+    public function link(
+        string $url,
+        ?string $max_id = null,
+        ?string $since_id = null,
+        ?string $min_id = null,
+        ?int $limit = null,
+    ): StatusResult {
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
+        $models = $this->apiClient
+            ->send(new LinkRequest(
+                $url,
+                $max_id,
+                $since_id,
+                $min_id,
+                $limit,
+            ));
+
+        return $models;
+    }
+
+    /**
      * View list timeline.
      *
      * @param string  $list_id  local ID of the List in the database
-     * @param ?string $max_id   return results older than ID
-     * @param ?string $since_id return results newer than ID
-     * @param ?string $min_id   return results immediately newer than ID
+     * @param ?string $max_id   All results returned will be lesser than this ID. In effect, sets an upper bound on results.
+     * @param ?string $since_id All results returned will be greater than this ID. In effect, sets a lower bound on results.
+     * @param ?string $min_id   Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
      * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
@@ -117,9 +153,9 @@ class TimelinesProxy extends Proxy
      * @param ?bool   $local      show only local statuses? Defaults to false
      * @param ?bool   $remote     show only remote statuses? Defaults to false
      * @param ?bool   $only_media show only statuses with media attached? Defaults to false
-     * @param ?string $max_id     return results older than ID
-     * @param ?string $since_id   return results newer than ID
-     * @param ?string $min_id     return results immediately newer than ID
+     * @param ?string $max_id     All results returned will be lesser than this ID. In effect, sets an upper bound on results.
+     * @param ?string $since_id   All results returned will be greater than this ID. In effect, sets a lower bound on results.
+     * @param ?string $min_id     Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
      * @param ?int    $limit      Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
@@ -160,9 +196,9 @@ class TimelinesProxy extends Proxy
      * @param ?bool             $local      return only local statuses? Defaults to false
      * @param ?bool             $remote     return only remote statuses? Defaults to false
      * @param ?bool             $only_media return only statuses with media attachments? Defaults to false
-     * @param ?string           $max_id     return results older than ID
-     * @param ?string           $since_id   return results newer than ID
-     * @param ?string           $min_id     return results immediately newer than ID
+     * @param ?string           $max_id     All results returned will be lesser than this ID. In effect, sets an upper bound on results.
+     * @param ?string           $since_id   All results returned will be greater than this ID. In effect, sets a lower bound on results.
+     * @param ?string           $min_id     Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
      * @param ?int              $limit      Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>

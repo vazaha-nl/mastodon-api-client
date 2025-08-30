@@ -27,6 +27,7 @@ class ResultFactory
         RequestInterface $request,
         ResponseInterface $response,
     ): ResultInterface {
+        // @phpstan-ignore function.alreadyNarrowedType
         if (!is_a($className, Result::class, true)) {
             throw new \LogicException($className . ' is not a subclass of ' . Result::class);
         }

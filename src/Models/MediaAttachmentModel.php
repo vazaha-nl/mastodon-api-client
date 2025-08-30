@@ -35,7 +35,7 @@ class MediaAttachmentModel extends Model
     /**
      * The location of a scaled-down preview of the attachment.
      */
-    public string $preview_url;
+    public ?string $preview_url = null;
 
     /**
      * The location of the full-size original attachment on the remote website.
@@ -45,7 +45,7 @@ class MediaAttachmentModel extends Model
     /**
      * Metadata returned by Paperclip.
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $meta;
 
@@ -53,14 +53,14 @@ class MediaAttachmentModel extends Model
      * Alternate text that describes what is in the media attachment, to be used
      * for the visually impaired or when media attachments do not load.
      */
-    public string $description;
+    public ?string $description = null;
 
     /**
      * A hash computed by [the BlurHash
      * algorithm](https://github.com/woltapp/blurhash), for generating colorful
      * preview thumbnails when media has not been downloaded yet.
      */
-    public string $blurhash;
+    public ?string $blurhash = null;
 
     /**
      * A shorter URL for the attachment.

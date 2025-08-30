@@ -40,5 +40,5 @@ class CustomEmojiModel extends Model
     /**
      * Used for sorting custom emoji in the picker.
      */
-    public string $category;
+    public ?string $category = null;
 }

@@ -26,6 +26,8 @@ final class RevokeRequest extends Request implements RequestInterface
      * @param string $client_id     the client ID, obtained during app registration
      * @param string $client_secret the client secret, obtained during app registration
      * @param string $token         the previously obtained token, to be invalidated
+     *
+     * @see https://docs.joinmastodon.org/methods/oauth/#revoke
      */
     public function __construct(
         public string $client_id,

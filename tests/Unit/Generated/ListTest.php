@@ -19,7 +19,9 @@ class ListTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
+   "exclusive" : false,
    "id" : "12249",
+   "replies_policy" : "list",
    "title" : "Friends"
 }
 
@@ -28,8 +30,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -43,7 +43,6 @@ JSON;
         $model = ListModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = ListModel::sanitizePropertyName($property);

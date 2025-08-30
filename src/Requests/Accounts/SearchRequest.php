@@ -28,6 +28,8 @@ final class SearchRequest extends Request implements RequestInterface
      * @param ?int   $offset    skip the first n results
      * @param ?bool  $resolve   Attempt WebFinger lookup. Defaults to false. Use this when `q` is an exact address.
      * @param ?bool  $following Limit the search to users you are following. Defaults to false.
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#search
      */
     public function __construct(
         public string $q,

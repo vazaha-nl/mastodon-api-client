@@ -23,8 +23,10 @@ use Vazaha\Mastodon\Results\RelationshipResult;
 final class NoteRequest extends Request implements RequestInterface
 {
     /**
-     * @param string  $id      the ID of the Account in the database
+     * @param string  $id      the ID of the account
      * @param ?string $comment The comment to be set on that user. Provide an empty string or leave out this parameter to clear the currently set note.
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#note
      */
     public function __construct(
         public string $id,

@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\RelationshipModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\RelationshipModel> $models
- * @property \Vazaha\Mastodon\Requests\RelationshipRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\RelationshipResult<array-key, \Vazaha\Mastodon\Models\RelationshipModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\RelationshipResult<array-key, \Vazaha\Mastodon\Models\RelationshipModel> getPreviousPage()

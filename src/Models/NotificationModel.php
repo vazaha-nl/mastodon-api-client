@@ -28,6 +28,14 @@ class NotificationModel extends Model
     public string $type;
 
     /**
+     * Group key shared by similar notifications, to be used in the grouped
+     * notifications feature. Should be considered opaque, but ungrouped
+     * notifications can be assumed to have a `group_key` of the form
+     * `ungrouped-{notification_id}`.
+     */
+    public string $group_key;
+
+    /**
      * The timestamp of the notification.
      */
     public \DateTimeInterface $created_at;
@@ -49,4 +57,16 @@ class NotificationModel extends Model
      * notification is `admin.report`.
      */
     public ?ReportModel $report = null;
+
+    /**
+     * Summary of the event that caused follow relationships to be severed.
+     * Attached when `type` of the notification is `severed_relationships`.
+     */
+    public ?RelationshipSeveranceEventModel $event = null;
+
+    /**
+     * Moderation warning that caused the notification. Attached when `type` of
+     * the notification is `moderation_warning`.
+     */
+    public ?AccountWarningModel $moderation_warning = null;
 }

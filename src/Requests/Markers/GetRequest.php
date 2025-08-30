@@ -24,6 +24,8 @@ final class GetRequest extends Request implements RequestInterface
 {
     /**
      * @param null|list<string> $timeline Specify the timeline(s) for which markers should be fetched. Possible values: `home`, `notifications`. If not provided, an empty object will be returned.
+     *
+     * @see https://docs.joinmastodon.org/methods/markers/#get
      */
     public function __construct(
         public ?array $timeline = null,

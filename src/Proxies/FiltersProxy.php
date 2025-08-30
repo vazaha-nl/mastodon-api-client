@@ -44,11 +44,11 @@ class FiltersProxy extends Proxy
     /**
      * Create a filter.
      *
-     * @param string           $title               the name of the filter group
-     * @param list<string>     $context             Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
-     * @param ?string          $filter_action       The policy to be applied when the filter is matched. Specify `warn` or `hide`.
-     * @param ?int             $expires_in          How many seconds from now should the filter expire?
-     * @param null|list<mixed> $keywords_attributes keywords_attributes[][keyword]: A keyword to be added to the newly-created filter group
+     * @param string                       $title               the name of the filter group
+     * @param list<string>                 $context             Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
+     * @param ?string                      $filter_action       The policy to be applied when the filter is matched. Specify `warn`, `hide` or `blur`.
+     * @param ?int                         $expires_in          How many seconds from now should the filter expire?
+     * @param null|array<array-key, mixed> $keywords_attributes keywords_attributes[][keyword]: A keyword to be added to the newly-created filter group
      *
      * @see https://docs.joinmastodon.org/methods/filters/#create
      */
@@ -80,13 +80,15 @@ class FiltersProxy extends Proxy
     /**
      * Create a filter.
      *
+     * @see https://docs.joinmastodon.org/methods/filters/#create-v1
+     *
+     * @deprecated
+     *
      * @param string       $phrase       the text to be filtered
      * @param list<string> $context      Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
      * @param ?bool        $irreversible should the server irreversibly drop matching entities from home and notifications? Defaults to false
      * @param ?bool        $whole_word   should the filter consider word boundaries for this keyword? Defaults to false
      * @param ?int         $expires_in   Number of seconds from now that the filter should expire. Otherwise, `null` for a filter that doesn't expire.
-     *
-     * @see https://docs.joinmastodon.org/methods/filters/#create-v1
      */
     public function createV1(
         string $phrase,
@@ -137,11 +139,13 @@ class FiltersProxy extends Proxy
     /**
      * Remove a filter.
      *
+     * @see https://docs.joinmastodon.org/methods/filters/#delete-v1
+     *
+     * @deprecated
+     *
      * @param string $id the ID of the Filter in the database
      *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
-     *
-     * @see https://docs.joinmastodon.org/methods/filters/#delete-v1
      */
     public function deleteV1(
         string $id,
@@ -199,9 +203,11 @@ class FiltersProxy extends Proxy
     /**
      * View a single filter.
      *
-     * @param string $id the ID of the FilterKeyword in the database
-     *
      * @see https://docs.joinmastodon.org/methods/filters/#get-one-v1
+     *
+     * @deprecated
+     *
+     * @param string $id the ID of the FilterKeyword in the database
      */
     public function getOneV1(
         string $id,
@@ -223,9 +229,11 @@ class FiltersProxy extends Proxy
     /**
      * View your filters.
      *
-     * @return \Vazaha\Mastodon\Results\V1\FilterResult<array-key, \Vazaha\Mastodon\Models\V1\FilterModel>
-     *
      * @see https://docs.joinmastodon.org/methods/filters/#get-v1
+     *
+     * @deprecated
+     *
+     * @return \Vazaha\Mastodon\Results\V1\FilterResult<array-key, \Vazaha\Mastodon\Models\V1\FilterModel>
      */
     public function getV1(
     ): V1FilterResult {
@@ -367,14 +375,17 @@ class FiltersProxy extends Proxy
      * Add a status to a filter group.
      *
      * @param string $filter_id the ID of the Filter in the database
+     * @param string $status_id the status ID to be added to the filter group
      *
      * @see https://docs.joinmastodon.org/methods/filters/#statuses-add
      */
     public function statusesAdd(
         string $filter_id,
+        string $status_id,
     ): FilterStatusModel {
         $result = $this->apiClient->send(new StatusesAddRequest(
             $filter_id,
+            $status_id,
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\FilterStatusModel $model */
@@ -459,12 +470,12 @@ class FiltersProxy extends Proxy
     /**
      * Update a filter.
      *
-     * @param string            $id                  the ID of the Filter in the database
-     * @param ?string           $title               the name of the filter group
-     * @param null|list<string> $context             Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
-     * @param ?string           $filter_action       The policy to be applied when the filter is matched. Specify `warn` or `hide`.
-     * @param ?int              $expires_in          How many seconds from now should the filter expire?
-     * @param null|list<mixed>  $keywords_attributes keywords_attributes[][keyword]: A keyword to be added to the newly-created filter group
+     * @param string                       $id                  the ID of the Filter in the database
+     * @param ?string                      $title               the name of the filter group
+     * @param null|list<string>            $context             Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
+     * @param ?string                      $filter_action       The policy to be applied when the filter is matched. Specify `warn`, `hide` or `blur`.
+     * @param ?int                         $expires_in          How many seconds from now should the filter expire?
+     * @param null|array<array-key, mixed> $keywords_attributes keywords_attributes[][keyword]: A keyword to be added to the newly-created filter group
      *
      * @see https://docs.joinmastodon.org/methods/filters/#update
      */
@@ -498,14 +509,16 @@ class FiltersProxy extends Proxy
     /**
      * Update a filter.
      *
+     * @see https://docs.joinmastodon.org/methods/filters/#update-v1
+     *
+     * @deprecated
+     *
      * @param string       $id           the ID of the FilterKeyword in the database
      * @param string       $phrase       the text to be filtered
      * @param list<string> $context      specify at least one of `home`, `notifications`, `public`, `thread`, `account`
      * @param ?bool        $irreversible should the server irreversibly drop matching entities from home and notifications? Defaults to false
      * @param ?bool        $whole_word   should the filter consider word boundaries? Defaults to false
      * @param ?int         $expires_in   Number of seconds from now that the filter should expire. Otherwise, `null` for a filter that doesn't expire.
-     *
-     * @see https://docs.joinmastodon.org/methods/filters/#update-v1
      */
     public function updateV1(
         string $id,

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 use Ergebnis\PhpCsFixer\Config;
 
-$config = Config\Factory::fromRuleSet(Config\RuleSet\Php82::create());
+$config = Config\Factory::fromRuleSet(Config\RuleSet\Php81::create());
 
 $config->getFinder()->in(__DIR__)
     ->exclude([
         'var/',
     ]);
-$rules= $config->getRules();
+$rules = $config->getRules();
 $config->setRules(
     array_merge(
         $config->getRules(),
@@ -23,6 +23,7 @@ $config->setRules(
             'return_assignment' => false,
             'yoda_style' => false,
             'no_unused_imports' => true,
+            'trim_array_spaces' => true,
         ]
     )
 );

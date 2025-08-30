@@ -19,9 +19,22 @@ class TranslationTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "content" : "<p>Hola mundo</p>",
-   "detected_source_language" : "en",
-   "provider" : "DeepL.com"
+   "content" : "<p>Should I stay or should I go?</p>",
+   "detected_source_language" : "ja",
+   "media_attachments" : [],
+   "poll" : {
+      "id" : "34858",
+      "options" : [
+         {
+            "title" : "Stay"
+         },
+         {
+            "title" : "Go"
+         }
+      ]
+   },
+   "provider" : "DeepL.com",
+   "spoiler_text" : ""
 }
 
 JSON;
@@ -29,8 +42,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -44,7 +55,6 @@ JSON;
         $model = TranslationModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = TranslationModel::sanitizePropertyName($property);

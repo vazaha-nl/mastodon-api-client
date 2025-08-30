@@ -15,19 +15,25 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Results\MediaAttachmentResult;
 
 /**
- * (DEPRECATED) Upload media as an attachment.
+ * Upload media as an attachment (v1).
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\MediaAttachmentResult>
  *
  * @see https://docs.joinmastodon.org/methods/media/#v1
+ *
+ * @deprecated
  */
 final class V1Request extends Request implements RequestInterface
 {
     /**
+     * @see https://docs.joinmastodon.org/methods/media/#v1
+     *
+     * @deprecated
+     *
      * @param UploadFile  $file        The file to be attached, encoded using multipart form data. The file must have a MIME type.
      * @param ?UploadFile $thumbnail   the custom thumbnail of the media to be attached, encoded using multipart form data
      * @param ?string     $description a plain-text description of the media, for accessibility purposes
-     * @param ?string     $focus       Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See [Focal points for cropping media thumbnails]({{< relref "api/guidelines#focal-points" >}}) for more information.
+     * @param ?string     $focus       Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0. See {@link https://docs.joinmastodon.org/api/guidelines#focal-points Focal points for cropping media thumbnails} for more information.
      */
     public function __construct(
         public UploadFile $file,

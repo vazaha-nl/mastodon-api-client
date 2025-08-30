@@ -24,6 +24,8 @@ final class KeywordsDeleteRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the FilterKeyword in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#keywords-delete
      */
     public function __construct(
         public string $id,

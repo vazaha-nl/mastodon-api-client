@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models;
 
 use Vazaha\Mastodon\Abstracts\Model;
+use Vazaha\Mastodon\Collections\InstanceIconCollection;
 use Vazaha\Mastodon\Collections\RuleCollection;
 
 /**
@@ -19,7 +20,7 @@ use Vazaha\Mastodon\Collections\RuleCollection;
 class InstanceModel extends Model
 {
     /**
-     * The domain name of the instance.
+     * The WebFinger domain name of the server.
      */
     public string $domain;
 
@@ -29,13 +30,13 @@ class InstanceModel extends Model
     public string $title;
 
     /**
-     * The version of Mastodon installed on the instance.
+     * The version of Mastodon installed on the server.
      */
     public string $version;
 
     /**
-     * The URL for the source code of the software running on this instance, in
-     * keeping with AGPL license requirements.
+     * The URL for the source code of the software running on this server, per the
+     * AGPL license requirements.
      */
     public string $source_url;
 
@@ -45,18 +46,23 @@ class InstanceModel extends Model
     public string $description;
 
     /**
-     * Usage data for this instance.
+     * Usage data for this server.
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $usage;
 
     /**
-     * An image used to represent this instance.
+     * An image used to represent this server.
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $thumbnail;
+
+    /**
+     * The list of available size variants for this server's configured icon.
+     */
+    public InstanceIconCollection $icon;
 
     /**
      * Primary languages of the website and its staff.
@@ -68,21 +74,33 @@ class InstanceModel extends Model
     /**
      * Configured values and limits for this website.
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $configuration;
 
     /**
      * Information about registering for this website.
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $registrations;
 
     /**
+     * Machine-readable API version information that allows clients to determine
+     * which API endpoints and features are available on this server. This
+     * provides a more reliable method for capability detection than parsing
+     * human-readable version strings, especially for forks and development
+     * builds. It contains at least a `mastodon` attribute, and other
+     * implementations may have their own additional attributes.
+     *
+     * @var array<array-key, mixed>
+     */
+    public array $api_versions;
+
+    /**
      * Hints related to contacting a representative of the website.
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $contact;
 

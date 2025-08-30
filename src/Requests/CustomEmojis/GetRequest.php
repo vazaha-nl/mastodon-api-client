@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\CustomEmojiResult;
  */
 final class GetRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/custom_emojis/#get
+     */
     public function __construct(
     ) {
     }

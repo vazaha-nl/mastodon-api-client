@@ -14,15 +14,21 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 /**
- * (REMOVED) Dismiss a single notification.
+ * Dismiss a single notification.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyOrUnknownResult>
  *
  * @see https://docs.joinmastodon.org/methods/notifications/#dismiss-deprecated
+ *
+ * @deprecated
  */
 final class DismissDeprecatedRequest extends Request implements RequestInterface
 {
     /**
+     * @see https://docs.joinmastodon.org/methods/notifications/#dismiss-deprecated
+     *
+     * @deprecated
+     *
      * @param string $id the ID of the notification in the database
      */
     public function __construct(

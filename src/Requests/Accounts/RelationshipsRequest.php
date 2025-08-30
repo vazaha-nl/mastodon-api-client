@@ -23,10 +23,14 @@ use Vazaha\Mastodon\Results\RelationshipResult;
 final class RelationshipsRequest extends Request implements RequestInterface
 {
     /**
-     * @param null|list<mixed> $id check relationships for the provided account IDs
+     * @param null|list<string> $id             check relationships for the provided account IDs
+     * @param ?bool             $with_suspended whether relationships should be returned for suspended users, defaults to false
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#relationships
      */
     public function __construct(
         public ?array $id = null,
+        public ?bool $with_suspended = null,
     ) {
     }
 
@@ -39,6 +43,7 @@ final class RelationshipsRequest extends Request implements RequestInterface
     {
         return [
             'id' => $this->id,
+            'with_suspended' => $this->with_suspended,
         ];
     }
 

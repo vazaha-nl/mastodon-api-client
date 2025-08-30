@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\Admin\TagModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\TagModel> $models
- * @property \Vazaha\Mastodon\Requests\Admin\TagRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\Admin\TagResult<array-key, \Vazaha\Mastodon\Models\Admin\TagModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\Admin\TagResult<array-key, \Vazaha\Mastodon\Models\Admin\TagModel> getPreviousPage()

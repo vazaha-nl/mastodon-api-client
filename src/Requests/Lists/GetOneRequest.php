@@ -23,7 +23,9 @@ use Vazaha\Mastodon\Results\ListResult;
 final class GetOneRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $id the ID of the List in the database
+     * @param string $id the ID of the list
+     *
+     * @see https://docs.joinmastodon.org/methods/lists/#get-one
      */
     public function __construct(
         public string $id,

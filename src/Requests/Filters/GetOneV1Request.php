@@ -19,10 +19,16 @@ use Vazaha\Mastodon\Results\V1\FilterResult;
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\V1\FilterResult>
  *
  * @see https://docs.joinmastodon.org/methods/filters/#get-one-v1
+ *
+ * @deprecated
  */
 final class GetOneV1Request extends Request implements RequestInterface
 {
     /**
+     * @see https://docs.joinmastodon.org/methods/filters/#get-one-v1
+     *
+     * @deprecated
+     *
      * @param string $id the ID of the FilterKeyword in the database
      */
     public function __construct(

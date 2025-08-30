@@ -47,6 +47,10 @@ class MethodsProxy extends Proxy
 
     protected FollowedTagsProxy $followedTags;
 
+    protected GroupedNotificationsProxy $groupedNotifications;
+
+    protected HealthProxy $health;
+
     protected InstanceProxy $instance;
 
     protected ListsProxy $lists;
@@ -59,6 +63,8 @@ class MethodsProxy extends Proxy
 
     protected NotificationsProxy $notifications;
 
+    protected NotificationsAlphaProxy $notificationsAlpha;
+
     protected OauthProxy $oauth;
 
     protected OembedProxy $oembed;
@@ -66,6 +72,8 @@ class MethodsProxy extends Proxy
     protected PollsProxy $polls;
 
     protected PreferencesProxy $preferences;
+
+    protected ProfileProxy $profile;
 
     protected ProofsProxy $proofs;
 
@@ -328,7 +336,35 @@ class MethodsProxy extends Proxy
     }
 
     /**
-     * Discover information about a Mastodon website.
+     * Receive grouped notifications for activity on your account or statuses.
+     *
+     * @see https://docs.joinmastodon.org/methods/grouped_notifications/
+     */
+    public function groupedNotifications(): GroupedNotificationsProxy
+    {
+        if (!isset($this->groupedNotifications)) {
+            $this->groupedNotifications = new GroupedNotificationsProxy($this->apiClient);
+        }
+
+        return $this->groupedNotifications;
+    }
+
+    /**
+     * Check the health of the web process for the instance.
+     *
+     * @see https://docs.joinmastodon.org/methods/health/
+     */
+    public function health(): HealthProxy
+    {
+        if (!isset($this->health)) {
+            $this->health = new HealthProxy($this->apiClient);
+        }
+
+        return $this->health;
+    }
+
+    /**
+     * Discover information about a Mastodon server.
      *
      * @see https://docs.joinmastodon.org/methods/instance/
      */
@@ -370,7 +406,7 @@ class MethodsProxy extends Proxy
     }
 
     /**
-     *  Attach media to authored statuses. See Using Mastodon > Posting toots > Attachments for more information about size and format limits.
+     *  Attach media to authored statuses. See Using Mastodon > Posting to your profile > Attachments for more information about size and format limits.
      *
      * @see https://docs.joinmastodon.org/methods/media/
      */
@@ -409,6 +445,20 @@ class MethodsProxy extends Proxy
         }
 
         return $this->notifications;
+    }
+
+    /**
+     * Receive notifications for activity on your account or statuses.
+     *
+     * @see https://docs.joinmastodon.org/methods/notifications_alpha/
+     */
+    public function notificationsAlpha(): NotificationsAlphaProxy
+    {
+        if (!isset($this->notificationsAlpha)) {
+            $this->notificationsAlpha = new NotificationsAlphaProxy($this->apiClient);
+        }
+
+        return $this->notificationsAlpha;
     }
 
     /**
@@ -465,6 +515,20 @@ class MethodsProxy extends Proxy
         }
 
         return $this->preferences;
+    }
+
+    /**
+     * Methods concerning profiles.
+     *
+     * @see https://docs.joinmastodon.org/methods/profile/
+     */
+    public function profile(): ProfileProxy
+    {
+        if (!isset($this->profile)) {
+            $this->profile = new ProfileProxy($this->apiClient);
+        }
+
+        return $this->profile;
     }
 
     /**

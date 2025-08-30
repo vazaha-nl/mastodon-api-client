@@ -19,9 +19,16 @@ use Vazaha\Mastodon\Results\V1\FilterResult;
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\V1\FilterResult>
  *
  * @see https://docs.joinmastodon.org/methods/filters/#get-v1
+ *
+ * @deprecated
  */
 final class GetV1Request extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/filters/#get-v1
+     *
+     * @deprecated
+     */
     public function __construct(
     ) {
     }

@@ -23,9 +23,11 @@ use Vazaha\Mastodon\Results\RelationshipResult;
 final class MuteRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $id            the ID of the Account in the database
+     * @param string $id            the ID of the account
      * @param ?bool  $notifications mute notifications in addition to statuses? Defaults to true
      * @param ?int   $duration      How long the mute should last, in seconds. Defaults to 0 (indefinite).
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#mute
      */
     public function __construct(
         public string $id,

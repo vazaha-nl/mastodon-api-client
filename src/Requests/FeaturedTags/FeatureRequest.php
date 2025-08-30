@@ -24,6 +24,8 @@ final class FeatureRequest extends Request implements RequestInterface
 {
     /**
      * @param string $name the hashtag to be featured, without the hash sign
+     *
+     * @see https://docs.joinmastodon.org/methods/featured_tags/#feature
      */
     public function __construct(
         public string $name,

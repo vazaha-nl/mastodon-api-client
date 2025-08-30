@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models;
 
 use Vazaha\Mastodon\Abstracts\Model;
+use Vazaha\Mastodon\Collections\PreviewCardAuthorCollection;
 
 /**
  * Represents a rich preview card that is generated using OpenGraph tags from a URL.
@@ -38,12 +39,19 @@ class PreviewCardModel extends Model
     public string $type;
 
     /**
-     * The author of the original resource.
+     * Fediverse account of the authors of the original resource.
+     */
+    public PreviewCardAuthorCollection $authors;
+
+    /**
+     * The author of the original resource. Deprecated since 4.3.0, clients should
+     * use `authors` instead.
      */
     public string $author_name;
 
     /**
-     * A link to the author of the original resource.
+     * A link to the author of the original resource. Deprecated since 4.3.0,
+     * clients should use `authors` instead.
      */
     public string $author_url;
 

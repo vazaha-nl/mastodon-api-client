@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\InstanceResult;
  */
 final class V2Request extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/instance/#v2
+     */
     public function __construct(
     ) {
     }

@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\Trends\LinkModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Trends\LinkModel> $models
- * @property \Vazaha\Mastodon\Requests\Trends\LinkRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\Trends\LinkResult<array-key, \Vazaha\Mastodon\Models\Trends\LinkModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\Trends\LinkResult<array-key, \Vazaha\Mastodon\Models\Trends\LinkModel> getPreviousPage()
