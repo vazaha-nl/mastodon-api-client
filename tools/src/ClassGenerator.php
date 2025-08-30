@@ -33,7 +33,7 @@ class ClassGenerator
             $entity = new Entity($name);
             $classTemplate = new ModelClassTemplate($entity);
 
-            printf('Generating model class for ' . $entity->name . \PHP_EOL);
+            echo 'Generating model class for ' . $entity->name . \PHP_EOL;
             $classTemplate->write(true);
         }
     }
@@ -44,7 +44,7 @@ class ClassGenerator
             $entity = new Entity($name);
             $classTemplate = new CollectionClassTemplate($entity);
 
-            printf('Generating collection class for ' . $entity->name . \PHP_EOL);
+            echo 'Generating collection class for ' . $entity->name . \PHP_EOL;
             $classTemplate->write(true);
         }
     }
@@ -53,7 +53,7 @@ class ClassGenerator
     {
         foreach ($this->methodSpecsRepository->getAllMethodSpecs() as $spec) {
             $template = new RequestClassTemplate($spec);
-            printf('Generating request class for ' . $template->entity->name . \PHP_EOL);
+            echo 'Generating request class for ' . $template->entity->name . \PHP_EOL;
             $template->write(true);
         }
     }
@@ -64,7 +64,7 @@ class ClassGenerator
             $entity = new Entity($entityName);
 
             $template = new ResultClassTemplate($entity);
-            printf('Generating result class for ' . $template->entity->name . \PHP_EOL);
+            echo 'Generating result class for ' . $template->entity->name . \PHP_EOL;
             $template->write(true);
         }
     }
@@ -79,7 +79,7 @@ class ClassGenerator
         $entity = new Entity($entityName);
 
         if (isset($specs['methods'])) {
-            printf('Generating proxy class for ' . $entity->name . \PHP_EOL);
+            echo 'Generating proxy class for ' . $entity->name . \PHP_EOL;
 
             $template = new ProxyClassTemplate(
                 $entity,
@@ -91,7 +91,7 @@ class ClassGenerator
         }
 
         if (isset($specs['namespaces'])) {
-            printf('Generating proxy container class for ' . $entity->name . \PHP_EOL);
+            echo 'Generating proxy container class for ' . $entity->name . \PHP_EOL;
 
             $template = new ProxyContainerClassTemplate(
                 $entity,
@@ -123,7 +123,7 @@ class ClassGenerator
             }
 
             $entity = new Entity($entityName);
-            printf('Generating test class for ' . $entity->name . \PHP_EOL);
+            echo 'Generating test class for ' . $entity->name . \PHP_EOL;
             $template = new TestClassTemplate($entity, $spec);
             $template->write(true);
         }

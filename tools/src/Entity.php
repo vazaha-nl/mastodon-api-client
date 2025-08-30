@@ -23,7 +23,7 @@ class Entity
     public function getDirectory(ClassType $classType): string
     {
         if ($classType === ClassType::TEST) {
-            return rtrim(
+            return mb_rtrim(
                 $this->projectRoot .
                 '/tests/Unit/Generated/' .
                 $this->getRelativeDirectory(),
@@ -32,7 +32,7 @@ class Entity
         }
 
         // TODO sep. dir for Tests
-        return rtrim(
+        return mb_rtrim(
             $this->projectRoot .
             sprintf(
                 '/src/%s',
@@ -47,7 +47,7 @@ class Entity
         if ($classType === ClassType::TEST) {
             $namespace = 'Tests\\Unit\\Generated\\' . $this->getRelativeNamespace();
 
-            return rtrim($namespace, '\\');
+            return mb_rtrim($namespace, '\\');
         }
 
         $namespace = $this->rootNamespace . sprintf(
@@ -55,7 +55,7 @@ class Entity
             Str::plural($classType->value),
         ) . '\\' . $this->getRelativeNamespace();
 
-        return rtrim($namespace, '\\');
+        return mb_rtrim($namespace, '\\');
     }
 
     public function getFQN(ClassType $classType): string

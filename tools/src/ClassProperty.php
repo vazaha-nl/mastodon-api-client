@@ -9,7 +9,7 @@ use Tools\Enums\ClassType;
 
 class ClassProperty
 {
-    protected const TYPE_LOOKUP = [
+    protected const array TYPE_LOOKUP = [
         'integer' => 'int',
         'number' => 'int',
         'float' => 'float',
@@ -67,7 +67,7 @@ class ClassProperty
         // TODO move to resolve... fn
         if ($property->type === 'array') {
             // for phpstan....?
-            $property->typeHint ??= ($property->nullable ? 'null|' : '') . 'mixed[]';
+            $property->typeHint ??= ($property->nullable ? 'null|' : '') . 'array<array-key,mixed>';
         }
 
         return $property;
@@ -107,7 +107,7 @@ class ClassProperty
 
             if (preg_match('/array|hash/i', $subType)) {
                 $this->type = 'array';
-                $this->typeHint = ($this->nullable ? 'null|' : '') . 'array<mixed>';
+                $this->typeHint = ($this->nullable ? 'null|' : '') . 'array<array-key,mixed>';
                 $this->default = $this->nullable ? 'null' : '[]';
 
                 return;
