@@ -20,7 +20,7 @@ class ApiDocExtension extends AbstractExtension
 
     public function docblockString(string $content): string
     {
-        while (preg_match('/\[(.*)\](\(.*\))/', $content, $matches)) {
+        while (preg_match('/\[([^\]]*)\](\([^\)]*\))/', $content, $matches)) {
             $fullMatch = $matches[0];
             $text = $matches[1];
             $linkSpec = $matches[2];
