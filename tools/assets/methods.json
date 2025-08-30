@@ -306,7 +306,7 @@
         },
         "identity_proofs": {
           "deprecated": 1,
-          "description": "Identity proofs %}}",
+          "description": "Identity proofs ",
           "formParams": [],
           "method": "GET",
           "name": "identity_proofs",
@@ -461,7 +461,7 @@
         },
         "pin": {
           "deprecated": 1,
-          "description": "Feature account on your profile %}}",
+          "description": "Feature account on your profile ",
           "formParams": [],
           "method": "POST",
           "name": "pin",
@@ -758,7 +758,7 @@
         },
         "unpin": {
           "deprecated": 1,
-          "description": "Unfeature account from profile %}}",
+          "description": "Unfeature account from profile ",
           "formParams": [],
           "method": "POST",
           "name": "unpin",
@@ -3187,7 +3187,7 @@
         },
         "create-v1": {
           "deprecated": 1,
-          "description": "Create a filter %}}",
+          "description": "Create a filter ",
           "formParams": [
             {
               "description": "The text to be filtered.",
@@ -3259,7 +3259,7 @@
         },
         "delete-v1": {
           "deprecated": 1,
-          "description": "Remove a filter %}}",
+          "description": "Remove a filter ",
           "formParams": [],
           "method": "DELETE",
           "name": "delete-v1",
@@ -3317,7 +3317,7 @@
         },
         "get-one-v1": {
           "deprecated": 1,
-          "description": "View a single filter %}}",
+          "description": "View a single filter ",
           "formParams": [],
           "method": "GET",
           "name": "get-one-v1",
@@ -3339,7 +3339,7 @@
         },
         "get-v1": {
           "deprecated": 1,
-          "description": "View your filters %}}",
+          "description": "View your filters ",
           "formParams": [],
           "method": "GET",
           "name": "get-v1",
@@ -3647,7 +3647,7 @@
         },
         "update-v1": {
           "deprecated": 1,
-          "description": "Update a filter %}}",
+          "description": "Update a filter ",
           "formParams": [
             {
               "description": "The text to be filtered.",
@@ -4172,7 +4172,7 @@
         },
         "v1": {
           "deprecated": 1,
-          "description": "View server information (v1) %}}",
+          "description": "View server information (v1) ",
           "formParams": [],
           "method": "GET",
           "name": "v1",
@@ -4585,7 +4585,7 @@
         },
         "v1": {
           "deprecated": 1,
-          "description": "Upload media as an attachment (v1) %}}",
+          "description": "Upload media as an attachment (v1) ",
           "formParams": [
             {
               "description": "The file to be attached, encoded using multipart form data. The file must have a MIME type.",
@@ -4785,7 +4785,7 @@
         },
         "dismiss-deprecated": {
           "deprecated": 1,
-          "description": "Dismiss a single notification {{%",
+          "description": "Dismiss a single notification ",
           "formParams": [
             {
               "description": "The ID of the notification in the database.",
@@ -5616,7 +5616,7 @@
       "methods": {
         "get": {
           "deprecated": 1,
-          "description": "View identity proofs {{%",
+          "description": "View identity proofs ",
           "formParams": [],
           "method": "GET",
           "name": "get",
@@ -5929,7 +5929,7 @@
       "methods": {
         "v1": {
           "deprecated": 1,
-          "description": "Perform a search (v1) {{%",
+          "description": "Perform a search (v1) ",
           "formParams": [],
           "method": "GET",
           "name": "v1",
@@ -6143,7 +6143,7 @@
         },
         "card": {
           "deprecated": 1,
-          "description": "Fetch preview card %}}",
+          "description": "Fetch preview card ",
           "formParams": [],
           "method": "GET",
           "name": "card",
@@ -6769,7 +6769,7 @@
         },
         "v1": {
           "deprecated": 1,
-          "description": "View follow suggestions (v1) %}}",
+          "description": "View follow suggestions (v1) ",
           "formParams": [],
           "method": "GET",
           "name": "v1",
@@ -6935,7 +6935,7 @@
       "methods": {
         "direct": {
           "deprecated": 1,
-          "description": "View direct timeline %}}",
+          "description": "View direct timeline ",
           "formParams": [],
           "method": "GET",
           "name": "direct",
