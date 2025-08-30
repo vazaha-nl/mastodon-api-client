@@ -25,6 +25,8 @@ final class TranslateRequest extends Request implements RequestInterface
     /**
      * @param string  $id   the ID of the Status in the database
      * @param ?string $lang The status content will be translated into this language. Defaults to the user's current locale.
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#translate
      */
     public function __construct(
         public string $id,

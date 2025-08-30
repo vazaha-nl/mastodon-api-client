@@ -20,7 +20,7 @@ use Vazaha\Mastodon\Models\AccountModel;
 class InstanceModel extends Model
 {
     /**
-     * The domain name of the instance.
+     * The WebFinger domain name of the instance (not a URI/URL).
      */
     public string $uri;
 
@@ -52,14 +52,14 @@ class InstanceModel extends Model
     /**
      * URLs of interest for clients apps.
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $urls;
 
     /**
      * Statistics about how much information the instance contains.
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $stats;
 
@@ -93,14 +93,14 @@ class InstanceModel extends Model
     /**
      * Configured values and limits for this website.
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $configuration;
 
     /**
      * A user that can be contacted, as an alternative to `email`.
      */
-    public AccountModel $contact_account;
+    public ?AccountModel $contact_account = null;
 
     /**
      * An itemized list of rules for this website.

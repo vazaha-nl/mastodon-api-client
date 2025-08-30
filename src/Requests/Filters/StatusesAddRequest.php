@@ -24,9 +24,13 @@ final class StatusesAddRequest extends Request implements RequestInterface
 {
     /**
      * @param string $filter_id the ID of the Filter in the database
+     * @param string $status_id the status ID to be added to the filter group
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#statuses-add
      */
     public function __construct(
         public string $filter_id,
+        public string $status_id,
     ) {
     }
 
@@ -44,6 +48,7 @@ final class StatusesAddRequest extends Request implements RequestInterface
     public function getFormParams(): array
     {
         return [
+            'status_id' => $this->status_id,
         ];
     }
 

@@ -24,6 +24,8 @@ final class UnfavouriteRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#unfavourite
      */
     public function __construct(
         public string $id,

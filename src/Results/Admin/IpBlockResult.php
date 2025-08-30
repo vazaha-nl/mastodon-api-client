@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\Admin\IpBlockModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\IpBlockModel> $models
- * @property \Vazaha\Mastodon\Requests\Admin\IpBlockRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\IpBlockModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\IpBlockModel> getPreviousPage()

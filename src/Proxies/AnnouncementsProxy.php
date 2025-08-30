@@ -66,19 +66,15 @@ class AnnouncementsProxy extends Proxy
     /**
      * View all announcements.
      *
-     * @param ?bool $with_dismissed If true, response will include announcements dismissed by the user. Defaults to false.
-     *
      * @return \Vazaha\Mastodon\Results\AnnouncementResult<array-key, \Vazaha\Mastodon\Models\AnnouncementModel>
      *
      * @see https://docs.joinmastodon.org/methods/announcements/#get
      */
     public function get(
-        ?bool $with_dismissed = null,
     ): AnnouncementResult {
         /** @var \Vazaha\Mastodon\Results\AnnouncementResult<array-key, \Vazaha\Mastodon\Models\AnnouncementModel> */
         $models = $this->apiClient
             ->send(new GetRequest(
-                $with_dismissed,
             ));
 
         return $models;

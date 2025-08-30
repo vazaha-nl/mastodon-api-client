@@ -24,7 +24,9 @@ final class UpdateRequest extends Request implements RequestInterface
 {
     /**
      * @param string  $id           the ID of the ScheduledStatus in the database
-     * @param ?string $scheduled_at ISO 8601 Datetime at which the status will be published. Must be at least 5 minutes into the future.
+     * @param ?string $scheduled_at Datetime at which the status will be published. Must be at least 5 minutes into the future.
+     *
+     * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#update
      */
     public function __construct(
         public string $id,

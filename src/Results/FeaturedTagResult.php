@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\FeaturedTagModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel> $models
- * @property \Vazaha\Mastodon\Requests\FeaturedTagRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\FeaturedTagResult<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\FeaturedTagResult<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel> getPreviousPage()

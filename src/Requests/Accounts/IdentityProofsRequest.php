@@ -14,16 +14,22 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Results\IdentityProofResult;
 
 /**
- * (DEPRECATED) Identity proofs.
+ * Identity proofs.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\IdentityProofResult>
  *
  * @see https://docs.joinmastodon.org/methods/accounts/#identity_proofs
+ *
+ * @deprecated
  */
 final class IdentityProofsRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $id the ID of the Account in the database
+     * @see https://docs.joinmastodon.org/methods/accounts/#identity_proofs
+     *
+     * @deprecated
+     *
+     * @param string $id the ID of the account
      */
     public function __construct(
         public string $id,

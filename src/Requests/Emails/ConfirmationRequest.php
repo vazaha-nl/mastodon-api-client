@@ -22,13 +22,19 @@ use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
  */
 final class ConfirmationRequest extends Request implements RequestInterface
 {
+    /**
+     * @param ?string $email if provided, updates the unconfirmed user's email before resending the confirmation email
+     *
+     * @see https://docs.joinmastodon.org/methods/emails/#confirmation
+     */
     public function __construct(
+        public ?string $email = null,
     ) {
     }
 
     public function getEndpoint(): string
     {
-        return '/api/v1/emails/confirmation';
+        return '/api/v1/emails/confirmations';
     }
 
     public function getQueryParams(): array
@@ -40,6 +46,7 @@ final class ConfirmationRequest extends Request implements RequestInterface
     public function getFormParams(): array
     {
         return [
+            'email' => $this->email,
         ];
     }
 

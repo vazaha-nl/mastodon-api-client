@@ -20,10 +20,9 @@ class FeaturedTagTest extends TestCase
         $this->json = <<<'JSON'
 {
    "id" : "627",
-   "last_status_at" : "2022-08-29T12:03:35.061Z",
+   "last_status_at" : "2022-08-29",
    "name" : "nowplaying",
-   "statuses_count" : 70,
-   "url" : "https://mastodon.social/@trwnh/tagged/nowplaying"
+   "statuses_count" : "70"
 }
 
 JSON;
@@ -31,8 +30,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -46,7 +43,6 @@ JSON;
         $model = FeaturedTagModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = FeaturedTagModel::sanitizePropertyName($property);

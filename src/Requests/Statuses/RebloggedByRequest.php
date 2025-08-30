@@ -25,6 +25,8 @@ final class RebloggedByRequest extends Request implements RequestInterface
     /**
      * @param string $id    the ID of the Status in the database
      * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#reblogged_by
      */
     public function __construct(
         public string $id,

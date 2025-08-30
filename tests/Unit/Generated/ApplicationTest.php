@@ -19,9 +19,14 @@ class ApplicationTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
-   "name" : "test app",
-   "vapid_key" : "BCk-QqERU0q-CfYZjcuB6lnyyOYfJ2AifKqfeGIm7Z-HiTU5T9eTG5GxVA0_OH5mMlI4UkkDTpaZwozy0TzdZ2M=",
-   "website" : null
+   "id" : "12348",
+   "name" : "Test Application",
+   "redirect_uris" : [],
+   "scopes" : [
+      "read",
+      "write",
+      "push"
+   ]
 }
 
 JSON;
@@ -29,8 +34,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -44,7 +47,6 @@ JSON;
         $model = ApplicationModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = ApplicationModel::sanitizePropertyName($property);

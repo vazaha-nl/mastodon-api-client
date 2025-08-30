@@ -24,6 +24,8 @@ final class UnassignRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Report in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/reports/#unassign
      */
     public function __construct(
         public string $id,

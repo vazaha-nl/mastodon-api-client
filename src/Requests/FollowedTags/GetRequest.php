@@ -24,6 +24,8 @@ final class GetRequest extends Request implements RequestInterface
 {
     /**
      * @param ?int $limit Maximum number of results to return. Defaults to 100 tags. Max 200 tags.
+     *
+     * @see https://docs.joinmastodon.org/methods/followed_tags/#get
      */
     public function __construct(
         public ?int $limit = null,

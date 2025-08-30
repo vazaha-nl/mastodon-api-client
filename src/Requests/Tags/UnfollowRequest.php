@@ -23,16 +23,18 @@ use Vazaha\Mastodon\Results\TagResult;
 final class UnfollowRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $id the name of the hashtag
+     * @param string $name the name of the hashtag, case-insensitive
+     *
+     * @see https://docs.joinmastodon.org/methods/tags/#unfollow
      */
     public function __construct(
-        public string $id,
+        public string $name,
     ) {
     }
 
     public function getEndpoint(): string
     {
-        return sprintf('/api/v1/tags/%s/unfollow', urlencode($this->id));
+        return sprintf('/api/v1/tags/%s/unfollow', urlencode($this->name));
     }
 
     public function getQueryParams(): array

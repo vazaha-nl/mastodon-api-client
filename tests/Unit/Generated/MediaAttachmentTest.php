@@ -33,11 +33,8 @@ class MediaAttachmentTest extends TestCase
          "duration" : 402.860408
       }
    },
-   "preview_url" : "https://files.mastodon.social/media_attachments/files/021/165/404/small/a31a4a46cd713cd2.mp3",
    "remote_url" : null,
-   "text_url" : "https://mastodon.social/media/5O4uILClVqBWx0NNgvo",
-   "type" : "audio",
-   "url" : "https://files.mastodon.social/media_attachments/files/021/165/404/original/a31a4a46cd713cd2.mp3"
+   "type" : "audio"
 }
 
 JSON;
@@ -45,8 +42,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -60,7 +55,6 @@ JSON;
         $model = MediaAttachmentModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = MediaAttachmentModel::sanitizePropertyName($property);

@@ -28,6 +28,13 @@ class WebPushSubscriptionModel extends Model
     public string $endpoint;
 
     /**
+     * If the push messages follow the standardized specifications
+     * (RFC8030+RFC8291+RFC8292). Else they follow a legacy version of the
+     * specifications (4th draft of RFC8291 and 1st draft of RFC8292).
+     */
+    public bool $standard;
+
+    /**
      * The streaming server's VAPID key.
      */
     public string $server_key;
@@ -35,7 +42,7 @@ class WebPushSubscriptionModel extends Model
     /**
      * Which alerts should be delivered to the `endpoint`.
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $alerts;
 }

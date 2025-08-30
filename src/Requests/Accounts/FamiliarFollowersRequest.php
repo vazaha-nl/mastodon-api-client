@@ -24,6 +24,8 @@ final class FamiliarFollowersRequest extends Request implements RequestInterface
 {
     /**
      * @param null|list<string> $id find familiar followers for the provided account IDs
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#familiar_followers
      */
     public function __construct(
         public ?array $id = null,

@@ -24,6 +24,8 @@ final class DeleteRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the DomainAllow in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#delete
      */
     public function __construct(
         public string $id,

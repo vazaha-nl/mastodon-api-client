@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\FeaturedTagResult;
  */
 final class GetRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/featured_tags/#get
+     */
     public function __construct(
     ) {
     }

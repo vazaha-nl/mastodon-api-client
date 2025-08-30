@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\DomainBlockModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\DomainBlockModel> $models
- * @property \Vazaha\Mastodon\Requests\DomainBlockRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\DomainBlockResult<array-key, \Vazaha\Mastodon\Models\DomainBlockModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\DomainBlockResult<array-key, \Vazaha\Mastodon\Models\DomainBlockModel> getPreviousPage()

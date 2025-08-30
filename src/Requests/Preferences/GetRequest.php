@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\PreferencesResult;
  */
 final class GetRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/preferences/#get
+     */
     public function __construct(
     ) {
     }

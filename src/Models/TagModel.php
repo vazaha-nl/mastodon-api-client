@@ -18,6 +18,12 @@ use Vazaha\Mastodon\Abstracts\Model;
 class TagModel extends Model
 {
     /**
+     * ID of the hashtag in the database. Useful for constructing URLs for the
+     * moderation tools & Admin API.
+     */
+    public string $id;
+
+    /**
      * The value of the hashtag after the # sign.
      */
     public string $name;
@@ -30,7 +36,7 @@ class TagModel extends Model
     /**
      * Usage statistics for given days (typically the past week).
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $history;
 
@@ -38,4 +44,10 @@ class TagModel extends Model
      * Whether the current token's authorized user is following this tag.
      */
     public ?bool $following = null;
+
+    /**
+     * Whether the current token's authorized user is featuring this tag on their
+     * profile.
+     */
+    public ?bool $featuring = null;
 }

@@ -26,9 +26,9 @@ class WebPushSubscriptionTest extends TestCase
       "poll" : false,
       "reblog" : false
    },
-   "endpoint" : "https://yourdomain.example/listener",
    "id" : 328183,
-   "server_key" : "BCk-QqERU0q-CfYZjcuB6lnyyOYfJ2AifKqfeGIm7Z-HiTU5T9eTG5GxVA0_OH5mMlI4UkkDTpaZwozy0TzdZ2M="
+   "server_key" : "BCk-QqERU0q-CfYZjcuB6lnyyOYfJ2AifKqfeGIm7Z-HiTU5T9eTG5GxVA0_OH5mMlI4UkkDTpaZwozy0TzdZ2M=",
+   "standard" : true
 }
 
 JSON;
@@ -36,8 +36,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -51,7 +49,6 @@ JSON;
         $model = WebPushSubscriptionModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = WebPushSubscriptionModel::sanitizePropertyName($property);

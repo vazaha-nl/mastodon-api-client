@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\StatusResult;
  */
 final class StatusesRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/admin/trends/#statuses
+     */
     public function __construct(
     ) {
     }

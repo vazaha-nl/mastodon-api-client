@@ -24,6 +24,8 @@ final class GetRequest extends Request implements RequestInterface
 {
     /**
      * @param ?int $limit Maximum number of results to return. Defaults to 100 blocks. Max 200 blocks.
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#get
      */
     public function __construct(
         public ?int $limit = null,

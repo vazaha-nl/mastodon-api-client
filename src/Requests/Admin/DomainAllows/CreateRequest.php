@@ -24,6 +24,8 @@ final class CreateRequest extends Request implements RequestInterface
 {
     /**
      * @param string $domain the domain to allow federation with
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#create
      */
     public function __construct(
         public string $domain,

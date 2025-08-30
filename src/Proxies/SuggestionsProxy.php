@@ -40,13 +40,15 @@ class SuggestionsProxy extends Proxy
     }
 
     /**
-     * (DEPRECATED) View follow suggestions (v1).
+     * View follow suggestions (v1).
+     *
+     * @see https://docs.joinmastodon.org/methods/suggestions/#v1
+     *
+     * @deprecated
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
      * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
-     *
-     * @see https://docs.joinmastodon.org/methods/suggestions/#v1
      */
     public function v1(
         ?int $limit = null,

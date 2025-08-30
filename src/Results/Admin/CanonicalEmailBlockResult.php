@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel> $models
- * @property \Vazaha\Mastodon\Requests\Admin\CanonicalEmailBlockRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel> getPreviousPage()

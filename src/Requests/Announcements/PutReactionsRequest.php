@@ -25,6 +25,8 @@ final class PutReactionsRequest extends Request implements RequestInterface
     /**
      * @param string $id   the ID of the Announcement in the database
      * @param string $name unicode emoji, or the shortcode of a custom emoji
+     *
+     * @see https://docs.joinmastodon.org/methods/announcements/#put-reactions
      */
     public function __construct(
         public string $id,

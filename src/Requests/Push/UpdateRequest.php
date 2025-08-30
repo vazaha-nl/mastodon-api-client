@@ -23,8 +23,10 @@ use Vazaha\Mastodon\Results\WebPushSubscriptionResult;
 final class UpdateRequest extends Request implements RequestInterface
 {
     /**
-     * @param null|list<mixed> $data   data[alerts][mention]: Receive mention notifications? Defaults to false
-     * @param ?string          $policy specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users
+     * @param null|array<array-key, mixed> $data   data[alerts][mention]: Receive mention notifications? Defaults to false
+     * @param ?string                      $policy specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users
+     *
+     * @see https://docs.joinmastodon.org/methods/push/#update
      */
     public function __construct(
         public ?array $data = null,

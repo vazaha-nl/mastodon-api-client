@@ -24,6 +24,8 @@ final class SourceRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the local ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#source
      */
     public function __construct(
         public string $id,

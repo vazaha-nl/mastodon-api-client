@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\Admin\TagResult;
  */
 final class TagsRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/admin/trends/#tags
+     */
     public function __construct(
     ) {
     }

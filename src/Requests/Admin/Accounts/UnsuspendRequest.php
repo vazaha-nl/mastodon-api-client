@@ -24,6 +24,8 @@ final class UnsuspendRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#unsuspend
      */
     public function __construct(
         public string $id,

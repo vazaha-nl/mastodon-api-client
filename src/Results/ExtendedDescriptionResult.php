@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\ExtendedDescriptionModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\ExtendedDescriptionModel> $models
- * @property \Vazaha\Mastodon\Requests\ExtendedDescriptionRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\ExtendedDescriptionResult<array-key, \Vazaha\Mastodon\Models\ExtendedDescriptionModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\ExtendedDescriptionResult<array-key, \Vazaha\Mastodon\Models\ExtendedDescriptionModel> getPreviousPage()

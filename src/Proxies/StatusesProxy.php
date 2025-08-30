@@ -26,6 +26,7 @@ use Vazaha\Mastodon\Requests\Statuses\FavouritedByRequest;
 use Vazaha\Mastodon\Requests\Statuses\FavouriteRequest;
 use Vazaha\Mastodon\Requests\Statuses\GetRequest;
 use Vazaha\Mastodon\Requests\Statuses\HistoryRequest;
+use Vazaha\Mastodon\Requests\Statuses\IndexRequest;
 use Vazaha\Mastodon\Requests\Statuses\MuteRequest;
 use Vazaha\Mastodon\Requests\Statuses\PinRequest;
 use Vazaha\Mastodon\Requests\Statuses\RebloggedByRequest;
@@ -38,6 +39,7 @@ use Vazaha\Mastodon\Requests\Statuses\UnpinRequest;
 use Vazaha\Mastodon\Requests\Statuses\UnreblogRequest;
 use Vazaha\Mastodon\Results\AccountResult;
 use Vazaha\Mastodon\Results\StatusEditResult;
+use Vazaha\Mastodon\Results\StatusResult;
 
 class StatusesProxy extends Proxy
 {
@@ -69,7 +71,7 @@ class StatusesProxy extends Proxy
      * Boost a status.
      *
      * @param string  $id         the ID of the Status in the database
-     * @param ?string $visibility Any visibility except `limited` or `direct` (i.e. `public`, `unlisted`, `private`). Defaults to public. Currently unused in UI.
+     * @param ?string $visibility Any visibility except `limited` or `direct` (i.e. `public`, `unlisted`, `private`). Defaults to public.
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#boost
      */
@@ -93,11 +95,13 @@ class StatusesProxy extends Proxy
     }
 
     /**
-     * (DEPRECATED) Fetch preview card.
-     *
-     * @param string $id the local ID of the Status in the database
+     * Fetch preview card.
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#card
+     *
+     * @deprecated
+     *
+     * @param string $id the local ID of the Status in the database
      */
     public function card(
         string $id,
@@ -143,15 +147,15 @@ class StatusesProxy extends Proxy
     /**
      * Post a new status.
      *
-     * @param string                    $status         The text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.
-     * @param list<string>              $media_ids      Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
-     * @param null|array<string, mixed> $poll           poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
-     * @param ?string                   $in_reply_to_id ID of the status being replied to, if status is a reply
-     * @param ?bool                     $sensitive      mark status and attached media as sensitive? Defaults to false
-     * @param ?string                   $spoiler_text   Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field.
-     * @param ?string                   $visibility     sets the visibility of the posted status to `public`, `unlisted`, `private`, `direct`
-     * @param ?string                   $language       ISO 639 language code for this status
-     * @param ?string                   $scheduled_at   ISO 8601 Datetime at which to schedule a status. Providing this parameter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future.
+     * @param string                       $status         The text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.
+     * @param list<string>                 $media_ids      Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+     * @param null|array<array-key, mixed> $poll           poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
+     * @param ?string                      $in_reply_to_id ID of the status being replied to, if status is a reply
+     * @param ?bool                        $sensitive      mark status and attached media as sensitive? Defaults to false
+     * @param ?string                      $spoiler_text   Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field.
+     * @param ?string                      $visibility     sets the visibility of the posted status to `public`, `unlisted`, `private`, `direct`
+     * @param ?string                      $language       ISO 639-1 language code for this status
+     * @param ?string                      $scheduled_at   Datetime at which to schedule a status. Providing this parameter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future.
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#create
      */
@@ -191,15 +195,18 @@ class StatusesProxy extends Proxy
     /**
      * Delete a status.
      *
-     * @param string $id the ID of the Status in the database
+     * @param string $id           the ID of the Status in the database
+     * @param ?bool  $delete_media Whether to immediately delete the post's media attachments. If omitted or `false`, media attachments may be kept for approximately 24 hours so they can be re-used in a new post.
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#delete
      */
     public function delete(
         string $id,
+        ?bool $delete_media = null,
     ): StatusModel {
         $result = $this->apiClient->send(new DeleteRequest(
             $id,
+            $delete_media,
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
@@ -215,13 +222,14 @@ class StatusesProxy extends Proxy
     /**
      * Edit a status.
      *
-     * @param string            $id           the ID of the Status in the database
-     * @param ?string           $status       the plain text content of the status
-     * @param ?string           $spoiler_text the plain text subject or content warning of the status
-     * @param ?bool             $sensitive    whether the status should be marked as sensitive
-     * @param ?string           $language     ISO 639 language code for the status
-     * @param null|list<string> $media_ids    Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
-     * @param null|list<mixed>  $poll         poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
+     * @param string                       $id               the ID of the Status in the database
+     * @param ?string                      $status           the plain text content of the status
+     * @param ?string                      $spoiler_text     the plain text subject or content warning of the status
+     * @param ?bool                        $sensitive        whether the status should be marked as sensitive
+     * @param ?string                      $language         ISO 639-1 language code for the status
+     * @param null|list<string>            $media_ids        Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+     * @param null|array<array-key, mixed> $media_attributes media_attributes[][]: Each array includes id, description, and focus
+     * @param null|array<array-key, mixed> $poll             poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#edit
      */
@@ -232,6 +240,7 @@ class StatusesProxy extends Proxy
         ?bool $sensitive = null,
         ?string $language = null,
         ?array $media_ids = null,
+        ?array $media_attributes = null,
         ?array $poll = null,
     ): StatusModel {
         $result = $this->apiClient->send(new EditRequest(
@@ -241,6 +250,7 @@ class StatusesProxy extends Proxy
             $sensitive,
             $language,
             $media_ids,
+            $media_attributes,
             $poll,
         ));
 
@@ -341,6 +351,27 @@ class StatusesProxy extends Proxy
         /** @var \Vazaha\Mastodon\Results\StatusEditResult<array-key, \Vazaha\Mastodon\Models\StatusEditModel> */
         $models = $this->apiClient
             ->send(new HistoryRequest(
+                $id,
+            ));
+
+        return $models;
+    }
+
+    /**
+     * View multiple statuses.
+     *
+     * @param null|list<string> $id the IDs of the Statuses in the database
+     *
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#index
+     */
+    public function index(
+        ?array $id = null,
+    ): StatusResult {
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
+        $models = $this->apiClient
+            ->send(new IndexRequest(
                 $id,
             ));
 

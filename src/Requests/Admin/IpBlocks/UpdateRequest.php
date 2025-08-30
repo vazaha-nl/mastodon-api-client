@@ -28,6 +28,8 @@ final class UpdateRequest extends Request implements RequestInterface
      * @param ?string $severity   The policy to apply to this IP range: `sign_up_requires_approval`, `sign_up_block`, or `no_access`
      * @param ?string $comment    the reason for this IP block
      * @param ?int    $expires_in the number of seconds in which this IP block will expire
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#update
      */
     public function __construct(
         public string $id,

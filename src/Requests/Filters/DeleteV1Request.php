@@ -19,10 +19,16 @@ use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyOrUnknownResult>
  *
  * @see https://docs.joinmastodon.org/methods/filters/#delete-v1
+ *
+ * @deprecated
  */
 final class DeleteV1Request extends Request implements RequestInterface
 {
     /**
+     * @see https://docs.joinmastodon.org/methods/filters/#delete-v1
+     *
+     * @deprecated
+     *
      * @param string $id the ID of the Filter in the database
      */
     public function __construct(

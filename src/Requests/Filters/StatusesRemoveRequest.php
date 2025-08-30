@@ -24,6 +24,8 @@ final class StatusesRemoveRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the FilterStatus in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/filters/#statuses-remove
      */
     public function __construct(
         public string $id,

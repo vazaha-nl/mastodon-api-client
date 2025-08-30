@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\Admin\AccountModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\AccountModel> $models
- * @property \Vazaha\Mastodon\Requests\Admin\AccountRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\Admin\AccountResult<array-key, \Vazaha\Mastodon\Models\Admin\AccountModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\Admin\AccountResult<array-key, \Vazaha\Mastodon\Models\Admin\AccountModel> getPreviousPage()

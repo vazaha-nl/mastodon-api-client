@@ -32,5 +32,5 @@ class CohortDataModel extends Model
      * How many users registered in the specified `period` and were active for the
      * given `date` bucket.
      */
-    public int $value;
+    public string $value;
 }

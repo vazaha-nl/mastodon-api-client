@@ -71,7 +71,7 @@ class StatusModel extends Model
     /**
      * The application used to post this status.
      *
-     * @var null|list<mixed>
+     * @var null|array<array-key, mixed>
      */
     public ?array $application = null;
 
@@ -116,7 +116,13 @@ class StatusModel extends Model
     public ?string $in_reply_to_id = null;
 
     /**
-     * ID of the account that authored the status being replied to.
+     * Might be the ID of the account that authored the status being replied to.
+     * This sometimes skips over self-replies. If status A was posted by account
+     * 1, and account 2 posts statuses B, C, and D as a chain of replies to status
+     * A, statuses B, C, and D will all have `in_reply_to_account_id` = 1 (instead
+     * of C and D having `in_reply_to_account_id` = 2). However, if status A was
+     * posted by account 1, and account 1 posts status B as a direct reply to A, B
+     * will have an `in_reply_to_account_id` = 1 (instead of null).
      */
     public ?string $in_reply_to_account_id = null;
 

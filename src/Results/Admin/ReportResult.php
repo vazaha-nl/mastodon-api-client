@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\Admin\ReportModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\ReportModel> $models
- * @property \Vazaha\Mastodon\Requests\Admin\ReportRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\Admin\ReportResult<array-key, \Vazaha\Mastodon\Models\Admin\ReportModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\Admin\ReportResult<array-key, \Vazaha\Mastodon\Models\Admin\ReportModel> getPreviousPage()

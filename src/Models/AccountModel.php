@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models;
 
 use Vazaha\Mastodon\Abstracts\Model;
+use Vazaha\Mastodon\Collections\AccountRoleCollection;
 use Vazaha\Mastodon\Collections\CustomEmojiCollection;
 use Vazaha\Mastodon\Collections\FieldCollection;
 
@@ -36,9 +37,14 @@ class AccountModel extends Model
     public string $acct;
 
     /**
-     * The location of the user's profile page.
+     * The location of the user's profile page (web interface URL).
      */
-    public string $url;
+    public ?string $url = null;
+
+    /**
+     * The user's ActivityPub actor identifier (used for federation).
+     */
+    public string $uri;
 
     /**
      * The profile's display name.
@@ -62,7 +68,8 @@ class AccountModel extends Model
     public string $avatar_static;
 
     /**
-     * An image banner that is shown above the profile and in profile cards.
+     * An image banner that is shown above the profile and in profile cards. Will
+     * end `/headers/original/missing.png` if the user has not set a header image.
      */
     public string $header;
 
@@ -89,7 +96,8 @@ class AccountModel extends Model
 
     /**
      * Indicates that the account may perform automated actions, may not be
-     * monitored, or identifies as a robot.
+     * monitored, or identifies as a robot. This is determined by the account's
+     * `actor_type` being set to 'Application' or 'Service'.
      */
     public bool $bot;
 
@@ -105,6 +113,11 @@ class AccountModel extends Model
     public ?bool $discoverable = null;
 
     /**
+     * Whether the account allows indexing by search engines.
+     */
+    public bool $indexable;
+
+    /**
      * Whether the local user has opted out of being indexed by search engines.
      */
     public ?bool $noindex = null;
@@ -114,6 +127,12 @@ class AccountModel extends Model
      * moved to a new account.
      */
     public ?AccountModel $moved = null;
+
+    /**
+     * An extra attribute returned only when an account is memorialized (when
+     * `memorial` is true).
+     */
+    public ?bool $memorial = null;
 
     /**
      * An extra attribute returned only when an account is suspended.
@@ -150,4 +169,17 @@ class AccountModel extends Model
      * The reported follows of this profile.
      */
     public int $following_count;
+
+    /**
+     * Whether the user hides the contents of their follows and followers
+     * collections.
+     */
+    public ?bool $hide_collections = null;
+
+    /**
+     * An array of roles assigned to the user that are publicly visible
+     * (highlighted roles only), if the account is local. Will be an empty array
+     * if no roles are highlighted or if the account is remote.
+     */
+    public AccountRoleCollection $roles;
 }

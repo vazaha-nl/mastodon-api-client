@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\ListResult;
  */
 final class GetRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/lists/#get
+     */
     public function __construct(
     ) {
     }

@@ -11,14 +11,14 @@ namespace Vazaha\Mastodon\Models;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
- * Represents a hashtag that is featured on a profile.
+ * Represents a hashtag that is featured on an account profile.
  *
  * @see https://docs.joinmastodon.org/entities/FeaturedTag/
  */
 class FeaturedTagModel extends Model
 {
     /**
-     * The internal ID of the featured tag in the database.
+     * The ID of the featured tag.
      */
     public string $id;
 
@@ -35,10 +35,10 @@ class FeaturedTagModel extends Model
     /**
      * The number of authored statuses containing this hashtag.
      */
-    public int $statuses_count;
+    public string $statuses_count;
 
     /**
-     * The timestamp of the last authored status containing this hashtag.
+     * The date of the last authored status containing this hashtag.
      */
     public \DateTimeInterface $last_status_at;
 }

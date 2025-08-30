@@ -23,6 +23,13 @@ class SuggestionModel extends Model
     public string $source;
 
     /**
+     * A list of reasons this account is being suggested. This replaces `source`.
+     *
+     * @var list<string>
+     */
+    public array $sources;
+
+    /**
      * The account being recommended to follow.
      */
     public AccountModel $account;

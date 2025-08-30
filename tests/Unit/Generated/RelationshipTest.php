@@ -31,6 +31,7 @@ class RelationshipTest extends TestCase
    "note" : "",
    "notifying" : false,
    "requested" : false,
+   "requested_by" : false,
    "showing_reblogs" : true
 }
 
@@ -39,8 +40,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -54,7 +53,6 @@ JSON;
         $model = RelationshipModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = RelationshipModel::sanitizePropertyName($property);

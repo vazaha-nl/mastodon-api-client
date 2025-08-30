@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
  */
 final class DeleteRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/push/#delete
+     */
     public function __construct(
     ) {
     }

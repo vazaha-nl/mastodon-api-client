@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\MediaAttachmentModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\MediaAttachmentModel> $models
- * @property \Vazaha\Mastodon\Requests\MediaAttachmentRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\MediaAttachmentResult<array-key, \Vazaha\Mastodon\Models\MediaAttachmentModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\MediaAttachmentResult<array-key, \Vazaha\Mastodon\Models\MediaAttachmentModel> getPreviousPage()

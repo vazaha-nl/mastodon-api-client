@@ -23,10 +23,9 @@ use Vazaha\Mastodon\Results\AnnouncementResult;
 final class GetRequest extends Request implements RequestInterface
 {
     /**
-     * @param ?bool $with_dismissed If true, response will include announcements dismissed by the user. Defaults to false.
+     * @see https://docs.joinmastodon.org/methods/announcements/#get
      */
     public function __construct(
-        public ?bool $with_dismissed = null,
     ) {
     }
 
@@ -38,7 +37,6 @@ final class GetRequest extends Request implements RequestInterface
     public function getQueryParams(): array
     {
         return [
-            'with_dismissed' => $this->with_dismissed,
         ];
     }
 

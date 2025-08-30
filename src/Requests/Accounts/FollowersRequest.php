@@ -23,8 +23,10 @@ use Vazaha\Mastodon\Results\AccountResult;
 final class FollowersRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $id    the ID of the Account in the database
+     * @param string $id    the ID of the account
      * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#followers
      */
     public function __construct(
         public string $id,

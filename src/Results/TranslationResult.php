@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\TranslationModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\TranslationModel> $models
- * @property \Vazaha\Mastodon\Requests\TranslationRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\TranslationResult<array-key, \Vazaha\Mastodon\Models\TranslationModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\TranslationResult<array-key, \Vazaha\Mastodon\Models\TranslationModel> getPreviousPage()

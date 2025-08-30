@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\ApplicationResult;
  */
 final class VerifyCredentialsRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/apps/#verify_credentials
+     */
     public function __construct(
     ) {
     }

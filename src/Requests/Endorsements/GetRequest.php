@@ -24,6 +24,8 @@ final class GetRequest extends Request implements RequestInterface
 {
     /**
      * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
+     *
+     * @see https://docs.joinmastodon.org/methods/endorsements/#get
      */
     public function __construct(
         public ?int $limit = null,

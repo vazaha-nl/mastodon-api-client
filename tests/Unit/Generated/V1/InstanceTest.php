@@ -69,8 +69,6 @@ class InstanceTest extends TestCase
    },
    "contact_account" : {
       "acct" : "Gargron",
-      "avatar" : "https://files.mastodon.social/accounts/avatars/000/000/001/original/dc4286ceb8fab734.jpg",
-      "avatar_static" : "https://files.mastodon.social/accounts/avatars/000/000/001/original/dc4286ceb8fab734.jpg",
       "bot" : false,
       "created_at" : "2016-03-16T00:00:00.000Z",
       "discoverable" : true,
@@ -79,21 +77,16 @@ class InstanceTest extends TestCase
       "fields" : [
          {
             "name" : "Patreon",
-            "value" : "<a href=\"https://www.patreon.com/mastodon\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"><span class=\"invisible\">https://www.</span><span class=\"\">patreon.com/mastodon</span><span class=\"invisible\"></span></a>",
             "verified_at" : null
          }
       ],
       "followers_count" : 118944,
       "following_count" : 305,
       "group" : false,
-      "header" : "https://files.mastodon.social/accounts/headers/000/000/001/original/3b91c9965d00888b.jpeg",
-      "header_static" : "https://files.mastodon.social/accounts/headers/000/000/001/original/3b91c9965d00888b.jpeg",
       "id" : "1",
       "last_status_at" : "2022-08-24",
       "locked" : false,
-      "note" : "<p>Founder, CEO and lead developer <span class=\"h-card\"><a href=\"https://mastodon.social/@Mastodon\" class=\"u-url mention\">@<span>Mastodon</span></a></span>, Germany.</p>",
       "statuses_count" : 72309,
-      "url" : "https://mastodon.social/@Gargron",
       "username" : "Gargron"
    },
    "description" : "",
@@ -135,12 +128,9 @@ class InstanceTest extends TestCase
       "status_count" : 38151616,
       "user_count" : 812303
    },
-   "thumbnail" : "https://files.mastodon.social/site_uploads/files/000/000/001/original/vlcsnap-2018-08-27-16h43m11s127.png",
    "title" : "Mastodon",
    "uri" : "mastodon.social",
-   "urls" : {
-      "streaming_api" : "wss://mastodon.social"
-   },
+   "urls" : {},
    "version" : "3.5.3"
 }
 
@@ -149,8 +139,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -164,7 +152,6 @@ JSON;
         $model = InstanceModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = InstanceModel::sanitizePropertyName($property);

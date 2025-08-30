@@ -24,6 +24,8 @@ final class BookmarkRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#bookmark
      */
     public function __construct(
         public string $id,

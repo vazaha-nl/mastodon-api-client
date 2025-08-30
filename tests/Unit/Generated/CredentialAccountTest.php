@@ -24,12 +24,10 @@ class CredentialAccountTest extends TestCase
    "fields" : [
       {
          "name" : "Website",
-         "value" : "<a href=\"https://trwnh.com\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"><span class=\"invisible\">https://</span><span class=\"\">trwnh.com</span><span class=\"invisible\"></span></a>",
          "verified_at" : "2019-08-29T04:14:55.571+00:00"
       },
       {
          "name" : "Portfolio",
-         "value" : "<a href=\"https://abdullahtarawneh.com\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"><span class=\"invisible\">https://</span><span class=\"\">abdullahtarawneh.com</span><span class=\"invisible\"></span></a>",
          "verified_at" : "2021-02-11T20:34:13.574+00:00"
       },
       {
@@ -44,7 +42,7 @@ class CredentialAccountTest extends TestCase
       }
    ],
    "id" : "14715",
-   "note" : "<p>i have approximate knowledge of many things. perpetual student. (nb/ace/they)</p><p>xmpp/email: a@trwnh.com<br /><a href=\"https://trwnh.com\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"><span class=\"invisible\">https://</span><span class=\"\">trwnh.com</span><span class=\"invisible\"></span></a><br />help me live: <a href=\"https://liberapay.com/trwnh\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"><span class=\"invisible\">https://</span><span class=\"\">liberapay.com/trwnh</span><span class=\"invisible\"></span></a> or paypal</p><p>- my triggers are moths and glitter<br />- i have all notifs except mentions turned off, so please interact if you wanna be friends! i literally will not notice otherwise<br />- dm me if i did something wrong, so i can improve<br />- purest person on fedi, do not lewd in my presence</p>",
+   "indexable" : true,
    "role" : {
       "color" : "",
       "highlighted" : false,
@@ -52,16 +50,20 @@ class CredentialAccountTest extends TestCase
       "name" : "",
       "permissions" : "65536"
    },
+   "roles" : [],
    "source" : {
+      "attribution_domains" : [
+         "example.com",
+         "example.net"
+      ],
+      "discoverable" : false,
       "fields" : [
          {
             "name" : "Website",
-            "value" : "https://trwnh.com",
             "verified_at" : "2019-08-29T04:14:55.571+00:00"
          },
          {
             "name" : "Portfolio",
-            "value" : "https://abdullahtarawneh.com",
             "verified_at" : "2021-02-11T20:34:13.574+00:00"
          },
          {
@@ -76,8 +78,9 @@ class CredentialAccountTest extends TestCase
          }
       ],
       "follow_requests_count" : 5,
+      "hide_collections" : false,
+      "indexable" : true,
       "language" : "",
-      "note" : "i have approximate knowledge of many things. perpetual student. (nb/ace/they)\r\n\r\nxmpp/email: a@trwnh.com\r\nhttps://trwnh.com\r\nhelp me live: https://liberapay.com/trwnh or paypal\r\n\r\n- my triggers are moths and glitter\r\n- i have all notifs except mentions turned off, so please interact if you wanna be friends! i literally will not notice otherwise\r\n- dm me if i did something wrong, so i can improve\r\n- purest person on fedi, do not lewd in my presence",
       "privacy" : "public",
       "sensitive" : false
    },
@@ -89,8 +92,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -104,7 +105,6 @@ JSON;
         $model = CredentialAccountModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = CredentialAccountModel::sanitizePropertyName($property);

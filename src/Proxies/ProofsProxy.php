@@ -15,14 +15,16 @@ use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 class ProofsProxy extends Proxy
 {
     /**
-     * (REMOVED) View identity proofs.
+     * View identity proofs.
+     *
+     * @see https://docs.joinmastodon.org/methods/proofs/#get
+     *
+     * @deprecated
      *
      * @param ?string $provider The identity provider to be looked up. Currently only supports `keybase` (case-sensitive).
      * @param ?string $username the username on the selected identity provider
      *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
-     *
-     * @see https://docs.joinmastodon.org/methods/proofs/#get
      */
     public function get(
         ?string $provider = null,

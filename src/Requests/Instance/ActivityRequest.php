@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
  */
 final class ActivityRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/instance/#activity
+     */
     public function __construct(
     ) {
     }

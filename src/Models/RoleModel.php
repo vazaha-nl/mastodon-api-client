@@ -36,7 +36,7 @@ class RoleModel extends Model
     /**
      * A bitmask that represents the sum of all permissions granted to the role.
      */
-    public int $permissions;
+    public string $permissions;
 
     /**
      * Whether the role is publicly visible as a badge on user profiles.

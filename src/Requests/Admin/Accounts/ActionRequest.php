@@ -29,6 +29,8 @@ final class ActionRequest extends Request implements RequestInterface
      * @param ?string $warning_preset_id       the ID of a preset warning
      * @param ?string $text                    additional clarification for why this action was taken
      * @param ?bool   $send_email_notification Should an email be sent to the user with the above information?
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#action
      */
     public function __construct(
         public string $id,

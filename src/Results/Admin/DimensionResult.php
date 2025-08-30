@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\Admin\DimensionModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\DimensionModel> $models
- * @property \Vazaha\Mastodon\Requests\Admin\DimensionRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\Admin\DimensionResult<array-key, \Vazaha\Mastodon\Models\Admin\DimensionModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\Admin\DimensionResult<array-key, \Vazaha\Mastodon\Models\Admin\DimensionModel> getPreviousPage()

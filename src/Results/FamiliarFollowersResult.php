@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\FamiliarFollowersModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\FamiliarFollowersModel> $models
- * @property \Vazaha\Mastodon\Requests\FamiliarFollowersRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\FamiliarFollowersResult<array-key, \Vazaha\Mastodon\Models\FamiliarFollowersModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\FamiliarFollowersResult<array-key, \Vazaha\Mastodon\Models\FamiliarFollowersModel> getPreviousPage()

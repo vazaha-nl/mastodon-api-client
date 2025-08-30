@@ -21,8 +21,6 @@ class CustomEmojiTest extends TestCase
 {
    "category" : "Blobs",
    "shortcode" : "blobaww",
-   "static_url" : "https://files.mastodon.social/custom_emojis/images/000/011/739/static/blobaww.png",
-   "url" : "https://files.mastodon.social/custom_emojis/images/000/011/739/original/blobaww.png",
    "visible_in_picker" : true
 }
 
@@ -31,8 +29,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -46,7 +42,6 @@ JSON;
         $model = CustomEmojiModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = CustomEmojiModel::sanitizePropertyName($property);

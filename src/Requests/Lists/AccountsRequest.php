@@ -23,8 +23,10 @@ use Vazaha\Mastodon\Results\AccountResult;
 final class AccountsRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $id    the ID of the List in the database
+     * @param string $id    the ID of the list
      * @param ?int   $limit Maximum number of results. Defaults to 40 accounts. Max 80 accounts. Set to 0 in order to get all accounts without pagination.
+     *
+     * @see https://docs.joinmastodon.org/methods/lists/#accounts
      */
     public function __construct(
         public string $id,

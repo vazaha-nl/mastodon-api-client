@@ -25,6 +25,8 @@ final class TagsRequest extends Request implements RequestInterface
     /**
      * @param ?int $limit  Maximum number of results to return. Defaults to 10 tags. Max 20 tags.
      * @param ?int $offset skip the first n results
+     *
+     * @see https://docs.joinmastodon.org/methods/trends/#tags
      */
     public function __construct(
         public ?int $limit = null,

@@ -18,11 +18,6 @@ use Vazaha\Mastodon\Models\TagModel as ModelsTagModel;
 class TagModel extends ModelsTagModel
 {
     /**
-     * The ID of the Tag in the database.
-     */
-    public string $id;
-
-    /**
      * Whether the hashtag has been approved to trend.
      */
     public bool $trendable;

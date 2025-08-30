@@ -24,6 +24,8 @@ final class GetRequest extends Request implements RequestInterface
 {
     /**
      * @param ?int $limit Maximum number of results to return. Defaults to 20 conversations. Max 40 conversations.
+     *
+     * @see https://docs.joinmastodon.org/methods/conversations/#get
      */
     public function __construct(
         public ?int $limit = null,

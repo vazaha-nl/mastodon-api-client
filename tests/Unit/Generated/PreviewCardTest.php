@@ -21,6 +21,7 @@ class PreviewCardTest extends TestCase
 {
    "author_name" : "",
    "author_url" : "",
+   "authors" : [],
    "blurhash" : null,
    "description" : "When Peter Teich’s money went to another Barclays customer, the bank offered £25 as a token gesture",
    "embed_url" : "",
@@ -31,7 +32,6 @@ class PreviewCardTest extends TestCase
    "provider_url" : "",
    "title" : "‘I lost my £193,000 inheritance – with one wrong digit on my sort code’",
    "type" : "link",
-   "url" : "https://www.theguardian.com/money/2019/dec/07/i-lost-my-193000-inheritance-with-one-wrong-digit-on-my-sort-code",
    "width" : 0
 }
 
@@ -40,8 +40,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -55,7 +53,6 @@ JSON;
         $model = PreviewCardModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = PreviewCardModel::sanitizePropertyName($property);

@@ -23,8 +23,10 @@ use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 final class AccountsRemoveRequest extends Request implements RequestInterface
 {
     /**
-     * @param string       $id          the ID of the List in the database
+     * @param string       $id          the ID of the list
      * @param list<string> $account_ids the accounts that should be removed from the list
+     *
+     * @see https://docs.joinmastodon.org/methods/lists/#accounts-remove
      */
     public function __construct(
         public string $id,

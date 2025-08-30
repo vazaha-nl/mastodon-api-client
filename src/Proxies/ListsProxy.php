@@ -26,7 +26,7 @@ class ListsProxy extends Proxy
     /**
      * View accounts in a list.
      *
-     * @param string $id    the ID of the List in the database
+     * @param string $id    the ID of the list
      * @param ?int   $limit Maximum number of results. Defaults to 40 accounts. Max 80 accounts. Set to 0 in order to get all accounts without pagination.
      *
      * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
@@ -50,7 +50,7 @@ class ListsProxy extends Proxy
     /**
      * Add accounts to a list.
      *
-     * @param string       $id          the ID of the List in the database
+     * @param string       $id          the ID of the list
      * @param list<string> $account_ids the accounts that should be added to the list
      *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
@@ -74,7 +74,7 @@ class ListsProxy extends Proxy
     /**
      * Remove accounts from list.
      *
-     * @param string       $id          the ID of the List in the database
+     * @param string       $id          the ID of the list
      * @param list<string> $account_ids the accounts that should be removed from the list
      *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
@@ -100,6 +100,7 @@ class ListsProxy extends Proxy
      *
      * @param string  $title          the title of the list to be created
      * @param ?string $replies_policy One of `followed`, `list`, or `none`. Defaults to `list`.
+     * @param ?bool   $exclusive      whether members of this list need to get removed from the “Home” feed
      *
      * @return \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel>
      *
@@ -108,12 +109,14 @@ class ListsProxy extends Proxy
     public function create(
         string $title,
         ?string $replies_policy = null,
+        ?bool $exclusive = null,
     ): ListResult {
         /** @var \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel> */
         $models = $this->apiClient
             ->send(new CreateRequest(
                 $title,
                 $replies_policy,
+                $exclusive,
             ));
 
         return $models;
@@ -122,7 +125,7 @@ class ListsProxy extends Proxy
     /**
      * Delete a list.
      *
-     * @param string $id the ID of the List in the database
+     * @param string $id the ID of the list
      *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
@@ -160,7 +163,7 @@ class ListsProxy extends Proxy
     /**
      * Show a single list.
      *
-     * @param string $id the ID of the List in the database
+     * @param string $id the ID of the list
      *
      * @return \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel>
      *
@@ -181,9 +184,10 @@ class ListsProxy extends Proxy
     /**
      * Update a list.
      *
-     * @param string  $id             the ID of the List in the database
+     * @param string  $id             the ID of the list
      * @param string  $title          the title of the list to be created
      * @param ?string $replies_policy One of `followed`, `list`, or `none`. Defaults to `list`.
+     * @param ?bool   $exclusive      whether members of this list need to get removed from the “Home” feed
      *
      * @return \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel>
      *
@@ -193,6 +197,7 @@ class ListsProxy extends Proxy
         string $id,
         string $title,
         ?string $replies_policy = null,
+        ?bool $exclusive = null,
     ): ListResult {
         /** @var \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel> */
         $models = $this->apiClient
@@ -200,6 +205,7 @@ class ListsProxy extends Proxy
                 $id,
                 $title,
                 $replies_policy,
+                $exclusive,
             ));
 
         return $models;

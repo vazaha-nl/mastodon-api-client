@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\RuleModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\RuleModel> $models
- * @property \Vazaha\Mastodon\Requests\RuleRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\RuleResult<array-key, \Vazaha\Mastodon\Models\RuleModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\RuleResult<array-key, \Vazaha\Mastodon\Models\RuleModel> getPreviousPage()

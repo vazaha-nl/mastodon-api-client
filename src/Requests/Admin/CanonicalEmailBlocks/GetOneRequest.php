@@ -24,6 +24,8 @@ final class GetOneRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Admin::CanonicalEmailBlock in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#get-one
      */
     public function __construct(
         public string $id,

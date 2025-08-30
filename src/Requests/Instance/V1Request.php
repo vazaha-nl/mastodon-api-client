@@ -14,14 +14,21 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Results\V1\InstanceResult;
 
 /**
- * (DEPRECATED) View server information (V1).
+ * View server information (v1).
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\V1\InstanceResult>
  *
  * @see https://docs.joinmastodon.org/methods/instance/#v1
+ *
+ * @deprecated
  */
 final class V1Request extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/instance/#v1
+     *
+     * @deprecated
+     */
     public function __construct(
     ) {
     }

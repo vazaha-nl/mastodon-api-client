@@ -24,6 +24,8 @@ final class RemoveRequest extends Request implements RequestInterface
 {
     /**
      * @param string $account_id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/suggestions/#remove
      */
     public function __construct(
         public string $account_id,

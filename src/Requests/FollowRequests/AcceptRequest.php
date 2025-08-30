@@ -24,6 +24,8 @@ final class AcceptRequest extends Request implements RequestInterface
 {
     /**
      * @param string $account_id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/follow_requests/#accept
      */
     public function __construct(
         public string $account_id,

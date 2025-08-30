@@ -25,6 +25,8 @@ final class VoteRequest extends Request implements RequestInterface
     /**
      * @param string    $id      the ID of the Poll in the database
      * @param list<int> $choices provide your own votes as an index for each option (starting from 0)
+     *
+     * @see https://docs.joinmastodon.org/methods/polls/#vote
      */
     public function __construct(
         public string $id,

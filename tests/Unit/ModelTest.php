@@ -48,7 +48,7 @@ class ModelTest extends TestCase
             'permissions' => '1234',
         ];
         $model = RoleModel::fromArray($array);
-        self::assertSame(1234, $model->permissions);
+        self::assertSame('1234', $model->permissions);
     }
 
     public function testAssignIntToStringPropertyShouldNotBreak(): void

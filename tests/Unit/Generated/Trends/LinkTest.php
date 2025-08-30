@@ -63,12 +63,10 @@ class LinkTest extends TestCase
       }
    ],
    "html" : "",
-   "image" : "https://files.mastodon.social/cache/preview_cards/images/045/027/478/original/0783d5e91a14fd49.jpeg",
    "provider_name" : "NBC News",
    "provider_url" : "",
    "title" : "Plan Your Vote: 2022 Elections",
    "type" : "link",
-   "url" : "https://www.nbcnews.com/specials/plan-your-vote-2022-elections/index.html",
    "width" : 400
 }
 
@@ -77,8 +75,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -92,7 +88,6 @@ JSON;
         $model = LinkModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = LinkModel::sanitizePropertyName($property);

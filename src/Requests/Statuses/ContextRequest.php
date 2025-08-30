@@ -24,6 +24,8 @@ final class ContextRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#context
      */
     public function __construct(
         public string $id,

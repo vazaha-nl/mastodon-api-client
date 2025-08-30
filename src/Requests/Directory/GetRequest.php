@@ -27,6 +27,8 @@ final class GetRequest extends Request implements RequestInterface
      * @param ?int    $limit  How many accounts to load. Defaults to 40 accounts. Max 80 accounts.
      * @param ?string $order  use `active` to sort by most recently posted statuses (default) or `new` to sort by most recently created profiles
      * @param ?bool   $local  if true, returns only local accounts
+     *
+     * @see https://docs.joinmastodon.org/methods/directory/#get
      */
     public function __construct(
         public ?int $offset = null,

@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\WebPushSubscriptionResult;
  */
 final class GetRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/push/#get
+     */
     public function __construct(
     ) {
     }

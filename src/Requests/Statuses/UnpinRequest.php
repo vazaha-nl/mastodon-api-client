@@ -24,6 +24,8 @@ final class UnpinRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the local ID of the Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#unpin
      */
     public function __construct(
         public string $id,

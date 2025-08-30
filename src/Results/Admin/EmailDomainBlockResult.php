@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel> $models
- * @property \Vazaha\Mastodon\Requests\Admin\EmailDomainBlockRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel> getPreviousPage()

@@ -25,6 +25,8 @@ final class StatusesRequest extends Request implements RequestInterface
     /**
      * @param ?int $limit  Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
      * @param ?int $offset skip the first n results
+     *
+     * @see https://docs.joinmastodon.org/methods/trends/#statuses
      */
     public function __construct(
         public ?int $limit = null,

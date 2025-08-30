@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\FilterResult;
  */
 final class GetRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/filters/#get
+     */
     public function __construct(
     ) {
     }

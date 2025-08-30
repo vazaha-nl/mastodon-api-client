@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\StatusSourceModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\StatusSourceModel> $models
- * @property \Vazaha\Mastodon\Requests\StatusSourceRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\StatusSourceResult<array-key, \Vazaha\Mastodon\Models\StatusSourceModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\StatusSourceResult<array-key, \Vazaha\Mastodon\Models\StatusSourceModel> getPreviousPage()

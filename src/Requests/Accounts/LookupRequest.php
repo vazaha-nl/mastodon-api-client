@@ -24,6 +24,8 @@ final class LookupRequest extends Request implements RequestInterface
 {
     /**
      * @param string $acct the username or Webfinger address to lookup
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#lookup
      */
     public function __construct(
         public string $acct,

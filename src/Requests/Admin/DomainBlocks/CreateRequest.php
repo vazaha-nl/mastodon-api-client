@@ -30,6 +30,8 @@ final class CreateRequest extends Request implements RequestInterface
      * @param ?string $private_comment a private note about this domain block, visible only to admins
      * @param ?string $public_comment  a public note about this domain block, optionally shown on the about page
      * @param ?bool   $obfuscate       Whether to partially censor the domain when shown in public. Defaults to false
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#create
      */
     public function __construct(
         public string $domain,

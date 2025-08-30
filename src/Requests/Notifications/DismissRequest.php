@@ -24,6 +24,8 @@ final class DismissRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Notification in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/notifications/#dismiss
      */
     public function __construct(
         public string $id,

@@ -24,6 +24,8 @@ final class DeleteRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#delete
      */
     public function __construct(
         public string $id,

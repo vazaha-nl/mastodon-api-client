@@ -40,9 +40,9 @@ class RelationshipModel extends Model
     /**
      * Which languages are you following from this user?
      *
-     * @var list<string>
+     * @var null|list<string>
      */
-    public array $languages;
+    public ?array $languages = null;
 
     /**
      * Are you followed by this user?
@@ -73,6 +73,11 @@ class RelationshipModel extends Model
      * Do you have a pending follow request for this user?
      */
     public bool $requested;
+
+    /**
+     * Has this user requested to follow you?
+     */
+    public bool $requested_by;
 
     /**
      * Are you blocking this user's domain?

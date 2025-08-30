@@ -18,7 +18,7 @@ use Vazaha\Mastodon\Abstracts\Model;
 class ListModel extends Model
 {
     /**
-     * The internal database ID of the list.
+     * The ID of the list.
      */
     public string $id;
 
@@ -31,4 +31,9 @@ class ListModel extends Model
      * Which replies should be shown in the list.
      */
     public string $replies_policy;
+
+    /**
+     * Whether members of the list should be removed from the “Home” feed.
+     */
+    public bool $exclusive;
 }

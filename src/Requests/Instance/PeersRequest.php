@@ -22,6 +22,9 @@ use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
  */
 final class PeersRequest extends Request implements RequestInterface
 {
+    /**
+     * @see https://docs.joinmastodon.org/methods/instance/#peers
+     */
     public function __construct(
     ) {
     }

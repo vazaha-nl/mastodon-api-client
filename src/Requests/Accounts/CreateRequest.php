@@ -29,6 +29,8 @@ final class CreateRequest extends Request implements RequestInterface
      * @param bool    $agreement Whether the user agrees to the local rules, terms, and policies. These should be presented to the user in order to allow them to consent before setting this parameter to TRUE.
      * @param string  $locale    the language of the confirmation email that will be sent
      * @param ?string $reason    if registrations require manual approval, this text will be reviewed by moderators
+     *
+     * @see https://docs.joinmastodon.org/methods/accounts/#create
      */
     public function __construct(
         public string $username,

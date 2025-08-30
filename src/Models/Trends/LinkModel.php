@@ -20,7 +20,7 @@ class LinkModel extends PreviewCardModel
     /**
      * Usage statistics for given days (typically the past week).
      *
-     * @var list<mixed>
+     * @var array<array-key, mixed>
      */
     public array $history;
 }

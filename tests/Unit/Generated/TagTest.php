@@ -19,6 +19,7 @@ class TagTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
+   "featuring" : false,
    "following" : false,
    "history" : [
       {
@@ -57,8 +58,8 @@ class TagTest extends TestCase
          "uses" : "214"
       }
    ],
-   "name" : "nowplaying",
-   "url" : "https://mastodon.social/tags/nowplaying"
+   "id" : "802",
+   "name" : "nowplaying"
 }
 
 JSON;
@@ -66,8 +67,6 @@ JSON;
 
     public function testModelInstantation(): void
     {
-        self::assertTrue(true);
-
         $array = json_decode($this->json, true);
 
         if (!is_array($array)) {
@@ -81,7 +80,6 @@ JSON;
         $model = TagModel::fromArray($array);
 
         $modelArray = $model->toArray();
-        self::assertIsArray($modelArray);
 
         foreach ($array as $property => $value) {
             $property = TagModel::sanitizePropertyName($property);

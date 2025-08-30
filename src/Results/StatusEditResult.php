@@ -14,7 +14,6 @@ use Vazaha\Mastodon\Models\StatusEditModel;
 
 /**
  * @property \Illuminate\Support\Collection<array-key, \Vazaha\Mastodon\Models\StatusEditModel> $models
- * @property \Vazaha\Mastodon\Requests\StatusEditRequest                                        $request
  *
  * @method null|\Vazaha\Mastodon\Results\StatusEditResult<array-key, \Vazaha\Mastodon\Models\StatusEditModel> getNextPage()
  * @method null|\Vazaha\Mastodon\Results\StatusEditResult<array-key, \Vazaha\Mastodon\Models\StatusEditModel> getPreviousPage()

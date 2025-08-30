@@ -24,6 +24,8 @@ final class EnableRequest extends Request implements RequestInterface
 {
     /**
      * @param string $id the ID of the Account in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#enable
      */
     public function __construct(
         public string $id,
