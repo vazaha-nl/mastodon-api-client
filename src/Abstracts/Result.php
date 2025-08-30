@@ -88,7 +88,7 @@ abstract class Result extends Collection implements ResultInterface
     {
         $decoded = $this->getDecodedBody();
 
-        if ($decoded === null || !is_array($decoded)) {
+        if ($decoded === null) {
             return;
         }
 

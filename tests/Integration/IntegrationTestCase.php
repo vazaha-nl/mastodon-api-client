@@ -24,6 +24,7 @@ abstract class IntegrationTestCase extends TestCase
         $baseUri = $_ENV['BASE_URI'] ?? 'http://mastodon.local';
         $this->apiClient = (new ApiClientFactory())
             ->build()
+            // @phpstan-ignore argument.type
             ->setBaseUri($baseUri);
     }
 
@@ -35,7 +36,7 @@ abstract class IntegrationTestCase extends TestCase
 
     protected function getAdminToken(): string
     {
-        if (!$_ENV['ACCESS_TOKEN']) {
+        if (!is_string($_ENV['ACCESS_TOKEN'])) {
             exit('Key ACCESS_TOKEN not set in .env. Set it manually, or run "php get_admin_access_token.php" to retrieve one.');
         }
 
@@ -44,6 +45,10 @@ abstract class IntegrationTestCase extends TestCase
 
     protected function getClientCredentialsToken(): TokenModel
     {
+        if (!is_string($_ENV['CLIENT_ID']) || !is_string($_ENV['CLIENT_SECRET'])) {
+            exit('Key CLIENT_ID and/or CLIENT_SECRET not set in .env. Set it manually, or run "php get_admin_access_token.php" to generate.');
+        }
+
         return $this->apiClient->methods()->oauth()->token(
             'client_credentials',
             'code',

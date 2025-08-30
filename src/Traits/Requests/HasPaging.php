@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Requests\Concerns;
+namespace Vazaha\Mastodon\Traits\Requests;
 
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\UriInterface;
@@ -35,6 +35,7 @@ trait HasPaging
 
     public function getUri(): UriInterface
     {
+        /** @var array<string, mixed> $params */
         $params = array_merge(
             $this->getQueryParams(),
             $this->getPagingParams(),
@@ -45,13 +46,14 @@ trait HasPaging
 
         foreach ($params as $key => $value) {
             if (is_array($value)) {
+                /** @var array<array-key, string> $value */
                 foreach ($value as $item) {
                     $query .= '&' . rawurlencode($key . '[]') . '=' . rawurlencode($item);
                 }
             }
         }
 
-        $query = ltrim($query, '&');
+        $query = mb_ltrim($query, '&');
 
         if (!empty($query)) {
             $uri .= '?' . $query;

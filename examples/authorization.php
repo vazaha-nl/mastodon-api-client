@@ -16,7 +16,7 @@ $client->setAccessToken('token');
 // create an app and get app based authorization:
 $app = $client->methods()->apps()->create(
     'my client name',
-    'https://mysite.example/callback',
+    ['https://mysite.example/callback'],
     'read',
     'https://mysite.example',
 );
@@ -28,6 +28,7 @@ if (!isset($app->client_id, $app->client_secret)) {
 // obtain oauth token for this app
 $token = $client->methods()->oauth()->token(
     'client_credentials',
+    'code',
     $app->client_id,
     $app->client_secret,
     'https://mysite.example/callback',
@@ -57,20 +58,23 @@ header('Location: ' . $authUrl); // example!
 // use this code to request oAuth token
 
 // in your controller for https://mysite.example.org/callback:
-$code = $_GET['code']; // example!
 
-// obtain a token using this code:
-$token = $client->methods()->oauth()->token(
-    'authorization_code', // NB: different from app token call above!
-    $app->client_id,
-    $app->client_secret,
-    'https://mysite.example/callback',
-    $code,
-    'read write',
-);
-// authorize the client with:
-$client->setAccessToken($token);
-// or:
-$client->setAccessToken($token->access_token);
+if (is_string($_GET['code'])) {
+    $code = $_GET['code']; // example!
+
+    // obtain a token using this code:
+    $token = $client->methods()->oauth()->token(
+        'authorization_code', // NB: different from app token call above!
+        $code,
+        $app->client_id,
+        $app->client_secret,
+        'https://mysite.example/callback',
+        scope: 'read write',
+    );
+    // authorize the client with:
+    $client->setAccessToken($token);
+    // or:
+    $client->setAccessToken($token->access_token);
+}
 
 // store the $app->client_id, $app->client_secret, $token->access_token some place safe

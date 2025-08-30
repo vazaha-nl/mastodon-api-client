@@ -14,7 +14,7 @@ abstract class Model implements ModelInterface
     }
 
     /**
-     * @param array<string, mixed> $array
+     * @param array<mixed, mixed> $array
      */
     public static function fromArray(array $array): static
     {

@@ -12,13 +12,14 @@ class ModelFactory
     /**
      * @template T of \Vazaha\Mastodon\Abstracts\Model
      *
-     * @param class-string<T>      $className
-     * @param array<string, mixed> $modelData
+     * @param class-string<T>     $className
+     * @param array<mixed, mixed> $modelData
      *
      * @return T
      */
     public function build(string $className, array $modelData): ModelInterface
     {
+        // @phpstan-ignore function.alreadyNarrowedType
         if (!is_a($className, Model::class, true)) {
             throw new \LogicException($className . ' is not a subclass of ' . Model::class);
         }

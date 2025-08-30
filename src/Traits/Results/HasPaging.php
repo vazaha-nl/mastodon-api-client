@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Results\Concerns;
+namespace Vazaha\Mastodon\Traits\Results;
 
 use Vazaha\Mastodon\Helpers\PagingLinks;
 use Vazaha\Mastodon\Interfaces\ResultInterface;

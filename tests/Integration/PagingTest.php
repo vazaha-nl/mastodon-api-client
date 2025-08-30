@@ -27,7 +27,9 @@ class PagingTest extends IntegrationTestCase
         $first = $homeTimeline->first();
         self::assertInstanceOf(StatusModel::class, $first);
 
-        self::assertCount(0, $homeTimeline->getPreviousPage());
+        $previousPage = $homeTimeline->getPreviousPage();
+        self::assertNotNull($previousPage);
+        self::assertCount(0, $previousPage);
 
         $nextPage = $homeTimeline->getNextPage();
         self::assertInstanceOf(StatusResult::class, $nextPage);
@@ -48,6 +50,8 @@ class PagingTest extends IntegrationTestCase
 
         self::assertEquals($first->content, $firstFromFirstPage->content);
 
-        self::assertCount(0, $firstPage->getPreviousPage());
+        $pageBeforeFirstPage = $firstPage->getPreviousPage();
+        self::assertNotNull($pageBeforeFirstPage);
+        self::assertCount(0, $pageBeforeFirstPage);
     }
 }

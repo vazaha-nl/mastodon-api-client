@@ -20,14 +20,15 @@ $baseUri = $_ENV['BASE_URI'] ?? 'http://mastodon.local';
 
 $apiClient = (new ApiClientFactory())
     ->build()
+    // @phpstan-ignore argument.type
     ->setBaseUri($baseUri);
 
 $clientId = $_ENV['CLIENT_ID'] ?? null;
 $clientSecret = $_ENV['CLIENT_SECRET'] ?? null;
 $accessToken = $_ENV['ACCESS_TOKEN'] ?? null;
 
-if (isset($accessToken)) {
-    echo 'Access token: ' . $accessToken . \PHP_EOL;
+if (is_string($accessToken)) {
+    printf('Access token: %s' . \PHP_EOL, $accessToken);
 
     exit;
 }
@@ -45,6 +46,10 @@ if (!isset($clientId, $clientSecret)) {
     $clientId = $app->client_id;
     $clientSecret = $app->client_secret;
     echo "Done!\n";
+}
+
+if (!is_string($clientId) || !is_string($clientSecret)) {
+    throw new LogicException('clientId and clientSecret must be strings');
 }
 
 $request = new AuthorizeRequest(
