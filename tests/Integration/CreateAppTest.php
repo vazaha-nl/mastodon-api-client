@@ -7,7 +7,7 @@ namespace Tests\Integration;
 use Vazaha\Mastodon\Models\ApplicationModel;
 use Vazaha\Mastodon\Models\TokenModel;
 
-class CreateAppTest extends ApiClientTestCase
+class CreateAppTest extends IntegrationTestCase
 {
     public function testCreateAppAndAppToken(): void
     {

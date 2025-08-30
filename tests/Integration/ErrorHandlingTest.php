@@ -8,7 +8,7 @@ use Vazaha\Mastodon\Exceptions\NotFoundException;
 use Vazaha\Mastodon\Exceptions\UnauthorizedException;
 use Vazaha\Mastodon\Models\ErrorModel;
 
-class ErrorHandlingTest extends ApiClientTestCase
+class ErrorHandlingTest extends IntegrationTestCase
 {
     public function testNotFoundException(): void
     {

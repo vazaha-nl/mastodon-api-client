@@ -6,7 +6,7 @@ namespace Tests\Integration;
 
 use Vazaha\Mastodon\Models\AccountModel;
 
-class AccountTest extends ApiClientTestCase
+class AccountTest extends IntegrationTestCase
 {
     public function testLookupAccount(): void
     {
