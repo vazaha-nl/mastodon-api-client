@@ -47,6 +47,5 @@ jobs:
     - name: Run test suite
       run: composer run-script test
 
-    # temp disabled
-    # - name: Run PHPStan
-    #   run: composer run-script analyse
+    - name: Run PHPStan
+      run: composer run-script analyse
