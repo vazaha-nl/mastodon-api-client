@@ -32,5 +32,5 @@ class PreviewCardAuthorModel extends Model
     /**
      * The fediverse account of the author.
      */
-    public AccountModel $account;
+    public ?AccountModel $account = null;
 }
