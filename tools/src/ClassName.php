@@ -6,7 +6,7 @@ namespace Tools;
 
 use Tools\Enums\ClassType;
 
-class ClassName
+class ClassName implements \Stringable
 {
     protected ?string $alias = null;
 
