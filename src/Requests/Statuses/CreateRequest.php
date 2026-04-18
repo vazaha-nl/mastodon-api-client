@@ -66,7 +66,7 @@ final class CreateRequest extends Request implements RequestInterface
             'media_ids' => $this->media_ids,
             'poll' => $this->poll,
             'in_reply_to_id' => $this->in_reply_to_id,
-            'sensitive' => $this->sensitive,
+            'sensitive' => $this->sensitive ? 1 : 0,
             'spoiler_text' => $this->spoiler_text,
             'visibility' => $this->visibility,
             'language' => $this->language,
