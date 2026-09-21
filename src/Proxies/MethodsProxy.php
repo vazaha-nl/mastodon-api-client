@@ -25,6 +25,8 @@ class MethodsProxy extends Proxy
 
     protected BookmarksProxy $bookmarks;
 
+    protected CollectionsProxy $collections;
+
     protected ConversationsProxy $conversations;
 
     protected CustomEmojisProxy $customEmojis;
@@ -182,7 +184,21 @@ class MethodsProxy extends Proxy
     }
 
     /**
-     *  Direct conversations with other participants. (Currently, just threads containing a post with "direct" visibility.).
+     * Manage collections of accounts to be recommended to others.
+     *
+     * @see https://docs.joinmastodon.org/methods/collections/
+     */
+    public function collections(): CollectionsProxy
+    {
+        if (!isset($this->collections)) {
+            $this->collections = new CollectionsProxy($this->apiClient);
+        }
+
+        return $this->collections;
+    }
+
+    /**
+     *  Direct conversations with other participants. (Currently, just threads containing a post with "direct" visibility.)
      *
      * @see https://docs.joinmastodon.org/methods/conversations/
      */
