@@ -1075,6 +1075,174 @@
     ],
     "url": "https://docs.joinmastodon.org/entities/Admin_Cohort/#CohortData"
   },
+  "Collection": {
+    "description": "Represents a curated collection of accounts that a user recommends others to follow.",
+    "exampleJson": "{\n   \"account_id\" : \"113668893442515793\",\n   \"created_at\" : \"2026-02-25T11:35:01.394Z\",\n   \"description\" : \"Well worth following\",\n   \"discoverable\" : true,\n   \"id\" : \"116131056935959117\",\n   \"item_count\" : 2,\n   \"items\" : [\n      {\n         \"account_id\" : \"112658193342215767\",\n         \"created_at\" : \"2026-02-25T11:35:01.394Z\",\n         \"id\" : \"116141056635954112\",\n         \"state\" : \"accepted\"\n      },\n      {\n         \"account_id\" : \"117628196343117789\",\n         \"created_at\" : \"2026-02-25T11:35:01.394Z\",\n         \"id\" : \"116141051635254139\",\n         \"state\" : \"pending\"\n      }\n   ],\n   \"language\" : \"en\",\n   \"local\" : true,\n   \"name\" : \"Excellent people\",\n   \"sensitive\" : false,\n   \"tag\" : {\n      \"name\" : \"discovery\",\n      \"url\" : \"https://example.com/tags/discovery\"\n   },\n   \"updated_at\" : \"2026-02-25T11:37:38.182Z\",\n   \"uri\" : \"https://example.com/ap/113668893442515793/collections/116131056935959117\",\n   \"url\" : \"https://example.com/collections/116131056935959117\"\n}\n",
+    "name": "Collection",
+    "parent": "",
+    "properties": [
+      {
+        "description": "The collection id.",
+        "name": "id",
+        "nullable": null,
+        "type": "string"
+      },
+      {
+        "description": "The id of the account that curates this Collection.",
+        "name": "account_id",
+        "nullable": null,
+        "type": "string"
+      },
+      {
+        "description": "The Collection's ActivityPub identifier (used for federation).",
+        "name": "uri",
+        "nullable": null,
+        "type": "string"
+      },
+      {
+        "description": "The url of the Collection's HTML page (web interface URL).",
+        "name": "url",
+        "nullable": 1,
+        "type": "string"
+      },
+      {
+        "description": "The name of the Collection.",
+        "name": "name",
+        "nullable": null,
+        "type": "string"
+      },
+      {
+        "description": "An optional description of the Collection, as HTML.",
+        "name": "description",
+        "nullable": null,
+        "type": "string"
+      },
+      {
+        "description": "Primary language of this Collection, as an ISO 639-1 two-letter language code.",
+        "name": "language",
+        "nullable": 1,
+        "type": "string"
+      },
+      {
+        "description": "Whether the Collection was created on this server or resides on a remote server.",
+        "name": "local",
+        "nullable": null,
+        "type": "boolean"
+      },
+      {
+        "description": "Whether the Collection has been marked as including sensitive content.",
+        "name": "sensitive",
+        "nullable": null,
+        "type": "boolean"
+      },
+      {
+        "description": "Whether the Collection should show up on the owner's profile, in search results and recommendations.",
+        "name": "discoverable",
+        "nullable": null,
+        "type": "boolean"
+      },
+      {
+        "description": "A single hashtag that describes this Collection.",
+        "name": "tag",
+        "nullable": 1,
+        "type": "ShallowTag"
+      },
+      {
+        "description": "When the Collection was created.",
+        "name": "created_at",
+        "nullable": null,
+        "type": "datetime"
+      },
+      {
+        "description": "When the Collection was last updated.",
+        "name": "updated_at",
+        "nullable": null,
+        "type": "datetime"
+      },
+      {
+        "description": "The number of items in this Collection.",
+        "name": "item_count",
+        "nullable": null,
+        "type": "integer"
+      },
+      {
+        "description": "The items in this Collection.",
+        "name": "items",
+        "nullable": null,
+        "type": "array<CollectionItem>"
+      }
+    ],
+    "url": "https://docs.joinmastodon.org/entities/Collection/"
+  },
+  "CollectionItem": {
+    "description": "Represents a single item in a Collection.",
+    "exampleJson": "{\n   \"account_id\" : \"112658193342215767\",\n   \"created_at\" : \"2026-02-25T11:35:01.394Z\",\n   \"id\" : \"116141056635954112\",\n   \"state\" : \"accepted\"\n}\n",
+    "name": "CollectionItem",
+    "parent": "",
+    "properties": [
+      {
+        "description": "The item id.",
+        "name": "id",
+        "nullable": null,
+        "type": "string"
+      },
+      {
+        "description": "The id of the account this item represents.",
+        "name": "account_id",
+        "nullable": 1,
+        "type": "string"
+      },
+      {
+        "description": "The current state of the item. One of `pending` (the account's consent to be added to this Collection could not yet be verified), `accepted` (the account has consented to be featured in this Collection), `rejected` (the account has rejected the request to be added to this Collection) or `revoked` (the account has revoked consent to be featured in this Collection).",
+        "name": "state",
+        "nullable": null,
+        "type": "string"
+      },
+      {
+        "description": "When the item was added to the collection.",
+        "name": "created_at",
+        "nullable": null,
+        "type": "datetime"
+      }
+    ],
+    "url": "https://docs.joinmastodon.org/entities/CollectionItem/"
+  },
+  "CollectionWithAccounts": {
+    "description": "Represents a Collection along with full account entities for the owner of the Collection and every account within the Collection.",
+    "exampleJson": "{\n   \"accounts\" : [\n      {\n         \"acct\" : \"noiob@awoo.space\",\n         \"bot\" : false,\n         \"created_at\" : \"2017-02-08T02:00:53.274Z\",\n         \"display_name\" : \"ikea shark fan account\",\n         \"emojis\" : [\n            {\n               \"shortcode\" : \"ms_rainbow_flag\",\n               \"visible_in_picker\" : true\n            },\n            {\n               \"shortcode\" : \"ms_bisexual_flag\",\n               \"visible_in_picker\" : true\n            },\n            {\n               \"shortcode\" : \"ms_nonbinary_flag\",\n               \"visible_in_picker\" : true\n            }\n         ],\n         \"fields\" : [\n            {\n               \"name\" : \"Pronouns\",\n               \"value\" : \"they/them\",\n               \"verified_at\" : null\n            },\n            {\n               \"name\" : \"Alt\",\n               \"verified_at\" : null\n            },\n            {\n               \"name\" : \"Bots\",\n               \"verified_at\" : null\n            },\n            {\n               \"name\" : \"Website\",\n               \"verified_at\" : \"2019-11-10T10:31:10.744+00:00\"\n            }\n         ],\n         \"followers_count\" : 547,\n         \"following_count\" : 404,\n         \"id\" : \"113668893442515793\",\n         \"indexable\" : true,\n         \"last_status_at\" : \"2019-11-17\",\n         \"locked\" : false,\n         \"roles\" : [],\n         \"statuses_count\" : 28468,\n         \"username\" : \"noiob\"\n      },\n      {\n         \"acct\" : \"noiob@awoo.space\",\n         \"bot\" : false,\n         \"created_at\" : \"2017-02-08T02:00:53.274Z\",\n         \"display_name\" : \"ikea shark fan account\",\n         \"emojis\" : [\n            {\n               \"shortcode\" : \"ms_rainbow_flag\",\n               \"visible_in_picker\" : true\n            },\n            {\n               \"shortcode\" : \"ms_bisexual_flag\",\n               \"visible_in_picker\" : true\n            },\n            {\n               \"shortcode\" : \"ms_nonbinary_flag\",\n               \"visible_in_picker\" : true\n            }\n         ],\n         \"fields\" : [\n            {\n               \"name\" : \"Pronouns\",\n               \"value\" : \"they/them\",\n               \"verified_at\" : null\n            },\n            {\n               \"name\" : \"Alt\",\n               \"verified_at\" : null\n            },\n            {\n               \"name\" : \"Bots\",\n               \"verified_at\" : null\n            },\n            {\n               \"name\" : \"Website\",\n               \"verified_at\" : \"2019-11-10T10:31:10.744+00:00\"\n            }\n         ],\n         \"followers_count\" : 547,\n         \"following_count\" : 404,\n         \"id\" : \"112658193342215767\",\n         \"indexable\" : true,\n         \"last_status_at\" : \"2019-11-17\",\n         \"locked\" : false,\n         \"roles\" : [],\n         \"statuses_count\" : 28468,\n         \"username\" : \"noiob\"\n      },\n      {\n         \"acct\" : \"noiob@awoo.space\",\n         \"bot\" : false,\n         \"created_at\" : \"2017-02-08T02:00:53.274Z\",\n         \"display_name\" : \"ikea shark fan account\",\n         \"emojis\" : [\n            {\n               \"shortcode\" : \"ms_rainbow_flag\",\n               \"visible_in_picker\" : true\n            },\n            {\n               \"shortcode\" : \"ms_bisexual_flag\",\n               \"visible_in_picker\" : true\n            },\n            {\n               \"shortcode\" : \"ms_nonbinary_flag\",\n               \"visible_in_picker\" : true\n            }\n         ],\n         \"fields\" : [\n            {\n               \"name\" : \"Pronouns\",\n               \"value\" : \"they/them\",\n               \"verified_at\" : null\n            },\n            {\n               \"name\" : \"Alt\",\n               \"verified_at\" : null\n            },\n            {\n               \"name\" : \"Bots\",\n               \"verified_at\" : null\n            },\n            {\n               \"name\" : \"Website\",\n               \"verified_at\" : \"2019-11-10T10:31:10.744+00:00\"\n            }\n         ],\n         \"followers_count\" : 547,\n         \"following_count\" : 404,\n         \"id\" : \"117628196343117789\",\n         \"indexable\" : true,\n         \"last_status_at\" : \"2019-11-17\",\n         \"locked\" : false,\n         \"roles\" : [],\n         \"statuses_count\" : 28468,\n         \"username\" : \"noiob\"\n      }\n   ],\n   \"collection\" : {\n      \"account_id\" : \"113668893442515793\",\n      \"created_at\" : \"2026-02-25T11:35:01.394Z\",\n      \"description\" : \"Well worth following\",\n      \"discoverable\" : true,\n      \"id\" : \"116131056935959117\",\n      \"item_count\" : 2,\n      \"items\" : [\n         {\n            \"account_id\" : \"112658193342215767\",\n            \"created_at\" : \"2026-02-25T11:35:01.394Z\",\n            \"id\" : \"116141056635954112\",\n            \"state\" : \"accepted\"\n         },\n         {\n            \"account_id\" : \"117628196343117789\",\n            \"created_at\" : \"2026-02-25T11:35:01.394Z\",\n            \"id\" : \"116141051635254139\",\n            \"state\" : \"pending\"\n         }\n      ],\n      \"language\" : \"en\",\n      \"local\" : true,\n      \"name\" : \"Excellent people\",\n      \"sensitive\" : false,\n      \"tag\" : {\n         \"name\" : \"discovery\",\n         \"url\" : \"https://example.com/tags/discovery\"\n      },\n      \"updated_at\" : \"2026-02-25T11:37:38.182Z\",\n      \"uri\" : \"https://example.com/ap/113668893442515793/collections/116131056935959117\",\n      \"url\" : \"https://example.com/collections/116131056935959117\"\n   }\n}\n",
+    "name": "CollectionWithAccounts",
+    "parent": "",
+    "properties": [
+      {
+        "description": "Full account entities for the owner of the Collection and every account within the Collection.",
+        "name": "accounts",
+        "nullable": null,
+        "type": "array<Account>"
+      },
+      {
+        "description": "The actual Collection.",
+        "name": "collection",
+        "nullable": null,
+        "type": "Collection"
+      }
+    ],
+    "url": "https://docs.joinmastodon.org/entities/CollectionWithAccounts/"
+  },
+  "Collections": {
+    "description": "Wraps a list of Collection entities in an object to make it extensible and more consistent with other parts of the API.",
+    "exampleJson": "{\n   \"collections\" : [\n      {\n         \"account_id\" : \"113668893442515793\",\n         \"created_at\" : \"2026-02-25T11:35:01.394Z\",\n         \"description\" : \"Well worth following\",\n         \"discoverable\" : true,\n         \"id\" : \"116131056935959117\",\n         \"item_count\" : 2,\n         \"items\" : [\n            {\n               \"account_id\" : \"112658193342215767\",\n               \"created_at\" : \"2026-02-25T11:35:01.394Z\",\n               \"id\" : \"116141056635954112\",\n               \"state\" : \"accepted\"\n            },\n            {\n               \"account_id\" : \"117628196343117789\",\n               \"created_at\" : \"2026-02-25T11:35:01.394Z\",\n               \"id\" : \"116141051635254139\",\n               \"state\" : \"pending\"\n            }\n         ],\n         \"language\" : \"en\",\n         \"local\" : true,\n         \"name\" : \"Excellent people\",\n         \"sensitive\" : false,\n         \"tag\" : {\n            \"name\" : \"discovery\",\n            \"url\" : \"https://example.com/tags/discovery\"\n         },\n         \"updated_at\" : \"2026-02-25T11:37:38.182Z\",\n         \"uri\" : \"https://example.com/ap/113668893442515793/collections/116131056935959117\",\n         \"url\" : \"https://example.com/collections/116131056935959117\"\n      }\n   ]\n}\n",
+    "name": "Collections",
+    "parent": "",
+    "properties": [
+      {
+        "description": "A list of Collections.",
+        "name": "collections",
+        "nullable": null,
+        "type": "array<Collection>"
+      }
+    ],
+    "url": "https://docs.joinmastodon.org/entities/Collection/"
+  },
   "Context": {
     "description": "Represents the tree around a given status. Used for reconstructing threads of statuses.",
     "exampleJson": "{\n   \"ancestors\" : [\n      {\n         \"created_at\" : \"2019-11-23T19:44:00.124Z\",\n         \"id\" : \"103188938570975982\",\n         \"in_reply_to_id\" : null\n      },\n      {\n         \"created_at\" : \"2019-11-23T19:52:23.398Z\",\n         \"id\" : \"103188971072973252\",\n         \"in_reply_to_id\" : \"103188938570975982\"\n      },\n      {\n         \"created_at\" : \"2019-11-23T19:55:08.208Z\",\n         \"id\" : \"103188982235527758\",\n         \"in_reply_to_id\" : \"103188971072973252\"\n      }\n   ],\n   \"descendants\" : [\n      {\n         \"created_at\" : \"2019-11-23T20:06:36.011Z\",\n         \"id\" : \"103189026958574542\",\n         \"in_reply_to_id\" : \"103189005915505698\"\n      }\n   ]\n}\n",
@@ -3169,6 +3337,27 @@
     ],
     "url": "https://docs.joinmastodon.org/entities/ShallowQuote/"
   },
+  "ShallowTag": {
+    "description": "Minimal representation of a hashtag.",
+    "exampleJson": "{\n   \"name\" : \"discovery\",\n   \"url\" : \"https://example.com/tags/discovery\"\n}\n",
+    "name": "ShallowTag",
+    "parent": "",
+    "properties": [
+      {
+        "description": "The value of the hashtag after the # sign.",
+        "name": "name",
+        "nullable": null,
+        "type": "string"
+      },
+      {
+        "description": "A link to the hashtag on the local server.",
+        "name": "url",
+        "nullable": null,
+        "type": "string"
+      }
+    ],
+    "url": "https://docs.joinmastodon.org/entities/ShallowTag/"
+  },
   "Status": {
     "description": "Represents a status posted by an account.",
     "exampleJson": "{\n   \"account\" : {\n      \"acct\" : \"Gargron\",\n      \"bot\" : false,\n      \"created_at\" : \"2016-03-16T14:34:26.392Z\",\n      \"discoverable\" : true,\n      \"display_name\" : \"Eugen\",\n      \"emojis\" : [],\n      \"fields\" : [\n         {\n            \"name\" : \"Patreon\",\n            \"verified_at\" : null\n         },\n         {\n            \"name\" : \"Homepage\",\n            \"verified_at\" : \"2019-07-15T18:29:57.191+00:00\"\n         }\n      ],\n      \"followers_count\" : 322930,\n      \"following_count\" : 459,\n      \"group\" : false,\n      \"id\" : \"1\",\n      \"last_status_at\" : \"2019-12-10T08:14:44.811Z\",\n      \"locked\" : false,\n      \"note\" : \"<p>Developer of Mastodon and administrator of mastodon.social. I post service announcements, development updates, and personal stuff.</p>\",\n      \"statuses_count\" : 61323,\n      \"username\" : \"Gargron\"\n   },\n   \"application\" : {\n      \"name\" : \"Web\",\n      \"website\" : null\n   },\n   \"bookmarked\" : false,\n   \"card\" : {\n      \"author_name\" : \"\",\n      \"author_url\" : \"\",\n      \"description\" : \"When Peter Teich’s money went to another Barclays customer, the bank offered £25 as a token gesture\",\n      \"embed_url\" : \"\",\n      \"height\" : 0,\n      \"html\" : \"\",\n      \"image\" : null,\n      \"provider_name\" : \"\",\n      \"provider_url\" : \"\",\n      \"title\" : \"‘I lost my £193,000 inheritance – with one wrong digit on my sort code’\",\n      \"type\" : \"link\",\n      \"width\" : 0\n   },\n   \"created_at\" : \"2019-12-08T03:48:33.901Z\",\n   \"emojis\" : [],\n   \"favourited\" : false,\n   \"favourites_count\" : 11,\n   \"id\" : \"103270115826048975\",\n   \"in_reply_to_account_id\" : null,\n   \"in_reply_to_id\" : null,\n   \"language\" : \"en\",\n   \"media_attachments\" : [],\n   \"mentions\" : [],\n   \"muted\" : false,\n   \"poll\" : null,\n   \"reblog\" : null,\n   \"reblogged\" : false,\n   \"reblogs_count\" : 6,\n   \"replies_count\" : 5,\n   \"sensitive\" : false,\n   \"spoiler_text\" : \"\",\n   \"tags\" : [],\n   \"visibility\" : \"public\"\n}\n",
@@ -4243,5 +4432,35 @@
       }
     ],
     "url": "https://docs.joinmastodon.org/entities/WebPushSubscription/"
+  },
+  "WrappedCollection": {
+    "description": "A regular Collection in a wrapper object to make it extensible, consistent with CollectionWithAccounts and other parts of the API.",
+    "exampleJson": "{\n   \"collection\" : {\n      \"account_id\" : \"113668893442515793\",\n      \"created_at\" : \"2026-02-25T11:35:01.394Z\",\n      \"description\" : \"Well worth following\",\n      \"discoverable\" : true,\n      \"id\" : \"116131056935959117\",\n      \"item_count\" : 2,\n      \"items\" : [\n         {\n            \"account_id\" : \"112658193342215767\",\n            \"created_at\" : \"2026-02-25T11:35:01.394Z\",\n            \"id\" : \"116141056635954112\",\n            \"state\" : \"accepted\"\n         },\n         {\n            \"account_id\" : \"117628196343117789\",\n            \"created_at\" : \"2026-02-25T11:35:01.394Z\",\n            \"id\" : \"116141051635254139\",\n            \"state\" : \"pending\"\n         }\n      ],\n      \"language\" : \"en\",\n      \"local\" : true,\n      \"name\" : \"Excellent people\",\n      \"sensitive\" : false,\n      \"tag\" : {\n         \"name\" : \"discovery\",\n         \"url\" : \"https://example.com/tags/discovery\"\n      },\n      \"updated_at\" : \"2026-02-25T11:37:38.182Z\",\n      \"uri\" : \"https://example.com/ap/113668893442515793/collections/116131056935959117\",\n      \"url\" : \"https://example.com/collections/116131056935959117\"\n   }\n}\n",
+    "name": "WrappedCollection",
+    "parent": "",
+    "properties": [
+      {
+        "description": "The actual Collection.",
+        "name": "collection",
+        "nullable": null,
+        "type": "Collection"
+      }
+    ],
+    "url": "https://docs.joinmastodon.org/entities/Collection/"
+  },
+  "WrappedCollectionItem": {
+    "description": "A regular CollectionItem in a wrapper object to make it consistent with CollectionWithAccounts and other parts of the API.",
+    "exampleJson": "{\n   \"collection_item\" : {\n      \"account_id\" : \"112658193342215767\",\n      \"created_at\" : \"2026-02-25T11:35:01.394Z\",\n      \"id\" : \"116141056635954112\",\n      \"state\" : \"accepted\"\n   }\n}\n",
+    "name": "WrappedCollectionItem",
+    "parent": "",
+    "properties": [
+      {
+        "description": "The actual Collection item.",
+        "name": "collection_item",
+        "nullable": null,
+        "type": "CollectionItem"
+      }
+    ],
+    "url": "https://docs.joinmastodon.org/entities/CollectionItem/"
   }
 }

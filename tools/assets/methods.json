@@ -2757,6 +2757,347 @@
       },
       "url": "https://docs.joinmastodon.org/methods/bookmarks/"
     },
+    "collections": {
+      "description": "Manage collections of accounts to be recommended to others.",
+      "methods": {
+        "add_account": {
+          "deprecated": 0,
+          "description": "Add an account to a Collection",
+          "formParams": [
+            {
+              "description": "ID of the account to add to this Collection.",
+              "name": "account_id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "method": "POST",
+          "name": "add_account",
+          "namespace": "collections",
+          "pathParams": [
+            {
+              "description": "The ID of the Collection.",
+              "name": "collection_id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [],
+          "returns": "WrappedCollectionItem",
+          "returnsArray": null,
+          "uri": "/api/v1/collections/:collection_id/items",
+          "url": "https://docs.joinmastodon.org/methods/collections/#add_account"
+        },
+        "create": {
+          "deprecated": 0,
+          "description": "Create a Collection",
+          "formParams": [
+            {
+              "description": "A name for this Collection, max. 40 characters. String is taken \"as is\", which means there is currently no special handling of URLs and hashtags and no support for custom emoji.",
+              "name": "name",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            },
+            {
+              "description": "A longer description of this Collection, max. 100 characters. String is taken \"as is\", which means there is currently no special handling of URLs and hashtags and no support for custom emoji.",
+              "name": "description",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "One of Mastodon's supported language codes (two letter ISO 639-1 plus exceptions).",
+              "name": "language",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "A single hashtag that describes the Collection.",
+              "name": "tag_name",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "Whether this Collection should be marked as sensitive.",
+              "name": "sensitive",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Whether this Collection should appear on the profile of the user, in search results and other discovery mechanisms.",
+              "name": "discoverable",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "IDs of the accounts to feature in this Collection.",
+              "name": "account_ids[]",
+              "nullable": 0,
+              "required": 0,
+              "type": "array<String>"
+            }
+          ],
+          "method": "POST",
+          "name": "create",
+          "namespace": "collections",
+          "pathParams": [],
+          "queryParams": [],
+          "returns": "WrappedCollection",
+          "returnsArray": null,
+          "uri": "/api/v1/collections",
+          "url": "https://docs.joinmastodon.org/methods/collections/#create"
+        },
+        "delete_collection": {
+          "deprecated": 0,
+          "description": "Delete a Collection",
+          "formParams": [],
+          "method": "DELETE",
+          "name": "delete_collection",
+          "namespace": "collections",
+          "pathParams": [
+            {
+              "description": "The ID of the Collection.",
+              "name": "id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [],
+          "returns": "EmptyOrUnknown",
+          "returnsArray": null,
+          "uri": "/api/v1/collections/:id",
+          "url": "https://docs.joinmastodon.org/methods/collections/#delete_collection"
+        },
+        "get_collection": {
+          "deprecated": 0,
+          "description": "Get a single Collection",
+          "formParams": [],
+          "method": "GET",
+          "name": "get_collection",
+          "namespace": "collections",
+          "pathParams": [
+            {
+              "description": "The ID of the Collection.",
+              "name": "id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [],
+          "returns": "CollectionWithAccounts",
+          "returnsArray": null,
+          "uri": "/api/v1/collections/:id",
+          "url": "https://docs.joinmastodon.org/methods/collections/#get_collection"
+        },
+        "get_collections": {
+          "deprecated": 0,
+          "description": "Get all Collections from a given account",
+          "formParams": [],
+          "method": "GET",
+          "name": "get_collections",
+          "namespace": "collections",
+          "pathParams": [
+            {
+              "description": "The ID of the account.",
+              "name": "account_id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [
+            {
+              "description": "Maximum number of results. Defaults to 40 Collections. Max 80 Collections.",
+              "name": "limit",
+              "nullable": 0,
+              "required": 0,
+              "type": "integer"
+            },
+            {
+              "description": "Skip the first n results. Defaults to 0.",
+              "name": "offset",
+              "nullable": 0,
+              "required": 0,
+              "type": "integer"
+            }
+          ],
+          "returns": "Collections",
+          "returnsArray": null,
+          "uri": "/api/v1/accounts/:account_id/collections",
+          "url": "https://docs.joinmastodon.org/methods/collections/#get_collections"
+        },
+        "in_collections": {
+          "deprecated": 0,
+          "description": "Get all Collections the current account is featured in",
+          "formParams": [],
+          "method": "GET",
+          "name": "in_collections",
+          "namespace": "collections",
+          "pathParams": [
+            {
+              "description": "The ID of the account.",
+              "name": "account_id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [
+            {
+              "description": "Maximum number of results. Defaults to 40 Collections. Max 80 Collections.",
+              "name": "limit",
+              "nullable": 0,
+              "required": 0,
+              "type": "integer"
+            },
+            {
+              "description": "Skip the first n results. Defaults to 0.",
+              "name": "offset",
+              "nullable": 0,
+              "required": 0,
+              "type": "integer"
+            }
+          ],
+          "returns": "Collections",
+          "returnsArray": null,
+          "uri": "/api/v1/accounts/:account_id/in_collections",
+          "url": "https://docs.joinmastodon.org/methods/collections/#in_collections"
+        },
+        "remove_account": {
+          "deprecated": 0,
+          "description": "Remove an account from a Collection",
+          "formParams": [],
+          "method": "DELETE",
+          "name": "remove_account",
+          "namespace": "collections",
+          "pathParams": [
+            {
+              "description": "The ID of the Collection.",
+              "name": "collection_id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            },
+            {
+              "description": "The ID of the Collection item.",
+              "name": "id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [],
+          "returns": "EmptyOrUnknown",
+          "returnsArray": null,
+          "uri": "/api/v1/collections/:collection_id/items/:id",
+          "url": "https://docs.joinmastodon.org/methods/collections/#remove_account"
+        },
+        "revoke_item": {
+          "deprecated": 0,
+          "description": "Revoke inclusion in a Collection",
+          "formParams": [],
+          "method": "POST",
+          "name": "revoke_item",
+          "namespace": "collections",
+          "pathParams": [
+            {
+              "description": "The ID of the Collection.",
+              "name": "collection_id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            },
+            {
+              "description": "The ID of the Collection item.",
+              "name": "id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [],
+          "returns": "EmptyOrUnknown",
+          "returnsArray": null,
+          "uri": "/api/v1/collections/:collection_id/items/:id/revoke",
+          "url": "https://docs.joinmastodon.org/methods/collections/#revoke_item"
+        },
+        "update_collection": {
+          "deprecated": 0,
+          "description": "Update a Collection",
+          "formParams": [
+            {
+              "description": "A name for this Collection, max. 40 characters.",
+              "name": "name",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "A longer description of this Collection, max. 100 characters. String is taken \"as is\", which means there is currently no special handling of URLs and hashtags and no support for custom emoji.",
+              "name": "description",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "One of Mastodon's supported language codes (two letter ISO 639-1 plus exceptions).",
+              "name": "language",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "A single hashtag that describes the Collection.",
+              "name": "tag_name",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "Whether this Collection should be marked as sensitive.",
+              "name": "sensitive",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Whether this Collection should appear on the profile of the user, in search results and other discovery mechanisms.",
+              "name": "discoverable",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            }
+          ],
+          "method": "PATCH",
+          "name": "update_collection",
+          "namespace": "collections",
+          "pathParams": [
+            {
+              "description": "The ID of the Collection.",
+              "name": "id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [],
+          "returns": "WrappedCollection",
+          "returnsArray": null,
+          "uri": "/api/v1/collections/:id",
+          "url": "https://docs.joinmastodon.org/methods/collections/#update_collection"
+        }
+      },
+      "url": "https://docs.joinmastodon.org/methods/collections/"
+    },
     "conversations": {
       "description": " Direct conversations with other participants. (Currently, just threads containing a post with \"direct\" visibility.)",
       "methods": {
