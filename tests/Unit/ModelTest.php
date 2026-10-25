@@ -28,6 +28,8 @@ class ModelTest extends TestCase
         ];
 
         $account = AccountModel::fromArray($array);
+
+        self::assertInstanceOf(AccountModel::class, $account->moved);
         self::assertInstanceOf(FieldCollection::class, $account->fields);
         self::assertInstanceOf(FieldModel::class, $account->fields->first());
         self::assertSame('name1', $account->fields->first()->name);
