@@ -74,7 +74,7 @@ final class ApiClient
             $code_challenge_method,
             $force_login,
             $lang,
-        ),);
+        ), );
     }
 
     public function setAccessToken(string|TokenModel $token): self

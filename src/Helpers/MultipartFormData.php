@@ -9,9 +9,8 @@ class MultipartFormData
     /**
      * @param array<string, mixed> $params
      */
-    public function __construct(
-        protected array $params,
-    ) {
+    public function __construct(protected array $params)
+    {
     }
 
     /**
@@ -81,7 +80,7 @@ class MultipartFormData
             return [
                 [
                     'name' => $baseName,
-                    'contents' => (integer) $contents,
+                    'contents' => (int) $contents,
                 ],
             ];
         }
