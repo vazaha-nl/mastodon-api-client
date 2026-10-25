@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Factories;
 
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ResponseException;
 use Vazaha\Mastodon\ApiClient;
 use Vazaha\Mastodon\Exceptions\ApiErrorException;
 use Vazaha\Mastodon\Exceptions\BadRequestException;
@@ -15,6 +16,7 @@ use Vazaha\Mastodon\Exceptions\UnauthorizedException;
 use Vazaha\Mastodon\Exceptions\UnprocessableEntityException;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Results\ErrorResult;
+use Vazaha\Mastodon\Results\WrappedErrorResult;
 
 class ExceptionFactory
 {
@@ -23,13 +25,25 @@ class ExceptionFactory
         ApiClient $apiClient,
         RequestInterface $request,
     ): ApiErrorException {
-        $response = $e->getResponse();
-
-        if ($response === null) {
+        if ($e instanceof ResponseException) {
+            $response = $e->getResponse();
+        } else {
             return new ApiErrorException($e->getMessage(), $e->getCode(), $e);
         }
 
-        $result = (new ResultFactory())->build(ErrorResult::class, $apiClient, $request, $response);
+        $decodedError = json_decode($response->getBody()->getContents(), true);
+
+        if (!is_array($decodedError) || !isset($decodedError['error'])) {
+            return new ApiErrorException($e->getMessage(), $e->getCode(), $e);
+        }
+
+        if (is_string($decodedError['error'])) {
+            $result = (new ResultFactory())->build(ErrorResult::class, $apiClient, $request, $response);
+        } else {
+            $result = (new ResultFactory())->build(WrappedErrorResult::class, $apiClient, $request, $response);
+        }
+
+        $response->getBody()->rewind();
 
         /** @var \Vazaha\Mastodon\Models\ErrorModel $error */
         $error = $result->first();
