@@ -61,7 +61,7 @@ abstract class Model implements ModelInterface
             }
 
             if ($value instanceof \DateTimeInterface) {
-                $array['name'] = $value->format('Y-m-d\TH:i:s.vp');
+                $array[$name] = $value->format('Y-m-d\TH:i:s.vp');
 
                 continue;
             }
