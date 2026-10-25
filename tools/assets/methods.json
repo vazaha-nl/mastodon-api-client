@@ -26,8 +26,8 @@
           "url": "https://docs.joinmastodon.org/methods/accounts/#block"
         },
         "create": {
-          "deprecated": 0,
-          "description": "Register an account",
+          "deprecated": 1,
+          "description": "Register an account ",
           "formParams": [
             {
               "description": "The desired username for the account",
@@ -130,7 +130,7 @@
             }
           ],
           "returns": "Account",
-          "returnsArray": null,
+          "returnsArray": 1,
           "uri": "/api/v1/accounts/:id/endorsements",
           "url": "https://docs.joinmastodon.org/methods/accounts/#endorsements"
         },
@@ -372,7 +372,7 @@
         },
         "lookup": {
           "deprecated": 0,
-          "description": "Lookup account ID from Webfinger address",
+          "description": "Lookup account ID from WebFinger address",
           "formParams": [],
           "method": "GET",
           "name": "lookup",
@@ -380,7 +380,7 @@
           "pathParams": [],
           "queryParams": [
             {
-              "description": "The username or Webfinger address to lookup.",
+              "description": "The username or WebFinger address to lookup.",
               "name": "acct",
               "nullable": 0,
               "required": 1,
@@ -804,11 +804,25 @@
               "type": "file"
             },
             {
+              "description": "A plain-text description of the avatar, for accessibility purposes.",
+              "name": "avatar_description",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
               "description": "Header image encoded using `multipart/form-data`",
               "name": "header",
               "nullable": 1,
               "required": 0,
               "type": "file"
+            },
+            {
+              "description": "A plain-text description of the header, for accessibility purposes.",
+              "name": "header_description",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
             },
             {
               "description": "Whether manual approval of follow requests is required.",
@@ -853,14 +867,14 @@
               "type": "array<String>"
             },
             {
-              "description": "The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields.",
+              "description": "The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields (specified in [Instance#max_profile_fields]({{< relref \"entities/Instance#max_profile_fields\" >}})).",
               "name": "fields_attributes",
               "nullable": 0,
               "required": 0,
               "type": "hash"
             },
             {
-              "description": "source[privacy]: Default post privacy for authored statuses. Can be `public`, `unlisted`, or `private`.",
+              "description": "source[privacy]: Default post privacy for authored statuses.",
               "name": "source",
               "nullable": 1,
               "required": 0,
@@ -885,7 +899,15 @@
           "name": "verify_credentials",
           "namespace": "accounts",
           "pathParams": [],
-          "queryParams": [],
+          "queryParams": [
+            {
+              "description": "Whether to get account information even if the account is non-functional (such as e.g. not being approved or confirmed), defaults to `false`.",
+              "name": "allow_nonfunctional",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            }
+          ],
           "returns": "CredentialAccount",
           "returnsArray": null,
           "uri": "/api/v1/accounts/verify_credentials",
@@ -2292,6 +2314,13 @@
                   "type": "boolean"
                 },
                 {
+                  "description": "Filter for unresolved reports? Use in combination with `resolved` to retrieve all reports.",
+                  "name": "unresolved",
+                  "nullable": 0,
+                  "required": 0,
+                  "type": "boolean"
+                },
+                {
                   "description": "Filter for reports filed by this account.",
                   "name": "account_id",
                   "nullable": 0,
@@ -2489,7 +2518,7 @@
           "url": "https://docs.joinmastodon.org/methods/admin/retention/"
         },
         "admin::trends": {
-          "description": "TODO",
+          "description": "Moderate trending links, statuses and tags.",
           "methods": {
             "links": {
               "deprecated": 0,
@@ -2638,6 +2667,114 @@
       },
       "url": "https://docs.joinmastodon.org/methods/announcements/"
     },
+    "annual_reports": {
+      "description": "Generate and fetch Wrapstodon reports",
+      "methods": {
+        "generate": {
+          "deprecated": 0,
+          "description": "Generate a new annual report",
+          "formParams": [],
+          "method": "POST",
+          "name": "generate",
+          "namespace": "annual_reports",
+          "pathParams": [
+            {
+              "description": "The year for the annual report.",
+              "name": "year",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [],
+          "returns": "EmptyOrUnknown",
+          "returnsArray": null,
+          "uri": "/api/v1/annual_reports/:year/generate",
+          "url": "https://docs.joinmastodon.org/methods/annual_reports/#generate"
+        },
+        "get": {
+          "deprecated": 0,
+          "description": "Get a single annual report",
+          "formParams": [],
+          "method": "GET",
+          "name": "get",
+          "namespace": "annual_reports",
+          "pathParams": [
+            {
+              "description": "The year for the annual report.",
+              "name": "year",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [],
+          "returns": "WrappedAnnualReports",
+          "returnsArray": null,
+          "uri": "/api/v1/annual_reports/:year",
+          "url": "https://docs.joinmastodon.org/methods/annual_reports/#get"
+        },
+        "get-state": {
+          "deprecated": 0,
+          "description": "Get the state of an annual report",
+          "formParams": [],
+          "method": "GET",
+          "name": "get-state",
+          "namespace": "annual_reports",
+          "pathParams": [
+            {
+              "description": "The year for the annual report.",
+              "name": "year",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [],
+          "returns": "EmptyOrUnknown",
+          "returnsArray": null,
+          "uri": "/api/v1/annual_reports/:year/state",
+          "url": "https://docs.joinmastodon.org/methods/annual_reports/#get-state"
+        },
+        "index": {
+          "deprecated": 0,
+          "description": "Get all annual reports",
+          "formParams": [],
+          "method": "GET",
+          "name": "index",
+          "namespace": "annual_reports",
+          "pathParams": [],
+          "queryParams": [],
+          "returns": "WrappedAnnualReports",
+          "returnsArray": null,
+          "uri": "/api/v1/annual_reports",
+          "url": "https://docs.joinmastodon.org/methods/annual_reports/#index"
+        },
+        "read": {
+          "deprecated": 0,
+          "description": "Mark an annual report as read",
+          "formParams": [],
+          "method": "POST",
+          "name": "read",
+          "namespace": "annual_reports",
+          "pathParams": [
+            {
+              "description": "The year for the annual report.",
+              "name": "year",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [],
+          "returns": "EmptyOrUnknown",
+          "returnsArray": null,
+          "uri": "/api/v1/annual_reports/:year/read",
+          "url": "https://docs.joinmastodon.org/methods/annual_reports/#read"
+        }
+      },
+      "url": "https://docs.joinmastodon.org/methods/annual_reports/"
+    },
     "apps": {
       "description": "Register client applications that can be used to obtain OAuth tokens.",
       "methods": {
@@ -2756,6 +2893,301 @@
         }
       },
       "url": "https://docs.joinmastodon.org/methods/bookmarks/"
+    },
+    "collections": {
+      "description": "Manage collections of accounts to be recommended to others.",
+      "methods": {
+        "add_account": {
+          "deprecated": 0,
+          "description": "Add an account to a Collection",
+          "formParams": [
+            {
+              "description": "ID of the account to add to this Collection",
+              "name": "account_id",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            }
+          ],
+          "method": "POST",
+          "name": "add_account",
+          "namespace": "collections",
+          "pathParams": [
+            {
+              "description": "ID of the collection. Required.",
+              "name": "collection_id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [],
+          "returns": "WrappedCollectionItem",
+          "returnsArray": null,
+          "uri": "/api/v1/collections/116131056935959117/items",
+          "url": "https://docs.joinmastodon.org/methods/collections/#add_account"
+        },
+        "create": {
+          "deprecated": 0,
+          "description": "Create a Collection",
+          "formParams": [
+            {
+              "description": "A name for this Collection, max. 40 characters. String is taken \"as is\", which means there is currently no special handling of URLs and hashtags and no support for custom emoji.",
+              "name": "name",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            },
+            {
+              "description": "A longer description of this Collection, max. 100 characters. String is taken \"as is\", which means there is currently no special handling of URLs a",
+              "name": "description",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "One of Mastodon's supported language codes (two letter ISO 639-1 plus exceptions)",
+              "name": "language",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "A single hashtag that describes the Collection",
+              "name": "tag_name",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "Whether this Collection should be marked as sensitive",
+              "name": "sensitive",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Whether this Collection should appear on the user's profile, in search results and other discovery mechanisms",
+              "name": "discoverable",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "IDs of the accounts to feature in this Collection",
+              "name": "account_ids[]",
+              "nullable": 0,
+              "required": 0,
+              "type": "array<String>"
+            }
+          ],
+          "method": "POST",
+          "name": "create",
+          "namespace": "collections",
+          "pathParams": [],
+          "queryParams": [],
+          "returns": "WrappedCollection",
+          "returnsArray": null,
+          "uri": "/api/v1/collections",
+          "url": "https://docs.joinmastodon.org/methods/collections/#create"
+        },
+        "delete_collection": {
+          "deprecated": 0,
+          "description": "Delete a Collection",
+          "formParams": [],
+          "method": "DELETE",
+          "name": "delete_collection",
+          "namespace": "collections",
+          "pathParams": [],
+          "queryParams": [],
+          "returns": "EmptyOrUnknown",
+          "returnsArray": null,
+          "uri": "/api/v1/collections/116131056935959117",
+          "url": "https://docs.joinmastodon.org/methods/collections/#delete_collection"
+        },
+        "get_collection": {
+          "deprecated": 0,
+          "description": "Get a single Collection",
+          "formParams": [],
+          "method": "GET",
+          "name": "get_collection",
+          "namespace": "collections",
+          "pathParams": [
+            {
+              "description": "ID of the collection. Required.",
+              "name": "id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [],
+          "returns": "CollectionWithAccounts",
+          "returnsArray": null,
+          "uri": "/api/v1/collections/:id",
+          "url": "https://docs.joinmastodon.org/methods/collections/#get_collection"
+        },
+        "get_collections": {
+          "deprecated": 0,
+          "description": "Get all Collections from a given account",
+          "formParams": [],
+          "method": "GET",
+          "name": "get_collections",
+          "namespace": "collections",
+          "pathParams": [
+            {
+              "description": "ID of the account. Required.",
+              "name": "account_id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [
+            {
+              "description": "Maximum number of results. Defaults to 40 Collections. Max 80 Collections.",
+              "name": "limit",
+              "nullable": 0,
+              "required": 0,
+              "type": "integer"
+            },
+            {
+              "description": "Skip the first n results. Defaults to 0.",
+              "name": "offset",
+              "nullable": 0,
+              "required": 0,
+              "type": "integer"
+            }
+          ],
+          "returns": "Collections",
+          "returnsArray": null,
+          "uri": "/api/v1/accounts/:account_id/collections",
+          "url": "https://docs.joinmastodon.org/methods/collections/#get_collections"
+        },
+        "in_collections": {
+          "deprecated": 0,
+          "description": "Get all Collections the current account is featured in",
+          "formParams": [],
+          "method": "GET",
+          "name": "in_collections",
+          "namespace": "collections",
+          "pathParams": [
+            {
+              "description": "ID of the account. Required.",
+              "name": "account_id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [
+            {
+              "description": "Maximum number of results. Defaults to 40 Collections. Max 80 Collections.",
+              "name": "limit",
+              "nullable": 0,
+              "required": 0,
+              "type": "integer"
+            },
+            {
+              "description": "Skip the first n results. Defaults to 0.",
+              "name": "offset",
+              "nullable": 0,
+              "required": 0,
+              "type": "integer"
+            }
+          ],
+          "returns": "Collections",
+          "returnsArray": null,
+          "uri": "/api/v1/accounts/:account_id/in_collections",
+          "url": "https://docs.joinmastodon.org/methods/collections/#in_collections"
+        },
+        "remove_account": {
+          "deprecated": 0,
+          "description": "Remove account from a Collection",
+          "formParams": [],
+          "method": "DELETE",
+          "name": "remove_account",
+          "namespace": "collections",
+          "pathParams": [],
+          "queryParams": [],
+          "returns": "EmptyOrUnknown",
+          "returnsArray": null,
+          "uri": "/api/v1/collections/116131056935959117/items/116151066915353115",
+          "url": "https://docs.joinmastodon.org/methods/collections/#remove_account"
+        },
+        "revoke_item": {
+          "deprecated": 0,
+          "description": "Revoke inclusion in a Collection",
+          "formParams": [],
+          "method": "POST",
+          "name": "revoke_item",
+          "namespace": "collections",
+          "pathParams": [],
+          "queryParams": [],
+          "returns": "EmptyOrUnknown",
+          "returnsArray": null,
+          "uri": "/api/v1/collections/116131056935959117/items/116151066915353115/revoke",
+          "url": "https://docs.joinmastodon.org/methods/collections/#revoke_item"
+        },
+        "update_collection": {
+          "deprecated": 0,
+          "description": "Update a Collection",
+          "formParams": [
+            {
+              "description": "A name for this Collection, max. 40 characters ",
+              "name": "name",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "A longer description of this Collection, max. 100 characters",
+              "name": "description",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "One of Mastodon's supported language codes (two letter ISO 639-1 plus exceptions)",
+              "name": "language",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "A single hashtag that describes the Collection",
+              "name": "tag_name",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "Whether this Collection should be marked as sensitive",
+              "name": "sensitive",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Whether this Collection should appear in search results and other discovery mechanisms",
+              "name": "discoverable",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            }
+          ],
+          "method": "PATCH",
+          "name": "update_collection",
+          "namespace": "collections",
+          "pathParams": [],
+          "queryParams": [],
+          "returns": "WrappedCollection",
+          "returnsArray": null,
+          "uri": "/api/v1/collections/116131056935959117",
+          "url": "https://docs.joinmastodon.org/methods/collections/#update_collection"
+        }
+      },
+      "url": "https://docs.joinmastodon.org/methods/collections/"
     },
     "conversations": {
       "description": " Direct conversations with other participants. (Currently, just threads containing a post with \"direct\" visibility.)",
@@ -3161,7 +3593,7 @@
               "type": "string"
             },
             {
-              "description": "How many seconds from now should the filter expire?",
+              "description": "How many seconds from now should the filter expire? Defaults to never expire.",
               "name": "expires_in",
               "nullable": 0,
               "required": 0,
@@ -3931,6 +4363,13 @@
               "nullable": 0,
               "required": 0,
               "type": "boolean"
+            },
+            {
+              "description": "Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification group's `fallback` attribute.",
+              "name": "supported_types[]",
+              "nullable": 0,
+              "required": 0,
+              "type": "array<String>"
             }
           ],
           "returns": "EmptyOrUnknown",
@@ -3954,7 +4393,15 @@
               "type": "string"
             }
           ],
-          "queryParams": [],
+          "queryParams": [
+            {
+              "description": "Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification group's `fallback` attribute.",
+              "name": "supported_types[]",
+              "nullable": 0,
+              "required": 0,
+              "type": "array<String>"
+            }
+          ],
           "returns": "EmptyOrUnknown",
           "returnsArray": null,
           "uri": "/api/v2/notifications/:group_key",
@@ -4495,28 +4942,6 @@
     "media": {
       "description": " Attach media to authored statuses. See Using Mastodon > Posting to your profile > Attachments for more information about size and format limits.",
       "methods": {
-        "delete": {
-          "deprecated": 0,
-          "description": "Delete media attachment",
-          "formParams": [],
-          "method": "DELETE",
-          "name": "delete",
-          "namespace": "media",
-          "pathParams": [
-            {
-              "description": "The ID of the MediaAttachment in the database.",
-              "name": "id",
-              "nullable": 0,
-              "required": 1,
-              "type": "string"
-            }
-          ],
-          "queryParams": [],
-          "returns": "EmptyOrUnknown",
-          "returnsArray": null,
-          "uri": "/api/v1/media/:id",
-          "url": "https://docs.joinmastodon.org/methods/media/#delete"
-        },
         "get": {
           "deprecated": 0,
           "description": "Get media attachment",
@@ -4692,7 +5117,7 @@
               "type": "integer"
             }
           ],
-          "returns": "Account",
+          "returns": "MutedAccount",
           "returnsArray": 1,
           "uri": "/api/v1/mutes",
           "url": "https://docs.joinmastodon.org/methods/mutes/#get"
@@ -4913,6 +5338,13 @@
               "nullable": 0,
               "required": 0,
               "type": "boolean"
+            },
+            {
+              "description": "Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification's `fallback` attribute.",
+              "name": "supported_types[]",
+              "nullable": 0,
+              "required": 0,
+              "type": "array<String>"
             }
           ],
           "returns": "Notification",
@@ -4936,7 +5368,15 @@
               "type": "string"
             }
           ],
-          "queryParams": [],
+          "queryParams": [
+            {
+              "description": "Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification's `fallback` attribute.",
+              "name": "supported_types[]",
+              "nullable": 0,
+              "required": 0,
+              "type": "array<String>"
+            }
+          ],
           "returns": "Notification",
           "returnsArray": null,
           "uri": "/api/v1/notifications/:id",
@@ -5314,7 +5754,7 @@
               "type": "string"
             },
             {
-              "description": "Arbitrary value to passthrough to your server when the user authorizes or rejects the authorization request.",
+              "description": "Arbitrary value to pass through to your server when the user authorizes or rejects the authorization request.",
               "name": "state",
               "nullable": 0,
               "required": 0,
@@ -5344,6 +5784,20 @@
             {
               "description": "The ISO 639-1 two-letter language code to use while rendering the authorization form.",
               "name": "lang",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "OpenID Connect `prompt`.\\",
+              "name": "prompt",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "Invitation code, to be used with `prompt=create` when following an invitation to sign-up. The invite code is the last path segment of Mastodon invite URLs of the form `https://example.com/invite/:invite_code`.",
+              "name": "invite_code",
               "nullable": 0,
               "required": 0,
               "type": "string"
@@ -5607,6 +6061,147 @@
           "returnsArray": null,
           "uri": "/api/v1/profile/avatar",
           "url": "https://docs.joinmastodon.org/methods/profile/#delete"
+        },
+        "get": {
+          "deprecated": 0,
+          "description": "Get current user profile",
+          "formParams": [],
+          "method": "GET",
+          "name": "get",
+          "namespace": "profile",
+          "pathParams": [],
+          "queryParams": [],
+          "returns": "Profile",
+          "returnsArray": null,
+          "uri": "/api/v1/profile",
+          "url": "https://docs.joinmastodon.org/methods/profile/#get"
+        },
+        "patch": {
+          "deprecated": 0,
+          "description": "Update current user profile",
+          "formParams": [
+            {
+              "description": "The display name to use for the profile.",
+              "name": "display_name",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "The account bio.",
+              "name": "note",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "Avatar image encoded using `multipart/form-data`",
+              "name": "avatar",
+              "nullable": 1,
+              "required": 0,
+              "type": "file"
+            },
+            {
+              "description": "A plain-text description of the avatar, for accessibility purposes.",
+              "name": "avatar_description",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "Header image encoded using `multipart/form-data`",
+              "name": "header",
+              "nullable": 1,
+              "required": 0,
+              "type": "file"
+            },
+            {
+              "description": "A plain-text description of the header, for accessibility purposes.",
+              "name": "header_description",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "Whether manual approval of follow requests is required.",
+              "name": "locked",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Whether the account has a bot flag.",
+              "name": "bot",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Whether the account should be shown in the profile directory and be available for other discovery features, like being included in Collections.",
+              "name": "discoverable",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Whether to hide followers and followed accounts. This field predates the Collections feature and has nothing to do with it, despite the name.",
+              "name": "hide_collections",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Whether public posts should be searchable to anyone.",
+              "name": "indexable",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Whether a “Media” tab with media attachments should be shown on this profile.",
+              "name": "show_media",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Whether media attachments in replies should be shown in the “Media” tab of this profile.",
+              "name": "show_media_replies",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Whether a “Featured” tab should be shown on this profile.",
+              "name": "show_featured",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Domains of websites allowed to credit the account. Maximum of 10 domains.",
+              "name": "attribution_domains[]",
+              "nullable": 0,
+              "required": 0,
+              "type": "array<String>"
+            },
+            {
+              "description": "The profile fields to be set. Each hash includes `name` and `value`. By default, max 4 fields (specified in [Instance#max_profile_fields]({{< relref \"entities/Instance#max_profile_fields\" >}})).",
+              "name": "fields_attributes",
+              "nullable": 0,
+              "required": 0,
+              "type": "array<Hash>"
+            }
+          ],
+          "method": "PATCH",
+          "name": "patch",
+          "namespace": "profile",
+          "pathParams": [],
+          "queryParams": [],
+          "returns": "Profile",
+          "returnsArray": null,
+          "uri": "/api/v1/profile",
+          "url": "https://docs.joinmastodon.org/methods/profile/#patch"
         }
       },
       "url": "https://docs.joinmastodon.org/methods/profile/"
@@ -5755,6 +6350,13 @@
             {
               "description": "You can attach statuses to the report to provide additional context.",
               "name": "status_ids[]",
+              "nullable": 0,
+              "required": 0,
+              "type": "array<String>"
+            },
+            {
+              "description": "You can attach Collections to the report to provide additional context.",
+              "name": "collection_ids[]",
               "nullable": 0,
               "required": 0,
               "type": "array<String>"
@@ -6022,7 +6624,7 @@
               "type": "string"
             },
             {
-              "description": "Only relevant if `type` includes `accounts` or if `query` is a HTTPS URL. In the first case, if `true` and (a) the search query is for a remote account (e.g., `someaccount@someother.server`) and (b) the local server does not know about the account, [WebFinger](/spec/webfinger) is used to try and resolve the account at `someother.server`. This provides the best recall at higher latency. If `false`, only accounts the server knows about are returned. In the second case, if `true`, resolving the URL and returning the matching status is attempted. If `false`, this resolving logic is circumvented and a regular search is performed instead.  ",
+              "description": "Only relevant if `type` includes `accounts` or if `q` is a HTTPS URL. In the first case, if `true` and (a) the search query is for a remote account (e.g., `someaccount@someother.server`) and (b) the local server does not know about the account, [WebFinger](/spec/webfinger) is used to try and resolve the account at `someother.server`. This provides the best recall at higher latency. If `false`, only accounts the server knows about are returned. In the second case, if `true`, resolving the URL and returning the matching status, account or Collection is attempted. If `false`, this resolving logic is circumvented and a regular search is performed instead.",
               "name": "resolve",
               "nullable": 0,
               "required": 0,
@@ -6071,7 +6673,7 @@
               "type": "integer"
             },
             {
-              "description": "Skip the first n results.",
+              "description": "Skip the first n results. Only applies when `type` is also present (ignored otherwise).",
               "name": "offset",
               "nullable": 0,
               "required": 0,
@@ -6116,7 +6718,7 @@
           "description": "Boost a status",
           "formParams": [
             {
-              "description": "Any visibility except `limited` or `direct` (i.e. `public`, `unlisted`, `private`). Defaults to public.",
+              "description": "Defaults to public.",
               "name": "visibility",
               "nullable": 0,
               "required": 0,
@@ -6251,6 +6853,20 @@
               "nullable": 0,
               "required": 0,
               "type": "string"
+            },
+            {
+              "description": "ID of the status being quoted, if any. Will raise an error if the status does not exist, the author does not have access to it, or quoting is denied by Mastodon's understanding of the attached quote policy. All posts except Private Mentions (`direct` visibility) are quotable by their author. Quoting a `private` post will restrict the quoting post's `visibility` to `private` or `direct` (if the given `visibility` is `public` or `unlisted`, `private` will be used instead). An error will be returned when making a quote post with `direct` visibility and the quote author is not explicitly mentioned. If the `status` text doesn't include a link to the quoted post, Mastodon will prepend a `<p class=\"quote-inline\">RE: <a href=\"…\">…</a></p>` paragraph for backward compatibility (such a paragraph will be hidden by Mastodon's web interface).",
+              "name": "quoted_status_id",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            },
+            {
+              "description": "Sets who is allowed to quote the status. When omitted, the user's [default setting](/entities/Account##source-quote_policy) will be used instead. Ignored if `visibility` is `private` or `direct`, in which case the policy will always be set to `nobody`.\\",
+              "name": "quote_approval_policy",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
             }
           ],
           "method": "POST",
@@ -6345,6 +6961,13 @@
               "nullable": 1,
               "required": 0,
               "type": "array"
+            },
+            {
+              "description": "Sets who is allowed to quote the status. Ignored if `visibility` is `private` or `direct`, in which case the policy will always be set to `nobody`. Changing the policy does not invalidate past quotes.\\",
+              "name": "quote_approval_policy",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
             }
           ],
           "method": "PUT",
@@ -6364,6 +6987,36 @@
           "returnsArray": null,
           "uri": "/api/v1/statuses/:id",
           "url": "https://docs.joinmastodon.org/methods/statuses/#edit"
+        },
+        "edit_interaction_policy": {
+          "deprecated": 0,
+          "description": "Edit a status' interaction policies",
+          "formParams": [
+            {
+              "description": "Sets who is allowed to quote the status. Ignored if `visibility` is `private` or `direct`, in which case the policy will always be set to `nobody`. Changing the policy does not invalidate past quotes.\\",
+              "name": "quote_approval_policy",
+              "nullable": 0,
+              "required": 0,
+              "type": "string"
+            }
+          ],
+          "method": "PUT",
+          "name": "edit_interaction_policy",
+          "namespace": "statuses",
+          "pathParams": [
+            {
+              "description": "The ID of the Status in the database.",
+              "name": "id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [],
+          "returns": "Status",
+          "returnsArray": null,
+          "uri": "/api/v1/statuses/:id/interaction_policy",
+          "url": "https://docs.joinmastodon.org/methods/statuses/#edit_interaction_policy"
         },
         "favourite": {
           "deprecated": 0,
@@ -6527,6 +7180,36 @@
           "uri": "/api/v1/statuses/:id/pin",
           "url": "https://docs.joinmastodon.org/methods/statuses/#pin"
         },
+        "quotes": {
+          "deprecated": 0,
+          "description": "See quotes of a status",
+          "formParams": [],
+          "method": "GET",
+          "name": "quotes",
+          "namespace": "statuses",
+          "pathParams": [
+            {
+              "description": "The ID of the Status in the database.",
+              "name": "id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [
+            {
+              "description": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.",
+              "name": "limit",
+              "nullable": 0,
+              "required": 0,
+              "type": "integer"
+            }
+          ],
+          "returns": "Status",
+          "returnsArray": 1,
+          "uri": "/api/v1/statuses/:id/quotes",
+          "url": "https://docs.joinmastodon.org/methods/statuses/#quotes"
+        },
         "reblogged_by": {
           "deprecated": 0,
           "description": "See who boosted a status",
@@ -6557,6 +7240,35 @@
           "uri": "/api/v1/statuses/:id/reblogged_by",
           "url": "https://docs.joinmastodon.org/methods/statuses/#reblogged_by"
         },
+        "revoke_quote": {
+          "deprecated": 0,
+          "description": "Revoke a quote post",
+          "formParams": [],
+          "method": "POST",
+          "name": "revoke_quote",
+          "namespace": "statuses",
+          "pathParams": [
+            {
+              "description": "The ID of the quoted Status in the database.",
+              "name": "id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            },
+            {
+              "description": "The ID of the quoting Status in the database.",
+              "name": "quoting_status_id",
+              "nullable": 0,
+              "required": 1,
+              "type": "string"
+            }
+          ],
+          "queryParams": [],
+          "returns": "Status",
+          "returnsArray": null,
+          "uri": "/api/v1/statuses/:id/quotes/:quoting_status_id/revoke",
+          "url": "https://docs.joinmastodon.org/methods/statuses/#revoke_quote"
+        },
         "source": {
           "deprecated": 0,
           "description": "View status source",
@@ -6584,7 +7296,7 @@
           "description": "Translate a status",
           "formParams": [
             {
-              "description": "The status content will be translated into this language. Defaults to the user's current locale.",
+              "description": "The status content will be translated into this language. Defaults to the user's current locale (which in turn falls back to server default).",
               "name": "lang",
               "nullable": 0,
               "required": 0,
@@ -7012,6 +7724,34 @@
               "nullable": 0,
               "required": 0,
               "type": "integer"
+            },
+            {
+              "description": "Whether to exclude Direct Messages from the response.",
+              "name": "exclude_direct",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Whether to exclude reblogs from the response.",
+              "name": "exclude_reblogs",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Whether to exclude quote posts from the response.",
+              "name": "exclude_quotes",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
+            },
+            {
+              "description": "Whether to exclude replies from the response.",
+              "name": "exclude_replies",
+              "nullable": 0,
+              "required": 0,
+              "type": "boolean"
             }
           ],
           "returns": "Status",
@@ -7281,7 +8021,7 @@
       "url": "https://docs.joinmastodon.org/methods/timelines/"
     },
     "trends": {
-      "description": "View hashtags that are currently being used more frequently than usual.",
+      "description": "Listings of tags, statuses, and links with increased activity",
       "methods": {
         "links": {
           "deprecated": 0,
