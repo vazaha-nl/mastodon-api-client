@@ -85,8 +85,9 @@ class MethodSpecsRepository
 
                 return $returns;
             })
-            // to make sure we auto generate ErrorResult
+            // to make sure we auto generate Error results
             ->add('Error')
+            ->add('WrappedError')
             ->unique()
             ->values()
             ->toArray();
