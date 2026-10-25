@@ -40,7 +40,8 @@ if (!isset($clientId, $clientSecret)) {
         [
             'urn:ietf:wg:oauth:2.0:oob',
         ],
-        'read write profile push follow admin:read admin:write',
+        'read write profile push follow admin:read admin:write write:collections',
+        'http://localhost:3000',
     );
 
     $clientId = $app->client_id;
@@ -57,6 +58,7 @@ $request = new AuthorizeRequest(
     $clientId,
     'urn:ietf:wg:oauth:2.0:oob',
     'read write profile push follow admin:read admin:write',
+    'http://localhost:3000',
 );
 
 echo "Open the following url, login, and copy/paste the authorization code here:\n";
