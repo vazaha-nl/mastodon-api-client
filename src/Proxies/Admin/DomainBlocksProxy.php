@@ -69,12 +69,9 @@ class DomainBlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#delete
      */
-    public function delete(
-        string $id,
-    ): DomainBlockModel {
-        $result = $this->apiClient->send(new DeleteRequest(
-            $id,
-        ));
+    public function delete(string $id): DomainBlockModel
+    {
+        $result = $this->apiClient->send(new DeleteRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\DomainBlockModel $model */
         $model = $result->first();
@@ -95,14 +92,11 @@ class DomainBlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#get
      */
-    public function get(
-        ?int $limit = null,
-    ): DomainBlockResult {
+    public function get(?int $limit = null): DomainBlockResult
+    {
         /** @var \Vazaha\Mastodon\Results\Admin\DomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\DomainBlockModel> */
         $models = $this->apiClient
-            ->send(new GetRequest(
-                $limit,
-            ));
+            ->send(new GetRequest($limit));
 
         return $models;
     }
@@ -114,12 +108,9 @@ class DomainBlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#get-one
      */
-    public function getOne(
-        string $id,
-    ): DomainBlockModel {
-        $result = $this->apiClient->send(new GetOneRequest(
-            $id,
-        ));
+    public function getOne(string $id): DomainBlockModel
+    {
+        $result = $this->apiClient->send(new GetOneRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\DomainBlockModel $model */
         $model = $result->first();

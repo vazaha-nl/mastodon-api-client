@@ -8,14 +8,12 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Vazaha\Mastodon\Abstracts\Model;
-
 /**
  * Represents the software instance of Mastodon running on this domain.
  *
  * @see https://docs.joinmastodon.org/entities/Instance/#InstanceIcon
  */
-class InstanceIconModel extends Model
+class InstanceIconModel extends InstanceModel
 {
     /**
      * The URL of this icon.

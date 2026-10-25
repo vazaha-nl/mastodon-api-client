@@ -8,14 +8,14 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Translation;
 
-use Vazaha\Mastodon\Abstracts\Model;
+use Vazaha\Mastodon\Models\TranslationModel;
 
 /**
  * Represents the result of machine translating some status content.
  *
  * @see https://docs.joinmastodon.org/entities/Translation/#Attachment
  */
-class AttachmentModel extends Model
+class AttachmentModel extends TranslationModel
 {
     /**
      * The id of the attachment.

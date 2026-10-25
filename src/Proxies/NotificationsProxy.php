@@ -42,14 +42,11 @@ class NotificationsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#accept-multiple-requests
      */
-    public function acceptMultipleRequests(
-        string $id,
-    ): EmptyOrUnknownResult {
+    public function acceptMultipleRequests(string $id): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new AcceptMultipleRequestsRequest(
-                $id,
-            ));
+            ->send(new AcceptMultipleRequestsRequest($id));
 
         return $models;
     }
@@ -61,12 +58,9 @@ class NotificationsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#accept-request
      */
-    public function acceptRequest(
-        string $id,
-    ): NotificationRequestModel {
-        $result = $this->apiClient->send(new AcceptRequestRequest(
-            $id,
-        ));
+    public function acceptRequest(string $id): NotificationRequestModel
+    {
+        $result = $this->apiClient->send(new AcceptRequestRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\NotificationRequestModel $model */
         $model = $result->first();
@@ -104,14 +98,11 @@ class NotificationsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#dismiss
      */
-    public function dismiss(
-        string $id,
-    ): EmptyOrUnknownResult {
+    public function dismiss(string $id): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new DismissRequest(
-                $id,
-            ));
+            ->send(new DismissRequest($id));
 
         return $models;
     }
@@ -127,14 +118,11 @@ class NotificationsProxy extends Proxy
      *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
-    public function dismissDeprecated(
-        string $id,
-    ): EmptyOrUnknownResult {
+    public function dismissDeprecated(string $id): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new DismissDeprecatedRequest(
-                $id,
-            ));
+            ->send(new DismissDeprecatedRequest($id));
 
         return $models;
     }
@@ -148,14 +136,11 @@ class NotificationsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#dismiss-multiple-requests
      */
-    public function dismissMultipleRequests(
-        array $_id = [],
-    ): EmptyOrUnknownResult {
+    public function dismissMultipleRequests(array $_id = []): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new DismissMultipleRequestsRequest(
-                $_id,
-            ));
+            ->send(new DismissMultipleRequestsRequest($_id));
 
         return $models;
     }
@@ -169,14 +154,11 @@ class NotificationsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#dismiss-request
      */
-    public function dismissRequest(
-        string $id,
-    ): EmptyOrUnknownResult {
+    public function dismissRequest(string $id): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new DismissRequestRequest(
-                $id,
-            ));
+            ->send(new DismissRequestRequest($id));
 
         return $models;
     }
@@ -192,6 +174,7 @@ class NotificationsProxy extends Proxy
      * @param null|list<string> $exclude_types    types to exclude from the results
      * @param ?string           $account_id       return only notifications received from the specified account
      * @param ?bool             $include_filtered Whether to include notifications filtered by the user's {@link https://docs.joinmastodon.org/entities/NotificationPolicy NotificationPolicy}. Defaults to false.
+     * @param null|list<string> $supported_types  Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification's `fallback` attribute.
      *
      * @return \Vazaha\Mastodon\Results\NotificationResult<array-key, \Vazaha\Mastodon\Models\NotificationModel>
      *
@@ -206,6 +189,7 @@ class NotificationsProxy extends Proxy
         ?array $exclude_types = null,
         ?string $account_id = null,
         ?bool $include_filtered = null,
+        ?array $supported_types = null,
     ): NotificationResult {
         /** @var \Vazaha\Mastodon\Results\NotificationResult<array-key, \Vazaha\Mastodon\Models\NotificationModel> */
         $models = $this->apiClient
@@ -218,6 +202,7 @@ class NotificationsProxy extends Proxy
                 $exclude_types,
                 $account_id,
                 $include_filtered,
+                $supported_types,
             ));
 
         return $models;
@@ -226,15 +211,18 @@ class NotificationsProxy extends Proxy
     /**
      * Get a single notification.
      *
-     * @param string $id the ID of the Notification in the database
+     * @param string            $id              the ID of the Notification in the database
+     * @param null|list<string> $supported_types Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification's `fallback` attribute.
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#get-one
      */
     public function getOne(
         string $id,
+        ?array $supported_types = null,
     ): NotificationModel {
         $result = $this->apiClient->send(new GetOneRequest(
             $id,
+            $supported_types,
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\NotificationModel $model */
@@ -326,14 +314,11 @@ class NotificationsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#requests-merged
      */
-    public function requestsMerged(
-        array $_id = [],
-    ): EmptyOrUnknownResult {
+    public function requestsMerged(array $_id = []): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new RequestsMergedRequest(
-                $_id,
-            ));
+            ->send(new RequestsMergedRequest($_id));
 
         return $models;
     }

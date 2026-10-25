@@ -23,14 +23,11 @@ class FollowedTagsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/followed_tags/#get
      */
-    public function get(
-        ?int $limit = null,
-    ): TagResult {
+    public function get(?int $limit = null): TagResult
+    {
         /** @var \Vazaha\Mastodon\Results\TagResult<array-key, \Vazaha\Mastodon\Models\TagModel> */
         $models = $this->apiClient
-            ->send(new GetRequest(
-                $limit,
-            ));
+            ->send(new GetRequest($limit));
 
         return $models;
     }

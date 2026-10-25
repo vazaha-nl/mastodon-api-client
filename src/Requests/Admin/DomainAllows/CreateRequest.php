@@ -27,9 +27,8 @@ final class CreateRequest extends Request implements RequestInterface
      *
      * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#create
      */
-    public function __construct(
-        public string $domain,
-    ) {
+    public function __construct(public string $domain)
+    {
     }
 
     public function getEndpoint(): string
@@ -39,8 +38,7 @@ final class CreateRequest extends Request implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array

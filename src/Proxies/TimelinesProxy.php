@@ -54,10 +54,14 @@ class TimelinesProxy extends Proxy
     /**
      * View home timeline.
      *
-     * @param ?string $max_id   All results returned will be lesser than this ID. In effect, sets an upper bound on results.
-     * @param ?string $since_id All results returned will be greater than this ID. In effect, sets a lower bound on results.
-     * @param ?string $min_id   Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
-     * @param ?int    $limit    Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
+     * @param ?string $max_id          All results returned will be lesser than this ID. In effect, sets an upper bound on results.
+     * @param ?string $since_id        All results returned will be greater than this ID. In effect, sets a lower bound on results.
+     * @param ?string $min_id          Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.
+     * @param ?int    $limit           Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
+     * @param ?bool   $exclude_direct  whether to exclude Direct Messages from the response
+     * @param ?bool   $exclude_reblogs whether to exclude reblogs from the response
+     * @param ?bool   $exclude_quotes  whether to exclude quote posts from the response
+     * @param ?bool   $exclude_replies whether to exclude replies from the response
      *
      * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
      *
@@ -68,6 +72,10 @@ class TimelinesProxy extends Proxy
         ?string $since_id = null,
         ?string $min_id = null,
         ?int $limit = null,
+        ?bool $exclude_direct = null,
+        ?bool $exclude_reblogs = null,
+        ?bool $exclude_quotes = null,
+        ?bool $exclude_replies = null,
     ): StatusResult {
         /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
@@ -76,6 +84,10 @@ class TimelinesProxy extends Proxy
                 $since_id,
                 $min_id,
                 $limit,
+                $exclude_direct,
+                $exclude_reblogs,
+                $exclude_quotes,
+                $exclude_replies,
             ));
 
         return $models;

@@ -60,12 +60,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#block
      */
-    public function block(
-        string $id,
-    ): RelationshipModel {
-        $result = $this->apiClient->send(new BlockRequest(
-            $id,
-        ));
+    public function block(string $id): RelationshipModel
+    {
+        $result = $this->apiClient->send(new BlockRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
         $model = $result->first();
@@ -80,14 +77,16 @@ class AccountsProxy extends Proxy
     /**
      * Register an account.
      *
+     * @see https://docs.joinmastodon.org/methods/accounts/#create
+     *
+     * @deprecated
+     *
      * @param string  $username  The desired username for the account
      * @param string  $email     The email address to be used for login
      * @param string  $password  The password to be used for login
      * @param bool    $agreement Whether the user agrees to the local rules, terms, and policies. These should be presented to the user in order to allow them to consent before setting this parameter to TRUE.
      * @param string  $locale    the language of the confirmation email that will be sent
      * @param ?string $reason    if registrations require manual approval, this text will be reviewed by moderators
-     *
-     * @see https://docs.joinmastodon.org/methods/accounts/#create
      */
     public function create(
         string $username,
@@ -123,12 +122,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#endorse
      */
-    public function endorse(
-        string $id,
-    ): RelationshipModel {
-        $result = $this->apiClient->send(new EndorseRequest(
-            $id,
-        ));
+    public function endorse(string $id): RelationshipModel
+    {
+        $result = $this->apiClient->send(new EndorseRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
         $model = $result->first();
@@ -146,25 +142,22 @@ class AccountsProxy extends Proxy
      * @param string $id    the ID of the account
      * @param ?int   $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
+     * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
+     *
      * @see https://docs.joinmastodon.org/methods/accounts/#endorsements
      */
     public function endorsements(
         string $id,
         ?int $limit = null,
-    ): AccountModel {
-        $result = $this->apiClient->send(new EndorsementsRequest(
-            $id,
-            $limit,
-        ));
+    ): AccountResult {
+        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
+        $models = $this->apiClient
+            ->send(new EndorsementsRequest(
+                $id,
+                $limit,
+            ));
 
-        /** @var null|\Vazaha\Mastodon\Models\AccountModel $model */
-        $model = $result->first();
-
-        if ($model === null) {
-            throw new InvalidResponseException();
-        }
-
-        return $model;
+        return $models;
     }
 
     /**
@@ -176,14 +169,11 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#familiar_followers
      */
-    public function familiarFollowers(
-        ?array $id = null,
-    ): FamiliarFollowersResult {
+    public function familiarFollowers(?array $id = null): FamiliarFollowersResult
+    {
         /** @var \Vazaha\Mastodon\Results\FamiliarFollowersResult<array-key, \Vazaha\Mastodon\Models\FamiliarFollowersModel> */
         $models = $this->apiClient
-            ->send(new FamiliarFollowersRequest(
-                $id,
-            ));
+            ->send(new FamiliarFollowersRequest($id));
 
         return $models;
     }
@@ -197,14 +187,11 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#featured_tags
      */
-    public function featuredTags(
-        string $id,
-    ): FeaturedTagResult {
+    public function featuredTags(string $id): FeaturedTagResult
+    {
         /** @var \Vazaha\Mastodon\Results\FeaturedTagResult<array-key, \Vazaha\Mastodon\Models\FeaturedTagModel> */
         $models = $this->apiClient
-            ->send(new FeaturedTagsRequest(
-                $id,
-            ));
+            ->send(new FeaturedTagsRequest($id));
 
         return $models;
     }
@@ -297,12 +284,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#get
      */
-    public function get(
-        string $id,
-    ): AccountModel {
-        $result = $this->apiClient->send(new GetRequest(
-            $id,
-        ));
+    public function get(string $id): AccountModel
+    {
+        $result = $this->apiClient->send(new GetRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\AccountModel $model */
         $model = $result->first();
@@ -325,14 +309,11 @@ class AccountsProxy extends Proxy
      *
      * @return \Vazaha\Mastodon\Results\IdentityProofResult<array-key, \Vazaha\Mastodon\Models\IdentityProofModel>
      */
-    public function identityProofs(
-        string $id,
-    ): IdentityProofResult {
+    public function identityProofs(string $id): IdentityProofResult
+    {
         /** @var \Vazaha\Mastodon\Results\IdentityProofResult<array-key, \Vazaha\Mastodon\Models\IdentityProofModel> */
         $models = $this->apiClient
-            ->send(new IdentityProofsRequest(
-                $id,
-            ));
+            ->send(new IdentityProofsRequest($id));
 
         return $models;
     }
@@ -346,14 +327,11 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#index
      */
-    public function index(
-        ?array $id = null,
-    ): AccountResult {
+    public function index(?array $id = null): AccountResult
+    {
         /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
         $models = $this->apiClient
-            ->send(new IndexRequest(
-                $id,
-            ));
+            ->send(new IndexRequest($id));
 
         return $models;
     }
@@ -367,31 +345,25 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#lists
      */
-    public function lists(
-        string $id,
-    ): ListResult {
+    public function lists(string $id): ListResult
+    {
         /** @var \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel> */
         $models = $this->apiClient
-            ->send(new ListsRequest(
-                $id,
-            ));
+            ->send(new ListsRequest($id));
 
         return $models;
     }
 
     /**
-     * Lookup account ID from Webfinger address.
+     * Lookup account ID from WebFinger address.
      *
-     * @param string $acct the username or Webfinger address to lookup
+     * @param string $acct the username or WebFinger address to lookup
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#lookup
      */
-    public function lookup(
-        string $acct,
-    ): AccountModel {
-        $result = $this->apiClient->send(new LookupRequest(
-            $acct,
-        ));
+    public function lookup(string $acct): AccountModel
+    {
+        $result = $this->apiClient->send(new LookupRequest($acct));
 
         /** @var null|\Vazaha\Mastodon\Models\AccountModel $model */
         $model = $result->first();
@@ -469,12 +441,9 @@ class AccountsProxy extends Proxy
      *
      * @param string $id the ID of the account
      */
-    public function pin(
-        string $id,
-    ): RelationshipModel {
-        $result = $this->apiClient->send(new PinRequest(
-            $id,
-        ));
+    public function pin(string $id): RelationshipModel
+    {
+        $result = $this->apiClient->send(new PinRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
         $model = $result->first();
@@ -517,12 +486,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#remove_from_followers
      */
-    public function removeFromFollowers(
-        string $id,
-    ): RelationshipModel {
-        $result = $this->apiClient->send(new RemoveFromFollowersRequest(
-            $id,
-        ));
+    public function removeFromFollowers(string $id): RelationshipModel
+    {
+        $result = $this->apiClient->send(new RemoveFromFollowersRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
         $model = $result->first();
@@ -622,12 +588,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#unblock
      */
-    public function unblock(
-        string $id,
-    ): RelationshipModel {
-        $result = $this->apiClient->send(new UnblockRequest(
-            $id,
-        ));
+    public function unblock(string $id): RelationshipModel
+    {
+        $result = $this->apiClient->send(new UnblockRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
         $model = $result->first();
@@ -646,12 +609,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#unendorse
      */
-    public function unendorse(
-        string $id,
-    ): RelationshipModel {
-        $result = $this->apiClient->send(new UnendorseRequest(
-            $id,
-        ));
+    public function unendorse(string $id): RelationshipModel
+    {
+        $result = $this->apiClient->send(new UnendorseRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
         $model = $result->first();
@@ -670,12 +630,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#unfollow
      */
-    public function unfollow(
-        string $id,
-    ): RelationshipModel {
-        $result = $this->apiClient->send(new UnfollowRequest(
-            $id,
-        ));
+    public function unfollow(string $id): RelationshipModel
+    {
+        $result = $this->apiClient->send(new UnfollowRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
         $model = $result->first();
@@ -694,12 +651,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#unmute
      */
-    public function unmute(
-        string $id,
-    ): RelationshipModel {
-        $result = $this->apiClient->send(new UnmuteRequest(
-            $id,
-        ));
+    public function unmute(string $id): RelationshipModel
+    {
+        $result = $this->apiClient->send(new UnmuteRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
         $model = $result->first();
@@ -720,12 +674,9 @@ class AccountsProxy extends Proxy
      *
      * @param string $id the ID of the account
      */
-    public function unpin(
-        string $id,
-    ): RelationshipModel {
-        $result = $this->apiClient->send(new UnpinRequest(
-            $id,
-        ));
+    public function unpin(string $id): RelationshipModel
+    {
+        $result = $this->apiClient->send(new UnpinRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
         $model = $result->first();
@@ -743,15 +694,17 @@ class AccountsProxy extends Proxy
      * @param ?string                      $display_name        the display name to use for the profile
      * @param ?string                      $note                the account bio
      * @param ?UploadFile                  $avatar              Avatar image encoded using `multipart/form-data`
+     * @param ?string                      $avatar_description  a plain-text description of the avatar, for accessibility purposes
      * @param ?UploadFile                  $header              Header image encoded using `multipart/form-data`
+     * @param ?string                      $header_description  a plain-text description of the header, for accessibility purposes
      * @param ?bool                        $locked              whether manual approval of follow requests is required
      * @param ?bool                        $bot                 whether the account has a bot flag
      * @param ?bool                        $discoverable        whether the account should be shown in the profile directory
      * @param ?bool                        $hide_collections    whether to hide followers and followed accounts
      * @param ?bool                        $indexable           whether public posts should be searchable to anyone
      * @param null|list<string>            $attribution_domains Domains of websites allowed to credit the account. Maximum of 10 domains.
-     * @param null|array<array-key, mixed> $fields_attributes   The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields.
-     * @param null|array<array-key, mixed> $source              source[privacy]: Default post privacy for authored statuses. Can be `public`, `unlisted`, or `private`.
+     * @param null|array<array-key, mixed> $fields_attributes   The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields (specified in {@link https://docs.joinmastodon.org/entities/Instance#max_profile_fields Instance#max_profile_fields}).
+     * @param null|array<array-key, mixed> $source              source[privacy]: Default post privacy for authored statuses
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#update_credentials
      */
@@ -759,7 +712,9 @@ class AccountsProxy extends Proxy
         ?string $display_name = null,
         ?string $note = null,
         ?UploadFile $avatar = null,
+        ?string $avatar_description = null,
         ?UploadFile $header = null,
+        ?string $header_description = null,
         ?bool $locked = null,
         ?bool $bot = null,
         ?bool $discoverable = null,
@@ -773,7 +728,9 @@ class AccountsProxy extends Proxy
             $display_name,
             $note,
             $avatar,
+            $avatar_description,
             $header,
+            $header_description,
             $locked,
             $bot,
             $discoverable,
@@ -797,12 +754,13 @@ class AccountsProxy extends Proxy
     /**
      * Verify account credentials.
      *
+     * @param ?bool $allow_nonfunctional Whether to get account information even if the account is non-functional (such as e.g. not being approved or confirmed), defaults to `false`.
+     *
      * @see https://docs.joinmastodon.org/methods/accounts/#verify_credentials
      */
-    public function verifyCredentials(
-    ): CredentialAccountModel {
-        $result = $this->apiClient->send(new VerifyCredentialsRequest(
-        ));
+    public function verifyCredentials(?bool $allow_nonfunctional = null): CredentialAccountModel
+    {
+        $result = $this->apiClient->send(new VerifyCredentialsRequest($allow_nonfunctional));
 
         /** @var null|\Vazaha\Mastodon\Models\CredentialAccountModel $model */
         $model = $result->first();

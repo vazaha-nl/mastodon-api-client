@@ -19,18 +19,22 @@ use Vazaha\Mastodon\Results\TokenResult;
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\TokenResult>
  *
  * @see https://docs.joinmastodon.org/methods/accounts/#create
+ *
+ * @deprecated
  */
 final class CreateRequest extends Request implements RequestInterface
 {
     /**
+     * @see https://docs.joinmastodon.org/methods/accounts/#create
+     *
+     * @deprecated
+     *
      * @param string  $username  The desired username for the account
      * @param string  $email     The email address to be used for login
      * @param string  $password  The password to be used for login
      * @param bool    $agreement Whether the user agrees to the local rules, terms, and policies. These should be presented to the user in order to allow them to consent before setting this parameter to TRUE.
      * @param string  $locale    the language of the confirmation email that will be sent
      * @param ?string $reason    if registrations require manual approval, this text will be reviewed by moderators
-     *
-     * @see https://docs.joinmastodon.org/methods/accounts/#create
      */
     public function __construct(
         public string $username,
@@ -49,8 +53,7 @@ final class CreateRequest extends Request implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array

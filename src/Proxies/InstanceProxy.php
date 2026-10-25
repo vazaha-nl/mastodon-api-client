@@ -167,12 +167,9 @@ class InstanceProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/instance/#terms_of_service_date
      */
-    public function termsOfServiceDate(
-        string $date,
-    ): TermsOfServiceModel {
-        $result = $this->apiClient->send(new TermsOfServiceDateRequest(
-            $date,
-        ));
+    public function termsOfServiceDate(string $date): TermsOfServiceModel
+    {
+        $result = $this->apiClient->send(new TermsOfServiceDateRequest($date));
 
         /** @var null|\Vazaha\Mastodon\Models\TermsOfServiceModel $model */
         $model = $result->first();

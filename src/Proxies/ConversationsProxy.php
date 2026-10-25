@@ -28,14 +28,11 @@ class ConversationsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/conversations/#delete
      */
-    public function delete(
-        string $id,
-    ): EmptyOrUnknownResult {
+    public function delete(string $id): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new DeleteRequest(
-                $id,
-            ));
+            ->send(new DeleteRequest($id));
 
         return $models;
     }
@@ -49,14 +46,11 @@ class ConversationsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/conversations/#get
      */
-    public function get(
-        ?int $limit = null,
-    ): ConversationResult {
+    public function get(?int $limit = null): ConversationResult
+    {
         /** @var \Vazaha\Mastodon\Results\ConversationResult<array-key, \Vazaha\Mastodon\Models\ConversationModel> */
         $models = $this->apiClient
-            ->send(new GetRequest(
-                $limit,
-            ));
+            ->send(new GetRequest($limit));
 
         return $models;
     }
@@ -68,12 +62,9 @@ class ConversationsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/conversations/#read
      */
-    public function read(
-        string $id,
-    ): ConversationModel {
-        $result = $this->apiClient->send(new ReadRequest(
-            $id,
-        ));
+    public function read(string $id): ConversationModel
+    {
+        $result = $this->apiClient->send(new ReadRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\ConversationModel $model */
         $model = $result->first();

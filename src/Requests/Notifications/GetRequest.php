@@ -31,6 +31,7 @@ final class GetRequest extends Request implements RequestInterface
      * @param null|list<string> $exclude_types    types to exclude from the results
      * @param ?string           $account_id       return only notifications received from the specified account
      * @param ?bool             $include_filtered Whether to include notifications filtered by the user's {@link https://docs.joinmastodon.org/entities/NotificationPolicy NotificationPolicy}. Defaults to false.
+     * @param null|list<string> $supported_types  Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification's `fallback` attribute.
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#get
      */
@@ -43,6 +44,7 @@ final class GetRequest extends Request implements RequestInterface
         public ?array $exclude_types = null,
         public ?string $account_id = null,
         public ?bool $include_filtered = null,
+        public ?array $supported_types = null,
     ) {
     }
 
@@ -62,13 +64,13 @@ final class GetRequest extends Request implements RequestInterface
             'exclude_types' => $this->exclude_types,
             'account_id' => $this->account_id,
             'include_filtered' => $this->include_filtered,
+            'supported_types' => $this->supported_types,
         ];
     }
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

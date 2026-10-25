@@ -25,12 +25,9 @@ class FollowRequestsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/follow_requests/#accept
      */
-    public function accept(
-        string $account_id,
-    ): RelationshipModel {
-        $result = $this->apiClient->send(new AcceptRequest(
-            $account_id,
-        ));
+    public function accept(string $account_id): RelationshipModel
+    {
+        $result = $this->apiClient->send(new AcceptRequest($account_id));
 
         /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
         $model = $result->first();
@@ -51,14 +48,11 @@ class FollowRequestsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/follow_requests/#get
      */
-    public function get(
-        ?int $limit = null,
-    ): AccountResult {
+    public function get(?int $limit = null): AccountResult
+    {
         /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
         $models = $this->apiClient
-            ->send(new GetRequest(
-                $limit,
-            ));
+            ->send(new GetRequest($limit));
 
         return $models;
     }
@@ -70,12 +64,9 @@ class FollowRequestsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/follow_requests/#reject
      */
-    public function reject(
-        string $account_id,
-    ): RelationshipModel {
-        $result = $this->apiClient->send(new RejectRequest(
-            $account_id,
-        ));
+    public function reject(string $account_id): RelationshipModel
+    {
+        $result = $this->apiClient->send(new RejectRequest($account_id));
 
         /** @var null|\Vazaha\Mastodon\Models\RelationshipModel $model */
         $model = $result->first();

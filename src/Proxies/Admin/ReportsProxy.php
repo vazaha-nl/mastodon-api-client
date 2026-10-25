@@ -29,12 +29,9 @@ class ReportsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/reports/#assign_to_self
      */
-    public function assignToSelf(
-        string $id,
-    ): ReportModel {
-        $result = $this->apiClient->send(new AssignToSelfRequest(
-            $id,
-        ));
+    public function assignToSelf(string $id): ReportModel
+    {
+        $result = $this->apiClient->send(new AssignToSelfRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\ReportModel $model */
         $model = $result->first();
@@ -50,6 +47,7 @@ class ReportsProxy extends Proxy
      * View all reports.
      *
      * @param ?bool   $resolved          Filter for resolved reports?
+     * @param ?bool   $unresolved        filter for unresolved reports? Use in combination with `resolved` to retrieve all reports
      * @param ?string $account_id        filter for reports filed by this account
      * @param ?string $target_account_id filter for reports targeting this account
      * @param ?int    $limit             Maximum number of results to return. Defaults to 100 reports. Max 200 reports.
@@ -60,6 +58,7 @@ class ReportsProxy extends Proxy
      */
     public function get(
         ?bool $resolved = null,
+        ?bool $unresolved = null,
         ?string $account_id = null,
         ?string $target_account_id = null,
         ?int $limit = null,
@@ -68,6 +67,7 @@ class ReportsProxy extends Proxy
         $models = $this->apiClient
             ->send(new GetRequest(
                 $resolved,
+                $unresolved,
                 $account_id,
                 $target_account_id,
                 $limit,
@@ -83,12 +83,9 @@ class ReportsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/reports/#get-one
      */
-    public function getOne(
-        string $id,
-    ): ReportModel {
-        $result = $this->apiClient->send(new GetOneRequest(
-            $id,
-        ));
+    public function getOne(string $id): ReportModel
+    {
+        $result = $this->apiClient->send(new GetOneRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\ReportModel $model */
         $model = $result->first();
@@ -107,12 +104,9 @@ class ReportsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/reports/#reopen
      */
-    public function reopen(
-        string $id,
-    ): ReportModel {
-        $result = $this->apiClient->send(new ReopenRequest(
-            $id,
-        ));
+    public function reopen(string $id): ReportModel
+    {
+        $result = $this->apiClient->send(new ReopenRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\ReportModel $model */
         $model = $result->first();
@@ -131,12 +125,9 @@ class ReportsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/reports/#resolve
      */
-    public function resolve(
-        string $id,
-    ): ReportModel {
-        $result = $this->apiClient->send(new ResolveRequest(
-            $id,
-        ));
+    public function resolve(string $id): ReportModel
+    {
+        $result = $this->apiClient->send(new ResolveRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\ReportModel $model */
         $model = $result->first();
@@ -155,12 +146,9 @@ class ReportsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/reports/#unassign
      */
-    public function unassign(
-        string $id,
-    ): ReportModel {
-        $result = $this->apiClient->send(new UnassignRequest(
-            $id,
-        ));
+    public function unassign(string $id): ReportModel
+    {
+        $result = $this->apiClient->send(new UnassignRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\ReportModel $model */
         $model = $result->first();

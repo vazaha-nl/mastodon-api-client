@@ -24,7 +24,7 @@ final class BoostRequest extends Request implements RequestInterface
 {
     /**
      * @param string  $id         the ID of the Status in the database
-     * @param ?string $visibility Any visibility except `limited` or `direct` (i.e. `public`, `unlisted`, `private`). Defaults to public.
+     * @param ?string $visibility defaults to public
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#boost
      */
@@ -41,8 +41,7 @@ final class BoostRequest extends Request implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array

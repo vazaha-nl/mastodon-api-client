@@ -27,9 +27,8 @@ final class FavouriteRequest extends Request implements RequestInterface
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#favourite
      */
-    public function __construct(
-        public string $id,
-    ) {
+    public function __construct(public string $id)
+    {
     }
 
     public function getEndpoint(): string
@@ -39,14 +38,12 @@ final class FavouriteRequest extends Request implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

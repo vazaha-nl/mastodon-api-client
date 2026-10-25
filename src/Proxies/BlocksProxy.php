@@ -23,14 +23,11 @@ class BlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/blocks/#get
      */
-    public function get(
-        ?int $limit = null,
-    ): AccountResult {
+    public function get(?int $limit = null): AccountResult
+    {
         /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
         $models = $this->apiClient
-            ->send(new GetRequest(
-                $limit,
-            ));
+            ->send(new GetRequest($limit));
 
         return $models;
     }

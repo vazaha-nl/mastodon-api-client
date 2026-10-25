@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace Vazaha\Mastodon\Requests\Media;
+namespace Vazaha\Mastodon\Requests\AnnualReports;
 
 use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
@@ -14,44 +14,41 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 /**
- * Delete media attachment.
+ * Get the state of an annual report.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\EmptyOrUnknownResult>
  *
- * @see https://docs.joinmastodon.org/methods/media/#delete
+ * @see https://docs.joinmastodon.org/methods/annual_reports/#get-state
  */
-final class DeleteRequest extends Request implements RequestInterface
+final class GetStateRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $id the ID of the MediaAttachment in the database
+     * @param string $year the year for the annual report
      *
-     * @see https://docs.joinmastodon.org/methods/media/#delete
+     * @see https://docs.joinmastodon.org/methods/annual_reports/#get-state
      */
-    public function __construct(
-        public string $id,
-    ) {
+    public function __construct(public string $year)
+    {
     }
 
     public function getEndpoint(): string
     {
-        return sprintf('/api/v1/media/%s', urlencode($this->id));
+        return sprintf('/api/v1/annual_reports/%s/state', urlencode($this->year));
     }
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod
     {
-        return HttpMethod::DELETE;
+        return HttpMethod::GET;
     }
 
     public function getResultClass(): string

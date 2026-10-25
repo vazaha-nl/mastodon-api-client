@@ -47,7 +47,7 @@ class FiltersProxy extends Proxy
      * @param string                       $title               the name of the filter group
      * @param list<string>                 $context             Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
      * @param ?string                      $filter_action       The policy to be applied when the filter is matched. Specify `warn`, `hide` or `blur`.
-     * @param ?int                         $expires_in          How many seconds from now should the filter expire?
+     * @param ?int                         $expires_in          how many seconds from now should the filter expire? Defaults to never expire
      * @param null|array<array-key, mixed> $keywords_attributes keywords_attributes[][keyword]: A keyword to be added to the newly-created filter group
      *
      * @see https://docs.joinmastodon.org/methods/filters/#create
@@ -124,14 +124,11 @@ class FiltersProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/filters/#delete
      */
-    public function delete(
-        string $id,
-    ): EmptyOrUnknownResult {
+    public function delete(string $id): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new DeleteRequest(
-                $id,
-            ));
+            ->send(new DeleteRequest($id));
 
         return $models;
     }
@@ -147,14 +144,11 @@ class FiltersProxy extends Proxy
      *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      */
-    public function deleteV1(
-        string $id,
-    ): EmptyOrUnknownResult {
+    public function deleteV1(string $id): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new DeleteV1Request(
-                $id,
-            ));
+            ->send(new DeleteV1Request($id));
 
         return $models;
     }
@@ -183,12 +177,9 @@ class FiltersProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/filters/#get-one
      */
-    public function getOne(
-        string $id,
-    ): FilterModel {
-        $result = $this->apiClient->send(new GetOneRequest(
-            $id,
-        ));
+    public function getOne(string $id): FilterModel
+    {
+        $result = $this->apiClient->send(new GetOneRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\FilterModel $model */
         $model = $result->first();
@@ -209,12 +200,9 @@ class FiltersProxy extends Proxy
      *
      * @param string $id the ID of the FilterKeyword in the database
      */
-    public function getOneV1(
-        string $id,
-    ): V1FilterModel {
-        $result = $this->apiClient->send(new GetOneV1Request(
-            $id,
-        ));
+    public function getOneV1(string $id): V1FilterModel
+    {
+        $result = $this->apiClient->send(new GetOneV1Request($id));
 
         /** @var null|\Vazaha\Mastodon\Models\V1\FilterModel $model */
         $model = $result->first();
@@ -284,14 +272,11 @@ class FiltersProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/filters/#keywords-delete
      */
-    public function keywordsDelete(
-        string $id,
-    ): EmptyOrUnknownResult {
+    public function keywordsDelete(string $id): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new KeywordsDeleteRequest(
-                $id,
-            ));
+            ->send(new KeywordsDeleteRequest($id));
 
         return $models;
     }
@@ -305,14 +290,11 @@ class FiltersProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/filters/#keywords-get
      */
-    public function keywordsGet(
-        string $filter_id,
-    ): FilterKeywordResult {
+    public function keywordsGet(string $filter_id): FilterKeywordResult
+    {
         /** @var \Vazaha\Mastodon\Results\FilterKeywordResult<array-key, \Vazaha\Mastodon\Models\FilterKeywordModel> */
         $models = $this->apiClient
-            ->send(new KeywordsGetRequest(
-                $filter_id,
-            ));
+            ->send(new KeywordsGetRequest($filter_id));
 
         return $models;
     }
@@ -324,12 +306,9 @@ class FiltersProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/filters/#keywords-get-one
      */
-    public function keywordsGetOne(
-        string $id,
-    ): FilterKeywordModel {
-        $result = $this->apiClient->send(new KeywordsGetOneRequest(
-            $id,
-        ));
+    public function keywordsGetOne(string $id): FilterKeywordModel
+    {
+        $result = $this->apiClient->send(new KeywordsGetOneRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\FilterKeywordModel $model */
         $model = $result->first();
@@ -407,14 +386,11 @@ class FiltersProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/filters/#statuses-get
      */
-    public function statusesGet(
-        string $filter_id,
-    ): FilterStatusResult {
+    public function statusesGet(string $filter_id): FilterStatusResult
+    {
         /** @var \Vazaha\Mastodon\Results\FilterStatusResult<array-key, \Vazaha\Mastodon\Models\FilterStatusModel> */
         $models = $this->apiClient
-            ->send(new StatusesGetRequest(
-                $filter_id,
-            ));
+            ->send(new StatusesGetRequest($filter_id));
 
         return $models;
     }
@@ -426,12 +402,9 @@ class FiltersProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/filters/#statuses-get-one
      */
-    public function statusesGetOne(
-        string $id,
-    ): FilterStatusModel {
-        $result = $this->apiClient->send(new StatusesGetOneRequest(
-            $id,
-        ));
+    public function statusesGetOne(string $id): FilterStatusModel
+    {
+        $result = $this->apiClient->send(new StatusesGetOneRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\FilterStatusModel $model */
         $model = $result->first();
@@ -450,12 +423,9 @@ class FiltersProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/filters/#statuses-remove
      */
-    public function statusesRemove(
-        string $id,
-    ): FilterStatusModel {
-        $result = $this->apiClient->send(new StatusesRemoveRequest(
-            $id,
-        ));
+    public function statusesRemove(string $id): FilterStatusModel
+    {
+        $result = $this->apiClient->send(new StatusesRemoveRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\FilterStatusModel $model */
         $model = $result->first();

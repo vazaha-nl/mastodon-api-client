@@ -27,9 +27,8 @@ final class IndexRequest extends Request implements RequestInterface
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#index
      */
-    public function __construct(
-        public ?array $id = null,
-    ) {
+    public function __construct(public ?array $id = null)
+    {
     }
 
     public function getEndpoint(): string
@@ -46,8 +45,7 @@ final class IndexRequest extends Request implements RequestInterface
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

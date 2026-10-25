@@ -23,14 +23,11 @@ class BookmarksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/bookmarks/#get
      */
-    public function get(
-        ?int $limit = null,
-    ): StatusResult {
+    public function get(?int $limit = null): StatusResult
+    {
         /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
-            ->send(new GetRequest(
-                $limit,
-            ));
+            ->send(new GetRequest($limit));
 
         return $models;
     }

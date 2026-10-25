@@ -36,14 +36,12 @@ final class ExtendedDescriptionRequest extends Request implements RequestInterfa
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

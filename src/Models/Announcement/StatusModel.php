@@ -8,14 +8,14 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Announcement;
 
-use Vazaha\Mastodon\Abstracts\Model;
+use Vazaha\Mastodon\Models\AnnouncementModel;
 
 /**
  * Represents an announcement set by an administrator.
  *
  * @see https://docs.joinmastodon.org/entities/Announcement/#Status
  */
-class StatusModel extends Model
+class StatusModel extends AnnouncementModel
 {
     /**
      * The ID of an attached Status in the database.

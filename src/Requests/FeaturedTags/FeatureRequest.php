@@ -27,9 +27,8 @@ final class FeatureRequest extends Request implements RequestInterface
      *
      * @see https://docs.joinmastodon.org/methods/featured_tags/#feature
      */
-    public function __construct(
-        public string $name,
-    ) {
+    public function __construct(public string $name)
+    {
     }
 
     public function getEndpoint(): string
@@ -39,8 +38,7 @@ final class FeatureRequest extends Request implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array

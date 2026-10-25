@@ -35,6 +35,8 @@ class RoleModel extends Model
 
     /**
      * A bitmask that represents the sum of all permissions granted to the role.
+     * This is a potentially large integer in decimal representation. The absence
+     * of special permissions is denoted by `'0'`.
      */
     public string $permissions;
 
@@ -42,4 +44,10 @@ class RoleModel extends Model
      * Whether the role is publicly visible as a badge on user profiles.
      */
     public bool $highlighted;
+
+    /**
+     * Maximum number of Collections that users with this role are allowed to
+     * create.
+     */
+    public int $collection_limit;
 }

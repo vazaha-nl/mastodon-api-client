@@ -26,7 +26,7 @@ final class CreateRequest extends Request implements RequestInterface
      * @param string                       $title               the name of the filter group
      * @param list<string>                 $context             Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
      * @param ?string                      $filter_action       The policy to be applied when the filter is matched. Specify `warn`, `hide` or `blur`.
-     * @param ?int                         $expires_in          How many seconds from now should the filter expire?
+     * @param ?int                         $expires_in          how many seconds from now should the filter expire? Defaults to never expire
      * @param null|array<array-key, mixed> $keywords_attributes keywords_attributes[][keyword]: A keyword to be added to the newly-created filter group
      *
      * @see https://docs.joinmastodon.org/methods/filters/#create
@@ -47,8 +47,7 @@ final class CreateRequest extends Request implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array

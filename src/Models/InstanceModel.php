@@ -46,6 +46,12 @@ class InstanceModel extends Model
     public string $description;
 
     /**
+     * The current Wrapstodon ([Annual report]({{< relref "methods/annual_reports"
+     * >}}) campaign identifier (year), if any.
+     */
+    public ?string $wrapstodon = null;
+
+    /**
      * Usage data for this server.
      *
      * @var array<array-key, mixed>

@@ -18,13 +18,16 @@ use Vazaha\Mastodon\Abstracts\Model;
 class QuoteModel extends Model
 {
     /**
-     * The state of the quote.
+     * The state of the quote. Unknown values should be treated as `unauthorized`.
      */
     public string $state;
 
     /**
      * The status being quoted, if the quote has been accepted. This will be
-     * `null`, unless the `state` attribute is `accepted`.
+     * `null`, unless the `state` attribute is `accepted`, `blocked_account`,
+     * `blocked_domain`, or `muted_account`, or the wrapping [Status]({{< relref
+     * "entities/status" >}}) entity has been obtained by calling `DELETE
+     * /api/v1/statuses/:id`..
      */
     public ?StatusModel $quoted_status = null;
 }

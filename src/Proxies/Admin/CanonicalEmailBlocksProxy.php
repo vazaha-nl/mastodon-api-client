@@ -54,12 +54,9 @@ class CanonicalEmailBlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#delete
      */
-    public function delete(
-        string $id,
-    ): CanonicalEmailBlockModel {
-        $result = $this->apiClient->send(new DeleteRequest(
-            $id,
-        ));
+    public function delete(string $id): CanonicalEmailBlockModel
+    {
+        $result = $this->apiClient->send(new DeleteRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel $model */
         $model = $result->first();
@@ -80,14 +77,11 @@ class CanonicalEmailBlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#get
      */
-    public function get(
-        ?int $limit = null,
-    ): CanonicalEmailBlockResult {
+    public function get(?int $limit = null): CanonicalEmailBlockResult
+    {
         /** @var \Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel> */
         $models = $this->apiClient
-            ->send(new GetRequest(
-                $limit,
-            ));
+            ->send(new GetRequest($limit));
 
         return $models;
     }
@@ -99,12 +93,9 @@ class CanonicalEmailBlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#get-one
      */
-    public function getOne(
-        string $id,
-    ): CanonicalEmailBlockModel {
-        $result = $this->apiClient->send(new GetOneRequest(
-            $id,
-        ));
+    public function getOne(string $id): CanonicalEmailBlockModel
+    {
+        $result = $this->apiClient->send(new GetOneRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel $model */
         $model = $result->first();
@@ -125,14 +116,11 @@ class CanonicalEmailBlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#test
      */
-    public function test(
-        string $email,
-    ): CanonicalEmailBlockResult {
+    public function test(string $email): CanonicalEmailBlockResult
+    {
         /** @var \Vazaha\Mastodon\Results\Admin\CanonicalEmailBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\CanonicalEmailBlockModel> */
         $models = $this->apiClient
-            ->send(new TestRequest(
-                $email,
-            ));
+            ->send(new TestRequest($email));
 
         return $models;
     }

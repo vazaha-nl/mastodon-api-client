@@ -62,4 +62,9 @@ class StatusEditModel extends Model
      * Any custom emoji that are used in the current revision.
      */
     public CustomEmojiCollection $emojis;
+
+    /**
+     * Information about the status being quoted, if any.
+     */
+    public ?QuoteModel $quote = null;
 }

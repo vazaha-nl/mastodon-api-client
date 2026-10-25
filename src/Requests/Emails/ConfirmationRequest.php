@@ -27,9 +27,8 @@ final class ConfirmationRequest extends Request implements RequestInterface
      *
      * @see https://docs.joinmastodon.org/methods/emails/#confirmation
      */
-    public function __construct(
-        public ?string $email = null,
-    ) {
+    public function __construct(public ?string $email = null)
+    {
     }
 
     public function getEndpoint(): string
@@ -39,8 +38,7 @@ final class ConfirmationRequest extends Request implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array

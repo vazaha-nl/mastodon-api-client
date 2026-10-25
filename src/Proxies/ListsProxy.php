@@ -131,14 +131,11 @@ class ListsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/lists/#delete
      */
-    public function delete(
-        string $id,
-    ): EmptyOrUnknownResult {
+    public function delete(string $id): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new DeleteRequest(
-                $id,
-            ));
+            ->send(new DeleteRequest($id));
 
         return $models;
     }
@@ -169,14 +166,11 @@ class ListsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/lists/#get-one
      */
-    public function getOne(
-        string $id,
-    ): ListResult {
+    public function getOne(string $id): ListResult
+    {
         /** @var \Vazaha\Mastodon\Results\ListResult<array-key, \Vazaha\Mastodon\Models\ListModel> */
         $models = $this->apiClient
-            ->send(new GetOneRequest(
-                $id,
-            ));
+            ->send(new GetOneRequest($id));
 
         return $models;
     }

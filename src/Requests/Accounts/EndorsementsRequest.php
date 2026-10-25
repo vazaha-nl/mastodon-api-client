@@ -48,8 +48,7 @@ final class EndorsementsRequest extends Request implements RequestInterface
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

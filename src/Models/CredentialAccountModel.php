@@ -9,8 +9,6 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models;
 
 /**
- * Represents a user of Mastodon and their associated profile.
- *
  * @see https://docs.joinmastodon.org/entities/Account/#CredentialAccount
  */
 class CredentialAccountModel extends AccountModel
@@ -30,4 +28,9 @@ class CredentialAccountModel extends AccountModel
      * permissions and highlighted status.
      */
     public RoleModel $role;
+
+    /**
+     * State of the current account.
+     */
+    public AccountStateModel $state;
 }

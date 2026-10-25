@@ -48,7 +48,9 @@ class ApplicationModel extends Model
     public array $redirect_uris;
 
     /**
-     * The registered redirection URI(s) for the application.
+     * The registered redirection URI(s) for the application stored as a single
+     * string. Multiple URIs are separated by whitespace characters. May contain
+     * `\n` characters when multiple redirect URIs are registered.
      */
     public string $redirect_uri;
 

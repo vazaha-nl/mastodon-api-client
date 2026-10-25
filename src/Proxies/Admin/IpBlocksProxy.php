@@ -60,12 +60,9 @@ class IpBlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#delete
      */
-    public function delete(
-        string $id,
-    ): IpBlockModel {
-        $result = $this->apiClient->send(new DeleteRequest(
-            $id,
-        ));
+    public function delete(string $id): IpBlockModel
+    {
+        $result = $this->apiClient->send(new DeleteRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\IpBlockModel $model */
         $model = $result->first();
@@ -86,14 +83,11 @@ class IpBlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#get
      */
-    public function get(
-        ?int $limit = null,
-    ): IpBlockResult {
+    public function get(?int $limit = null): IpBlockResult
+    {
         /** @var \Vazaha\Mastodon\Results\Admin\IpBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\IpBlockModel> */
         $models = $this->apiClient
-            ->send(new GetRequest(
-                $limit,
-            ));
+            ->send(new GetRequest($limit));
 
         return $models;
     }
@@ -105,12 +99,9 @@ class IpBlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#get-one
      */
-    public function getOne(
-        string $id,
-    ): IpBlockModel {
-        $result = $this->apiClient->send(new GetOneRequest(
-            $id,
-        ));
+    public function getOne(string $id): IpBlockModel
+    {
+        $result = $this->apiClient->send(new GetOneRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\IpBlockModel $model */
         $model = $result->first();

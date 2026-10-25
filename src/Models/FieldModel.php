@@ -11,19 +11,19 @@ namespace Vazaha\Mastodon\Models;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
- * Represents a user of Mastodon and their associated profile.
- *
- * @see https://docs.joinmastodon.org/entities/Account/#Field
+ * @see https://docs.joinmastodon.org/entities/Profile/#Field
  */
 class FieldModel extends Model
 {
     /**
-     * The key of a given field's key-value pair.
+     * The key of a given field's key-value pair. This is the raw string before
+     * processing, not HTML.
      */
     public string $name;
 
     /**
-     * The value associated with the `name` key.
+     * The value associated with the `name` key. This is the raw string before
+     * processing, not HTML.
      */
     public string $value;
 

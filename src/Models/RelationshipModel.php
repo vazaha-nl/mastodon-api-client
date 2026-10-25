@@ -70,6 +70,11 @@ class RelationshipModel extends Model
     public bool $muting_notifications;
 
     /**
+     * Date at which the mute expires, if there is any.
+     */
+    public ?\DateTimeInterface $muting_expires_at = null;
+
+    /**
      * Do you have a pending follow request for this user?
      */
     public bool $requested;
@@ -90,7 +95,7 @@ class RelationshipModel extends Model
     public bool $endorsed;
 
     /**
-     * This user's profile bio.
+     * The authenticated user's personal comment about this account.
      */
     public string $note;
 }

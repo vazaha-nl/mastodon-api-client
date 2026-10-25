@@ -27,9 +27,8 @@ final class TestRequest extends Request implements RequestInterface
      *
      * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#test
      */
-    public function __construct(
-        public string $email,
-    ) {
+    public function __construct(public string $email)
+    {
     }
 
     public function getEndpoint(): string
@@ -39,8 +38,7 @@ final class TestRequest extends Request implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array

@@ -27,9 +27,8 @@ final class RemoveFromFollowersRequest extends Request implements RequestInterfa
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#remove_from_followers
      */
-    public function __construct(
-        public string $id,
-    ) {
+    public function __construct(public string $id)
+    {
     }
 
     public function getEndpoint(): string
@@ -39,14 +38,12 @@ final class RemoveFromFollowersRequest extends Request implements RequestInterfa
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

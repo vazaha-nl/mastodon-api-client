@@ -26,12 +26,9 @@ class DomainAllowsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#create
      */
-    public function create(
-        string $domain,
-    ): DomainAllowModel {
-        $result = $this->apiClient->send(new CreateRequest(
-            $domain,
-        ));
+    public function create(string $domain): DomainAllowModel
+    {
+        $result = $this->apiClient->send(new CreateRequest($domain));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\DomainAllowModel $model */
         $model = $result->first();
@@ -50,12 +47,9 @@ class DomainAllowsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#delete
      */
-    public function delete(
-        string $id,
-    ): DomainAllowModel {
-        $result = $this->apiClient->send(new DeleteRequest(
-            $id,
-        ));
+    public function delete(string $id): DomainAllowModel
+    {
+        $result = $this->apiClient->send(new DeleteRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\DomainAllowModel $model */
         $model = $result->first();
@@ -76,14 +70,11 @@ class DomainAllowsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get
      */
-    public function get(
-        ?int $limit = null,
-    ): DomainAllowResult {
+    public function get(?int $limit = null): DomainAllowResult
+    {
         /** @var \Vazaha\Mastodon\Results\Admin\DomainAllowResult<array-key, \Vazaha\Mastodon\Models\Admin\DomainAllowModel> */
         $models = $this->apiClient
-            ->send(new GetRequest(
-                $limit,
-            ));
+            ->send(new GetRequest($limit));
 
         return $models;
     }
@@ -95,12 +86,9 @@ class DomainAllowsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get-one
      */
-    public function getOne(
-        string $id,
-    ): DomainAllowModel {
-        $result = $this->apiClient->send(new GetOneRequest(
-            $id,
-        ));
+    public function getOne(string $id): DomainAllowModel
+    {
+        $result = $this->apiClient->send(new GetOneRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\DomainAllowModel $model */
         $model = $result->first();

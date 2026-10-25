@@ -40,5 +40,5 @@ class FeaturedTagModel extends Model
     /**
      * The date of the last authored status containing this hashtag.
      */
-    public \DateTimeInterface $last_status_at;
+    public ?\DateTimeInterface $last_status_at = null;
 }

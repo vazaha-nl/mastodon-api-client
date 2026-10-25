@@ -24,7 +24,7 @@ final class TranslateRequest extends Request implements RequestInterface
 {
     /**
      * @param string  $id   the ID of the Status in the database
-     * @param ?string $lang The status content will be translated into this language. Defaults to the user's current locale.
+     * @param ?string $lang The status content will be translated into this language. Defaults to the user's current locale (which in turn falls back to server default).
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#translate
      */
@@ -41,8 +41,7 @@ final class TranslateRequest extends Request implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array

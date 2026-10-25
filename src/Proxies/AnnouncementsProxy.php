@@ -51,14 +51,11 @@ class AnnouncementsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/announcements/#dismiss
      */
-    public function dismiss(
-        string $id,
-    ): EmptyOrUnknownResult {
+    public function dismiss(string $id): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new DismissRequest(
-                $id,
-            ));
+            ->send(new DismissRequest($id));
 
         return $models;
     }

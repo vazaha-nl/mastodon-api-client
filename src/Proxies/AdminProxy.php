@@ -46,9 +46,8 @@ class AdminProxy extends Proxy
 
     protected TrendsProxy $trends;
 
-    public function __construct(
-        public ApiClient $apiClient,
-    ) {
+    public function __construct(public ApiClient $apiClient)
+    {
     }
 
     /**
@@ -192,7 +191,7 @@ class AdminProxy extends Proxy
     }
 
     /**
-     * TODO.
+     * Moderate trending links, statuses and tags.
      *
      * @see https://docs.joinmastodon.org/methods/admin/trends/
      */

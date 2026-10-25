@@ -11,12 +11,12 @@ namespace Vazaha\Mastodon\Requests\Mutes;
 use Vazaha\Mastodon\Abstracts\Request;
 use Vazaha\Mastodon\Enums\HttpMethod;
 use Vazaha\Mastodon\Interfaces\RequestInterface;
-use Vazaha\Mastodon\Results\AccountResult;
+use Vazaha\Mastodon\Results\MutedAccountResult;
 
 /**
  * View muted accounts.
  *
- * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
+ * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\MutedAccountResult>
  *
  * @see https://docs.joinmastodon.org/methods/mutes/#get
  */
@@ -27,9 +27,8 @@ final class GetRequest extends Request implements RequestInterface
      *
      * @see https://docs.joinmastodon.org/methods/mutes/#get
      */
-    public function __construct(
-        public ?int $limit = null,
-    ) {
+    public function __construct(public ?int $limit = null)
+    {
     }
 
     public function getEndpoint(): string
@@ -46,8 +45,7 @@ final class GetRequest extends Request implements RequestInterface
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod
@@ -57,6 +55,6 @@ final class GetRequest extends Request implements RequestInterface
 
     public function getResultClass(): string
     {
-        return AccountResult::class;
+        return MutedAccountResult::class;
     }
 }

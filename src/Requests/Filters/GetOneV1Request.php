@@ -31,9 +31,8 @@ final class GetOneV1Request extends Request implements RequestInterface
      *
      * @param string $id the ID of the FilterKeyword in the database
      */
-    public function __construct(
-        public string $id,
-    ) {
+    public function __construct(public string $id)
+    {
     }
 
     public function getEndpoint(): string
@@ -43,14 +42,12 @@ final class GetOneV1Request extends Request implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

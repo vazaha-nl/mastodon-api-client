@@ -50,12 +50,9 @@ class MarkersProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/markers/#get
      */
-    public function get(
-        ?array $timeline = null,
-    ): MarkerModel {
-        $result = $this->apiClient->send(new GetRequest(
-            $timeline,
-        ));
+    public function get(?array $timeline = null): MarkerModel
+    {
+        $result = $this->apiClient->send(new GetRequest($timeline));
 
         /** @var null|\Vazaha\Mastodon\Models\MarkerModel $model */
         $model = $result->first();

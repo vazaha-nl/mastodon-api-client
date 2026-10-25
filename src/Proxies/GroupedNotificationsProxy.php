@@ -28,14 +28,11 @@ class GroupedNotificationsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/grouped_notifications/#dismiss-group
      */
-    public function dismissGroup(
-        string $group_key,
-    ): EmptyOrUnknownResult {
+    public function dismissGroup(string $group_key): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new DismissGroupRequest(
-                $group_key,
-            ));
+            ->send(new DismissGroupRequest($group_key));
 
         return $models;
     }
@@ -49,14 +46,11 @@ class GroupedNotificationsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/grouped_notifications/#get-group-accounts
      */
-    public function getGroupAccounts(
-        string $group_key,
-    ): AccountResult {
+    public function getGroupAccounts(string $group_key): AccountResult
+    {
         /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
         $models = $this->apiClient
-            ->send(new GetGroupAccountsRequest(
-                $group_key,
-            ));
+            ->send(new GetGroupAccountsRequest($group_key));
 
         return $models;
     }
@@ -74,6 +68,7 @@ class GroupedNotificationsProxy extends Proxy
      * @param ?string           $expand_accounts  One of `full` (default) or `partial_avatars`. When set to `partial_avatars`, some accounts will not be rendered in full in the returned `accounts` list but will be instead returned in stripped-down form in the `partial_accounts` list. The most recent account in a notification group is always rendered in full in the `accounts` attribute.
      * @param null|list<string> $grouped_types    Restrict which notification types can be grouped. Use this if there are notification types for which your client does not support grouping. If omitted, the server will group notifications of all types it supports (currently, `favourite`, `follow`, `reblog` and `admin.sign_up`). If you do not want any notification grouping, use {@link https://docs.joinmastodon.org/methods/notifications#get GET `/api/v1/notifications`} instead. Notifications that would be grouped if not for this parameter will instead be returned as individual single-notification groups with a unique `group_key` that can be assumed to be of the form `ungrouped-{notification_id}`. Please note that neither the streaming API nor the individual notification APIs are aware of this parameter and will always include a “proper” `group_key` that can be different from what is returned here, meaning that you may have to ignore `group_key` for such notifications that you do not want grouped and use `ungrouped-{notification_id}` instead for consistency.
      * @param ?bool             $include_filtered Whether to include notifications filtered by the user's {@link https://docs.joinmastodon.org/entities/NotificationPolicy NotificationPolicy}. Defaults to false.
+     * @param null|list<string> $supported_types  Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification group's `fallback` attribute.
      *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
@@ -90,6 +85,7 @@ class GroupedNotificationsProxy extends Proxy
         ?string $expand_accounts = null,
         ?array $grouped_types = null,
         ?bool $include_filtered = null,
+        ?array $supported_types = null,
     ): EmptyOrUnknownResult {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
@@ -104,6 +100,7 @@ class GroupedNotificationsProxy extends Proxy
                 $expand_accounts,
                 $grouped_types,
                 $include_filtered,
+                $supported_types,
             ));
 
         return $models;
@@ -112,7 +109,8 @@ class GroupedNotificationsProxy extends Proxy
     /**
      * Get a single notification group.
      *
-     * @param string $group_key the group key of the notification group
+     * @param string            $group_key       the group key of the notification group
+     * @param null|list<string> $supported_types Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification group's `fallback` attribute.
      *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
@@ -120,11 +118,13 @@ class GroupedNotificationsProxy extends Proxy
      */
     public function getNotificationGroup(
         string $group_key,
+        ?array $supported_types = null,
     ): EmptyOrUnknownResult {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
             ->send(new GetNotificationGroupRequest(
                 $group_key,
+                $supported_types,
             ));
 
         return $models;

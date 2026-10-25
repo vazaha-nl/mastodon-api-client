@@ -27,9 +27,8 @@ final class DismissMultipleRequestsRequest extends Request implements RequestInt
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#dismiss-multiple-requests
      */
-    public function __construct(
-        public array $_id = [],
-    ) {
+    public function __construct(public array $_id = [])
+    {
     }
 
     public function getEndpoint(): string
@@ -39,8 +38,7 @@ final class DismissMultipleRequestsRequest extends Request implements RequestInt
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array

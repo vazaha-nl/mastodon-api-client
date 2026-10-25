@@ -11,7 +11,7 @@ namespace Vazaha\Mastodon\Models\Trends;
 use Vazaha\Mastodon\Models\PreviewCardModel;
 
 /**
- * Represents a rich preview card that is generated using OpenGraph tags from a URL.
+ * This is identical to a `Link` type `PreviewCard`, with added usage history.
  *
  * @see https://docs.joinmastodon.org/entities/PreviewCard/#trends-link
  */

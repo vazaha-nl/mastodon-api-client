@@ -31,9 +31,8 @@ final class CardRequest extends Request implements RequestInterface
      *
      * @param string $id the local ID of the Status in the database
      */
-    public function __construct(
-        public string $id,
-    ) {
+    public function __construct(public string $id)
+    {
     }
 
     public function getEndpoint(): string
@@ -43,14 +42,12 @@ final class CardRequest extends Request implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

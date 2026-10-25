@@ -47,8 +47,9 @@ class NotificationModel extends Model
 
     /**
      * Status that was the object of the notification. Attached when `type` of the
-     * notification is `favourite`, `reblog`, `status`, `mention`, `poll`, or
-     * `update`.
+     * notification is `favourite`, `reblog`, `status`, `mention`, `poll`,
+     * `update`, `quote` or `quoted_update`. In the case of `quoted_update`, your
+     * quote of the edited status is attached, not the status that was edited.
      */
     public ?StatusModel $status = null;
 
@@ -69,4 +70,17 @@ class NotificationModel extends Model
      * the notification is `moderation_warning`.
      */
     public ?AccountWarningModel $moderation_warning = null;
+
+    /**
+     * Fallback information available for some notification types that clients may
+     * not support. Only available for some notification types, and only if the
+     * `supported_types` parameter is used when querying.
+     */
+    public ?NotificationFallbackModel $fallback = null;
+
+    /**
+     * Collection that was the object of the notification. Attached when `type` of
+     * the notification is `added_to_collection` or `collection_update`.
+     */
+    public ?CollectionModel $collection = null;
 }

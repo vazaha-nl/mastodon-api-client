@@ -87,4 +87,9 @@ class AnnouncementModel extends Model
      * Emoji reactions attached to the announcement.
      */
     public ReactionCollection $reactions;
+
+    /**
+     * Whether emoji reactions on this announcement are allowed.
+     */
+    public bool $reactions_allowed;
 }

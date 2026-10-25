@@ -27,9 +27,8 @@ final class TermsOfServiceDateRequest extends Request implements RequestInterfac
      *
      * @see https://docs.joinmastodon.org/methods/instance/#terms_of_service_date
      */
-    public function __construct(
-        public string $date,
-    ) {
+    public function __construct(public string $date)
+    {
     }
 
     public function getEndpoint(): string
@@ -39,14 +38,12 @@ final class TermsOfServiceDateRequest extends Request implements RequestInterfac
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

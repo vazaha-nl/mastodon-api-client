@@ -23,12 +23,9 @@ class PollsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/polls/#get
      */
-    public function get(
-        string $id,
-    ): PollModel {
-        $result = $this->apiClient->send(new GetRequest(
-            $id,
-        ));
+    public function get(string $id): PollModel
+    {
+        $result = $this->apiClient->send(new GetRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\PollModel $model */
         $model = $result->first();

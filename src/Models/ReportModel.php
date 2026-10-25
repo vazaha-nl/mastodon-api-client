@@ -61,6 +61,14 @@ class ReportModel extends Model
     public ?array $status_ids = null;
 
     /**
+     * IDs of Featured Collections that have been attached to this report for
+     * additional context.
+     *
+     * @var null|list<string>
+     */
+    public ?array $collection_ids = null;
+
+    /**
      * IDs of the rules that have been cited as a violation by this report.
      *
      * @var null|list<string>

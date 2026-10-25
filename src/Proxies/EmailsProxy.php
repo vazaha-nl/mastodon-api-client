@@ -23,14 +23,11 @@ class EmailsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/emails/#confirmation
      */
-    public function confirmation(
-        ?string $email = null,
-    ): EmptyOrUnknownResult {
+    public function confirmation(?string $email = null): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new ConfirmationRequest(
-                $email,
-            ));
+            ->send(new ConfirmationRequest($email));
 
         return $models;
     }

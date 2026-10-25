@@ -33,6 +33,7 @@ final class GetGroupedRequest extends Request implements RequestInterface
      * @param ?string           $expand_accounts  One of `full` (default) or `partial_avatars`. When set to `partial_avatars`, some accounts will not be rendered in full in the returned `accounts` list but will be instead returned in stripped-down form in the `partial_accounts` list. The most recent account in a notification group is always rendered in full in the `accounts` attribute.
      * @param null|list<string> $grouped_types    Restrict which notification types can be grouped. Use this if there are notification types for which your client does not support grouping. If omitted, the server will group notifications of all types it supports (currently, `favourite`, `follow`, `reblog` and `admin.sign_up`). If you do not want any notification grouping, use {@link https://docs.joinmastodon.org/methods/notifications#get GET `/api/v1/notifications`} instead. Notifications that would be grouped if not for this parameter will instead be returned as individual single-notification groups with a unique `group_key` that can be assumed to be of the form `ungrouped-{notification_id}`. Please note that neither the streaming API nor the individual notification APIs are aware of this parameter and will always include a “proper” `group_key` that can be different from what is returned here, meaning that you may have to ignore `group_key` for such notifications that you do not want grouped and use `ungrouped-{notification_id}` instead for consistency.
      * @param ?bool             $include_filtered Whether to include notifications filtered by the user's {@link https://docs.joinmastodon.org/entities/NotificationPolicy NotificationPolicy}. Defaults to false.
+     * @param null|list<string> $supported_types  Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification group's `fallback` attribute.
      *
      * @see https://docs.joinmastodon.org/methods/grouped_notifications/#get-grouped
      */
@@ -47,6 +48,7 @@ final class GetGroupedRequest extends Request implements RequestInterface
         public ?string $expand_accounts = null,
         public ?array $grouped_types = null,
         public ?bool $include_filtered = null,
+        public ?array $supported_types = null,
     ) {
     }
 
@@ -68,13 +70,13 @@ final class GetGroupedRequest extends Request implements RequestInterface
             'expand_accounts' => $this->expand_accounts,
             'grouped_types' => $this->grouped_types,
             'include_filtered' => $this->include_filtered,
+            'supported_types' => $this->supported_types,
         ];
     }
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

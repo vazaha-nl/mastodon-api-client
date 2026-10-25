@@ -31,9 +31,8 @@ final class DismissDeprecatedRequest extends Request implements RequestInterface
      *
      * @param string $id the ID of the notification in the database
      */
-    public function __construct(
-        public string $id,
-    ) {
+    public function __construct(public string $id)
+    {
     }
 
     public function getEndpoint(): string
@@ -43,8 +42,7 @@ final class DismissDeprecatedRequest extends Request implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array

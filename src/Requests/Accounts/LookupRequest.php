@@ -14,7 +14,7 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 use Vazaha\Mastodon\Results\AccountResult;
 
 /**
- * Lookup account ID from Webfinger address.
+ * Lookup account ID from WebFinger address.
  *
  * @implements \Vazaha\Mastodon\Interfaces\RequestInterface<\Vazaha\Mastodon\Results\AccountResult>
  *
@@ -23,13 +23,12 @@ use Vazaha\Mastodon\Results\AccountResult;
 final class LookupRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $acct the username or Webfinger address to lookup
+     * @param string $acct the username or WebFinger address to lookup
      *
      * @see https://docs.joinmastodon.org/methods/accounts/#lookup
      */
-    public function __construct(
-        public string $acct,
-    ) {
+    public function __construct(public string $acct)
+    {
     }
 
     public function getEndpoint(): string
@@ -46,8 +45,7 @@ final class LookupRequest extends Request implements RequestInterface
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

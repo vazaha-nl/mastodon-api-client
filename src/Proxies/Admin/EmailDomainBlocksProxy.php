@@ -26,12 +26,9 @@ class EmailDomainBlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/email_domain_blocks/#create
      */
-    public function create(
-        string $domain,
-    ): EmailDomainBlockModel {
-        $result = $this->apiClient->send(new CreateRequest(
-            $domain,
-        ));
+    public function create(string $domain): EmailDomainBlockModel
+    {
+        $result = $this->apiClient->send(new CreateRequest($domain));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel $model */
         $model = $result->first();
@@ -50,12 +47,9 @@ class EmailDomainBlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/email_domain_blocks/#delete
      */
-    public function delete(
-        string $id,
-    ): EmailDomainBlockModel {
-        $result = $this->apiClient->send(new DeleteRequest(
-            $id,
-        ));
+    public function delete(string $id): EmailDomainBlockModel
+    {
+        $result = $this->apiClient->send(new DeleteRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel $model */
         $model = $result->first();
@@ -76,14 +70,11 @@ class EmailDomainBlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/email_domain_blocks/#get
      */
-    public function get(
-        ?int $limit = null,
-    ): EmailDomainBlockResult {
+    public function get(?int $limit = null): EmailDomainBlockResult
+    {
         /** @var \Vazaha\Mastodon\Results\Admin\EmailDomainBlockResult<array-key, \Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel> */
         $models = $this->apiClient
-            ->send(new GetRequest(
-                $limit,
-            ));
+            ->send(new GetRequest($limit));
 
         return $models;
     }
@@ -95,12 +86,9 @@ class EmailDomainBlocksProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/email_domain_blocks/#get-one
      */
-    public function getOne(
-        string $id,
-    ): EmailDomainBlockModel {
-        $result = $this->apiClient->send(new GetOneRequest(
-            $id,
-        ));
+    public function getOne(string $id): EmailDomainBlockModel
+    {
+        $result = $this->apiClient->send(new GetOneRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\EmailDomainBlockModel $model */
         $model = $result->first();

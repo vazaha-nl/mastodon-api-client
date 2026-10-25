@@ -27,9 +27,8 @@ final class GetRequest extends Request implements RequestInterface
      *
      * @see https://docs.joinmastodon.org/methods/blocks/#get
      */
-    public function __construct(
-        public ?int $limit = null,
-    ) {
+    public function __construct(public ?int $limit = null)
+    {
     }
 
     public function getEndpoint(): string
@@ -46,8 +45,7 @@ final class GetRequest extends Request implements RequestInterface
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

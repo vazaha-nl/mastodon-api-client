@@ -11,8 +11,6 @@ namespace Vazaha\Mastodon\Models\Admin;
 use Vazaha\Mastodon\Models\TagModel as ModelsTagModel;
 
 /**
- * Represents a hashtag used within the content of a status.
- *
  * @see https://docs.joinmastodon.org/entities/Tag/#admin
  */
 class TagModel extends ModelsTagModel

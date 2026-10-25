@@ -21,6 +21,7 @@ use Vazaha\Mastodon\Requests\Statuses\CardRequest;
 use Vazaha\Mastodon\Requests\Statuses\ContextRequest;
 use Vazaha\Mastodon\Requests\Statuses\CreateRequest;
 use Vazaha\Mastodon\Requests\Statuses\DeleteRequest;
+use Vazaha\Mastodon\Requests\Statuses\EditInteractionPolicyRequest;
 use Vazaha\Mastodon\Requests\Statuses\EditRequest;
 use Vazaha\Mastodon\Requests\Statuses\FavouritedByRequest;
 use Vazaha\Mastodon\Requests\Statuses\FavouriteRequest;
@@ -29,7 +30,9 @@ use Vazaha\Mastodon\Requests\Statuses\HistoryRequest;
 use Vazaha\Mastodon\Requests\Statuses\IndexRequest;
 use Vazaha\Mastodon\Requests\Statuses\MuteRequest;
 use Vazaha\Mastodon\Requests\Statuses\PinRequest;
+use Vazaha\Mastodon\Requests\Statuses\QuotesRequest;
 use Vazaha\Mastodon\Requests\Statuses\RebloggedByRequest;
+use Vazaha\Mastodon\Requests\Statuses\RevokeQuoteRequest;
 use Vazaha\Mastodon\Requests\Statuses\SourceRequest;
 use Vazaha\Mastodon\Requests\Statuses\TranslateRequest;
 use Vazaha\Mastodon\Requests\Statuses\UnbookmarkRequest;
@@ -50,12 +53,9 @@ class StatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#bookmark
      */
-    public function bookmark(
-        string $id,
-    ): StatusModel {
-        $result = $this->apiClient->send(new BookmarkRequest(
-            $id,
-        ));
+    public function bookmark(string $id): StatusModel
+    {
+        $result = $this->apiClient->send(new BookmarkRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
         $model = $result->first();
@@ -71,7 +71,7 @@ class StatusesProxy extends Proxy
      * Boost a status.
      *
      * @param string  $id         the ID of the Status in the database
-     * @param ?string $visibility Any visibility except `limited` or `direct` (i.e. `public`, `unlisted`, `private`). Defaults to public.
+     * @param ?string $visibility defaults to public
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#boost
      */
@@ -103,12 +103,9 @@ class StatusesProxy extends Proxy
      *
      * @param string $id the local ID of the Status in the database
      */
-    public function card(
-        string $id,
-    ): PreviewCardModel {
-        $result = $this->apiClient->send(new CardRequest(
-            $id,
-        ));
+    public function card(string $id): PreviewCardModel
+    {
+        $result = $this->apiClient->send(new CardRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\PreviewCardModel $model */
         $model = $result->first();
@@ -127,12 +124,9 @@ class StatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#context
      */
-    public function context(
-        string $id,
-    ): ContextModel {
-        $result = $this->apiClient->send(new ContextRequest(
-            $id,
-        ));
+    public function context(string $id): ContextModel
+    {
+        $result = $this->apiClient->send(new ContextRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\ContextModel $model */
         $model = $result->first();
@@ -147,15 +141,17 @@ class StatusesProxy extends Proxy
     /**
      * Post a new status.
      *
-     * @param string                       $status         The text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.
-     * @param list<string>                 $media_ids      Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
-     * @param null|array<array-key, mixed> $poll           poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
-     * @param ?string                      $in_reply_to_id ID of the status being replied to, if status is a reply
-     * @param ?bool                        $sensitive      mark status and attached media as sensitive? Defaults to false
-     * @param ?string                      $spoiler_text   Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field.
-     * @param ?string                      $visibility     sets the visibility of the posted status to `public`, `unlisted`, `private`, `direct`
-     * @param ?string                      $language       ISO 639-1 language code for this status
-     * @param ?string                      $scheduled_at   Datetime at which to schedule a status. Providing this parameter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future.
+     * @param string                       $status                The text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.
+     * @param list<string>                 $media_ids             Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+     * @param null|array<array-key, mixed> $poll                  poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
+     * @param ?string                      $in_reply_to_id        ID of the status being replied to, if status is a reply
+     * @param ?bool                        $sensitive             mark status and attached media as sensitive? Defaults to false
+     * @param ?string                      $spoiler_text          Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field.
+     * @param ?string                      $visibility            sets the visibility of the posted status to `public`, `unlisted`, `private`, `direct`
+     * @param ?string                      $language              ISO 639-1 language code for this status
+     * @param ?string                      $scheduled_at          Datetime at which to schedule a status. Providing this parameter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future.
+     * @param ?string                      $quoted_status_id      ID of the status being quoted, if any. Will raise an error if the status does not exist, the author does not have access to it, or quoting is denied by Mastodon's understanding of the attached quote policy. All posts except Private Mentions (`direct` visibility) are quotable by their author. Quoting a `private` post will restrict the quoting post's `visibility` to `private` or `direct` (if the given `visibility` is `public` or `unlisted`, `private` will be used instead). An error will be returned when making a quote post with `direct` visibility and the quote author is not explicitly mentioned. If the `status` text doesn't include a link to the quoted post, Mastodon will prepend a `<p class="quote-inline">RE: <a href="…">…</a></p>` paragraph for backward compatibility (such a paragraph will be hidden by Mastodon's web interface).
+     * @param ?string                      $quote_approval_policy Sets who is allowed to quote the status. When omitted, the user's default setting will be used instead. Ignored if `visibility` is `private` or `direct`, in which case the policy will always be set to `nobody`.\
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#create
      */
@@ -169,6 +165,8 @@ class StatusesProxy extends Proxy
         ?string $visibility = null,
         ?string $language = null,
         ?string $scheduled_at = null,
+        ?string $quoted_status_id = null,
+        ?string $quote_approval_policy = null,
     ): StatusModel {
         $result = $this->apiClient->send(new CreateRequest(
             $status,
@@ -180,6 +178,8 @@ class StatusesProxy extends Proxy
             $visibility,
             $language,
             $scheduled_at,
+            $quoted_status_id,
+            $quote_approval_policy,
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
@@ -222,14 +222,15 @@ class StatusesProxy extends Proxy
     /**
      * Edit a status.
      *
-     * @param string                       $id               the ID of the Status in the database
-     * @param ?string                      $status           the plain text content of the status
-     * @param ?string                      $spoiler_text     the plain text subject or content warning of the status
-     * @param ?bool                        $sensitive        whether the status should be marked as sensitive
-     * @param ?string                      $language         ISO 639-1 language code for the status
-     * @param null|list<string>            $media_ids        Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
-     * @param null|array<array-key, mixed> $media_attributes media_attributes[][]: Each array includes id, description, and focus
-     * @param null|array<array-key, mixed> $poll             poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
+     * @param string                       $id                    the ID of the Status in the database
+     * @param ?string                      $status                the plain text content of the status
+     * @param ?string                      $spoiler_text          the plain text subject or content warning of the status
+     * @param ?bool                        $sensitive             whether the status should be marked as sensitive
+     * @param ?string                      $language              ISO 639-1 language code for the status
+     * @param null|list<string>            $media_ids             Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+     * @param null|array<array-key, mixed> $media_attributes      media_attributes[][]: Each array includes id, description, and focus
+     * @param null|array<array-key, mixed> $poll                  poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
+     * @param ?string                      $quote_approval_policy Sets who is allowed to quote the status. Ignored if `visibility` is `private` or `direct`, in which case the policy will always be set to `nobody`. Changing the policy does not invalidate past quotes.\
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#edit
      */
@@ -242,6 +243,7 @@ class StatusesProxy extends Proxy
         ?array $media_ids = null,
         ?array $media_attributes = null,
         ?array $poll = null,
+        ?string $quote_approval_policy = null,
     ): StatusModel {
         $result = $this->apiClient->send(new EditRequest(
             $id,
@@ -252,6 +254,34 @@ class StatusesProxy extends Proxy
             $media_ids,
             $media_attributes,
             $poll,
+            $quote_approval_policy,
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
+     * Edit a status' interaction policies.
+     *
+     * @param string  $id                    the ID of the Status in the database
+     * @param ?string $quote_approval_policy Sets who is allowed to quote the status. Ignored if `visibility` is `private` or `direct`, in which case the policy will always be set to `nobody`. Changing the policy does not invalidate past quotes.\
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#edit_interaction_policy
+     */
+    public function editInteractionPolicy(
+        string $id,
+        ?string $quote_approval_policy = null,
+    ): StatusModel {
+        $result = $this->apiClient->send(new EditInteractionPolicyRequest(
+            $id,
+            $quote_approval_policy,
         ));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
@@ -271,12 +301,9 @@ class StatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#favourite
      */
-    public function favourite(
-        string $id,
-    ): StatusModel {
-        $result = $this->apiClient->send(new FavouriteRequest(
-            $id,
-        ));
+    public function favourite(string $id): StatusModel
+    {
+        $result = $this->apiClient->send(new FavouriteRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
         $model = $result->first();
@@ -319,12 +346,9 @@ class StatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#get
      */
-    public function get(
-        string $id,
-    ): StatusModel {
-        $result = $this->apiClient->send(new GetRequest(
-            $id,
-        ));
+    public function get(string $id): StatusModel
+    {
+        $result = $this->apiClient->send(new GetRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
         $model = $result->first();
@@ -345,14 +369,11 @@ class StatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#history
      */
-    public function history(
-        string $id,
-    ): StatusEditResult {
+    public function history(string $id): StatusEditResult
+    {
         /** @var \Vazaha\Mastodon\Results\StatusEditResult<array-key, \Vazaha\Mastodon\Models\StatusEditModel> */
         $models = $this->apiClient
-            ->send(new HistoryRequest(
-                $id,
-            ));
+            ->send(new HistoryRequest($id));
 
         return $models;
     }
@@ -366,14 +387,11 @@ class StatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#index
      */
-    public function index(
-        ?array $id = null,
-    ): StatusResult {
+    public function index(?array $id = null): StatusResult
+    {
         /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
         $models = $this->apiClient
-            ->send(new IndexRequest(
-                $id,
-            ));
+            ->send(new IndexRequest($id));
 
         return $models;
     }
@@ -385,12 +403,9 @@ class StatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#mute
      */
-    public function mute(
-        string $id,
-    ): StatusModel {
-        $result = $this->apiClient->send(new MuteRequest(
-            $id,
-        ));
+    public function mute(string $id): StatusModel
+    {
+        $result = $this->apiClient->send(new MuteRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
         $model = $result->first();
@@ -409,12 +424,9 @@ class StatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#pin
      */
-    public function pin(
-        string $id,
-    ): StatusModel {
-        $result = $this->apiClient->send(new PinRequest(
-            $id,
-        ));
+    public function pin(string $id): StatusModel
+    {
+        $result = $this->apiClient->send(new PinRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
         $model = $result->first();
@@ -424,6 +436,30 @@ class StatusesProxy extends Proxy
         }
 
         return $model;
+    }
+
+    /**
+     * See quotes of a status.
+     *
+     * @param string $id    the ID of the Status in the database
+     * @param ?int   $limit Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.
+     *
+     * @return \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel>
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#quotes
+     */
+    public function quotes(
+        string $id,
+        ?int $limit = null,
+    ): StatusResult {
+        /** @var \Vazaha\Mastodon\Results\StatusResult<array-key, \Vazaha\Mastodon\Models\StatusModel> */
+        $models = $this->apiClient
+            ->send(new QuotesRequest(
+                $id,
+                $limit,
+            ));
+
+        return $models;
     }
 
     /**
@@ -451,18 +487,42 @@ class StatusesProxy extends Proxy
     }
 
     /**
+     * Revoke a quote post.
+     *
+     * @param string $id                the ID of the quoted Status in the database
+     * @param string $quoting_status_id the ID of the quoting Status in the database
+     *
+     * @see https://docs.joinmastodon.org/methods/statuses/#revoke_quote
+     */
+    public function revokeQuote(
+        string $id,
+        string $quoting_status_id,
+    ): StatusModel {
+        $result = $this->apiClient->send(new RevokeQuoteRequest(
+            $id,
+            $quoting_status_id,
+        ));
+
+        /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
+        $model = $result->first();
+
+        if ($model === null) {
+            throw new InvalidResponseException();
+        }
+
+        return $model;
+    }
+
+    /**
      * View status source.
      *
      * @param string $id the local ID of the Status in the database
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#source
      */
-    public function source(
-        string $id,
-    ): StatusSourceModel {
-        $result = $this->apiClient->send(new SourceRequest(
-            $id,
-        ));
+    public function source(string $id): StatusSourceModel
+    {
+        $result = $this->apiClient->send(new SourceRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusSourceModel $model */
         $model = $result->first();
@@ -478,7 +538,7 @@ class StatusesProxy extends Proxy
      * Translate a status.
      *
      * @param string  $id   the ID of the Status in the database
-     * @param ?string $lang The status content will be translated into this language. Defaults to the user's current locale.
+     * @param ?string $lang The status content will be translated into this language. Defaults to the user's current locale (which in turn falls back to server default).
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#translate
      */
@@ -508,12 +568,9 @@ class StatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#unbookmark
      */
-    public function unbookmark(
-        string $id,
-    ): StatusModel {
-        $result = $this->apiClient->send(new UnbookmarkRequest(
-            $id,
-        ));
+    public function unbookmark(string $id): StatusModel
+    {
+        $result = $this->apiClient->send(new UnbookmarkRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
         $model = $result->first();
@@ -532,12 +589,9 @@ class StatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#unfavourite
      */
-    public function unfavourite(
-        string $id,
-    ): StatusModel {
-        $result = $this->apiClient->send(new UnfavouriteRequest(
-            $id,
-        ));
+    public function unfavourite(string $id): StatusModel
+    {
+        $result = $this->apiClient->send(new UnfavouriteRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
         $model = $result->first();
@@ -556,12 +610,9 @@ class StatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#unmute
      */
-    public function unmute(
-        string $id,
-    ): StatusModel {
-        $result = $this->apiClient->send(new UnmuteRequest(
-            $id,
-        ));
+    public function unmute(string $id): StatusModel
+    {
+        $result = $this->apiClient->send(new UnmuteRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
         $model = $result->first();
@@ -580,12 +631,9 @@ class StatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#unpin
      */
-    public function unpin(
-        string $id,
-    ): StatusModel {
-        $result = $this->apiClient->send(new UnpinRequest(
-            $id,
-        ));
+    public function unpin(string $id): StatusModel
+    {
+        $result = $this->apiClient->send(new UnpinRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
         $model = $result->first();
@@ -604,12 +652,9 @@ class StatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#unreblog
      */
-    public function unreblog(
-        string $id,
-    ): StatusModel {
-        $result = $this->apiClient->send(new UnreblogRequest(
-            $id,
-        ));
+    public function unreblog(string $id): StatusModel
+    {
+        $result = $this->apiClient->send(new UnreblogRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\StatusModel $model */
         $model = $result->first();

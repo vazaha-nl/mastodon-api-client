@@ -8,14 +8,12 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models;
 
-use Vazaha\Mastodon\Abstracts\Model;
+use Vazaha\Mastodon\Models\Admin\CohortModel;
 
 /**
- * Represents a retention metric.
- *
  * @see https://docs.joinmastodon.org/entities/Admin_Cohort/#CohortData
  */
-class CohortDataModel extends Model
+class CohortDataModel extends CohortModel
 {
     /**
      * The timestamp for the start of the bucket, at midnight.

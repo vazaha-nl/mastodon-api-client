@@ -27,9 +27,8 @@ final class RequestsMergedRequest extends Request implements RequestInterface
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#requests-merged
      */
-    public function __construct(
-        public array $_id = [],
-    ) {
+    public function __construct(public array $_id = [])
+    {
     }
 
     public function getEndpoint(): string
@@ -39,8 +38,7 @@ final class RequestsMergedRequest extends Request implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array

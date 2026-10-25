@@ -11,7 +11,7 @@ namespace Vazaha\Mastodon\Models;
 use Vazaha\Mastodon\Abstracts\Model;
 
 /**
- * Represents a user of Mastodon and their associated profile.
+ * The simplified role entity returned in the Account `roles` array, containing only public role information.
  *
  * @see https://docs.joinmastodon.org/entities/Account/#AccountRole
  */

@@ -31,7 +31,7 @@ class AccountModel extends Model
     public string $username;
 
     /**
-     * The Webfinger account URI. Equal to `username` for local users, or
+     * The WebFinger account URI. Equal to `username` for local users, or
      * `username@domain` for remote users.
      */
     public string $acct;
@@ -68,6 +68,11 @@ class AccountModel extends Model
     public string $avatar_static;
 
     /**
+     * A textual description of the avatar image.
+     */
+    public string $avatar_description;
+
+    /**
      * An image banner that is shown above the profile and in profile cards. Will
      * end `/headers/original/missing.png` if the user has not set a header image.
      */
@@ -78,6 +83,11 @@ class AccountModel extends Model
      * image; different if `header` is an animated GIF.
      */
     public string $header_static;
+
+    /**
+     * A textual description of the header image.
+     */
+    public string $header_description;
 
     /**
      * Whether the account manually approves follow requests.
@@ -177,9 +187,35 @@ class AccountModel extends Model
     public ?bool $hide_collections = null;
 
     /**
+     * Whether the account wishes to have a “Media” tab with media attachments
+     * on their profile.
+     */
+    public bool $show_media;
+
+    /**
+     * Whether the account wishes to have replies in the “Media” tab on their
+     * profile.
+     */
+    public bool $show_media_replies;
+
+    /**
+     * Whether the account wishes to have a “Featured” tab on their profile.
+     */
+    public bool $show_featured;
+
+    /**
      * An array of roles assigned to the user that are publicly visible
      * (highlighted roles only), if the account is local. Will be an empty array
-     * if no roles are highlighted or if the account is remote.
+     * if no roles are highlighted or null if the account is remote.
      */
-    public AccountRoleCollection $roles;
+    public ?AccountRoleCollection $roles = null;
+
+    /**
+     * Summary of the account's policy with regards to being featured in a
+     * {@link https://docs.joinmastodon.org/entities/Collection Collection} and how it applies to
+     * the user making the request.
+     */
+    public FeatureApprovalModel $feature_approval;
+
+    public ?bool $invalid_handle = null;
 }

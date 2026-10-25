@@ -28,12 +28,9 @@ class FeaturedTagsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/featured_tags/#feature
      */
-    public function feature(
-        string $name,
-    ): FeaturedTagModel {
-        $result = $this->apiClient->send(new FeatureRequest(
-            $name,
-        ));
+    public function feature(string $name): FeaturedTagModel
+    {
+        $result = $this->apiClient->send(new FeatureRequest($name));
 
         /** @var null|\Vazaha\Mastodon\Models\FeaturedTagModel $model */
         $model = $result->first();
@@ -88,14 +85,11 @@ class FeaturedTagsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/featured_tags/#unfeature
      */
-    public function unfeature(
-        string $id,
-    ): EmptyOrUnknownResult {
+    public function unfeature(string $id): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new UnfeatureRequest(
-                $id,
-            ));
+            ->send(new UnfeatureRequest($id));
 
         return $models;
     }

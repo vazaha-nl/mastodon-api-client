@@ -28,9 +28,11 @@ class MediaAttachmentModel extends Model
     public string $type;
 
     /**
-     * The location of the original full-size attachment.
+     * The location of the original full-size attachment. Url may be null if the
+     * file is still being processed. See [`POST /api/v2/media`]({{< relref
+     * "methods/media" >}}#v2).
      */
-    public string $url;
+    public ?string $url = null;
 
     /**
      * The location of a scaled-down preview of the attachment.
@@ -45,9 +47,9 @@ class MediaAttachmentModel extends Model
     /**
      * Metadata returned by Paperclip.
      *
-     * @var array<array-key, mixed>
+     * @var null|array<array-key, mixed>
      */
-    public array $meta;
+    public ?array $meta = null;
 
     /**
      * Alternate text that describes what is in the media attachment, to be used

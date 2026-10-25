@@ -27,9 +27,8 @@ final class GetNotificationGroupRequest extends Request implements RequestInterf
      *
      * @see https://docs.joinmastodon.org/methods/notifications_alpha/#get-notification-group
      */
-    public function __construct(
-        public string $group_key,
-    ) {
+    public function __construct(public string $group_key)
+    {
     }
 
     public function getEndpoint(): string
@@ -39,14 +38,12 @@ final class GetNotificationGroupRequest extends Request implements RequestInterf
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

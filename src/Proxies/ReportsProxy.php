@@ -18,18 +18,20 @@ class ReportsProxy extends Proxy
     /**
      * File a report.
      *
-     * @param string            $account_id ID of the account to report
-     * @param null|list<string> $status_ids you can attach statuses to the report to provide additional context
-     * @param ?string           $comment    The reason for the report. Default maximum of 1000 characters.
-     * @param ?bool             $forward    if the account is remote, should the report be forwarded to the remote admin? Defaults to false
-     * @param ?string           $category   Specify if the report is due to `spam`, `legal` (illegal content), `violation` of enumerated instance rules, or some `other` reason. Defaults to `other`. Will be set to `violation` if `rule_ids[]` is provided (regardless of any category value you provide).
-     * @param null|list<string> $rule_ids   For `violation` category reports, specify the ID of the exact rules broken. Rules and their IDs are available via {@link https://docs.joinmastodon.org/methods/instance#rules GET /api/v1/instance/rules} and {@link https://docs.joinmastodon.org/methods/instance#get GET /api/v1/instance}. See {@link https://docs.joinmastodon.org/api/guidelines/#id Handling and sorting IDs} for more information.
+     * @param string            $account_id     ID of the account to report
+     * @param null|list<string> $status_ids     you can attach statuses to the report to provide additional context
+     * @param null|list<string> $collection_ids you can attach Collections to the report to provide additional context
+     * @param ?string           $comment        The reason for the report. Default maximum of 1000 characters.
+     * @param ?bool             $forward        if the account is remote, should the report be forwarded to the remote admin? Defaults to false
+     * @param ?string           $category       Specify if the report is due to `spam`, `legal` (illegal content), `violation` of enumerated instance rules, or some `other` reason. Defaults to `other`. Will be set to `violation` if `rule_ids[]` is provided (regardless of any category value you provide).
+     * @param null|list<string> $rule_ids       For `violation` category reports, specify the ID of the exact rules broken. Rules and their IDs are available via {@link https://docs.joinmastodon.org/methods/instance#rules GET /api/v1/instance/rules} and {@link https://docs.joinmastodon.org/methods/instance#get GET /api/v1/instance}. See {@link https://docs.joinmastodon.org/api/guidelines/#id Handling and sorting IDs} for more information.
      *
      * @see https://docs.joinmastodon.org/methods/reports/#post
      */
     public function post(
         string $account_id,
         ?array $status_ids = null,
+        ?array $collection_ids = null,
         ?string $comment = null,
         ?bool $forward = null,
         ?string $category = null,
@@ -38,6 +40,7 @@ class ReportsProxy extends Proxy
         $result = $this->apiClient->send(new PostRequest(
             $account_id,
             $status_ids,
+            $collection_ids,
             $comment,
             $forward,
             $category,

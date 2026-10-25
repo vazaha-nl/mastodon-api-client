@@ -23,14 +23,15 @@ use Vazaha\Mastodon\Results\StatusResult;
 final class EditRequest extends Request implements RequestInterface
 {
     /**
-     * @param string                       $id               the ID of the Status in the database
-     * @param ?string                      $status           the plain text content of the status
-     * @param ?string                      $spoiler_text     the plain text subject or content warning of the status
-     * @param ?bool                        $sensitive        whether the status should be marked as sensitive
-     * @param ?string                      $language         ISO 639-1 language code for the status
-     * @param null|list<string>            $media_ids        Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
-     * @param null|array<array-key, mixed> $media_attributes media_attributes[][]: Each array includes id, description, and focus
-     * @param null|array<array-key, mixed> $poll             poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
+     * @param string                       $id                    the ID of the Status in the database
+     * @param ?string                      $status                the plain text content of the status
+     * @param ?string                      $spoiler_text          the plain text subject or content warning of the status
+     * @param ?bool                        $sensitive             whether the status should be marked as sensitive
+     * @param ?string                      $language              ISO 639-1 language code for the status
+     * @param null|list<string>            $media_ids             Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+     * @param null|array<array-key, mixed> $media_attributes      media_attributes[][]: Each array includes id, description, and focus
+     * @param null|array<array-key, mixed> $poll                  poll[options][]: Possible answers to the poll. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided.
+     * @param ?string                      $quote_approval_policy Sets who is allowed to quote the status. Ignored if `visibility` is `private` or `direct`, in which case the policy will always be set to `nobody`. Changing the policy does not invalidate past quotes.\
      *
      * @see https://docs.joinmastodon.org/methods/statuses/#edit
      */
@@ -43,6 +44,7 @@ final class EditRequest extends Request implements RequestInterface
         public ?array $media_ids = null,
         public ?array $media_attributes = null,
         public ?array $poll = null,
+        public ?string $quote_approval_policy = null,
     ) {
     }
 
@@ -53,8 +55,7 @@ final class EditRequest extends Request implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array
@@ -67,6 +68,7 @@ final class EditRequest extends Request implements RequestInterface
             'media_ids' => $this->media_ids,
             'media_attributes' => $this->media_attributes,
             'poll' => $this->poll,
+            'quote_approval_policy' => $this->quote_approval_policy,
         ];
     }
 

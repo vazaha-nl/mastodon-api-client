@@ -29,14 +29,11 @@ class ScheduledStatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#cancel
      */
-    public function cancel(
-        string $id,
-    ): EmptyOrUnknownResult {
+    public function cancel(string $id): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new CancelRequest(
-                $id,
-            ));
+            ->send(new CancelRequest($id));
 
         return $models;
     }
@@ -78,12 +75,9 @@ class ScheduledStatusesProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/scheduled_statuses/#get-one
      */
-    public function getOne(
-        string $id,
-    ): ScheduledStatusModel {
-        $result = $this->apiClient->send(new GetOneRequest(
-            $id,
-        ));
+    public function getOne(string $id): ScheduledStatusModel
+    {
+        $result = $this->apiClient->send(new GetOneRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\ScheduledStatusModel $model */
         $model = $result->first();

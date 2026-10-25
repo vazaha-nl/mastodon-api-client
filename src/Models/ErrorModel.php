@@ -26,4 +26,11 @@ class ErrorModel extends Model
      * A longer description of the error, mainly provided with the OAuth API.
      */
     public ?string $error_description = null;
+
+    /**
+     * A hash containing structured error detail.
+     *
+     * @var null|array<array-key, mixed>
+     */
+    public ?array $details = null;
 }

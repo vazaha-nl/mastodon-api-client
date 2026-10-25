@@ -23,12 +23,14 @@ use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 final class GetNotificationGroupRequest extends Request implements RequestInterface
 {
     /**
-     * @param string $group_key the group key of the notification group
+     * @param string            $group_key       the group key of the notification group
+     * @param null|list<string> $supported_types Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification group's `fallback` attribute.
      *
      * @see https://docs.joinmastodon.org/methods/grouped_notifications/#get-notification-group
      */
     public function __construct(
         public string $group_key,
+        public ?array $supported_types = null,
     ) {
     }
 
@@ -40,13 +42,13 @@ final class GetNotificationGroupRequest extends Request implements RequestInterf
     public function getQueryParams(): array
     {
         return [
+            'supported_types' => $this->supported_types,
         ];
     }
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

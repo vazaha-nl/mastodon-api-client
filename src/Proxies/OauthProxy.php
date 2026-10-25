@@ -44,11 +44,13 @@ class OauthProxy extends Proxy
      * @param string  $client_id             the client ID, obtained during app registration
      * @param string  $redirect_uri          Set a URI to redirect the user to. If this parameter is set to `urn:ietf:wg:oauth:2.0:oob` then the authorization code will be shown instead. Must match one of the `redirect_uris` declared during app registration.
      * @param ?string $scope                 List of requested {@link https://docs.joinmastodon.org/api/oauth-scopes OAuth scopes}, separated by spaces (or by pluses, if using query parameters). Must be a subset of `scopes` declared during app registration. If not provided, defaults to `read`.
-     * @param ?string $state                 arbitrary value to passthrough to your server when the user authorizes or rejects the authorization request
+     * @param ?string $state                 arbitrary value to pass through to your server when the user authorizes or rejects the authorization request
      * @param ?string $code_challenge        The {@link https://docs.joinmastodon.org/spec/oauth#pkce PKCE code challenge} for the authorization request.
      * @param ?string $code_challenge_method must be `S256`, as this is the only code challenge method that is supported by Mastodon for PKCE
      * @param ?bool   $force_login           forces the user to re-login, which is necessary for authorizing with multiple accounts from the same instance
      * @param ?string $lang                  the ISO 639-1 two-letter language code to use while rendering the authorization form
+     * @param ?string $prompt                OpenID Connect `prompt`.\
+     * @param ?string $invite_code           Invitation code, to be used with `prompt=create` when following an invitation to sign-up. The invite code is the last path segment of Mastodon invite URLs of the form `https://example.com/invite/:invite_code`.
      *
      * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
      *
@@ -64,6 +66,8 @@ class OauthProxy extends Proxy
         ?string $code_challenge_method = null,
         ?bool $force_login = null,
         ?string $lang = null,
+        ?string $prompt = null,
+        ?string $invite_code = null,
     ): EmptyOrUnknownResult {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
@@ -77,6 +81,8 @@ class OauthProxy extends Proxy
                 $code_challenge_method,
                 $force_login,
                 $lang,
+                $prompt,
+                $invite_code,
             ));
 
         return $models;

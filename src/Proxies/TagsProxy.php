@@ -26,12 +26,9 @@ class TagsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/tags/#feature
      */
-    public function feature(
-        string $id,
-    ): TagModel {
-        $result = $this->apiClient->send(new FeatureRequest(
-            $id,
-        ));
+    public function feature(string $id): TagModel
+    {
+        $result = $this->apiClient->send(new FeatureRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\TagModel $model */
         $model = $result->first();
@@ -50,12 +47,9 @@ class TagsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/tags/#follow
      */
-    public function follow(
-        string $name,
-    ): TagModel {
-        $result = $this->apiClient->send(new FollowRequest(
-            $name,
-        ));
+    public function follow(string $name): TagModel
+    {
+        $result = $this->apiClient->send(new FollowRequest($name));
 
         /** @var null|\Vazaha\Mastodon\Models\TagModel $model */
         $model = $result->first();
@@ -74,12 +68,9 @@ class TagsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/tags/#get
      */
-    public function get(
-        string $name,
-    ): TagModel {
-        $result = $this->apiClient->send(new GetRequest(
-            $name,
-        ));
+    public function get(string $name): TagModel
+    {
+        $result = $this->apiClient->send(new GetRequest($name));
 
         /** @var null|\Vazaha\Mastodon\Models\TagModel $model */
         $model = $result->first();
@@ -98,12 +89,9 @@ class TagsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/tags/#unfeature
      */
-    public function unfeature(
-        string $id,
-    ): TagModel {
-        $result = $this->apiClient->send(new UnfeatureRequest(
-            $id,
-        ));
+    public function unfeature(string $id): TagModel
+    {
+        $result = $this->apiClient->send(new UnfeatureRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\TagModel $model */
         $model = $result->first();
@@ -122,12 +110,9 @@ class TagsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/tags/#unfollow
      */
-    public function unfollow(
-        string $name,
-    ): TagModel {
-        $result = $this->apiClient->send(new UnfollowRequest(
-            $name,
-        ));
+    public function unfollow(string $name): TagModel
+    {
+        $result = $this->apiClient->send(new UnfollowRequest($name));
 
         /** @var null|\Vazaha\Mastodon\Models\TagModel $model */
         $model = $result->first();

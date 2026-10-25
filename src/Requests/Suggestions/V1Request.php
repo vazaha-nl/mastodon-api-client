@@ -31,9 +31,8 @@ final class V1Request extends Request implements RequestInterface
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      */
-    public function __construct(
-        public ?int $limit = null,
-    ) {
+    public function __construct(public ?int $limit = null)
+    {
     }
 
     public function getEndpoint(): string
@@ -50,8 +49,7 @@ final class V1Request extends Request implements RequestInterface
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

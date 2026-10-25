@@ -27,14 +27,11 @@ class SuggestionsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/suggestions/#remove
      */
-    public function remove(
-        string $account_id,
-    ): EmptyOrUnknownResult {
+    public function remove(string $account_id): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new RemoveRequest(
-                $account_id,
-            ));
+            ->send(new RemoveRequest($account_id));
 
         return $models;
     }
@@ -50,14 +47,11 @@ class SuggestionsProxy extends Proxy
      *
      * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
      */
-    public function v1(
-        ?int $limit = null,
-    ): AccountResult {
+    public function v1(?int $limit = null): AccountResult
+    {
         /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
         $models = $this->apiClient
-            ->send(new V1Request(
-                $limit,
-            ));
+            ->send(new V1Request($limit));
 
         return $models;
     }
@@ -71,14 +65,11 @@ class SuggestionsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/suggestions/#v2
      */
-    public function v2(
-        ?int $limit = null,
-    ): SuggestionResult {
+    public function v2(?int $limit = null): SuggestionResult
+    {
         /** @var \Vazaha\Mastodon\Results\SuggestionResult<array-key, \Vazaha\Mastodon\Models\SuggestionModel> */
         $models = $this->apiClient
-            ->send(new V2Request(
-                $limit,
-            ));
+            ->send(new V2Request($limit));
 
         return $models;
     }

@@ -27,9 +27,8 @@ final class AcceptMultipleRequestsRequest extends Request implements RequestInte
      *
      * @see https://docs.joinmastodon.org/methods/notifications/#accept-multiple-requests
      */
-    public function __construct(
-        public string $id,
-    ) {
+    public function __construct(public string $id)
+    {
     }
 
     public function getEndpoint(): string
@@ -39,14 +38,12 @@ final class AcceptMultipleRequestsRequest extends Request implements RequestInte
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

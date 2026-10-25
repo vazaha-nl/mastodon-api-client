@@ -23,10 +23,12 @@ use Vazaha\Mastodon\Results\CredentialAccountResult;
 final class VerifyCredentialsRequest extends Request implements RequestInterface
 {
     /**
+     * @param ?bool $allow_nonfunctional Whether to get account information even if the account is non-functional (such as e.g. not being approved or confirmed), defaults to `false`.
+     *
      * @see https://docs.joinmastodon.org/methods/accounts/#verify_credentials
      */
-    public function __construct(
-    ) {
+    public function __construct(public ?bool $allow_nonfunctional = null)
+    {
     }
 
     public function getEndpoint(): string
@@ -37,13 +39,13 @@ final class VerifyCredentialsRequest extends Request implements RequestInterface
     public function getQueryParams(): array
     {
         return [
+            'allow_nonfunctional' => $this->allow_nonfunctional,
         ];
     }
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

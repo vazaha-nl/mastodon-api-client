@@ -29,5 +29,5 @@ class CredentialApplicationModel extends ApplicationModel
      * When the client secret key will expire. Presently this always returns `0`
      * indicating that OAuth Clients do not expire.
      */
-    public string $client_secret_expires_at;
+    public int $client_secret_expires_at;
 }

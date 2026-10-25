@@ -10,6 +10,7 @@ namespace Vazaha\Mastodon\Models;
 
 use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\Collections\AccountCollection;
+use Vazaha\Mastodon\Collections\CollectionCollection;
 use Vazaha\Mastodon\Collections\StatusCollection;
 use Vazaha\Mastodon\Collections\TagCollection;
 
@@ -34,4 +35,9 @@ class SearchModel extends Model
      * Hashtags which match the given query.
      */
     public TagCollection $hashtags;
+
+    /**
+     * Collections which match the given query.
+     */
+    public CollectionCollection $collections;
 }

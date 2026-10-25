@@ -30,6 +30,11 @@ class TranslationModel extends Model
     public string $spoiler_text;
 
     /**
+     * The resulting language the text was translated into.
+     */
+    public string $language;
+
+    /**
      * The translated poll of the status.
      */
     public ?PollModel $poll = null;

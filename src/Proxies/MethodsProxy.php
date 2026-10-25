@@ -19,11 +19,15 @@ class MethodsProxy extends Proxy
 
     protected AnnouncementsProxy $announcements;
 
+    protected AnnualReportsProxy $annualReports;
+
     protected AppsProxy $apps;
 
     protected BlocksProxy $blocks;
 
     protected BookmarksProxy $bookmarks;
+
+    protected CollectionsProxy $collections;
 
     protected ConversationsProxy $conversations;
 
@@ -97,9 +101,8 @@ class MethodsProxy extends Proxy
 
     protected TrendsProxy $trends;
 
-    public function __construct(
-        public ApiClient $apiClient,
-    ) {
+    public function __construct(public ApiClient $apiClient)
+    {
     }
 
     /**
@@ -137,6 +140,20 @@ class MethodsProxy extends Proxy
         }
 
         return $this->announcements;
+    }
+
+    /**
+     * Generate and fetch Wrapstodon reports.
+     *
+     * @see https://docs.joinmastodon.org/methods/annual_reports/
+     */
+    public function annualReports(): AnnualReportsProxy
+    {
+        if (!isset($this->annualReports)) {
+            $this->annualReports = new AnnualReportsProxy($this->apiClient);
+        }
+
+        return $this->annualReports;
     }
 
     /**
@@ -179,6 +196,20 @@ class MethodsProxy extends Proxy
         }
 
         return $this->bookmarks;
+    }
+
+    /**
+     * Manage collections of accounts to be recommended to others.
+     *
+     * @see https://docs.joinmastodon.org/methods/collections/
+     */
+    public function collections(): CollectionsProxy
+    {
+        if (!isset($this->collections)) {
+            $this->collections = new CollectionsProxy($this->apiClient);
+        }
+
+        return $this->collections;
     }
 
     /**
@@ -672,7 +703,7 @@ class MethodsProxy extends Proxy
     }
 
     /**
-     * View hashtags that are currently being used more frequently than usual.
+     * Listings of tags, statuses, and links with increased activity.
      *
      * @see https://docs.joinmastodon.org/methods/trends/
      */

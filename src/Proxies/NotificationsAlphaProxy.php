@@ -26,14 +26,11 @@ class NotificationsAlphaProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/notifications_alpha/#dismiss-group
      */
-    public function dismissGroup(
-        string $group_key,
-    ): EmptyOrUnknownResult {
+    public function dismissGroup(string $group_key): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new DismissGroupRequest(
-                $group_key,
-            ));
+            ->send(new DismissGroupRequest($group_key));
 
         return $models;
     }
@@ -92,14 +89,11 @@ class NotificationsAlphaProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/notifications_alpha/#get-notification-group
      */
-    public function getNotificationGroup(
-        string $group_key,
-    ): EmptyOrUnknownResult {
+    public function getNotificationGroup(string $group_key): EmptyOrUnknownResult
+    {
         /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
         $models = $this->apiClient
-            ->send(new GetNotificationGroupRequest(
-                $group_key,
-            ));
+            ->send(new GetNotificationGroupRequest($group_key));
 
         return $models;
     }

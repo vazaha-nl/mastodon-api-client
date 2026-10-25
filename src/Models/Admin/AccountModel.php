@@ -87,6 +87,11 @@ class AccountModel extends Model
     public bool $disabled;
 
     /**
+     * Whether the account is currently marked sensitive.
+     */
+    public bool $sensitized;
+
+    /**
      * Whether the account is currently silenced.
      */
     public bool $silenced;

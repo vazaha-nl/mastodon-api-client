@@ -9,8 +9,6 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models;
 
 /**
- * Represents a user of Mastodon and their associated profile.
- *
  * @see https://docs.joinmastodon.org/entities/Account/#MutedAccount
  */
 class MutedAccountModel extends AccountModel

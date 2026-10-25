@@ -12,36 +12,13 @@ use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\Exceptions\InvalidResponseException;
 use Vazaha\Mastodon\Helpers\UploadFile;
 use Vazaha\Mastodon\Models\MediaAttachmentModel;
-use Vazaha\Mastodon\Requests\Media\DeleteRequest;
 use Vazaha\Mastodon\Requests\Media\GetRequest;
 use Vazaha\Mastodon\Requests\Media\UpdateRequest;
 use Vazaha\Mastodon\Requests\Media\V1Request;
 use Vazaha\Mastodon\Requests\Media\V2Request;
-use Vazaha\Mastodon\Results\EmptyOrUnknownResult;
 
 class MediaProxy extends Proxy
 {
-    /**
-     * Delete media attachment.
-     *
-     * @param string $id the ID of the MediaAttachment in the database
-     *
-     * @return \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel>
-     *
-     * @see https://docs.joinmastodon.org/methods/media/#delete
-     */
-    public function delete(
-        string $id,
-    ): EmptyOrUnknownResult {
-        /** @var \Vazaha\Mastodon\Results\EmptyOrUnknownResult<array-key, \Vazaha\Mastodon\Models\EmptyOrUnknownModel> */
-        $models = $this->apiClient
-            ->send(new DeleteRequest(
-                $id,
-            ));
-
-        return $models;
-    }
-
     /**
      * Get media attachment.
      *
@@ -49,12 +26,9 @@ class MediaProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/media/#get
      */
-    public function get(
-        string $id,
-    ): MediaAttachmentModel {
-        $result = $this->apiClient->send(new GetRequest(
-            $id,
-        ));
+    public function get(string $id): MediaAttachmentModel
+    {
+        $result = $this->apiClient->send(new GetRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\MediaAttachmentModel $model */
         $model = $result->first();

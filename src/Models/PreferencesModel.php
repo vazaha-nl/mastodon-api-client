@@ -39,6 +39,13 @@ class PreferencesModel extends Model
     public ?string $posting_default_language = null;
 
     /**
+     * Default for adding a content warning for new posts. Equivalent to
+     * [CredentialAccount#source\[spoiler_field\]]({{< relref
+     * "entities/Account#source-spoiler-field" >}}).
+     */
+    public bool $posting_default_spoiler_field;
+
+    /**
      * Whether media attachments should be automatically displayed or
      * blurred/hidden.
      */

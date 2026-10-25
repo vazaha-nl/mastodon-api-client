@@ -36,14 +36,12 @@ final class AuthorizationServerMetadataRequest extends Request implements Reques
 
     public function getQueryParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod

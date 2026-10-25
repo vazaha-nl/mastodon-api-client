@@ -70,12 +70,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/accounts/#approve
      */
-    public function approve(
-        string $id,
-    ): AccountModel {
-        $result = $this->apiClient->send(new ApproveRequest(
-            $id,
-        ));
+    public function approve(string $id): AccountModel
+    {
+        $result = $this->apiClient->send(new ApproveRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
         $model = $result->first();
@@ -94,12 +91,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/accounts/#delete
      */
-    public function delete(
-        string $id,
-    ): AccountModel {
-        $result = $this->apiClient->send(new DeleteRequest(
-            $id,
-        ));
+    public function delete(string $id): AccountModel
+    {
+        $result = $this->apiClient->send(new DeleteRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
         $model = $result->first();
@@ -118,12 +112,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/accounts/#enable
      */
-    public function enable(
-        string $id,
-    ): AccountModel {
-        $result = $this->apiClient->send(new EnableRequest(
-            $id,
-        ));
+    public function enable(string $id): AccountModel
+    {
+        $result = $this->apiClient->send(new EnableRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
         $model = $result->first();
@@ -142,12 +133,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/accounts/#get-one
      */
-    public function getOne(
-        string $id,
-    ): AccountModel {
-        $result = $this->apiClient->send(new GetOneRequest(
-            $id,
-        ));
+    public function getOne(string $id): AccountModel
+    {
+        $result = $this->apiClient->send(new GetOneRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
         $model = $result->first();
@@ -166,12 +154,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/accounts/#reject
      */
-    public function reject(
-        string $id,
-    ): AccountModel {
-        $result = $this->apiClient->send(new RejectRequest(
-            $id,
-        ));
+    public function reject(string $id): AccountModel
+    {
+        $result = $this->apiClient->send(new RejectRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
         $model = $result->first();
@@ -190,12 +175,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/accounts/#unsensitive
      */
-    public function unsensitive(
-        string $id,
-    ): AccountModel {
-        $result = $this->apiClient->send(new UnsensitiveRequest(
-            $id,
-        ));
+    public function unsensitive(string $id): AccountModel
+    {
+        $result = $this->apiClient->send(new UnsensitiveRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
         $model = $result->first();
@@ -214,12 +196,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/accounts/#unsilence
      */
-    public function unsilence(
-        string $id,
-    ): AccountModel {
-        $result = $this->apiClient->send(new UnsilenceRequest(
-            $id,
-        ));
+    public function unsilence(string $id): AccountModel
+    {
+        $result = $this->apiClient->send(new UnsilenceRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
         $model = $result->first();
@@ -238,12 +217,9 @@ class AccountsProxy extends Proxy
      *
      * @see https://docs.joinmastodon.org/methods/admin/accounts/#unsuspend
      */
-    public function unsuspend(
-        string $id,
-    ): AccountModel {
-        $result = $this->apiClient->send(new UnsuspendRequest(
-            $id,
-        ));
+    public function unsuspend(string $id): AccountModel
+    {
+        $result = $this->apiClient->send(new UnsuspendRequest($id));
 
         /** @var null|\Vazaha\Mastodon\Models\Admin\AccountModel $model */
         $model = $result->first();

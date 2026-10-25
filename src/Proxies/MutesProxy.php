@@ -10,7 +10,7 @@ namespace Vazaha\Mastodon\Proxies;
 
 use Vazaha\Mastodon\Abstracts\Proxy;
 use Vazaha\Mastodon\Requests\Mutes\GetRequest;
-use Vazaha\Mastodon\Results\AccountResult;
+use Vazaha\Mastodon\Results\MutedAccountResult;
 
 class MutesProxy extends Proxy
 {
@@ -19,18 +19,15 @@ class MutesProxy extends Proxy
      *
      * @param ?int $limit Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.
      *
-     * @return \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel>
+     * @return \Vazaha\Mastodon\Results\MutedAccountResult<array-key, \Vazaha\Mastodon\Models\MutedAccountModel>
      *
      * @see https://docs.joinmastodon.org/methods/mutes/#get
      */
-    public function get(
-        ?int $limit = null,
-    ): AccountResult {
-        /** @var \Vazaha\Mastodon\Results\AccountResult<array-key, \Vazaha\Mastodon\Models\AccountModel> */
+    public function get(?int $limit = null): MutedAccountResult
+    {
+        /** @var \Vazaha\Mastodon\Results\MutedAccountResult<array-key, \Vazaha\Mastodon\Models\MutedAccountModel> */
         $models = $this->apiClient
-            ->send(new GetRequest(
-                $limit,
-            ));
+            ->send(new GetRequest($limit));
 
         return $models;
     }

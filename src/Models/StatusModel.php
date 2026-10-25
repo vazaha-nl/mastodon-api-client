@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Vazaha\Mastodon\Models;
 
 use Vazaha\Mastodon\Abstracts\Model;
+use Vazaha\Mastodon\Collections\CollectionCollection;
 use Vazaha\Mastodon\Collections\CustomEmojiCollection;
 use Vazaha\Mastodon\Collections\FilterResultCollection;
 use Vazaha\Mastodon\Collections\MediaAttachmentCollection;
@@ -101,6 +102,11 @@ class StatusModel extends Model
     public int $favourites_count;
 
     /**
+     * How many accepted quotes this status has.
+     */
+    public int $quotes_count;
+
+    /**
      * How many replies this status has received.
      */
     public int $replies_count;
@@ -159,6 +165,18 @@ class StatusModel extends Model
     public ?\DateTimeInterface $edited_at = null;
 
     /**
+     * Information about the status being quoted, if any.
+     */
+    public ?QuoteModel $quote = null;
+
+    /**
+     * Summary of the post quote's approval policy and how it applies to the user
+     * making the request, that is, whether the user can be expected to be allowed
+     * to quote that post.
+     */
+    public QuoteApprovalModel $quote_approval;
+
+    /**
      * If the current token has an authorized user: Have you favourited this
      * status?
      */
@@ -192,4 +210,10 @@ class StatusModel extends Model
      * matched this status.
      */
     public ?FilterResultCollection $filtered = null;
+
+    /**
+     * If `content` includes links to Collections that the server recognized, this
+     * includes the actual Collections.
+     */
+    public CollectionCollection $tagged_collections;
 }

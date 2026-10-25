@@ -8,15 +8,15 @@ declare(strict_types=1);
 
 namespace Vazaha\Mastodon\Models\Translation;
 
-use Vazaha\Mastodon\Abstracts\Model;
 use Vazaha\Mastodon\Collections\Translation\Poll\OptionCollection;
+use Vazaha\Mastodon\Models\TranslationModel;
 
 /**
  * Represents the result of machine translating some status content.
  *
  * @see https://docs.joinmastodon.org/entities/Translation/#Poll
  */
-class PollModel extends Model
+class PollModel extends TranslationModel
 {
     /**
      * The ID of the poll.

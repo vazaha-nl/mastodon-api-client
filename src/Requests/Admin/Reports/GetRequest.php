@@ -24,6 +24,7 @@ final class GetRequest extends Request implements RequestInterface
 {
     /**
      * @param ?bool   $resolved          Filter for resolved reports?
+     * @param ?bool   $unresolved        filter for unresolved reports? Use in combination with `resolved` to retrieve all reports
      * @param ?string $account_id        filter for reports filed by this account
      * @param ?string $target_account_id filter for reports targeting this account
      * @param ?int    $limit             Maximum number of results to return. Defaults to 100 reports. Max 200 reports.
@@ -32,6 +33,7 @@ final class GetRequest extends Request implements RequestInterface
      */
     public function __construct(
         public ?bool $resolved = null,
+        public ?bool $unresolved = null,
         public ?string $account_id = null,
         public ?string $target_account_id = null,
         public ?int $limit = null,
@@ -47,6 +49,7 @@ final class GetRequest extends Request implements RequestInterface
     {
         return [
             'resolved' => $this->resolved,
+            'unresolved' => $this->unresolved,
             'account_id' => $this->account_id,
             'target_account_id' => $this->target_account_id,
             'limit' => $this->limit,
@@ -55,8 +58,7 @@ final class GetRequest extends Request implements RequestInterface
 
     public function getFormParams(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public function getHttpMethod(): HttpMethod
