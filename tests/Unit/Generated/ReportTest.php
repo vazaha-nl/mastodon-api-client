@@ -22,6 +22,7 @@ class ReportTest extends TestCase
    "action_taken" : false,
    "action_taken_at" : null,
    "category" : "spam",
+   "collection_ids" : [],
    "comment" : "Spam account",
    "created_at" : "2022-08-25T09:56:16.763Z",
    "forwarded" : false,

@@ -33,6 +33,13 @@ class SearchTest extends TestCase
          "username" : "catsareweird"
       }
    ],
+   "collections" : [
+      {
+         "description" : "Posters who are cats",
+         "id" : "123456789012345678",
+         "name" : "Cats"
+      }
+   ],
    "hashtags" : [
       {
          "history" : [

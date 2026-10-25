@@ -48,6 +48,7 @@ class AnnouncementTest extends TestCase
          "name" : "🤔"
       }
    ],
+   "reactions_allowed" : true,
    "read" : true,
    "starts_at" : null,
    "statuses" : [],

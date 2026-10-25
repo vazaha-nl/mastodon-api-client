@@ -28,6 +28,8 @@ class ScheduledStatusTest extends TestCase
       "language" : null,
       "media_ids" : null,
       "poll" : null,
+      "quote_approval_policy" : "followers",
+      "quoted_status_id" : null,
       "scheduled_at" : null,
       "sensitive" : null,
       "spoiler_text" : null,

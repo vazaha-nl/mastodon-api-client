@@ -24,8 +24,13 @@ class InstanceTest extends TestCase
    },
    "configuration" : {
       "accounts" : {
+         "max_display_name_lenth" : 30,
          "max_featured_tags" : 10,
-         "max_pinned_statuses" : 5
+         "max_note_length" : 500,
+         "max_pinned_statuses" : 5,
+         "max_profile_fields" : 4,
+         "profile_field_name_limit" : 255,
+         "profile_field_value_limit" : 255
       },
       "limited_federation" : false,
       "media_attachments" : {
@@ -76,6 +81,20 @@ class InstanceTest extends TestCase
          "characters_reserved_per_url" : 23,
          "max_characters" : 500,
          "max_media_attachments" : 4
+      },
+      "timelines_access" : {
+         "hashtag_feeds" : {
+            "local" : "public",
+            "remote" : "public"
+         },
+         "live_feeds" : {
+            "local" : "public",
+            "remote" : "public"
+         },
+         "trending_link_feeds" : {
+            "local" : "public",
+            "remote" : "public"
+         }
       },
       "translation" : {
          "enabled" : true
@@ -164,6 +183,7 @@ class InstanceTest extends TestCase
       "enabled" : true,
       "message" : null,
       "min_age" : 16,
+      "oauth" : true,
       "reason_required" : false,
       "url" : null
    },
@@ -381,6 +401,7 @@ class InstanceTest extends TestCase
    ],
    "thumbnail" : {
       "blurhash" : "UeKUpFxuo~R%0nW;WCnhF6RjaJt757oJodS$",
+      "description" : "Colourful illustration of a Mastodon (a sort of elephant) carrying a bindle and joining a group of other Mastodons. The other Mastodons have many different colours and are holding up a Welcome sign.",
       "versions" : {}
    },
    "title" : "Mastodon",

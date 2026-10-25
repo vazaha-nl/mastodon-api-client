@@ -77,6 +77,13 @@ class StatusTest extends TestCase
    "mentions" : [],
    "muted" : false,
    "poll" : null,
+   "quote" : null,
+   "quote_approval" : {
+      "automatic" : [],
+      "current_user" : "automatic",
+      "manual" : []
+   },
+   "quotes_count" : 2,
    "reblog" : null,
    "reblogged" : false,
    "reblogs_count" : 6,

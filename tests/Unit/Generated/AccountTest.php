@@ -20,6 +20,7 @@ class AccountTest extends TestCase
         $this->json = <<<'JSON'
 {
    "acct" : "noiob@awoo.space",
+   "avatar_description" : "a shark",
    "bot" : false,
    "created_at" : "2017-02-08T02:00:53.274Z",
    "display_name" : "ikea shark fan account",
@@ -37,6 +38,13 @@ class AccountTest extends TestCase
          "visible_in_picker" : true
       }
    ],
+   "feature_approval" : {
+      "automatic" : [
+         "public"
+      ],
+      "current_user" : "automatic",
+      "manual" : []
+   },
    "fields" : [
       {
          "name" : "Pronouns",
@@ -58,11 +66,15 @@ class AccountTest extends TestCase
    ],
    "followers_count" : 547,
    "following_count" : 404,
+   "header_description" : "sharks in the sea",
    "id" : "23634",
    "indexable" : true,
    "last_status_at" : "2019-11-17",
    "locked" : false,
    "roles" : [],
+   "show_featured" : true,
+   "show_media" : true,
+   "show_media_replies" : true,
    "statuses_count" : 28468,
    "username" : "noiob"
 }

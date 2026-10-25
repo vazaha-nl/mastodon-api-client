@@ -19,6 +19,7 @@ class RoleTest extends TestCase
     {
         $this->json = <<<'JSON'
 {
+   "collection_limit" : 10,
    "color" : "#ff3838",
    "highlighted" : true,
    "id" : "3",

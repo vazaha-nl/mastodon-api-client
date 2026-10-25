@@ -82,7 +82,8 @@ class CredentialAccountTest extends TestCase
       "indexable" : true,
       "language" : "",
       "privacy" : "public",
-      "sensitive" : false
+      "sensitive" : false,
+      "spoiler_field" : false
    },
    "username" : "trwnh"
 }

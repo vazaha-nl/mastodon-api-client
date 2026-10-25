@@ -21,6 +21,9 @@ class InstanceTest extends TestCase
 {
    "approval_required" : false,
    "configuration" : {
+      "accounts" : {
+         "max_featured_tags" : 10
+      },
       "media_attachments" : {
          "image_matrix_limit" : 16777216,
          "image_size_limit" : 10485760,

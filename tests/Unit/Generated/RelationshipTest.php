@@ -27,6 +27,7 @@ class RelationshipTest extends TestCase
    "following" : true,
    "id" : "1",
    "muting" : false,
+   "muting_expires_at" : null,
    "muting_notifications" : false,
    "note" : "",
    "notifying" : false,

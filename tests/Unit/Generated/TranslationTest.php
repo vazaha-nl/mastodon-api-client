@@ -21,6 +21,7 @@ class TranslationTest extends TestCase
 {
    "content" : "<p>Should I stay or should I go?</p>",
    "detected_source_language" : "ja",
+   "language" : "en",
    "media_attachments" : [],
    "poll" : {
       "id" : "34858",

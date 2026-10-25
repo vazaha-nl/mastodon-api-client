@@ -63,6 +63,7 @@ class AccountTest extends TestCase
       "position" : 1000,
       "updated_at" : "2022-09-08T22:48:07.983Z"
    },
+   "sensitized" : true,
    "silenced" : false,
    "suspended" : false,
    "username" : "admin"

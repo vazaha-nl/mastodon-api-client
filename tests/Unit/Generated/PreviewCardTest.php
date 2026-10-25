@@ -30,6 +30,7 @@ class PreviewCardTest extends TestCase
    "image" : null,
    "provider_name" : "",
    "provider_url" : "",
+   "published_at" : "1661472000",
    "title" : "‘I lost my £193,000 inheritance – with one wrong digit on my sort code’",
    "type" : "link",
    "width" : 0
