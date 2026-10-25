@@ -14,9 +14,8 @@ use Vazaha\Mastodon\Interfaces\RequestInterface;
 
 class RequestClassTemplate extends ClassTemplate
 {
-    public function __construct(
-        protected array $methodSpec,
-    ) {
+    public function __construct(protected array $methodSpec)
+    {
         $entity = new Entity($this->getNameForSpec($methodSpec));
         parent::__construct($entity);
     }

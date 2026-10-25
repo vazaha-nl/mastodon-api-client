@@ -11,8 +11,6 @@ class ApiClientFactory
 {
     public function build(): ApiClient
     {
-        return new ApiClient(
-            new Client(),
-        );
+        return new ApiClient(new Client());
     }
 }

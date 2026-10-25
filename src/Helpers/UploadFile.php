@@ -14,9 +14,8 @@ class UploadFile
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct(
-        protected string $filePath,
-    ) {
+    public function __construct(protected string $filePath)
+    {
         if (!file_exists($this->filePath)) {
             throw new \InvalidArgumentException('File does not exist: ' . $this->filePath);
         }

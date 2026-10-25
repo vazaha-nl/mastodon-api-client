@@ -10,9 +10,8 @@ class PagingLinks
 
     protected ?string $nextUrl = null;
 
-    public function __construct(
-        protected ?string $contents = null,
-    ) {
+    public function __construct(protected ?string $contents = null)
+    {
         $this->parseContents();
     }
 

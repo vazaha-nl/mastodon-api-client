@@ -13,9 +13,7 @@ $client = $factory->build()
     ->setAccessToken('your access token');
 
 // post a text only status
-$client->methods()->statuses()->create(
-    'Hello world!',
-);
+$client->methods()->statuses()->create('Hello world!');
 
 // post a status with a poll
 $client->methods()->statuses()->create(

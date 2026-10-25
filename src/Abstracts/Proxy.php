@@ -8,8 +8,7 @@ use Vazaha\Mastodon\ApiClient;
 
 abstract class Proxy
 {
-    public function __construct(
-        protected ApiClient $apiClient,
-    ) {
+    public function __construct(protected ApiClient $apiClient)
+    {
     }
 }

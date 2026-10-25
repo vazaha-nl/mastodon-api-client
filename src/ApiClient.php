@@ -30,9 +30,8 @@ final class ApiClient
 
     protected string $accessToken;
 
-    public function __construct(
-        protected ClientInterface $httpClient,
-    ) {
+    public function __construct(protected ClientInterface $httpClient)
+    {
     }
 
     public function methods(): MethodsProxy
@@ -65,19 +64,17 @@ final class ApiClient
         ?bool $force_login = null,
         ?string $lang = null,
     ): UriInterface {
-        return $this->getUri(
-            new AuthorizeRequest(
-                $response_type,
-                $client_id,
-                $redirect_uri,
-                $scope,
-                $state,
-                $code_challenge,
-                $code_challenge_method,
-                $force_login,
-                $lang,
-            ),
-        );
+        return $this->getUri(new AuthorizeRequest(
+            $response_type,
+            $client_id,
+            $redirect_uri,
+            $scope,
+            $state,
+            $code_challenge,
+            $code_challenge_method,
+            $force_login,
+            $lang,
+        ),);
     }
 
     public function setAccessToken(string|TokenModel $token): self
@@ -119,6 +116,7 @@ final class ApiClient
             $response = $this->httpClient->request(
                 $request->getHttpMethod()->value,
                 $request->getUri(),
+                // @phpstan-ignore argument.type
                 array_merge(
                     $request->getOptions(),
                     $this->getOptions(),

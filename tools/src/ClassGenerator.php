@@ -10,9 +10,8 @@ class ClassGenerator
 
     protected MethodSpecsRepository $methodSpecsRepository;
 
-    public function __construct(
-        protected bool $overwriteExisting = false,
-    ) {
+    public function __construct(protected bool $overwriteExisting = false)
+    {
         $this->methodSpecsRepository = new MethodSpecsRepository();
         $this->entitySpecsRepository = new EntitySpecsRepository();
     }

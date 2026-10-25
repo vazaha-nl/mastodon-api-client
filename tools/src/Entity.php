@@ -13,9 +13,8 @@ class Entity
 
     protected string $rootNamespace = 'Vazaha\\Mastodon';
 
-    public function __construct(
-        public string $name,
-    ) {
+    public function __construct(public string $name)
+    {
         $this->name = $this->makeStudly($name);
         $this->projectRoot = dirname(__DIR__, 2);
     }

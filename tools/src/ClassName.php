@@ -14,9 +14,8 @@ class ClassName implements \Stringable
 
     protected ?ClassType $classType = null;
 
-    public function __construct(
-        protected string $fqn,
-    ) {
+    public function __construct(protected string $fqn)
+    {
     }
 
     public function __toString(): string

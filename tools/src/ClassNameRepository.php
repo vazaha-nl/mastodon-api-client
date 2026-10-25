@@ -10,9 +10,8 @@ class ClassNameRepository
 {
     public Collection $collection;
 
-    public function __construct(
-        protected ?ClassName $referenceClassName = null,
-    ) {
+    public function __construct(protected ?ClassName $referenceClassName = null)
+    {
         $this->collection = new Collection();
 
         if ($referenceClassName !== null) {
