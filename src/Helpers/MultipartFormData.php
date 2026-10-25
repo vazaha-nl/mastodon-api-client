@@ -68,11 +68,20 @@ class MultipartFormData
             $contents = (string) $contents;
         }
 
-        if (is_string($contents) || is_numeric($contents) || is_bool($contents)) {
+        if (is_string($contents) || is_numeric($contents)) {
             return [
                 [
                     'name' => $baseName,
                     'contents' => (string) $contents,
+                ],
+            ];
+        }
+
+        if (is_bool($contents)) {
+            return [
+                [
+                    'name' => $baseName,
+                    'contents' => (integer) $contents,
                 ],
             ];
         }
